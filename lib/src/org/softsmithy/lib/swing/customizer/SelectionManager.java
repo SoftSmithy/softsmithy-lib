@@ -153,14 +153,14 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     }
   }
   
-  public void customizerReshapeRel(CustomizerEvent e){
+  public void customizerResetBoundsRel(CustomizerEvent e){
     for (int i=0; i<selectedList.size(); i++){
       JCustomizer customizer = (JCustomizer) selectedList.get(i);
       customizer.setBoundsRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
       customizer.doLayout();
     }
   }
-  public void customizerFinishReshapeRel(CustomizerEvent e){
+  public void customizerReshapeRel(CustomizerEvent e){
     for (int i=0; i<selectedList.size(); i++){
       ((JCustomizer) selectedList.get(i)).reshapeRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
     }
@@ -237,7 +237,9 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     if (getActiveCustomizer() != null){
       getActiveCustomizer().addCustomizerListener(this);
       for (Iterator i=commonCustomizableProperties.iterator(); i.hasNext();){
-        getActiveCustomizer().addPropertyChangeListener((String) i.next(), this);
+        String property = (String) i.next();
+        System.out.println("Property Change Listener added for: " + property);
+        getActiveCustomizer().addPropertyChangeListener(property, this);
       }
     }
   }
@@ -248,6 +250,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
    *
    */
   public void propertyChange(PropertyChangeEvent evt) {
+    System.out.println("Property Changed!!!!!! - " + evt.getPropertyName());
     for (int i=0; i<selectedList.size()-1; i++){
       JCustomizer customizer = (JCustomizer) selectedList.get(i);
       try{

@@ -170,12 +170,14 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
 //    cl.layoutCustomizer(pane, this);
     revalidate(); // seems to be necessary?!?
     repaint();
+    fireCustomizerReshapeRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
   public void setBoundsRel(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
     setBounds(bounds);
     repaint();
+    fireCustomizerResetBoundsRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
   private Rectangle calculateBounds(int dx, int dy, int dwidth, int dheight){
@@ -219,15 +221,15 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //      ((CustomizerListener) i.next()).customizerResizeRel(e);
   //    }
   //  }
-  public void fireCustomizerReshapeRel(CustomizerEvent e){
+  public void fireCustomizerResetBoundsRel(CustomizerEvent e){
     for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerReshapeRel(e);
+      ((CustomizerListener) i.next()).customizerResetBoundsRel(e);
     }
   }
   
-  public void fireCustomizerFinishDragging(CustomizerEvent e){
+  public void fireCustomizerReshapeRel(CustomizerEvent e){
     for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerFinishReshapeRel(e);
+      ((CustomizerListener) i.next()).customizerReshapeRel(e);
     }
   }
   
