@@ -34,13 +34,13 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
         propertyMap.put(key, descriptors[i].getName());
       }
     }
-    this.properties = new ArrayList(propertyMap.values());
+    this.properties = Collections.unmodifiableList(new ArrayList(propertyMap.values()));
     this.bean = bean;
     this.rb = rb;
   }
   
   public PropertyTableModel(List readableProperties, Object bean, ResourceBundle rb) {
-    this.properties = readableProperties;
+    this.properties = Collections.unmodifiableList(readableProperties);
     this.bean = bean;
     this.rb = rb;
     //    if (activeCustomizer != null){
