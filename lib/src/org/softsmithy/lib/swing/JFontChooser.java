@@ -277,6 +277,9 @@ public class JFontChooser extends JPanel {
   //      g2.drawString( previewText, w/2-width/2, h/2-height/2 );
   //    }
   //  }
+  /**
+   * TODO: Switch to enum type in v1.4
+   */
   public abstract static class FontStyle extends TypesafeEnum{
     
     private static final String BASE_NAME = "org.softsmithy.lib.swing.JFontChooser$FontStyle";
