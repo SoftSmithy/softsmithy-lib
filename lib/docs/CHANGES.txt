@@ -282,6 +282,52 @@ CVS: 	ReflectiveXAction.java XAction.java XActionDelegator.java
 CVS: 	XActionWrapper.java XActions.java XActions2.java 
 CVS: ----------------------------------------------------------------------
 
+improved support for the Java look and feel Graphics Repository
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	GeneralActionFactory.java DevelopmentActionFactory.java 
+CVS: 	NavigationActionFactory.java MediaActionFactory.java 
+CVS: 	StandardActionFactory.java TextActionFactory.java 
+CVS: 	TableActionFactory.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	CustomizerAction.java DefaultCustomizerAction.java 
+CVS: 	DefaultXAction.java ReflectiveCustomizerAction.java 
+CVS: ----------------------------------------------------------------------
+
+moved from org.softsmithy.lib.swing -> org.softsmithy.lib.swing.icon
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	icon/ShapeIcon.java icon/XIcon.java icon/XImageIcon.java 
+CVS: Removed Files:
+CVS: 	ShapeIcon.java XIcon.java XImageIcon.java 
+CVS: ----------------------------------------------------------------------
+
+Replaced by JXIconCustomizer and the extended icon framework!
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JIconCustomizer.java JImageCustomizer JShapeCustomizer
+CVS: ----------------------------------------------------------------------
+
 
 
 v20031023:  -number fields based on JFormattedTextField for int, long, short, 
