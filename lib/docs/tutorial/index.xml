@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+                   Sun Public License Notice
+ 
+  The contents of this file are subject to the Sun Public License
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. A copy of the License is available at
+  http://www.sun.com/
+ 
+  The Original Text is SoftSmithy Utility Library Tutorial. The Initial Author of the
+  Original Text is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ 
+  Contributor(s): .
+-->
+<!--
+    Document   : index.xml
+    Created on : 9. März 2003, 17:59
+    Author     : puce
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE book PUBLIC '-//OASIS//DTD DocBook XML V4.2//EN' 'http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd'>
+<book lang="en">
+    <bookinfo>
+        <title>SoftSmithy Utility Library Tutorial</title>
+        <author><firstname>Florian</firstname><surname>Brunner</surname></author>
+        <legalnotice>This document is under the Sun Public License Version 1.0</legalnotice>
+    </bookinfo>
+    <chapter>
+        <title>Swing: Customizer Framework</title>
+        <section>
+            <para>
+            </para>
+        </section>
+    </chapter>
+    <chapter>
+        <title>Swing: Extended Action Framework</title>
+        <section>
+            <para>
+            </para>
+        </section>
+    </chapter>
+    <chapter>
+        <title>Swing: Number Fields</title>
+        <section>
+            <para>
+            </para>
+        </section>
+    </chapter>
+    <chapter>
+        <title>Swing: Tables</title>
+        <section>
+            <para>
+            </para>
+        </section>
+    </chapter>
+</book>

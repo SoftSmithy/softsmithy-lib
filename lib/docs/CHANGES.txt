@@ -205,6 +205,16 @@ CVS: Added Files:
 CVS: 	package.html 
 CVS: ----------------------------------------------------------------------
 
+in docs
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	index.html 
+CVS: ----------------------------------------------------------------------
+
 
 v20031023:  -number fields based on JFormattedTextField for int, long, short, 
              byte, double, float, BigInteger and BigDecimal added
