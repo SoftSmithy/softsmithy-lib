@@ -18,7 +18,7 @@
  * Created on 5. September 2002, 17:11
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import javax.swing.*;
 
@@ -26,7 +26,7 @@ import javax.swing.*;
  *
  * @author  puce
  */
-public class JButtonCustomizer extends JTextCustomizer {
+public abstract class JButtonCustomizer extends JTextCustomizer {
   
   /** Creates a new instance of JLabelCustomizer */
   public JButtonCustomizer() {

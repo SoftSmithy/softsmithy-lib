@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.net.URL;
 
