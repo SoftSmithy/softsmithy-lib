@@ -9,7 +9,7 @@ v20031023:  -number fields based on JFormattedTextField for int, long, short,
             -in org.softsmithy.lib.swing.JCustomizerPropertyTable the default 
              editors for the properties x and y have been set to an integer 
              editor with bounds (0, 10000), for width and height to an integer
-             editor with bounds (1, 10000) and for thickness to an localized
+             editor with bounds (1, 10000) and for thickness to a localized
              float editor with bounds (1, 10000)
             -utility class org.softsmithy.lib.util.Comparables added
             -utility classes BigIntegers and BigDecimals in package
