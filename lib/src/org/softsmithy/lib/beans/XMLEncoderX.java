@@ -23,18 +23,19 @@ package org.softsmithy.lib.beans;
 import java.beans.*;
 import java.io.*;
 import java.lang.reflect.*;
-import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.util.*;
 
 /**
  *
  * @author  puce
  */
-public class XMLEncoder extends java.beans.XMLEncoder {
+public class XMLEncoderX extends XMLEncoder {
   
   /** Creates a new instance of XMLEncoder */
-  public XMLEncoder(OutputStream out) {
+  public XMLEncoderX(OutputStream out) {
     super(out);
-    setPersistenceDelegate(org.softsmithy.lib.util.TypesafeEnum.class, new TypesafeEnumPersitanceDelegate()); // does not work for subclasses??
+    setPersistenceDelegate(TypesafeEnum.class, new TypesafeEnumPersitanceDelegate()); // does not work for subclasses??
+    setPersistenceDelegate(Singleton.class, new SingletonPersitanceDelegate());
   }
   
   /** Returns the persistence delegate for the given type.
@@ -74,27 +75,19 @@ public class XMLEncoder extends java.beans.XMLEncoder {
    */
   public PersistenceDelegate getPersistenceDelegate(Class type) {
     PersistenceDelegate retValue;
-    if (type != null && org.softsmithy.lib.util.TypesafeEnum.class.isAssignableFrom(type)){
-      retValue = new TypesafeEnumPersitanceDelegate();
-    } else {
-    retValue = super.getPersistenceDelegate(type);
+    if (type != null && TypesafeEnum.class.isAssignableFrom(type)){
+      retValue = super.getPersistenceDelegate(TypesafeEnum.class);
+    } else  if (type != null && Singleton.class.isAssignableFrom(type)){
+      retValue = super.getPersistenceDelegate(Singleton.class);
+    } else{
+      retValue = super.getPersistenceDelegate(type);
     }
-//    if (retValue instanceof java.beans.DefaultPersistenceDelegate && type.getSuperclass() != null){
-//      retValue = super.getPersistenceDelegate(type.getSuperclass());
-//    }
+    //    if (retValue instanceof java.beans.DefaultPersistenceDelegate && type.getSuperclass() != null){
+    //      retValue = super.getPersistenceDelegate(type.getSuperclass());
+    //    }
     return retValue;
   }
   
-  /** Write an XML representation of the specified object to the output.
-   *
-   * @param o The object to be written to the stream.
-   *
-   * @see XMLDecoder#readObject
-   *
-   */
-  public void writeObject(Object o) {
-    super.writeObject(o);
-  }
   
   private static class TypesafeEnumPersitanceDelegate extends DefaultPersistenceDelegate{
     
@@ -117,18 +110,17 @@ public class XMLEncoder extends java.beans.XMLEncoder {
      *
      */
     protected Expression instantiate(Object oldInstance, Encoder out) {
-      System.out.println("inside");
       Class cls = oldInstance.getClass();
       Field[] fields = cls.getFields();
       for(int i = 0; i < fields.length; i++) {
         Field field = fields[i];
         if (Modifier.isStatic(field.getModifiers()) && field.getType().isAssignableFrom(cls)){
           try{
-//            try{
-//              field = field.getType().getField(field.getName());
-//            } catch(NoSuchFieldException ex){
-//              //ignore it
-//            }
+            //            try{
+            //              field = field.getType().getField(field.getName());
+            //            } catch(NoSuchFieldException ex){
+            //              //ignore it
+            //            }
             if (oldInstance.equals(field.get(null))){
               return new Expression(field, "get", new Object[]{null});
             }
@@ -139,56 +131,44 @@ public class XMLEncoder extends java.beans.XMLEncoder {
       }
       return super.instantiate(oldInstance, out);
     }
+  }
+  
+  private static class SingletonPersitanceDelegate extends DefaultPersistenceDelegate{
     
-    /** Returns true if an <em>equivalent</em> copy of <code>oldInstance</code> may be
-     * created by applying a series of statements to <code>newInstance</code>.
-     * In the specification of this method, we mean by equivalent that the modified instance
-     * is indistinguishable from <code>oldInstance</code> in the behavior
-     * of the relevant methods in its public API. [Note: we use the
-     * phrase <em>relevant</em> methods rather than <em>all</em> methods
-     * here only because, to be strictly correct, methods like <code>hashCode</code>
-     * and <code>toString</code> prevent most classes from producing truly
-     * indistinguishable copies of their instances].
-     * <p>
-     * The default behavior returns <code>true</code>
-     * if the classes of the two instances are the same.
-     *
-     * @param oldInstance The instance to be copied.
-     * @param newInstance The instance that is to be modified.
-     * @return True if an equivalent copy of <code>newInstance</code> may be
-     *         created by applying a series of mutations to <code>oldInstance</code>.
-     *
-     */
-    protected boolean mutatesTo(Object oldInstance, Object newInstance) {
-      boolean retValue;
-      
-      retValue = super.mutatesTo(oldInstance, newInstance);
-      return retValue;
-    }
-    
-    /** The <code>writeObject</code> is a single entry point to the persistence
-     * and is used by a <code>Encoder</code> in the traditional
-     * mode of delegation. Although this method is not final,
-     * it should not need to be subclassed under normal circumstances.
-     * <p>
-     * This implementation first checks to see if the stream
-     * has already encountered this object. Next the
-     * <code>mutatesTo</code> method is called to see if
-     * that candidate returned from the stream can
-     * be mutated into an accurate copy of <code>oldInstance</code>.
-     * If it can, the <code>initialize</code> method is called to
-     * perform the initialization. If not, the candidate is removed
-     * from the stream, and the <code>instantiate</code> method
-     * is called to create a new candidate for this object.
+    /** Returns an expression whose value is <code>oldInstance</code>.
+     * This method is used to characterize the constructor
+     * or factory method that should be used to create the given object.
+     * For example, the <code>instantiate</code> method of the persistence
+     * delegate for the <code>Field</code> class could be defined as follows:
+     * <pre>
+     * Field f = (Field)oldInstance;
+     * return new Expression(f, f.getDeclaringClass(), "getField", new Object[]{f.getName()});
+     * </pre>
+     * Note that we declare the value of the returned expression so that
+     * the value of the expression (as returned by <code>getValue</code>)
+     * will be identical to <code>oldInstance</code>.
      *
      * @param oldInstance The instance that will be created by this expression.
      * @param out The stream to which this expression will be written.
      * @return An expression whose value is <code>oldInstance</code>.
      *
      */
-    public void writeObject(Object oldInstance, Encoder out) {
-      super.writeObject(oldInstance, out);
+    protected Expression instantiate(Object oldInstance, Encoder out) {
+      try{
+        Field instance = oldInstance.getClass().getField("INSTANCE");
+        if (isReallySingleton(instance, oldInstance)){
+          return new Expression(instance, "get", new Object[]{null});
+        }
+      } catch(Exception ex){
+      }
+      return super.instantiate(oldInstance, out);
     }
     
+    private boolean isReallySingleton(Field instance, Object oldInstance) throws IllegalAccessException{
+      return (Modifier.isStatic(instance.getModifiers())
+      && instance.getType().isAssignableFrom(oldInstance.getClass())
+      && oldInstance.equals(instance.get(null)));
+    }
   }
+  
 }
