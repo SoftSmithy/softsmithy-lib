@@ -18,7 +18,7 @@
  * Created on 18. Oktober 2002, 18:33
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.icon;
 
 import java.awt.*;
 import java.awt.geom.*;

@@ -1,10 +1,10 @@
 /*
  * XIcon.java
  *
- * Created on 24. März 2004, 00:41
+ * Created on 24. Mï¿½rz 2004, 00:41
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.icon;
 
 import javax.swing.*;
 

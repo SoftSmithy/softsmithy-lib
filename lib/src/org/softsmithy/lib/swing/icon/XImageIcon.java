@@ -1,10 +1,10 @@
 /*
  * XImageIcon.java
  *
- * Created on 24. März 2004, 00:43
+ * Created on 24. Mï¿½rz 2004, 00:43
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.icon;
 
 import java.awt.*;
 import java.net.*;
