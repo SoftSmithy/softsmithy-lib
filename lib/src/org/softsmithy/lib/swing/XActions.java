@@ -1,3 +1,17 @@
+/*
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
+ */
+
 package org.softsmithy.lib.swing;
 
 import java.beans.*;
@@ -73,7 +87,7 @@ Introspector.decapitalize(string_properties[i])));
     }
     for (int i = 0; i < icon_properties.length; i++) {
       try {
-        URL url = (XActions.class).getClass().getResource(rb.getString(name + 
+        URL url = (XActions.class).getResource(rb.getString(name + 
 "." + Introspector.decapitalize(icon_properties[i])));
         if (url != null) {
           action.putValue(icon_properties[i], new ImageIcon(url));
