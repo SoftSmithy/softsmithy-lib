@@ -18,10 +18,11 @@
  * Created on 6. Februar 2003, 15:06
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import javax.swing.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *

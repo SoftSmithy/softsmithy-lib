@@ -19,7 +19,7 @@
  * Created on 25. November 2002, 15:44
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import javax.swing.*;

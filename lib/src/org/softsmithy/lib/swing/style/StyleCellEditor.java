@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.swing.style;
 
 import java.awt.*;
 import java.util.*;

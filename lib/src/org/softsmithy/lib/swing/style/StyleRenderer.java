@@ -18,7 +18,7 @@
  * Created on 7. Oktober 2002, 22:32
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import javax.swing.table.*;

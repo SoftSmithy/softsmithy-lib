@@ -13,12 +13,12 @@
  */
 
 /*
- * NoneStyleProvider.java
+ * ParentStyleProvider.java
  *
- * Created on 31. Januar 2003, 19:26
+ * Created on 31. Januar 2003, 19:32
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import org.softsmithy.lib.util.*;
@@ -28,20 +28,20 @@ import org.softsmithy.lib.swing.style.*;
  *
  * @author  puce
  */
-public class NoneStyleProvider implements StyleProvider, Singleton {
+public class ParentStyleProvider implements StyleProvider, Singleton {
   
-  public static final NoneStyleProvider INSTANCE = new NoneStyleProvider();
+  public static final ParentStyleProvider INSTANCE = new ParentStyleProvider();
   
-  /** Creates a new instance of NoneStyleProvider */
-  private NoneStyleProvider() {
+  /** Creates a new instance of ParentStyleProvider */
+  private ParentStyleProvider() {
   }
   
   public Style getStyle(Styleable styleable) {
-    return styleable.getNoneStyle();
+    return styleable.getParentStyle();
   }
   
   public String toString(Locale locale) {
-    return Customizers.getNoneStyleName(locale);
+    return Styles.getParentStyleName(locale);
   }
   
 }
