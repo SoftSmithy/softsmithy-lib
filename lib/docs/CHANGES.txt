@@ -1,5 +1,28 @@
 Changes:
 
+The way how changes to "x", "y", "width", "height", "background", "foreground" and "font" are
+handled has been fixd.
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	docs/CHANGES.txt 
+CVS: 	src/org/softsmithy/lib/swing/CustomizerActionManager.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JStyledPanel.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/AbstractCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerPropertyTableModel.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/SelectionManager.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/StateManager.java 
+CVS: 	src/org/softsmithy/lib/swing/event/CustomizerListener.java 
+CVS: 	src/org/softsmithy/lib/swing/event/CustomizerSelectionEvent.java 
+CVS: 	test/unit/src/org/softsmithy/lib/swing/JCustomizerTest.java 
+CVS: ----------------------------------------------------------------------
+
+
 Editor for property "thickness" set.
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
