@@ -39,20 +39,33 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     return this;
   }
   
+  public void alignCustomizers(Collection customizers, int position, ComponentOrientation co) {
+    if (customizers.size() > 0){
+      for (Iterator i=customizers.iterator(); i.hasNext();){
+        alignCustomizer((JCustomizer) i.next(), position, co);
+      }
+    }
+  }
+  
   public abstract int getSwingConstant();
-  public abstract int getStyleConstant();
-  public abstract String getHtmlConstant();
+  public abstract int getStyleConstant(ComponentOrientation co);
+  public abstract String getHtmlConstant(ComponentOrientation co);
+  public abstract void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co);
   
   
   public static final HorizontalAlignment LEFT = new HorizontalAlignment("left"){
     public int getSwingConstant(){
       return SwingConstants.LEFT;
     }
-    public String getHtmlConstant() {
+    public String getHtmlConstant(ComponentOrientation co) {
       return "left";
     }
-    public int getStyleConstant(){
+    public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_LEFT;
+    }
+    public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
+      System.out.println("in Left Alignment");
+      customizer.setX(position);
     }
   };
   
@@ -60,52 +73,64 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public int getSwingConstant(){
       return SwingConstants.CENTER;
     }
-    public String getHtmlConstant() {
+    public String getHtmlConstant(ComponentOrientation co) {
       return "center";
     }
-    public int getStyleConstant(){
+    public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_CENTER;
+    }
+    public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
+      customizer.setX(position-customizer.getWidth()/2);
     }
   };
   public static final HorizontalAlignment RIGHT = new HorizontalAlignment("right"){
     public int getSwingConstant(){
       return SwingConstants.RIGHT;
     }
-    public String getHtmlConstant() {
+    public String getHtmlConstant(ComponentOrientation co) {
       return "right";
     }
-    public int getStyleConstant(){
+    public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_RIGHT;
     }
+    public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
+      System.out.println("in Right Alignment");
+      customizer.setX(position-customizer.getWidth());
+    }
   };
-  public static final HorizontalAlignment LEADING = new  HorizontalAlignment("leading"){
+  public static final HorizontalAlignment LEADING = new  RelativeHorizontalAlignment("leading"){
     public int getSwingConstant(){
       return SwingConstants.LEADING;
-    }
-    public String getHtmlConstant() {
-      return "left"; // no i18n
     }
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? LEFT : RIGHT;
     }
-    public int getStyleConstant(){
-      return StyleConstants.ALIGN_LEFT; //???
-    }
   };
-  public static final HorizontalAlignment TRAILING = new HorizontalAlignment("trailing"){
+  public static final HorizontalAlignment TRAILING = new RelativeHorizontalAlignment("trailing"){
     public int getSwingConstant(){
       return SwingConstants.TRAILING;
-    }
-    public String getHtmlConstant() {
-      return "right"; // no i18n
     }
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? RIGHT : LEFT;
     }
-    public int getStyleConstant(){
-      return StyleConstants.ALIGN_RIGHT; //???
-    }
   };
+  
+  private static abstract class RelativeHorizontalAlignment extends HorizontalAlignment{
+    
+    private RelativeHorizontalAlignment(String s){
+      super(s);
+    }
+    public String getHtmlConstant(ComponentOrientation co) {
+      return orient(co).getHtmlConstant(co);
+    }
+    public int getStyleConstant(ComponentOrientation co){
+      return orient(co).getStyleConstant(co);
+    }
+    public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co) {
+      orient(co).alignCustomizer(customizer, position, co);
+    }
+    
+  }
   
   private static final HorizontalAlignment[] PRIVATE_VALUES = {LEFT, CENTER, RIGHT, LEADING, TRAILING};
   public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));

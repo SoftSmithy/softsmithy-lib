@@ -151,12 +151,15 @@ public class CustomizerActionFactory {
   }
   
   public void alignLeft(ActionEvent e){
-    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-    if (customizers.length > 0){
-      JCustomizer focusCustomizer = customizers[customizers.length-1];
-      for (int i=0; i<customizers.length-1; i++){
-        customizers[i].setX(focusCustomizer.getX());
-      }
+    alignHorizontal(HorizontalAlignment.LEFT, selectionManager.getActiveCustomizer().getX());
+  }
+  
+  private void alignHorizontal(HorizontalAlignment ha, int position){
+    Set customizers = new HashSet(Arrays.asList(selectionManager.getSelectedCustomizers()));
+    customizers.remove(selectionManager.getActiveCustomizer());
+    if (customizers.size() > 0){
+      ha.alignCustomizers(customizers, position,
+      selectionManager.getActiveCustomizer().getComponentOrientation());
     }
   }
   
@@ -171,13 +174,9 @@ public class CustomizerActionFactory {
   }
   
   public void alignRight(ActionEvent e){
-    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-    if (customizers.length > 0){
-      JCustomizer focusCustomizer = customizers[customizers.length-1];
-      for (int i=0; i<customizers.length-1; i++){
-        customizers[i].setX(focusCustomizer.getX()+focusCustomizer.getWidth()-customizers[i].getWidth());
-      }
-    }
+    alignHorizontal(HorizontalAlignment.RIGHT,
+    selectionManager.getActiveCustomizer().getX()
+    + selectionManager.getActiveCustomizer().getWidth());    
   }
   
   public void alignBottom(ActionEvent e){

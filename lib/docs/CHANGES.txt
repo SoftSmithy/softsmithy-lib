@@ -251,6 +251,29 @@ CVS: ----------------------------------------------------------------------
 
 
 
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	docs/CHANGES.txt 
+CVS: 	src/org/softsmithy/lib/swing/ColorCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/JXViewport.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JWindowMenu.java 
+CVS: ----------------------------------------------------------------------
+
+
+
 v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
              preferredSize 
             -org.softsmithy.lib.beans.XDefaultPersistenceDelegate work around
