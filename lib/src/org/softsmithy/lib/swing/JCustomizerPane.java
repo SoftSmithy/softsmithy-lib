@@ -35,7 +35,7 @@ import org.softsmithy.lib.swing.event.*;
  *
  * @author  puce
  */
-public class JCustomizerPane extends JPanel implements MouseListener{
+public class JCustomizerPane extends AbstractCustomizer implements MouseListener{
   
   
   /** Holds value of property showingConstraints. */

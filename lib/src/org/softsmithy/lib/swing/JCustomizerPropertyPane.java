@@ -61,39 +61,9 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
   
   public void selectionChanged(CustomizerSelectionEvent e) {
     Set properties = JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
-    Class topMostCommonClass = Classes.getTopMostCommonClass(Classes.getClasses(e.getSelectedCustomizers()));
-//    // List descriptors = new ArrayList();
-//    Iterator i = e.getSelectedCustomizers().iterator();
-//    if (i.hasNext()){
-//      JCustomizer customizer = (JCustomizer) i.next();
-//      properties = new LinkedHashSet(customizer.getCustomizableProperties());
-//      topMostCommonClass = customizer.getClass();
-//      for (;i.hasNext();){
-//        JCustomizer custom = (JCustomizer) i.next();
-//        properties.retainAll(custom.getCustomizableProperties());
-//        topMostCommonClass = Classes.getTopMostCommonClass(topMostCommonClass, custom.getClass());
-//      }
-      //      for (Iterator j=properties.iterator(); j.hasNext();){
-      //        String property = (String) j.next();
-      //        try{
-      //          PropertyDescriptor descriptor = new PropertyDescriptor("component"
-      //          +property.substring(0, 1).toUpperCase()
-      //          +property.substring(1),
-      //          aClass);
-      //          descriptors.add(descriptor);
-      //        } catch(IntrospectionException ex1){
-      //          try{
-      //            PropertyDescriptor descriptor = new PropertyDescriptor(property, aClass);
-      //            descriptors.add(descriptor);
-      //          } catch(IntrospectionException ex2){
-      //            ex2.printStackTrace();
-      //          }
-      //        }
-      //      }
-      // }
-    //customizer.setLocale(Locale.GERMAN);
+    // Class topMostCommonClass = Classes.getTopMostCommonClass(Classes.getClasses(e.getSelectedCustomizers()));
     ((CustomizerPropertyTableModel) table.getModel()).stopListening();
-    table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), e.getSelectedCustomizers(), e.getActiveCustomizer(), topMostCommonClass, getLocale()));
+    table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), e.getSelectedCustomizers(), e.getActiveCustomizer(), getLocale()));
     //      for (int j=0; j<descriptors.length; j++){
     //        System.out.println(descriptors[j].getName() + ": " +descriptors[j].getDisplayName());
     //      }

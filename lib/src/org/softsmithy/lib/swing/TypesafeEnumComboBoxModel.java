@@ -31,13 +31,13 @@ import org.softsmithy.lib.util.*;
 public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
   
   /** Holds value of property locale. */
-  private Locale locale = Locale.getDefault();
+  //private Locale locale = Locale.getDefault();
   
   public TypesafeEnumComboBoxModel() {
   }
   
   public TypesafeEnumComboBoxModel(Locale locale) {
-    this.locale = locale;
+    //this.locale = locale;
   }
   
   /** Creates a new instance of DefaultTypesafeEnumComboBoxModel */
@@ -66,20 +66,10 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     return (TypesafeEnum) getSelectedItem();
   }
   
-//  public void setSelectedTypesafeEnum(TypesafeEnum te) {
-//    setSelectedItem(te);
-//  }
-  
-//  public Object getElementAt(int index) {
-//    return ((TypesafeEnumItem) super.getElementAt(index)).getTypesafeEnum();
-//  }
-  
-  
   public void removeElement(Object anObject) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
     }
-//    super.removeElement(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
     super.removeElement(anObject);
   }
   
@@ -87,7 +77,6 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
     }
-//    super.insertElementAt(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()), index);
     super.insertElementAt(anObject, index);
   }
   
@@ -95,7 +84,6 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
     }
-//    super.addElement(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
     super.addElement(anObject);
   }
   
@@ -108,10 +96,6 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
     }
-//    Object item = anObject;
-//    if (item instanceof TypesafeEnum){
-//      item = new TypesafeEnumItem((TypesafeEnum) anObject, getLocale());
-//    }
     super.setSelectedItem(anObject);
   }
   
@@ -126,43 +110,9 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
     }
-//    return super.getIndexOf(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
     return super.getIndexOf(anObject);
   }
-//  
-//  /** Getter for property locale.
-//   * @return Value of property locale.
-//   *
-//   */
-//  public Locale getLocale() {
-//    return this.locale;
-//  }
-//  
-//  /** Setter for property locale.
-//   * @param locale New value of property locale.
-//   *
-//   */
-//  public void setLocale(Locale locale) {
-//    this.locale = locale;
-//    TypesafeEnum selected = getSelectedTypesafeEnum();
-//    TypesafeEnum[] enums = new TypesafeEnum[getSize()];
-//    for (int i=0; i<getSize(); i++){
-//      enums[i] = getTypesafeEnumAt(i);
-//    }
-//    removeAllElements();
-//    addAllTypesafeEnums(enums);
-//    if (selected != null){
-//      setSelectedTypesafeEnum(selected);
-//    }
-//  }
-  
-  public Object getSelectedItem() {
-//    Object item = super.getSelectedItem();
-//    if (item != null){
-//      item = ((TypesafeEnumItem) item).getTypesafeEnum();
-//    }
-    return super.getSelectedItem();
-  }
+
   
   public TypesafeEnum getTypesafeEnumAt(int index) {
     return (TypesafeEnum) getElementAt(index);

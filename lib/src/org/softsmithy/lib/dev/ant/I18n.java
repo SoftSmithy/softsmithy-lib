@@ -17,7 +17,7 @@ import org.softsmithy.lib.io.*;
  *
  * @author  puce
  */
-public class I18n {
+class I18n {
   
   private static final String DEFAULT = "default";
   /** Holds value of property targetDir. */

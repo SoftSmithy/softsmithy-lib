@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author  puce
  */
-public class ORFileFilter extends CompundFileFilter {
+public class ORFileFilter extends CompoundFileFilter {
   
   /** Creates a new instance of ANDFileFilter */
   public ORFileFilter(FileFilter first, FileFilter second) {

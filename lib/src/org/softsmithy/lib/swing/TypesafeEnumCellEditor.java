@@ -54,9 +54,7 @@ public class TypesafeEnumCellEditor extends DefaultCellEditor {
   
   /** Implements the <code>TableCellEditor</code> interface.  */
   public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-    System.out.println("start edit");
     fillComboBox(getClass(table, row, column));
-    System.out.println(value.getClass());
     return super.getTableCellEditorComponent(table, value, isSelected, row, column);
   }
   

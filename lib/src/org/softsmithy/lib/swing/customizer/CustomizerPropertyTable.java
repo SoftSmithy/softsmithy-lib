@@ -31,7 +31,13 @@ public class CustomizerPropertyTable extends JCellTable {
   
   /** Creates a new instance of PropertyTable */
   public CustomizerPropertyTable() {
-    super(new CustomizerPropertyTableModel(new ArrayList(), new HashSet(), null, null, Locale.getDefault()));
+    super(new CustomizerPropertyTableModel(new ArrayList(), new HashSet(), null, Locale.getDefault()));
+    init();
+  }
+  
+  private void init(){
+    setDefaultRenderer(Style.class, new StyleRenderer(getLocale()));
+    setDefaultEditor(Style.class, new StyleCellEditor(getLocale())); // note: Style is an interface
   }
   
 }

@@ -15,7 +15,7 @@ import org.softsmithy.lib.util.*;
  */
 public class Customizers {
   
-  private static final ResourceBundleCache CACHE = new ResourceBundleCache("org.softsmithy.lib.swing.customizer");
+  private static final ResourceBundleCache CACHE = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Customizers");
   
   /** Creates a new instance of Customizers */
   private Customizers() {
