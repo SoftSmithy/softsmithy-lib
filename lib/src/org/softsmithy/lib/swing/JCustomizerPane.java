@@ -20,13 +20,19 @@
 
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.awt.event.*;
+import java.awt.geom.*;
 import java.util.*;
 import javax.swing.*;
 import org.softsmithy.lib.awt.event.*;
 import org.softsmithy.lib.awt.layout.*;
 import org.softsmithy.lib.swing.customizer.*;
+
 
 
 
@@ -228,6 +234,17 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   
   public JCustomizer[] getCustomizers() {
     return (JCustomizer[]) Arrays.asList(getComponents()).toArray(new JCustomizer[getComponents().length]);
+  }
+  
+  public JCustomizer[] getIntersectedCustomizers(Rectangle2D rectangle){
+    List customizers = new ArrayList();
+    JCustomizer[] allCustomizers = getCustomizers();
+    for (int i=0; i<allCustomizers.length; i++){
+      if (allCustomizers[i].getBounds().intersects(rectangle)){
+        customizers.add(allCustomizers[i]);
+      }
+    }
+    return (JCustomizer []) customizers.toArray(new JCustomizer[customizers.size()]);
   }
   
   /**

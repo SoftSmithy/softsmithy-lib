@@ -31,9 +31,16 @@ import org.softsmithy.lib.util.*;
  */
 public abstract class Line2DOrientation extends TypesafeEnum {
   
+  private static final String BASE_NAME = "org.softsmithy.lib.swing.customizer.Line2DOrientation";
+  
+  
   /** Creates a new instance of Line2DOrientation */
   private Line2DOrientation(String name) {
     super(name);
+  }
+  
+  public String getResourceBundleBaseName(){
+    return BASE_NAME;
   }
   
   public abstract Line2D getLine2D();

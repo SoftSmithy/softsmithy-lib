@@ -64,6 +64,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     add(glassPane, CONSTRAINTS);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
+    setStyle(getNoneStyle());
     //setComponent(new JLabel("testtest"));
     //this.setOpaque(false);
     

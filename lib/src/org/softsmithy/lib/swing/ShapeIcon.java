@@ -53,7 +53,7 @@ public class ShapeIcon implements Icon {
    *
    */
   public int getIconHeight() {
-    return shape != null ? shape.getBounds().height : 0;
+    return shape != null ? shape.getBounds().height + shape.getBounds().y : 0;
   }
   
   /** Returns the icon's width.
@@ -62,7 +62,7 @@ public class ShapeIcon implements Icon {
    *
    */
   public int getIconWidth() {
-    return shape != null ? shape.getBounds().width : 0;
+    return shape != null ? shape.getBounds().width + shape.getBounds().x : 0;
   }
   
   /** Draw the icon at the specified location.  Icon implementations
@@ -73,6 +73,8 @@ public class ShapeIcon implements Icon {
   public void paintIcon(Component c, Graphics g, int x, int y) {
     if (getShape() != null){
       Graphics2D g2 = (Graphics2D) g;
+      Color oldColor = g2.getColor();
+      g2.setColor(c.getForeground());
       if (isFilled()){
         g2.fill(shape);
       } else {
@@ -81,6 +83,7 @@ public class ShapeIcon implements Icon {
         g2.draw(shape);
         g2.setStroke(oldStroke);
       }
+      g2.setColor(oldColor);
     }
   }
   
