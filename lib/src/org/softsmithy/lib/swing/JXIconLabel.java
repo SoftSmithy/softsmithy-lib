@@ -104,7 +104,7 @@ public class JXIconLabel extends JXLabel {
     setIcon(icon);
   }
   
-  public void resizeIcon(){
+  private void resizeIcon(){
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     if (originalIcon != null && innerArea.width > 0 && innerArea.height > 0){
       //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);

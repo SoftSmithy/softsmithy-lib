@@ -52,7 +52,7 @@ public class GeneralActionFactory extends StandardActionFactory{
   public static final GeneralActionFactory HELP = new GeneralActionFactory("help");
   public static final GeneralActionFactory HISTORY = new GeneralActionFactory("history");
   /**
-   * "Import" is a keyword, so there can't be a method with that name
+   * "Import" is a keyword, so there can't be a method with that name. Therefor the key is "generalImport".
    */
   public static final GeneralActionFactory IMPORT = new GeneralActionFactory("generalImport");
   public static final GeneralActionFactory INFORMATION = new GeneralActionFactory("information");

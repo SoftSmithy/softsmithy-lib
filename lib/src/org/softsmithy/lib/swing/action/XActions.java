@@ -40,7 +40,11 @@ public class XActions {
   private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.action.StandardMenus";
   private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
   private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
-  
+  //  private static final Map MNEMONICS = new HashMap();
+  //
+  //  static{
+  //    KeyEvent.VK_A
+  //  }
   
   /**
    * No public constructor!
@@ -66,10 +70,41 @@ public class XActions {
     return action;
   }
   
+  /**
+   * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
+   * <br>
+   * name.name: the name to be displayed <br>
+   * name.shortDescription: Tool Tip <br>
+   * name.acceleratorKey: Shortcut <br>
+   * name.mnemonicKey: Mnemonic <br>
+   * name.largeDisabledIcon: File Name <br>
+   * name.largeDisabledSelectedIcon: File Name <br>
+   * name.largeIcon: File Name <br>
+   * name.largePressedIcon: File Name <br>
+   * name.largeRolloverIcon: File Name <br>
+   * name.largeRolloverSelectedIcon: File Name <br>
+   * name.largeSelectedIcon: File Name <br>
+   * name.smallDisabledIcon: File Name <br>
+   * name.smallDisabledSelectedIcon: File Name <br>
+   * name.smallIcon: File Name <br>
+   * name.smallPressedIcon: File Name <br>
+   * name.smallRolloverIcon: File Name <br>
+   * name.smallRolloverSelectedIcon: File Name <br>
+   * name.smallSelectedIcon: File Name <br>
+   * <br>
+   * E.g. <br>
+   * myAction.name = MyAction <br>
+   * myAction.shortDescription = MyAction <br>
+   * myAction.acceleratorKey = Control M <br>
+   * myAction.mnemonicKey = A <br>
+   * myAction.largeIcon = /myGraphics/MyAction24.gif <br>
+   * myAction.smallIcon = /myGraphics/MyAction16.gif <br>
+   */
   public static void configureXAction(XAction action, String name, ResourceBundle rb){
     configureStringProperties(action, name, rb);
     configureIconProperties(action, name, rb);
     configureKeyStrokeProperties(action, name, rb);
+    configureMnemonicKeyProperties(action, name, rb);
   }
   
   private static void configureStringProperties(XAction action, String name, ResourceBundle rb){
@@ -115,11 +150,28 @@ public class XActions {
   }
   
   private static void configureKeyStrokeProperties(XAction action, String name, ResourceBundle rb){
-    String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};    
+    String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};
     for (int i = 0; i < keyStrokeProperties.length; i++) {
       try {
         action.putValue(keyStrokeProperties[i], KeyStroke.getKeyStroke(rb.getString(name + "." +
         Introspector.decapitalize(keyStrokeProperties[i]))));
+      } catch (MissingResourceException ex) {
+        // ignore it
+      }
+    }
+  }
+  
+  private static void configureMnemonicKeyProperties(XAction action, String name, ResourceBundle rb){
+    String[] mnemonicKeyProperties = {Action.MNEMONIC_KEY};
+    for (int i = 0; i < mnemonicKeyProperties.length; i++) {
+      try {
+        String mnemonicKeyString = rb.getString(name + "." +Introspector.decapitalize(mnemonicKeyProperties[i]));
+        if (mnemonicKeyString.length() > 0){
+          char mnemonicKey = mnemonicKeyString.substring(0,1).toUpperCase().charAt(0);
+          if (Character.isUpperCase(mnemonicKey)){ //TODO: Check if this is enough (Uniocde)
+            action.setMnemonicKey(mnemonicKey);
+          }
+        }
       } catch (MissingResourceException ex) {
         // ignore it
       }
