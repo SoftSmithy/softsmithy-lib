@@ -4,16 +4,16 @@
  * Created on 19. August 2002, 13:45
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import puce.swing.customizer.*;
-import puce.swing.event.*;
-import puce.test.*;
+import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.test.*;
 
 
 

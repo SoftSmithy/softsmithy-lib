@@ -4,7 +4,7 @@
  * Created on 2. September 2002, 16:18
  */
 
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
 

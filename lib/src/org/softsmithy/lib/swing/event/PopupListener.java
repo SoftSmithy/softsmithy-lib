@@ -1,4 +1,4 @@
-package puce.swing.event;
+package org.softsmithy.lib.swing.event;
 
 import java.awt.event.*;
 import javax.swing.*;

@@ -4,17 +4,16 @@
  * Created on 19. September 2002, 17:57
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
-import ch.datasolution.dbwizard.dbhtmleditor.PageElement;
-import puce.swing.customizer.CustomizerPropertyTable;
-import puce.swing.customizer.CustomizerPropertyTableModel;
+import org.softsmithy.lib.swing.customizer.CustomizerPropertyTable;
+import org.softsmithy.lib.swing.customizer.CustomizerPropertyTableModel;
 import java.awt.BorderLayout;
 import java.beans.*;
 import java.util.*;
 import javax.swing.*;
-import puce.lang.reflect.*;
-import puce.swing.event.*;
+import org.softsmithy.lib.lang.reflect.*;
+import org.softsmithy.lib.swing.event.*;
 
 
 /**

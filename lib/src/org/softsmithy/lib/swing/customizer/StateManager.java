@@ -1,14 +1,14 @@
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
-import puce.swing.*;
-import puce.swing.border.*;
-import puce.swing.border.HandleBorder.*;
-import puce.swing.event.*;
+import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.border.*;
+import org.softsmithy.lib.swing.border.HandleBorder.*;
+import org.softsmithy.lib.swing.event.*;
 
 /*
  * Is this the right place? Should it be nested or in puce.swing?
@@ -404,6 +404,8 @@ public class StateManager implements FocusListener, MouseInputListener {
   
   public static class DefaultState extends StateAdapter{
     
+    private final Border normalBorder = BorderFactory.createLineBorder(Color.GRAY);
+    
     private final JCustomizer customizer;
     
     public DefaultState(JCustomizer customizer){
@@ -411,7 +413,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     
     public void applyBorder(){
-      customizer.applyBorder(null);
+      customizer.applyBorder(normalBorder);
     }
     
     public void applyCursor(){

@@ -4,11 +4,11 @@
  * Created on 7. Oktober 2002, 22:32
  */
 
-package puce.swing.table;
+package org.softsmithy.lib.swing.table;
 
 import java.util.*;
 import javax.swing.table.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 
 /**

@@ -1,4 +1,4 @@
-package puce.awt.event;
+package org.softsmithy.lib.awt.event;
 
 import java.awt.event.*;
 

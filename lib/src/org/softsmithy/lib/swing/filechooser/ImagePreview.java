@@ -1,4 +1,4 @@
-package puce.swing.filechooser;
+package org.softsmithy.lib.swing.filechooser;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -1,8 +1,8 @@
-package puce.swing.chooser;
+package org.softsmithy.lib.swing.chooser;
 
 import java.awt.*;
 import java.awt.event.*;
-import puce.util.*;
+import org.softsmithy.lib.util.*;
 
 public class Option extends TypesafeEnum {
   

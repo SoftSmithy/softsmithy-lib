@@ -1,7 +1,7 @@
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
 import java.awt.*;
-import puce.swing.customizer.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 
 public interface TableLayout extends CustomizerLayout{

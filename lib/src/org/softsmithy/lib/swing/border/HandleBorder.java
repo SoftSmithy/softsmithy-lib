@@ -1,4 +1,4 @@
-package puce.swing.border;
+package org.softsmithy.lib.swing.border;
 
 import javax.swing.border.*;
 import java.awt.*;

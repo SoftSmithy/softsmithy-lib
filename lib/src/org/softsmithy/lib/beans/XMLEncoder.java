@@ -4,12 +4,12 @@
  * Created on 8. Oktober 2002, 15:06
  */
 
-package puce.beans;
+package org.softsmithy.lib.beans;
 
 import java.beans.*;
 import java.io.*;
 import java.lang.reflect.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 /**
  *
@@ -20,7 +20,7 @@ public class XMLEncoder extends java.beans.XMLEncoder {
   /** Creates a new instance of XMLEncoder */
   public XMLEncoder(OutputStream out) {
     super(out);
-    setPersistenceDelegate(puce.util.TypesafeEnum.class, new TypesafeEnumPersitanceDelegate()); // does not work for subclasses??
+    setPersistenceDelegate(org.softsmithy.lib.util.TypesafeEnum.class, new TypesafeEnumPersitanceDelegate()); // does not work for subclasses??
   }
   
   /** Returns the persistence delegate for the given type.
@@ -60,7 +60,7 @@ public class XMLEncoder extends java.beans.XMLEncoder {
    */
   public PersistenceDelegate getPersistenceDelegate(Class type) {
     PersistenceDelegate retValue;
-    if (type != null && puce.util.TypesafeEnum.class.isAssignableFrom(type)){
+    if (type != null && org.softsmithy.lib.util.TypesafeEnum.class.isAssignableFrom(type)){
       retValue = new TypesafeEnumPersitanceDelegate();
     } else {
     retValue = super.getPersistenceDelegate(type);

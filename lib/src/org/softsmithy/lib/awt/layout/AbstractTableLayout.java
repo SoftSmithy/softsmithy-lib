@@ -1,6 +1,6 @@
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
-import puce.awt.*;
+import org.softsmithy.lib.awt.*;
 import java.awt.*;
 
 

@@ -1,10 +1,10 @@
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.Cursor;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
-import puce.swing.JCustomizer;
-import puce.swing.JCustomizerPane;
+import org.softsmithy.lib.swing.JCustomizer;
+import org.softsmithy.lib.swing.JCustomizerPane;
 
 
 public interface State {

@@ -1,11 +1,11 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import puce.lang.reflect.*;
-import puce.swing.table.*;
+import org.softsmithy.lib.lang.reflect.*;
+import org.softsmithy.lib.swing.table.*;
 
 
 public class JXTable extends JTable {

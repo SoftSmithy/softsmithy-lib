@@ -1,7 +1,7 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import javax.swing.table.*;
-import puce.swing.table.*;
+import org.softsmithy.lib.swing.table.*;
 
 
 public class JCellTable extends JXTable {

@@ -4,13 +4,13 @@
  * Created on 11. Oktober 2002, 17:03
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.util.*;
 import javax.swing.*;
-import puce.swing.multisplit.*;
+import org.softsmithy.lib.swing.multisplit.*;
 
 
 /**

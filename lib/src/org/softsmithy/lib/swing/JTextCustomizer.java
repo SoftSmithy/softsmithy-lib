@@ -4,12 +4,12 @@
  * Created on 5. September 2002, 12:15
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
-import puce.swing.customizer.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *
@@ -22,9 +22,14 @@ public abstract class JTextCustomizer extends JCustomizer {
   /** Holds value of property editorScrollable. */
   private boolean editorScrollable = false;
   
+  /** Holds value of property editable. */
+  private boolean editable;
+  private final StateManager editableStateManager = new EditableStateManager(this);
+  private final StateManager stateManager = new StateManager(this);
+  
   /** Creates a new instance of JEditableCustomizer */
   public JTextCustomizer() {
-    setStateManager(new EditableStateManager(this));
+    setEditable(true);
   }
   
   public void setEditor(JTextComponent editor){
@@ -70,6 +75,27 @@ public abstract class JTextCustomizer extends JCustomizer {
    */
   public void setEditorScrollable(boolean editorScrollable) {
     this.editorScrollable = editorScrollable;
+  }
+  
+  /** Getter for property editable.
+   * @return Value of property editable.
+   *
+   */
+  public boolean isEditable() {
+    return this.editable;
+  }
+  
+  /** Setter for property editable.
+   * @param editable New value of property editable.
+   *
+   */
+  public void setEditable(boolean editable) {
+    this.editable = editable;
+    if (editable){
+      setStateManager(editableStateManager);
+    } else {
+      setStateManager(stateManager);
+    }
   }
   
 }

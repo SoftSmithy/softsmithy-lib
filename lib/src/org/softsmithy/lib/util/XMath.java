@@ -1,4 +1,4 @@
-package puce.util;
+package org.softsmithy.lib.util;
 
 /**
  * An extended math library.

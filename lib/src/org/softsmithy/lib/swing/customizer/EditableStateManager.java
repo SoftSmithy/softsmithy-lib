@@ -4,13 +4,13 @@
  * Created on 5. September 2002, 15:58
  */
 
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 /**
  *

@@ -6,14 +6,14 @@
  * Created on 30. August 2002, 11:55
  */
 
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.*;
-import puce.swing.*;
-import puce.swing.event.*;
+import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.event.*;
 
 
 

@@ -4,7 +4,7 @@
  * Created on 26. September 2002, 12:17
  */
 
-package puce.swing.table;
+package org.softsmithy.lib.swing.table;
 
 import javax.swing.table.*;
 

@@ -4,7 +4,7 @@
  * Created on 30. September 2002, 15:58
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -12,8 +12,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
-import puce.swing.chooser.*;
-import puce.util.*;
+import org.softsmithy.lib.swing.chooser.*;
+import org.softsmithy.lib.util.*;
 
 
 

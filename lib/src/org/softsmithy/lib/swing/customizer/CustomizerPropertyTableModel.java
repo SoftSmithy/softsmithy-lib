@@ -4,16 +4,16 @@
  * Created on 19. September 2002, 18:11
  */
 
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.beans.*;
 import java.util.*;
 import javax.swing.table.*;
-import puce.beans.*;
-import puce.swing.*;
-import puce.swing.event.*;
-import puce.swing.table.*;
-import puce.util.*;
+import org.softsmithy.lib.beans.*;
+import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.swing.table.*;
+import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -24,7 +24,7 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
   private List customizers;
   private List properties;
   private Class topMostCommonClass;
-  private ResourceBundleCache cache = new ResourceBundleCache("puce.swing.customizer.Properties");
+  private ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Properties");
   
   /** Holds value of property locale. */
   private Locale locale;

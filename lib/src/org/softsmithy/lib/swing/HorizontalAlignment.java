@@ -1,9 +1,9 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
-import puce.util.*;
+import org.softsmithy.lib.util.*;
 
 public abstract class HorizontalAlignment extends TypesafeEnum implements Serializable{
   

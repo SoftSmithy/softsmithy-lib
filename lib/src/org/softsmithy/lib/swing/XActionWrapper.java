@@ -1,4 +1,4 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.beans.*;
 import javax.swing.*;

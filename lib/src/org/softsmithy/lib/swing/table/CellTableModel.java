@@ -1,4 +1,4 @@
-package puce.swing.table;
+package org.softsmithy.lib.swing.table;
 
 import javax.swing.table.*;
 

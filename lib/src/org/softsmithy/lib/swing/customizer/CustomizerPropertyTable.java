@@ -4,10 +4,10 @@
  * Created on 19. September 2002, 18:03
  */
 
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 /**
  *

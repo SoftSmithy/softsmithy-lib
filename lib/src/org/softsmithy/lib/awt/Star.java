@@ -1,4 +1,4 @@
-package puce.awt;
+package org.softsmithy.lib.awt;
 
 import java.awt.*;
 import java.awt.geom.*;

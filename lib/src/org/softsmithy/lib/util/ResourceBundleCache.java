@@ -4,7 +4,7 @@
  * Created on 7. Oktober 2002, 19:16
  */
 
-package puce.util;
+package org.softsmithy.lib.util;
 
 import java.util.*;
 

@@ -4,13 +4,13 @@
  * Created on 27. September 2002, 11:25
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import puce.swing.chooser.*;
+import org.softsmithy.lib.swing.chooser.*;
 
 /**
  *

@@ -4,7 +4,7 @@
  * Created on 22. August 2002, 18:12
  */
 
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -12,8 +12,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.*;
-import puce.awt.*;
-import puce.swing.customizer.*;
+import org.softsmithy.lib.awt.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *

@@ -1,7 +1,7 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.util.*;
-import puce.util.TypesafeEnum;
+import org.softsmithy.lib.util.TypesafeEnum;
 
 /**
  * A typesafe enum class. Defines some icon types. <br>

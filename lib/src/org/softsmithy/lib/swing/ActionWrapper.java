@@ -1,9 +1,9 @@
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.event.*;
 import java.beans.*;
 import javax.swing.*;
-import puce.awt.event.*;
+import org.softsmithy.lib.awt.event.*;
 
 public class ActionWrapper extends ActionListenerWrapper implements Action{
   private Action action;

@@ -4,7 +4,7 @@
  * Created on 1. Oktober 2002, 11:46
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.*;

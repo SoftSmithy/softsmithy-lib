@@ -1,4 +1,4 @@
-package puce.swing.text;
+package org.softsmithy.lib.swing.text;
 
 import java.text.*;
 import java.util.*;

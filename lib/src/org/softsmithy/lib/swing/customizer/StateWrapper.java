@@ -1,7 +1,7 @@
-package puce.swing.customizer;
+package org.softsmithy.lib.swing.customizer;
 
 import java.awt.event.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 public class StateWrapper implements State {
   

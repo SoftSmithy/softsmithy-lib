@@ -4,7 +4,7 @@
  * Created on 24. September 2002, 12:47
  */
 
-package puce.beans;
+package org.softsmithy.lib.beans;
 
 import java.beans.*;
 import java.util.*;

@@ -4,7 +4,7 @@
  * Created on 27. September 2002, 11:25
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.event.*;

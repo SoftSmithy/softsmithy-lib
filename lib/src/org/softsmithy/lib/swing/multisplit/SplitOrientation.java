@@ -1,7 +1,7 @@
-package puce.swing.multisplit;
+package org.softsmithy.lib.swing.multisplit;
 
 import javax.swing.*;
-import puce.util.*;
+import org.softsmithy.lib.util.*;
 
 public abstract class SplitOrientation extends TypesafeEnum {
   

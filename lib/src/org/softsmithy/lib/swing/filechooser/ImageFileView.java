@@ -1,10 +1,10 @@
-package puce.swing.filechooser;
+package org.softsmithy.lib.swing.filechooser;
 
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 
-import puce.io.Files;
+import org.softsmithy.lib.io.Files;
 
 /**
  * Some image file views. <br>
