@@ -233,7 +233,7 @@
         <fileset dir="${i18n.home}" includes="*.properties" />
     </copy>-->
     <jar jarfile="${dist.home}/${app.name}.jar"
-         basedir="${build.home}"/>
+         basedir="${build.home}" manifest="manifest.mf"/>
          
     <!-- Copy additional files to ${dist.home} as necessary -->
 
@@ -260,6 +260,7 @@
     </copy> -->
     <jar jarfile="${dist.home}/${app.name}-i18n.jar"
          basedir="${i18n.home}"
+         manifest="manifest-i18n.mf"
         />
          
     <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
