@@ -3,6 +3,7 @@ package puce.swing;
 import java.util.*;
 import java.io.*;
 import java.awt.*;
+import puce.awt.*;
 
 
 
@@ -964,17 +965,18 @@ LayoutManager2{
     columnSize = new int[numColumn];
     rowSize = new int[numRow];
     
-    // Get the container's insets
+    Rectangle innerArea = AWTUtilities.calculateInnerArea(container, null);
+   /* // Get the container's insets
     Insets inset = container.getInsets();
     
     // Get the size of the container's available space
     Dimension d = container.getSize();
     int totalWidth = d.width - inset.left - inset.right;
-    int totalHeight = d.height - inset.top - inset.bottom;
+    int totalHeight = d.height - inset.top - inset.bottom;*/
     
     // Initially, the available space is the total space
-    int availableWidth = totalWidth;
-    int availableHeight = totalHeight;
+    int availableWidth = innerArea.width; //totalWidth;
+    int availableHeight = innerArea.height; //totalHeight;
     
     // Assign absolute widths; this reduces available width
     for (counter = 0; counter < numColumn; counter++)
@@ -1165,7 +1167,7 @@ LayoutManager2{
     
     // Calculate offsets of each column (done for effeciency)
     columnOffset = new int[numColumn + 1];
-    columnOffset[0] = inset.left;
+    columnOffset[0] = innerArea.x; //inset.left;
     
     for (counter = 0; counter < numColumn; counter++)
       columnOffset[counter + 1] =
@@ -1173,7 +1175,7 @@ LayoutManager2{
     
     // Calculate offsets of each row (done for effeciency)
     rowOffset = new int[numRow + 1];
-    rowOffset[0] = inset.top;
+    rowOffset[0] = innerArea.y; //inset.top;
     
     for (counter = 0; counter < numRow; counter++)
       rowOffset[counter + 1] =
@@ -1182,8 +1184,8 @@ LayoutManager2{
     // Indicate that the size of the cells are known for the container's
     // current size
     dirty = false;
-    oldWidth = totalWidth;
-    oldHeight = totalHeight;
+    oldWidth = innerArea.width; //totalWidth;
+    oldHeight = innerArea.height; //totalHeight;
   }
   
   
