@@ -455,8 +455,8 @@ public class JCustomizer extends JPanel{
         e.translatePoint(- startX, - startY);
         processMouseDragged(e);
         e.translatePoint(startX, startY);
-        startX = e.getX();
-        startY = e.getY();
+        /*startX = e.getX();
+        startY = e.getY();*/
       }
       
       public abstract void processMouseDragged(MouseEvent e);

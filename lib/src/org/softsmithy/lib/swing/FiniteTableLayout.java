@@ -241,13 +241,12 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
    *         null is returned.
    */
   
-  public void setConstraints
-  (Component component, TableLayoutConstraints constraint) {
+  public void setConstraints(Component component, TableConstraints constraints) {
     // Check parameters
     if (component == null)
       throw new IllegalArgumentException
       ("Parameter component cannot be null.");
-    else if (constraint == null)
+    else if (constraints == null)
       throw new IllegalArgumentException
       ("Parameter constraint cannot be null.");
     
@@ -258,7 +257,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
       Entry entry = (Entry) iterator.next();
       
       if (entry.component == component)
-        iterator.set(new Entry(component, constraint));
+        iterator.set(new Entry(component, constraints));
     }
   }
   
@@ -814,9 +813,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
     int counter; // Counting variable;
     
     
-    if (! isValid(container)){
-      validate(container);
-    }
+    ensureValidity(container);
     
     // Initialize y
     int y = 0;
@@ -932,7 +929,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
   
   
   
-
+  
   
   protected void calculateRowSizes(final int innerHeight) {
     // Create array to hold actual sizes in pixels
@@ -1118,7 +1115,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
     (rowSpec[row] == MINIMUM);
   }
   
-  protected void calculateRowOffsets(final int startOffset) {
+  protected void calculateRowOffsets(int y, int innerArea) {
     // Calculate offsets of each row (done for effeciency)
     rowOffset = new int[rowSpec.length + 1];
     rowOffset[0] = startOffset;
@@ -1129,7 +1126,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
     }
   }
   
-  protected void calculateColumnOffsets(final int startOffset) {
+  protected void calculateColumnOffsets(int x, int innerArea) {
     // Calculate offsets of each column (done for effeciency)
     columnOffset = new int[columnSpec.length + 1];
     columnOffset[0] = startOffset;
@@ -1313,9 +1310,7 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
     int w, h; // Width and height of the current component in pixels
     
     
-    if (! isValid(container)){
-      validate(container);
-    }
+    ensureValidity(container);
     
     // Get components
     Component component[] = container.getComponents();
@@ -2009,15 +2004,15 @@ public class FiniteTableLayout extends AbstractTableLayout implements TableLayou
   
   
   
-
   
   
   
- 
   
   
   
-
+  
+  
+  
   
   
   //******************************************************************************

@@ -434,6 +434,10 @@ class XActions2 {
    * @created   March 7, 2002
    */
   private static class XActionButton extends JButton {
+      private AbstractXActionButton fAbstractButton;
+  }
+  
+  private static class AbstractXActionButton{
 
     private IconType fIconType;
     private boolean fShowText;
@@ -447,7 +451,7 @@ class XActions2 {
      * @param showText     Description of the Parameter
      * @param showToolTip  Description of the Parameter
      */
-    public XActionButton(XAction xaction, IconType iconType, boolean showText,
+    public AbstractXActionButton(XAction xaction, IconType iconType, boolean showText,
         boolean showToolTip) {
       super();
       //???
