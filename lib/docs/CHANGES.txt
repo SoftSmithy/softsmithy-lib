@@ -1,5 +1,211 @@
 Changes:
 
+
+
+
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	src/org/softsmithy/lib/swing/JImageCustomizer.java - set default size
+CVS: ----------------------------------------------------------------------
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCustomizer.java  - add "x", "y", "width" and "height" to the customizable properties by default to allow SelectionManager to listen for them
+        customizer/SelectionManager.java - commented out some system.outs
+CVS: ----------------------------------------------------------------------
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	Files.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	Streams.java 
+CVS: ----------------------------------------------------------------------
+
+org.softsmithy.lib.test
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	TableLayout.java TableLayoutConstants.java 
+CVS: 	TableLayoutConstraints.java TypesafeEnumItem.java 
+CVS: ----------------------------------------------------------------------
+
+internal componentContainer added
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCustomizer.java 
+CVS: ----------------------------------------------------------------------
+
+javadoc added
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCellTable.java 
+CVS: ----------------------------------------------------------------------
+
+more standard actions defined
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	XActions.java 
+CVS: ----------------------------------------------------------------------
+
+i18n/org/softsmithy/lib/swing/StandardActions changed
+
+mnemonic keys added
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	StandardMenus.properties StandardMenus_de.properties 
+CVS: 	StandardMenus_en.properties 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	ScalingAlgorithm.properties ScalingAlgorithm_de.properties 
+CVS: 	ScalingAlgorithm_en.properties 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	ScalingAlgorithm.java 
+CVS: ----------------------------------------------------------------------
+
+
+org.softsmithy.lib.swing.JTextCustomizer -> org.softsmithy.lib.swing.customizer.AbstractTextCustomizer
+
+->
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JButtonCustomizer.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JLabelCustomizer.java 
+CVS: ----------------------------------------------------------------------
+
+--
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	ShapeIcon.java 
+CVS: Added Files:
+CVS: 	XImageIcon.java XIcon.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	JXIconLabel.java 
+CVS: ----------------------------------------------------------------------
+
+
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JXLabel.java 
+CVS: ----------------------------------------------------------------------
+
+
+"showingConstraints" property renamed to "showingLayoutHelp"
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCustomizerPane.java 
+CVS: ----------------------------------------------------------------------
+
+
+
+commented out some system outputs
+JStyledPane
+
+
+in docs/api/org/softsmithy/lib/test
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	package.html 
+CVS: ----------------------------------------------------------------------
+
+
 v20031023:  -number fields based on JFormattedTextField for int, long, short, 
              byte, double, float, BigInteger and BigDecimal added
             -TableCellEditors and CellRenderers based on these number 
