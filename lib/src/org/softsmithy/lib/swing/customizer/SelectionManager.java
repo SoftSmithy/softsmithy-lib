@@ -42,6 +42,9 @@ public class SelectionManager implements CustomizerListener{
   
   private Set listeners = new HashSet();
   
+  /** Holds value of property fireingSelectionChanged. */
+  private boolean fireingSelectionChanged = false;
+  
   /** Creates a new instance of SelectionManager */
   public SelectionManager() {
   }
@@ -175,10 +178,12 @@ public class SelectionManager implements CustomizerListener{
   }
   
   private void fireSelectionChanged(){
+    fireingSelectionChanged = true;
     CustomizerSelectionEvent e = new CustomizerSelectionEvent(this, Collections.unmodifiableSet(selectedSet), getActiveCustomizer());
     for(Iterator i = listeners.iterator(); i.hasNext();){
       ((CustomizerSelectionListener) i.next()).selectionChanged(e);
     }
+    fireingSelectionChanged = false;
   }
   
   public JCustomizer[] getSelectedCustomizers(){
@@ -188,4 +193,13 @@ public class SelectionManager implements CustomizerListener{
   public JCustomizer getActiveCustomizer(){
     return selectedList.isEmpty() ? null : (JCustomizer) selectedList.get(selectedList.size()-1);
   }
+  
+  /** Getter for property fireingSelectionChanged.
+   * @return Value of property fireingSelectionChanged.
+   *
+   */
+  public boolean isFireingSelectionChanged() {
+    return this.fireingSelectionChanged;
+  }
+  
 }

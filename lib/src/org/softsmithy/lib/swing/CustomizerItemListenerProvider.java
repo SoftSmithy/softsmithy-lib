@@ -22,6 +22,7 @@ package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.*;
 import java.util.*;
 import org.softsmithy.lib.awt.event.*;
 import org.softsmithy.lib.swing.customizer.*;
@@ -32,6 +33,8 @@ import org.softsmithy.lib.swing.customizer.*;
  * @author  puce
  */
 public class CustomizerItemListenerProvider {
+  
+  private final static Class[] PARAMETER_TYPES = new Class[]{ItemEvent.class};
   
   private SelectionManager selectionManager;
   private ItemListener textBold = null;
@@ -44,31 +47,20 @@ public class CustomizerItemListenerProvider {
   
   public ItemListener getTextBoldItemListener(){
     if (textBold == null){
-      try{
-        textBold = new CustomizerItemListener(this, "textBold", "font");
-      } catch(NoSuchMethodException ex){
-        ex.printStackTrace(); // should not happen here
-      }
+      textBold = new TextBoldItemListener();
     }
     return textBold;
   }
   
   public ItemListener getTextItalicItemListener(){
     if (textItalic == null){
-      try{
-        textItalic = new CustomizerItemListener(this, "textItalic", "font");
-      } catch(NoSuchMethodException ex){
-        ex.printStackTrace(); // should not happen here
-      }
+      textItalic = new TextItalicItemListener();
     }
     return textItalic;
   }
   
-  
-  public void textBold(ItemEvent e){
-    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-    for (int i=0; i<customizers.length; i++){
-      Font font = customizers[i].getFont();
+  private class TextBoldItemListener extends FontStyleItemListener{
+    protected int calculateFontStyle(ItemEvent e, Font font) {
       int style;
       if (e.getStateChange() == ItemEvent.SELECTED){
         style = Font.BOLD;
@@ -82,14 +74,12 @@ public class CustomizerItemListenerProvider {
           style = Font.PLAIN;
         }
       }
-      customizers[i].setFont(font.deriveFont(style));
+      return  style;
     }
   }
   
-  public void textItalic(ItemEvent e){
-    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-    for (int i=0; i<customizers.length; i++){
-      Font font = customizers[i].getFont();
+  private class TextItalicItemListener extends FontStyleItemListener{
+    protected int calculateFontStyle(ItemEvent e, Font font) {
       int style;
       if (e.getStateChange() == ItemEvent.SELECTED){
         style = Font.ITALIC;
@@ -103,17 +93,53 @@ public class CustomizerItemListenerProvider {
           style = Font.PLAIN;
         }
       }
-      customizers[i].setFont(font.deriveFont(style));
+      return style;
     }
   }
   
-  private class CustomizerItemListener extends ReflectiveItemListener{
+  private abstract class FontStyleItemListener extends CustomizerItemListener{
+    
+    public FontStyleItemListener(){
+      super("font");
+    }
+    
+    protected Object getProperty() {
+      Object property = null;
+      if (selectionManager.getActiveCustomizer() != null){
+        Font font = selectionManager.getActiveCustomizer().getFont();
+        int style = font.getStyle();
+        property = new Integer(style);
+      }
+      return property;
+    }
+    
+    protected void setProperty(Object value){
+      int style = ((Integer) value).intValue();
+      JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
+      for (int i=0; i<customizers.length; i++){
+        Font font = customizers[i].getFont();
+        customizers[i].setFont(font.deriveFont(style));
+      }
+    }
+    
+    protected Object calculatePropertyValue(ItemEvent e){
+      int style = Font.PLAIN;
+      if (selectionManager.getActiveCustomizer() != null){
+        Font font = selectionManager.getActiveCustomizer().getFont();
+        style = calculateFontStyle(e, font);
+      }
+      return new Integer(style);
+    }
+    
+    protected abstract int calculateFontStyle(ItemEvent e, Font font);
+  }
+  
+  private abstract class CustomizerItemListener implements ItemListener{
     
     /** Holds value of property property. */
     private String propertyName;
     
-    public CustomizerItemListener(Object target, String methodName, String propertyName) throws NoSuchMethodException{
-      super(target, methodName);
+    public CustomizerItemListener(String propertyName){
       this.propertyName = propertyName;
     }
     
@@ -132,11 +158,35 @@ public class CustomizerItemListenerProvider {
      *
      */
     public void itemStateChanged(ItemEvent e) {
-      if (JCustomizer.getCommonCustomizableProperties(Arrays.asList(
-      selectionManager.getSelectedCustomizers())).contains(getPropertyName())){
-        super.itemStateChanged(e);
+      Object newPropertyValue = calculatePropertyValue(e);
+      if (propertyReallyChanged(newPropertyValue)){
+        setProperty(newPropertyValue);
       }
     }
     
+    protected abstract Object calculatePropertyValue(ItemEvent e);
+    protected abstract void setProperty(Object newPropertyValue);
+    protected abstract Object getProperty();
+    
+    
+    private boolean propertyReallyChanged(Object newPropertyValue){
+      return (notJustSelectionChanged()
+      && isAllowedToChange()
+      && isNoDriggeredChange(newPropertyValue));
+    }
+    
+    private boolean notJustSelectionChanged(){
+      return ! selectionManager.isFireingSelectionChanged();
+    }
+    
+    private boolean isAllowedToChange(){
+      return JCustomizer.getCommonCustomizableProperties(Arrays.asList(
+      selectionManager.getSelectedCustomizers())).contains(getPropertyName());
+    }
+    
+    private boolean isNoDriggeredChange(Object newPropertyValue){
+      return ! getProperty().equals(newPropertyValue);
+    }
   }
+  
 }

@@ -80,6 +80,7 @@ public abstract class AbstractCustomizer extends JPanel {
    *
    */
   public void setStyle(Style style) {
+    Style oldStyle = this.style;
     if (style == null){
       this.style = getNoneStyle();
     } else {
@@ -89,6 +90,7 @@ public abstract class AbstractCustomizer extends JPanel {
     setForegroundOnly(this.style.getForeground());
     setFontOnly(this.style.getFont());
     setOpaqueOnly(this.style.isOpaque());
+    firePropertyChange("style", oldStyle, this.style);
   }
   
   private void ensureNoneStyle(){
