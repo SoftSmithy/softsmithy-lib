@@ -1,4 +1,9 @@
 Changes:
+CVS: 	src/org/softsmithy/lib/awt/layout/AbsoluteTableConstraints.java 
+CVS: 	src/org/softsmithy/lib/awt/layout/InfiniteTableLayout.java 
+CVS: 	src/org/softsmithy/lib/awt/layout/RelativeTableConstraints.java 
+CVS: 	src/org/softsmithy/lib/awt/layout/TableConstraints.java 
+CVS: 	src/org/softsmithy/lib/awt/layout/TableLayout.java 
 v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
              preferredSize 
             -org.softsmithy.lib.beans.XDefaultPersistenceDelegate work around

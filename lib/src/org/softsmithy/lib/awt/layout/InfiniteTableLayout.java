@@ -182,10 +182,16 @@ public class InfiniteTableLayout extends AbstractTableLayout {
         ((Integer) compHeights.get(sortedCompHeights.last())).intValue();
   }
   
-  public void deleteColumn(int i) {
+  public void deleteColumn(int i, boolean absolute) {
+    Map bounds = getBounds(absolute);
+    columns.delete(i);
+    setBounds(bounds, absolute);
   }
   
-  public void deleteRow(int i) {
+  public void deleteRow(int i, boolean absolute) {
+    Map bounds = getBounds(absolute);
+    rows.delete(i);
+    setBounds(bounds, absolute);
   }
   
   public void drawGrid(Container container, Graphics g) {
@@ -195,12 +201,78 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     rows.draw(innerArea.x, innerArea.width, g);
   }
   
-  public void insertColumn(int i, double width) {
+  public void insertColumn(int i, boolean absolute) {
+    Map bounds = getBounds(absolute);
+    columns.insert(i);
+    setBounds(bounds, absolute);
+    
   }
   
-  public void insertRow(int i, double height) {
+  public void insertRow(int i, boolean absolute) {
+    Map bounds = getBounds(absolute);
+    rows.insert(i);
+    setBounds(bounds, absolute);
   }
   
+  private Map getBounds(boolean absolute){
+    Map bounds;
+    if (absolute){
+      bounds = getAbsoluteBounds();
+    } else {
+      bounds = getRelativeBounds();
+    }
+    return bounds;
+  }
+  
+  private void setBounds(Map bounds, boolean absolute){
+    if (absolute){
+      setAbsoluteBounds(bounds);
+    } else {
+      setRelativeBounds(bounds);
+    }
+  }
+  
+  private Map getAbsoluteBounds(){
+    Map bounds = new HashMap();
+    Component[] components = getComponents(parent);
+    for (int i=0; i < components.length; i++){
+      bounds.put(components[i],
+      ((TableConstraints) getConstraints(components[i])).
+      getAbsoluteBounds(components[i], this));
+    }
+    return bounds;
+  }
+  
+  private Map getRelativeBounds(){
+    Map bounds = new HashMap();
+    Component[] components = getComponents(parent);
+    for (int i=0; i < components.length; i++){
+      bounds.put(components[i],
+      ((TableConstraints) getConstraints(components[i])).
+      getRelativeBounds(components[i], this));
+    }
+    return bounds;
+  }
+  
+  private void setAbsoluteBounds(Map bounds){
+    Component[] components = getComponents(parent);
+    for (int i=0; i < components.length; i++){
+      TableConstraints constraints = (TableConstraints) getConstraints(components[i]);
+      constraints.setAbsoluteBounds((Rectangle) bounds.get(components[i]), this);
+      setConstraints(components[i], constraints);
+      layoutComponent(parent, components[i]);
+    }
+  }
+  
+  private void setRelativeBounds(Map bounds){
+    Component[] components = getComponents(parent);
+    for (int i=0; i < components.length; i++){
+      TableConstraints constraints = (TableConstraints) getConstraints(components[i]);
+      constraints.setRelativeBounds((Rectangle) bounds.get(components[i]), this);
+      setConstraints(components[i], constraints);
+      layoutComponent(parent, components[i]);
+    }
+  }
   
   //  public void layoutComponent(Container parent, Component comp) {
   //    TableConstraints constr = (TableConstraints) getConstraints(comp);
@@ -257,11 +329,6 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     resetOccupiedDimension();
   }
   
-  public void setColumn(int i, double size) {
-  }
-  
-  public void setRow(int i, double size) {
-  }
   
   public int columnIndex(int pixel) {
     return columns.offsetIndex(pixel);
@@ -351,7 +418,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     private int defaultSize;
     
     /** Holds value of property sizes. */
-    private Map sizes = new TreeMap();
+    private SortedMap sizes = new TreeMap();
     
     private List offsets = new ArrayList();
     
@@ -371,6 +438,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
      */
     public void setDefaultSize(int defaultSize) {
       this.defaultSize = defaultSize;
+      invalidate();
     }
     
     /** Indexed getter for property sizes.
@@ -388,14 +456,41 @@ public class InfiniteTableLayout extends AbstractTableLayout {
      */
     public void setSize(int index, int size) {
       sizes.put(new Integer(index), new Integer(size));
+      invalidate();
     }
     
     public void makeDefault(int index){
       sizes.remove(new Integer(index));
+      invalidate();
     }
     
     public boolean isDefault(int index){
       return ! sizes.containsKey(new Integer(index));
+    }
+    
+    public void delete(int index){
+      Integer i = new Integer(index);
+      if (sizes.containsKey(i)){
+        sizes.remove(i);
+      }
+      for (Iterator it= new TreeMap(sizes.tailMap(i)).keySet().iterator(); it.hasNext();){
+        Integer j = (Integer) it.next();
+        sizes.put(new Integer(j.intValue()-1), sizes.get(j));
+        sizes.remove(j);
+      }
+      invalidate();
+    }
+    
+    public void insert(int index){
+      Integer i = new Integer(index);
+      SortedMap map = new TreeMap();
+      for (Iterator it= new TreeMap(sizes.tailMap(i)).keySet().iterator(); it.hasNext();){
+        Integer j = (Integer) it.next();
+        map.put(new Integer(j.intValue()+1), sizes.get(j));
+        sizes.remove(j);
+      }
+      sizes.putAll(map);
+      invalidate();
     }
     
     public void calculateOffsets(int start, int length) {

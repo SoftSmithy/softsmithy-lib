@@ -26,9 +26,9 @@ public interface TableLayout extends CustomizerLayout{
   
   void drawGrid(Container container, Graphics g);
   
-  void deleteRow(int i);
+  void deleteRow(int i, boolean absolute);
   
-  void insertColumn(int i, double width);
+  void insertColumn(int i, boolean absolute);
   
   void setRowHeight(int i, double height);
   
@@ -38,9 +38,9 @@ public interface TableLayout extends CustomizerLayout{
   
   double getRowHeight(int i);
   
-  void insertRow(int i, double height);
+  void insertRow(int i, boolean absolute);
   
-  void deleteColumn(int i);
+  void deleteColumn(int i, boolean absolute);
   
   int columnIndex(int pixel);
   
