@@ -42,16 +42,11 @@ public class ImageFilter extends FileFilter {
 
     String extension = Files.getExtension(f);
     if (extension != null) {
-      if (extension.equals(Files.TIFF_CAPITAL) ||
-          extension.equals(Files.TIFF_SMALL) ||
-          extension.equals(Files.TIF_CAPITAL) ||
-          extension.equals(Files.TIF_SMALL) ||
-          extension.equals(Files.JPEG_CAPITAL) ||
-          extension.equals(Files.JPEG_SMALL) ||
-          extension.equals(Files.JPG_CAPITAL) ||
-          extension.equals(Files.JPG_SMALL) ||
-          extension.equals(Files.GIF_CAPITAL) ||
-          extension.equals(Files.GIF_SMALL)) {
+      if (extension.equalsIgnoreCase(Files.TIFF) ||
+          extension.equalsIgnoreCase(Files.TIF) ||
+          extension.equalsIgnoreCase(Files.JPEG) ||
+          extension.equalsIgnoreCase(Files.JPG) ||
+          extension.equalsIgnoreCase(Files.GIF)) {
         return true;
       } else {
         return false;

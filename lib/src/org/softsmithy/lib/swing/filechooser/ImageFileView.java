@@ -33,7 +33,7 @@ public class ImageFileView extends FileView {
   private ImageIcon jpgIcon = new ImageIcon("images/jpgIcon.gif");
   private ImageIcon gifIcon = new ImageIcon("images/gifIcon.gif");
   private ImageIcon tiffIcon = new ImageIcon("images/tiffIcon.gif");
-
+  
   /**
    * The name of the file. Normally this would be simply f.getName()
    *
@@ -44,7 +44,7 @@ public class ImageFileView extends FileView {
     // let the L&F FileView figure this out
     return null;
   }
-
+  
   /**
    * Gets a human readable description of the file.
    *
@@ -55,7 +55,7 @@ public class ImageFileView extends FileView {
     // let the L&F FileView figure this out
     return null;
   }
-
+  
   /**
    * Whether the directory is traversable or not.
    * This might be useful, for example, if you want a directory to represent a
@@ -68,7 +68,7 @@ public class ImageFileView extends FileView {
     // let the L&F FileView figure this out
     return null;
   }
-
+  
   /**
    * A human readable description of the type of some image files.
    *
@@ -78,26 +78,21 @@ public class ImageFileView extends FileView {
   public String getTypeDescription(File f) {
     String extension = Files.getExtension(f);
     String type = null;
-
+    
     if (extension != null) {
-      if (extension.equals(Files.JPEG_CAPITAL) ||
-          extension.equals(Files.JPEG_SMALL) ||
-          extension.equals(Files.JPG_CAPITAL) ||
-          extension.equals(Files.JPG_SMALL)) {
+      if (extension.equalsIgnoreCase(Files.JPEG) ||
+      extension.equalsIgnoreCase(Files.JPG)) {
         type = "JPEG Image";
-      } else if (extension.equals(Files.GIF_CAPITAL) ||
-          extension.equals(Files.GIF_SMALL)) {
+      } else if (extension.equalsIgnoreCase(Files.GIF)) {
         type = "GIF Image";
-      } else if (extension.equals(Files.TIFF_CAPITAL) ||
-          extension.equals(Files.TIFF_SMALL) ||
-          extension.equals(Files.TIF_CAPITAL) ||
-          extension.equals(Files.TIF_SMALL)) {
+      } else if (extension.equalsIgnoreCase(Files.TIFF) ||
+      extension.equalsIgnoreCase(Files.TIF)) {
         type = "TIFF Image";
       }
     }
     return type;
   }
-
+  
   /**
    * The icon that represents this image file in the JFileChooser.
    *
@@ -107,20 +102,15 @@ public class ImageFileView extends FileView {
   public Icon getIcon(File f) {
     String extension = Files.getExtension(f);
     Icon icon = null;
-
+    
     if (extension != null) {
-      if (extension.equals(Files.JPEG_CAPITAL) ||
-          extension.equals(Files.JPEG_SMALL) ||
-          extension.equals(Files.JPG_CAPITAL) ||
-          extension.equals(Files.JPG_SMALL)) {
+      if (extension.equalsIgnoreCase(Files.JPEG) ||
+      extension.equalsIgnoreCase(Files.JPG)) {
         icon = jpgIcon;
-      } else if (extension.equals(Files.GIF_CAPITAL) ||
-          extension.equals(Files.GIF_SMALL)) {
+      } else if (extension.equalsIgnoreCase(Files.GIF)) {
         icon = gifIcon;
-      } else if (extension.equals(Files.TIFF_CAPITAL) ||
-          extension.equals(Files.TIFF_SMALL) ||
-          extension.equals(Files.TIF_CAPITAL) ||
-          extension.equals(Files.TIF_SMALL)) {
+      } else if (extension.equalsIgnoreCase(Files.TIFF) ||
+      extension.equalsIgnoreCase(Files.TIF)) {
         icon = tiffIcon;
       }
     }
