@@ -22,6 +22,7 @@ public class Streams {
   /**
    * Is this good?
    * Does not close (any?) stream!
+   * Return type may change to List<String> in future!?
    */
   public static String[] readLines(InputStream input) throws IOException{
     return readLines(new InputStreamReader(new BufferedInputStream(input)));
@@ -30,6 +31,7 @@ public class Streams {
   /**
    * Is this good?
    * Does not close (any?) stream!
+   * Return type may change to List<String> in future!?
    */
   public static String[] readLines(Reader reader) throws IOException{
     List lines = new ArrayList();

@@ -29,51 +29,27 @@ public class Files {
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String JPEG_SMALL = "jpeg";
+  public final static String JPEG = "jpeg";
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String JPEG_CAPITAL = "JPEG";
+  public final static String JPG = "jpg";
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String JPG_SMALL = "jpg";
+  public final static String GIF = "gif";
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String JPG_CAPITAL = "JPG";
+  public final static String TIFF = "tiff";
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String GIF_SMALL = "gif";
+  public final static String TIF = "tif";
   /**
    * A file extension. May be removed in a future version.
    */
-  public final static String GIF_CAPITAL = "GIF";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TIFF_SMALL = "tiff";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TIFF_CAPITAL = "TIFF";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TIF_SMALL = "tif";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TIF_CAPITAL = "TIF";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TXT_SMALL = "txt";
-  /**
-   * A file extension. May be removed in a future version.
-   */
-  public final static String TXT_CAPITAL = "TXT";
+  public final static String TXT = "txt";
   
   /**
    * Gets the extension of a file
@@ -111,10 +87,12 @@ public class Files {
   }
   
   /**
-   * Gets the name of a file (from start to the last point).
+   *  Gets the name of a file (from start to the last point).
    *
    * @param f  the file whose name should be fetched
    * @return   the name of the specified file
+   *
+   * Should this method be renamed?
    */
   public static String getName(File f) {
     String firstName = "";
@@ -127,6 +105,9 @@ public class Files {
     return firstName;
   }
   
+  /**
+   * Return type may change to List<String> in future!?
+   */
   public static String[] readLines(File file) throws FileNotFoundException, IOException{
     FileReader reader = new FileReader(file);
     String[] lines = Streams.readLines(reader);
