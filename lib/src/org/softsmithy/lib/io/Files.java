@@ -14,7 +14,8 @@
 
 package org.softsmithy.lib.io;
 
-import java.io.File;
+import java.io.*;
+import java.util.*;
 
 /**
  * A utility class for Files. <br>
@@ -24,7 +25,7 @@ import java.io.File;
  * @see java.io.File
  */
 public class Files {
-
+  
   /**
    * A file extension. May be removed in a future version.
    */
@@ -73,7 +74,7 @@ public class Files {
    * A file extension. May be removed in a future version.
    */
   public final static String TXT_CAPITAL = "TXT";
-
+  
   /**
    * Gets the extension of a file
    *
@@ -84,14 +85,14 @@ public class Files {
     String ext = "";
     String s = f.getName();
     int i = s.lastIndexOf('.');
-
+    
     if (i > 0 && i < s.length() - 1) {
       ext = s.substring(i + 1).toLowerCase();
     }
     return ext;
   }
-
-
+  
+  
   /**
    * Gets the first name of a file (from start to the first point).
    *
@@ -102,13 +103,13 @@ public class Files {
     String firstName = "";
     String s = f.getName();
     int i = s.indexOf('.');
-
+    
     if (i > -1) {
       firstName = s.substring(0, i);
     }
     return firstName;
   }
-
+  
   /**
    * Gets the name of a file (from start to the last point).
    *
@@ -119,10 +120,18 @@ public class Files {
     String firstName = "";
     String s = f.getName();
     int i = s.lastIndexOf('.');
-
+    
     if (i > -1) {
       firstName = s.substring(0, i);
     }
     return firstName;
   }
+  
+  public static String[] readLines(File file) throws FileNotFoundException, IOException{
+    FileReader reader = new FileReader(file);
+    String[] lines = Streams.readLines(reader);
+    reader.close(); // is this ok?
+    return lines;
+  }
+  
 }
