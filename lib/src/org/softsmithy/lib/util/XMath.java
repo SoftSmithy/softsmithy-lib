@@ -9,6 +9,8 @@ package puce.util;
  */
 
 public class XMath {
+  
+  private static final double MAX_ANGLE = 2 * Math.PI;
 
   /**
    * No public constructor provided.
@@ -23,12 +25,11 @@ public class XMath {
    * @return        the trimmed angle in radians
    */
   public static double toStandardInterval(double angrad) {
-    double maxAngle = 2 * Math.PI;
     double angle = angrad;
-    angle %= maxAngle;
+    angle %= MAX_ANGLE;
     if (angle < 0) {
-      angle += maxAngle;
-    }
+      angle += MAX_ANGLE;
+    }   
     return angle;
   }
 }
