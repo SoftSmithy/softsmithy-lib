@@ -67,16 +67,18 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     setRequestFocusEnabled(true);
     //setComponent(new JLabel("testtest"));
     //this.setOpaque(false);
-    Action deleteAction = new AbstractAction("delete") {
-      public void actionPerformed(ActionEvent e) {
-        ((JCustomizer) e.getSource()).fireCustomizerDelete(new CustomizerEvent(e.getSource(), 0, 0, 0, 0));
-        //        System.out.println(e.getSource() + " deleted!");
-      }
-    };
-    getActionMap().put(deleteAction.getValue(Action.NAME),
-    deleteAction);
     
-    getInputMap().put(KeyStroke.getKeyStroke("DELETE"), deleteAction.getValue(Action.NAME));
+//    Action deleteAction = new AbstractAction("delete") {
+//      public void actionPerformed(ActionEvent e) {
+//        ((JCustomizer) e.getSource()).fireCustomizerDelete(new CustomizerEvent(e.getSource(), 0, 0, 0, 0));
+//        System.out.println("From within JCustomizer");
+//        //        System.out.println(e.getSource() + " deleted!");
+//      }
+//    };
+//    getActionMap().put(deleteAction.getValue(Action.NAME),
+//    deleteAction);
+//    
+//    getInputMap().put(KeyStroke.getKeyStroke("DELETE"), deleteAction.getValue(Action.NAME));
   }
   
   
@@ -216,12 +218,12 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     }
   }
   
-  public void fireCustomizerDelete(CustomizerEvent e){
-    for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerDelete(e);
-    }
-  }
-  
+//  public void fireCustomizerDelete(CustomizerEvent e){
+//    for (Iterator i=listeners.iterator(); i.hasNext();){
+//      ((CustomizerListener) i.next()).customizerDelete(e);
+//    }
+//  }
+//  
   /** Getter for property glassPane.
    * @return Value of property glassPane.
    *
@@ -454,6 +456,11 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     return properties;
   }
 
+  public JCustomizerPane getParentCustomizerPane() {
+    // There seems to be no way to ensure this!?
+    return (JCustomizerPane) getParent();
+  }
+  
 }
 
     

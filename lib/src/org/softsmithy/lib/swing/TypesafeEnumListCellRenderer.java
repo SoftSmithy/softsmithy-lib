@@ -43,10 +43,13 @@ public class TypesafeEnumListCellRenderer extends DefaultListCellRenderer {
   }
   
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-    if (! (value instanceof TypesafeEnum)){
-      throw new IllegalArgumentException("value must be an instance of TypesafeEnum");
+    String typesafeEnumString = null;
+    if (value != null){
+      if (! (value instanceof TypesafeEnum)){
+        throw new IllegalArgumentException("value must be an instance of TypesafeEnum");
+      }
+      typesafeEnumString = ((TypesafeEnum) value).toString(getLocale());
     }
-    String typesafeEnumString = ((TypesafeEnum) value).toString(getLocale());
     return super.getListCellRendererComponent(list, typesafeEnumString, index, isSelected, cellHasFocus);
   }
   

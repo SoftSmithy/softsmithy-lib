@@ -60,8 +60,7 @@ public class SelectionManager implements CustomizerListener{
   
   private void selectOnly(JCustomizer customizer) {
     if (selectedList.size()>0){
-      JCustomizer oldBound = (JCustomizer) selectedList.get(selectedList.size()-1);
-      oldBound.getStateManager().setStateSelected();
+      getActiveCustomizer().getStateManager().setStateSelected();
     }
     setSelected(customizer);
     customizer.addCustomizerListener(this);
@@ -152,7 +151,7 @@ public class SelectionManager implements CustomizerListener{
     }
   }
   
-  public void customizerDelete(CustomizerEvent e) {
+  public void deleteSelection() {
     for (int i=0; i<selectedList.size(); i++){
       JCustomizer customizer = (JCustomizer) selectedList.get(i);
       Container parent = customizer.getParent();

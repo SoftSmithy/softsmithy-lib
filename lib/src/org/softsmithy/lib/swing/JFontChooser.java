@@ -68,11 +68,11 @@ public class JFontChooser extends JPanel {
     sizesBox.setRenderer(new NumberListCellRenderer());
     //sizesBox.setSelectedItem(new Integer(12));
     //sizesBox.setEditable(true);
-    Vector styles = new Vector();
-    for (Iterator i=FontStyle.VALUES.iterator(); i.hasNext();){
-      styles.add(new TypesafeEnumItem((FontStyle)i.next(), getLocale()));
-    }
-    stylesBox.setModel(new DefaultComboBoxModel(styles));
+//    Vector styles = new Vector();
+//    for (Iterator i=FontStyle.VALUES.iterator(); i.hasNext();){
+//      styles.add(new TypesafeEnumItem((FontStyle)i.next(), getLocale()));
+//    }
+    stylesBox.setModel(new TypesafeEnumComboBoxModel(FontStyle.class, getLocale()));
     selectFont(selectedFont);
   }
   
@@ -83,7 +83,7 @@ public class JFontChooser extends JPanel {
     setSelectedFont(font);
     fontsBox.setSelectedItem(font.getFamily(getLocale()));
     sizesBox.setSelectedItem(new Integer(font.getSize()));
-    stylesBox.setSelectedItem(new TypesafeEnumItem(FontStyle.getFontStyle(font.getStyle()), getLocale()));
+    stylesBox.setSelectedItem(FontStyle.getFontStyle(font.getStyle()));
   }
   /** This method is called from within the constructor to
    * initialize the form.
@@ -98,9 +98,9 @@ public class JFontChooser extends JPanel {
     stylesLabel = new javax.swing.JLabel();
     fontsBox = new javax.swing.JComboBox();
     sizesBox = new javax.swing.JComboBox();
-    stylesBox = new javax.swing.JComboBox();
     previewPane = new javax.swing.JPanel();
     previewLabel = new javax.swing.JLabel();
+    stylesBox = new org.softsmithy.lib.swing.JTypesafeEnumComboBox();
 
     setLayout(new java.awt.GridBagLayout());
 
@@ -133,12 +133,6 @@ public class JFontChooser extends JPanel {
     add(stylesLabel, gridBagConstraints);
 
     fontsBox.setMaximumRowCount(9);
-    fontsBox.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        fontsBoxActionPerformed(evt);
-      }
-    });
-
     fontsBox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         fontsBoxItemStateChanged(evt);
@@ -164,18 +158,6 @@ public class JFontChooser extends JPanel {
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     add(sizesBox, gridBagConstraints);
 
-    stylesBox.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        stylesBoxItemStateChanged(evt);
-      }
-    });
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    add(stylesBox, gridBagConstraints);
-
     previewPane.setLayout(new java.awt.BorderLayout());
 
     previewPane.setBorder(new javax.swing.border.TitledBorder(rb.getString("preview")));
@@ -192,18 +174,26 @@ public class JFontChooser extends JPanel {
     gridBagConstraints.weighty = 1.0;
     add(previewPane, gridBagConstraints);
 
+    stylesBox.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        stylesBoxItemStateChanged(evt);
+      }
+    });
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 2;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    add(stylesBox, gridBagConstraints);
+
   }//GEN-END:initComponents
-  
-  private void fontsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontsBoxActionPerformed
-    // Add your handling code here:
-  }//GEN-LAST:event_fontsBoxActionPerformed
-  
+
   private void stylesBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stylesBoxItemStateChanged
-    if (evt.getStateChange() == ItemEvent.SELECTED) {
-      setSelectedFont(selectedFont.deriveFont(((FontStyle)((TypesafeEnumItem) evt.getItem()).getTypesafeEnum()).getStyle()));
-    }
+   if (evt.getStateChange() == ItemEvent.SELECTED) {
+      setSelectedFont(selectedFont.deriveFont(((FontStyle) evt.getItem()).getStyle()));
+   }
   }//GEN-LAST:event_stylesBoxItemStateChanged
-  
+      
   private void sizesBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sizesBoxItemStateChanged
     if (evt.getStateChange() == ItemEvent.SELECTED) {
       setSelectedFont(selectedFont.deriveFont(((Integer) evt.getItem()).floatValue()));
@@ -242,14 +232,14 @@ public class JFontChooser extends JPanel {
   
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JLabel stylesLabel;
-  private javax.swing.JComboBox fontsBox;
-  private javax.swing.JComboBox sizesBox;
-  private javax.swing.JPanel previewPane;
-  private javax.swing.JLabel fontsLabel;
-  private javax.swing.JLabel previewLabel;
-  private javax.swing.JComboBox stylesBox;
   private javax.swing.JLabel sizesLabel;
+  private javax.swing.JLabel previewLabel;
+  private javax.swing.JComboBox sizesBox;
+  private javax.swing.JComboBox fontsBox;
+  private javax.swing.JLabel fontsLabel;
+  private org.softsmithy.lib.swing.JTypesafeEnumComboBox stylesBox;
+  private javax.swing.JPanel previewPane;
+  private javax.swing.JLabel stylesLabel;
   // End of variables declaration//GEN-END:variables
   
   /** Holds value of property selectedFont. */

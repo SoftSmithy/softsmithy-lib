@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
 
 

@@ -24,8 +24,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import org.softsmithy.lib.awt.event.*;
 import org.softsmithy.lib.awt.layout.*;
 import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.swing.event.*;
 
 
 
@@ -33,7 +35,7 @@ import org.softsmithy.lib.swing.customizer.*;
  *
  * @author  puce
  */
-public class JCustomizerPane extends JPanel implements MouseListener{
+public class JCustomizerPane extends JPanel implements Activateable, MouseListener{
   
   
   /** Holds value of property showingConstraints. */
@@ -45,24 +47,33 @@ public class JCustomizerPane extends JPanel implements MouseListener{
   /** Holds value of property customizerBar. */
   private CustomizerBar customizerBar;
   
+  
+  //private final ActivationManager activationManager = new ActivationManager();
+  
+  /** Holds value of property active. */
+  private boolean active;
+  
+  private boolean inited = false;
+  
   /** Creates new form JCustomizerPane */
   public JCustomizerPane() {
     initComponents();
+    inited = true;
     setLayout(new InfiniteTableLayout(this));
     setSize(400, 300);
     //setFocusable(true);//setRequestFocusEnabled(true);
     addMouseListener(this);
     this.setBackground(Color.WHITE);
-//    Action deleteAction = new AbstractAction("delete") {
-//      public void actionPerformed(ActionEvent e) {
-//        System.out.println(e.getSource() + " deleted!");
-//      }
-//    };
-//    getActionMap().put(deleteAction.getValue(Action.NAME),
-//    deleteAction);
-//    
-//    getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DELETE"),
-//    deleteAction.getValue(Action.NAME));
+    //    Action deleteAction = new AbstractAction("delete") {
+    //      public void actionPerformed(ActionEvent e) {
+    //        System.out.println(e.getSource() + " deleted!");
+    //      }
+    //    };
+    //    getActionMap().put(deleteAction.getValue(Action.NAME),
+    //    deleteAction);
+    //
+    //    getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DELETE"),
+    //    deleteAction.getValue(Action.NAME));
     
   }
   
@@ -201,6 +212,101 @@ public class JCustomizerPane extends JPanel implements MouseListener{
   public JCustomizer[] getCustomizers() {
     return (JCustomizer[]) Arrays.asList(getComponents()).toArray(new JCustomizer[getComponents().length]);
   }
+  
+  /**
+   * Sets the layout manager for this container.
+   * @param mgr the specified layout manager
+   * @see #doLayout
+   * @see #getLayout
+   *
+   */
+  public void setLayout(LayoutManager mgr) {
+    if (inited){
+      if (! (mgr instanceof CustomizerLayout)){
+        throw new IllegalArgumentException("mgr must be an instance of CustomizerLayout!");
+      }
+    }
+    super.setLayout(mgr);
+  }
+  
+  /** Adds the specified component to this container at the specified
+   * index. This method also notifies the layout manager to add
+   * the component to this container's layout using the specified
+   * constraints object via the <code>addLayoutComponent</code>
+   * method.  The constraints are
+   * defined by the particular layout manager being used.  For
+   * example, the <code>BorderLayout</code> class defines five
+   * constraints: <code>BorderLayout.NORTH</code>,
+   * <code>BorderLayout.SOUTH</code>, <code>BorderLayout.EAST</code>,
+   * <code>BorderLayout.WEST</code>, and <code>BorderLayout.CENTER</code>.
+   *
+   * <p>Note that if the component already exists
+   * in this container or a child of this container,
+   * it is removed from that container before
+   * being added to this container.
+   * <p>
+   * This is the method to override if a program needs to track
+   * every add request to a container as all other add methods defer
+   * to this one. An overriding method should
+   * usually include a call to the superclass's version of the method:
+   * <p>
+   * <blockquote>
+   * <code>super.addImpl(comp, constraints, index)</code>
+   * </blockquote>
+   * <p>
+   * @param     comp       the component to be added
+   * @param     constraints an object expressing layout constraints
+   *                 for this component
+   * @param     index the position in the container's list at which to
+   *                 insert the component, where <code>-1</code>
+   *                 means append to the end
+   * @exception IllegalArgumentException if <code>index</code> is invalid
+   * @exception IllegalArgumentException if adding the container's parent
+   * 			to itself
+   * @exception IllegalArgumentException if adding a window to a container
+   * @see       #add(Component)
+   * @see       #add(Component, int)
+   * @see       #add(Component, java.lang.Object)
+   * @see       LayoutManager
+   * @see       LayoutManager2
+   * @since     JDK1.1
+   *
+   */
+  protected void addImpl(Component comp, Object constraints, int index) {
+    if (! (comp instanceof JCustomizer)){
+      throw new IllegalArgumentException("comp must be an instance of JCustomizer!");
+    }
+    if (! (constraints instanceof CustomizerConstraints)){
+      throw new IllegalArgumentException("constraints must be an instance of CustomizerConstraints!");
+    }
+    super.addImpl(comp, constraints, index);
+  }
+  
+  public void addCustomizer(JCustomizer customizer, CustomizerConstraints constraints){
+    add(customizer, constraints);
+  }
+  
+  /** Getter for property active.
+   * @return Value of property active.
+   *
+   */
+  public boolean isActive() {
+    return this.active;
+  }
+  
+  /** Setter for property active.
+   * @param active New value of property active.
+   *
+   */
+  public void setActive(boolean active) {
+    if (active != isActive()){
+      boolean oldActive = isActive();
+      this.active = active;
+      firePropertyChange("active", oldActive, active);
+    }
+  }
+  
+  
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

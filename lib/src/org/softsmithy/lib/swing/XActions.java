@@ -77,6 +77,7 @@ public class XActions {
     XAction.SMALL_ROLLOVER_ICON,
     XAction.SMALL_ROLLOVER_SELECTED_ICON,
     XAction.SMALL_SELECTED_ICON};
+    String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};
     for (int i = 0; i < string_properties.length; i++) {
       try {
         action.putValue(string_properties[i], rb.getString(name + "." +
@@ -95,6 +96,14 @@ public class XActions {
         }
       } catch (MissingResourceException ex) {
         //System.out.println("Couln'dt find: " + name + icon_properties[i] );
+        // ignore it
+      }
+    }
+        for (int i = 0; i < keyStrokeProperties.length; i++) {
+      try {
+        action.putValue(keyStrokeProperties[i], KeyStroke.getKeyStroke(rb.getString(name + "." +
+        Introspector.decapitalize(keyStrokeProperties[i]))));
+      } catch (MissingResourceException ex) {
         // ignore it
       }
     }
