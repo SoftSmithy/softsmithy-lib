@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import org.softsmithy.lib.swing.icon.*;
 
 /**
  *
@@ -18,13 +19,12 @@ import javax.swing.*;
 public class JXIconLabel extends JXLabel {
   
   //private ShapeIcon shapeIcon = new ShapeIcon();
-  
-  /** Holds value of property iconResizing. */
-  private boolean iconResizing = false;
   private XIcon originalIcon = null;
   
-  /** Holds value of property respectingAspectRatio. */
-  private boolean respectingAspectRatio = true;
+  /**
+   * Holds value of property zoomingStrategy.
+   */
+  private ZoomingStrategy zoomingStrategy = new PercentageZooming();
   
   public JXIconLabel(){
     super();
@@ -61,38 +61,7 @@ public class JXIconLabel extends JXLabel {
   
   private void init(){
     addComponentListener(new SizeListener());
-  }
-  
-  /** Getter for property iconResizing.
-   * @return Value of property iconResizing.
-   *
-   */
-  public boolean isIconResizing() {
-    return this.iconResizing;
-  }
-  
-  /** Setter for property iconResizing.
-   * @param iconResizing New value of property iconResizing.
-   *
-   */
-  public void setIconResizing(boolean iconResizing) { //better setIconScaling?
-    this.iconResizing = iconResizing;
-  }
-  
-  /** Getter for property respectionAspectRatio.
-   * @return Value of property respectionAspectRatio.
-   *
-   */
-  public boolean isRespectingAspectRatio() {
-    return this.respectingAspectRatio;
-  }
-  
-  /** Setter for property respectionAspectRatio.
-   * @param respectionAspectRatio New value of property respectionAspectRatio.
-   *
-   */
-  public void setRespectingAspectRatio(boolean respectingAspectRatio) {
-    this.respectingAspectRatio = respectingAspectRatio;
+    setMinimumSize(new Dimension(1, 1)); // TODO: Check: Ok?
   }
   
   public void setIcon(Icon icon){
@@ -123,34 +92,52 @@ public class JXIconLabel extends JXLabel {
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     XIcon icon = getXIcon();
     if (originalIcon != null && innerArea.width > 0 && innerArea.height > 0){
-      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);
-      //icon.resize(bounds.width, bounds.height);
+      //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);      
+      Dimension bounds = getZoomingStrategy().zoom(originalIcon.getIconWidth(),
+      originalIcon.getIconHeight(), innerArea.width, innerArea.height);
       setIconOnly(originalIcon.getScaledInstance(bounds.width, bounds.height));
+      
     }
   }
   
-  private Dimension calculateIconBounds(int width, int height){
-    Dimension bounds;
-    if (isRespectingAspectRatio()){
-      if (((double) width) / originalIcon.getIconWidth() <= ((double) height) / originalIcon.getIconHeight()){
-        bounds = new Dimension(width, -1); //(int) Math.round(((double) width * height) / getIcon().getIconWidth()));
-      } else {
-        bounds = new Dimension(-1, height); //(int) Math.round(((double) width * height) / getIcon().getIconHeight()), height);
-      }
-    } else {
-      bounds = new Dimension(width, height);
-    }
-    return bounds;
-  }
+  //  private Dimension calculateIconBounds(int width, int height){
+  //    Dimension bounds;
+  //    if (isRespectingAspectRatio()){
+  //      if (((double) width) / originalIcon.getIconWidth() <= ((double) height) / originalIcon.getIconHeight()){
+  //        bounds = new Dimension(width, -1); //(int) Math.round(((double) width * height) / getIcon().getIconWidth()));
+  //      } else {
+  //        bounds = new Dimension(-1, height); //(int) Math.round(((double) width * height) / getIcon().getIconHeight()), height);
+  //      }
+  //    } else {
+  //      bounds = new Dimension(width, height);
+  //    }
+  //    return bounds;
+  //  }
   
   private void setIconOnly(XIcon icon){
     super.setIcon(icon);
   }
   
+  /**
+   * Getter for property zoomingStrategy.
+   * @return Value of property zoomingStrategy.
+   */
+  public ZoomingStrategy getZoomingStrategy() {
+    return this.zoomingStrategy;
+  }
+  
+  /**
+   * Setter for property zoomingStrategy.
+   * @param zoomingStrategy New value of property zoomingStrategy.
+   */
+  public void setZoomingStrategy(ZoomingStrategy zoomingStrategy) {
+    this.zoomingStrategy = zoomingStrategy;
+  }
+  
   private static class SizeListener extends ComponentAdapter{
     
     public void componentResized(ComponentEvent e) {
-      System.out.println("Component resized!");
+      //System.out.println("Component resized!");
       ((JXIconLabel) e.getComponent()).resizeIcon();
     }
     
