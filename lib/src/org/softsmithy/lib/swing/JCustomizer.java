@@ -195,6 +195,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   protected void setBoundsRelOnly(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
     setBounds(bounds);
+    doLayout(); // seems to be necessary?!?
     repaint();
   }
   

@@ -272,7 +272,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     for (int i=0; i<selectedList.size()-1; i++){
       JCustomizer customizer = (JCustomizer) selectedList.get(i);
       customizer.setBoundsRel(dxFactor*e.getDx(), dyFactor*e.getDy(), dwidthFactor*e.getDwidth(), dheightFactor*e.getDheight());
-      customizer.doLayout();
+      //customizer.doLayout();
     }
   }
   public void customizerReshapeRel(CustomizerEvent e){
