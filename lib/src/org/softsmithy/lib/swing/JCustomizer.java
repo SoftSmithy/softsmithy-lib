@@ -49,6 +49,7 @@ import org.softsmithy.lib.test.*;
 public class JCustomizer extends AbstractCustomizer {//implements CustomizerModelListener{
   
   private JComponent fComponent = new JPanel();
+  private JPanel componentContainer = new JPanel();
   private JPanel glassPane = new JPanel();
   
   private StateManager stateManager;
@@ -65,6 +66,9 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     glassPane.setLayout(new BorderLayout());
     glassPane.setOpaque(false);
     add(glassPane, CONSTRAINTS);
+    componentContainer.setLayout(new BorderLayout());
+    componentContainer.setOpaque(false);
+    add(componentContainer, CONSTRAINTS);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
     setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
@@ -99,22 +103,22 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     return fComponent;
   }
   
+  private JPanel getComponentContainer(){
+    return componentContainer;
+  }
+  
   /** Setter for property fComponent.
    * @param fComponent New value of property fComponent.
    */
   public void setComponent(JComponent component) {
-    //removeAll();
     if (fComponent != null){
-      this.remove(fComponent);
+      //this.remove(fComponent);
+      getComponentContainer().remove(fComponent);
     }
     fComponent = component;
-    //fComponent.setEnabled(false);
-    //add(BorderLayout.CENTER, fComponent);
-    add(fComponent, CONSTRAINTS);
-    //??
-    /*fComponent.addMouseListener(fManager);
-    fComponent.addMouseMotionListener(fManager);
-    fComponent.addFocusListener(fManager);*/
+    //add(fComponent, CONSTRAINTS);
+    getComponentContainer().add(fComponent, BorderLayout.CENTER);
+    
   }
   
   public StateManager getStateManager(){
@@ -182,6 +186,8 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     //    CustomizerLayout cl = pane.getCustomizerLayout();
     //    cl.layoutCustomizer(pane, this);
     revalidate(); // seems to be necessary?!?
+    doLayout();
+    getComponentContainer().doLayout();
     repaint();
   }
   
@@ -302,6 +308,12 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   
   public void applyBorder(Border border) {
     getGlassPane().setBorder(border);
+//    System.out.println("bounds before: "+getComponent().getBounds());
+//    Insets insets = getGlassPane().getInsets();
+//    getComponentContainer().setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+//    getComponentContainer().doLayout();
+//    System.out.println("bounds after: "+getComponent().getBounds());
+//    repaint();
   }
   
   /**
