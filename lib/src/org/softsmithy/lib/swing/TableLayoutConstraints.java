@@ -21,16 +21,18 @@ public class TableLayoutConstraints implements TableLayoutConstants
 
 
 /** Cell in which the upper left corner of the component lays */
-public int col1, row1;
+private int col1;
+private int row1;
 
 /** Cell in which the lower right corner of the component lays */
-public int col2, row2;
+private int col2;
+private int row2;
 
 /** Horizontal justification if component occupies just one cell */
-public int hAlign;
+private int hAlign;
 
 /** Verical justification if component occupies just one cell */
-public int vAlign;
+private int vAlign;
 
 
 
@@ -207,4 +209,52 @@ public String toString ()
 
 
 
+
+  public int getHAlign() {
+    return this.hAlign;
+  }
+
+  public void setHAlign(int hAlign) {
+    this.hAlign = hAlign;
+  }
+
+  public int getVAlign() {
+    return this.vAlign;
+  }
+
+  public void setVAlign(int vAlign) {
+    this.vAlign = vAlign;
+  }
+
+  public int getCol2() {
+    return this.col2;
+  }
+
+  public void setCol2(int col2) {
+    this.col2 = col2;
+  }
+
+  public int getRow2() {
+    return this.row2;
+  }
+
+  public void setRow2(int row2) {
+    this.row2 = row2;
+  }
+
+  public int getCol1() {
+    return this.col1;
+  }
+
+  public void setCol1(int col1) {
+    this.col1 = col1;
+  }
+
+  public int getRow1() {
+    return this.row1;
+  }
+
+  public void setRow1(int row1) {
+    this.row1 = row1;
+  }
 }
