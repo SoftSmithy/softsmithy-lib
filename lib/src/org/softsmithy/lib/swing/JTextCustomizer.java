@@ -38,7 +38,8 @@ public abstract class JTextCustomizer extends JCustomizer {
   
   /** Holds value of property editable. */
   private boolean editable;
-  private final StateManager editableStateManager = new EditableStateManager(this);
+  
+  private boolean inited = false;
   //  private final StateManager stateManager = new StateManager(this);
   
   /** Creates a new instance of JEditableCustomizer */
@@ -58,7 +59,8 @@ public abstract class JTextCustomizer extends JCustomizer {
   
   private void init(){
     setEditable(true);
-    setStateManager(editableStateManager);
+    setStateManager(new EditableStateManager(this));
+    inited = true;
   }
   
   
@@ -91,8 +93,12 @@ public abstract class JTextCustomizer extends JCustomizer {
   //    super.setComponent(comp);
   //  }
   
-  public EditableStateManager getEditableStateManager(){
+  protected EditableStateManager getEditableStateManager(){
     return (EditableStateManager) getStateManager();
+  }
+  
+  protected void setEditableStateManager(EditableStateManager stateManager){
+    setStateManager(stateManager);
   }
   
   public String toString(){
@@ -134,6 +140,13 @@ public abstract class JTextCustomizer extends JCustomizer {
     //    } else {
     //      setStateManager(stateManager);
     //    }
+  }
+  
+  protected void setStateManager(StateManager manager) {
+    if (inited && ! (manager instanceof EditableStateManager)){
+      throw new IllegalArgumentException("manager must be an instance of EditableStateManager!");
+    }
+    super.setStateManager(manager);
   }
   
 }

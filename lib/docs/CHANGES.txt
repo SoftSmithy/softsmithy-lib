@@ -1,4 +1,11 @@
 Changes:
+v20030523:  -org.softsmithy.lib.swing.JHtmlCustomizer bug fixes for foreground
+             and font
+            -org.softsmithy.lib.swing.HorizontalAlignment supports conversions 
+             to javax.swing.text.StyleConstants
+            -org.softsmithy.lib.swing.XActions now sets a transparent icon if 
+             icon is null
+
 v20030514:  -org.softsmithy.lib.beans.BeanIntrospector now supports 
              PropertyChangeListeners
             -org.softsmithy.lib.swing.JCustomizer + 

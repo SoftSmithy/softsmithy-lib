@@ -66,6 +66,7 @@
   <property name="dist.home"     value="dist"/>
   <property name="apidoc.home"   value="docs/api"/>
   <property name="i18n.home"     value="i18n" />
+  <property name="gr.home"     value="gr" />
 
 
 
@@ -266,6 +267,31 @@
 
   </target>
 
+  <!-- ==================== I18n Target ===================================== -->
+
+
+<!--
+
+  The "dist" target creates a binary distribution of your application
+  in a directory structure ready to be archived in a tar.gz or zip file.
+  Note that this target depends on one other:
+  * "javadoc" so that the application Javadocs will have been created
+
+-->
+
+  <target name="gr" depends="distPrepare"
+   description="Create Graphics Repository Distribution">
+
+    <!-- Copy documentation subdirectory -->
+    <!-- <copy    todir="${dist.home}/docs">
+      <fileset dir="docs"/>
+    </copy> -->
+    <jar jarfile="${dist.home}/${app.name}-gr.jar"
+         basedir="${gr.home}"
+        />
+         
+
+  </target>
 
 <!-- ==================== Javadoc Target ================================== -->
 

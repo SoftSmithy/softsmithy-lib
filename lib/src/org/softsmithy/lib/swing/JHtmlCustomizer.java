@@ -20,7 +20,10 @@
 
 package org.softsmithy.lib.swing;
 
+import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.*;
+import javax.swing.text.html.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
@@ -29,11 +32,13 @@ import org.softsmithy.lib.swing.customizer.*;
  */
 public class JHtmlCustomizer extends JTextCustomizer {
   
-  private static final String HTML_START = "<html><body><div align='";
-  private static final String HTML_END = "</div></body></html>";
+  private static final String HTML_START = "<html><body>"; //<div align='";
+  private static final String HTML_END = "</body></html>"; //"</font></div></body></html>";
   
   private HorizontalAlignment horizontalAlignment = HorizontalAlignment.LEFT;
   private String text = "";
+  private MutableAttributeSet attributeSet = new SimpleAttributeSet();
+  private boolean inited = false;
   
   /** Creates a new instance of JLabelCustomizer */
   public JHtmlCustomizer() {
@@ -41,7 +46,12 @@ public class JHtmlCustomizer extends JTextCustomizer {
     setEditor(new JEditorPane("text/html", HTML_START+HTML_END));
     setEditorScrollable(true);
     setComponent(new JEditorPane("text/html", HTML_START+HTML_END));
-    //System.out.println(getEditor().getText());
+    inited = true;
+    setBackground(getBackground());
+    setForeground(getForeground());
+    setFont(getFont());
+    setHorizontalAlignment(getHorizontalAlignment());
+        //System.out.println(getEditor().getText());
   }
   
   public void setText(String text) {
@@ -89,6 +99,9 @@ public class JHtmlCustomizer extends JTextCustomizer {
   
   protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
     horizontalAlignment = alignment;
+    if (inited){
+      StyleConstants.setAlignment(attributeSet, alignment.getStyleConstant());
+    }
     configureHtmlText();
   }
   
@@ -99,17 +112,119 @@ public class JHtmlCustomizer extends JTextCustomizer {
   private void configureHtmlText(){
     JEditorPane editorPane = (JEditorPane) getComponent();
     if (editorPane != null){
+      editorPane.setDocument(editorPane.getEditorKit().createDefaultDocument());
       editorPane.setText(createHtmlText());//text.replaceAll("\n", "<br>"));
+      HTMLDocument doc=(HTMLDocument)editorPane.getDocument();
+      doc.setParagraphAttributes(0,doc.getLength(),attributeSet,true);
       //System.out.println(createHtmlText()+" -> ");
       //System.out.println(editorPane.getText());
     }
   }
   
   private String createHtmlText(){
-    return HTML_START + horizontalAlignment.getHtmlConstant() + "'>" + getText() + HTML_END;
+    StringBuffer htmlText = new StringBuffer(HTML_START);
+//    htmlText.append(horizontalAlignment.getHtmlConstant()).append("'>");
+//    htmlText.append("<font face='").append(getFont().getFamily()).append("' "); // or better getFont().getName()???
+//    htmlText.append("size='").append(getFont().getSize()).append("' ");
+//    htmlText.append("color='#");
+//    String redHex = Integer.toHexString(getForeground().getRed());
+//    if (redHex.length() == 1){
+//      htmlText.append("0");
+//    }
+//    htmlText.append(redHex);
+//    String greenHex = Integer.toHexString(getForeground().getGreen());
+//    if (greenHex.length() == 1){
+//      htmlText.append("0");
+//    }
+//    htmlText.append(greenHex);
+//    String blueHex = Integer.toHexString(getForeground().getBlue());
+//    if (blueHex.length() == 1){
+//      htmlText.append("0");
+//    }
+//    htmlText.append(blueHex).append("'>");
+//    if (getFont().isBold()){
+//      htmlText.append("<b>");
+//    }
+//    if (getFont().isItalic()){
+//      htmlText.append("<i>");
+//    }
+    htmlText.append(getText());
+//    if (getFont().isItalic()){
+//      htmlText.append("</i>");
+//    }
+//    if (getFont().isBold()){
+//      htmlText.append("</b>");
+//    }
+    htmlText.append(HTML_END);
+    System.out.println("Family: "+getFont().getFamily());
+    System.out.println("Name: "+getFont().getName());
+    System.out.println("FontName: "+getFont().getFontName());
+    System.out.println("html: " + htmlText.toString());
+    return htmlText.toString();
   }
   
+  /** Sets the foreground color of this component.
+   * @param c the color to become this component's
+   * 		foreground color; if this parameter is <code>null</code>
+   * 		then this component will inherit
+   * 		the foreground color of its parent
+   * @see #getForeground
+   * @since JDK1.0
+   *
+   */
+  protected void setForegroundOnly(Color c) {
+    super.setForegroundOnly(c);
+    if (inited){
+      StyleConstants.setForeground(attributeSet, c);
+    configureHtmlText();
+    repaint();
+    }
+  }
   
+  /** Sets the font of this component.
+   * @param f the font to become this component's font;
+   * 		if this parameter is <code>null</code> then this
+   * 		component will inherit the font of its parent
+   * @see #getFont
+   * @since JDK1.0
+   * @beaninfo
+   *       bound: true
+   *
+   */
+  protected void setFontOnly(Font f) {
+    super.setFontOnly(f);
+    if (inited){
+      StyleConstants.setFontFamily(attributeSet, f.getFamily());
+      StyleConstants.setFontSize(attributeSet, f.getSize());
+      StyleConstants.setBold(attributeSet, f.isBold());
+      StyleConstants.setItalic(attributeSet, f.isItalic());
+    configureHtmlText();
+    repaint();
+    }
+  }
   
+  /** Sets the background color of this component.
+   * <p>
+   * The background color affects each component differently and the
+   * parts of the component that are affected by the background color
+   * may differ between operating systems.
+   *
+   * @param c the color to become this component's color;
+   * 		if this parameter is <code>null</code>, then this
+   * 		component will inherit the background color of its parent
+   * @see #getBackground
+   * @since JDK1.0
+   * @beaninfo
+   *       bound: true
+   *
+   */
+//  public void setBackground(Color c) {
+//    super.setBackground(c);
+//    if (inited){
+//      StyleConstants.setBackground(attributeSet, c); // probably not really needed, but for constancy
+//      configureHtmlText();
+//    repaint();
+//    }
+//  }  
   
 }

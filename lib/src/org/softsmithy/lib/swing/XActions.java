@@ -15,6 +15,7 @@
 package org.softsmithy.lib.swing;
 
 import java.awt.event.*;
+import java.awt.image.*;
 import java.beans.*;
 import java.net.*;
 
@@ -38,6 +39,10 @@ public class XActions {
   private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
   private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.StandardMenus";
   private static final Map standardActions = new HashMap();
+  private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
+  private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
+  
+  
   /**
    * No public constructor!
    */
@@ -97,7 +102,7 @@ public class XActions {
         // ignore it
       }
     }
-        for (int i = 0; i < keyStrokeProperties.length; i++) {
+    for (int i = 0; i < keyStrokeProperties.length; i++) {
       try {
         action.putValue(keyStrokeProperties[i], KeyStroke.getKeyStroke(rb.getString(name + "." +
         Introspector.decapitalize(keyStrokeProperties[i]))));
@@ -175,7 +180,7 @@ public class XActions {
    * @param showText  if the label text should be shown
    * @return          a configured check box
    */
-  public static JCheckBox createCheckBox(XAction action, ItemListener listener, 
+  public static JCheckBox createCheckBox(XAction action, ItemListener listener,
   IconType iconType, boolean showText) {
     JCheckBox checkBox = new JCheckBox();
     configureButton(checkBox, action, listener, iconType, showText, false);
@@ -288,6 +293,8 @@ public class XActions {
     icon = action.getLargeIcon();
     if (icon != null) {
       button.setIcon(icon);
+    } else {
+      button.setIcon(LARGE_NULL_ICON);
     }
     icon = action.getLargePressedIcon();
     if (icon != null) {
@@ -325,6 +332,8 @@ public class XActions {
     icon = action.getSmallIcon();
     if (icon != null) {
       button.setIcon(icon);
+    } else {
+      button.setIcon(SMALL_NULL_ICON);
     }
     icon = action.getSmallPressedIcon();
     if (icon != null) {
@@ -457,15 +466,15 @@ public class XActions {
     if (! standardActions.containsKey(locale)){
       standardActions.put(locale, new HashMap());
     }
-    XAction copyAction;
+    XAction standardAction;
     if (! ((Map) standardActions.get(locale)).containsKey(name)){
-      copyAction = XActions.createXAction(name, target,
+      standardAction = XActions.createXAction(name, target,
       ResourceBundle.getBundle(STANDARD_ACTIONS_RB_BASE_NAME, locale));
-      ((Map) standardActions.get(locale)).put(name, copyAction);
+      ((Map) standardActions.get(locale)).put(name, standardAction);
     } else {
-      copyAction = (XAction) ((Map) standardActions.get(locale)).get(name);
+      standardAction = (XAction) ((Map) standardActions.get(locale)).get(name);
     }
-    return copyAction;
+    return standardAction;
   }
   
   public static JMenu createFileMenu(Locale locale) {

@@ -1,6 +1,6 @@
 Contains:
 
-softsmithy.jar - The Softsmithy Utility Library
+softsmithy.jar - The SoftSmithy Utility Library
 softsmithy-i18n.jar - localized property files ("en" and "de" so far)
 docs-directory - contains the Javadoc, CHANGES.txt and this readme-file
 

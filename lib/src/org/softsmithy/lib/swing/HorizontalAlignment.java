@@ -17,6 +17,7 @@ package org.softsmithy.lib.swing;
 import java.awt.ComponentOrientation;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.text.*;
 import org.softsmithy.lib.util.*;
 
 
@@ -39,6 +40,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   }
   
   public abstract int getSwingConstant();
+  public abstract int getStyleConstant();
   public abstract String getHtmlConstant();
   
   
@@ -49,6 +51,9 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public String getHtmlConstant() {
       return "left";
     }
+    public int getStyleConstant(){
+      return StyleConstants.ALIGN_LEFT;
+    }
   };
   
   public static final HorizontalAlignment CENTER = new HorizontalAlignment("center"){
@@ -58,6 +63,9 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public String getHtmlConstant() {
       return "center";
     }
+    public int getStyleConstant(){
+      return StyleConstants.ALIGN_CENTER;
+    }
   };
   public static final HorizontalAlignment RIGHT = new HorizontalAlignment("right"){
     public int getSwingConstant(){
@@ -65,6 +73,9 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     }
     public String getHtmlConstant() {
       return "right";
+    }
+    public int getStyleConstant(){
+      return StyleConstants.ALIGN_RIGHT;
     }
   };
   public static final HorizontalAlignment LEADING = new  HorizontalAlignment("leading"){
@@ -77,6 +88,9 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? LEFT : RIGHT;
     }
+    public int getStyleConstant(){
+      return StyleConstants.ALIGN_LEFT; //???
+    }
   };
   public static final HorizontalAlignment TRAILING = new HorizontalAlignment("trailing"){
     public int getSwingConstant(){
@@ -87,6 +101,9 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     }
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? RIGHT : LEFT;
+    }
+    public int getStyleConstant(){
+      return StyleConstants.ALIGN_RIGHT; //???
     }
   };
   
