@@ -378,6 +378,11 @@ public class XActions {
     return getStandardAction("save", target, locale);
   }
   
+  public static XAction getOpenAction(Object target, Locale locale) throws
+  NoSuchMethodException{
+    return getStandardAction("open", target, locale);
+  }
+  
   public static XAction getExitAction(Object target, Locale locale) throws
   NoSuchMethodException{
     return getStandardAction("exit", target, locale);
@@ -414,9 +419,27 @@ public class XActions {
     return getStandardAction("alignJustifyHorizontal", target, locale);
   }
   
+  /**
+   * "Import" is a keyword, so there can't be a method with that name
+   */
+  public static XAction getGeneralImportAction(Object target, Locale
+  locale) throws NoSuchMethodException{
+    return getStandardAction("generalImport", target, locale);
+  }
+  
   public static XAction getAlignJustifyVerticalAction(Object target, Locale
   locale) throws NoSuchMethodException{
     return getStandardAction("alignJustifyVertical", target, locale);
+  }
+  
+  public static XAction getNavigationBackAction(Object target, Locale
+  locale) throws NoSuchMethodException{
+    return getStandardAction("navigationBack", target, locale);
+  }
+  
+  public static XAction getNavigationForwardAction(Object target, Locale
+  locale) throws NoSuchMethodException{
+    return getStandardAction("navigationForward", target, locale);
   }
   
   public static XAction getTextAlignCenterAction(Object target, Locale locale)
