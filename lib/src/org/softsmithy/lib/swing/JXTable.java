@@ -149,6 +149,7 @@ public class JXTable extends JTable {
   private void init(){
     setDefaultRenderer(Color.class, new ColorCellRenderer(true));
     setDefaultRenderer(Font.class, new FontCellRenderer(true));
+    setDefaultRenderer(Locale.class, new XDefaultTableCellRenderer(new LocaleCellRenderer()));
     //setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
     setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(getLocale()));
     setDefaultEditor(Color.class, new ColorCellEditor());
@@ -159,6 +160,11 @@ public class JXTable extends JTable {
     setDefaultEditor(Double.class, new DoubleCellEditor(getLocale()));
     setDefaultEditor(HorizontalAlignment.class, new HorizontalAlignmentCellEditor(getLocale()));
     setDefaultEditor(TypesafeEnum.class, new TypesafeEnumCellEditor(getLocale()));
+  }
+  
+  // E.g. useable after locale has changed
+  public void reinit(){
+    init();
   }
   
   /** Returns the editor to be used when no editor has been set in

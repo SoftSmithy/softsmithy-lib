@@ -32,31 +32,46 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public abstract class PropertyTableModel extends AbstractTableModel implements PropertyChangeListener, CellTableModel{
+public class PropertyTableModel extends AbstractTableModel implements PropertyChangeListener, CellTableModel{
   
-  private final List properties;
-  private final Object bean;
-  private final ResourceBundle rb;
+  private List properties;
+  private Object bean;
+  private String propertiesRBBaseName;
+  private ResourceBundle propertiesRB;
+  private ResourceBundle columnNamesRB;
+  private Locale locale;
   
   /** Creates a new instance of AbstractCustomizerPropertyTableModel */
-  public PropertyTableModel(Object bean, ResourceBundle rb) throws IntrospectionException{
-    PropertyDescriptor[] descriptors = BeanIntrospector.getPropertyDescriptors(bean.getClass(), rb);
+  public PropertyTableModel(Object bean, String propertiesRBBaseName, Locale locale) throws IntrospectionException{
+    init(propertiesRBBaseName, locale);
     Map propertyMap = new TreeMap();
-    for (int i=0; i<descriptors.length; i++){
-      if (BeanIntrospector.isPropertyReadable(descriptors[i].getName(), bean.getClass(), rb)){
-        String key = descriptors[i].getDisplayName() != null ? descriptors[i].getDisplayName() : descriptors[i].getName();
-        propertyMap.put(key, descriptors[i].getName());
+    if (bean != null){
+      PropertyDescriptor[] descriptors = BeanIntrospector.getPropertyDescriptors(bean.getClass(), propertiesRB);
+      for (int i=0; i<descriptors.length; i++){
+        if (BeanIntrospector.isPropertyReadable(descriptors[i].getName(), bean.getClass(), propertiesRB)){
+          if (! descriptors[i].isHidden()){
+            String key = descriptors[i].getDisplayName() != null ? descriptors[i].getDisplayName() : descriptors[i].getName();
+            propertyMap.put(key, descriptors[i].getName());
+          }
+        }
       }
     }
-    this.properties = Collections.unmodifiableList(new ArrayList(propertyMap.values()));
-    this.bean = bean;
-    this.rb = rb;
+    init(new ArrayList(propertyMap.values()), bean);
   }
   
-  public PropertyTableModel(List readableProperties, Object bean, ResourceBundle rb) {
+  public PropertyTableModel(List readableProperties, Object bean, String propertiesRBBaseName, Locale locale) {
+    init(propertiesRBBaseName, locale);
+    init(readableProperties, bean);
+  }
+  
+  private void init(String propertiesRBBaseName, Locale locale){
+    this.propertiesRBBaseName = propertiesRBBaseName;
+    setLocale(locale);
+  }
+  
+  private void init(List readableProperties, Object bean){
     this.properties = Collections.unmodifiableList(readableProperties);
     this.bean = bean;
-    this.rb = rb;
     //    if (activeCustomizer != null){
     //      for (Iterator i=properties.iterator(); i.hasNext();){
     //        activeCustomizer.addPropertyChangeListener((String) i.next(), this);
@@ -103,7 +118,7 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
       switch (columnIndex){
         case 0: value = getPropertyDescriptor(rowIndex).getDisplayName(); break;
         case 1:
-          value = BeanIntrospector.getPropertyValue((String) properties.get(rowIndex), bean, rb);
+          value = BeanIntrospector.getPropertyValue((String) properties.get(rowIndex), bean, propertiesRB);
           break;
       }
     } catch (Exception e){
@@ -124,14 +139,14 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
    */
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     try{
-      BeanIntrospector.setPropertyValue((String) properties.get(rowIndex), aValue, bean, rb);
+      BeanIntrospector.setPropertyValue((String) properties.get(rowIndex), aValue, bean, propertiesRB);
     } catch (Exception ex2){
       ex2.printStackTrace();
     }
   }
   
   private PropertyDescriptor getPropertyDescriptor(int index) throws IntrospectionException{
-    return BeanIntrospector.getPropertyDescriptor((String) properties.get(index), bean.getClass(), rb);
+    return BeanIntrospector.getPropertyDescriptor((String) properties.get(index), bean.getClass(), propertiesRB);
   }
   
   /**  Returns false.  This is the default implementation for all cells.
@@ -144,7 +159,7 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
   public boolean isCellEditable(int rowIndex, int columnIndex) {
     boolean isCellEditable = false;
     try{
-      isCellEditable = columnIndex == 1 && BeanIntrospector.isPropertyWriteable((String) properties.get(rowIndex), bean.getClass(), rb);
+      isCellEditable = columnIndex == 1 && BeanIntrospector.isPropertyWriteable((String) properties.get(rowIndex), bean.getClass(), propertiesRB);
     } catch(IntrospectionException ex){
       ex.printStackTrace();
     }
@@ -162,10 +177,13 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
    */
   public String getColumnName(int column) {
     String columnName = "";
-    switch (column){
-      case 0: columnName = "Eigenschaft"; break;
-      case 1: columnName = "Wert"; break;
-      default: columnName = super.getColumnName(column); // should not happen
+    try{
+      switch (column){
+        case 0: columnName = columnNamesRB.getString("property"); break;
+        case 1: columnName = columnNamesRB.getString("value"); break;
+        default: columnName = super.getColumnName(column); // should not happen
+      }
+    } catch(Exception ex){
     }
     return columnName;
   }
@@ -214,6 +232,37 @@ public abstract class PropertyTableModel extends AbstractTableModel implements P
   
   public Object getBean(){
     return this.bean;
+  }
+  
+  public Locale getLocale(){
+    return locale;
+  }
+  
+  /** Setter for property locale.
+   * @param locale New value of property locale.
+   *
+   */
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+    this.columnNamesRB = ResourceBundle.getBundle("org.softsmithy.lib.swing.table.PropertyTableModel", locale);
+    if (getPropertiesRBBaseName() != null){
+      this.propertiesRB = ResourceBundle.getBundle(getPropertiesRBBaseName(), locale);
+    }
+    fireTableStructureChanged();
+  }
+  
+  public String getPropertiesRBBaseName(){
+    return this.propertiesRBBaseName;
+  }
+  
+  public void setPropertiesRBBaseName(String propertiesRBBaseName){
+    this.propertiesRBBaseName = propertiesRBBaseName;
+    if (propertiesRBBaseName == null){
+      this.propertiesRB = null;
+    } else {
+      this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName, locale);
+    }
+    fireTableDataChanged();
   }
   
 }

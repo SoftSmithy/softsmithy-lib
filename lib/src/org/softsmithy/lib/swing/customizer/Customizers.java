@@ -29,18 +29,18 @@ import org.softsmithy.lib.util.*;
  */
 public class Customizers {
   
-  private static final ResourceBundleCache CACHE = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Customizers");
+  private static final String CUSTOMIZERS_RB_BASE_NAME = "org.softsmithy.lib.swing.customizer.Customizers";
   
   /** Creates a new instance of Customizers */
   private Customizers() {
   }
   
   public static String getParentStyleName(Locale locale){
-    return CACHE.getBundle(locale).getString("parentStyle");
+    return ResourceBundle.getBundle(CUSTOMIZERS_RB_BASE_NAME, locale).getString("parentStyle");
   }
   
   public static String getNoneStyleName(Locale locale){
-    return CACHE.getBundle(locale).getString("noneStyle");
+    return ResourceBundle.getBundle(CUSTOMIZERS_RB_BASE_NAME, locale).getString("noneStyle");
   }
   
 }

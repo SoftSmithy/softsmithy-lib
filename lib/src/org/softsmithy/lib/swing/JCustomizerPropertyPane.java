@@ -27,6 +27,7 @@ import javax.swing.table.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
 import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.swing.*;
 
 
 
@@ -34,15 +35,15 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListener{
+class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListener{
   
-  private CustomizerPropertyTable table;
-  private final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Properties");
+  private JCustomizerPropertyTable table;
+  private static final String PROPERTIES_BUNDLE_BASE_NAME = "org.softsmithy.lib.swing.customizer.Properties";
   
   /** Creates new form PropertyPane */
   public JCustomizerPropertyPane() {
     initComponents();
-    table = new CustomizerPropertyTable();
+    table = new JCustomizerPropertyTable();
     add(BorderLayout.CENTER, new JScrollPane(table));
   }
   
@@ -63,7 +64,7 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
   
   public void selectionChanged(CustomizerSelectionEvent e) {
     table.getCustomizerPropertyTableModel().stopListening();
-    table.setModel(new CustomizerPropertyTableModel(new ArrayList(e.getCommonCustomizableProperties()), e.getActiveCustomizer(), cache.getBundle(getLocale())));
+    //table.setModel(new CustomizerPropertyTableModel(new ArrayList(e.getCommonCustomizableProperties()), e.getActiveCustomizer(), ResourceBundle.getBundle(PROPERTIES_BUNDLE_BASE_NAME, getLocale()), getLocale()));
   }
   
   

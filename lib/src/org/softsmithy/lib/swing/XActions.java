@@ -35,10 +35,8 @@ import org.softsmithy.lib.util.*;
 
 public class XActions {
   
-  private static final ResourceBundleCache standardActionsCache = new
-  ResourceBundleCache("org.softsmithy.lib.swing.StandardActions");
-  private static final ResourceBundleCache standardMenusCache = new
-  ResourceBundleCache("org.softsmithy.lib.swing.StandardMenus");
+  private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
+  private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.StandardMenus";
   private static final Map standardActions = new HashMap();
   /**
    * No public constructor!
@@ -462,7 +460,7 @@ public class XActions {
     XAction copyAction;
     if (! ((Map) standardActions.get(locale)).containsKey(name)){
       copyAction = XActions.createXAction(name, target,
-      standardActionsCache.getBundle(locale));
+      ResourceBundle.getBundle(STANDARD_ACTIONS_RB_BASE_NAME, locale));
       ((Map) standardActions.get(locale)).put(name, copyAction);
     } else {
       copyAction = (XAction) ((Map) standardActions.get(locale)).get(name);
@@ -496,7 +494,7 @@ public class XActions {
   
   private static void configureStandardMenu(JMenu menu, String name, Locale
   locale){
-    ResourceBundle rb = standardMenusCache.getBundle(locale);
+    ResourceBundle rb = ResourceBundle.getBundle(STANDARD_MENUS_RB_BASE_NAME, locale);
     try {
       menu.setText(rb.getString(name + "." + "text"));
     } catch (MissingResourceException ex) {

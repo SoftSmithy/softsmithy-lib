@@ -30,7 +30,7 @@ import org.softsmithy.lib.util.*;
  */
 public abstract class VerticalAlignment extends TypesafeEnum {
   
-  private static final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.VerticalAlignment");
+  private static final String RB_BASE_NAME = "org.softsmithy.lib.swing.VerticalAlignment";
   
   /** Creates a new instance of VerticalAlignment */
   private VerticalAlignment(String s){
@@ -38,7 +38,7 @@ public abstract class VerticalAlignment extends TypesafeEnum {
   }
   
   public String toString(Locale locale){
-    return cache.getBundle(locale).getString(toString());
+    return ResourceBundle.getBundle(RB_BASE_NAME, locale).getString(toString());
   }
   
   public abstract int getSwingConstant();

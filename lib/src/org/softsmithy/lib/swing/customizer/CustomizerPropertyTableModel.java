@@ -31,8 +31,8 @@ import org.softsmithy.lib.swing.event.*;
 public class CustomizerPropertyTableModel extends AbstractCustomizerPropertyTableModel implements CustomizerListener{
   
   /** Creates a new instance of PropertyTableModel */
-  public CustomizerPropertyTableModel(List properties, JCustomizer activeCustomizer, ResourceBundle rb) {
-    super(properties, activeCustomizer, rb);
+  public CustomizerPropertyTableModel(List properties, JCustomizer activeCustomizer, String propertiesRBBaseName, Locale locale) {
+    super(properties, activeCustomizer, propertiesRBBaseName, locale);
     if (activeCustomizer != null){
       activeCustomizer.addCustomizerListener(this);
     }

@@ -23,10 +23,10 @@ package org.softsmithy.lib.util;
 import java.util.*;
 
 /**
- *
+ * Not used anymore: ResourceBundle caches itself (see source). This was missunderstood before.
  * @author  puce
  */
-public class ResourceBundleCache {
+class ResourceBundleCache {
   
   private final String baseName;
   private final Map resourceBundles = new HashMap();
