@@ -22,9 +22,11 @@ package org.softsmithy.lib.swing;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.beans.*;
 import java.util.*;
 import javax.swing.*;
 import org.softsmithy.lib.swing.multisplit.*;
+import org.softsmithy.lib.swing.event.*;
 
 
 /**
@@ -36,6 +38,8 @@ public class JMultiSplitPane extends JStyledPanel {
   
   
   private List splitPanes = new ArrayList();
+  private Map fireLocationChangedListeners = new HashMap();
+  private List dividerLocationListeners = new ArrayList();
   
   /** Holds value of property orientation. */
   private SplitOrientation splitOrientation;
@@ -65,6 +69,7 @@ public class JMultiSplitPane extends JStyledPanel {
     this.add(BorderLayout.CENTER, splitPane);
     splitPane.setStyle(splitPane.getParentStyle());
     splitPanes.add(splitPane);
+    registerFireLocationChangedListeners();
     setSplitOrientation(splitOrientation);
     for (int i=2; i<initNumber; i++){
       splitLastPane();
@@ -104,6 +109,7 @@ public class JMultiSplitPane extends JStyledPanel {
     }
     splitPane.setRightComponent(pane);
     pane.setStyle(pane.getParentStyle());
+    registerFireLocationChangedListeners();
   }
   
   public void setComponent(int index, Component component){
@@ -135,6 +141,15 @@ public class JMultiSplitPane extends JStyledPanel {
   
   public void setDividerLocation(int index, int location){
     ((JXSplitPane) splitPanes.get(index)).setDividerLocation(location);
+    fireLocationChanged(new DividerLocationEvent(this, index, location));
+  }
+  
+  public int getPreferredSize(int index){
+    return getSplitOrientation().getPreferredSize(getPane(index));
+  }
+  
+  public int getSize(int index){
+    return getSplitOrientation().getSize(getPane(index));
   }
   
   /** This method is called from within the constructor to
@@ -167,7 +182,75 @@ public class JMultiSplitPane extends JStyledPanel {
     }
   }
   
+  public void addDividerLocationListener(DividerLocationListener listener){
+    dividerLocationListeners.add(listener);
+  }
   
+  public void removeDividerLocationListener(DividerLocationListener listener){
+    dividerLocationListeners.remove(listener);
+  }
+  
+  private void fireLocationChanged(DividerLocationEvent e){
+    for (int i=0; i<dividerLocationListeners.size(); i++){
+      ((DividerLocationListener) dividerLocationListeners.get(i)).locationChanged(e);
+    }
+  }
+  
+  private void registerFireLocationChangedListeners(){
+    for (int i=0; i<splitPanes.size(); i++){
+      JSplitPane splitPane = (JSplitPane) splitPanes.get(i);
+      if (fireLocationChangedListeners.containsKey(splitPane)){
+        FireLocationChangedListener listener = (FireLocationChangedListener) fireLocationChangedListeners.get(splitPane);
+        if (listener.getIndex() != i){
+          listener.setIndex(i);
+        }
+      } else {
+        FireLocationChangedListener listener = new FireLocationChangedListener(i);
+        splitPane.addPropertyChangeListener("dividerLocation", listener);
+        fireLocationChangedListeners.put(splitPane, listener);
+      }
+    }
+  }
+  
+  private void unregisterFireLocationChangedListener(JSplitPane splitPane){
+    if (fireLocationChangedListeners.containsKey(splitPane)){
+      FireLocationChangedListener listener = (FireLocationChangedListener) fireLocationChangedListeners.get(splitPane);
+      splitPane.removePropertyChangeListener("dividerLocation", listener);
+      fireLocationChangedListeners.remove(splitPane);
+    }
+  }
+  
+  private class FireLocationChangedListener implements PropertyChangeListener{
+    
+    /** Holds value of property index. */
+    private int index;
+    
+    public FireLocationChangedListener(int index){
+      this.index = index;
+    }
+    
+    
+    /** Getter for property index.
+     * @return Value of property index.
+     *
+     */
+    public int getIndex() {
+      return this.index;
+    }
+    
+    public void propertyChange(PropertyChangeEvent evt) {
+      fireLocationChanged(new DividerLocationEvent(JMultiSplitPane.this, getIndex(), ((Integer) evt.getNewValue()).intValue()));
+    }
+    
+    /** Setter for property index.
+     * @param index New value of property index.
+     *
+     */
+    public void setIndex(int index) {
+      this.index = index;
+    }
+    
+  }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

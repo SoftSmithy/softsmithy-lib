@@ -1,4 +1,20 @@
 Changes:
+CVS: 	src/org/softsmithy/lib/awt/layout/InfiniteTableLayout.java 
+CVS: 	src/org/softsmithy/lib/beans/XMLEncoderX.java 
+CVS: 	src/org/softsmithy/lib/lang/reflect/InvocationTargetRuntimeException.java 
+CVS: 	src/org/softsmithy/lib/swing/JMultiSplitPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JXPanel.java 
+CVS: 	src/org/softsmithy/lib/swing/JXSplitPane.java 
+CVS: 	src/org/softsmithy/lib/swing/multisplit/SplitOrientation.java 
+CVS: 	src/org/softsmithy/lib/swing/table/PanelTableCellRenderer.java 
+CVS: 	src/org/softsmithy/lib/swing/table/TextFieldTableCellRenderer.java 
+CVS: Added Files:
+CVS: 	i18n/org/softsmithy/lib/swing/JFontChooser$FontStyle.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/JFontChooser$FontStyle_de.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/JFontChooser$FontStyle_en.properties 
+CVS: 	src/org/softsmithy/lib/beans/XDefaultPersistenceDelegate.java 
+CVS: 	src/org/softsmithy/lib/swing/event/DividerLocationEvent.java 
+CVS: 	src/org/softsmithy/lib/swing/event/DividerLocationListener.java 
 v20030616:  -i18n updates
             -some bugs in org.softsmithy.lib.swing.JHtmlCustomizer removed
             -org.softsmithy.lib.swing.JXTextField, 

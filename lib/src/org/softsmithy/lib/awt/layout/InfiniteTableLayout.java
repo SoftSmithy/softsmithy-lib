@@ -46,6 +46,11 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   
   private final Container parent;
   
+  private final Map compHeights = new HashMap();
+  private final SortedSet sortedCompHeights = new TreeSet(new CompHeightsComparator());
+  private final Map compWidths = new HashMap();
+  private final SortedSet sortedCompWidths = new TreeSet(new CompWidthsComparator());
+  
   /** Creates a new instance of UnlimitedTableLayout */
   public InfiniteTableLayout(int defaultColumnWidth, int defaultRowHeight, Container parent) {
     columns = new InfiniteAxis(defaultColumnWidth){
@@ -144,15 +149,37 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       throw new IllegalArgumentException();
     }
     TableConstraints tc = (TableConstraints) constr;
-    int preferredWidth = tc.getX(comp, this) + tc.getWidth(comp, this); //??
-    if (preferredWidth > occupiedDimension.width){
-      occupiedDimension.width = preferredWidth;
-    }
-    int preferredHeight = tc.getY(comp, this) + tc.getHeight(comp, this); //??
-    if (preferredHeight > occupiedDimension.height){
-      occupiedDimension.height = preferredHeight;
-    }
     constraints.put(comp, tc);
+    int preferredWidth =  getRightPosition(comp);//??
+    if (sortedCompWidths.contains(comp)){
+      sortedCompWidths.remove(comp);
+    }
+    compWidths.put(comp, new Integer(preferredWidth));
+    sortedCompWidths.add(comp);
+    int preferredHeight =  getBottomPosition(comp);//??
+    if (sortedCompHeights.contains(comp)){
+      sortedCompHeights.remove(comp);
+    }
+    compHeights.put(comp, new Integer(preferredHeight));
+    sortedCompHeights.add(comp);
+    resetOccupiedDimension();
+  }
+  
+  private int getRightPosition(Component comp){
+    TableConstraints tc = (TableConstraints) constraints.get(comp);
+    return tc.getX(comp, this) + tc.getWidth(comp, this);
+  }
+  
+  private int getBottomPosition(Component comp){
+    TableConstraints tc = (TableConstraints) constraints.get(comp);
+    return tc.getY(comp, this) + tc.getHeight(comp, this);
+  }
+  
+  private void resetOccupiedDimension(){
+    occupiedDimension.width = sortedCompWidths.isEmpty() ? 0 :
+      ((Integer) compWidths.get(sortedCompWidths.last())).intValue();
+      occupiedDimension.height = sortedCompHeights.isEmpty() ? 0 :
+        ((Integer) compHeights.get(sortedCompHeights.last())).intValue();
   }
   
   public void deleteColumn(int i) {
@@ -223,6 +250,11 @@ public class InfiniteTableLayout extends AbstractTableLayout {
    */
   public void removeLayoutComponent(Component comp) {
     constraints.remove(comp);
+    sortedCompWidths.remove(comp);
+    compWidths.remove(comp);
+    sortedCompHeights.remove(comp);
+    compHeights.remove(comp);
+    resetOccupiedDimension();
   }
   
   public void setColumn(int i, double size) {
@@ -482,6 +514,34 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     }
     
     protected abstract void drawLine(int startPixel, int endPixel, int offset, Graphics g);
+  }
+  
+  private class CompHeightsComparator implements Comparator{
+    
+    public int compare(Object o1, Object o2) {
+      Component comp1 = (Component) o1;
+      Component comp2 = (Component) o2;
+      Integer bottomPosition1 = compHeights.containsKey(comp1) ? (Integer) compHeights.get(comp1) :
+        new Integer(getBottomPosition(comp1));
+        Integer bottomPosition2 = compHeights.containsKey(comp2) ? (Integer) compHeights.get(comp2) :
+          new Integer(getBottomPosition(comp2));
+          return bottomPosition1.compareTo(bottomPosition2);
+    }
+    
+  }
+  
+  private class CompWidthsComparator implements Comparator{
+    
+    public int compare(Object o1, Object o2) {
+      Component comp1 = (Component) o1;
+      Component comp2 = (Component) o2;
+      Integer rightPosition1 = compWidths.containsKey(comp1) ? (Integer) compWidths.get(comp1) :
+        new Integer(getRightPosition(comp1));
+        Integer rightPosition2 = compWidths.containsKey(comp2) ? (Integer) compWidths.get(comp2) :
+          new Integer(getRightPosition(comp2));
+          return rightPosition1.compareTo(rightPosition2);
+    }
+    
   }
   
 }
