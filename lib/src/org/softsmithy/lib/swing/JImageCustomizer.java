@@ -38,9 +38,11 @@ public class JImageCustomizer extends JIconCustomizer {
   
   /** Creates a new instance of JImageCustomizer */
   public JImageCustomizer() {
+    setSize(50,  50); // adjustIcon expects an inner width and height greater than 0
   }
   
   public JImageCustomizer(Image image){
+    this();
     setImage(image);
   }
   
