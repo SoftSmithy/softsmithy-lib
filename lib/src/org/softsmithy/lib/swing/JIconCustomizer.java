@@ -49,6 +49,7 @@ public abstract class JIconCustomizer extends JCustomizer {
   private void initForDefaultLabel(){
     setBackground(Color.WHITE);
   }
+  
   /** Getter for property imageSrc.
    * @return Value of property imageSrc.
    *

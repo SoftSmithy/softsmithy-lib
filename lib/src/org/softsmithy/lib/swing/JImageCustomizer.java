@@ -55,7 +55,7 @@ public class JImageCustomizer extends JIconCustomizer {
    */
   public void setImage(Image image) {
     this.image = image;
-    //adjustIcon();
+    adjustIcon();
   }
   
   
