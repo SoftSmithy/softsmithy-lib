@@ -30,7 +30,7 @@ import org.softsmithy.lib.util.*;
  */
 public abstract class VerticalAlignment extends TypesafeEnum {
   
-  private static final ResourceBundleCache cache = new ResourceBundleCache("puce.swing.VerticalAlignment");
+  private static final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.VerticalAlignment");
   
   /** Creates a new instance of VerticalAlignment */
   private VerticalAlignment(String s){

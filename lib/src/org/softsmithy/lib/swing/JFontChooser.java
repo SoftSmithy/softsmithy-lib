@@ -70,7 +70,7 @@ public class JFontChooser extends JPanel {
     //sizesBox.setEditable(true);
     Vector styles = new Vector();
     for (Iterator i=FontStyle.VALUES.iterator(); i.hasNext();){
-      styles.add(new FontStyleItem(((FontStyle)i.next())));
+      styles.add(new TypesafeEnumItem((FontStyle)i.next(), getLocale()));
     }
     stylesBox.setModel(new DefaultComboBoxModel(styles));
     selectFont(selectedFont);
@@ -83,7 +83,7 @@ public class JFontChooser extends JPanel {
     setSelectedFont(font);
     fontsBox.setSelectedItem(font.getFamily(getLocale()));
     sizesBox.setSelectedItem(new Integer(font.getSize()));
-    stylesBox.setSelectedItem(new FontStyleItem(FontStyle.getFontStyle(font.getStyle())));
+    stylesBox.setSelectedItem(new TypesafeEnumItem(FontStyle.getFontStyle(font.getStyle()), getLocale()));
   }
   /** This method is called from within the constructor to
    * initialize the form.
@@ -193,14 +193,14 @@ public class JFontChooser extends JPanel {
     add(previewPane, gridBagConstraints);
 
   }//GEN-END:initComponents
-
+  
   private void fontsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontsBoxActionPerformed
     // Add your handling code here:
   }//GEN-LAST:event_fontsBoxActionPerformed
   
   private void stylesBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stylesBoxItemStateChanged
     if (evt.getStateChange() == ItemEvent.SELECTED) {
-      setSelectedFont(selectedFont.deriveFont(((FontStyleItem) evt.getItem()).getFontStyle().getStyle()));
+      setSelectedFont(selectedFont.deriveFont(((FontStyle)((TypesafeEnumItem) evt.getItem()).getTypesafeEnum()).getStyle()));
     }
   }//GEN-LAST:event_stylesBoxItemStateChanged
   
@@ -288,14 +288,18 @@ public class JFontChooser extends JPanel {
   //    }
   //  }
   public abstract static class FontStyle extends TypesafeEnum{
+    
+    private static final String BASE_NAME = "org.softsmithy.lib.swing.JFontChooser$FontStyle";
+    
     private FontStyle(String name){
       super(name);
     }
-    public abstract int getStyle();
     
-    public String toString(ResourceBundle rb){
-      return rb.getString("fontStyle."+toString());
+    public String getResourceBundleBaseName(){
+      return BASE_NAME;
     }
+    
+    public abstract int getStyle();
     
     public static final FontStyle PLAIN = new FontStyle("plain"){
       public int getStyle(){
@@ -332,50 +336,6 @@ public class JFontChooser extends JPanel {
     public static FontStyle getFontStyle(int fontStyle){
       return (FontStyle) fontStyles.get(new Integer(fontStyle));
     }
-  }
-  
-  private class FontStyleItem{
-    
-    /** Holds value of property fontStyle. */
-    private FontStyle fontStyle;
-    
-    public FontStyleItem(FontStyle fontStyle){
-      this.fontStyle = fontStyle;
-    }
-    
-    /** Getter for property fontStyle.
-     * @return Value of property fontStyle.
-     *
-     */
-    public FontStyle getFontStyle() {
-      return this.fontStyle;
-    }
-    
-    /** Returns a string representation of the object. In general, the
-     * <code>toString</code> method returns a string that
-     * "textually represents" this object. The result should
-     * be a concise but informative representation that is easy for a
-     * person to read.
-     * It is recommended that all subclasses override this method.
-     * <p>
-     * The <code>toString</code> method for class <code>Object</code>
-     * returns a string consisting of the name of the class of which the
-     * object is an instance, the at-sign character `<code>@</code>', and
-     * the unsigned hexadecimal representation of the hash code of the
-     * object. In other words, this method returns a string equal to the
-     * value of:
-     * <blockquote>
-     * <pre>
-     * getClass().getName() + '@' + Integer.toHexString(hashCode())
-     * </pre></blockquote>
-     *
-     * @return  a string representation of the object.
-     *
-     */
-    public String toString() {
-      return fontStyle.toString(rb);
-    }
-    
   }
   
   public class FontChooserDialog extends JChooser{

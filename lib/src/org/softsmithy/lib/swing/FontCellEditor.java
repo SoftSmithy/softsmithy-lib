@@ -103,8 +103,8 @@ public class FontCellEditor extends AbstractCellEditor implements TableCellEdito
    *
    */
   public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-    font = (Font) value;
-    renderer.setSelectedFont(font);//(Color) value);
+    setFont((Font) value);
+    renderer.setSelectedFont(getFont());//(Color) value);
     
     //    Color color = JColorChooser.showDialog(editor, "Choose Color", (Color) value);
     //    if (color != null){

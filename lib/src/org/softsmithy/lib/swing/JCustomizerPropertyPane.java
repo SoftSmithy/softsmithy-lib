@@ -20,14 +20,14 @@
 
 package org.softsmithy.lib.swing;
 
-import org.softsmithy.lib.swing.customizer.CustomizerPropertyTable;
-import org.softsmithy.lib.swing.customizer.CustomizerPropertyTableModel;
-import java.awt.BorderLayout;
-import java.beans.*;
+import java.awt.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.table.*;
 import org.softsmithy.lib.lang.reflect.*;
+import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
+
 
 
 /**
@@ -54,6 +54,10 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
     setLayout(new java.awt.BorderLayout());
 
   }//GEN-END:initComponents
+  
+  public void setDefaultCellEditor(Class aClass, TableCellEditor editor){
+    table.setDefaultEditor(aClass, editor);
+  }
   
   public void selectionChanged(CustomizerSelectionEvent e) {
     Set properties = JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());

@@ -32,7 +32,7 @@ public class ExtensionFileFilter implements FileFilter {
    *
    */
   public boolean accept(File pathname) {
-    return pathname.isFile() && Files.getExtension(pathname).equals(extension);
+    return pathname.isFile() && Files.getExtension(pathname).equals(getExtension());
   }
   
   /** Getter for property extension.

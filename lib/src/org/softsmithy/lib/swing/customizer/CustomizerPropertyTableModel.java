@@ -248,6 +248,7 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
    */
   public void setLocale(Locale locale) {
     this.locale = locale;
+    // fireTableDataChanged(); // necessary??
   }
   
   /** This method gets called when a bound property is changed.

@@ -38,33 +38,36 @@ public final class BeanIntrospector {
   }
   
   public static PropertyDescriptor getPropertyDescriptor(String propertyName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
-    BeanInfo info = Introspector.getBeanInfo(beanClass);
-    if (! properties.containsKey(info)){
-      Map map = createFeatureMap(info.getPropertyDescriptors(), rb);
-      properties.put(info, map);
+    PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, propertyName, beanClass, rb);
+    if (descriptor == null){
+      descriptor = new PropertyDescriptor(propertyName, beanClass);
+      localizeDescriptor(descriptor, rb);
+      putDescriptor(properties, propertyName, beanClass, rb, descriptor);
     }
-    return (PropertyDescriptor) ((Map) properties.get(info)).get(propertyName);
+    return descriptor;
   }
   
-  public static EventSetDescriptor getEventSetDescriptor(String eventSetName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
-    BeanInfo info = Introspector.getBeanInfo(beanClass);
-    if (! eventSets.containsKey(info)){
-      Map map = createFeatureMap(info.getEventSetDescriptors(), rb);
-      eventSets.put(info, map);
+  /*public static EventSetDescriptor getEventSetDescriptor(String eventSetName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
+    EventSetDescriptor descriptor = (EventSetDescriptor) getDescriptor(eventSets, eventSetName, beanClass, rb);
+    if (descriptor == null){
+      descriptor = new EventSetDescriptor(eventSetName, beanClass);
+      localizeDescriptor(descriptor, rb);
+      putDescriptor(eventSets, eventSetName, beanClass, rb, descriptor);
     }
-    return (EventSetDescriptor) ((Map) eventSets.get(info)).get(eventSetName);
-  }
+    return descriptor;
+  }*/
   
-  public static MethodDescriptor getMethodDescriptor(String methodName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
-    BeanInfo info = Introspector.getBeanInfo(beanClass);
-    if (! methods.containsKey(info)){
-      Map map = createFeatureMap(info.getMethodDescriptors(), rb);
-      methods.put(info, map);
+  /*public static MethodDescriptor getMethodDescriptor(String methodName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
+    MethodDescriptor descriptor = (MethodDescriptor) getDescriptor(methods, methodName, beanClass, rb);
+    if (descriptor == null){
+      descriptor = new MethodDescriptor(methodName, beanClass);
+      localizeDescriptor(descriptor, rb);
+      putDescriptor(methods, methodName, beanClass, rb, descriptor);
     }
-    return (MethodDescriptor) ((Map) methods.get(info)).get(methodName);
-  }
+    return descriptor;
+  }*/
   
-  private static Map createFeatureMap(FeatureDescriptor[] descriptors, ResourceBundle rb){
+  /*private static Map createFeatureMap(FeatureDescriptor[] descriptors, ResourceBundle rb){
     Map map = new HashMap();
     for (int i=0; i<descriptors.length; i++){
       if (rb != null){
@@ -78,6 +81,67 @@ public final class BeanIntrospector {
     }
     return map;
   }
+   
+  public PropertyDescriptor[] copyPropertyDescriptors(PropertyDescriptor[] src){
+    PropertyDescriptor[] target = new PropertyDescriptor[src.length];
+    for (int i=0; i<src.length; i++){
+      target[i] = new PropertyDescriptor(src[i].getName(), src[i].getReadMethod(), src[i].getWriteMethod());
+      copyPropertyDescriptor(src[i], target[i]);
+    }
+    return target;
+  }
+   
+  public void copyPropertyDescriptor(PropertyDescriptor src, PropertyDescriptor target) {
+    copyFeatureDescriptor(src, target);
+    target.setBound(src.isBound());
+    target.setConstrained(src.isConstrained());
+    target.setPropertyEditorClass(src.getPropertyEditorClass());
+    target.setReadMethod(src.getReadMethod());
+    target.setWriteMethod(src.getWriteMethod());
+  }
+   
+  public void copyFeatureDescriptor(FeatureDescriptor src, FeatureDescriptor target) {
+    target.setDisplayName(src.getDisplayName());
+    target.setExpert(src.isExpert());
+    target.setHidden(src.isHidden());
+    target.setName(src.getName());
+    target.setPreferred(src.isPreferred());
+    target.setShortDescription(src.getShortDescription());
+    // copy the values? how??
+  }*/
   
+  private static FeatureDescriptor getDescriptor(Map descriptors, String featureName, Class beanClass, ResourceBundle rb) {
+    FeatureDescriptor descriptor = null;
+    if (descriptors.containsKey(beanClass)){
+      Map featureNameMap = (Map) descriptors.get(beanClass);
+      if (featureNameMap.containsKey(featureName)){
+        Map rbMap = (Map) featureNameMap.get(featureName);
+        descriptor = (FeatureDescriptor) rbMap.get(rb);
+      }
+    }
+    return descriptor;
+  }
+  
+  private static void putDescriptor(Map descriptors, String featureName, Class beanClass, ResourceBundle rb, FeatureDescriptor descriptor) {
+    if (! descriptors.containsKey(beanClass)){
+      descriptors.put(beanClass, new HashMap());
+    }
+    Map featureNameMap = (Map) descriptors.get(beanClass);
+    if (! featureNameMap.containsKey(featureName)){
+      featureNameMap.put(featureName, new HashMap());
+    }
+    Map rbMap = (Map) featureNameMap.get(featureName);
+    rbMap.put(rb, descriptor);
+  }
+  
+  private static void localizeDescriptor(FeatureDescriptor descriptor, ResourceBundle rb) {
+    if (rb != null){
+      try{
+        descriptor.setDisplayName(rb.getString(descriptor.getName()));
+      } catch(MissingResourceException ex){
+        // ignore it
+      }
+    }
+  }
   
 }

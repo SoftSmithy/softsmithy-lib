@@ -1,0 +1,177 @@
+/*
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
+ */
+
+/*
+ * DefaultTypesafeEnumComboBoxModel.java
+ *
+ * Created on 25. November 2002, 17:52
+ */
+
+package org.softsmithy.lib.swing;
+
+import java.util.*;
+import javax.swing.*;
+import org.softsmithy.lib.util.*;
+
+/**
+ *
+ * @author  puce
+ */
+public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
+  
+  /** Holds value of property locale. */
+  private Locale locale = Locale.getDefault();
+  
+  public TypesafeEnumComboBoxModel() {
+  }
+  
+  public TypesafeEnumComboBoxModel(Locale locale) {
+    this.locale = locale;
+  }
+  
+  /** Creates a new instance of DefaultTypesafeEnumComboBoxModel */
+  public TypesafeEnumComboBoxModel(TypesafeEnum[] typesafeEnums, Locale locale) {
+    this(locale);
+    addAllTypesafeEnums(typesafeEnums);
+  }
+  
+  public TypesafeEnumComboBoxModel(Class typesafeEnumClass, Locale locale) {
+    this(locale);
+    if (! (TypesafeEnum.class.isAssignableFrom(typesafeEnumClass))){
+      throw new IllegalArgumentException("typesafeEnumClass must be a subclass of TypesafeEnum");
+    }
+    List enums = Collections.EMPTY_LIST;
+    try{
+      enums = (List) typesafeEnumClass.getField("VALUES").get(null);
+    } catch(Exception ex){
+      ex.printStackTrace();
+    }
+    for (Iterator i=enums.iterator(); i.hasNext();){
+      this.addElement(i.next());
+    }
+  }
+  
+  public TypesafeEnum getSelectedTypesafeEnum() {
+    return (TypesafeEnum) getSelectedItem();
+  }
+  
+//  public void setSelectedTypesafeEnum(TypesafeEnum te) {
+//    setSelectedItem(te);
+//  }
+  
+//  public Object getElementAt(int index) {
+//    return ((TypesafeEnumItem) super.getElementAt(index)).getTypesafeEnum();
+//  }
+  
+  
+  public void removeElement(Object anObject) {
+    if (! (anObject instanceof TypesafeEnum)){
+      throw new IllegalArgumentException("anObject must be a TypesafeEnum");
+    }
+//    super.removeElement(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
+    super.removeElement(anObject);
+  }
+  
+  public void insertElementAt(Object anObject, int index) {
+    if (! (anObject instanceof TypesafeEnum)){
+      throw new IllegalArgumentException("anObject must be a TypesafeEnum");
+    }
+//    super.insertElementAt(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()), index);
+    super.insertElementAt(anObject, index);
+  }
+  
+  public void addElement(Object anObject) {
+    if (! (anObject instanceof TypesafeEnum)){
+      throw new IllegalArgumentException("anObject must be a TypesafeEnum");
+    }
+//    super.addElement(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
+    super.addElement(anObject);
+  }
+  
+  /** Set the value of the selected item. The selected item may be null.
+   * <p>
+   * @param anObject The combo box value or null for no selection.
+   *
+   */
+  public void setSelectedItem(Object anObject) {
+    if (! (anObject instanceof TypesafeEnum)){
+      throw new IllegalArgumentException("anObject must be a TypesafeEnum");
+    }
+//    Object item = anObject;
+//    if (item instanceof TypesafeEnum){
+//      item = new TypesafeEnumItem((TypesafeEnum) anObject, getLocale());
+//    }
+    super.setSelectedItem(anObject);
+  }
+  
+  /** Returns the index-position of the specified object in the list.
+   *
+   * @param anObject
+   * @return an int representing the index position, where 0 is
+   *         the first position
+   *
+   */
+  public int getIndexOf(Object anObject) {
+    if (! (anObject instanceof TypesafeEnum)){
+      throw new IllegalArgumentException("anObject must be a TypesafeEnum");
+    }
+//    return super.getIndexOf(new TypesafeEnumItem((TypesafeEnum) anObject, getLocale()));
+    return super.getIndexOf(anObject);
+  }
+//  
+//  /** Getter for property locale.
+//   * @return Value of property locale.
+//   *
+//   */
+//  public Locale getLocale() {
+//    return this.locale;
+//  }
+//  
+//  /** Setter for property locale.
+//   * @param locale New value of property locale.
+//   *
+//   */
+//  public void setLocale(Locale locale) {
+//    this.locale = locale;
+//    TypesafeEnum selected = getSelectedTypesafeEnum();
+//    TypesafeEnum[] enums = new TypesafeEnum[getSize()];
+//    for (int i=0; i<getSize(); i++){
+//      enums[i] = getTypesafeEnumAt(i);
+//    }
+//    removeAllElements();
+//    addAllTypesafeEnums(enums);
+//    if (selected != null){
+//      setSelectedTypesafeEnum(selected);
+//    }
+//  }
+  
+  public Object getSelectedItem() {
+//    Object item = super.getSelectedItem();
+//    if (item != null){
+//      item = ((TypesafeEnumItem) item).getTypesafeEnum();
+//    }
+    return super.getSelectedItem();
+  }
+  
+  public TypesafeEnum getTypesafeEnumAt(int index) {
+    return (TypesafeEnum) getElementAt(index);
+  }
+  
+  public void addAllTypesafeEnums(TypesafeEnum[] typesafeEnums) {
+    for (int i=0; i<typesafeEnums.length; i++){
+      this.addElement(typesafeEnums[i]);
+    }
+  }
+  
+}

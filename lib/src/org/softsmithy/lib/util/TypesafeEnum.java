@@ -74,8 +74,10 @@ public class TypesafeEnum {
   public String toString(Locale locale){
     String string = toString();
     ResourceBundle rb = getResourceBundle(locale);
+    System.out.println(rb);
     if (rb != null){
       string = rb.getString(string);
+      System.out.println(string);
     }
     return string;
   }
