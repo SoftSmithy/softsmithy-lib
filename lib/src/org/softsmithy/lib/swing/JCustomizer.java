@@ -421,4 +421,21 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     }
   }
   
+  // better place for this method?
+  public static Set getCommonCustomizableProperties(Collection customizers) {
+    Set properties = Collections.EMPTY_SET;
+    Iterator i = customizers.iterator();
+    if (i.hasNext()){
+      JCustomizer customizer = (JCustomizer) i.next();
+      properties = new LinkedHashSet(customizer.getCustomizableProperties());
+      for (;i.hasNext();){
+        JCustomizer custom = (JCustomizer) i.next();
+        properties.retainAll(custom.getCustomizableProperties());
+      }
+    }
+    return properties;
+  }
+
 }
+
+    

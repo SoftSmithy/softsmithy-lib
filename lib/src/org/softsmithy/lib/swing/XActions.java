@@ -47,7 +47,7 @@ Action properties)
 rb)
   throws NoSuchMethodException {
     XAction action = new ReflectiveXAction(target, name);
-    String[] string_properties = {Action.NAME};
+    String[] string_properties = {Action.NAME, Action.SHORT_DESCRIPTION};
     String[] icon_properties = {Action.SMALL_ICON,
     XAction.LARGE_DISABLED_ICON,
     XAction.LARGE_DISABLED_SELECTED_ICON,

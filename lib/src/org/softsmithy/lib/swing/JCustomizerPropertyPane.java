@@ -42,19 +42,19 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
   }//GEN-END:initComponents
   
   public void selectionChanged(CustomizerSelectionEvent e) {
-    Set properties = Collections.EMPTY_SET;//PageElement.getCustomizableProperties();//customizer.getProperties();
-    Class topMostCommonClass = null;
-    // List descriptors = new ArrayList();
-    Iterator i = e.getSelectedCustomizers().iterator();
-    if (i.hasNext()){
-      JCustomizer customizer = (JCustomizer) i.next();
-      properties = new LinkedHashSet(customizer.getCustomizableProperties());
-      topMostCommonClass = customizer.getClass();
-      for (;i.hasNext();){
-        JCustomizer custom = (JCustomizer) i.next();
-        properties.retainAll(custom.getCustomizableProperties());
-        topMostCommonClass = Classes.getTopMostCommonClass(topMostCommonClass, custom.getClass());
-      }
+    Set properties = JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
+    Class topMostCommonClass = Classes.getTopMostCommonClass(Classes.getClasses(e.getSelectedCustomizers()));
+//    // List descriptors = new ArrayList();
+//    Iterator i = e.getSelectedCustomizers().iterator();
+//    if (i.hasNext()){
+//      JCustomizer customizer = (JCustomizer) i.next();
+//      properties = new LinkedHashSet(customizer.getCustomizableProperties());
+//      topMostCommonClass = customizer.getClass();
+//      for (;i.hasNext();){
+//        JCustomizer custom = (JCustomizer) i.next();
+//        properties.retainAll(custom.getCustomizableProperties());
+//        topMostCommonClass = Classes.getTopMostCommonClass(topMostCommonClass, custom.getClass());
+//      }
       //      for (Iterator j=properties.iterator(); j.hasNext();){
       //        String property = (String) j.next();
       //        try{
@@ -72,7 +72,7 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
       //          }
       //        }
       //      }
-    }
+      // }
     //customizer.setLocale(Locale.GERMAN);
     ((CustomizerPropertyTableModel) table.getModel()).stopCustomizerListening();
     table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), new ArrayList(e.getSelectedCustomizers()), topMostCommonClass, getLocale()));

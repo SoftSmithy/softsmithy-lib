@@ -91,15 +91,42 @@ public class Classes {
     return baseClass;
   }
   
+  public static Class getTopMostCommonClass(Class[] classes){
+    Class topMostCommonClass = null;
+    if (classes.length > 0){
+      topMostCommonClass = classes[0];
+      for (int i=1; i<classes.length; i++){
+        topMostCommonClass = Classes.getTopMostCommonClass(topMostCommonClass, classes[i]);
+      }
+    }
+    return topMostCommonClass;
+  }
+  
+  public static Class[] getClasses(Object[] objects){
+    Class[] classes = new Class[objects.length];
+    for (int i=0; i<objects.length; i++){
+      classes[i] = objects[i].getClass();
+    }
+    return classes;
+  }
+  
+  public static Class[] getClasses(Collection objects){
+    Class[] classes = new Class[objects.size()];
+    Iterator iterator = objects.iterator();
+    for (int i=0; i<classes.length; i++){
+      classes[i] = iterator.next().getClass();
+    }
+    return classes;
+  }
   
   public static String createWrapper(Class aClass, String packageName){
     String[] names = aClass.getName().split("\\.");
     String className = names[names.length-1];
     String wrappedObj = Introspector.decapitalize(className);
     StringBuffer wrapper = new StringBuffer("package ").append(packageName).append(";\n\n");
-//    if (! aClass.getPackage().getName().equals(packageName)){
-//      wrapper.append("import ").append(aClass.getPackage().getName()).append(";\n\n");
-//    }
+    //    if (! aClass.getPackage().getName().equals(packageName)){
+    //      wrapper.append("import ").append(aClass.getPackage().getName()).append(";\n\n");
+    //    }
     wrapper.append("public class ").append(className).append("Wrapper ");
     wrapper.append(aClass.isInterface()? "implements " : "extends ");
     wrapper.append(aClass.getName()).append("{\n\n");

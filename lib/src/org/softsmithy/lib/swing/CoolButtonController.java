@@ -28,7 +28,7 @@ public class CoolButtonController extends MouseAdapter {
    *
    */
   public void mouseEntered(MouseEvent e) {
-    if (! button.isBorderPainted()){
+    if (! button.isBorderPainted() && button.isEnabled()){
       button.setBorderPainted(true);
     }
   }
@@ -37,7 +37,7 @@ public class CoolButtonController extends MouseAdapter {
    *
    */
   public void mouseExited(MouseEvent e) {
-    if (! button.isSelected()){
+    if (button.isBorderPainted() && ! button.isSelected()){
       button.setBorderPainted(false);
     }
   }

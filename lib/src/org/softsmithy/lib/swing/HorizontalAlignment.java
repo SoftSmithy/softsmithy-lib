@@ -7,7 +7,7 @@ import org.softsmithy.lib.util.*;
 
 public abstract class HorizontalAlignment extends TypesafeEnum implements Serializable{
   
-  private static final ResourceBundleCache cache = new ResourceBundleCache("puce.swing.HorizontalAlignment");
+  private static final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.HorizontalAlignment");
   
   private HorizontalAlignment(String s){
     super(s);

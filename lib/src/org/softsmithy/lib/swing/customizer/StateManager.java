@@ -481,9 +481,9 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public void mousePressed(MouseEvent e) {
       super.mousePressed(e);
-//      if(!getCustomizer().hasFocus()){
-//        getCustomizer().requestFocus();
-//      }
+      //      if(!getCustomizer().hasFocus()){
+      //        getCustomizer().requestFocus();
+      //      }
       startX = e.getX();
       startY = e.getY();
       lastX = e.getX();
@@ -502,7 +502,7 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public void mouseDragged(MouseEvent e) {
       super.mouseDragged(e);
-      if (! dragging){
+      if (! isDragging()){
         dragging = true;
       }
       //      e.translatePoint(- startX, - startY);
@@ -513,7 +513,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     
     public void mouseReleased(MouseEvent e){
-      if (dragging){
+      if (isDragging()){
         getCustomizer().fireCustomizerFinishDragging(createCustomizerEvent(e));
         dragging = false;
       }
@@ -561,9 +561,16 @@ public class StateManager implements FocusListener, MouseInputListener {
       startY = point.y;
     }
     
+    public boolean isDragging() {
+      return dragging;
+    }
+    
   }
   
   public static abstract class ResizeState extends BoundState{
+    
+    private boolean draggingStarted = false;
+    
     public ResizeState(JCustomizer customizer){
       super(customizer);
       getHandle().setRect(customizer.getWidth(), customizer.getHeight());
@@ -572,5 +579,29 @@ public class StateManager implements FocusListener, MouseInputListener {
     public boolean contains(Point p){
       return getHandle().contains(p);
     }
+    
+    /** Invoked when the mouse exits a component.
+     *
+     */
+    public void mouseExited(MouseEvent e) {
+      if (! draggingStarted){
+        StateManager manager = getCustomizer().getStateManager();
+        manager.setState(manager.getMoveState());
+      }
+    }
+    
+    /** Invoked when a mouse button has been pressed on a component.
+     *
+     */
+    public void mousePressed(MouseEvent e) {
+      super.mousePressed(e);
+      draggingStarted = true;
+    }
+    
+    public void mouseReleased(MouseEvent e) {
+      super.mouseReleased(e);
+      draggingStarted = false;
+    }
+    
   }
 }

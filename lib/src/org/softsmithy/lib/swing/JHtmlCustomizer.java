@@ -7,6 +7,7 @@
 package org.softsmithy.lib.swing;
 
 import javax.swing.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *
@@ -18,27 +19,34 @@ public class JHtmlCustomizer extends JTextCustomizer {
   private static final String HTML_END = "</div></body></html>";
   
   private HorizontalAlignment horizontalAlignment = HorizontalAlignment.LEFT;
-  private String editorText = "";
+  private String text = "";
   
   /** Creates a new instance of JLabelCustomizer */
   public JHtmlCustomizer() {
+    setStateManager(new HiddenStateManager(this));
     setEditor(new JEditorPane("text/html", HTML_START+HTML_END));
     setEditorScrollable(true);
     setComponent(new JEditorPane("text/html", HTML_START+HTML_END));
-    System.out.println(getEditor().getText());
+    //System.out.println(getEditor().getText());
   }
   
   public void setText(String text) {
+    String newText = text;
     JEditorPane ep = (JEditorPane) getEditor();
-    System.out.println(ep.getContentType());
-    System.out.println(ep.getText());//.replaceAll("\n", "<br>"));
+    //System.out.println(ep.getContentType());
+    //System.out.println(ep.getText());//.replaceAll("\n", "<br>"));
     
     // note: JEditorPane removes the last (and only the last) \n in the body text if existing
-    editorText = text.replaceFirst("(?s).*<body>\\s{1,5}", "");
-    editorText = editorText.replaceFirst("(?s)\\s{0,3}</body>.*", "");
+    System.out.println("1: "+newText);
+    newText = newText.replaceFirst("(?s).*?<body>\\s{1,5}(<div.*?>\\s{1,7})?", "");
+    System.out.println("2: "+newText);
+    newText = newText.replaceFirst("(?s)(\\s{0,5}</div>)?\\s{0,3}</body>.*?$", "");
+    System.out.println("3: "+newText);
     //labelText = labelText.replaceFirst("(?s)^\\s{4}", "");
     //labelText = labelText.replaceFirst("(?s)\\s$", "");
-    editorText = editorText.replaceAll("\n", "<br>");
+    newText = newText.replaceAll("\n", "<br>");
+    System.out.println("4: "+newText);
+    this.text = newText;
     configureHtmlText();
   }
   
@@ -53,14 +61,16 @@ public class JHtmlCustomizer extends JTextCustomizer {
     super.setComponent(component);
     JEditorPane editorPane = (JEditorPane) component;
     editorPane.setEditable(false);
+    configureHtmlText();
     //JLabel label = (JLabel) component; // if component is not a label, super.setComponent throws an Exception
     //label.setVerticalAlignment(SwingConstants.TOP);
   }
   
   
   public String getText() {
-    JEditorPane editorPane = (JEditorPane) getComponent();
-    return editorPane != null ? editorPane.getText() : "";
+    //    JEditorPane editorPane = (JEditorPane) getComponent();
+    //    return editorPane != null ? editorPane.getText() : "";
+    return text;
   }
   
   public void setHorizontalAlignment(HorizontalAlignment alignment) {
@@ -75,10 +85,17 @@ public class JHtmlCustomizer extends JTextCustomizer {
   private void configureHtmlText(){
     JEditorPane editorPane = (JEditorPane) getComponent();
     if (editorPane != null){
-      String text = HTML_START + horizontalAlignment.getHtmlConstant() + "'>" + editorText + HTML_END;
-      editorPane.setText(text);//text.replaceAll("\n", "<br>"));
-      System.out.println(editorPane.getText());
+      editorPane.setText(createHtmlText());//text.replaceAll("\n", "<br>"));
+      //System.out.println(createHtmlText()+" -> ");
+      //System.out.println(editorPane.getText());
     }
   }
+  
+  private String createHtmlText(){
+    return HTML_START + horizontalAlignment.getHtmlConstant() + "'>" + getText() + HTML_END;
+  }
+  
+  
+  
   
 }
