@@ -157,10 +157,37 @@ public class ShapeIcon implements XIcon {
     return icon;
   }
   
+  /**
+   * FIXME
+   */
   public XIcon getScaledInstance(int newWidth, int newHeight) { //????
-    double sx = (getIconWidth() > 0.0) ? ((double) newWidth -0.25) / getIconWidth() : 1.0; // -0.25 seems to be necessary (tested with JXiconCustomizer)
-    double sy = (getIconHeight() > 0.0) ? ((double) newHeight -0.25) / getIconHeight() : 1.0; // -0.25 seems to be necessary (tested with JXiconCustomizer)
+    if (newWidth <= 0 && newHeight <= 0){
+      throw new IllegalArgumentException("Either the new width or the new height or both must be greater than 0!");
+    }
+    double sx = 1.0;
+    double sy = 1.0;
+    if (getIconWidth() > 0.0 && getIconHeight() > 0.0){
+      if (newWidth > 0 && newHeight > 0){
+        sx = calculateSx(newWidth);
+        sy = calculateSy(newHeight);
+      } else if (newWidth <= 0){ // respect aspect ratio
+        sx = calculateSy(newHeight);
+        sy = calculateSy(newHeight);
+      } else { // newHeight <= 0
+        sx = calculateSx(newWidth);
+        sy = calculateSx(newWidth);
+      }
+    }
+    
     return getTransformedInstance(AffineTransform.getScaleInstance(sx, sy));
-  }  
+  }
+  
+  private double calculateSx(int newWidth){
+    return ((double) newWidth -0.25) / getIconWidth(); // -0.25 seems to be necessary (tested with JXiconCustomizer)
+  }
+  
+  private double calculateSy(int newHeight){
+    return ((double) newHeight -0.25) / getIconHeight(); // -0.25 seems to be necessary (tested with JXiconCustomizer)
+  }
   
 }
