@@ -8,7 +8,9 @@
 
 package puce.swing.customizer;
 
+import java.awt.Container;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.*;
 import puce.swing.*;
 import puce.swing.event.*;
@@ -105,6 +107,19 @@ public class SelectionManager implements CustomizerListener{
     }
   }
   
+  public void customizerDelete(CustomizerEvent e) {
+    for (int i=0; i<selectedList.size(); i++){
+      JCustomizer customizer = (JCustomizer) selectedList.get(i);
+      Container parent = customizer.getParent();
+      if (! parent.hasFocus()){
+        parent.requestFocus();
+      }
+      Rectangle bounds = customizer.getBounds();
+      parent.remove(customizer);
+      parent.repaint(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+    clearSelection();
+  }  
   
   
 }

@@ -17,5 +17,6 @@ public interface CustomizerListener extends EventListener {
   
   void customizerReshapeRel(CustomizerEvent e);
   void customizerFinishReshapeRel(CustomizerEvent e);
+  void customizerDelete(CustomizerEvent e);
   
 }

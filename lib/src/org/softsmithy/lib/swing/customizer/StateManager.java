@@ -428,7 +428,6 @@ public class StateManager implements FocusListener, MouseInputListener {
       return customizer;
     }
     
-    
   }
   
   public static class ActiveState extends DefaultState{
