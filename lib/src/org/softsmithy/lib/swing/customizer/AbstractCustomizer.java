@@ -81,9 +81,9 @@ public abstract class AbstractCustomizer extends JPanel {
    */
   public void setStyle(Style style) {
     if (style == null){
-      this.style = new NoneStyle();
+      this.style = getNoneStyle();
     } else {
-      this.style = style;
+      this.style = style.getStyleProvider().getStyle(this);
     }
     setBackgroundOnly(this.style.getBackground());
     setForegroundOnly(this.style.getForeground());
@@ -312,6 +312,7 @@ public abstract class AbstractCustomizer extends JPanel {
     public StyleProvider getStyleProvider(){
       return NoneStyleProvider.INSTANCE;
     }
+    
   }
   
   private class ParentStyle extends AbstractStyle{
@@ -339,6 +340,7 @@ public abstract class AbstractCustomizer extends JPanel {
     public StyleProvider getStyleProvider(){
       return ParentStyleProvider.INSTANCE;
     }
+    
   }
   
 }

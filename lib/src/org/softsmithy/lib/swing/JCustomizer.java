@@ -365,6 +365,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     public boolean isOpaque() {
       return (getComponent() != null) ? getComponent().isOpaque() : NoneStyle.super.isOpaque();
     }
+    
   }
   
 }

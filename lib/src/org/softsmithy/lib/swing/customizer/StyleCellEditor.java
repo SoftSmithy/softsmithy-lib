@@ -14,16 +14,18 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Component;
+import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.swing.*;
 
 /**
  *
  * @author  puce
  */
 public class StyleCellEditor extends DefaultCellEditor {
+  
+  private static final JCustomizer DUMMY_CUSTOMIZER = new JCustomizer();
   
   /** Holds value of property locale. */
   private Locale locale;
@@ -62,7 +64,7 @@ public class StyleCellEditor extends DefaultCellEditor {
   
   private void reloadComboBox(){
     StyleProviderComboBox comboBox = (StyleProviderComboBox) this.getComponent();
-    comboBox.setModel(new StyleProviderComboBoxModel());
+    comboBox.reloadModel();
   }
   
   /** Forwards the message from the <code>CellEditor</code> to
@@ -71,8 +73,8 @@ public class StyleCellEditor extends DefaultCellEditor {
    *
    */
   public Object getCellEditorValue() {
-StyleProvider provider = (StyleProvider) super.getCellEditorValue();
-return provider.getStyle(customizer
+    StyleProvider provider = (StyleProvider) super.getCellEditorValue();
+    return provider.getStyle(DUMMY_CUSTOMIZER);
   }
   
 }

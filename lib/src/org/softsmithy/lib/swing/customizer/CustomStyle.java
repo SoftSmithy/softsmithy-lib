@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class CustomStyle extends AbstractStyle{
   
-  private final StyleProvider styleProvider = new CustomStyleProvider(this);
+  private StyleProvider styleProvider = new CustomStyleProvider(this);
   
   private String name;
   
@@ -117,6 +117,14 @@ public class CustomStyle extends AbstractStyle{
   
   public StyleProvider getStyleProvider() {
     return styleProvider;
+  }
+  
+  /** Setter for property styleProvider.
+   * @param styleProvider New value of property styleProvider.
+   *
+   */
+  public void setStyleProvider(StyleProvider styleProvider) {
+    this.styleProvider = styleProvider;
   }
   
 }

@@ -23,11 +23,18 @@ public class CustomStyleProvider implements StyleProvider {
   }
   
   public Style getStyle(AbstractCustomizer customizer) {
+    minimizeCustomStyleProviderObjects();
     return getStyle();
   }
   
   public CustomStyle getStyle() {
     return style;
+  }
+  
+  private void minimizeCustomStyleProviderObjects(){
+    if (getStyle().getStyleProvider() != this){
+      getStyle().setStyleProvider(this);
+    }
   }
   
   /** Returns a string representation of the object. In general, the

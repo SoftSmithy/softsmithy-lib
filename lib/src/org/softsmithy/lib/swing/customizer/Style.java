@@ -23,4 +23,5 @@ public interface Style {
   boolean isNull();
   StyleProvider getStyleProvider();
   
+  
 }
