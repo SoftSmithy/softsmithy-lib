@@ -1,9 +1,10 @@
 package org.softsmithy.lib.swing.text;
 
 import java.math.*;
-import java.text.*;
 import java.util.*;
+import javax.swing.*;
 import org.softsmithy.lib.math.*;
+
 
 /**
  *
@@ -13,11 +14,15 @@ public class ShortFormatter extends WholeNumberFormatter {
   
   /** Creates a new instance of ShortFormatter */
   public ShortFormatter() {
-    this(Locale.getDefault());
+    this(JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public ShortFormatter(Locale locale){
     this(Short.MIN_VALUE, Short.MAX_VALUE, locale);
+  }
+  
+  public ShortFormatter(short minShortValue, short maxShortValue){
+    this(minShortValue, maxShortValue, JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public ShortFormatter(short minShortValue, short maxShortValue, Locale locale){

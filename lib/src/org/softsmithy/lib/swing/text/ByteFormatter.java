@@ -2,9 +2,10 @@
 package org.softsmithy.lib.swing.text;
 
 import java.math.*;
-import java.text.*;
 import java.util.*;
+import javax.swing.*;
 import org.softsmithy.lib.math.*;
+
 
 /**
  *
@@ -14,11 +15,15 @@ public class ByteFormatter extends WholeNumberFormatter {
   
   /** Creates a new instance of IntegerFormatter */
   public ByteFormatter() {
-    this(Locale.getDefault());
+    this(JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public ByteFormatter(Locale locale){
     this(Byte.MIN_VALUE, Byte.MAX_VALUE, locale);
+  }
+  
+  public ByteFormatter(byte minByteValue, byte maxByteValue){
+    this(minByteValue, maxByteValue, JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public ByteFormatter(byte minByteValue, byte maxByteValue, Locale locale){

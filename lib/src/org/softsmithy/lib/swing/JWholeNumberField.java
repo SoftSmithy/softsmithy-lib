@@ -16,7 +16,7 @@ import org.softsmithy.lib.swing.text.*;
  *
  * @author  puce
  */
-public class JWholeNumberField extends JFormattedTextField {
+public class JWholeNumberField extends AbstractNumberField {
   
   
   /** Creates a new instance of JIntegerField */
@@ -58,7 +58,6 @@ public class JWholeNumberField extends JFormattedTextField {
   
   public JWholeNumberField(WholeNumberFormatterFactory factory){
     super(factory);
-    setHorizontalAlignment(JTextField.TRAILING); // is this right???
     setBigIntegerValue(BigInteger.ZERO);
   }
   
@@ -66,17 +65,13 @@ public class JWholeNumberField extends JFormattedTextField {
     getWholeNumberFormatterFactory().setLocale(getLocale());
   }
   
-  public void setLocale(Locale l) {
-    super.setLocale(l);
-    reinit();
-  }
   
   public BigInteger getBigIntegerValue(){
-    return (BigInteger) getValue();
+    return (BigInteger) getNumberValue();
   }
   
   public void setBigIntegerValue(BigInteger value){
-    setValue(value);
+    setNumberValue(value);
   }
   
   public void setValue(Object value) {
@@ -84,15 +79,6 @@ public class JWholeNumberField extends JFormattedTextField {
     // (Integer.MIN_VALUE, Integer.MAX_VALUE)
     if (value != null && ! (value instanceof BigInteger)){
       throw new IllegalArgumentException("value must be an instance of BigInteger");
-    }
-    //    if (value instanceof Integer){
-    //      value = BigInteger.valueOf(((Integer) value).intValue());
-    //    }
-    //    if (((BigInteger) value).compareTo(getIntegerFormatter().getMinimum()) < 0){
-    //      value = getIntegerFormatter().getMinimum();
-    //    }
-    if (value != null){
-      value = getWholeNumberFormatter().valueToRange((BigInteger) value);
     }
     super.setValue(value);
   }
@@ -105,21 +91,20 @@ public class JWholeNumberField extends JFormattedTextField {
   //  }
   
   public BigInteger getMinimumBigIntegerValue(){
-    return getWholeNumberFormatter().getMinimumBigIntegerValue();
+    return (BigInteger) getMinimumNumberValue();
   }
   
   public void setMinimumBigIntegerValue(BigInteger minValue){
-    getWholeNumberFormatter().setMinimumBigIntegerValue(minValue);
-    setValue(getValue());
+    setMinimumNumberValue(minValue);
   }
   
+  
   public BigInteger getMaximumBigIntegerValue(){
-    return getWholeNumberFormatter().getMaximumBigIntegerValue();
+    return (BigInteger) getMaximumNumberValue();
   }
   
   public void setMaximumBigIntegerValue(BigInteger minValue){
-    getWholeNumberFormatter().setMaximumBigIntegerValue(minValue);
-    setValue(getValue());
+    setMaximumNumberValue(minValue);
   }
   
   protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
@@ -130,15 +115,15 @@ public class JWholeNumberField extends JFormattedTextField {
   }
   
   public WholeNumberFormatter getWholeNumberFormatter(){
-    return (WholeNumberFormatter) getFormatter();
+    return (WholeNumberFormatter) getAbstractXNumberFormatter();
   }
   
   public WholeNumberFormatterFactory getWholeNumberFormatterFactory(){
-    return (WholeNumberFormatterFactory) getFormatterFactory();
+    return (WholeNumberFormatterFactory) getAbstractXNumberFormatterFactory();
   }
   
   public void setWholeNumberFormatterFactory(WholeNumberFormatterFactory factory){
-    setFormatterFactory(factory);
+    setAbstractXNumberFormatterFactory(factory);
   }
   
   public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
@@ -146,8 +131,20 @@ public class JWholeNumberField extends JFormattedTextField {
       throw new IllegalArgumentException("aff must be an instance of WholeNumberFormatterFactory!");
     }
     super.setFormatterFactory(aff);
-    reinit();
-    setValue(getValue());
+  }
+  
+  public void setMaximumNumberValue(Number maxValue) {
+    if (maxValue != null && ! (maxValue instanceof BigInteger)){
+      throw new IllegalArgumentException("maxValue must be an instance of BigInteger");
+    }
+    super.setMaximumNumberValue(maxValue);
+  }
+  
+  public void setMinimumNumberValue(Number minValue) {
+    if (minValue != null && ! (minValue instanceof BigInteger)){
+      throw new IllegalArgumentException("minValue must be an instance of BigInteger");
+    }
+    super.setMinimumNumberValue(minValue);
   }
   
 }

@@ -2,9 +2,10 @@
 package org.softsmithy.lib.swing.text;
 
 import java.math.*;
-import java.text.*;
 import java.util.*;
+import javax.swing.*;
 import org.softsmithy.lib.math.*;
+
 
 /**
  *
@@ -14,11 +15,15 @@ public class LongFormatter extends WholeNumberFormatter {
   
   /** Creates a new instance of IntegerFormatter */
   public LongFormatter() {
-    this(Locale.getDefault());
+    this(JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public LongFormatter(Locale locale){
     this(Long.MIN_VALUE, Long.MAX_VALUE, locale);
+  }
+  
+  public LongFormatter(long minLongValue, long maxLongValue){
+    this(minLongValue, maxLongValue, JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public LongFormatter(long minLongValue, long maxLongValue, Locale locale){

@@ -9,6 +9,7 @@ package org.softsmithy.lib.swing.text;
 import java.math.*;
 import java.text.*;
 import java.util.*;
+import javax.swing.*;
 import javax.swing.text.*;
 import org.softsmithy.lib.util.*;
 
@@ -16,35 +17,30 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public class WholeNumberFormatter extends NumberFormatter {
+public class WholeNumberFormatter extends AbstractXNumberFormatter {
   
   /** Holds value of property locale. */
   private Locale locale;
   
-  /** Holds value of property maximumMaximumValue. */
-  private BigInteger maximumMaximumValue = null;
-  
-  /** Holds value of property minimumMinimumValue. */
-  private BigInteger minimumMinimumValue = null;
-  
   /** Creates a new instance of IntegerFormatter */
   public WholeNumberFormatter() {
-    this(Locale.getDefault());
+    this(JComponent.getDefaultLocale());// better than Locale.getDefault()?
   }
   
   public WholeNumberFormatter(Locale locale){
     this(null, null, locale);
   }
   
+  public WholeNumberFormatter(BigInteger minIntValue, BigInteger maxIntValue){
+    this(minIntValue, maxIntValue, JComponent.getDefaultLocale());// better than Locale.getDefault()?
+  }
+  
   public WholeNumberFormatter(BigInteger minIntValue, BigInteger maxIntValue, Locale locale){
+    super(minIntValue, maxIntValue);
     setLocale(locale);
     // use BigInteger to recognize values out
     // of range if the range is (Integer.MIN_VALUE, Integer.MAX_VALUE)
     super.setValueClass(BigInteger.class);
-    setMinimumBigIntegerValue(minIntValue);
-    setMaximumBigIntegerValue(maxIntValue);
-    //    System.out.println("min: "+ getMinimum());
-    //    System.out.println("max: "+getMaximum());
   }
   
   /** Getter for property locale.
@@ -69,122 +65,50 @@ public class WholeNumberFormatter extends NumberFormatter {
     if (max != null && ! (max instanceof BigInteger)){
       throw new IllegalArgumentException("max must be an instance of BigInteger or null");
     }
-    if (max != null && getMinimum() != null && Comparables.isSmaller(max, getMinimum())){
-      throw new IllegalArgumentException("max mustn't be smaller than minimum!");
-    }
-    //    if (max.compareTo(MAX_MAX_VALUE) > 0){
-    //      throw new IllegalArgumentException("max mustn't be bigger than MAX_MAX_VALUE!");
-    //    }
-    super.setMaximum(maximumToRange((BigInteger) max));
+    super.setMaximum(max);
   }
   
   public void setMinimum(Comparable minimum) {
     if (minimum != null && ! (minimum instanceof BigInteger)){
       throw new IllegalArgumentException("minimum must be an instance of BigInteger or null");
     }
-    if (minimum != null && getMaximum() != null && Comparables.isBigger(minimum, getMaximum())){
-      throw new IllegalArgumentException("minimum mustn't be bigger than max!");
-    }
-    //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
-    //      throw new IllegalArgumentException("minimum mustn't be smaller than the minimum minimum value!");
-    //    }
-    super.setMinimum(minimumToRange((BigInteger) minimum));
+    super.setMinimum(minimum);
   }
   
   public void setValueClass(Class valueClass) {
     throw new UnsupportedOperationException("This operation is not supported!"); // always use BigInteger!
   }
   
-  public Object stringToValue(String text) throws ParseException {
-    BigInteger value = null;
-    if (((DecimalFormat) getFormat()).isGroupingUsed()){
-      text = text.replaceAll("\\" + ((DecimalFormat) getFormat()).getDecimalFormatSymbols().getGroupingSeparator(), "");
-    }
-    try{
-      value = valueToRange(new BigInteger(text));
-      value = (BigInteger) super.stringToValue(value.toString()); // needed?
-    } catch (NumberFormatException nfe){
-      nfe.printStackTrace();
-      value = (BigInteger) super.stringToValue(text); // will throw a ParseException
-    }
-    return value;
-  }
-  
-  public BigInteger valueToRange(BigInteger value){
-    BigInteger inRangeValue = value;
-    if (getMinimumBigIntegerValue() != null){
-      inRangeValue = inRangeValue.max(getMinimumBigIntegerValue());
-    }
-    if (getMaximumBigIntegerValue() != null){
-      inRangeValue = inRangeValue.min(getMaximumBigIntegerValue());
-    }
-    //    if (inRangeValue.compareTo(getMinimum()) < 0){
-    //      inRangeValue = (BigInteger) getMinimum();
-    //      System.out.println("value (min): "+inRangeValue);
-    //    } else if (inRangeValue.compareTo(getMaximum()) > 0){
-    //      inRangeValue = (BigInteger) getMaximum();
-    //      System.out.println("max2: "+getMaximum());
-    //      System.out.println("value (max): "+inRangeValue);
-    //    }
-    return inRangeValue;
-  }
-  
-  private BigInteger minimumToRange(BigInteger min){
-    BigInteger inRangeValue = min;
-    if (getMinimumMinimumValue() != null){
-      if (inRangeValue == null){
-        inRangeValue = getMinimumMinimumValue();
-      } else {
-        inRangeValue = inRangeValue.max(getMinimumMinimumValue());
-      }
-    }
-    return inRangeValue;
-  }
-  
-  private BigInteger maximumToRange(BigInteger max){
-    BigInteger inRangeValue = max;
-    if (getMaximumMaximumValue() != null){
-      if (inRangeValue == null){
-        inRangeValue = getMaximumMaximumValue();
-      } else {
-        inRangeValue = inRangeValue.min(getMaximumMaximumValue());
-      }
-    }
-    return inRangeValue;
-  }
-  
   /** Getter for property maximumMaximumValue.
    * @return Value of property maximumMaximumValue.
    *
    */
-  protected BigInteger getMaximumMaximumValue() {
-    return this.maximumMaximumValue;
+  protected BigInteger getMaximumMaximumBigIntegerValue() {
+    return (BigInteger) getMaximumMaximumValue();
   }
   
   /** Setter for property maximumMaximumValue.
    * @param maximumMaximumValue New value of property maximumMaximumValue.
    *
    */
-  protected void setMaximumMaximumValue(BigInteger maximumMaximumValue) {
-    this.maximumMaximumValue = maximumMaximumValue;
-    setMaximumBigIntegerValue(getMaximumBigIntegerValue());
+  protected void setMaximumMaximumBigIntegerValue(BigInteger maximumMaximumValue) {
+    setMaximumMaximumValue(maximumMaximumValue);
   }
   
   /** Getter for property minimumMinimumValue.
    * @return Value of property minimumMinimumValue.
    *
    */
-  protected BigInteger getMinimumMinimumValue() {
-    return this.minimumMinimumValue;
+  protected BigInteger getMinimumMinimumBigIntegerValue() {
+    return (BigInteger) getMinimumMinimumValue();
   }
   
   /** Setter for property minimumMinimumValue.
    * @param minimumMinimumValue New value of property minimumMinimumValue.
    *
    */
-  protected void setMinimumMinimumValue(BigInteger minimumMinimumValue) {
-    this.minimumMinimumValue = minimumMinimumValue;
-    setMinimumBigIntegerValue(getMinimumBigIntegerValue());
+  protected void setMinimumMinimumBigIntegerValue(BigInteger minimumMinimumValue) {
+    setMinimumMinimumValue(minimumMinimumValue);
   }
   
   /** Getter for property maximumBigIntegerValue.
@@ -217,6 +141,10 @@ public class WholeNumberFormatter extends NumberFormatter {
    */
   public void setMinimumBigIntegerValue(BigInteger minimumBigIntegerValue) {
     setMinimum(minimumBigIntegerValue);
+  }
+  
+  protected Number stringToNumber(String text) throws NumberFormatException {
+    return new BigInteger(text);
   }
   
 }

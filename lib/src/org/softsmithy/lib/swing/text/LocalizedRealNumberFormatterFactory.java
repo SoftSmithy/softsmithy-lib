@@ -9,23 +9,19 @@ import javax.swing.*;
  *
  * @author  puce
  */
-public class WholeNumberFormatterFactory extends AbstractXNumberFormatterFactory {
+public class LocalizedRealNumberFormatterFactory extends RealNumberFormatterFactory {
   
   /** Holds value of property locale. */
   private Locale locale;
   
   /** Creates a new instance of WholeNumberFormatterFactory */
-  public WholeNumberFormatterFactory(WholeNumberFormatter formatter) {
+  public LocalizedRealNumberFormatterFactory(LocalizedRealNumberFormatter formatter) {
     this(formatter, Locale.getDefault());
   }
   
-  public WholeNumberFormatterFactory(WholeNumberFormatter formatter, Locale locale) {
+  public LocalizedRealNumberFormatterFactory(LocalizedRealNumberFormatter formatter, Locale locale) {
     super(formatter);
     setLocale(locale);
-  }
-  
-  public WholeNumberFormatter getWholeNumberFormatter(){
-    return (WholeNumberFormatter) getAbstractXNumberFormatter();
   }
   
   /** Getter for property locale.
@@ -42,8 +38,11 @@ public class WholeNumberFormatterFactory extends AbstractXNumberFormatterFactory
    */
   public void setLocale(Locale locale) {
     this.locale = locale;
-    getWholeNumberFormatter().setLocale(locale);
+    getLocalizedRealNumberFormatter().setLocale(locale);
   }
   
-  
+  public LocalizedRealNumberFormatter getLocalizedRealNumberFormatter(){
+    return (LocalizedRealNumberFormatter) getRealNumberFormatter();
+  }
+
 }
