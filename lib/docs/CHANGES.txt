@@ -215,7 +215,26 @@ CVS: Added Files:
 CVS: 	index.html 
 CVS: ----------------------------------------------------------------------
 
+in docs/tutorial
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	index.xml 
+CVS: ----------------------------------------------------------------------
 
+some zoom values added
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	StandardActions.properties StandardActions_de.properties 
+CVS: 	StandardActions_en.properties 
+CVS: ----------------------------------------------------------------------
 v20031023:  -number fields based on JFormattedTextField for int, long, short, 
              byte, double, float, BigInteger and BigDecimal added
             -TableCellEditors and CellRenderers based on these number 
