@@ -1,175 +1,23 @@
 Changes:
 
-The way how changes to "x", "y", "width", "height", "background", "foreground" and "font" are
-handled has been fixd.
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	docs/CHANGES.txt 
-CVS: 	src/org/softsmithy/lib/swing/CustomizerActionManager.java 
-CVS: 	src/org/softsmithy/lib/swing/JCustomizer.java 
-CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
-CVS: 	src/org/softsmithy/lib/swing/JStyledPanel.java 
-CVS: 	src/org/softsmithy/lib/swing/customizer/AbstractCustomizer.java 
-CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerPropertyTableModel.java 
-CVS: 	src/org/softsmithy/lib/swing/customizer/SelectionManager.java 
-CVS: 	src/org/softsmithy/lib/swing/customizer/StateManager.java 
-CVS: 	src/org/softsmithy/lib/swing/event/CustomizerListener.java 
-CVS: 	src/org/softsmithy/lib/swing/event/CustomizerSelectionEvent.java 
-CVS: 	test/unit/src/org/softsmithy/lib/swing/JCustomizerTest.java 
-CVS: ----------------------------------------------------------------------
-
-
-Editor for property "thickness" set.
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	JCustomizerPropertyTable.java 
-CVS: ----------------------------------------------------------------------
-
-CustomizerNoneStyle didn't work (see how setBackground, setForground and setFont 
-are implemented in JComponent and Component). This class wasn't really necessary
-though. Alternative: PropertyChangeListeners have to listen on the enclosed component
-instead of the JCustomizer!
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	JCustomizer.java 
-CVS: ----------------------------------------------------------------------
-
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	docs/CHANGES.txt 
-CVS: 	src/org/softsmithy/lib/swing/DoubleCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/FloatCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/JDoubleField.java 
-CVS: 	src/org/softsmithy/lib/swing/JFloatField.java 
-CVS: 	src/org/softsmithy/lib/swing/JRealNumberField.java 
-CVS: 	src/org/softsmithy/lib/swing/JXTable.java 
-CVS: Added Files:
-CVS: 	src/org/softsmithy/lib/swing/AbstractCellRenderer.java 
-CVS: 	src/org/softsmithy/lib/swing/BigDecimalCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/LocalizedBigDecimalCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/LocalizedDoubleCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/LocalizedFloatCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/LocalizedRealNumberCellRenderer.java 
-CVS: ----------------------------------------------------------------------
-
-
-
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	docs/CHANGES.txt 
-CVS: Added Files:
-CVS: 	src/org/softsmithy/lib/swing/JDoubleField.java 
-CVS: 	src/org/softsmithy/lib/swing/JFloatField.java 
-CVS: 	src/org/softsmithy/lib/swing/JLocalizedDoubleField.java 
-CVS: 	src/org/softsmithy/lib/swing/JLocalizedFloatField.java 
-CVS: ----------------------------------------------------------------------
-
-
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.form 
-CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
-CVS: 	src/org/softsmithy/lib/swing/JWholeNumberField.java 
-CVS: 	src/org/softsmithy/lib/swing/text/ByteFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/IntegerFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LongFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/ShortFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/util/Comparables.java 
-CVS: Added Files:
-CVS: 	src/org/softsmithy/lib/math/BigDecimals.java 
-CVS: 	src/org/softsmithy/lib/math/BigIntegers.java 
-CVS: 	src/org/softsmithy/lib/swing/AbstractNumberField.java 
-CVS: 	src/org/softsmithy/lib/swing/JLocalizedRealNumberField.java 
-CVS: 	src/org/softsmithy/lib/swing/JRealNumberField.java 
-CVS: 	src/org/softsmithy/lib/swing/text/AbstractXNumberFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/AbstractXNumberFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/DoubleFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/DoubleFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/FloatFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/FloatFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/Formatters.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedDoubleFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedDoubleFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedFloatFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedFloatFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedRealNumberFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/LocalizedRealNumberFormatterFactory.java 
-CVS: 	src/org/softsmithy/lib/swing/text/RealNumberFormatter.java 
-CVS: 	src/org/softsmithy/lib/swing/text/RealNumberFormatterFactory.java 
-CVS: ----------------------------------------------------------------------
-
-
-
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Modified Files:
-CVS: 	src/org/softsmithy/lib/awt/layout/InfiniteTableLayout.java 
-CVS: 	src/org/softsmithy/lib/swing/CellRenderer.java 
-CVS: 	src/org/softsmithy/lib/swing/FormattedCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/IntegerCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.form 
-CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
-CVS: 	src/org/softsmithy/lib/swing/JCustomizerPropertyTable.java 
-CVS: 	src/org/softsmithy/lib/swing/JXTable.java 
-CVS: 	src/org/softsmithy/lib/swing/LocaleCellRenderer.java 
-CVS: 	src/org/softsmithy/lib/swing/LongCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/table/XDefaultTableCellRenderer.java 
-CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatter.java 
-CVS: Added Files:
-CVS: 	src/org/softsmithy/lib/swing/BigIntegerCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/ByteCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/ShortCellEditor.java 
-CVS: 	src/org/softsmithy/lib/swing/WholeNumberCellRenderer.java 
-CVS: 	src/org/softsmithy/lib/util/Comparables.java 
-CVS: ----------------------------------------------------------------------
-
-
-Number components added
-CVS: ----------------------------------------------------------------------
-CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
-CVS: 
-CVS: Committing in .
-CVS: 
-CVS: Added Files:
-CVS: 	text/ByteFormatter.java text/ByteFormatterFactory.java 
-CVS: 	text/IntegerFormatter.java text/IntegerFormatterFactory.java 
-CVS: 	text/LongFormatter.java text/LongFormatterFactory.java 
-CVS: 	text/ShortFormatter.java text/ShortFormatterFactory.java 
-CVS: 	text/WholeNumberFormatter.java 
-CVS: 	text/WholeNumberFormatterFactory.java JByteField.java 
-CVS: 	JIntegerField.java JLongField.java JWholeNumberField.java 
-CVS: 	JShortField.java 
-CVS: ----------------------------------------------------------------------
-
+v20031023:  -number fields based on JFormattedTextField for int, long, short, 
+             byte, double, float, BigInteger and BigDecimal added
+            -TableCellEditors and CellRenderers based on these number 
+             fields added
+            -org.softsmithy.lib.swing.JXTable configured to use these new number
+             editors and renderers by default
+            -in org.softsmithy.lib.swing.JCustomizerPropertyTable the default 
+             editors for the properties x and y have been set to an integer 
+             editor with bounds (0, 10000), for width and height to an integer
+             editor with bounds (1, 10000) and for thickness to an localized
+             float editor with bounds (1, 10000)
+            -utility class org.softsmithy.lib.util.Comparables added
+            -utility classes BigIntegers and BigDecimals in package
+             org.softsmithy.lib.math added
+            -the way how changes to "x", "y", "width", "height", "background", 
+             "foreground" and "font" in org.softmithy.lib.swing.JCustomizer 
+             are handled and propagated has been fixed
+            -some minor changes
 v20030909:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fixes
             -style specific classes moved from 
              org.softsmithy.lib.swing.customizer -> 

@@ -54,7 +54,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     if (max != null && ! (max instanceof Number)){
       throw new IllegalArgumentException("max must be an instance of Number or null");
     }
-    if (max != null && getMinimum() != null && Comparables.isSmaller(max, getMinimum())){
+    if (max != null && getMinimum() != null && Comparables.isLess(max, getMinimum())){
       throw new IllegalArgumentException("max mustn't be smaller than minimum!");
     }
     //    if (max.compareTo(MAX_MAX_VALUE) > 0){
@@ -67,7 +67,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     if (minimum != null && ! (minimum instanceof Number)){
       throw new IllegalArgumentException("minimum must be an instance of Number or null");
     }
-    if (minimum != null && getMaximum() != null && Comparables.isBigger(minimum, getMaximum())){
+    if (minimum != null && getMaximum() != null && Comparables.isGreater(minimum, getMaximum())){
       throw new IllegalArgumentException("minimum mustn't be bigger than max!");
     }
     //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
@@ -158,7 +158,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
       throw new IllegalArgumentException("maximumMaximumValue must be an instance of Comparable or null");
     }
     if (maximumMaximumValue != null && getMinimumMinimumValue() != null
-    && Comparables.isSmaller((Comparable) maximumMaximumValue, (Comparable) getMinimumMinimumValue())){
+    && Comparables.isLess((Comparable) maximumMaximumValue, (Comparable) getMinimumMinimumValue())){
       throw new IllegalArgumentException("maximumMaximumValue mustn't be smaller than minimumMinimumValue!");
     }
     this.maximumMaximumValue = maximumMaximumValue;
@@ -183,7 +183,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
       throw new IllegalArgumentException("minimumMinimumValue must be an instance of Comparable or null");
     }
     if (minimumMinimumValue != null && getMaximumMaximumValue() != null
-    && Comparables.isSmaller((Comparable) minimumMinimumValue, (Comparable) getMaximumMaximumValue())){
+    && Comparables.isLess((Comparable) minimumMinimumValue, (Comparable) getMaximumMaximumValue())){
       throw new IllegalArgumentException("minimumMinimumValue mustn't be smaller than maximumMaximumValue!");
     }
     this.minimumMinimumValue = minimumMinimumValue;
