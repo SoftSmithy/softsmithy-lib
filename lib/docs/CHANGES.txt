@@ -5,6 +5,8 @@ v20030523:  -org.softsmithy.lib.swing.JHtmlCustomizer bug fixes for foreground
              to javax.swing.text.StyleConstants
             -org.softsmithy.lib.swing.XActions now sets a transparent icon if 
              icon is null
+            -org.softsmithy.lib.swing.JXPanel added which has a backgroundPaint
+             property
 
 v20030514:  -org.softsmithy.lib.beans.BeanIntrospector now supports 
              PropertyChangeListeners
