@@ -1,4 +1,7 @@
 Changes:
+v20030410:  -org.softsmithy.lib.beans.XMLEncoderX now supports CustomStyleProvider
+            -org.softsmithy.lib.swing.CustomizerActionFactory now has a first 
+             simple implementation for alignRight and alignBottom 
 v20030319:  -org.softsmithy.lib.swing.JPropertyTable added
             -org.softsmithy.lib.swing.JCustomizerPropertyTable added
             -org.softsmithy.lib.swing.JCustomizerPropertyPane removed
