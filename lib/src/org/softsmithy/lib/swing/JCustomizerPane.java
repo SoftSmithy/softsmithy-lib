@@ -18,7 +18,7 @@ import puce.swing.customizer.*;
  *
  * @author  puce
  */
-public class JCustomizerPane extends JPanel { //implements MouseListener{
+public class JCustomizerPane extends JPanel implements MouseListener{
   
   
   /** Holds value of property showingConstraints. */
@@ -27,12 +27,28 @@ public class JCustomizerPane extends JPanel { //implements MouseListener{
   /** Holds value of property selectionManager. */
   private final SelectionManager selectionManager = new SelectionManager();
   
+  /** Holds value of property customizerBar. */
+  private CustomizerBar customizerBar;
+  
   /** Creates new form JCustomizerPane */
   public JCustomizerPane() {
     initComponents();
     setLayout(new InfiniteTableLayout(this));
     setSize(400, 300);
-    setFocusable(true);//setRequestFocusEnabled(true);
+    //setFocusable(true);//setRequestFocusEnabled(true);
+    addMouseListener(this);
+    this.setBackground(Color.ORANGE);
+//    Action deleteAction = new AbstractAction("delete") {
+//      public void actionPerformed(ActionEvent e) {
+//        System.out.println(e.getSource() + " deleted!");
+//      }
+//    };
+//    getActionMap().put(deleteAction.getValue(Action.NAME),
+//    deleteAction);
+//    
+//    getInputMap(WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DELETE"),
+//    deleteAction.getValue(Action.NAME));
+    
   }
   
   /** This method is called from within the constructor to
@@ -113,22 +129,6 @@ public class JCustomizerPane extends JPanel { //implements MouseListener{
   public void mouseExited(MouseEvent e) {
   }
   
-  /** Invoked when a mouse button has been pressed on a component.
-   *
-   */
-//  public void mousePressed(MouseEvent e) {
-//    JCustomizer comp = (JCustomizer) e.getComponent();
-//    if (e.isControlDown()){
-//      if (selecteds.contains(comp)){
-//        selecteds.remove(comp);
-//      } else {
-//        selecteds.add(comp);
-//      }
-//    } else {
-//      selecteds.clear();
-//      selecteds.add(comp);
-//    }
-//  }
   
   /** Invoked when a mouse button has been released on a component.
    *
@@ -142,7 +142,36 @@ public class JCustomizerPane extends JPanel { //implements MouseListener{
    */
   public SelectionManager getSelectionManager() {
     return this.selectionManager;
-  }  
+  }
+  
+  /** Invoked when a mouse button has been pressed on a component.
+   *
+   */
+  public void mousePressed(MouseEvent e) {
+    if(!hasFocus()){
+      requestFocus();
+      getSelectionManager().clearSelection();
+    }
+    if (customizerBar != null && customizerBar.hasSelection()){
+      customizerBar.consumeSelection(this, e.getPoint());
+    }
+  }
+  
+  /** Getter for property customizerBar.
+   * @return Value of property customizerBar.
+   *
+   */
+  public CustomizerBar getCustomizerBar() {
+    return this.customizerBar;
+  }
+  
+  /** Setter for property customizerBar.
+   * @param customizerBar New value of property customizerBar.
+   *
+   */
+  public void setCustomizerBar(CustomizerBar customizerBar) {
+    this.customizerBar = customizerBar;
+  }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

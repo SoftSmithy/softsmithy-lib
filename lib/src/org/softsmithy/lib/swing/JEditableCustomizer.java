@@ -44,4 +44,8 @@ public abstract class JEditableCustomizer extends JCustomizer {
   public EditableStateManager getEditableStateManager(){
     return (EditableStateManager) getStateManager();
   }
+  
+  public String toString(){
+    return getClass().getName() + "[" + getText() + "]";
+  }
 }

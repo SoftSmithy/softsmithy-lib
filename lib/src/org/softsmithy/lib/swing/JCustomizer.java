@@ -7,6 +7,7 @@
 package puce.swing;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import puce.swing.customizer.*;
@@ -39,6 +40,17 @@ public class JCustomizer extends JPanel{
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
     //setComponent(new JLabel("testtest"));
+    this.setOpaque(false);
+    Action deleteAction = new AbstractAction("delete") {
+      public void actionPerformed(ActionEvent e) {
+        ((JCustomizer) e.getSource()).fireCustomizerDelete(new CustomizerEvent(e.getSource(), 0, 0, 0, 0));
+        //        System.out.println(e.getSource() + " deleted!");
+      }
+    };
+    getActionMap().put(deleteAction.getValue(Action.NAME),
+    deleteAction);
+    
+    getInputMap().put(KeyStroke.getKeyStroke("DELETE"), deleteAction.getValue(Action.NAME));
   }
   
   
@@ -176,6 +188,12 @@ public class JCustomizer extends JPanel{
     }
   }
   
+  public void fireCustomizerDelete(CustomizerEvent e){
+    for (Iterator i=listeners.iterator(); i.hasNext();){
+      ((CustomizerListener) i.next()).customizerDelete(e);
+    }
+  }
+  
   /** Getter for property glassPane.
    * @return Value of property glassPane.
    *
@@ -184,5 +202,24 @@ public class JCustomizer extends JPanel{
     return glassPane;
   }
   
+  /** Registers the text to display in a tool tip.
+   * The text displays when the cursor lingers over the component.
+   * <p>
+   * See <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tooltip.html">How to Use Tool Tips</a>
+   * in <em>The Java Tutorial</em>
+   * for further documentation.
+   *
+   * @param text  the string to display; if the text is <code>null</code>,
+   *              the tool tip is turned off for this component
+   * @see #TOOL_TIP_TEXT_KEY
+   * @beaninfo
+   *   preferred: true
+   * description: The text to display in a tool tip.
+   *
+   */
+  public void setToolTipText(String text) {
+    super.setToolTipText(text);
+    getGlassPane().setToolTipText(text);
+  }  
   
 }
