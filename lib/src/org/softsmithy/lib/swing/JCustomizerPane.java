@@ -60,7 +60,6 @@ public class JCustomizerPane extends JPanel implements MouseListener{
 
     setLayout(null);
 
-    setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255)));
   }//GEN-END:initComponents
   
   

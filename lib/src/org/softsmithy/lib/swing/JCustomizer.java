@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import puce.swing.customizer.*;
 import puce.swing.event.*;
 import puce.test.*;
@@ -22,7 +23,7 @@ import puce.test.*;
  *
  * @author  puce
  */
-public class JCustomizer extends JPanel{
+public class JCustomizer extends JPanel {//implements CustomizerModelListener{
   
   private JComponent fComponent;
   private JPanel glassPane = new JPanel();
@@ -31,8 +32,15 @@ public class JCustomizer extends JPanel{
   private final Set listeners = new HashSet();
   private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
   
+  /** Holds value of property customizableProperties. */
+  private Set customizableProperties = Collections.EMPTY_SET;
+  
+  /** Holds value of property model. */
+  //private CustomizerModel model;
+  
   /** Creates a new instance of JCustomizer */
   public JCustomizer() {
+    //setModel(new DefaultCustomizerModel());
     setLayout(new TableLayout(new double[][]{{TableLayout.FILL}, {TableLayout.FILL}}));//new BorderLayout());
     glassPane.setLayout(new BorderLayout());
     glassPane.setOpaque(false);
@@ -128,11 +136,13 @@ public class JCustomizer extends JPanel{
     constr.setAbsoluteBounds(bounds, cl);
     cl.setConstraints(this, constr);
     cl.layoutComponent(pane, this);
+    repaint();
   }
   
   public void setBoundsRel(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
     setBounds(bounds);
+    repaint();
   }
   
   private Rectangle calculateBounds(int dx, int dy, int dwidth, int dheight){
@@ -220,6 +230,42 @@ public class JCustomizer extends JPanel{
   public void setToolTipText(String text) {
     super.setToolTipText(text);
     getGlassPane().setToolTipText(text);
+  }
+  
+  public void applyBorder(Border border) {
+    getGlassPane().setBorder(border);
+  }
+  
+  public void setX(int x) {
+    reshapeRel(x-getX(), 0, 0, 0);
   }  
+
+  public void setY(int y) {
+    reshapeRel(0, y-getY(), 0, 0);
+  }  
+  
+  public void setWidth(int width) {
+    reshapeRel(0, 0, width-getWidth(), 0);
+  }
+  
+  public void setHeight(int height) {
+    reshapeRel(0, 0, 0, height-getHeight());
+  }
+  
+  /** Getter for property customizableProperties.
+   * @return Value of property customizableProperties.
+   *
+   */
+  public Set getCustomizableProperties() {
+    return this.customizableProperties;
+  }
+  
+  /** Setter for property customizableProperties.
+   * @param customizableProperties New value of property customizableProperties.
+   *
+   */
+  public void setCustomizableProperties(Set customizableProperties) {
+    this.customizableProperties = customizableProperties;
+  }
   
 }

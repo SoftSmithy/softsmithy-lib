@@ -8,9 +8,9 @@ package puce.swing.customizer;
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.text.*;
 import puce.swing.*;
-import puce.swing.customizer.StateManager.*;
 
 /**
  *
@@ -21,25 +21,30 @@ import puce.swing.customizer.StateManager.*;
 public class EditableStateManager extends StateManager {
   
   private StateWrapper editableAwareState;
-  private ActiveState editableState;
+  private State editableState;
   
   /** Creates a new instance of EditableStateManager */
-  public EditableStateManager(final JEditableCustomizer customizer){
+  public EditableStateManager(final JTextCustomizer customizer){
     super(customizer);
-    editableState = new ActiveState(customizer){
+    editableState = new DefaultState(customizer){
+      Component component = null;
       private FocusListener focusListener = new FocusAdapter(){
         public void focusLost(FocusEvent e){
           focusLostNow(e);
         }
       };
       public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        customizer.setCursor(null);//Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
       }
       public void configureCustomizer(){
         super.configureCustomizer();
         JTextComponent editor = customizer.getEditor();
         editor.setText(customizer.getText());
-        customizer.getGlassPane().add(BorderLayout.CENTER, editor);
+        component = editor;
+        if (customizer.isEditorScrollable()){
+          component = new JScrollPane(editor);
+        }
+        customizer.getGlassPane().add(BorderLayout.CENTER, component);
         if(!editor.hasFocus()){
           editor.requestFocus();
         }
@@ -51,20 +56,21 @@ public class EditableStateManager extends StateManager {
       public void unconfigureCustomizer(){
         super.unconfigureCustomizer();
         JTextComponent editor = customizer.getEditor();
-        customizer.getGlassPane().remove(editor);
+        customizer.getGlassPane().remove(component);
         customizer.setText(editor.getText());
         editor.removeFocusListener(focusListener);
+        customizer.repaint();
       }
       public void focusLost(FocusEvent e){}
     };
   }
   
-  public ActiveState getEditableState() {
+  public State getEditableState() {
     return editableState;
   }
   
   public void setStateEditable(){
-    setState(editableState);
+    setState(getEditableState());
   }
   
   protected void setState(State state){
@@ -89,7 +95,7 @@ public class EditableStateManager extends StateManager {
       if (e.getClickCount() > 1){
         JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
         pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
-        ((JEditableCustomizer) getCustomizer()).getEditableStateManager().setStateEditable();
+        ((JTextCustomizer) getCustomizer()).getEditableStateManager().setStateEditable();
       }
     }
   }

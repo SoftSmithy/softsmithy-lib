@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author  puce
  */
-public class JLabelCustomizer extends JEditableCustomizer {
+public class JLabelCustomizer extends JTextCustomizer {
   
   
   /** Creates a new instance of JLabelCustomizer */

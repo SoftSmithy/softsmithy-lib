@@ -59,6 +59,23 @@ public class Classes {
     return ext;
   }
   
+  public static Class getTopMostCommonClass(Class a, Class b){
+    Class baseClass;
+    if (a == null || b == null){
+      baseClass = null;
+    } else if (a.equals(b)){
+      baseClass = a;
+    } else if (extendsClass(a, b)){
+      baseClass = b;
+    } else if (extendsClass(b, a)){
+      baseClass = a;
+    } else {
+      baseClass = getTopMostCommonClass(a.getSuperclass(), b.getSuperclass());
+    }
+    return baseClass;
+  }
+  
+  
   public static String createWrapper(Class aClass){
     return "";
   }

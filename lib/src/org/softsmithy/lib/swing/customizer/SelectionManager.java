@@ -24,20 +24,37 @@ import puce.swing.event.*;
 public class SelectionManager implements CustomizerListener{
   
   private final List selectedList = new ArrayList();
-  private final Set selectedSet = new HashSet();
+  private final Set selectedSet = new LinkedHashSet();
+  
+  private Set listeners = new HashSet();
   
   /** Creates a new instance of SelectionManager */
   public SelectionManager() {
   }
   
   public void select(JCustomizer customizer, Point point) {
-    setSelected(customizer);
+    selectOnly(customizer);
     customizer.getStateManager().setStateBound(point);
+    fireSelectionChanged();
+  }
+  
+  public void select(JCustomizer customizer){
+    selectOnly(customizer);
+    customizer.getStateManager().setStateMove();
+    fireSelectionChanged();
+  }
+  
+  private void selectOnly(JCustomizer customizer) {
+    if (selectedList.size()>0){
+      JCustomizer oldBound = (JCustomizer) selectedList.get(selectedList.size()-1);
+      oldBound.getStateManager().setStateSelected();
+    }
+    setSelected(customizer);
     customizer.addCustomizerListener(this);
   }
   
   public void singleSelect(JCustomizer customizer, Point point){
-    clearSelection();
+    clearSelectionOnly();
     select(customizer, point);
   }
   
@@ -60,6 +77,7 @@ public class SelectionManager implements CustomizerListener{
     customizer.getStateManager().setStateNormal();
     setDeselected(customizer);
     customizer.removeCustomizerListener(this);
+    fireSelectionChanged();
   }
   
   public boolean isSelected(JCustomizer customizer) {
@@ -78,6 +96,11 @@ public class SelectionManager implements CustomizerListener{
   }
   
   public void clearSelection(){
+    clearSelectionOnly();
+    fireSelectionChanged();
+  }
+  
+  private void clearSelectionOnly(){
     for (Iterator i=selectedList.iterator(); i.hasNext();){
       JCustomizer customizer = (JCustomizer) i.next();
       customizer.getStateManager().setStateNormal();
@@ -118,8 +141,23 @@ public class SelectionManager implements CustomizerListener{
       parent.remove(customizer);
       parent.repaint(bounds.x, bounds.y, bounds.width, bounds.height);
     }
-    clearSelection();
-  }  
+    clearSelection(); // this causes an ConcurrentModificationException since it
+    // tries to remove itself from the customizerListenerList
+  }
   
+  public void addCustomizerSelectionListener(CustomizerSelectionListener listener) {
+    listeners.add(listener);
+  }
+  
+  public void removeCustomizerSelectionListener(CustomizerSelectionListener listener) {
+    listeners.remove(listener);
+  }
+  
+  private void fireSelectionChanged(){
+    CustomizerSelectionEvent e = new CustomizerSelectionEvent(this, Collections.unmodifiableSet(selectedSet));
+    for(Iterator i = listeners.iterator(); i.hasNext();){
+      ((CustomizerSelectionListener) i.next()).selectionChanged(e);
+    }
+  }
   
 }

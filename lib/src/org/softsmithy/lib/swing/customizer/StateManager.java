@@ -430,27 +430,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     
   }
   
-  public static class ActiveState extends DefaultState{
-    
-    public ActiveState(JCustomizer customizer){
-      super(customizer);
-    }
-    
-    /** Invoked when a component loses the keyboard focus.
-     */
-    public void focusLost(FocusEvent e) {
-      JCustomizer customizer = getCustomizer();
-      JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
-      StateManager manager = customizer.getStateManager();
-//      if (pane.getSelectionManager().isSelected(customizer)){
-//        manager.setStateSelected();
-////      } else {
-////        System.out.println("deselected");
-////        pane.getSelectionManager().deselect(customizer);
-//      }
-    }
-  }
-  public static abstract class BoundState extends ActiveState{
+  public static abstract class BoundState extends DefaultState{
     
     protected static final HandleBorder HANDLE_BORDER = new HandleBorder(Color.BLUE, 0);
     
@@ -500,6 +480,9 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public void mousePressed(MouseEvent e) {
       super.mousePressed(e);
+      if(!getCustomizer().hasFocus()){
+        getCustomizer().requestFocus();
+      }
       startX = e.getX();
       startY = e.getY();
       lastX = e.getX();

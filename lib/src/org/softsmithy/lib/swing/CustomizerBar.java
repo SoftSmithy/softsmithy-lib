@@ -15,4 +15,5 @@ import java.awt.*;
 public interface CustomizerBar {
   void consumeSelection(JCustomizerPane pane, Point point);
   boolean hasSelection();
+  void clearSelection();
 }

@@ -11,6 +11,7 @@ public class HandleBorder extends AbstractBorder {
   
   private final Color fLineColor;
   private final int fThick;
+  private final int fLineInset;
   private final Handle fNHandle;
   private final Handle fNEHandle;
   private final Handle fEHandle;
@@ -25,17 +26,26 @@ public class HandleBorder extends AbstractBorder {
     this(Color.black, 6);
   }
   
+  public HandleBorder(Color lineColor, int lineInset) {
+    this(6, lineColor, lineInset);
+  }
+  
   public HandleBorder(Color lineColor) {
-    this(lineColor, 6);
+    this(6, lineColor);
   }
   
+    public HandleBorder(int thick, Color lineColor) {
+    this(thick, lineColor, thick/2);
+  }
+    
   public HandleBorder(int thick) {
-    this(Color.black, thick);
+    this(thick, Color.black);
   }
   
-  public HandleBorder(Color lineColor, final int thick) {
+  public HandleBorder(final int thick, Color lineColor, int lineInset) {
     fLineColor = lineColor;
     fThick = thick;
+    fLineInset = lineInset;
     fNHandle = new Handle(thick){
       private Rectangle fRect;
       public void setRect(int w, int h){
@@ -128,7 +138,7 @@ public class HandleBorder extends AbstractBorder {
   }
   protected void paintRectangle(Component c, Graphics g, int w, int h) {
     g.setColor(fLineColor);
-    g.drawRect(fThick/2,fThick/2,w-fThick-1,h-fThick-1);
+    g.drawRect(fLineInset,fLineInset,w-2*fLineInset-1,h-2*fLineInset-1);
   }
   protected void paintHandles(Component c, Graphics g, int w, int h) {
     Graphics2D g2 = (Graphics2D) g;
