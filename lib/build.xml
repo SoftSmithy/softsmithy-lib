@@ -7,7 +7,7 @@
 -->
 
 
-<project name="SoftSmithy Utility Library" default="compile" basedir=".">
+<project name="SoftSmithy Utility Library" default="distall" basedir=".">
 
 
 
@@ -202,7 +202,10 @@
 
   </target>
 
+  <!-- ==================== Dist All Target ===================================== -->
 
+  <target name="distall" depends="dist,i18n"
+   description="Create binary distribution" />
 
 
 <!-- ==================== Dist Target ===================================== -->
