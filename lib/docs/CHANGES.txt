@@ -2,6 +2,8 @@ Changes:
 
 
 ShapeIcon respect aspect ratio
+JListBox
+NetBeans Ant Projectfiles
 -some minor changes
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies
