@@ -27,7 +27,7 @@ import javax.swing.text.*;
  * Note: requires v1.4
  * Looks interessting but not yet used.
  */
-class RegexFormatter extends DefaultFormatter {
+public class RegexFormatter extends DefaultFormatter {
     private Pattern pattern;
     private Matcher matcher;
 

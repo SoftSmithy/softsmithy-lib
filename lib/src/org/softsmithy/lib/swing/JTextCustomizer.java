@@ -39,11 +39,12 @@ public abstract class JTextCustomizer extends JCustomizer {
   /** Holds value of property editable. */
   private boolean editable;
   private final StateManager editableStateManager = new EditableStateManager(this);
-  private final StateManager stateManager = new StateManager(this);
+//  private final StateManager stateManager = new StateManager(this);
   
   /** Creates a new instance of JEditableCustomizer */
   public JTextCustomizer() {
     setEditable(true);
+    setStateManager(editableStateManager);
   }
   
   public void setEditor(JTextComponent editor){
@@ -112,11 +113,11 @@ public abstract class JTextCustomizer extends JCustomizer {
    */
   public void setEditable(boolean editable) {
     this.editable = editable;
-    if (editable){
-      setStateManager(editableStateManager);
-    } else {
-      setStateManager(stateManager);
-    }
+//    if (editable){
+//      setStateManager(editableStateManager);
+//    } else {
+//      setStateManager(stateManager);
+//    }
   }
   
 }

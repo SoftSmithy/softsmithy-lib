@@ -18,7 +18,7 @@
  * Created on 15. Oktober 2002, 18:00
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
 import java.awt.event.*;
 import java.beans.*;

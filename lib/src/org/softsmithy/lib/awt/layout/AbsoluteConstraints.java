@@ -11,7 +11,7 @@
  * Microsystems, Inc. All Rights Reserved.
  */
 
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
 import java.awt.Dimension;
 import java.awt.Point;

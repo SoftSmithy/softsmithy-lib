@@ -204,6 +204,17 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     return state;
   }
+  
+  public JCustomizer getCustomizer(){
+    return customizer;
+  }
+  
+  public void configureCustomizer(){
+  }
+  
+  public void unconfigureCustomizer(){
+  }
+  
   /** Invoked when the mouse button has been clicked (pressed
    * and released) on a component.
    */
@@ -443,6 +454,13 @@ public class StateManager implements FocusListener, MouseInputListener {
       return customizer;
     }
     
+    public void mouseClicked(MouseEvent e) {
+      if (e.getClickCount() > 1){
+        JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
+        pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
+        getCustomizer().fireActionEvent(new ActionEvent(getCustomizer(), ActionEvent.ACTION_PERFORMED, ""));
+      }
+    }
   }
   
   public static abstract class BoundState extends DefaultState{

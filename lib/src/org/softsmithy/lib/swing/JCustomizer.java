@@ -53,6 +53,9 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
   /** Holds value of property customizableProperties. */
   private Set customizableProperties = Collections.EMPTY_SET;
   
+  /** Holds value of property style. */
+  private Style style =null;
+  
   /** Holds value of property model. */
   //private CustomizerModel model;
   
@@ -117,11 +120,13 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
       glassPane.removeMouseListener(stateManager);
       glassPane.removeMouseMotionListener(stateManager);
       removeFocusListener(stateManager);
+      stateManager.unconfigureCustomizer();
     }
     stateManager = manager;
     glassPane.addMouseListener(stateManager);
     glassPane.addMouseMotionListener(stateManager);
     addFocusListener(stateManager);
+    stateManager.configureCustomizer();
   }
   
   //  public void moveRel(int dx, int dy) {
@@ -334,6 +339,7 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    *
    */
   public Color getForeground() {
+    //return getStyle().getForeground();
     return (fComponent != null) ? fComponent.getForeground() : super.getForeground();
   }
   
@@ -396,6 +402,7 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    *
    */
   public boolean isOpaque() {
+    //return getStyle().isOpaque();
     return (fComponent != null) ? fComponent.isOpaque() : super.isOpaque();
   }
   
@@ -407,6 +414,7 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    *
    */
   public Font getFont() {
+    //return getStyle().getFont();
     return (fComponent != null) ? fComponent.getFont() : super.getFont();
   }
   
@@ -419,6 +427,7 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    *
    */
   public Color getBackground() {
+    //return getStyle().getBackground();
     return (fComponent != null) ? fComponent.getBackground() : super.getBackground();
   }
   
@@ -461,6 +470,34 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     return (JCustomizerPane) getParent();
   }
   
+  /** Getter for property style.
+   * @return Value of property style.
+   *
+   */
+  public Style getStyle() {
+    return this.style;
+  }
+  
+  /** Setter for property style.
+   * @param style New value of property style.
+   *
+   */
+  public void setStyle(Style style) {
+    this.style = style;
+  }
+  public void addActionListener(ActionListener l) {
+      listenerList.add(ActionListener.class, l);
+  }
+ 
+  public void removeActionListener(ActionListener l) {
+      listenerList.remove(ActionListener.class, l);
+  }
+  
+  public void fireActionEvent(ActionEvent ev){
+    ActionListener[] listeners = (ActionListener[]) getListeners(ActionListener.class);
+    for (int i=0; i<listeners.length; i++){
+      listeners[i].actionPerformed(ev);
+    }
+  }
 }
-
     

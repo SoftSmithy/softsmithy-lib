@@ -284,7 +284,8 @@
     <mkdir          dir="${apidoc.home}"/>
     <javadoc sourcepath="src"
                 destdir="${apidoc.home}"
-           packagenames="org.softsmithy.lib.*">
+           packagenames="org.softsmithy.lib.*"
+           link="http://java.sun.com/j2se/1.4/docs/api">
       <classpath refid="compile.classpath"/>
     </javadoc>
 

@@ -25,6 +25,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.customizer.StateManager.*;
 
 /**
  *
@@ -36,17 +37,18 @@ public class EditableStateManager extends StateManager {
   
   private StateWrapper editableAwareState;
   private State editableState;
+  private EditableListener editableListener = new EditableListener();
   
   /** Creates a new instance of EditableStateManager */
   public EditableStateManager(final JTextCustomizer customizer){
     super(customizer);
     editableState = new DefaultState(customizer){
       Component component = null;
-      private FocusListener focusListener = new FocusAdapter(){
-        public void focusLost(FocusEvent e){
-          focusLostNow(e);
-        }
-      };
+      //      private FocusListener focusListener = new FocusAdapter(){
+      //        public void focusLost(FocusEvent e){
+      //          focusLostNow(e);
+      //        }
+      //      };
       public void applyCursor(){
         customizer.setCursor(null);//Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
       }
@@ -62,20 +64,21 @@ public class EditableStateManager extends StateManager {
         if(!editor.hasFocus()){
           editor.requestFocus();
         }
-        editor.addFocusListener(focusListener);
+        //        editor.addFocusListener(focusListener);
       }
-      public void focusLostNow(FocusEvent e){
-         super.focusLost(e);
-      }
+      //      public void focusLostNow(FocusEvent e){
+      //         super.focusLost(e);
+      //      }
       public void unconfigureCustomizer(){
-        super.unconfigureCustomizer();
         JTextComponent editor = customizer.getEditor();
         customizer.getGlassPane().remove(component);
+        System.out.println("Component removed!!!!!!!!!!!!!");
         customizer.setText(editor.getText());
-        editor.removeFocusListener(focusListener);
+        //        editor.removeFocusListener(focusListener);
         customizer.repaint();
+        super.unconfigureCustomizer();
       }
-      public void focusLost(FocusEvent e){}
+      //      public void focusLost(FocusEvent e){}
     };
   }
   
@@ -87,31 +90,48 @@ public class EditableStateManager extends StateManager {
     setState(getEditableState());
   }
   
-  protected void setState(State state){
-//    if (editableAwareState == null){
-//      editableAwareState = new EditableAwareState(state);
-//    } else {
-//      editableAwareState.setState(state);
-//    }
-    super.setState(new EditableAwareState(state));
+  public JTextCustomizer getTextCustomizer(){
+    return (JTextCustomizer) getCustomizer();
   }
   
-  public static class EditableAwareState extends StateWrapper{
-    
-    public EditableAwareState(State state){
-      super(state);
-    }
-    
-    /** Invoked when the mouse button has been clicked (pressed
-     * and released) on a component.
-     */
-    public void mouseClicked(MouseEvent e) {
-      if (e.getClickCount() > 1){
-        JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
-        pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
-        ((JTextCustomizer) getCustomizer()).getEditableStateManager().setStateEditable();
+  public void configureCustomizer() {
+    super.configureCustomizer();
+    getCustomizer().addActionListener(editableListener);
+  }
+  
+  public void unconfigureCustomizer() {
+    getCustomizer().removeActionListener(editableListener);
+    super.unconfigureCustomizer();
+  }
+  
+  //  protected void setState(State state){
+  //    super.setState(new EditableAwareState(state));
+  //  }
+  
+  private class EditableListener implements ActionListener{
+    public void actionPerformed(ActionEvent ev){
+      if (getTextCustomizer().isEditable()){
+        setStateEditable();
       }
     }
   }
+  
+  //  public static class EditableAwareState extends StateWrapper{
+  //
+  //    public EditableAwareState(State state){
+  //      super(state);
+  //    }
+  //
+  //    /** Invoked when the mouse button has been clicked (pressed
+  //     * and released) on a component.
+  //     */
+  //    public void mouseClicked(MouseEvent e) {
+  //      if (e.getClickCount() > 1){
+  //        JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
+  //        pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
+  //        ((JTextCustomizer) getCustomizer()).getEditableStateManager().setStateEditable();
+  //      }
+  //    }
+  //  }
   
 }
