@@ -23,6 +23,7 @@ package org.softsmithy.lib.swing;
 import java.awt.*;
 import javax.swing.*;
 import org.softsmithy.lib.awt.*;
+import org.softsmithy.lib.awt.event.*;
 
 /**
  *
@@ -32,6 +33,8 @@ public class JImageCustomizer extends JIconCustomizer {
   
   /** Holds value of property imageSrc. */
   private Image image = null;
+  
+  private final ComponentLayoutListener imageUpdateListener = new ImageUpdateListener();
   
   /** Creates a new instance of JImageCustomizer */
   public JImageCustomizer() {
@@ -63,7 +66,7 @@ public class JImageCustomizer extends JIconCustomizer {
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     Icon icon;
     if (image != null){
-      icon =  new ImageIcon(image.getScaledInstance(innerArea.width, 
+      icon =  new ImageIcon(image.getScaledInstance(innerArea.width,
       innerArea.height, Image.SCALE_DEFAULT));
     } else {
       icon = new ImageIcon();
@@ -71,5 +74,22 @@ public class JImageCustomizer extends JIconCustomizer {
     ((JLabel) getComponent()).setIcon(icon);
   }
   
+  public void addNotify() {
+    super.addNotify();
+    getParentCustomizerPane().addComponentLayoutListener(this, imageUpdateListener);
+  }
+  
+  public void removeNotify() {
+    getParentCustomizerPane().removeComponentLayoutListener(this, imageUpdateListener);
+    super.removeNotify();
+  }
+  
+  private class ImageUpdateListener implements ComponentLayoutListener{
+    
+    public void componentLayouted(ComponentLayoutEvent e) {
+      adjustIcon();
+    }
+    
+  }
   
 }

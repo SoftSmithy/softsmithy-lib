@@ -304,6 +304,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
     if (! (constraints instanceof CustomizerConstraints)){
       throw new IllegalArgumentException("constraints must be an instance of CustomizerConstraints!");
     }
+    //((JCustomizer) comp).registerListeners(this);
     super.addImpl(comp, constraints, index);
   }
   
@@ -316,19 +317,19 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   }
   
   public void addComponentLayoutListener(ComponentLayoutListener listener){
-    
+    getCustomizerLayout().addComponentLayoutListener(listener);
   }
   
   public void addComponentLayoutListener(Component component, ComponentLayoutListener listener){
-    
+    getCustomizerLayout().addComponentLayoutListener(component, listener);
   }
   
   public void removeComponentLayoutListener(ComponentLayoutListener listener){
-    
+    getCustomizerLayout().removeComponentLayoutListener(listener);
   }
   
   public void removeComponentLayoutListener(Component component, ComponentLayoutListener listener){
-    
+    getCustomizerLayout().removeComponentLayoutListener(component, listener);
   }
   
   /** Getter for property active.

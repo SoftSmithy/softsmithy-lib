@@ -229,6 +229,14 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+//  /*package-private*/ void registerListeners(JCustomizerPane parent){
+//    // default: do nothing
+//  }
+//  
+//  /*package-private*/ void unregisterListeners(JCustomizerPane parent){
+//    // default: do nothing
+//  }
+  
   //  public void fireCustomizerDelete(CustomizerEvent e){
   //    for (Iterator i=listeners.iterator(); i.hasNext();){
   //      ((CustomizerListener) i.next()).customizerDelete(e);

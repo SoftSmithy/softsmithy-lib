@@ -11,6 +11,8 @@ CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java
 CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
 CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerConstraints.java 
 CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerLayout.java 
+CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JImageCustomizer.java 
 CVS: Added Files:
 CVS: 	src/org/softsmithy/lib/awt/layout/AbstractTableConstraints.java 
 CVS: 	src/org/softsmithy/lib/awt/event/ComponentLayoutEvent.java 
