@@ -9,3 +9,6 @@ have any questions or comments feel free to contact me:
 puce@users.sourceforge.net
 
 Have a look at CHANGES.txt for notes about changes.
+
+The source can be obtained via CVS:
+cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/softsmithy co lib
