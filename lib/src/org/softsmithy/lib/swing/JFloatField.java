@@ -7,10 +7,10 @@
 package org.softsmithy.lib.swing;
 
 import java.math.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.text.*;
+import java.text.*;
+import javax.swing.JFormattedTextField.*;
 import org.softsmithy.lib.swing.text.*;
+
 
 /**
  *
@@ -30,22 +30,34 @@ public class JFloatField extends JRealNumberField {
     this(value, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
   }
   
+  public JFloatField(NumberFormat format){
+    this(new FloatFormatterFactory(new FloatFormatter(format)));
+  }
+  
   public JFloatField(float minValue, float maxValue){
     this(DEFAULT_VALUE, minValue, maxValue);
   }
   
+  public JFloatField(NumberFormat format, float minValue, float maxValue){
+    this(new FloatFormatterFactory(new FloatFormatter(format)));
+    init(DEFAULT_VALUE, minValue, maxValue);
+  }
+  
   public JFloatField(float value, float minValue, float maxValue){
     this(new FloatFormatterFactory(new FloatFormatter()));
-    setMinimumFloatValue(minValue);
-    setMaximumFloatValue(maxValue);
-    setFloatValue(value);
+    init(value, minValue, maxValue);
   }
   
   public JFloatField(FloatFormatterFactory factory){
     super(factory);
-    setFloatValue(DEFAULT_VALUE);
+    init(DEFAULT_VALUE, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
   }
   
+  private void init(float value, float minValue, float maxValue){
+    setMinimumFloatValue(minValue);
+    setMaximumFloatValue(maxValue);
+    setFloatValue(value);
+  }
   
   public float getFloatValue(){
     return getBigDecimalValue().floatValue();
@@ -72,7 +84,7 @@ public class JFloatField extends JRealNumberField {
     setMaximumBigDecimalValue(new BigDecimal(minValue));
   }
   
-  protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
+  protected void setFormatter(AbstractFormatter formatter) {
     if (! (formatter instanceof FloatFormatter)){
       throw new IllegalArgumentException("formatter must be an instance of FloatFormatter!");
     }
@@ -91,7 +103,7 @@ public class JFloatField extends JRealNumberField {
     setRealNumberFormatterFactory(factory);
   }
   
-  public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
+  public void setFormatterFactory(AbstractFormatterFactory aff) {
     if (! (aff instanceof FloatFormatterFactory)){
       throw new IllegalArgumentException("aff must be an instance of FloatFormatterFactory!");
     }

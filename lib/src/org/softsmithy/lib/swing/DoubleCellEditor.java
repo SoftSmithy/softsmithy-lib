@@ -13,7 +13,7 @@
  */
 
 /*
- * IntegerCellEditor.java
+ * DoubleCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
@@ -21,8 +21,6 @@
 package org.softsmithy.lib.swing;
 
 import java.text.*;
-import java.util.*;
-import javax.swing.*;
 
 /**
  *
@@ -30,9 +28,25 @@ import javax.swing.*;
  */
 public class DoubleCellEditor extends FormattedCellEditor {
   
-  /** Creates a new instance of IntegerCellEditor */
-  public DoubleCellEditor(Locale locale) {
-    super(NumberFormat.getInstance(locale), JTextField.RIGHT);
+  /** Creates a new instance of DoubleCellEditor */
+  public DoubleCellEditor() {
+    super(new JDoubleField());
+  }
+  
+  public DoubleCellEditor(NumberFormat format) {
+    super(new JDoubleField(format));
+  }
+  
+  public DoubleCellEditor(double minValue, double maxValue) {
+    super(new JDoubleField(minValue, maxValue));
+  }
+  
+  public DoubleCellEditor(NumberFormat format, double minValue, double maxValue) {
+    super(new JDoubleField(format, minValue, maxValue));
+  }
+  
+  public JDoubleField getDoubleField(){
+    return (JDoubleField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -40,11 +54,19 @@ public class DoubleCellEditor extends FormattedCellEditor {
    *
    *
    */
-  public Object getCellEditorValue() {
-    System.out.println(super.getCellEditorValue().getClass());
-    System.out.println(super.getCellEditorValue());
-    Number number = (Number) super.getCellEditorValue();
-    return new Double(number.doubleValue());
+  //  public Object getCellEditorValue() {
+  //    System.out.println(super.getCellEditorValue().getClass());
+  //    System.out.println(super.getCellEditorValue());
+  //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
+  //    return new Integer(number.intValue());
+  //  }
+  
+  protected void setValue(Object value) {
+    getDoubleField().setDoubleValue(((Double) value).doubleValue());
+  }
+  
+  protected Object getValue() {
+    return new Double(getDoubleField().getDoubleValue());
   }
   
 }

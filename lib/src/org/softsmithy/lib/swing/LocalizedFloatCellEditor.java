@@ -13,40 +13,32 @@
  */
 
 /*
- * FloatCellEditor.java
+ * LocalizedFloatCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 
 package org.softsmithy.lib.swing;
 
-import java.text.*;
+import java.util.*;
 
 /**
  *
  * @author  puce
  */
-public class FloatCellEditor extends FormattedCellEditor {
+public class LocalizedFloatCellEditor extends FormattedCellEditor {
   
-  /** Creates a new instance of FloatCellEditor */
-    public FloatCellEditor() {
-    super(new JFloatField());
+  /** Creates a new instance of LocalizedFloatCellEditor */
+  public LocalizedFloatCellEditor(Locale locale) {
+    super(new JLocalizedFloatField(locale));
   }
   
-  public FloatCellEditor(NumberFormat format) {
-    super(new JFloatField(format));
+  public LocalizedFloatCellEditor(float minValue, float maxValue, Locale locale) {
+    super(new JLocalizedFloatField(minValue, maxValue, locale));
   }
   
-  public FloatCellEditor(float minValue, float maxValue) {
-    super(new JFloatField(minValue, maxValue));
-  }
-  
-  public FloatCellEditor(NumberFormat format, float minValue, float maxValue) {
-    super(new JFloatField(format, minValue, maxValue));
-  }
-  
-  public JFloatField getFloatField(){
-    return (JFloatField) getFormattedTextField();
+  public JLocalizedFloatField getLocalizedFloatField(){
+    return (JLocalizedFloatField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -58,15 +50,15 @@ public class FloatCellEditor extends FormattedCellEditor {
 //    System.out.println(super.getCellEditorValue().getClass());
 //    System.out.println(super.getCellEditorValue());
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
-//    return new Integer(number.intValue());
+//    return new Intteger(number.intValue());
 //  }
   
   protected void setValue(Object value) {
-    getFloatField().setFloatValue(((Float) value).floatValue());
+    getLocalizedFloatField().setFloatValue(((Float) value).floatValue());
   }
   
   protected Object getValue() {
-    return new Float(getFloatField().getFloatValue());
+    return new Float(getLocalizedFloatField().getFloatValue());
   }
   
 }

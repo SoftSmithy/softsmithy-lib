@@ -13,40 +13,32 @@
  */
 
 /*
- * FloatCellEditor.java
+ * LocalizedDoubleCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 
 package org.softsmithy.lib.swing;
 
-import java.text.*;
+import java.util.*;
 
 /**
  *
  * @author  puce
  */
-public class FloatCellEditor extends FormattedCellEditor {
+public class LocalizedDoubleCellEditor extends FormattedCellEditor {
   
-  /** Creates a new instance of FloatCellEditor */
-    public FloatCellEditor() {
-    super(new JFloatField());
+  /** Creates a new instance of LocalizedDoubleCellEditor */
+  public LocalizedDoubleCellEditor(Locale locale) {
+    super(new JLocalizedDoubleField(locale));
   }
   
-  public FloatCellEditor(NumberFormat format) {
-    super(new JFloatField(format));
+  public LocalizedDoubleCellEditor(double minValue, double maxValue, Locale locale) {
+    super(new JLocalizedDoubleField(minValue, maxValue, locale));
   }
   
-  public FloatCellEditor(float minValue, float maxValue) {
-    super(new JFloatField(minValue, maxValue));
-  }
-  
-  public FloatCellEditor(NumberFormat format, float minValue, float maxValue) {
-    super(new JFloatField(format, minValue, maxValue));
-  }
-  
-  public JFloatField getFloatField(){
-    return (JFloatField) getFormattedTextField();
+  public JLocalizedDoubleField getLocalizedDoubleField(){
+    return (JLocalizedDoubleField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -62,11 +54,11 @@ public class FloatCellEditor extends FormattedCellEditor {
 //  }
   
   protected void setValue(Object value) {
-    getFloatField().setFloatValue(((Float) value).floatValue());
+    getLocalizedDoubleField().setDoubleValue(((Double) value).doubleValue());
   }
   
   protected Object getValue() {
-    return new Float(getFloatField().getFloatValue());
+    return new Double(getLocalizedDoubleField().getDoubleValue());
   }
   
 }

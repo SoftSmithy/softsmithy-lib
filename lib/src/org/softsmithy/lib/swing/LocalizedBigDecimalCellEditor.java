@@ -13,40 +13,33 @@
  */
 
 /*
- * FloatCellEditor.java
+ * LocalizedRealNumberCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 
 package org.softsmithy.lib.swing;
 
-import java.text.*;
+import java.math.*;
+import java.util.*;
 
 /**
  *
  * @author  puce
  */
-public class FloatCellEditor extends FormattedCellEditor {
+public class LocalizedBigDecimalCellEditor extends FormattedCellEditor {
   
-  /** Creates a new instance of FloatCellEditor */
-    public FloatCellEditor() {
-    super(new JFloatField());
+  /** Creates a new instance of LocalizedRealNumberCellEditor */
+  public LocalizedBigDecimalCellEditor(Locale locale) {
+    super(new JLocalizedRealNumberField(locale));
   }
   
-  public FloatCellEditor(NumberFormat format) {
-    super(new JFloatField(format));
+  public LocalizedBigDecimalCellEditor(BigDecimal minValue, BigDecimal maxValue, Locale locale) {
+    super(new JLocalizedRealNumberField(minValue, maxValue, locale));
   }
   
-  public FloatCellEditor(float minValue, float maxValue) {
-    super(new JFloatField(minValue, maxValue));
-  }
-  
-  public FloatCellEditor(NumberFormat format, float minValue, float maxValue) {
-    super(new JFloatField(format, minValue, maxValue));
-  }
-  
-  public JFloatField getFloatField(){
-    return (JFloatField) getFormattedTextField();
+  public JLocalizedRealNumberField getLocalizedRealNumberField(){
+    return (JLocalizedRealNumberField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -62,11 +55,11 @@ public class FloatCellEditor extends FormattedCellEditor {
 //  }
   
   protected void setValue(Object value) {
-    getFloatField().setFloatValue(((Float) value).floatValue());
+    getLocalizedRealNumberField().setBigDecimalValue((BigDecimal) value);
   }
   
   protected Object getValue() {
-    return new Float(getFloatField().getFloatValue());
+    return getLocalizedRealNumberField().getBigDecimalValue();
   }
   
 }

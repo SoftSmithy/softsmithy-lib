@@ -157,6 +157,9 @@ public class JXTable extends JTable {
     setDefaultRenderer(Short.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
     setDefaultRenderer(Byte.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
     setDefaultRenderer(BigInteger.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
+    setDefaultRenderer(Double.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
+    setDefaultRenderer(Float.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
+    setDefaultRenderer(BigDecimal.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
     //setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
     setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(getLocale()));
     
@@ -167,8 +170,9 @@ public class JXTable extends JTable {
     setDefaultEditor(Short.class, new ShortCellEditor(getLocale()));
     setDefaultEditor(Byte.class, new ByteCellEditor(getLocale()));
     setDefaultEditor(BigInteger.class, new BigIntegerCellEditor(getLocale()));
-    setDefaultEditor(Float.class, new FloatCellEditor(getLocale()));
-    setDefaultEditor(Double.class, new DoubleCellEditor(getLocale()));
+    setDefaultEditor(Float.class, new LocalizedFloatCellEditor(getLocale()));
+    setDefaultEditor(Double.class, new LocalizedDoubleCellEditor(getLocale()));
+    setDefaultEditor(BigDecimal.class, new LocalizedBigDecimalCellEditor(getLocale()));
     setDefaultEditor(HorizontalAlignment.class, new HorizontalAlignmentCellEditor(getLocale()));
     setDefaultEditor(TypesafeEnum.class, new TypesafeEnumCellEditor(getLocale()));
   }

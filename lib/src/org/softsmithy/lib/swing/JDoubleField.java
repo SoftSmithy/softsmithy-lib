@@ -7,10 +7,10 @@
 package org.softsmithy.lib.swing;
 
 import java.math.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.text.*;
+import java.text.*;
+import javax.swing.JFormattedTextField.*;
 import org.softsmithy.lib.swing.text.*;
+
 
 /**
  *
@@ -30,22 +30,34 @@ public class JDoubleField extends JRealNumberField {
     this(value, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
   }
   
+  public JDoubleField(NumberFormat format){
+    this(new DoubleFormatterFactory(new DoubleFormatter(format)));
+  }
+  
   public JDoubleField(double minValue, double maxValue){
     this(DEFAULT_VALUE, minValue, maxValue);
   }
   
+  public JDoubleField(NumberFormat format, double minValue, double maxValue){
+    this(new DoubleFormatterFactory(new DoubleFormatter(format)));
+    init(DEFAULT_VALUE, minValue, maxValue);
+  }
+  
   public JDoubleField(double value, double minValue, double maxValue){
     this(new DoubleFormatterFactory(new DoubleFormatter()));
-    setMinimumDoubleValue(minValue);
-    setMaximumDoubleValue(maxValue);
-    setDoubleValue(value);
+    init(value, minValue, maxValue);
   }
   
   public JDoubleField(DoubleFormatterFactory factory){
     super(factory);
-    setDoubleValue(DEFAULT_VALUE);
+    init(DEFAULT_VALUE, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
   }
   
+  private void init(double value, double minValue, double maxValue){
+    setMinimumDoubleValue(minValue);
+    setMaximumDoubleValue(maxValue);
+    setDoubleValue(value);
+  }
   
   public double getDoubleValue(){
     return getBigDecimalValue().doubleValue();
@@ -72,7 +84,7 @@ public class JDoubleField extends JRealNumberField {
     setMaximumBigDecimalValue(new BigDecimal(minValue));
   }
   
-  protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
+  protected void setFormatter(AbstractFormatter formatter) {
     if (! (formatter instanceof DoubleFormatter)){
       throw new IllegalArgumentException("formatter must be an instance of DoubleFormatter!");
     }
@@ -91,7 +103,7 @@ public class JDoubleField extends JRealNumberField {
     setRealNumberFormatterFactory(factory);
   }
   
-  public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
+  public void setFormatterFactory(AbstractFormatterFactory aff) {
     if (! (aff instanceof DoubleFormatterFactory)){
       throw new IllegalArgumentException("aff must be an instance of DoubleFormatterFactory!");
     }

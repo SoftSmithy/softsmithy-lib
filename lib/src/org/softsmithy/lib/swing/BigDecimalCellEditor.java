@@ -13,40 +13,42 @@
  */
 
 /*
- * FloatCellEditor.java
+ * IntegerCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 
 package org.softsmithy.lib.swing;
 
+import java.math.*;
 import java.text.*;
+import java.util.*;
 
 /**
  *
  * @author  puce
  */
-public class FloatCellEditor extends FormattedCellEditor {
+public class BigDecimalCellEditor extends FormattedCellEditor {
   
-  /** Creates a new instance of FloatCellEditor */
-    public FloatCellEditor() {
-    super(new JFloatField());
+  /** Creates a new instance of BigDecimalCellEditor */
+  public BigDecimalCellEditor() {
+    super(new JRealNumberField());
   }
   
-  public FloatCellEditor(NumberFormat format) {
-    super(new JFloatField(format));
+    public BigDecimalCellEditor(NumberFormat format) {
+    super(new JRealNumberField(format));
   }
   
-  public FloatCellEditor(float minValue, float maxValue) {
-    super(new JFloatField(minValue, maxValue));
+  public BigDecimalCellEditor(BigDecimal minValue, BigDecimal maxValue) {
+    super(new JRealNumberField(minValue, maxValue));
   }
   
-  public FloatCellEditor(NumberFormat format, float minValue, float maxValue) {
-    super(new JFloatField(format, minValue, maxValue));
+    public BigDecimalCellEditor(NumberFormat format, BigDecimal minValue, BigDecimal maxValue) {
+    super(new JRealNumberField(format, minValue, maxValue));
   }
   
-  public JFloatField getFloatField(){
-    return (JFloatField) getFormattedTextField();
+  public JRealNumberField getRealNumberField(){
+    return (JRealNumberField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -62,11 +64,11 @@ public class FloatCellEditor extends FormattedCellEditor {
 //  }
   
   protected void setValue(Object value) {
-    getFloatField().setFloatValue(((Float) value).floatValue());
+    getRealNumberField().setBigDecimalValue((BigDecimal) value);
   }
   
   protected Object getValue() {
-    return new Float(getFloatField().getFloatValue());
+    return getRealNumberField().getBigDecimalValue();
   }
   
 }

@@ -6,6 +6,21 @@ CVS:
 CVS: Committing in .
 CVS: 
 CVS: Modified Files:
+CVS: 	docs/CHANGES.txt 
+CVS: Added Files:
+CVS: 	src/org/softsmithy/lib/swing/JDoubleField.java 
+CVS: 	src/org/softsmithy/lib/swing/JFloatField.java 
+CVS: 	src/org/softsmithy/lib/swing/JLocalizedDoubleField.java 
+CVS: 	src/org/softsmithy/lib/swing/JLocalizedFloatField.java 
+CVS: ----------------------------------------------------------------------
+
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
 CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.form 
 CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
 CVS: 	src/org/softsmithy/lib/swing/JWholeNumberField.java 

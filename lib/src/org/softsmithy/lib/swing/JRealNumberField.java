@@ -7,10 +7,10 @@
 package org.softsmithy.lib.swing;
 
 import java.math.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.text.*;
+import java.text.*;
+import javax.swing.JFormattedTextField.*;
 import org.softsmithy.lib.swing.text.*;
+
 
 /**
  *
@@ -27,22 +27,34 @@ public class JRealNumberField extends AbstractNumberField {
     this(value, null, null);
   }
   
+  public JRealNumberField(NumberFormat format){
+    this(new RealNumberFormatterFactory(new RealNumberFormatter(format)));
+  }
+  
   public JRealNumberField(BigDecimal minValue, BigDecimal maxValue){
     this(BigDecimal.valueOf(0), minValue, maxValue);
   }
   
+  public JRealNumberField(NumberFormat format, BigDecimal minValue, BigDecimal maxValue){
+    this(new RealNumberFormatterFactory(new RealNumberFormatter(format)));
+    init(BigDecimal.valueOf(0), minValue, maxValue);
+  }
+  
   public JRealNumberField(BigDecimal value, BigDecimal minValue, BigDecimal maxValue){
     this(new RealNumberFormatterFactory(new RealNumberFormatter()));
-    setMinimumBigDecimalValue(minValue);
-    setMaximumBigDecimalValue(maxValue);
-    setBigDecimalValue(value);
+    init(value, minValue, maxValue);
   }
   
   public JRealNumberField(RealNumberFormatterFactory factory){
     super(factory);
-    setBigDecimalValue(BigDecimal.valueOf(0));
+    init(BigDecimal.valueOf(0), null, null);
   }
   
+  private void init(BigDecimal value, BigDecimal minValue, BigDecimal maxValue){
+    setMinimumBigDecimalValue(minValue);
+    setMaximumBigDecimalValue(maxValue);
+    setBigDecimalValue(value);
+  }
   
   public BigDecimal getBigDecimalValue(){
     return (BigDecimal) getNumberValue();
@@ -84,7 +96,7 @@ public class JRealNumberField extends AbstractNumberField {
     setMaximumNumberValue(minValue);
   }
   
-  protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
+  protected void setFormatter(AbstractFormatter formatter) {
     if (! (formatter instanceof RealNumberFormatter)){
       throw new IllegalArgumentException("formatter must be an instance of RealNumberFormatter!");
     }
@@ -103,7 +115,7 @@ public class JRealNumberField extends AbstractNumberField {
     setAbstractXNumberFormatterFactory(factory);
   }
   
-  public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
+  public void setFormatterFactory(AbstractFormatterFactory aff) {
     if (! (aff instanceof RealNumberFormatterFactory)){
       throw new IllegalArgumentException("aff must be an instance of RealNumberFormatterFactory!");
     }
