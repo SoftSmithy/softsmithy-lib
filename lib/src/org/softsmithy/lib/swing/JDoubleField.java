@@ -1,0 +1,103 @@
+/*
+ * JIntegerField.java
+ *
+ * Created on 9. September 2003, 18:26
+ */
+
+package org.softsmithy.lib.swing;
+
+import java.math.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.text.*;
+import org.softsmithy.lib.swing.text.*;
+
+/**
+ *
+ * @author  puce
+ */
+public class JDoubleField extends JRealNumberField {
+  
+  private static final double DEFAULT_VALUE = 0;
+  private static final double DEFAULT_MIN_VALUE = Double.MIN_VALUE;
+  private static final double DEFAULT_MAX_VALUE = Double.MAX_VALUE;
+  
+  public JDoubleField(){
+    this(DEFAULT_VALUE);
+  }
+  
+  public JDoubleField(double value){
+    this(value, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
+  }
+  
+  public JDoubleField(double minValue, double maxValue){
+    this(DEFAULT_VALUE, minValue, maxValue);
+  }
+  
+  public JDoubleField(double value, double minValue, double maxValue){
+    this(new DoubleFormatterFactory(new DoubleFormatter()));
+    setMinimumDoubleValue(minValue);
+    setMaximumDoubleValue(maxValue);
+    setDoubleValue(value);
+  }
+  
+  public JDoubleField(DoubleFormatterFactory factory){
+    super(factory);
+    setDoubleValue(DEFAULT_VALUE);
+  }
+  
+  
+  public double getDoubleValue(){
+    return getBigDecimalValue().doubleValue();
+  }
+  
+  public void setDoubleValue(double value){
+    setBigDecimalValue(new BigDecimal(value));
+  }
+  
+  
+  public double getMinimumDoubleValue(){
+    return getMinimumBigDecimalValue().doubleValue();
+  }
+  
+  public void setMinimumDoubleValue(double minValue){
+    setMinimumBigDecimalValue(new BigDecimal(minValue));
+  }
+  
+  public double getMaximumDoubleValue(){
+    return getMaximumBigDecimalValue().doubleValue();
+  }
+  
+  public void setMaximumDoubleValue(double minValue){
+    setMaximumBigDecimalValue(new BigDecimal(minValue));
+  }
+  
+  protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
+    if (! (formatter instanceof DoubleFormatter)){
+      throw new IllegalArgumentException("formatter must be an instance of DoubleFormatter!");
+    }
+    super.setFormatter(formatter);
+  }
+  
+  public DoubleFormatter getDoubleFormatter(){
+    return (DoubleFormatter) getRealNumberFormatter();
+  }
+  
+  public DoubleFormatterFactory getDoubleFormatterFactory(){
+    return (DoubleFormatterFactory) getRealNumberFormatterFactory();
+  }
+  
+  public void setDoubleFormatterFactory(DoubleFormatterFactory factory){
+    setRealNumberFormatterFactory(factory);
+  }
+  
+  public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
+    if (! (aff instanceof DoubleFormatterFactory)){
+      throw new IllegalArgumentException("aff must be an instance of DoubleFormatterFactory!");
+    }
+    super.setFormatterFactory(aff);
+  }
+  
+  
+  
+}

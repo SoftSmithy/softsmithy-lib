@@ -1,5 +1,45 @@
 Changes:
 
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.form 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JWholeNumberField.java 
+CVS: 	src/org/softsmithy/lib/swing/text/ByteFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/IntegerFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LongFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/ShortFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/util/Comparables.java 
+CVS: Added Files:
+CVS: 	src/org/softsmithy/lib/math/BigDecimals.java 
+CVS: 	src/org/softsmithy/lib/math/BigIntegers.java 
+CVS: 	src/org/softsmithy/lib/swing/AbstractNumberField.java 
+CVS: 	src/org/softsmithy/lib/swing/JLocalizedRealNumberField.java 
+CVS: 	src/org/softsmithy/lib/swing/JRealNumberField.java 
+CVS: 	src/org/softsmithy/lib/swing/text/AbstractXNumberFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/AbstractXNumberFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/DoubleFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/DoubleFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/FloatFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/FloatFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/Formatters.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedDoubleFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedDoubleFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedFloatFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedFloatFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedRealNumberFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/LocalizedRealNumberFormatterFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/text/RealNumberFormatter.java 
+CVS: 	src/org/softsmithy/lib/swing/text/RealNumberFormatterFactory.java 
+CVS: ----------------------------------------------------------------------
+
+
 
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
