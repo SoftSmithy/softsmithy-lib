@@ -1,389 +1,69 @@
-<!-- A "project" describes a set of targets that may be requested
-     when Ant is executed.  The "default" attribute defines the
-     target which is executed if no specific target is requested,
-     and the "basedir" attribute defines the current working directory
-     from which Ant executes the requested task.  This is normally
-     set to the current working directory.
--->
-
-
-<project name="SoftSmithy Utility Library" default="distall" basedir=".">
-
-
-
-<!-- ===================== Property Definitions =========================== -->
-
-<!--
-
-  Each of the following properties are used in the build script.
-  Values for these properties are set by the first place they are
-  defined, from the following list:
-  * Definitions on the "ant" command line (ant -Dcatalina.home=xyz compile)
-  * Definitions from a "build.properties" file in the top level
-    source directory
-  * Definitions from a "build.properties" file in the developer's
-    home directory
-  * Default definitions in this build.xml file
-
-  You will note below that property values can be composed based on the
-  contents of previously defined properties.  This is a powerful technique
-  that helps you minimize the number of changes required when your development
-  environment is modified.  Note that property composition is allowed within
-  "build.properties" files as well as in the "build.xml" script.
-
--->
-
-  <property file="build.properties"/>
-  <property file="${user.home}/build.properties"/>
-
-
-<!-- ==================== File and Directory Names ======================== -->
-
-<!--
-
-  These properties generally define file and directory names (or paths) that
-  affect where the build process stores its outputs.
-
-  app.name             Base name of this application, used to
-                       construct filenames and directories.
-                       Defaults to "myapp".
-
-  app.version          Version identifier for this application.
-
-  build.home           The directory into which the "prepare" and
-                       "compile" targets will generate their output.
-                       Defaults to "build".
-
-  dist.home            The name of the base directory in which
-                       distribution files are created.
-                       Defaults to "dist".
-
--->
-
-  <property name="app.name"       value="softsmithy"/>
-  <property name="app.version"    value="0.1"/>
-  <property name="src.home"       value="src"/>
-  <property name="build.home"     value="classes"/>
-  <property name="dist.home"      value="dist"/>
-  <property name="apidoc.home"    value="dist/docs/api"/> <!-- ? how to reuse dist.home ?-->
-  <property name="apidocsrc.home" value="docs/api"/>
-  <property name="i18n.home"      value="i18n" />
-  <property name="gr.home"        value="gr" />
-  <property name="j2sdk.api.home" value="http://java.sun.com/j2se/1.4.2/docs/api"/>
-
-
-
-<!--  ==================== Compilation Control Options ==================== -->
-
-<!--
-
-  These properties control option settings on the Javac compiler when it
-  is invoked using the <javac> task.
-
-  compile.debug        Should compilation include the debug option?
-
-  compile.deprecation  Should compilation include the deprecation option?
-
-  compile.optimize     Should compilation include the optimize option?
-
--->
-
-  <property name="compile.debug"       value="false"/>
-  <property name="compile.deprecation" value="false"/>
-  <property name="compile.optimize"    value="false"/>
-
-
-
-<!-- ==================== External Dependencies =========================== -->
-
-
-<!--
-
-  Use property values to define the locations of external JAR files on which
-  your application will depend.  In general, these values will be used for
-  two purposes:
-  * Inclusion on the classpath that is passed to the Javac compiler
-  * Being copied into the "/WEB-INF/lib" directory during execution
-    of the "deploy" target.
-
-  Because we will automatically include all of the Java classes that Tomcat 4
-  exposes to web applications, we will not need to explicitly list any of those
-  dependencies.  You only need to worry about external dependencies for JAR
-  files that you are going to include inside your "/WEB-INF/lib" directory.
-
--->
-
-<!-- Dummy external dependency -->
-<!--
-  <property name="foo.jar"
-           value="/path/to/foo.jar"/>
--->
-
-<!-- ==================== Compilation Classpath =========================== -->
-
-<!--
-
-  Rather than relying on the CLASSPATH environment variable, Ant includes
-  features that makes it easy to dynamically construct the classpath you
-  need for each compilation.  The example below constructs the compile
-  classpath to include the servlet.jar file, as well as the other components
-  that Tomcat makes available to web applications automatically, plus anything
-  that you explicitly added.
-
--->
-
-  <path id="compile.classpath">
-
-    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
-<!--
-    <pathelement location="${foo.jar}"/>
--->
-
-
-  </path>
-
-
-
-<!-- ==================== All Target ====================================== -->
-
-<!--
-
-  The "all" target is a shortcut for running the "clean" target followed
-  by the "compile" target, to force a complete recompile.
-
--->
-
-  <target name="all" depends="clean,dist"
-   description="Clean build and dist, then compile"/>
-
-
-
-<!-- ==================== Clean Target ==================================== -->
-
-<!--
-
-  The "clean" target deletes any previous "build" and "dist" directory,
-  so that you can be ensured the application can be built from scratch.
-
--->
-
-  <target name="clean"
-   description="Delete old build and dist directories">
-    <delete dir="${build.home}"/>
-    <delete dir="${dist.home}"/>
-    <delete dir="${apidoc.home}"/>
-  </target>
-
-
-
-<!-- ==================== Compile Target ================================== -->
-
-<!--
-
-  The "compile" target transforms source files (from your "src" directory)
-  into object files in the appropriate location in the build directory.
-  This example assumes that you will be including your classes in an
-  unpacked directory hierarchy under "/WEB-INF/classes".
-
--->
-
-  <target name="compile" depends="prepare"
-   description="Compile Java sources">
-
-    <!-- Compile Java classes as necessary -->
-    <javac srcdir="src"
-          destdir="${build.home}"
-           debug="${compile.debug}"
-     deprecation="${compile.deprecation}"
-        optimize="${compile.optimize}">
-        <classpath refid="compile.classpath"/>
-    </javac>
-
-
-  </target>
-
-  <!-- ==================== Dist All Target ===================================== -->
-
-  <target name="distall" depends="dist,i18n"
-   description="Create binary distribution" />
-
-
-<!-- ==================== Dist Target ===================================== -->
-
-
-<!--
-
-  The "dist" target creates a binary distribution of your application
-  in a directory structure ready to be archived in a tar.gz or zip file.
-  Note that this target depends on one other:
-  * "javadoc" so that the application Javadocs will have been created
-
--->
-
-  <target name="dist" depends="distPrepare,compile"
-   description="Create binary distribution">
-
-    <!-- Copy documentation subdirectory -->
-    <!-- <copy    todir="${dist.home}/docs">
-      <fileset dir="docs"/>
-    </copy> -->
-
-    <!-- Create application JAR file -->
-     <!--<copy toDir="${build.home}">
-        <fileset dir="${i18n.home}" includes="*.properties" />
-    </copy>-->
-    <jar jarfile="${dist.home}/${app.name}.jar"
-         basedir="${build.home}" manifest="manifest.mf"/>
-         
-    <!-- Copy additional files to ${dist.home} as necessary -->
-
-  </target>
-
-<!-- ==================== I18n Target ===================================== -->
-
-
-<!--
-
-  The "dist" target creates a binary distribution of your application
-  in a directory structure ready to be archived in a tar.gz or zip file.
-  Note that this target depends on one other:
-  * "javadoc" so that the application Javadocs will have been created
-
--->
-
-  <target name="i18n" depends="distPrepare"
-   description="Create i18n distribution">
-
-    <!-- Copy documentation subdirectory -->
-    <!-- <copy    todir="${dist.home}/docs">
-      <fileset dir="docs"/>
-    </copy> -->
-    <jar jarfile="${dist.home}/${app.name}-i18n.jar"
-         basedir="${i18n.home}"
-         manifest="manifest-i18n.mf"
-        />
-         
-    <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
-          classpath="${build.home}"
-          fork="true"
-          dir="${i18n.home}">
-          <arg value="${app.name}-i18n" />
-          <arg value="../${dist.home}" />
-          <arg value="." />
-   </java>-->
-
-  </target>
-
-  <!-- ==================== I18n Target ===================================== -->
-
-
-<!--
-
-  The "dist" target creates a binary distribution of your application
-  in a directory structure ready to be archived in a tar.gz or zip file.
-  Note that this target depends on one other:
-  * "javadoc" so that the application Javadocs will have been created
-
--->
-
-  <target name="gr" depends="distPrepare"
-   description="Create Graphics Repository Distribution">
-
-    <!-- Copy documentation subdirectory -->
-    <!-- <copy    todir="${dist.home}/docs">
-      <fileset dir="docs"/>
-    </copy> -->
-    <jar jarfile="${dist.home}/${app.name}-gr.jar"
-         basedir="${gr.home}"
-        />
-         
-
-  </target>
-
-<!-- ==================== Javadoc Target ================================== -->
-
-<!--
-
-  The "javadoc" target creates Javadoc API documentation for the Java
-  classes included in your application.  Normally, this is only required
-  when preparing a distribution release, but is available as a separate
-  target in case the developer wants to create Javadocs independently.
-
--->
-
-  <target name="javadoc" depends="compile"
-   description="Create Javadoc API documentation">
-
-    <mkdir          dir="${apidoc.home}"/>
-    <javadoc sourcepath="${src.home}:${apidocsrc.home}:${j2sdk.src.home}"
-                destdir="${apidoc.home}"
-           packagenames="org.softsmithy.lib.*"
-           link="${j2sdk.api.home}"
-           source="1.4"
-           maxmemory="128m">
-      <classpath refid="compile.classpath"/>
-    </javadoc>
-
-  </target>
-
-
-
-<!-- ==================== Prepare Target ================================== -->
-
-<!--
-
-  The "prepare" target is used to create the "build" destination directory,
-  and copy the static contents of your web application to it.  If you need
-  to copy static files from external dependencies, you can customize the
-  contents of this task.
-
-  Normally, this task is executed indirectly when needed.
-
--->
-
-  <target name="prepare">
-
-    <!-- Create build directory and copy static content -->
-    <mkdir  dir="${build.home}"/>
-
-    <!-- Copy external dependencies as required -->
-    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
-<!--
-    <copy todir="${build.home}/WEB-INF/lib" file="${foo.jar}"/>
--->
-
-    <!-- Copy static files from external dependencies as needed -->
-
-  </target>
-  
-  <!-- ==================== DistPrepare Target ================================== -->
-
-<!--
-
-  The "prepare" target is used to create the "build" destination directory,
-  and copy the static contents of your web application to it.  If you need
-  to copy static files from external dependencies, you can customize the
-  contents of this task.
-
-  Normally, this task is executed indirectly when needed.
-
--->
-
-  <target name="distPrepare">
-
-    <!-- Create build directory and copy static content -->
-    <mkdir  dir="${dist.home}"/>
-
-    <!-- Copy external dependencies as required -->
-    <!-- *** CUSTOMIZE HERE AS REQUIRED BY YOUR APPLICATION *** -->
-<!--
-    <copy todir="${build.home}/WEB-INF/lib" file="${foo.jar}"/>
--->
-
-    <!-- Copy static files from external dependencies as needed -->
-
-  </target>
-
-
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<project name="SoftSmithy" default="default" basedir=".">
+    <description>Builds, tests, and runs the project SoftSmithy.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <!--
+
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
+
+      -pre-init:                 called before initialization of project properties
+      -post-init:                called after initialization of project properties
+      -pre-compile:              called before javac compilation
+      -post-compile:             called after javac compilation
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-jar:                  called before JAR building
+      -post-jar:                 called after JAR building
+      -post-clean:               called after cleaning build products
+
+    (Targets beginning with '-' are not intended to be called on their own.)
+
+    Example of inserting an obfuscator after compilation could look like this:
+
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
+
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
+
+
+    Another way to customize the build is by overriding existing main targets.
+    The targets of interest are: 
+
+      -init-macrodef-javac:     defines macro for javac compilation
+      -init-macrodef-junit:     defines macro for junit execution
+      -init-macrodef-debug:     defines macro for class debugging
+      -init-macrodef-java:      defines macro for class execution
+      -do-jar-with-manifest:    JAR building (if you are using a manifest)
+      -do-jar-without-manifest: JAR building (if you are not using a manifest)
+      run:                      execution of project 
+      -javadoc-build:           Javadoc generation
+      test-report:              JUnit report generation
+
+    An example of overriding the target for project execution could look like this:
+
+        <target name="run" depends="SoftSmithy-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that the overridden target depends on the jar target and not only on 
+    the compile target as the regular run target does. Again, for a list of available 
+    properties which you can use, check the target you are overriding in the
+    nbproject/build-impl.xml file. 
+
+    -->
 </project>
