@@ -25,20 +25,22 @@ import javax.swing.*;
 import org.softsmithy.lib.awt.*;
 
 /**
+ * Depricated!
+ * Use JXIconCustomizer and XImageIcon instead!
  *
  * @author  puce
  */
-public class JImageCustomizer extends JIconCustomizer {
+class JImageCustomizer extends JIconCustomizer {
   
   /** Holds value of property imageSrc. */
   private Image image = null;
   
   /** Creates a new instance of JImageCustomizer */
   public JImageCustomizer() {
-//    setSize(50,  50); // adjustIcon expects an inner width and height greater than 0
-//   invalidate();
-//   validate();
-//    System.out.println("Component size:"+getComponent().getSize());
+    //    setSize(50,  50); // adjustIcon expects an inner width and height greater than 0
+    //   invalidate();
+    //   validate();
+    //    System.out.println("Component size:"+getComponent().getSize());
   }
   
   public JImageCustomizer(Image image){
@@ -76,6 +78,6 @@ public class JImageCustomizer extends JIconCustomizer {
     ((JLabel) getComponent()).setIcon(icon);
   }
   
-
+  
   
 }
