@@ -24,6 +24,7 @@ import java.util.*;
 import javax.swing.table.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.swing.style.*;
 import org.softsmithy.lib.swing.table.*;
 
 /**

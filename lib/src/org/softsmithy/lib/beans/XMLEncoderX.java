@@ -25,8 +25,8 @@ import java.beans.*;
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
-import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.swing.style.*;
 
 /**
  *

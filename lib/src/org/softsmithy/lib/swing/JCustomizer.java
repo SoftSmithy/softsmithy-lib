@@ -27,8 +27,8 @@ import javax.swing.*;
 import javax.swing.border.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.swing.style.*;
 import org.softsmithy.lib.test.*;
-import org.softsmithy.lib.util.*;
 
 
 
@@ -50,7 +50,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   private StateManager stateManager;
   private final Set listeners = new HashSet();
   private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
-  private final Style noneStyle = new NoneStyle();
+  private final Style noneStyle = new CustomizerNoneStyle(this);
   
   /** Holds value of property model. */
   //private CustomizerModel model;
@@ -307,29 +307,29 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     return (fComponent != null) ? fComponent.getToolTipText() : super.getToolTipText();
   }
   
-  protected void setBackgroundOnly(Color bg){
-    super.setBackgroundOnly(bg);
+  public void setDefaultBackground(Color bg){
+    super.setDefaultBackground(bg);
     if (fComponent != null){
       fComponent.setBackground(bg);
     }
   }
   
-  protected void setForegroundOnly(Color fg){
-    super.setForegroundOnly(fg); // to update listeners etc.
+  public void setDefaultForeground(Color fg){
+    super.setDefaultForeground(fg); // to update listeners etc.
     if (fComponent != null){
       fComponent.setForeground(fg);
     }
   }
   
-  protected void setFontOnly(Font font){
-    super.setFontOnly(font);
+  public void setDefaultFont(Font font){
+    super.setDefaultFont(font);
     if (fComponent != null){
       fComponent.setFont(font);
     }
   }
   
-  protected void setOpaqueOnly(boolean isOpaque){
-    super.setOpaqueOnly(isOpaque);
+  public void setDefaultOpaque(boolean isOpaque){
+    super.setDefaultOpaque(isOpaque);
     if (fComponent != null){
       fComponent.setOpaque(isOpaque);
     }
@@ -413,22 +413,26 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     getStateManager().setUsingDefaultSelectedBorderColor(usingDefaultSelectedBorderColor);
   }
   
-  private class NoneStyle extends AbstractCustomizer.NoneStyle{
+  private static class CustomizerNoneStyle extends NoneStyle{
+    
+    public CustomizerNoneStyle(JCustomizer customizer){
+      super(customizer);
+    }
     
     public Color getBackground() {
-      return (getComponent() != null) ? getComponent().getBackground() : NoneStyle.super.getBackground();
+      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getBackground() : super.getBackground();
     }
     
     public Font getFont() {
-      return (getComponent() != null) ? getComponent().getFont() : NoneStyle.super.getFont();
+      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getFont() : super.getFont();
     }
     
     public Color getForeground() {
-      return (getComponent() != null) ? getComponent().getForeground() : NoneStyle.super.getForeground();
+      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getForeground() : super.getForeground();
     }
     
     public boolean isOpaque() {
-      return (getComponent() != null) ? getComponent().isOpaque() : NoneStyle.super.isOpaque();
+      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().isOpaque() : super.isOpaque();
     }
     
   }

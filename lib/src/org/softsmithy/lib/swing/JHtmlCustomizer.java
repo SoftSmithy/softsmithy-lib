@@ -178,8 +178,8 @@ public class JHtmlCustomizer extends JTextCustomizer {
    * @since JDK1.0
    *
    */
-  protected void setForegroundOnly(Color c) {
-    super.setForegroundOnly(c);
+  public void setDefaultForeground(Color c) {
+    super.setDefaultForeground(c);
     if (inited){
       StyleConstants.setForeground(attributeSet, c);
       configureHtmlText();
@@ -197,8 +197,8 @@ public class JHtmlCustomizer extends JTextCustomizer {
    *       bound: true
    *
    */
-  protected void setFontOnly(Font f) {
-    super.setFontOnly(f);
+  public void setDefaultFont(Font f) {
+    super.setDefaultFont(f);
     if (inited){
       StyleConstants.setFontFamily(attributeSet, f.getFamily());
       StyleConstants.setFontSize(attributeSet, f.getSize());

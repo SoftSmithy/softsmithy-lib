@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
-
+import org.softsmithy.lib.swing.style.*;
 /**
  *
  * @author  puce

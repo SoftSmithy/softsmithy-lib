@@ -18,6 +18,27 @@ CVS: 	src/org/softsmithy/lib/awt/layout/AbstractTableConstraints.java
 CVS: 	src/org/softsmithy/lib/awt/event/ComponentLayoutEvent.java 
 CVS: 	src/org/softsmithy/lib/awt/event/ComponentLayoutListener.java 
 
+CVS: Modified Files:
+CVS: 	src/org/softsmithy/lib/beans/XMLEncoderX.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPropertyTable.java 
+CVS: 	src/org/softsmithy/lib/swing/JHtmlCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JMultiSplitPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JStyledPanel.java 
+CVS: 	src/org/softsmithy/lib/swing/JXSplitPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JXTextField.java 
+CVS: Added Files:
+CVS: 	i18n/org/softsmithy/lib/swing/style/Styles.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/style/Styles_de.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/style/Styles_en.properties 
+CVS: Removed Files:
+CVS: 	i18n/org/softsmithy/lib/swing/customizer/Customizers.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/customizer/Customizers_de.properties 
+CVS: 	i18n/org/softsmithy/lib/swing/customizer/Customizers_en.properties 
+
+customizer -> style !!!
+
 v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
              preferredSize 
             -org.softsmithy.lib.beans.XDefaultPersistenceDelegate work around

@@ -220,6 +220,7 @@ public class JMultiSplitPane extends JStyledPanel {
     }
   }
   
+  
   private class FireLocationChangedListener implements PropertyChangeListener{
     
     /** Holds value of property index. */

@@ -21,10 +21,10 @@ import org.softsmithy.lib.swing.style.*;
 public class JStyledPanel extends JPanel implements Styleable{
   
   /** Holds value of property noneStyle. */
-  private final Style noneStyle = new NoneStyle();
+  private final Style noneStyle = new NoneStyle(this);
   
   /** Holds value of property parentStyle. */
-  private final Style parentStyle = new ParentStyle();
+  private final Style parentStyle = new ParentStyle(this);
   
   /** Holds value of property style. */
   private Style style = noneStyle;
@@ -50,25 +50,12 @@ public class JStyledPanel extends JPanel implements Styleable{
    */
   public void setStyle(Style style) {
     Style oldStyle = this.style;
-    oldStyle.stopListening();
-    if (style == null){
-      this.style = getNoneStyle();
-    } else {
-      this.style = style.getStyleProvider().getStyle(this);
-    }
-    this.style.startListening();
-    setBackgroundOnly(this.style.getBackground());
-    setForegroundOnly(this.style.getForeground());
-    setFontOnly(this.style.getFont());
-    setOpaqueOnly(this.style.isOpaque());
+    this.style = Styles.mutateStyle(this, style);
+    Styles.applyStyle(this, oldStyle, this.style);
     firePropertyChange("style", oldStyle, this.style);
   }
   
-  private void ensureNoneStyle(){
-    if (inited && ! style.isNull()){
-      setStyle(getNoneStyle());
-    }
-  }
+
   
   /** Getter for property noneStyle.
    * @return Value of property noneStyle.
@@ -95,11 +82,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public Color getBackground() {
-    if (inited){
-      return getStyle().getBackground();
-    } else {
-      return super.getBackground();
-    }
+    return Styles.getBackground(this, inited);
     //return (fComponent != null) ? fComponent.getBackground() : super.getBackground();
   }
   
@@ -116,11 +99,10 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public void setBackground(Color bg) {
-    ensureNoneStyle();
-    setBackgroundOnly(bg);
+    Styles.setBackground(this, bg, inited);
   }
   
-  protected void setBackgroundOnly(Color bg){
+  public void setDefaultBackground(Color bg){
     super.setBackground(bg);
   }
   
@@ -135,11 +117,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public Color getForeground() {
-    if (inited){
-      return getStyle().getForeground();
-    } else {
-      return super.getForeground();
-    }
+    return Styles.getForeground(this, inited);
     //return (fComponent != null) ? fComponent.getForeground() : super.getForeground();
   }
   
@@ -157,11 +135,10 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public void setForeground(Color fg) {
-    ensureNoneStyle();
-    setForegroundOnly(fg);
+    Styles.setForeground(this, fg, inited);
   }
   
-  protected void setForegroundOnly(Color fg){
+  public void setDefaultForeground(Color fg){
     super.setForeground(fg); // to update listeners etc.
   }
   
@@ -173,11 +150,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public Font getFont() {
-    if (inited){
-      return getStyle().getFont();
-    } else {
-      return super.getFont();
-    }
+    return Styles.getFont(this, inited);
     //return (fComponent != null) ? fComponent.getFont() : super.getFont();
   }
   
@@ -194,11 +167,10 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public void setFont(Font font) {
-    ensureNoneStyle();
-    setFontOnly(font);
+    Styles.setFont(this, font, inited);
   }
   
-  protected void setFontOnly(Font font){
+  public void setDefaultFont(Font font){
     super.setFont(font);
   }
   
@@ -218,11 +190,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public boolean isOpaque() {
-    if (inited){
-      return getStyle().isOpaque();
-    } else {
-      return super.isOpaque();
-    }
+    return Styles.isOpaque(this, inited);
     //return (fComponent != null) ? fComponent.isOpaque() : super.isOpaque();
   }
   
@@ -244,186 +212,167 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public void setOpaque(boolean isOpaque) {
-    ensureNoneStyle();
-    setOpaqueOnly(isOpaque);
+    Styles.setOpaque(this, isOpaque, inited);
   }
   
   
   
-  protected void setOpaqueOnly(boolean isOpaque){
+  public void setDefaultOpaque(boolean isOpaque){
     super.setOpaque(isOpaque);
   }
   
+  public Color getDefaultBackground() {
+    return super.getBackground();
+  }  
   
+  public Font getDefaultFont() {
+    return super.getFont();
+  }  
   
-  protected class NoneStyle implements Style{
-    
-    public Color getBackground() {
-      return JStyledPanel.super.getBackground();
-    }
-    
-    public Font getFont() {
-      return JStyledPanel.super.getFont();
-    }
-    
-    public Color getForeground() {
-      return JStyledPanel.super.getForeground();
-    }
-    
-    public String getName(Locale locale) {
-      return Customizers.getNoneStyleName(locale);
-    }
-    
-    public boolean isOpaque() {
-      return JStyledPanel.super.isOpaque();
-    }
-    
-    public boolean isNull() {
-      return true;
-    }
-    
-    public StyleProvider getStyleProvider(){
-      return NoneStyleProvider.INSTANCE;
-    }
-    
-    public void startListening() {
-    }
-    
-    public void stopListening() {
-    }
-    
+  public Color getDefaultForeground() {
+    return super.getForeground();
   }
   
-  public class ParentStyle extends AbstractStyle{
-    private HierarchyListener parentListener = new ParentListener();
-    private PropertyChangeListener parentBackgroundListener = new ParentBackgroundListener();
-    private PropertyChangeListener parentForegroundListener = new ParentForegroundListener();
-    private PropertyChangeListener parentFontListener = new ParentFontListener();
-    private PropertyChangeListener parentOpaqueListener = new ParentOpaqueListener();
-    
-    public Color getBackground() {
-      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getBackground() :
-        JStyledPanel.this.getNoneStyle().getBackground();
-    }
-    
-    public Font getFont() {
-      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getFont() :
-        JStyledPanel.this.getNoneStyle().getFont();
-    }
-    
-    public Color getForeground() {
-      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getForeground() :
-        JStyledPanel.this.getNoneStyle().getForeground();
-    }
-    
-    public String getName(Locale locale) {
-      return Customizers.getParentStyleName(locale);
-    }
-    
-    public boolean isOpaque() {
-      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().isOpaque() :
-        JStyledPanel.this.getNoneStyle().isOpaque();
-    }
-    
-    public StyleProvider getStyleProvider(){
-      return ParentStyleProvider.INSTANCE;
-    }
-    
-    public void startListening() {
-      super.startListening();
-      JStyledPanel.this.addHierarchyListener(parentListener);
-      if (JStyledPanel.this.getParent() != null){
-        JStyledPanel.this.getParent().addPropertyChangeListener("background", parentBackgroundListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("foreground", parentForegroundListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("font", parentFontListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("opaque", parentOpaqueListener);
-      }
-      
-    }
-    
-    public void stopListening() {
-      super.stopListening();
-      JStyledPanel.this.removeHierarchyListener(parentListener);
-      if (JStyledPanel.this.getParent() != null){
-        JStyledPanel.this.getParent().removePropertyChangeListener("background", parentBackgroundListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("foreground", parentForegroundListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("font", parentFontListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("opaque", parentOpaqueListener);
-      }
-    }
-    
-    private class ParentListener implements HierarchyListener{
-      
-      /** Called when the hierarchy has been changed. To discern the actual
-       * type of change, call <code>HierarchyEvent.getChangeFlags()</code>.
-       *
-       * @see HierarchyEvent#getChangeFlags()
-       *
-       */
-      public void hierarchyChanged(HierarchyEvent e) {
-        System.out.println("hierarchyChanged");
-        // optimize??
-        JStyledPanel.this.getParent().removePropertyChangeListener("background", parentBackgroundListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("foreground", parentForegroundListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("font", parentFontListener);
-        JStyledPanel.this.getParent().removePropertyChangeListener("opaque", parentOpaqueListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("background", parentBackgroundListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("foreground", parentForegroundListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("font", parentFontListener);
-        JStyledPanel.this.getParent().addPropertyChangeListener("opaque", parentOpaqueListener);
-      }
-      
-    }
-    
-    private class ParentBackgroundListener implements PropertyChangeListener{
-      
-      /** This method gets called when a bound property is changed.
-       * @param evt A PropertyChangeEvent object describing the event source
-       *   	and the property that has changed.
-       *
-       */
-      public void propertyChange(PropertyChangeEvent evt) {
-        JStyledPanel.this.setBackgroundOnly((Color) evt.getNewValue());
-      }
-      
-    }
-    private class ParentForegroundListener implements PropertyChangeListener{
-      
-      /** This method gets called when a bound property is changed.
-       * @param evt A PropertyChangeEvent object describing the event source
-       *   	and the property that has changed.
-       *
-       */
-      public void propertyChange(PropertyChangeEvent evt) {
-        JStyledPanel.this.setForegroundOnly((Color) evt.getNewValue());
-      }
-      
-    }
-    
-    private class ParentFontListener implements PropertyChangeListener{
-      
-      /** This method gets called when a bound property is changed.
-       * @param evt A PropertyChangeEvent object describing the event source
-       *   	and the property that has changed.
-       *
-       */
-      public void propertyChange(PropertyChangeEvent evt) {
-        JStyledPanel.this.setFontOnly((Font) evt.getNewValue());
-      }
-      
-    }
-    
-    private class ParentOpaqueListener implements PropertyChangeListener{
-      
-      /** This method gets called when a bound property is changed.
-       * @param evt A PropertyChangeEvent object describing the event source
-       *   	and the property that has changed.
-       *
-       */
-      public void propertyChange(PropertyChangeEvent evt) {
-        JStyledPanel.this.setOpaqueOnly(((Boolean) evt.getNewValue()).booleanValue());
-      }
-      
-    }
+  public boolean isDefaultOpaque() {
+    return super.isOpaque();
   }
+  
+//  protected class NoneStyle extends AbstractNoneStyle{
+//    
+//
+//    
+//  }
+  
+//  public class ParentStyle extends AbstractStyle{
+//    private HierarchyListener parentListener = new ParentListener();
+//    private PropertyChangeListener parentBackgroundListener = new ParentBackgroundListener();
+//    private PropertyChangeListener parentForegroundListener = new ParentForegroundListener();
+//    private PropertyChangeListener parentFontListener = new ParentFontListener();
+//    private PropertyChangeListener parentOpaqueListener = new ParentOpaqueListener();
+//    
+//    public Color getBackground() {
+//      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getBackground() :
+//        JStyledPanel.this.getNoneStyle().getBackground();
+//    }
+//    
+//    public Font getFont() {
+//      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getFont() :
+//        JStyledPanel.this.getNoneStyle().getFont();
+//    }
+//    
+//    public Color getForeground() {
+//      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().getForeground() :
+//        JStyledPanel.this.getNoneStyle().getForeground();
+//    }
+//    
+//    public String getName(Locale locale) {
+//      return Customizers.getParentStyleName(locale);
+//    }
+//    
+//    public boolean isOpaque() {
+//      return JStyledPanel.this.getParent() != null ? JStyledPanel.this.getParent().isOpaque() :
+//        JStyledPanel.this.getNoneStyle().isOpaque();
+//    }
+//    
+//    public StyleProvider getStyleProvider(){
+//      return ParentStyleProvider.INSTANCE;
+//    }
+//    
+//    public void startListening() {
+//      super.startListening();
+//      JStyledPanel.this.addHierarchyListener(parentListener);
+//      if (JStyledPanel.this.getParent() != null){
+//        JStyledPanel.this.getParent().addPropertyChangeListener("background", parentBackgroundListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("foreground", parentForegroundListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("font", parentFontListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("opaque", parentOpaqueListener);
+//      }
+//      
+//    }
+//    
+//    public void stopListening() {
+//      super.stopListening();
+//      JStyledPanel.this.removeHierarchyListener(parentListener);
+//      if (JStyledPanel.this.getParent() != null){
+//        JStyledPanel.this.getParent().removePropertyChangeListener("background", parentBackgroundListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("foreground", parentForegroundListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("font", parentFontListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("opaque", parentOpaqueListener);
+//      }
+//    }
+//    
+//    private class ParentListener implements HierarchyListener{
+//      
+//      /** Called when the hierarchy has been changed. To discern the actual
+//       * type of change, call <code>HierarchyEvent.getChangeFlags()</code>.
+//       *
+//       * @see HierarchyEvent#getChangeFlags()
+//       *
+//       */
+//      public void hierarchyChanged(HierarchyEvent e) {
+//        System.out.println("hierarchyChanged");
+//        // optimize??
+//        JStyledPanel.this.getParent().removePropertyChangeListener("background", parentBackgroundListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("foreground", parentForegroundListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("font", parentFontListener);
+//        JStyledPanel.this.getParent().removePropertyChangeListener("opaque", parentOpaqueListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("background", parentBackgroundListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("foreground", parentForegroundListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("font", parentFontListener);
+//        JStyledPanel.this.getParent().addPropertyChangeListener("opaque", parentOpaqueListener);
+//      }
+//      
+//    }
+//    
+//    private class ParentBackgroundListener implements PropertyChangeListener{
+//      
+//      /** This method gets called when a bound property is changed.
+//       * @param evt A PropertyChangeEvent object describing the event source
+//       *   	and the property that has changed.
+//       *
+//       */
+//      public void propertyChange(PropertyChangeEvent evt) {
+//        JStyledPanel.this.setBackgroundOnly((Color) evt.getNewValue());
+//      }
+//      
+//    }
+//    private class ParentForegroundListener implements PropertyChangeListener{
+//      
+//      /** This method gets called when a bound property is changed.
+//       * @param evt A PropertyChangeEvent object describing the event source
+//       *   	and the property that has changed.
+//       *
+//       */
+//      public void propertyChange(PropertyChangeEvent evt) {
+//        JStyledPanel.this.setForegroundOnly((Color) evt.getNewValue());
+//      }
+//      
+//    }
+//    
+//    private class ParentFontListener implements PropertyChangeListener{
+//      
+//      /** This method gets called when a bound property is changed.
+//       * @param evt A PropertyChangeEvent object describing the event source
+//       *   	and the property that has changed.
+//       *
+//       */
+//      public void propertyChange(PropertyChangeEvent evt) {
+//        JStyledPanel.this.setFontOnly((Font) evt.getNewValue());
+//      }
+//      
+//    }
+//    
+//    private class ParentOpaqueListener implements PropertyChangeListener{
+//      
+//      /** This method gets called when a bound property is changed.
+//       * @param evt A PropertyChangeEvent object describing the event source
+//       *   	and the property that has changed.
+//       *
+//       */
+//      public void propertyChange(PropertyChangeEvent evt) {
+//        JStyledPanel.this.setOpaqueOnly(((Boolean) evt.getNewValue()).booleanValue());
+//      }
+//      
+//    }
+//  }
 }
