@@ -13,7 +13,9 @@
  */
 
 /*
- * CustomizerActionFactory.java
+ * The CustomizerActionFactory provides default implementations of some actions
+ * which can be usefull when working with customizers. Just use the createXXXAction
+ * methods to create the Actions..
  *
  * Created on 6. November 2002, 12:17
  */
@@ -35,7 +37,9 @@ public class CustomizerActionFactory {
   
   private SelectionManager selectionManager;
   
-  /** Creates a new instance of CustomizerActionFactory */
+  /** Creates a new instance of CustomizerActionFactory 
+   * @paran selectionManager some actions work on the current selection
+   */
   public CustomizerActionFactory(SelectionManager selectionManager) {
     this.selectionManager = selectionManager;
   }
@@ -210,7 +214,7 @@ public class CustomizerActionFactory {
   }
   
   public void textAlignLeft(ActionEvent e){
-    System.out.println("textAlignLeft start");
+    //System.out.println("textAlignLeft start");
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{
@@ -242,7 +246,7 @@ public class CustomizerActionFactory {
   }
   
   public void textAlignRight(ActionEvent e){
-    System.out.println("textAlignRight start");
+    //System.out.println("textAlignRight start");
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{
