@@ -27,7 +27,7 @@ import javax.swing.plaf.basic.*;
  *
  * @author  puce
  */
-public class NumberListCellRenderer extends DefaultListCellRenderer{ //BasicComboBoxRenderer {
+class NumberListCellRenderer extends DefaultListCellRenderer{ //BasicComboBoxRenderer {
   
   /** Creates a new instance of NumberCellRenderer */
   public NumberListCellRenderer() {
