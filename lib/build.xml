@@ -60,13 +60,16 @@
 
 -->
 
-  <property name="app.name"      value="softsmithy"/>
-  <property name="app.version"   value="0.1"/>
-  <property name="build.home"    value="build"/>
-  <property name="dist.home"     value="dist"/>
-  <property name="apidoc.home"   value="docs/api"/>
-  <property name="i18n.home"     value="i18n" />
-  <property name="gr.home"     value="gr" />
+  <property name="app.name"       value="softsmithy"/>
+  <property name="app.version"    value="0.1"/>
+  <property name="src.home"       value="src"/>
+  <property name="build.home"     value="classes"/>
+  <property name="dist.home"      value="dist"/>
+  <property name="apidoc.home"    value="dist/docs/api"/> <!-- ? how to reuse dist.home ?-->
+  <property name="apidocsrc.home" value="docs/api"/>
+  <property name="i18n.home"      value="i18n" />
+  <property name="gr.home"        value="gr" />
+  <property name="j2sdk.api.home" value="http://java.sun.com/j2se/1.4.2/docs/api"/>
 
 
 
@@ -308,10 +311,12 @@
    description="Create Javadoc API documentation">
 
     <mkdir          dir="${apidoc.home}"/>
-    <javadoc sourcepath="src"
+    <javadoc sourcepath="${src.home}:${apidocsrc.home}:${j2sdk.src.home}"
                 destdir="${apidoc.home}"
            packagenames="org.softsmithy.lib.*"
-           link="http://java.sun.com/j2se/1.4/docs/api">
+           link="${j2sdk.api.home}"
+           source="1.4"
+           maxmemory="128m">
       <classpath refid="compile.classpath"/>
     </javadoc>
 
