@@ -177,7 +177,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
       return false;
     }
     CoolButtonController controller = (CoolButtonController) obj;
-    return (button == controller.button || (button != null && button.equals(controller.button))); // don't test for mouseIsOver!?
+    return (button == controller.button || (button != null && button.equals(controller.button))); // TODO: don't test for mouseIsOver!?
   }
   
 }
