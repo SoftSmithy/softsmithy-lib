@@ -52,19 +52,48 @@ public class JShapeCustomizer extends JIconCustomizer {
    */
   public void setShape(Shape shape) {
     this.shapeIcon.setShape(shape);
+    //adjustIcon();
   }
   
   
-  protected void adjustIcon(){
+  public void adjustIcon(){
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     Icon icon;
     if (shapeIcon != null && shapeIcon.getShape() != null){
-      double sx = (double) innerArea.width / shapeIcon.getIconWidth();
-      double sy = (double) innerArea.height / shapeIcon.getIconHeight();
-      shapeIcon.transform(AffineTransform.getScaleInstance(sx, sy));
+      scaleIcon(innerArea);
+      centerIcon(innerArea);
+      
+//      if (shapeIcon.getIconWidth() > innerArea.width){
+//        System.out.println("width: shapeIcon > innerArea");
+//      } else if (shapeIcon.getIconWidth() < innerArea.width){
+//        System.out.println("width: shapeIcon < innerArea");
+//      } else {
+//        System.out.println("width: shapeIcon = innerArea");
+//      }
+//      if (shapeIcon.getIconHeight() > innerArea.height){
+//        System.out.println("height: shapeIcon > innerArea");
+//      } else if(shapeIcon.getIconHeight() < innerArea.height){
+//        System.out.println("height: shapeIcon < innerArea");
+//      } else {
+//        System.out.println("height: shapeIcon = innerArea");
+//      }
+      repaint();
     }
-    repaint();
+    
     //((JLabel) getComponent()).setIcon(icon);
+  }
+  
+  private void scaleIcon(Rectangle innerArea){
+    double sx = (shapeIcon.getIconWidth() != 0.0) ? (double) innerArea.width / shapeIcon.getIconWidth() : 1.0;
+    double sy = (shapeIcon.getIconHeight() != 0.0) ? (double) innerArea.height / shapeIcon.getIconHeight() : 1.0;
+    shapeIcon.transform(AffineTransform.getScaleInstance(sx, sy));
+  }
+  
+  private void centerIcon(Rectangle innerArea){
+    Rectangle2D bounds = shapeIcon.getShape().getBounds2D();
+    double dx = innerArea.getCenterX() - bounds.getCenterX();
+    double dy = innerArea.getCenterY() - bounds.getCenterY();
+    shapeIcon.transform(AffineTransform.getTranslateInstance(dx, dy));
   }
   
   /** Getter for property filled.

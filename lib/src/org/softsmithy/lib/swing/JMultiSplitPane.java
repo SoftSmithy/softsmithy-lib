@@ -110,7 +110,7 @@ public class JMultiSplitPane extends JPanel {
     //repaint();
   }
   
-  public Component getComponent(int index){
+  public Component getPane(int index){
     Component component;
     if (index < splitPanes.size()){
       component = ((JSplitPane) splitPanes.get(index)).getLeftComponent();
@@ -162,7 +162,7 @@ public class JMultiSplitPane extends JPanel {
     }
   }
   
-
+  
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

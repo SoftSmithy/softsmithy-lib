@@ -176,7 +176,7 @@ public class SelectionManager implements CustomizerListener{
   }
   
   private void fireSelectionChanged(){
-    CustomizerSelectionEvent e = new CustomizerSelectionEvent(this, Collections.unmodifiableSet(selectedSet));
+    CustomizerSelectionEvent e = new CustomizerSelectionEvent(this, Collections.unmodifiableSet(selectedSet), getActiveCustomizer());
     for(Iterator i = listeners.iterator(); i.hasNext();){
       ((CustomizerSelectionListener) i.next()).selectionChanged(e);
     }
@@ -186,4 +186,7 @@ public class SelectionManager implements CustomizerListener{
     return (JCustomizer[]) selectedList.toArray(new JCustomizer[selectedList.size()]);
   }
   
+  public JCustomizer getActiveCustomizer(){
+    return selectedList.isEmpty() ? null : (JCustomizer) selectedList.get(selectedList.size()-1);
+  }
 }

@@ -88,8 +88,8 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
       //      }
       // }
     //customizer.setLocale(Locale.GERMAN);
-    ((CustomizerPropertyTableModel) table.getModel()).stopCustomizerListening();
-    table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), new ArrayList(e.getSelectedCustomizers()), topMostCommonClass, getLocale()));
+    ((CustomizerPropertyTableModel) table.getModel()).stopListening();
+    table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), e.getSelectedCustomizers(), e.getActiveCustomizer(), topMostCommonClass, getLocale()));
     //      for (int j=0; j<descriptors.length; j++){
     //        System.out.println(descriptors[j].getName() + ": " +descriptors[j].getDisplayName());
     //      }

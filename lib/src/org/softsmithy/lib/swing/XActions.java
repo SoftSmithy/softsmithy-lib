@@ -14,6 +14,7 @@
 
 package org.softsmithy.lib.swing;
 
+import java.awt.event.*;
 import java.beans.*;
 import java.net.*;
 
@@ -34,10 +35,10 @@ import org.softsmithy.lib.util.*;
 
 public class XActions {
   
-  private static final ResourceBundleCache standardActionsCache = new 
-ResourceBundleCache("org.softsmithy.lib.swing.StandardActions");
-  private static final ResourceBundleCache standardMenusCache = new 
-ResourceBundleCache("org.softsmithy.lib.swing.StandardMenus");
+  private static final ResourceBundleCache standardActionsCache = new
+  ResourceBundleCache("org.softsmithy.lib.swing.StandardActions");
+  private static final ResourceBundleCache standardMenusCache = new
+  ResourceBundleCache("org.softsmithy.lib.swing.StandardMenus");
   private static final Map standardActions = new HashMap();
   /**
    * No public constructor!
@@ -51,14 +52,14 @@ ResourceBundleCache("org.softsmithy.lib.swing.StandardMenus");
    *                                   obect as its single parameter) that gets
    *                                   called when an ActionEvent occurs
    * @param target                     he object with the specified method
-   * @param rb                         a ResourceBundle (must not specify all 
-Action properties)
+   * @param rb                         a ResourceBundle (must not specify all
+   * Action properties)
    * @return                           a XAction configured by a ResourceBundle
    * @exception NoSuchMethodException  if no such method found
    */
-  public static XAction createXAction(String name, Object target, ResourceBundle 
-
-rb)
+  public static XAction createXAction(String name, Object target, ResourceBundle
+  
+  rb)
   throws NoSuchMethodException {
     XAction action = new ReflectiveXAction(target, name);
     String[] string_properties = {Action.NAME, Action.SHORT_DESCRIPTION};
@@ -78,8 +79,8 @@ rb)
     XAction.SMALL_SELECTED_ICON};
     for (int i = 0; i < string_properties.length; i++) {
       try {
-        action.putValue(string_properties[i], rb.getString(name + "." + 
-Introspector.decapitalize(string_properties[i])));
+        action.putValue(string_properties[i], rb.getString(name + "." +
+        Introspector.decapitalize(string_properties[i])));
       } catch (MissingResourceException ex) {
         //System.out.println("Couln'dt find: " + name + string_properties[i] );
         // ignore it
@@ -87,8 +88,8 @@ Introspector.decapitalize(string_properties[i])));
     }
     for (int i = 0; i < icon_properties.length; i++) {
       try {
-        URL url = (XActions.class).getResource(rb.getString(name + 
-"." + Introspector.decapitalize(icon_properties[i])));
+        URL url = (XActions.class).getResource(rb.getString(name +
+        "." + Introspector.decapitalize(icon_properties[i])));
         if (url != null) {
           action.putValue(icon_properties[i], new ImageIcon(url));
         }
@@ -108,10 +109,10 @@ Introspector.decapitalize(string_properties[i])));
    * @param showText  if the label text should be shown
    * @return          a configured button
    */
-  public static JButton createButton(XAction action, IconType iconType, boolean 
-showText) {
+  public static JButton createButton(XAction action, IconType iconType,
+  boolean showText, boolean coolStyle) {
     JButton button = new JButton();
-    configureButton(button, action, iconType, showText);
+    configureButton(button, action, iconType, showText, coolStyle);
     return button;
   }
   
@@ -123,10 +124,24 @@ showText) {
    * @param showText  if the label text should be shown
    * @return          a configured toggle button
    */
-  public static JToggleButton createToggleButton(XAction action, IconType 
-iconType, boolean showText) {
+  public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
     JToggleButton button = new JToggleButton();
-    configureToggleButton(button, action, iconType, showText);
+    configureButton(button, action, listener, iconType, showText, coolStyle);
+    return button;
+  }
+  
+  /**
+   * Creates a configured toggle button.
+   *
+   * @param action    the XAction with the configuration data
+   * @param iconType  the icon type
+   * @param showText  if the label text should be shown
+   * @return          a configured toggle button
+   */
+  public static JToggleButton createToggleButton(XAction action, ButtonGroup group,
+  IconType iconType, boolean showText, boolean coolStyle) {
+    JToggleButton button = new JToggleButton();
+    configureButton(button, action, group, iconType, showText, coolStyle);
     return button;
   }
   
@@ -138,10 +153,10 @@ iconType, boolean showText) {
    * @param showText  if the label text should be shown
    * @return          a configured radio button
    */
-  public static JRadioButton createRadioButton(XAction action, IconType 
-iconType, boolean showText) {
+  public static JRadioButton createRadioButton(XAction action, ButtonGroup group,
+  IconType iconType, boolean showText) {
     JRadioButton button = new JRadioButton();
-    configureRadioButton(button, action, iconType, showText);
+    configureButton(button, action, group, iconType, showText, false);
     return button;
   }
   
@@ -153,10 +168,10 @@ iconType, boolean showText) {
    * @param showText  if the label text should be shown
    * @return          a configured check box
    */
-  public static JCheckBox createCheckBox(XAction action, IconType iconType, 
-boolean showText) {
+  public static JCheckBox createCheckBox(XAction action, ItemListener listener, 
+  IconType iconType, boolean showText) {
     JCheckBox checkBox = new JCheckBox();
-    configureCheckBox(checkBox, action, iconType, showText);
+    configureButton(checkBox, action, listener, iconType, showText, false);
     return checkBox;
   }
   
@@ -168,10 +183,10 @@ boolean showText) {
    * @param showText  if the label text should be shown
    * @return          a configured menu item
    */
-  public static JMenuItem createMenuItem(XAction action, IconType iconType, 
-boolean showText) {
+  public static JMenuItem createMenuItem(XAction action, IconType iconType,
+  boolean showText) {
     JMenuItem item = new JMenuItem();
-    configureMenuItem(item, action, iconType, showText);
+    configureButton(item, action, iconType, showText, false);
     return item;
   }
   
@@ -183,10 +198,10 @@ boolean showText) {
    * @param showText  if the label text should be shown
    * @return          a configured radio button menu item
    */
-  public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action, 
-IconType iconType, boolean showText) {
+  public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action,
+  ButtonGroup group, IconType iconType, boolean showText) {
     JRadioButtonMenuItem item = new JRadioButtonMenuItem();
-    configureRadioButtonMenuItem(item, action, iconType, showText);
+    configureButton(item, action, group, iconType, showText, false);
     return item;
   }
   
@@ -198,123 +213,24 @@ IconType iconType, boolean showText) {
    * @param showText  if the label text should be shown
    * @return          a configured check button menu item
    */
-  public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action, 
-IconType iconType, boolean showText) {
+  public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action,
+  ItemListener listener, IconType iconType, boolean showText) {
     JCheckBoxMenuItem item = new JCheckBoxMenuItem();
-    configureCheckBoxMenuItem(item, action, iconType, showText);
+    configureButton(item, action, listener, iconType, showText, false);
     return item;
   }
   
-  public static JButton createCoolButton(XAction action, IconType iconType, 
-boolean showText) {
-    JButton button = new JButton();
-    configureButton(button, action, iconType, showText);
-    button.addMouseListener(new CoolButtonController(button));
-    return button;
+  public static void configureButton(AbstractButton button, XAction action,
+  ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
+    button.addItemListener(listener);
+    configureButton(button, action, iconType, showText, coolStyle);
   }
   
-  public static JToggleButton createCoolToggleButton(XAction action, IconType 
-iconType, boolean showText) {
-    JToggleButton button = new JToggleButton();
-    configureToggleButton(button, action, iconType, showText);
-    button.addMouseListener(new CoolButtonController(button));
-    return button;
+  public static void configureButton(AbstractButton button, XAction action,
+  ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle) {
+    group.add(button);
+    configureButton(button, action, iconType, showText, coolStyle);
   }
-  
-  /**
-   * Configures a button.
-   *
-   * @param button    the button to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureButton(JButton button, XAction action, IconType 
-iconType, boolean showText) {
-    configureAbstractButton(button, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a toggle button.
-   *
-   * @param button    the toggle button to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureToggleButton(JToggleButton button, XAction action, 
-
-IconType iconType, boolean showText) {
-
-    configureAbstractButton(button, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a radio button.
-   *
-   * @param button    the radio button to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureRadioButton(JRadioButton button, XAction action, 
-IconType iconType, boolean showText) {
-    configureAbstractButton(button, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a check box.
-   *
-   * @param checkBox  the check box  to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureCheckBox(JCheckBox checkBox, XAction action, 
-IconType iconType, boolean showText) {
-    configureAbstractButton(checkBox, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a menu item.
-   *
-   * @param item      the menu item  to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureMenuItem(JMenuItem item, XAction action, IconType 
-iconType, boolean showText) {
-    configureAbstractButton(item, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a radio button menu item.
-   *
-   * @param item      the radio button menu item to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureRadioButtonMenuItem(JRadioButtonMenuItem item, 
-XAction action, IconType iconType, boolean showText) {
-    configureAbstractButton(item, action, iconType, showText);
-  }
-  
-  /**
-   * Configures a check box menu item.
-   *
-   * @param item      the check box menu item to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureCheckBoxMenuItem(JCheckBoxMenuItem item, XAction 
-action, IconType iconType, boolean showText) {
-    configureAbstractButton(item, action, iconType, showText);
-  }
-  
-  
   /**
    * Configures an abstract button.
    *
@@ -323,8 +239,8 @@ action, IconType iconType, boolean showText) {
    * @param iconType  the icon type
    * @param showText  if the label text should be shown
    */
-  public static void configureAbstractButton(AbstractButton button, XAction 
-action, IconType iconType, boolean showText) {
+  public static void configureButton(AbstractButton button, XAction action,
+  IconType iconType, boolean showText, boolean coolStyle) {
     
     button.setAction(action);
     //??? noch nicht durchgedacht...
@@ -340,6 +256,10 @@ action, IconType iconType, boolean showText) {
     
     if (!showText) {
       button.setText("");
+    }
+    
+    if (coolStyle){
+      CoolButtonController.addCoolButtonController(button);
     }
   }
   
@@ -417,123 +337,123 @@ action, IconType iconType, boolean showText) {
     }
   }
   
-  public static XAction getCutAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getCutAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("cut", target, locale);
   }
   
-  public static XAction getCopyAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getCopyAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("copy", target, locale);
   }
   
-  public static XAction getPasteAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getPasteAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("paste", target, locale);
   }
   
-  public static XAction getDeleteAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getDeleteAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("delete", target, locale);
   }
   
-  public static XAction getSaveAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getSaveAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("save", target, locale);
   }
   
-  public static XAction getExitAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getExitAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("exit", target, locale);
   }
   
-  public static XAction getHelpAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getHelpAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("help", target, locale);
   }
   
-  public static XAction getAlignLeftAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getAlignLeftAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("alignLeft", target, locale);
   }
   
-  public static XAction getAlignTopAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getAlignTopAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("alignTop", target, locale);
   }
   
-  public static XAction getAlignRightAction(Object target, Locale locale) throws 
-
-NoSuchMethodException{
+  public static XAction getAlignRightAction(Object target, Locale locale) throws
+  
+  NoSuchMethodException{
     return getStandardAction("alignRight", target, locale);
   }
   
-  public static XAction getAlignBottomAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getAlignBottomAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("alignBottom", target, locale);
   }
   
-  public static XAction getAlignJustifyHorizontalAction(Object target, Locale 
-locale) throws NoSuchMethodException{
+  public static XAction getAlignJustifyHorizontalAction(Object target, Locale
+  locale) throws NoSuchMethodException{
     return getStandardAction("alignJustifyHorizontal", target, locale);
   }
   
-  public static XAction getAlignJustifyVerticalAction(Object target, Locale 
-locale) throws NoSuchMethodException{
+  public static XAction getAlignJustifyVerticalAction(Object target, Locale
+  locale) throws NoSuchMethodException{
     return getStandardAction("alignJustifyVertical", target, locale);
   }
   
-  public static XAction getTextAlignCenterAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getTextAlignCenterAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("textAlignCenter", target, locale);
   }
   
-  public static XAction getTextAlignJustifyAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getTextAlignJustifyAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("textAlignJustify", target, locale);
   }
   
-  public static XAction getTextAlignLeftAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getTextAlignLeftAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("textAlignLeft", target, locale);
   }
   
-  public static XAction getTextAlignRightAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getTextAlignRightAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("textAlignRight", target, locale);
   }
   
-  public static XAction getTextBoldAction(Object target, Locale locale) throws 
-NoSuchMethodException{
+  public static XAction getTextBoldAction(Object target, Locale locale) throws
+  NoSuchMethodException{
     return getStandardAction("textBold", target, locale);
   }
   
-  public static XAction getTextItalicAction(Object target, Locale locale) throws 
-
-NoSuchMethodException{
+  public static XAction getTextItalicAction(Object target, Locale locale) throws
+  
+  NoSuchMethodException{
     return getStandardAction("textItalic", target, locale);
   }
   
-  public static XAction getTextNormalAction(Object target, Locale locale) throws 
-
-NoSuchMethodException{
+  public static XAction getTextNormalAction(Object target, Locale locale) throws
+  
+  NoSuchMethodException{
     return getStandardAction("textNormal", target, locale);
   }
   
-  public static XAction getTextUnderlineAction(Object target, Locale locale) 
-throws NoSuchMethodException{
+  public static XAction getTextUnderlineAction(Object target, Locale locale)
+  throws NoSuchMethodException{
     return getStandardAction("textUnderline", target, locale);
   }
   
-  private static XAction getStandardAction(String name, Object target, Locale 
-locale) throws NoSuchMethodException{
+  private static XAction getStandardAction(String name, Object target, Locale
+  locale) throws NoSuchMethodException{
     if (! standardActions.containsKey(locale)){
       standardActions.put(locale, new HashMap());
     }
     XAction copyAction;
     if (! ((Map) standardActions.get(locale)).containsKey(name)){
-      copyAction = XActions.createXAction(name, target, 
-standardActionsCache.getBundle(locale));
+      copyAction = XActions.createXAction(name, target,
+      standardActionsCache.getBundle(locale));
       ((Map) standardActions.get(locale)).put(name, copyAction);
     } else {
       copyAction = (XAction) ((Map) standardActions.get(locale)).get(name);
@@ -565,8 +485,8 @@ standardActionsCache.getBundle(locale));
     return menu;
   }
   
-  private static void configureStandardMenu(JMenu menu, String name, Locale 
-locale){
+  private static void configureStandardMenu(JMenu menu, String name, Locale
+  locale){
     ResourceBundle rb = standardMenusCache.getBundle(locale);
     try {
       menu.setText(rb.getString(name + "." + "text"));

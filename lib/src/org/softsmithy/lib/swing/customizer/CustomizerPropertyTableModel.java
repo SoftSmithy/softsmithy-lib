@@ -33,23 +33,28 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public class CustomizerPropertyTableModel extends AbstractTableModel implements CustomizerListener, CellTableModel{
+public class CustomizerPropertyTableModel extends AbstractTableModel implements CustomizerListener, CellTableModel, PropertyChangeListener{
   
-  private List customizers;
-  private List properties;
-  private Class topMostCommonClass;
-  private ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Properties");
+  private final Set customizers;
+  private final List properties;
+  private final JCustomizer activeCustomizer;
+  private final Class topMostCommonClass;
+  private final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Properties");
   
   /** Holds value of property locale. */
   private Locale locale;
   
   /** Creates a new instance of PropertyTableModel */
-  public CustomizerPropertyTableModel(List properties, List customizers, Class topMostCommonClass, Locale locale) {
+  public CustomizerPropertyTableModel(List properties, Set customizers, JCustomizer activeCustomizer, Class topMostCommonClass, Locale locale) {
     this.properties = properties;
     this.customizers = customizers;
+    this.activeCustomizer = activeCustomizer;
     this.topMostCommonClass = topMostCommonClass;
-    if (customizers.size() > 0){
-      ((JCustomizer) customizers.get(customizers.size()-1)).addCustomizerListener(this);//addPropertyChangeListener(this); // where should it be removed?
+    if (activeCustomizer != null){
+      activeCustomizer.addCustomizerListener(this);
+      for (Iterator i=properties.iterator(); i.hasNext();){
+        activeCustomizer.addPropertyChangeListener((String) i.next(), this);
+      }
     }
     setLocale(locale);
   }
@@ -93,7 +98,7 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
       switch (columnIndex){
         case 0: value = getPropertyDescriptor(rowIndex).getDisplayName(); break;
         case 1:
-          value = getPropertyDescriptor(rowIndex).getReadMethod().invoke(customizers.get(customizers.size()-1), new Object[]{});
+          value = getPropertyDescriptor(rowIndex).getReadMethod().invoke(activeCustomizer, new Object[]{});
           break;
       }
     } catch (Exception e){
@@ -115,15 +120,15 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     for (Iterator i=customizers.iterator(); i.hasNext();){
       JCustomizer customizer = (JCustomizer) i.next();
-//      try{
-//        getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{new Integer((String) aValue)});
-//      } catch (Exception ex1){
-        try{
-          getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{aValue});
-        } catch (Exception ex2){
-          ex2.printStackTrace();
-        }
-//      }
+      //      try{
+      //        getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{new Integer((String) aValue)});
+      //      } catch (Exception ex1){
+      try{
+        getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{aValue});
+      } catch (Exception ex2){
+        ex2.printStackTrace();
+      }
+      //      }
       customizer.repaint();
     }
   }
@@ -164,9 +169,22 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
     }
   }
   
-  public void stopCustomizerListening() {
-    if (customizers.size() > 0){
-      ((JCustomizer) customizers.get(customizers.size()-1)).removeCustomizerListener(this);
+  public void stopListening(){
+    stopCustomizerListening();
+    stopPropertyChangeListening();
+  }
+  
+  private void stopCustomizerListening() {
+    if (activeCustomizer != null){
+      activeCustomizer.removeCustomizerListener(this);
+    }
+  }
+  
+  private void stopPropertyChangeListening(){
+    if (activeCustomizer != null){
+      for (Iterator i=properties.iterator(); i.hasNext();){
+        activeCustomizer.removePropertyChangeListener((String) i.next(), this);
+      }
     }
   }
   
@@ -230,6 +248,16 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
    */
   public void setLocale(Locale locale) {
     this.locale = locale;
+  }
+  
+  /** This method gets called when a bound property is changed.
+   * @param evt A PropertyChangeEvent object describing the event source
+   *   	and the property that has changed.
+   *
+   */
+  public void propertyChange(PropertyChangeEvent evt) {
+    System.out.println(evt.getPropertyName() + " changed");
+    this.fireTableCellUpdated(properties.indexOf(evt.getPropertyName()), 1);
   }
   
 }

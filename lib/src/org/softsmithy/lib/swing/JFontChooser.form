@@ -11,7 +11,7 @@
           <ComponentRef name="fontsBox"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="puce/swing/JFontChooser.properties" key="fonts" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="org/softsmithy/lib/swing/JFontChooser.properties" key="fonts" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Constraints>
@@ -27,7 +27,7 @@
           <ComponentRef name="sizesBox"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="puce/swing/JFontChooser.properties" key="sizes" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="org/softsmithy/lib/swing/JFontChooser.properties" key="sizes" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Constraints>
@@ -43,7 +43,7 @@
           <ComponentRef name="stylesBox"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="puce/swing/JFontChooser.properties" key="styles" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
+          <ResourceString bundle="org/softsmithy/lib/swing/JFontChooser.properties" key="styles" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Constraints>
@@ -57,6 +57,7 @@
         <Property name="maximumRowCount" type="int" value="9"/>
       </Properties>
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fontsBoxActionPerformed"/>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fontsBoxItemStateChanged"/>
       </Events>
       <Constraints>
@@ -93,7 +94,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Preview">
-              <ResourceString PropertyName="titleX" bundle="puce/swing/JFontChooser.properties" key="preview" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
+              <ResourceString PropertyName="titleX" bundle="org/softsmithy/lib/swing/JFontChooser.properties" key="preview" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -110,7 +111,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="puce/swing/JFontChooser.properties" key="previewText" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
+              <ResourceString bundle="org/softsmithy/lib/swing/JFontChooser.properties" key="previewText" replaceFormat="rb.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Constraints>

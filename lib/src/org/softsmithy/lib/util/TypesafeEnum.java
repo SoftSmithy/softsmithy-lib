@@ -57,6 +57,8 @@ import java.util.*;
 
 public class TypesafeEnum {
 
+  private static final Map caches = new HashMap();
+  
   private final String fName;
   private boolean initialized = false;
 
@@ -69,6 +71,32 @@ public class TypesafeEnum {
   }
 
 
+  public String toString(Locale locale){
+    String string = toString();
+    ResourceBundle rb = getResourceBundle(locale);
+    if (rb != null){
+      string = rb.getString(string);
+    }
+    return string;
+  }
+  
+  public String getResourceBundleBaseName(){
+    return null;
+  }
+  
+  private ResourceBundle getResourceBundle(Locale locale){
+    ResourceBundle rb = null;
+    String baseName = getResourceBundleBaseName();
+    if (baseName != null){
+      if (! caches.containsKey(baseName)){
+        ResourceBundleCache cache = new ResourceBundleCache(baseName);
+        caches.put(baseName, cache);
+      }
+      rb = ((ResourceBundleCache) caches.get(baseName)).getBundle(locale);
+    }
+    return rb;
+  }
+  
   public String toString(){
     return fName;
   }

@@ -60,7 +60,7 @@ public class JLabelCustomizer extends JTextCustomizer {
     super.setComponent(label);
   }
   
-  public void setHorizontalAlignment(HorizontalAlignment alignment) {
+  protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
     JLabel label = (JLabel) getComponent();
     if (label != null){
       label.setHorizontalAlignment(alignment.getSwingConstant());

@@ -21,6 +21,7 @@
 package org.softsmithy.lib.swing.event;
 
 import java.util.*;
+import org.softsmithy.lib.swing.*;
 
 /**
  *
@@ -29,12 +30,18 @@ import java.util.*;
 public class CustomizerSelectionEvent extends EventObject {
   
   /** Holds value of property selectedCustomizers. */
-  private Set selectedCustomizers;
+  private final Set selectedCustomizers;
+  
+  /** Holds value of property activeCustomizer. */
+  private final JCustomizer activeCustomizer;
+  
+  private Set commonCustomizableProperties;
   
   /** Creates a new instance of CustomizerSelectionEvent */
-  public CustomizerSelectionEvent(Object source, Set selectedCustomizers) {
+  public CustomizerSelectionEvent(Object source, Set selectedCustomizers, JCustomizer activeCustomizer) {
     super(source);
     this.selectedCustomizers = selectedCustomizers;
+    this.activeCustomizer = activeCustomizer;
   }
   
   /** Getter for property selectedCustomizers.
@@ -45,4 +52,18 @@ public class CustomizerSelectionEvent extends EventObject {
     return this.selectedCustomizers;
   }
   
+  /** Getter for property activeCustomizer.
+   * @return Value of property activeCustomizer.
+   *
+   */
+  public JCustomizer getActiveCustomizer() {
+    return this.activeCustomizer;
+  }
+  
+  public Set getCommonCustomizableProperties(){
+    if (commonCustomizableProperties == null){
+      commonCustomizableProperties = JCustomizer.getCommonCustomizableProperties(getSelectedCustomizers());
+    }
+    return commonCustomizableProperties;
+  }
 }

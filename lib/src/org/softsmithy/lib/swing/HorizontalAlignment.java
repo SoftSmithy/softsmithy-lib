@@ -14,22 +14,28 @@
 
 package org.softsmithy.lib.swing;
 
-import java.io.*;
+import java.awt.ComponentOrientation;
 import java.util.*;
 import javax.swing.*;
 import org.softsmithy.lib.util.*;
 
+
+
 public abstract class HorizontalAlignment extends TypesafeEnum{
   
-  private static final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.HorizontalAlignment");
+  private static final String BASE_NAME = "org.softsmithy.lib.swing.HorizontalAlignment";
   
   private HorizontalAlignment(String s){
     super(s);
   }
   
   
-  public String toString(Locale locale){
-    return cache.getBundle(locale).getString(toString());
+  public String getResourceBundleBaseName(){
+    return BASE_NAME;
+  }
+  
+  public HorizontalAlignment orient(ComponentOrientation co){
+    return this;
   }
   
   public abstract int getSwingConstant();
@@ -53,7 +59,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
       return "center";
     }
   };
-  public static final HorizontalAlignment RIGHT = new HorizontalAlignment("right"){    
+  public static final HorizontalAlignment RIGHT = new HorizontalAlignment("right"){
     public int getSwingConstant(){
       return SwingConstants.RIGHT;
     }
@@ -61,20 +67,26 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
       return "right";
     }
   };
-  public static final HorizontalAlignment LEADING = new  HorizontalAlignment("leading"){    
+  public static final HorizontalAlignment LEADING = new  HorizontalAlignment("leading"){
     public int getSwingConstant(){
       return SwingConstants.LEADING;
-    }  
+    }
     public String getHtmlConstant() {
       return "left"; // no i18n
     }
+    public HorizontalAlignment orient(ComponentOrientation co){
+      return co.isLeftToRight() ? LEFT : RIGHT;
+    }
   };
-  public static final HorizontalAlignment TRAILING = new HorizontalAlignment("trailing"){    
+  public static final HorizontalAlignment TRAILING = new HorizontalAlignment("trailing"){
     public int getSwingConstant(){
       return SwingConstants.TRAILING;
     }
     public String getHtmlConstant() {
       return "right"; // no i18n
+    }
+    public HorizontalAlignment orient(ComponentOrientation co){
+      return co.isLeftToRight() ? RIGHT : LEFT;
     }
   };
   
@@ -90,5 +102,5 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   public static HorizontalAlignment getHorizontalAlignment(int horizontalAlignment){
     return (HorizontalAlignment) alignments.get(new Integer(horizontalAlignment));
   }
-
+  
 }

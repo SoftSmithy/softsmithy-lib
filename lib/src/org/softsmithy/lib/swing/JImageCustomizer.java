@@ -55,7 +55,7 @@ public class JImageCustomizer extends JIconCustomizer {
   }
   
   
-  protected void adjustIcon(){
+  public void adjustIcon(){
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     Icon icon;
     if (image != null){

@@ -87,7 +87,7 @@ public class JHtmlCustomizer extends JTextCustomizer {
     return text;
   }
   
-  public void setHorizontalAlignment(HorizontalAlignment alignment) {
+  protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
     horizontalAlignment = alignment;
     configureHtmlText();
   }

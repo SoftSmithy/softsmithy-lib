@@ -133,6 +133,12 @@ public class JFontChooser extends JPanel {
     add(stylesLabel, gridBagConstraints);
 
     fontsBox.setMaximumRowCount(9);
+    fontsBox.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        fontsBoxActionPerformed(evt);
+      }
+    });
+
     fontsBox.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
         fontsBoxItemStateChanged(evt);
@@ -187,6 +193,10 @@ public class JFontChooser extends JPanel {
     add(previewPane, gridBagConstraints);
 
   }//GEN-END:initComponents
+
+  private void fontsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontsBoxActionPerformed
+    // Add your handling code here:
+  }//GEN-LAST:event_fontsBoxActionPerformed
   
   private void stylesBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stylesBoxItemStateChanged
     if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -376,9 +386,9 @@ public class JFontChooser extends JPanel {
     public FontChooserDialog(Component parent){
       super(parent, rb.getString("title"), true, JFontChooser.this);
       try{
-        JButton okButton = XActions.createButton(XActions.createXAction("ok", this, rb), IconType.NO_ICON, true);
-        JButton cancelButton = XActions.createButton(XActions.createXAction("cancel", this, rb), IconType.NO_ICON, true);
-        JButton resetButton = XActions.createButton(XActions.createXAction("reset", this, rb), IconType.NO_ICON, true);
+        JButton okButton = XActions.createButton(XActions.createXAction("ok", this, rb), IconType.NO_ICON, true, false);
+        JButton cancelButton = XActions.createButton(XActions.createXAction("cancel", this, rb), IconType.NO_ICON, true, false);
+        JButton resetButton = XActions.createButton(XActions.createXAction("reset", this, rb), IconType.NO_ICON, true, false);
         setButtons(new JButton[]{okButton, cancelButton, resetButton}, okButton);
       } catch(NoSuchMethodException e){
         e.printStackTrace();

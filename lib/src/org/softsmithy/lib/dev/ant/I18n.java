@@ -32,8 +32,6 @@ public class I18n {
   /** Creates a new instance of I18n */
   public I18n(String jarName, String targetDir){
     this.jarName = jarName;
-    System.out.println(targetDir);
-    System.out.println();
     this.targetDir = new File(targetDir);
     if (this.targetDir.exists() && ! this.targetDir.isDirectory()){
       throw new IllegalArgumentException("targetDir must be a directory!");
@@ -90,28 +88,26 @@ public class I18n {
   public void groupFile(File file) throws FileNotFoundException, IOException{
     //StringTokenizer tokenizer = new StringTokenizer(Files.getName(file), "_");
     if (file.exists() && file.isFile()){
-      System.out.println(file);
       String name = Files.getName(file);
-      System.out.println(name);
       Matcher matcher = pattern.matcher(name);
       String localeString;
       if (matcher.find()){
         localeString = matcher.group();
-        System.out.println("1: "+localeString);
         localeString = localeString.replaceFirst("_", "");
-        System.out.println("2: "+localeString);
         localeString = localeString.replaceAll("_", "-");
-        System.out.println("3: "+localeString);
       } else {
         localeString = DEFAULT;
       }
-      System.out.println(localeString);
       if (! jars.containsKey(localeString)){
         jars.put(localeString, new JarOutputStream(new BufferedOutputStream(
-        new FileOutputStream(new File(getTargetDir(), getJarName()+"-"+localeString+".jar")))));
+        new FileOutputStream(new File(getTargetDir(), getJarName()+"-"+localeString+".jar"))), new Manifest()));
       }
       JarOutputStream jos = (JarOutputStream) jars.get(localeString);
-      jos.putNextEntry(new ZipEntry(file.getPath()));
+      InputStream is = new BufferedInputStream(new FileInputStream(file));
+      byte[] b = new byte[(int) file.length()];
+      is.read(b);
+      jos.putNextEntry(new JarEntry(file.getPath()));
+      jos.write(b);
     }
   }
   

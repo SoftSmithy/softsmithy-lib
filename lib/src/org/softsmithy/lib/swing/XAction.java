@@ -61,6 +61,10 @@ public interface XAction extends Action {
    */
   public final static String LARGE_SELECTED_ICON = "LargeSelectedIcon";
   /**
+   * The key used for storing the state of the action.
+   */
+  //public final static String SELECTED = "Selected";
+  /**
    * The key used for storing a small icon for the disabled action.
    */
   public final static String SMALL_DISABLED_ICON = "SmallDisabledIcon";
@@ -368,6 +372,20 @@ public interface XAction extends Action {
    */
   public void setSmallSelectedIcon(Icon icon);
 
+  /** 
+   * Gets the value of the key XAction.SELECTED
+   * @return if selected
+   *
+   */
+  //public boolean isSelected();
+  
+  /** 
+   * Sets the value for the key XAction.SELECTED
+   * @param selected if selected
+   *
+   */
+  //public void setSelected(boolean selected);
+  
   //public void addActionListener(ActionListener l);
 
 

@@ -31,7 +31,7 @@ public class CustomizerPropertyTable extends JCellTable {
   
   /** Creates a new instance of PropertyTable */
   public CustomizerPropertyTable() {
-    super(new CustomizerPropertyTableModel(new ArrayList(), new ArrayList(), null, Locale.getDefault()));
+    super(new CustomizerPropertyTableModel(new ArrayList(), new HashSet(), null, null, Locale.getDefault()));
   }
   
 }

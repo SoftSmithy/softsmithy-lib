@@ -57,9 +57,16 @@ public abstract class JTextCustomizer extends JCustomizer {
   
   public abstract String getText();
   public abstract void setText(String text);
-  public abstract void setHorizontalAlignment(HorizontalAlignment alignment);
+  protected abstract void setHorizontalAlignmentOnly(HorizontalAlignment alignment);
   public abstract HorizontalAlignment getHorizontalAlignment();
   
+  public void setHorizontalAlignment(HorizontalAlignment alignment){
+    HorizontalAlignment oldValue = getHorizontalAlignment();
+    if (! alignment.equals(oldValue)){
+      setHorizontalAlignmentOnly(alignment);
+      firePropertyChange("horizontalAlignment", oldValue, alignment);
+    }
+  }
   //  public void setComponent(JComponent comp){
   //    if (! (comp instanceof JTextComponent)){
   //      throw new IllegalArgumentException("comp must be a JTextComponent");

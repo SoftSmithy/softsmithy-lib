@@ -19,6 +19,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import org.softsmithy.lib.lang.reflect.*;
+import org.softsmithy.lib.util.*;
 import org.softsmithy.lib.swing.table.*;
 
 
@@ -148,11 +149,16 @@ public class JXTable extends JTable {
   private void init(){
     setDefaultRenderer(Color.class, new ColorCellRenderer(true));
     setDefaultRenderer(Font.class, new FontCellRenderer(true));
-    setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
+    //setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
+    setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(getLocale()));
     setDefaultEditor(Color.class, new ColorCellEditor());
     setDefaultEditor(Font.class, new FontCellEditor());
     setDefaultEditor(Integer.class, new IntegerCellEditor(getLocale()));
+    setDefaultEditor(Long.class, new LongCellEditor(getLocale()));
+    setDefaultEditor(Float.class, new FloatCellEditor(getLocale()));
+    setDefaultEditor(Double.class, new DoubleCellEditor(getLocale()));
     setDefaultEditor(HorizontalAlignment.class, new HorizontalAlignmentCellEditor(getLocale()));
+    setDefaultEditor(TypesafeEnum.class, new TypesafeEnumCellEditor(getLocale()));
   }
   
   /** Returns the editor to be used when no editor has been set in
