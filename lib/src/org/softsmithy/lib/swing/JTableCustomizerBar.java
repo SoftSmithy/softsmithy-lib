@@ -29,11 +29,11 @@ import javax.swing.table.*;
  * @author  puce
  */
 public abstract class JTableCustomizerBar extends JPanel implements CustomizerBar{
-  
+
   /** Creates new form CustomizerBarTabPane */
   public JTableCustomizerBar(TableModel tm) {
     initComponents();
-    table = new JTable(tm);
+    table = new JXTable(tm);
     table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     scrollPane = new JScrollPane(table);
     add(BorderLayout.CENTER, scrollPane);

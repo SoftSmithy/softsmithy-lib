@@ -1,4 +1,18 @@
 /*
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
+ */
+
+/*
  * JTreeCustomizerBar.java
  *
  * Created on 27. Februar 2003, 19:20
@@ -16,16 +30,20 @@ import javax.swing.tree.*;
  */
 public abstract class JTreeCustomizerBar extends JPanel implements CustomizerBar {
   
-  private JTree tree;
+  private JXTree tree;
   
-  /** Creates new form JTreeCustomizerBar */
-  public JTreeCustomizerBar(TreeModel tm) {
-    this(new JTree(tm));
+  
+  public JTreeCustomizerBar(TreeModel newModel){
+    this(new JXTree(newModel));
   }
   
-  public JTreeCustomizerBar(JTree tree) {
+  public JTreeCustomizerBar(TreeNode root){
+    this(new JXTree(root));
+  }
+  
+ public JTreeCustomizerBar(JXTree tree){
+   this.tree = tree;
     initComponents();
-    this.tree = tree;
     tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     JScrollPane scrollPane = new JScrollPane(tree);
     add(scrollPane, BorderLayout.CENTER);
@@ -42,24 +60,21 @@ public abstract class JTreeCustomizerBar extends JPanel implements CustomizerBar
 
   }//GEN-END:initComponents
   
+  
+  public boolean hasSelection() {
+    return ! tree.isSelectionEmpty();
+  }
+  
   public void clearSelection() {
     tree.clearSelection();
   }
   
-  public TreePath getSelectionPath(){
-    return tree.getSelectionPath();
+  public JXTree getTree(){
+    return tree;
   }
   
   public Object getSelectedNode(){
-    Object node = null;
-    if (tree.getSelectionPath() != null){
-      node = tree.getSelectionPath().getLastPathComponent();
-    }
-    return node;
-  }
-  
-  public boolean hasSelection() {
-    return ! tree.isSelectionEmpty();
+    return tree.getSelectedNode();
   }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables

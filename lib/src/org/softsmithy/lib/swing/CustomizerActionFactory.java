@@ -171,9 +171,23 @@ public class CustomizerActionFactory {
   }
   
   public void alignRight(ActionEvent e){
+    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
+    if (customizers.length > 0){
+      JCustomizer focusCustomizer = customizers[customizers.length-1];
+      for (int i=0; i<customizers.length-1; i++){
+        customizers[i].setX(focusCustomizer.getX()+focusCustomizer.getWidth()-customizers[i].getWidth());
+      }
+    }
   }
   
   public void alignBottom(ActionEvent e){
+    JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
+    if (customizers.length > 0){
+      JCustomizer focusCustomizer = customizers[customizers.length-1];
+      for (int i=0; i<customizers.length-1; i++){
+        customizers[i].setY(focusCustomizer.getY()+focusCustomizer.getHeight()-customizers[i].getHeight());
+      }
+    }
   }
   
   public void alignJustifyHorizontal(ActionEvent e){

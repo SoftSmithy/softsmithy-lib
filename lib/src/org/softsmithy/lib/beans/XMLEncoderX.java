@@ -24,6 +24,7 @@ import java.beans.*;
 import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
+import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.util.*;
 
 /**
@@ -38,6 +39,7 @@ public class XMLEncoderX extends XMLEncoder {
     setPersistenceDelegate(TypesafeEnum.class, new TypesafeEnumPersitanceDelegate()); // does not work for subclasses??
     setPersistenceDelegate(Singleton.class, new SingletonPersitanceDelegate());
     setPersistenceDelegate(Locale.class, new DefaultPersistenceDelegate(new String[]{"language", "country", "variant"})); // this is not defined in j2sdk?!
+    setPersistenceDelegate(CustomStyleProvider.class, new DefaultPersistenceDelegate(new String[]{"style"}));
   }
   
   /** Returns the persistence delegate for the given type.
