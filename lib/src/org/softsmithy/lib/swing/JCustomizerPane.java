@@ -51,9 +51,27 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   //private final ActivationManager activationManager = new ActivationManager();
   
   /** Holds value of property active. */
-  private boolean active;
+  private boolean active = false;
   
   private boolean inited = false;
+  
+  /** Holds value of property activationBorderEnabled. */
+  private boolean activationBorderEnabled = false;
+  
+  /** Holds value of property activeBorderColor. */
+  private Color activeBorderColor = Color.GREEN;
+  
+  /** Holds value of property inactiveBorderColor. */
+  private Color inactiveBorderColor = Color.LIGHT_GRAY;
+  
+  /** Holds value of property layoutHelpColor. */
+  private Color layoutHelpColor = Color.LIGHT_GRAY;
+  
+  /** Holds value of property defaultNormalCustomizerBorderColor. */
+  private Color defaultNormalCustomizerBorderColor = Color.GRAY;
+  
+  /** Holds value of property defaultSelectedCustomizerBorderColor. */
+  private Color defaultSelectedCustomizerBorderColor = Color.BLUE;
   
   /** Creates new form JCustomizerPane */
   public JCustomizerPane() {
@@ -130,8 +148,8 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
     super.paintComponent(g);
     if (isShowingConstraints()){
       Color oldColor = g.getColor();
-      g.setColor(Color.LIGHT_GRAY);
-      ((TableLayout) getLayout()).drawGrid(this, g);
+      g.setColor(getLayoutHelpColor());
+      getCustomizerLayout().drawLayoutHelp(this, g);
       g.setColor(oldColor);
     }
     /* First painting occurs at (x,y), where x is at least
@@ -310,11 +328,132 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
     if (active != isActive()){
       boolean oldActive = isActive();
       this.active = active;
+      if (isActivationBorderEnabled()){
+        setActivationBorder();
+      }
       firePropertyChange("active", oldActive, active);
     }
   }
   
+  /** Getter for property activationBorderEnabled.
+   * @return Value of property activationBorderEnabled.
+   *
+   */
+  public boolean isActivationBorderEnabled() {
+    return this.activationBorderEnabled;
+  }
   
+  /** Setter for property activationBorderEnabled.
+   * @param activationBorderEnabled New value of property activationBorderEnabled.
+   *
+   */
+  public void setActivationBorderEnabled(boolean activationBorderEnabled) {
+    this.activationBorderEnabled = activationBorderEnabled;
+    if (activationBorderEnabled){
+      setActivationBorder();
+    }
+  }
+  
+  /** Getter for property activeBorderColor.
+   * @return Value of property activeBorderColor.
+   *
+   */
+  public Color getActiveBorderColor() {
+    return this.activeBorderColor;
+  }
+  
+  /** Setter for property activeBorderColor.
+   * @param activeBorderColor New value of property activeBorderColor.
+   *
+   */
+  public void setActiveBorderColor(Color activeBorderColor) {
+    this.activeBorderColor = activeBorderColor;
+    if (isActivationBorderEnabled()){
+      setActivationBorder();
+    }
+  }
+  
+  /** Getter for property inactiveBorderColor.
+   * @return Value of property inactiveBorderColor.
+   *
+   */
+  public Color getInactiveBorderColor() {
+    return this.inactiveBorderColor;
+  }
+  
+  /** Setter for property inactiveBorderColor.
+   * @param inactiveBorderColor New value of property inactiveBorderColor.
+   *
+   */
+  public void setInactiveBorderColor(Color inactiveBorderColor) {
+    this.inactiveBorderColor = inactiveBorderColor;
+    if (isActivationBorderEnabled()){
+      setActivationBorder();
+    }
+  }
+  
+  private void setActivationBorder(){
+    if (isActive()){
+      setBorder(BorderFactory.createLineBorder(getActiveBorderColor()));
+    } else {
+      setBorder(BorderFactory.createLineBorder(getInactiveBorderColor()));
+    }
+  }
+  
+  /** Getter for property layoutHelpColor.
+   * @return Value of property layoutHelpColor.
+   *
+   */
+  public Color getLayoutHelpColor() {
+    return this.layoutHelpColor;
+  }
+  
+  /** Setter for property layoutHelpColor.
+   * @param layoutHelpColor New value of property layoutHelpColor.
+   *
+   */
+  public void setLayoutHelpColor(Color layoutHelpColor) {
+    this.layoutHelpColor = layoutHelpColor;
+    repaint();
+  }
+  
+  
+  /** Getter for property defaultNormalCustomizerBorderColor.
+   * @return Value of property defaultNormalCustomizerBorderColor.
+   *
+   */
+  public Color getDefaultNormalCustomizerBorderColor() {
+    return this.defaultNormalCustomizerBorderColor;
+  }
+  
+  /** Setter for property defaultNormalCustomizerBorderColor.
+   * @param defaultNormalCustomizerBorderColor New value of property defaultNormalCustomizerBorderColor.
+   *
+   */
+  public void setDefaultNormalCustomizerBorderColor(Color defaultNormalCustomizerBorderColor) {
+    Color oldDefaultNormalCustomizerBorderColor = this.defaultNormalCustomizerBorderColor;
+    this.defaultNormalCustomizerBorderColor = defaultNormalCustomizerBorderColor;
+    System.out.println("defaultNormalCustomizerBorderColor changed");
+    firePropertyChange("defaultNormalCustomizerBorderColor", oldDefaultNormalCustomizerBorderColor, defaultNormalCustomizerBorderColor);
+  }
+  
+  /** Getter for property defaultSelectedCustomizerBorderColor.
+   * @return Value of property defaultSelectedCustomizerBorderColor.
+   *
+   */
+  public Color getDefaultSelectedCustomizerBorderColor() {
+    return this.defaultSelectedCustomizerBorderColor;
+  }
+  
+  /** Setter for property defaultSelectedCustomizerBorderColor.
+   * @param defaultSelectedCustomizerBorderColor New value of property defaultSelectedCustomizerBorderColor.
+   *
+   */
+  public void setDefaultSelectedCustomizerBorderColor(Color defaultSelectedCustomizerBorderColor) {
+    Color oldDefaultSelectedCustomizerBorderColor = this.defaultSelectedCustomizerBorderColor;
+    this.defaultSelectedCustomizerBorderColor = defaultSelectedCustomizerBorderColor;
+    firePropertyChange("defaultSelectedCustomizerBorderColor", oldDefaultSelectedCustomizerBorderColor, defaultSelectedCustomizerBorderColor);
+  }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables
