@@ -33,11 +33,13 @@ import org.softsmithy.lib.swing.icon.*;
 public class JXIconCustomizer extends JCustomizer { // should it be renamed to IconCustomizer because it is abstract
   
   
-//  private final ComponentLayoutListener iconUpdateListener = new IconUpdateListener();
+  //  private final ComponentLayoutListener iconUpdateListener = new IconUpdateListener();
   
   /** Creates a new instance of JImageCustomizer */
   public JXIconCustomizer() {
     this(new JXIconLabel());
+    getXIconLabel().setText(null);    
+    getXIconLabel().setHorizontalAlignment(SwingConstants.CENTER);
     initForDefaultLabel();
   }
   
@@ -90,38 +92,38 @@ public class JXIconCustomizer extends JCustomizer { // should it be renamed to I
     return (JXIconLabel) getComponent();
   }
   
-//  public void adjustIcon(){
-//    getXIconLabel().resizeIcon();
-//  }
-//  
-//  protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
-//    super.reshapeRelOnly(dx, dy, dwidth, dheight);
-//    adjustIcon();
-//  }
-//  
-//  public void addNotify() {
-//    super.addNotify();
-//    getParentCustomizerPane().addComponentLayoutListener(this, iconUpdateListener);
-//  }
-//  
-//  public void removeNotify() {
-//    getParentCustomizerPane().removeComponentLayoutListener(this, iconUpdateListener);
-//    super.removeNotify();
-//  }
-//  
-//  public void applyBorder(Border border) {
-//    super.applyBorder(border);
-//    if (getComponent() != null){
-//      adjustIcon();
-//    }
-//  }
-//  
-//  private class IconUpdateListener implements ComponentLayoutListener{
-//    
-//    public void componentLayouted(ComponentLayoutEvent e) {
-//      adjustIcon();
-//    }
-//    
-//  }
+  //  public void adjustIcon(){
+  //    getXIconLabel().resizeIcon();
+  //  }
+  //
+  //  protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
+  //    super.reshapeRelOnly(dx, dy, dwidth, dheight);
+  //    adjustIcon();
+  //  }
+  //
+  //  public void addNotify() {
+  //    super.addNotify();
+  //    getParentCustomizerPane().addComponentLayoutListener(this, iconUpdateListener);
+  //  }
+  //
+  //  public void removeNotify() {
+  //    getParentCustomizerPane().removeComponentLayoutListener(this, iconUpdateListener);
+  //    super.removeNotify();
+  //  }
+  //
+  //  public void applyBorder(Border border) {
+  //    super.applyBorder(border);
+  //    if (getComponent() != null){
+  //      adjustIcon();
+  //    }
+  //  }
+  //
+  //  private class IconUpdateListener implements ComponentLayoutListener{
+  //
+  //    public void componentLayouted(ComponentLayoutEvent e) {
+  //      adjustIcon();
+  //    }
+  //
+  //  }
   
 }

@@ -72,15 +72,25 @@ public class ShapeIcon implements XIcon {
    */
   public void paintIcon(Component c, Graphics g, int x, int y) {
     if (getShape() != null){
+      //      Graphics2D g2 = (Graphics2D) g;
+      //      Color oldColor = g2.getColor();
+      //      g2.setColor(Color.GRAY);
+      //      g2.fill(AffineTransform.getTranslateInstance(x, y).createTransformedShape(shape.getBounds()));//SwingUtilities.calculateInnerArea((JComponent) c, null));
+      //      g2.setColor(oldColor);
+      
+      
+      
+      
       Graphics2D g2 = (Graphics2D) g;
       Color oldColor = g2.getColor();
       g2.setColor(c.getForeground());
+      Shape s = AffineTransform.getTranslateInstance(x, y).createTransformedShape(shape);
       if (isFilled()){
-        g2.fill(shape);
+        g2.fill(s);
       } else {
         Stroke oldStroke = g2.getStroke();
         g2.setStroke(getStroke());
-        g2.draw(shape);
+        g2.draw(s);
         g2.setStroke(oldStroke);
       }
       g2.setColor(oldColor);
@@ -152,5 +162,10 @@ public class ShapeIcon implements XIcon {
     double sy = (getIconHeight() > 0.0) ? ((double) newHeight -0.25) / getIconHeight() : 1.0; // -0.25 seems to be necessary (tested with JXiconCustomizer)
     return getTransformedInstance(AffineTransform.getScaleInstance(sx, sy));
   }
+  
+  private Shape getTransformedShape(AffineTransform at){
+    return getShape() != null ? at.createTransformedShape(getShape()) : null;
+  }
+  
   
 }

@@ -44,15 +44,16 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
   
   /** Creates a new instance of JLabelCustomizer */
   public JHtmlCustomizer() {
+    super(new JEditorPane("text/html", HTML_START+HTML_END));
     setStateManager(new HiddenStateManager(this));
     setEditor(new JEditorPane("text/html", HTML_START+HTML_END));
     setEditorScrollable(true);
-    System.out.println("ENTER KeyStroke: " + getEditor().getInputMap().get(KeyStroke.getKeyStroke("ENTER")));
+    //System.out.println("ENTER KeyStroke: " + getEditor().getInputMap().get(KeyStroke.getKeyStroke("ENTER")));
     getEditor().getInputMap().put(KeyStroke.getKeyStroke("ENTER"), insertHtmlBreakAction);
     getEditor().getActionMap().put(insertHtmlBreakAction, new InsertHtmlBreakAction());
-    setComponent(new JEditorPane("text/html", HTML_START+HTML_END));
+    //setComponent(new JEditorPane("text/html", HTML_START+HTML_END));
     inited = true;
-    setBackground(getBackground());
+    //setBackground(getBackground());
     setForeground(getForeground());
     setFont(getFont());
     setHorizontalAlignment(getHorizontalAlignment());
@@ -89,11 +90,15 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
       throw new IllegalArgumentException("comp must be a JEditorPane");
     }
     super.setComponent(component);
+    //if (component instanceof JEditorPane){
     JEditorPane editorPane = (JEditorPane) component;
     editorPane.setEditable(false);
-    configureHtmlText();
+    if (inited){
+      configureHtmlText();
+    }
     //JLabel label = (JLabel) component; // if component is not a label, super.setComponent throws an Exception
     //label.setVerticalAlignment(SwingConstants.TOP);
+    // }
   }
   
   
@@ -107,8 +112,8 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
     horizontalAlignment = alignment;
     if (inited){
       StyleConstants.setAlignment(attributeSet, alignment.getStyleConstant(this.getComponentOrientation()));
+      configureHtmlText();
     }
-    configureHtmlText();
   }
   
   public HorizontalAlignment getHorizontalAlignment() {

@@ -1,4 +1,18 @@
 /*
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
+ */
+
+/*
  * JXLabel.java
  *
  * Created on 30. Juli 2003, 22:03
@@ -93,7 +107,7 @@ public class JXIconLabel extends JXLabel {
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
     if (originalIcon != null && innerArea.width > 0 && innerArea.height > 0){
       //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);
-      Dimension bounds = getZoomingStrategy().zoom(originalIcon.getIconWidth(),
+      Dimension bounds = getZoomingStrategy().calculateDimension(originalIcon.getIconWidth(),
       originalIcon.getIconHeight(), innerArea.width, innerArea.height);
       setIconOnly(originalIcon.getScaledInstance(bounds.width, bounds.height));
       

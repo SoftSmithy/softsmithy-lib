@@ -49,8 +49,8 @@ import org.softsmithy.lib.test.*;
 public class JCustomizer extends AbstractCustomizer {//implements CustomizerModelListener{
   
   private JComponent component;
-  private JPanel componentContainer = new JPanel();
-  private JPanel glassPane = new JPanel(); // intercepts events
+  private final JPanel componentContainer = new JPanel();
+  private final JPanel glassPane = new JPanel(); // intercepts events
   
   private StateManager stateManager;
   private final Set listeners = new HashSet();

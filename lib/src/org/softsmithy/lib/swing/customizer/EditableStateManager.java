@@ -36,51 +36,14 @@ import org.softsmithy.lib.swing.customizer.StateManager.*;
 
 public class EditableStateManager extends StateManager {
   
-  private StateWrapper editableAwareState;
-  private State editableState;
-  private EditableListener editableListener = new EditableListener();
+  //private StateWrapper editableAwareState;
+  private final State editableState;
+  private final EditableListener editableListener = new EditableListener();
   
   /** Creates a new instance of EditableStateManager */
-  public EditableStateManager(final AbstractTextCustomizer customizer){
+  public EditableStateManager(AbstractTextCustomizer customizer){
     super(customizer);
-    editableState = new DefaultState(customizer){
-      Component component = null;
-      //      private FocusListener focusListener = new FocusAdapter(){
-      //        public void focusLost(FocusEvent e){
-      //          focusLostNow(e);
-      //        }
-      //      };
-      public void applyCursor(){
-        customizer.setCursor(null);//Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-      }
-      public void configureCustomizer(){
-        super.configureCustomizer();
-        JTextComponent editor = customizer.getEditor();
-        editor.setText(customizer.getText());
-        component = editor;
-        if (customizer.isEditorScrollable()){
-          component = new JScrollPane(editor);
-        }
-        customizer.getGlassPane().add(BorderLayout.CENTER, component);
-        if(!editor.hasFocus()){
-          editor.requestFocus();
-        }
-        //        editor.addFocusListener(focusListener);
-      }
-      //      public void focusLostNow(FocusEvent e){
-      //         super.focusLost(e);
-      //      }
-      public void unconfigureCustomizer(){
-        JTextComponent editor = customizer.getEditor();
-        customizer.getGlassPane().remove(component);
-        System.out.println("Component removed!!!!!!!!!!!!!");
-        customizer.setText(editor.getText());
-        //        editor.removeFocusListener(focusListener);
-        customizer.repaint();
-        super.unconfigureCustomizer();
-      }
-      //      public void focusLost(FocusEvent e){}
-    };
+    editableState = new EditableState(customizer);
   }
   
   public State getEditableState() {
@@ -115,6 +78,53 @@ public class EditableStateManager extends StateManager {
         setStateEditable();
       }
     }
+  }
+  
+  private static class EditableState extends DefaultState{
+    
+    private Component component = null;
+    
+    public EditableState(AbstractTextCustomizer customizer){
+      super(customizer);
+    }
+    
+    //      private FocusListener focusListener = new FocusAdapter(){
+    //        public void focusLost(FocusEvent e){
+    //          focusLostNow(e);
+    //        }
+    //      };
+    public void applyCursor(){
+      getCustomizer().setCursor(null);//Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+    }
+    public void configureCustomizer(){
+      super.configureCustomizer();
+      JTextComponent editor = ((AbstractTextCustomizer) getCustomizer()).getEditor();
+      editor.setText(((AbstractTextCustomizer) getCustomizer()).getText());
+      component = editor;
+      if (((AbstractTextCustomizer) getCustomizer()).isEditorScrollable()){
+        component = new JScrollPane(editor);
+      }
+      getCustomizer().getGlassPane().add(component, BorderLayout.CENTER);
+      //System.out.println("Component added!!!!!!!!!!!!!");
+      getCustomizer().getGlassPane().revalidate();
+      if(!editor.hasFocus()){
+        editor.requestFocus();
+      }
+      //        editor.addFocusListener(focusListener);
+    }
+    //      public void focusLostNow(FocusEvent e){
+    //         super.focusLost(e);
+    //      }
+    public void unconfigureCustomizer(){
+      JTextComponent editor = ((AbstractTextCustomizer) getCustomizer()).getEditor();
+      getCustomizer().getGlassPane().remove(component);
+      //System.out.println("Component removed!!!!!!!!!!!!!");
+      ((AbstractTextCustomizer) getCustomizer()).setText(editor.getText());
+      //        editor.removeFocusListener(focusListener);
+      getCustomizer().repaint();
+      super.unconfigureCustomizer();
+    }
+    //      public void focusLost(FocusEvent e){}
   }
   
   //  public static class EditableAwareState extends StateWrapper{

@@ -22,19 +22,28 @@ package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.geom.*;
+import javax.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.swing.icon.*;
+
 
 /**
  *
  * @author  puce
  */
-public class JLine2DCustomizer extends JShapeCustomizer {
+public class JLine2DCustomizer extends JXIconCustomizer {
   
   /** Holds value of property orientation. */
   private Line2DOrientation orientation;
   
+  private Line2DIcon lineIcon = new Line2DIcon();
+  
   /** Creates a new instance of JLine2DCustomizer */
   public JLine2DCustomizer() {
+    //getXIconLabel().setHorizontalAlignment(SwingConstants.CENTER);
+    //getXIconLabel().setVerticalAlignment(SwingConstants.CENTER);
+    setOrientation(Line2DOrientation.HORIZONTAL);
+    setXIcon(lineIcon);
     //setOpaque(false);
   }
   
@@ -43,7 +52,7 @@ public class JLine2DCustomizer extends JShapeCustomizer {
    *
    */
   public Line2D getLine2D() {
-    return (Line2D) getShape();
+    return lineIcon.getLine2D();
   }
   
   /** Setter for property line2D.
@@ -51,7 +60,9 @@ public class JLine2DCustomizer extends JShapeCustomizer {
    *
    */
   public void setLine2D(Line2D line2D) {
-    setShape(line2D);
+    lineIcon.setShape(line2D);
+    revalidate(); // seems to be necessary in some cases
+    repaint();
   }
   
   /** Setter for property imageSrc.
@@ -59,11 +70,11 @@ public class JLine2DCustomizer extends JShapeCustomizer {
    *
    *
    */
-  public void setShape(Shape shape) {
-    if (! (shape instanceof Line2D)){
-      throw new IllegalArgumentException("shape must be a Line2D");
+  public void setXIcon(XIcon icon){
+    if (! (icon instanceof Line2DIcon)){
+      throw new IllegalArgumentException("icon must be a Line2DIcon");
     }
-    super.setShape(shape);
+    super.setXIcon((Line2DIcon) icon);
   }
   
   /** Getter for property orientation.
@@ -81,7 +92,8 @@ public class JLine2DCustomizer extends JShapeCustomizer {
   public void setOrientation(Line2DOrientation orientation) {
     this.orientation = orientation;
     setLine2D(orientation.getLine2D());
-    adjustIcon();
+    revalidate();
+    //adjustIcon();
   }
   
   /** Getter for property thickness.
@@ -89,17 +101,19 @@ public class JLine2DCustomizer extends JShapeCustomizer {
    *
    */
   public float getThickness() {
-    return ((BasicStroke) getStroke()).getLineWidth();
-  }  
+    return ((BasicStroke) lineIcon.getStroke()).getLineWidth();
+  }
   
   /** Setter for property thickness.
    * @param thickness New value of property thickness.
    *
    */
   public void setThickness(float thickness) {
-    BasicStroke stroke = (BasicStroke) getStroke();
-    setStroke(new BasicStroke(thickness, stroke.getEndCap(), stroke.getLineJoin(), 
+    BasicStroke stroke = (BasicStroke) lineIcon.getStroke();
+    lineIcon.setStroke(new BasicStroke(thickness, stroke.getEndCap(), stroke.getLineJoin(),
     stroke.getMiterLimit(), stroke.getDashArray(),  stroke.getDashPhase()));
+    revalidate();
+    repaint();
   }
   
   /** Getter for property color.
@@ -118,4 +132,17 @@ public class JLine2DCustomizer extends JShapeCustomizer {
     setForeground(color);
   }
   
+  private static class Line2DIcon extends ShapeIcon{
+    public void setShape(Shape shape){
+      if (! (shape instanceof Line2D)){
+        throw new IllegalArgumentException("shape must be an instance of Line2D");
+      }
+      super.setShape(shape);
+    }
+    
+    public Line2D getLine2D(){
+      return (Line2D) getShape();
+    }
+    
+  }
 }
