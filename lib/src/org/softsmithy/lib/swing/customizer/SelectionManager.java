@@ -232,7 +232,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     }
     this.activeCustomizer = selectedList.isEmpty() ? null : (JCustomizer) selectedList.get(selectedList.size()-1);
     this.commonCustomizableProperties = JCustomizer.getCommonCustomizableProperties(selectedSet); // Collections.unmodifiableSet(JCustomizer.getCommonCustomizableProperties(selectedSet));
-    System.out.println("Properties: "+this.commonCustomizableProperties);
+    //System.out.println("Properties: "+this.commonCustomizableProperties);
 //    Set commonCustomizableRectangleProperties = new HashSet(RECTANGLE_PROPERTIES);
 //    commonCustomizableRectangleProperties.retainAll(this.commonCustomizableProperties); // only the wanted rectangle properties
 //    System.out.println("Rectangle Properties: "+commonCustomizableRectangleProperties);
@@ -244,7 +244,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
       getActiveCustomizer().addCustomizerListener(this);
       for (Iterator i=this.commonCustomizableProperties.iterator(); i.hasNext();){
         String property = (String) i.next();
-        System.out.println("Property Change Listener added for: " + property);
+        //System.out.println("Property Change Listener added for: " + property);
         getActiveCustomizer().addPropertyChangeListener(property, this);
       }
     }
@@ -256,7 +256,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
    *
    */
   public void propertyChange(PropertyChangeEvent evt) {
-    System.out.println("Property Changed!!!!!! - " + evt.getPropertyName());
+    //System.out.println("Property Changed!!!!!! - " + evt.getPropertyName());
     for (int i=0; i<selectedList.size()-1; i++){
       JCustomizer customizer = (JCustomizer) selectedList.get(i);
       try{

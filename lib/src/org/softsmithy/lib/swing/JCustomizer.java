@@ -41,7 +41,7 @@ import org.softsmithy.lib.test.*;
  * Note: JCustomizer expects a JCustomizerPane as its parent.
  * Note: If you're interested in the values of the properties "x", "y", "width"
  *       and "height", then you might want to register a CustomizerListener in
- *       addition to PropertyChangeListeners to listen for all changes, absolute 
+ *       addition to PropertyChangeListeners to listen for all changes, absolute
  *       and relative ones.
  *
  * @author  puce
@@ -67,6 +67,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     add(glassPane, CONSTRAINTS);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
+    setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     //setStyle(getNoneStyle());
     
     
