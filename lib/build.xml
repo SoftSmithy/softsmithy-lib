@@ -66,4 +66,71 @@
     nbproject/build-impl.xml file. 
 
     -->
+     <!--
+    ===============
+    JAVADOC SECTION
+    ===============
+    -->
+    <target name="-javadoc-build" depends="init">
+        <mkdir dir="${dist.javadoc.dir}"/>
+        <j2seproject:property name="platform.javadoc.tmp" value="platforms.${platform.active}.javadoc" xmlns:j2seproject="http://www.netbeans.org/ns/j2se-project/1"/>
+        <condition property="platform.javadoc" value="${platform.home}/bin/javadoc">
+            <equals arg1="${platform.javadoc.tmp}" arg2="$${platforms.${platform.active}.javadoc}"/>
+        </condition>
+        <property name="platform.javadoc" value="${platform.javadoc.tmp}"/>
+        <condition property="javadoc.notree.opt" value="-notree">
+            <istrue value="${javadoc.notree}"/>
+        </condition>
+        <property name="javadoc.notree.opt" value=""/>
+        <condition property="javadoc.use.opt" value="-use">
+            <istrue value="${javadoc.use}"/>
+        </condition>
+        <property name="javadoc.use.opt" value=""/>
+        <condition property="javadoc.nonavbar.opt" value="-nonavbar">
+            <istrue value="${javadoc.nonavbar}"/>
+        </condition>
+        <property name="javadoc.nonavbar.opt" value=""/>
+        <condition property="javadoc.noindex.opt" value="-noindex">
+            <istrue value="${javadoc.noindex}"/>
+        </condition>
+        <property name="javadoc.noindex.opt" value=""/>
+        <condition property="javadoc.splitindex.opt" value="-splitindex">
+            <istrue value="${javadoc.splitindex}"/>
+        </condition>
+        <property name="javadoc.splitindex.opt" value=""/>
+        <condition property="javadoc.author.opt" value="-author">
+            <istrue value="${javadoc.author}"/>
+        </condition>
+        <property name="javadoc.author.opt" value=""/>
+        <condition property="javadoc.version.opt" value="-version">
+            <istrue value="${javadoc.version}"/>
+        </condition>
+        <property name="javadoc.version.opt" value=""/>
+        <condition property="javadoc.private.opt" value="-private">
+            <istrue value="${javadoc.private}"/>
+        </condition>
+        <property name="javadoc.private.opt" value=""/>
+        <condition property="javadoc.classpath.opt" value="${javac.classpath}">
+            <not>
+                <equals arg1="${javac.classpath}" arg2=""/>
+            </not>
+        </condition>
+        <property name="javadoc.classpath.opt" value="&quot;&quot;"/>
+        <javadoc sourcepath="${src.dir}:${apidocsrc.dir}"
+                 classpath="${javadoc.classpath.opt}"
+                 destdir="${dist.javadoc.dir}"
+                 packagenames="${javadoc.packagenames}"
+                 link="${javadoc.link}"
+                 source="${javac.source}"
+                 windowtitle="${javadoc.windowtitle}"
+                 notree="${javadoc.notree.opt}"
+                 use="${javadoc.use.opt}"
+                 nonavbar="${javadoc.nonavbar.opt}"
+                 noindex="${javadoc.noindex.opt}"
+                 splitindex="${javadoc.splitindex.opt}"
+                 author="${javadoc.author.opt}"
+                 version="${javadoc.version.opt}"
+                 private="${javadoc.private.opt}">
+        </javadoc>
+    </target>
 </project>
