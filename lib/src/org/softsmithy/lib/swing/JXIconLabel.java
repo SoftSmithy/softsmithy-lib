@@ -19,7 +19,7 @@ import org.softsmithy.lib.swing.icon.*;
 public class JXIconLabel extends JXLabel {
   
   //private ShapeIcon shapeIcon = new ShapeIcon();
-  private XIcon originalIcon = null;
+  private XIcon originalIcon;
   
   /**
    * Holds value of property zoomingStrategy.
@@ -28,38 +28,39 @@ public class JXIconLabel extends JXLabel {
   
   public JXIconLabel(){
     super();
-    init();
+    init(null);
   }
   
-  public JXIconLabel(XIcon image){
-    super(image);
-    init();
+  public JXIconLabel(XIcon icon){
+    super(icon);
+    init(icon);
     //shapeIcon = (ShapeIcon) getIcon();
   }
   
   public JXIconLabel(XIcon image, int horizontalAlignment){
     super(image, horizontalAlignment);
-    init();
+    init(image);
     //shapeIcon = (ShapeIcon) getIcon();
   }
   
   public JXIconLabel(String text){
     super(text);
-    init();
+    init(null);
   }
   
   public JXIconLabel(String text, XIcon icon, int horizontalAlignment){
     super(text, icon, horizontalAlignment);
-    init();
+    init(icon);
     //shapeIcon = (ShapeIcon) getIcon();
   }
   
   public JXIconLabel(String text, int horizontalAlignment){
     super(text, horizontalAlignment);
-    init();
+    init(null);
   }
   
-  private void init(){
+  private void init(XIcon icon){
+    originalIcon = icon;
     addComponentListener(new SizeListener());
     setMinimumSize(new Dimension(1, 1)); // TODO: Check: Ok?
   }
@@ -90,9 +91,8 @@ public class JXIconLabel extends JXLabel {
   
   public void resizeIcon(){
     Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
-    XIcon icon = getXIcon();
     if (originalIcon != null && innerArea.width > 0 && innerArea.height > 0){
-      //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);      
+      //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);
       Dimension bounds = getZoomingStrategy().zoom(originalIcon.getIconWidth(),
       originalIcon.getIconHeight(), innerArea.width, innerArea.height);
       setIconOnly(originalIcon.getScaledInstance(bounds.width, bounds.height));

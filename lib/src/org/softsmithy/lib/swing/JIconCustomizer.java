@@ -30,7 +30,7 @@ import org.softsmithy.lib.awt.event.*;
  *
  * @author  puce
  */
-public abstract class JIconCustomizer extends JCustomizer { // should it be renamed to IconCustomizer because it is abstract
+abstract class JIconCustomizer extends JCustomizer { // should it be renamed to IconCustomizer because it is abstract
   
   
   private final ComponentLayoutListener imageUpdateListener = new ImageUpdateListener();
