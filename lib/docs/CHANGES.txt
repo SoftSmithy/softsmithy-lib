@@ -1,6 +1,6 @@
 Changes:
 
-v20030908:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fixes
+v20030909:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fixes
             -style specific classes moved from 
              org.softsmithy.lib.swing.customizer -> 
              org.softsmithy.lib.swing.style
