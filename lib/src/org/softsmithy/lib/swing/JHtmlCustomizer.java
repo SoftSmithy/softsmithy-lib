@@ -31,7 +31,7 @@ import org.softsmithy.lib.swing.customizer.*;
  *
  * @author  puce
  */
-public class JHtmlCustomizer extends JTextCustomizer {
+public class JHtmlCustomizer extends AbstractTextCustomizer {
   
   private static final String HTML_START = "<html><body>"; //<div align='";
   private static final String HTML_END = "</body></html>"; //"</font></div></body></html>";

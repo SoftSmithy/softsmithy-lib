@@ -33,6 +33,7 @@ CVS: Modified Files:
 CVS: 	Files.java 
 CVS: ----------------------------------------------------------------------
 
+ImageFileView & ImageFilter: constants in org.softsmithy.lib.io.Files changed
 
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
@@ -122,6 +123,17 @@ CVS: ----------------------------------------------------------------------
 org.softsmithy.lib.swing.JTextCustomizer -> org.softsmithy.lib.swing.customizer.AbstractTextCustomizer
 
 ->
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	HiddenStateManager.java EditableStateManager.java 
+CVS: Added Files:
+CVS: 	AbstractTextCustomizer.java 
+CVS: ----------------------------------------------------------------------
+
 
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
@@ -235,6 +247,43 @@ CVS: Modified Files:
 CVS: 	StandardActions.properties StandardActions_de.properties 
 CVS: 	StandardActions_en.properties 
 CVS: ----------------------------------------------------------------------
+
+HandleBorder: border insets changed
+
+added some javadoc
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	CustomizerBar.java CustomizerActionManager.java 
+CVS: ----------------------------------------------------------------------
+
+moved from org.softsmithy.lib.swing -> org.softsmithy.lib.swing.action
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	action/AbstractXAction.java action/ActionWrapper.java 
+CVS: 	action/CustomizerActionFactory.java 
+CVS: 	action/CustomizerActionManager.java 
+CVS: 	action/CustomizerItemListenerProvider.java 
+CVS: 	action/IconType.java action/ReflectiveXAction.java 
+CVS: 	action/XAction.java action/XActionDelegator.java 
+CVS: 	action/XActions.java action/XActions2.java 
+CVS: Removed Files:
+CVS: 	AbstractXAction.java ActionWrapper.java 
+CVS: 	CustomizerActionFactory.java CustomizerActionManager.java 
+CVS: 	CustomizerItemListenerProvider.java IconType.java 
+CVS: 	ReflectiveXAction.java XAction.java XActionDelegator.java 
+CVS: 	XActionWrapper.java XActions.java XActions2.java 
+CVS: ----------------------------------------------------------------------
+
+
+
 v20031023:  -number fields based on JFormattedTextField for int, long, short, 
              byte, double, float, BigInteger and BigDecimal added
             -TableCellEditors and CellRenderers based on these number 
