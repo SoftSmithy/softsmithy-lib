@@ -41,6 +41,16 @@ public class JPropertyTable extends JCellTable{
   
   public JPropertyTable(PropertyTableModel ptm){
     super(ptm);
+    init();
+  }
+  
+  private void init(){
+    //setPropertyRenderer("htmlBody", new TextFieldTableCellRenderer());
+  }
+  
+  public void reinit(){
+    super.reinit();
+    init();
   }
   
   public void setModel(TableModel model){

@@ -38,7 +38,7 @@ import org.softsmithy.lib.util.*;
  * @author  puce
  */
 public class JFontChooser extends JPanel {
-  private ResourceBundle rb = ResourceBundle.getBundle(getClass().getName(), getLocale());
+  private ResourceBundle rb = ResourceBundle.getBundle("org.softsmithy.lib.swing.JFontChooser", getLocale());
   private FontChooserDialog chooserDialog = null;
   
   public JFontChooser(){
@@ -330,11 +330,10 @@ public class JFontChooser extends JPanel {
   
   public class FontChooserDialog extends JChooser{
     
-    private Option option = Option.CANCEL;
     private Font initialFont;
     
     public FontChooserDialog(Component parent){
-      super(parent, rb.getString("title"), true, JFontChooser.this);
+      super(parent, rb.getString("title"), JFontChooser.this);
       try{
         JButton okButton = XActions.createButton(XActions.createXAction("ok", this, rb), IconType.NO_ICON, true, false);
         JButton cancelButton = XActions.createButton(XActions.createXAction("cancel", this, rb), IconType.NO_ICON, true, false);
@@ -346,12 +345,12 @@ public class JFontChooser extends JPanel {
     }
     public void ok(ActionEvent e){
       hide();
-      option = Option.APPROVE;
+      setOption(Option.APPROVE);
     }
     
     public void cancel(ActionEvent e){
       hide();
-      option = Option.CANCEL;
+      setOption(Option.CANCEL);
     }
     
     public void reset(ActionEvent e){
@@ -360,8 +359,8 @@ public class JFontChooser extends JPanel {
     
     public Option showUp(){
       initialFont = JFontChooser.this.getFont();
-      super.show();
-      return option;
+      return super.showUp();
     }
+    
   }
 }

@@ -1,4 +1,10 @@
 Changes:
+v20030616:  -i18n updates
+            -some bugs in org.softsmithy.lib.swing.JHtmlCustomizer removed
+            -org.softsmithy.lib.swing.JXTextField, 
+             org.softsmithy.lib.swing.table.PanelTableCellRenderer and 
+             org.softsmithy.lib.swing.table.TextFieldTableCellRenderer added
+            -some minor changes
 v20030523:  -org.softsmithy.lib.swing.JHtmlCustomizer bug fixes for foreground
              and font
             -org.softsmithy.lib.swing.HorizontalAlignment supports conversions 

@@ -35,6 +35,7 @@ public class JLine2DCustomizer extends JShapeCustomizer {
   
   /** Creates a new instance of JLine2DCustomizer */
   public JLine2DCustomizer() {
+    setOpaque(false);
   }
   
   /** Getter for property line2D.
