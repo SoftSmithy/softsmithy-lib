@@ -56,6 +56,7 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
     setPropertyEditor("y", new IntegerCellEditor(0, 10000, getLocale()));
     setPropertyEditor("width", new IntegerCellEditor(1, 10000, getLocale()));
     setPropertyEditor("height", new IntegerCellEditor(1, 10000, getLocale()));
+    setPropertyEditor("thickness", new LocalizedFloatCellEditor(1, 10000, getLocale()));
   }
   
   public void reinit(){
