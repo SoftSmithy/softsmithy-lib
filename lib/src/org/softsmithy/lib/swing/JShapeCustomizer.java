@@ -62,9 +62,11 @@ public class JShapeCustomizer extends JIconCustomizer {
   
   
   public void adjustIcon(){
-    Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
+    Rectangle innerArea = SwingUtilities.calculateInnerArea(getComponent(), null); //this, null);
+//    System.out.println("Bounds: "+ getBounds());
+//    System.out.println("Inner area: " + innerArea);
     Icon icon;
-    if (shapeIcon != null && shapeIcon.getShape() != null){
+    if (shapeIcon != null && shapeIcon.getShape() != null && innerArea.width > 0 && innerArea.height > 0){
       scaleIcon(innerArea);
       centerIcon(innerArea);
       
@@ -89,16 +91,16 @@ public class JShapeCustomizer extends JIconCustomizer {
   }
   
   private void scaleIcon(Rectangle innerArea){
-    double sx = (shapeIcon.getIconWidth() != 0.0) ? (double) innerArea.width / shapeIcon.getIconWidth() : 1.0;
-    double sy = (shapeIcon.getIconHeight() != 0.0) ? (double) innerArea.height / shapeIcon.getIconHeight() : 1.0;
-    shapeIcon.transform(AffineTransform.getScaleInstance(sx, sy));
+    double sx = (shapeIcon.getIconWidth() != 0.0) ? ((double) innerArea.width -0.25) / shapeIcon.getIconWidth() : 1.0;
+    double sy = (shapeIcon.getIconHeight() != 0.0) ? ((double) innerArea.height -0.25) / shapeIcon.getIconHeight() : 1.0;
+    shapeIcon = shapeIcon.getTransformedInstance(AffineTransform.getScaleInstance(sx, sy));
   }
   
   private void centerIcon(Rectangle innerArea){
     Rectangle2D bounds = shapeIcon.getShape().getBounds2D();
     double dx = innerArea.getCenterX() - bounds.getCenterX();
     double dy = innerArea.getCenterY() - bounds.getCenterY();
-    shapeIcon.transform(AffineTransform.getTranslateInstance(dx, dy));
+    shapeIcon = shapeIcon.getTransformedInstance(AffineTransform.getTranslateInstance(dx, dy));
   }
   
   /** Getter for property filled.

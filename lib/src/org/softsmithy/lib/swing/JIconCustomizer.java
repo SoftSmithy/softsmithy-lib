@@ -22,14 +22,18 @@ package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.*;
 import org.softsmithy.lib.awt.*;
+import org.softsmithy.lib.awt.event.*;
 
 /**
  *
  * @author  puce
  */
-public abstract class JIconCustomizer extends JCustomizer {
+public abstract class JIconCustomizer extends JCustomizer { // should it be renamed to IconCustomizer because it is abstract
   
+  
+  private final ComponentLayoutListener imageUpdateListener = new ImageUpdateListener();
   
   /** Creates a new instance of JImageCustomizer */
   public JIconCustomizer() {
@@ -58,7 +62,7 @@ public abstract class JIconCustomizer extends JCustomizer {
     return ((JLabel) getComponent()).getIcon();
   }
   
-
+  
   
   /** Setter for property fComponent.
    * @param fComponent New value of property fComponent.
@@ -86,6 +90,29 @@ public abstract class JIconCustomizer extends JCustomizer {
   protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
     super.reshapeRelOnly(dx, dy, dwidth, dheight);
     adjustIcon();
+  }
+  
+  public void addNotify() {
+    super.addNotify();
+    getParentCustomizerPane().addComponentLayoutListener(this, imageUpdateListener);
+  }
+  
+  public void removeNotify() {
+    getParentCustomizerPane().removeComponentLayoutListener(this, imageUpdateListener);
+    super.removeNotify();
+  }
+  
+  public void applyBorder(Border border) {
+    super.applyBorder(border);
+    adjustIcon();
+  }
+  
+  private class ImageUpdateListener implements ComponentLayoutListener{
+    
+    public void componentLayouted(ComponentLayoutEvent e) {
+      adjustIcon();
+    }
+    
   }
   
 }
