@@ -84,7 +84,8 @@ public class JXIconLabel extends JXLabel {
       throw new IllegalArgumentException("icon must be an instance of XIcon or null!");
     }
     originalIcon = icon instanceof XIcon ? (XIcon) icon : null;
-    setIconOnly(originalIcon);
+    //setIconOnly(originalIcon);
+    resizeIcon();
   }
   
   /** Getter for property xIcon.

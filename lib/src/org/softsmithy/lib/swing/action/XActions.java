@@ -36,8 +36,8 @@ import org.softsmithy.lib.swing.*;
 
 public class XActions {
   
-  private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
-  private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.StandardMenus";
+  //private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
+  private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.action.StandardMenus";
   private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
   private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
   

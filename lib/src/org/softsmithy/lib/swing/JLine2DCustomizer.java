@@ -40,11 +40,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
   
   /** Creates a new instance of JLine2DCustomizer */
   public JLine2DCustomizer() {
-    //getXIconLabel().setHorizontalAlignment(SwingConstants.CENTER);
-    //getXIconLabel().setVerticalAlignment(SwingConstants.CENTER);
     setOrientation(Line2DOrientation.HORIZONTAL);
-    setXIcon(lineIcon);
-    //setOpaque(false);
   }
   
   /** Getter for property line2D.
@@ -61,8 +57,8 @@ public class JLine2DCustomizer extends JXIconCustomizer {
    */
   public void setLine2D(Line2D line2D) {
     lineIcon.setShape(line2D);
+    setXIcon(lineIcon);
     revalidate(); // seems to be necessary in some cases
-    repaint();
   }
   
   /** Setter for property imageSrc.
@@ -75,6 +71,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
       throw new IllegalArgumentException("icon must be a Line2DIcon");
     }
     super.setXIcon((Line2DIcon) icon);
+    //getXIconLabel().revalidate();    
   }
   
   /** Getter for property orientation.
@@ -92,8 +89,6 @@ public class JLine2DCustomizer extends JXIconCustomizer {
   public void setOrientation(Line2DOrientation orientation) {
     this.orientation = orientation;
     setLine2D(orientation.getLine2D());
-    revalidate();
-    //adjustIcon();
   }
   
   /** Getter for property thickness.
@@ -112,8 +107,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
     BasicStroke stroke = (BasicStroke) lineIcon.getStroke();
     lineIcon.setStroke(new BasicStroke(thickness, stroke.getEndCap(), stroke.getLineJoin(),
     stroke.getMiterLimit(), stroke.getDashArray(),  stroke.getDashPhase()));
-    revalidate();
-    repaint();
+    setXIcon(lineIcon);
   }
   
   /** Getter for property color.

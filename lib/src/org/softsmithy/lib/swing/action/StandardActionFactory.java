@@ -29,7 +29,7 @@ import org.softsmithy.lib.util.*;
  */
 public abstract class StandardActionFactory extends TypesafeEnum{
   
-  private static final String RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
+  private static final String RB_BASE_NAME ="org.softsmithy.lib.swing.action.StandardActions";
   //private static final Map standardActions = new HashMap();
   
   
