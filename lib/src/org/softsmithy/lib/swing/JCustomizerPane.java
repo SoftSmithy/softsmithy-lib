@@ -7,18 +7,24 @@
 package puce.swing;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
+import puce.swing.customizer.*;
+
 
 /**
  *
  * @author  puce
  */
-public class JCustomizerPane extends JPanel {
+public class JCustomizerPane extends JPanel { //implements MouseListener{
   
   
   /** Holds value of property showingConstraints. */
   private boolean showingConstraints = true;
   
+  /** Holds value of property selectionManager. */
+  private final SelectionManager selectionManager = new SelectionManager();
   
   /** Creates new form JCustomizerPane */
   public JCustomizerPane() {
@@ -86,6 +92,55 @@ public class JCustomizerPane extends JPanel {
       insets.left, and y is at least insets.height. */
   }
   
+  /** Invoked when the mouse button has been clicked (pressed
+   * and released) on a component.
+   *
+   */
+  public void mouseClicked(MouseEvent e) {
+  }
+  
+  /** Invoked when the mouse enters a component.
+   *
+   */
+  public void mouseEntered(MouseEvent e) {
+  }
+  
+  /** Invoked when the mouse exits a component.
+   *
+   */
+  public void mouseExited(MouseEvent e) {
+  }
+  
+  /** Invoked when a mouse button has been pressed on a component.
+   *
+   */
+//  public void mousePressed(MouseEvent e) {
+//    JCustomizer comp = (JCustomizer) e.getComponent();
+//    if (e.isControlDown()){
+//      if (selecteds.contains(comp)){
+//        selecteds.remove(comp);
+//      } else {
+//        selecteds.add(comp);
+//      }
+//    } else {
+//      selecteds.clear();
+//      selecteds.add(comp);
+//    }
+//  }
+  
+  /** Invoked when a mouse button has been released on a component.
+   *
+   */
+  public void mouseReleased(MouseEvent e) {
+  }
+  
+  /** Getter for property selectionManager.
+   * @return Value of property selectionManager.
+   *
+   */
+  public SelectionManager getSelectionManager() {
+    return this.selectionManager;
+  }  
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables
