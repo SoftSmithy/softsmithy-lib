@@ -57,4 +57,21 @@ public class AWTUtilities {
     return rect;
   }
   
+  /*
+   * Not yet used!
+   */
+  public static Point calculateCenter(Component comp, Point point) {
+    Point center = point;
+    Rectangle bounds = comp.getBounds();
+    
+    if (center == null){
+      center = new Point();
+    }
+    
+    center.x = bounds.x + bounds.width/2;
+    center.y = bounds.y + bounds.height/2;
+    
+    return center; 
+  }
+  
 }

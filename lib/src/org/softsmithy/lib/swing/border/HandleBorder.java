@@ -24,6 +24,15 @@ public class HandleBorder extends AbstractBorder {
   public HandleBorder() {
     this(Color.black, 6);
   }
+  
+  public HandleBorder(Color lineColor) {
+    this(lineColor, 6);
+  }
+  
+  public HandleBorder(int thick) {
+    this(Color.black, thick);
+  }
+  
   public HandleBorder(Color lineColor, final int thick) {
     fLineColor = lineColor;
     fThick = thick;

@@ -8,9 +8,11 @@ public abstract class AbstractTableLayout implements TableLayout {
   
   private static final Dimension MAXIMUM_LAYOUT_SIZE = new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
   
-  /** Indicates whether or not the size of the cells are known for the last known
+  /** 
+   * Indicates whether or not the size of the cells are known for the last known
    * size of the container.  If valid is false or the container has been resized,
-   * the cell sizes must be recalculated using calculateSize. */
+   * the cell sizes must be recalculated using calculateSize. 
+   */
   private boolean valid;
   
   /** Previous known width of the container */
