@@ -133,4 +133,34 @@
                  private="${javadoc.private.opt}">
         </javadoc>
     </target>
+    
+    <!-- ==================== I18n Target ===================================== -->
+
+
+<!--
+
+  The "i18n" target creates a binary distribution of your i18n-files
+  in a directory structure ready to be archived in a tar.gz or zip file.
+  Note that this target depends on one other:
+  * "javadoc" so that the application Javadocs will have been created
+
+-->
+
+  <target name="i18n" depends="init,-pre-pre-jar"
+   description="Create i18n distribution">
+    <jar jarfile="${i18n.jar}"
+         basedir="${i18n.dir}"
+         manifest="${manifest-i18n.file}"
+        />
+         
+    <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
+          classpath="${build.home}"
+          fork="true"
+          dir="${i18n.home}">
+          <arg value="${app.name}-i18n" />
+          <arg value="../${dist.home}" />
+          <arg value="." />
+   </java>-->
+
+  </target>
 </project>
