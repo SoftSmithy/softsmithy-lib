@@ -95,7 +95,6 @@ public class InfiniteTableLayout extends AbstractTableLayout {
    */
   public void setDefaultColumnWidth(int defaultColumnWidth) {
     columns.setDefaultSize(defaultColumnWidth);
-    this.invalidateLayout(parent);
   }
   
   /** Getter for property defaultRowHeight.
@@ -110,7 +109,6 @@ public class InfiniteTableLayout extends AbstractTableLayout {
    */
   public void setDefaultRowHeight(int defaultRowHeight) {
     rows.setDefaultSize(defaultRowHeight);
-    this.invalidateLayout(parent);
   }
   
   
@@ -151,8 +149,9 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   
   public void drawGrid(Container container, Graphics g) {
     Rectangle innerArea = AWTUtilities.calculateInnerArea(container, null);
-    columns.draw(innerArea.x, innerArea.width, g);
-    rows.draw(innerArea.y, innerArea.height, g);
+    ensureValidity(innerArea);
+    columns.draw(innerArea.y, innerArea.height, g);
+    rows.draw(innerArea.x, innerArea.width, g);
   }
   
   public void insertColumn(int i, double width) {
@@ -455,7 +454,8 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     
     protected void calculateSizes(int innerSize) {
     }
-        public void draw(int startPixel, int pixelSize, Graphics g){
+    
+    public void draw(int startPixel, int pixelSize, Graphics g){
       int endPixel = startPixel + pixelSize - 1;
       for (int i=0; i< offsets.size(); i++){
         int offset = getOffset(i);

@@ -144,6 +144,9 @@ public abstract class AbstractTableLayout implements TableLayout {
   
   public void ensureValidity(Container container) {
     Rectangle innerArea = AWTUtilities.calculateInnerArea(container, null);
+    ensureValidity(innerArea);
+  } 
+  public void ensureValidity(Rectangle innerArea){
     if (! isValid(innerArea)){
       validateLayout(innerArea);
     }

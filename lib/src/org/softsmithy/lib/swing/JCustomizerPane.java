@@ -25,7 +25,7 @@ public class JCustomizerPane extends JPanel implements MouseListener{
   private boolean showingConstraints = true;
   
   /** Holds value of property selectionManager. */
-  private final SelectionManager selectionManager = new SelectionManager();
+  private SelectionManager selectionManager = new SelectionManager();
   
   /** Holds value of property customizerBar. */
   private CustomizerBar customizerBar;
@@ -171,6 +171,14 @@ public class JCustomizerPane extends JPanel implements MouseListener{
    */
   public void setCustomizerBar(CustomizerBar customizerBar) {
     this.customizerBar = customizerBar;
+  }
+  
+  /** Setter for property selectionManager.
+   * @param selectionManager New value of property selectionManager.
+   *
+   */
+  public void setSelectionManager(SelectionManager selectionManager) {
+    this.selectionManager = selectionManager;
   }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
