@@ -50,7 +50,6 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   private StateManager stateManager;
   private final Set listeners = new HashSet();
   private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
-  private final Style noneStyle = new CustomizerNoneStyle(this);
   
   /** Holds value of property model. */
   //private CustomizerModel model;
@@ -64,7 +63,9 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     add(glassPane, CONSTRAINTS);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
-    setStyle(getNoneStyle());
+    //setStyle(getNoneStyle());
+    
+    
     //setComponent(new JLabel("testtest"));
     //this.setOpaque(false);
     
@@ -373,14 +374,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    getStateManager().setSelectedBorderColor(selectedBorderColor);
   //  }
   
-  /** Getter for property noneStyle.
-   * @return Value of property noneStyle.
-   *
-   *
-   */
-  public Style getNoneStyle() {
-    return noneStyle;
-  }
+
   
   /** Getter for property usingDefaultNormalBorderColor.
    * @return Value of property usingDefaultNormalBorderColor.
@@ -414,29 +408,6 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     getStateManager().setUsingDefaultSelectedBorderColor(usingDefaultSelectedBorderColor);
   }
   
-  private static class CustomizerNoneStyle extends NoneStyle{
-    
-    public CustomizerNoneStyle(JCustomizer customizer){
-      super(customizer);
-    }
-    
-    public Color getBackground() {
-      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getBackground() : super.getBackground();
-    }
-    
-    public Font getFont() {
-      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getFont() : super.getFont();
-    }
-    
-    public Color getForeground() {
-      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().getForeground() : super.getForeground();
-    }
-    
-    public boolean isOpaque() {
-      return (((JCustomizer) getStyleable()).getComponent() != null) ? ((JCustomizer) getStyleable()).getComponent().isOpaque() : super.isOpaque();
-    }
-    
-  }
   
 }
 
