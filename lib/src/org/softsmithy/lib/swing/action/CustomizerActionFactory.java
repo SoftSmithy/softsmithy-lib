@@ -17,13 +17,14 @@
  * Created on 6. November 2002, 12:17
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.action;
 
 import java.awt.event.*;
 import java.beans.*;
 import java.lang.reflect.*;
 import java.util.*;
 import org.softsmithy.lib.beans.*;
+import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
@@ -36,121 +37,75 @@ public class CustomizerActionFactory {
   
   private SelectionManager selectionManager;
   
-  /** Creates a new instance of CustomizerActionFactory 
+  /** Creates a new instance of CustomizerActionFactory
    * @param selectionManager some actions work on the current selection
    */
   public CustomizerActionFactory(SelectionManager selectionManager) {
     this.selectionManager = selectionManager;
   }
   
-  public XAction createAlignLeftAction(Locale locale){
-    XAction action = null;
+  
+  public CustomizerAction createAlignLeftAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_LEFT, new String[]{"x"}, locale);
+  }
+  
+  private CustomizerAction createCustomizerAction(StandardActionFactory saf, String[] neededCustomizableProperties, Locale locale){
+    CustomizerAction action = null;
     try{
-      action = XActions.getAlignLeftAction(this, locale);
+      action = new ReflectiveCustomizerAction(this, saf.toString());
+      saf.configureXAction(action, locale);
+      action.setNeededCustomizableProperties(new HashSet(Arrays.asList(neededCustomizableProperties)));
     } catch(NoSuchMethodException ex){
       ex.printStackTrace(); // should not happen here
     }
     return action;
   }
   
-  public XAction createAlignTopAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getAlignTopAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
+  private CustomizerAction createDefaultCustomizerAction(StandardActionFactory saf, String[] neededCustomizableProperties, Locale locale){
+    CustomizerAction action = new DefaultCustomizerAction();
+    saf.configureXAction(action, locale);
+    action.setNeededCustomizableProperties(new HashSet(Arrays.asList(neededCustomizableProperties)));    
     return action;
   }
   
-  public XAction createAlignRightAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getAlignRightAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createAlignTopAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_TOP, new String[]{"y"}, locale);
   }
   
-  public XAction createAlignBottomAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getAlignBottomAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createAlignRightAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_RIGHT, new String[]{"x", "width"}, locale);
   }
   
-  public XAction createAlignJustifyHorizontalAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getAlignJustifyHorizontalAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createAlignBottomAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_BOTTOM, new String[]{"y", "height"}, locale);
   }
   
-  public XAction createAlignJustifyVerticalAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getAlignJustifyVerticalAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createAlignJustifyHorizontalAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_JUSTIFY_HORIZONTAL, new String[]{"width"}, locale);
   }
   
-  public XAction createTextAlignLeftAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getTextAlignLeftAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createAlignJustifyVerticalAction(Locale locale){
+    return createCustomizerAction(GeneralActionFactory.ALIGN_JUSTIFY_VERTICAL, new String[]{"height"}, locale);
   }
   
-  public XAction createTextAlignCenterAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getTextAlignCenterAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createTextAlignLeftAction(Locale locale){
+    return createCustomizerAction(TextActionFactory.ALIGN_LEFT, new String[]{"horizontalAlignment"}, locale);
   }
   
-  public XAction createTextAlignRightAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getTextAlignRightAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createTextAlignCenterAction(Locale locale){
+    return createCustomizerAction(TextActionFactory.ALIGN_CENTER, new String[]{"horizontalAlignment"}, locale);
   }
   
-  public XAction createTextBoldAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getTextBoldAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createTextAlignRightAction(Locale locale){
+    return createCustomizerAction(TextActionFactory.ALIGN_RIGHT, new String[]{"horizontalAlignment"}, locale);
   }
   
-  public XAction createTextItalicAction(Locale locale){
-    XAction action = null;
-    try{
-      action = XActions.getTextItalicAction(this, locale);
-    } catch(NoSuchMethodException ex){
-      ex.printStackTrace(); // should not happen here
-    }
-    return action;
+  public CustomizerAction createTextBoldAction(Locale locale){
+    return createDefaultCustomizerAction(TextActionFactory.BOLD, new String[]{"font"}, locale);
+  }
+  
+  public CustomizerAction createTextItalicAction(Locale locale){
+    return createDefaultCustomizerAction(TextActionFactory.ITALIC, new String[]{"font"}, locale);
   }
   
   public void alignLeft(ActionEvent e){
@@ -179,7 +134,7 @@ public class CustomizerActionFactory {
   public void alignRight(ActionEvent e){
     alignHorizontal(HorizontalAlignment.RIGHT,
     selectionManager.getActiveCustomizer().getX()
-    + selectionManager.getActiveCustomizer().getWidth());    
+    + selectionManager.getActiveCustomizer().getWidth());
   }
   
   public void alignBottom(ActionEvent e){
@@ -260,10 +215,5 @@ public class CustomizerActionFactory {
     }
   }
   
-  public void textBold(ActionEvent e){
-  }
-  
-  public void textItalic(ActionEvent e){
-  }
   
 }

@@ -18,13 +18,14 @@
  * Created on 6. November 2002, 12:17
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.action;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
 import java.util.*;
 import org.softsmithy.lib.awt.event.*;
+import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 

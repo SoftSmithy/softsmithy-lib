@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.action;
 
 import java.awt.event.*;
 import javax.swing.event.EventListenerList;

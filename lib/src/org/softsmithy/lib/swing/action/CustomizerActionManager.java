@@ -18,7 +18,7 @@
  * Created on 22. Oktober 2002, 16:33
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.swing.action;
 
 import java.util.*;
 import org.softsmithy.lib.swing.event.*;
@@ -38,7 +38,7 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class CustomizerActionManager implements CustomizerSelectionListener {
   
-  private final Map actions = new HashMap();
+  private final Set actions = new HashSet();
   
   /** Creates a new instance of CustomizerActionManager */
   public CustomizerActionManager() {
@@ -46,10 +46,10 @@ public class CustomizerActionManager implements CustomizerSelectionListener {
   
   public void selectionChanged(CustomizerSelectionEvent e) {
     Set commonProperties = e.getCommonCustomizableProperties(); //JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
-    for (Iterator i = actions.keySet().iterator(); i.hasNext();){
-      XAction action = (XAction) i.next();
+    for (Iterator i = actions.iterator(); i.hasNext();){
+      CustomizerAction action = (CustomizerAction) i.next();
       if (e.getSelectedCustomizers().size() > 0){
-        action.setEnabled(commonProperties.containsAll((Set) actions.get(action)));
+        action.setEnabled(commonProperties.containsAll(action.getNeededCustomizableProperties()));
       } else {
         action.setEnabled(false);
       }
@@ -57,11 +57,11 @@ public class CustomizerActionManager implements CustomizerSelectionListener {
     
   }
   
-  public void addAction(XAction action, Set properties){
-    actions.put(action, properties);
+  public void addAction(CustomizerAction action){
+    actions.add(action);
   }
   
-  public void removeAction(XAction action){
+  public void removeAction(CustomizerAction action){
     actions.remove(action);
   }
   
