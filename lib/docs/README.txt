@@ -9,6 +9,17 @@ have any questions or comments feel free to contact me:
 puce@users.sourceforge.net
 
 Changes:
+v20030319:  -org.softsmithy.lib.swing.JPropertyTable added
+            -org.softsmithy.lib.swing.JCustomizerPropertyTable added
+            -org.softsmithy.lib.swing.JCustomizerPropertyPane removed
+            -org.softsmithy.lib.swing.customizer.CustomizerPropertyTable removed
+            -org.softsmithy.lib.util.ResourceBundleCache removed
+            -redraw problem after resizing a JCustomizer solved
+            -java.util.Locale support classes:
+              -org.softsmithy.lib.util.Locales (added)
+              -org.softsmithy.lib.beans.XMLEncoderX
+              -org.softsmithy.lib.swing.JXTable
+            -several convenience constructors for JCustomizer and its subclasses
 v04032003:  -Fixed some bugs with setting styles
             -Added a property table model for arbitrary beans 
              (org.softsmithy.lib.swing.table.PropertyTableModel)
