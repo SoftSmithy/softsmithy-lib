@@ -483,19 +483,29 @@ public class XActions {
     return createStandardMenu("edit", locale);
   }
   
+  public static JWindowMenu createWindowMenu(Locale locale) {
+    JWindowMenu menu = new JWindowMenu();
+    configureStandardMenu(menu, "window", locale);
+    return menu;
+  }
+  
   public static JMenu createHelpMenu(Locale locale) {
     return createStandardMenu("help", locale);
   }
   
   private static JMenu createStandardMenu(String name, Locale locale){
-    ResourceBundle rb = standardMenusCache.getBundle(locale);
     JMenu menu = new JMenu();
+    configureStandardMenu(menu, name, locale);
+    return menu;
+  }
+  
+  private static void configureStandardMenu(JMenu menu, String name, Locale locale){
+    ResourceBundle rb = standardMenusCache.getBundle(locale);
     try {
       menu.setText(rb.getString(name + "." + "text"));
     } catch (MissingResourceException ex) {
       // ignore it
     }
-    return menu;
   }
   
 }
