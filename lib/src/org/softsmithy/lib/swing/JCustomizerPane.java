@@ -43,8 +43,8 @@ import org.softsmithy.lib.swing.customizer.*;
 public class JCustomizerPane extends AbstractCustomizer implements MouseListener{
   
   
-  /** Holds value of property showingConstraints. */
-  private boolean showingConstraints = true;
+  /** Holds value of property showingLayoutHelp. */
+  private boolean showingLayoutHelp = true;
   
   /** Holds value of property selectionManager. */
   private SelectionManager selectionManager = new SelectionManager();
@@ -116,15 +116,15 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   /** Getter for property showingConstraints.
    * @return Value of property showingConstraints.
    */
-  public boolean isShowingConstraints() {
-    return this.showingConstraints;
+  public boolean isShowingLayoutHelp() {
+    return this.showingLayoutHelp;
   }
   
   /** Setter for property showingConstraints.
    * @param showingConstraints New value of property showingConstraints.
    */
-  public void setShowingConstraints(boolean showingConstraints) {
-    this.showingConstraints = showingConstraints;
+  public void setShowingLayoutHelp(boolean showingLayoutHelp) {
+    this.showingLayoutHelp = showingLayoutHelp;
   }
   
   /** Calls the UI delegate's paint method, if the UI delegate
@@ -151,7 +151,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
    */
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if (isShowingConstraints()){
+    if (isShowingLayoutHelp()){
       Color oldColor = g.getColor();
       g.setColor(getLayoutHelpColor());
       getCustomizerLayout().drawLayoutHelp(this, g);
@@ -470,7 +470,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   public void setDefaultNormalCustomizerBorderColor(Color defaultNormalCustomizerBorderColor) {
     Color oldDefaultNormalCustomizerBorderColor = this.defaultNormalCustomizerBorderColor;
     this.defaultNormalCustomizerBorderColor = defaultNormalCustomizerBorderColor;
-    System.out.println("defaultNormalCustomizerBorderColor changed");
+    //System.out.println("defaultNormalCustomizerBorderColor changed");
     firePropertyChange("defaultNormalCustomizerBorderColor", oldDefaultNormalCustomizerBorderColor, defaultNormalCustomizerBorderColor);
   }
   
