@@ -13,9 +13,6 @@
  */
 
 /*
- * The CustomizerActionFactory provides default implementations of some actions
- * which can be usefull when working with customizers. Just use the createXXXAction
- * methods to create the Actions..
  *
  * Created on 6. November 2002, 12:17
  */
@@ -30,7 +27,9 @@ import org.softsmithy.lib.beans.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
- *
+ * The CustomizerActionFactory provides default implementations of some actions
+ * which can be usefull when working with customizers. Just use the createXXXAction
+ * methods to create the Actions.
  * @author  puce
  */
 public class CustomizerActionFactory {
@@ -38,7 +37,7 @@ public class CustomizerActionFactory {
   private SelectionManager selectionManager;
   
   /** Creates a new instance of CustomizerActionFactory 
-   * @paran selectionManager some actions work on the current selection
+   * @param selectionManager some actions work on the current selection
    */
   public CustomizerActionFactory(SelectionManager selectionManager) {
     this.selectionManager = selectionManager;
