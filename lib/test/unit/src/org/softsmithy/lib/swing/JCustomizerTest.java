@@ -359,6 +359,9 @@ public class JCustomizerTest extends TestCase {
           //fill the body in order to provide useful implementation
         }
         
+        public Rectangle createRelRectangle(MouseEvent e) {
+        }
+        
       }
       
     }

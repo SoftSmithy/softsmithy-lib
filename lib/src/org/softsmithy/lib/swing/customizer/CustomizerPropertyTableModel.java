@@ -38,11 +38,11 @@ public class CustomizerPropertyTableModel extends AbstractCustomizerPropertyTabl
     }
   }
   
-  public void customizerFinishReshapeRel(CustomizerEvent e) {
+  public void customizerReshapeRel(CustomizerEvent e) {
     updateBounds();
   }
   
-  public void customizerReshapeRel(CustomizerEvent e) {
+  public void customizerResetBoundsRel(CustomizerEvent e) {
     updateBounds();
   }
   

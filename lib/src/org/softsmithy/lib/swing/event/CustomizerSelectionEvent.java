@@ -40,9 +40,9 @@ public class CustomizerSelectionEvent extends EventObject {
   /** Creates a new instance of CustomizerSelectionEvent */
   public CustomizerSelectionEvent(Object source, Set selectedCustomizers, JCustomizer activeCustomizer, Set commonCustomizableProperties) {
     super(source);
-    this.selectedCustomizers = selectedCustomizers;
+    this.selectedCustomizers = Collections.unmodifiableSet(new LinkedHashSet(selectedCustomizers));
     this.activeCustomizer = activeCustomizer;
-    this.commonCustomizableProperties = commonCustomizableProperties;
+    this.commonCustomizableProperties = Collections.unmodifiableSet(new LinkedHashSet(commonCustomizableProperties));
   }
   
   /** Getter for property selectedCustomizers.

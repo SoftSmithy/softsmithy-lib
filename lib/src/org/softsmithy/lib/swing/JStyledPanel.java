@@ -99,10 +99,16 @@ public class JStyledPanel extends JPanel implements Styleable{
    *
    */
   public void setBackground(Color bg) {
+    System.out.println("Set background!!!!!!!!!!!!!!!!!!");
+    System.out.println("Old bg: " + getBackground());
+    System.out.println("New bg: " + bg);
     Styles.setBackground(this, bg, inited);
   }
   
   public void setDefaultBackground(Color bg){
+    System.out.println("Set default background!!!!!!!!!!!!!!!!!!");
+    System.out.println("Old bg: " + getBackground());
+    System.out.println("New bg: " + bg);
     super.setBackground(bg);
   }
   

@@ -36,7 +36,7 @@ public class CustomizerActionManager implements CustomizerSelectionListener {
   }
   
   public void selectionChanged(CustomizerSelectionEvent e) {
-    Set commonProperties = JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
+    Set commonProperties = e.getCommonCustomizableProperties(); //JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
     for (Iterator i = actions.keySet().iterator(); i.hasNext();){
       XAction action = (XAction) i.next();
       if (e.getSelectedCustomizers().size() > 0){

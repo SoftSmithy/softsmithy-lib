@@ -39,6 +39,10 @@ import org.softsmithy.lib.test.*;
  * Eg. the component can be moved or resized with the mouse.
  *
  * Note: JCustomizer expects a JCustomizerPane as its parent.
+ * Note: If you're interested in the values of the properties "x", "y", "width"
+ *       and "height", then you might want to register a CustomizerListener in
+ *       addition to PropertyChangeListeners to listen for all changes, absolute 
+ *       and relative ones.
  *
  * @author  puce
  */
@@ -154,30 +158,44 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    tl.layoutComponent(pane, this);
   //  }
   
-//  public void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
-//    getParentCustomizerPane().getCustomizerLayout().setAbsoluteBounds(this,
-//    calculateBounds(dx, dy, dwidth, dheight));
-//    //    CustomizerConstraints constr = cl.getCustomizerConstraints(this);
-//    //    constr.setAbsoluteBounds(bounds);
-//    //cl.setCustomizerConstraints(this, constr);
-//  }
+  //  public void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
+  //    getParentCustomizerPane().getCustomizerLayout().setAbsoluteBounds(this,
+  //    calculateBounds(dx, dy, dwidth, dheight));
+  //    //    CustomizerConstraints constr = cl.getCustomizerConstraints(this);
+  //    //    constr.setAbsoluteBounds(bounds);
+  //    //cl.setCustomizerConstraints(this, constr);
+  //  }
   
+  /**
+   * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
+   */
   public void reshapeRel(int dx, int dy, int dwidth, int dheight) {
-     getParentCustomizerPane().setAbsoluteCustomizerBounds(this, calculateBounds(dx, dy, dwidth, dheight));
-//    reshapeRelOnly(dx, dy, dwidth, dheight);
-//    JCustomizerPane pane = (JCustomizerPane) getParent();
-//    CustomizerLayout cl = pane.getCustomizerLayout();
-//    cl.layoutCustomizer(pane, this);
-    revalidate(); // seems to be necessary?!?
-    repaint();
+    reshapeRelOnly(dx, dy, dwidth, dheight);
     fireCustomizerReshapeRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
+  protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight){
+    getParentCustomizerPane().setAbsoluteCustomizerBounds(this, calculateBounds(dx, dy, dwidth, dheight));
+    //    reshapeRelOnly(dx, dy, dwidth, dheight);
+    //    JCustomizerPane pane = (JCustomizerPane) getParent();
+    //    CustomizerLayout cl = pane.getCustomizerLayout();
+    //    cl.layoutCustomizer(pane, this);
+    revalidate(); // seems to be necessary?!?
+    repaint();
+  }
+  
+  /**
+   * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
+   */
   public void setBoundsRel(int dx, int dy, int dwidth, int dheight){
+    setBoundsRelOnly(dx, dy, dwidth, dheight);
+    fireCustomizerResetBoundsRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
+  }
+  
+  protected void setBoundsRelOnly(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
     setBounds(bounds);
     repaint();
-    fireCustomizerResetBoundsRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
   private Rectangle calculateBounds(int dx, int dy, int dwidth, int dheight){
@@ -233,13 +251,13 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
-//  /*package-private*/ void registerListeners(JCustomizerPane parent){
-//    // default: do nothing
-//  }
-//  
-//  /*package-private*/ void unregisterListeners(JCustomizerPane parent){
-//    // default: do nothing
-//  }
+  //  /*package-private*/ void registerListeners(JCustomizerPane parent){
+  //    // default: do nothing
+  //  }
+  //
+  //  /*package-private*/ void unregisterListeners(JCustomizerPane parent){
+  //    // default: do nothing
+  //  }
   
   //  public void fireCustomizerDelete(CustomizerEvent e){
   //    for (Iterator i=listeners.iterator(); i.hasNext();){
@@ -284,20 +302,40 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     getGlassPane().setBorder(border);
   }
   
+  /**
+   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+   */
   public void setX(int x) {
-    reshapeRel(x-getX(), 0, 0, 0);
+    int oldValue = getX();
+    reshapeRelOnly(x-getX(), 0, 0, 0);
+    firePropertyChange("x", oldValue, getX());
   }
   
+  /**
+   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+   */
   public void setY(int y) {
-    reshapeRel(0, y-getY(), 0, 0);
+    int oldValue = getY();
+    reshapeRelOnly(0, y-getY(), 0, 0);
+    firePropertyChange("y", oldValue, getY());
   }
   
+  /**
+   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+   */
   public void setWidth(int width) {
-    reshapeRel(0, 0, width-getWidth(), 0);
+    int oldValue = getWidth();
+    reshapeRelOnly(0, 0, width-getWidth(), 0);
+    firePropertyChange("width", oldValue, getWidth());
   }
   
+  /**
+   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+   */
   public void setHeight(int height) {
-    reshapeRel(0, 0, 0, height-getHeight());
+    int oldValue = getX();
+    reshapeRelOnly(0, 0, 0, height-getHeight());
+    firePropertyChange("height", oldValue, getHeight());
   }
   
   /** Returns the tooltip string that has been set with
@@ -376,7 +414,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    getStateManager().setSelectedBorderColor(selectedBorderColor);
   //  }
   
-
+  
   
   /** Getter for property usingDefaultNormalBorderColor.
    * @return Value of property usingDefaultNormalBorderColor.

@@ -48,7 +48,10 @@ public abstract class AbstractCustomizer extends JStyledPanel {
     return this.customizableProperties;
   }
   
-  /** Setter for property customizableProperties.
+  /** 
+   * Setter for property customizableProperties.
+   * This property is used by different other classes to find which properties 
+   * to listen for. A set of bound property names is expected (Set of Strings).
    * @param customizableProperties New value of property customizableProperties.
    *
    */

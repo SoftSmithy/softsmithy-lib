@@ -104,8 +104,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public void applyCursor(){
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 1, 1, 0, 0);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 1, 1, 0, 0);
       }
     };
     nResizeState = new ResizeState(customizer){
@@ -115,8 +115,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getNHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 0, 1, 0, -1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 0, 1, 0, -1);
       }
     };
     nEResizeState = new ResizeState(customizer){
@@ -126,8 +126,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getNEHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 0, 1, 1, - 1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 0, 1, 1, - 1);
       }
     };
     
@@ -138,8 +138,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getEHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 0, 0, 1, 0);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 0, 0, 1, 0);
       }
     };
     sEResizeState = new ResizeState(customizer){
@@ -149,8 +149,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getSEHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 0, 0, 1, 1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 0, 0, 1, 1);
       }
     };
     sResizeState = new ResizeState(customizer){
@@ -160,8 +160,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getSHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 0, 0, 0, 1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 0, 0, 0, 1);
       }
     };
     sWResizeState = new ResizeState(customizer){
@@ -171,8 +171,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getSWHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 1, 0, - 1, 1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 1, 0, - 1, 1);
       }
     };
     wResizeState = new ResizeState(customizer){
@@ -182,8 +182,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getWHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 1, 0, - 1, 0);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 1, 0, - 1, 0);
       }
     };
     nWResizeState = new ResizeState(customizer){
@@ -193,8 +193,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return getHandleBorder().getNWHandle();
       }
-      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
-        return createCustomizerEvent(e, 1, 1, - 1, - 1);
+      public Rectangle createRelRectangle(MouseEvent e) {
+        return createRelRectangle(e, 1, 1, - 1, - 1);
       }
     };
     resizeStates = new ResizeState[]{nResizeState, nEResizeState, eResizeState, sEResizeState,
@@ -760,7 +760,8 @@ public class StateManager implements FocusListener, MouseInputListener {
         dragging = true;
       }
       //      e.translatePoint(- startX, - startY);
-      getCustomizer().fireCustomizerResetBoundsRel(createCustomizerEvent(e));
+      Rectangle relRect = createRelRectangle(e);
+      getCustomizer().setBoundsRel(relRect.x, relRect.y, relRect.width, relRect.height);//fireCustomizerResetBoundsRel(createRelRectangle(e));
       //      e.translatePoint(startX, startY);
       lastX = e.getX();
       lastY = e.getY();
@@ -768,14 +769,15 @@ public class StateManager implements FocusListener, MouseInputListener {
     
     public void mouseReleased(MouseEvent e){
       if (isDragging()){
-        getCustomizer().fireCustomizerReshapeRel(createCustomizerEvent(e));
+        Rectangle relRect = createRelRectangle(e);
+        getCustomizer().reshapeRel(relRect.x, relRect.y, relRect.width, relRect.height);//fireCustomizerReshapeRel(createCustomizerEvent(e));
         dragging = false;
       }
     }
     
-    public abstract CustomizerEvent createCustomizerEvent(MouseEvent e);
+    public abstract Rectangle createRelRectangle(MouseEvent e);
     
-    public CustomizerEvent createCustomizerEvent(MouseEvent e, int xFactor,
+    public Rectangle createRelRectangle(MouseEvent e, int xFactor,
     int yFactor, int widthFactor, int heightFactor){
       int dx = e.getX() - getStartX();
       int dy = e.getY() - getStartY();
@@ -791,7 +793,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       } else {
         dheight = e.getY() - getStartY();
       }
-      return new CustomizerEvent(getCustomizer(), xFactor*dx,  yFactor*dy, widthFactor*dwidth, heightFactor*dheight);
+      return new Rectangle(xFactor*dx,  yFactor*dy, widthFactor*dwidth, heightFactor*dheight);
     }
     
     /** Getter for property lastX.

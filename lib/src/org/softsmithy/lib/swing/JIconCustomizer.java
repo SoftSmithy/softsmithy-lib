@@ -83,7 +83,7 @@ public abstract class JIconCustomizer extends JCustomizer {
   
   public abstract void adjustIcon();
   
-  public void reshapeRel(int dx, int dy, int dwidth, int dheight) {
+  protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
     super.reshapeRel(dx, dy, dwidth, dheight);
     adjustIcon();
   }

@@ -29,8 +29,8 @@ import java.util.*;
 public interface CustomizerListener extends EventListener {
   
   
+  void customizerResetBoundsRel(CustomizerEvent e);
   void customizerReshapeRel(CustomizerEvent e);
-  void customizerFinishReshapeRel(CustomizerEvent e);
 //  void customizerDelete(CustomizerEvent e);
   
 }

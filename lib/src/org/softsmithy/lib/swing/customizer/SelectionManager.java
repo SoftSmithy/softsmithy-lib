@@ -41,6 +41,8 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class SelectionManager implements PropertyChangeListener, CustomizerListener{
   
+//  private static final Set RECTANGLE_PROPERTIES = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[] {"x", "y", "width", "height"})));
+  
   private final List selectedList = new ArrayList();
   private final Set selectedSet = new LinkedHashSet();
   
@@ -53,6 +55,14 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
   
   /** Holds value of property commonCustomizableProperties. */
   private Set commonCustomizableProperties = new LinkedHashSet();
+//  private Set commonCustomizableBoundProperties = new HashSet();
+
+  
+  private int dxFactor = 0;
+  private int dyFactor = 0;
+  private int dwidthFactor = 0;
+  private int dheightFactor = 0;
+  
   
   /** Creates a new instance of SelectionManager */
   public SelectionManager() {
@@ -153,18 +163,6 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     }
   }
   
-  public void customizerResetBoundsRel(CustomizerEvent e){
-    for (int i=0; i<selectedList.size(); i++){
-      JCustomizer customizer = (JCustomizer) selectedList.get(i);
-      customizer.setBoundsRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
-      customizer.doLayout();
-    }
-  }
-  public void customizerReshapeRel(CustomizerEvent e){
-    for (int i=0; i<selectedList.size(); i++){
-      ((JCustomizer) selectedList.get(i)).reshapeRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
-    }
-  }
   
   public void deleteSelection() {
     for (int i=0; i<selectedList.size(); i++){
@@ -233,10 +231,18 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
       }
     }
     this.activeCustomizer = selectedList.isEmpty() ? null : (JCustomizer) selectedList.get(selectedList.size()-1);
-    this.commonCustomizableProperties = Collections.unmodifiableSet(JCustomizer.getCommonCustomizableProperties(selectedSet));
+    this.commonCustomizableProperties = JCustomizer.getCommonCustomizableProperties(selectedSet); // Collections.unmodifiableSet(JCustomizer.getCommonCustomizableProperties(selectedSet));
+    System.out.println("Properties: "+this.commonCustomizableProperties);
+//    Set commonCustomizableRectangleProperties = new HashSet(RECTANGLE_PROPERTIES);
+//    commonCustomizableRectangleProperties.retainAll(this.commonCustomizableProperties); // only the wanted rectangle properties
+//    System.out.println("Rectangle Properties: "+commonCustomizableRectangleProperties);
+//    this.commonCustomizableBoundProperties = new HashSet(this.commonCustomizableProperties);
+//    this.commonCustomizableBoundProperties.removeAll(commonCustomizableRectangleProperties); // only the bound properties
+//    System.out.println("Bound properties: "+this.commonCustomizableBoundProperties);
+    resetFactors();
     if (getActiveCustomizer() != null){
       getActiveCustomizer().addCustomizerListener(this);
-      for (Iterator i=commonCustomizableProperties.iterator(); i.hasNext();){
+      for (Iterator i=this.commonCustomizableProperties.iterator(); i.hasNext();){
         String property = (String) i.next();
         System.out.println("Property Change Listener added for: " + property);
         getActiveCustomizer().addPropertyChangeListener(property, this);
@@ -260,6 +266,26 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         ex.printStackTrace();
       }
     }
+  }
+  
+  public void customizerResetBoundsRel(CustomizerEvent e){
+    for (int i=0; i<selectedList.size()-1; i++){
+      JCustomizer customizer = (JCustomizer) selectedList.get(i);
+      customizer.setBoundsRel(dxFactor*e.getDx(), dyFactor*e.getDy(), dwidthFactor*e.getDwidth(), dheightFactor*e.getDheight());
+      customizer.doLayout();
+    }
+  }
+  public void customizerReshapeRel(CustomizerEvent e){
+    for (int i=0; i<selectedList.size()-1; i++){
+      ((JCustomizer) selectedList.get(i)).reshapeRel(dxFactor*e.getDx(), dyFactor*e.getDy(), dwidthFactor*e.getDwidth(), dheightFactor*e.getDheight());
+    }
+  }
+  
+  private void resetFactors(){
+    dxFactor = commonCustomizableProperties.contains("x") ? 1 : 0;
+    dyFactor = commonCustomizableProperties.contains("y") ? 1 : 0;
+    dwidthFactor = commonCustomizableProperties.contains("width") ? 1 : 0;
+    dheightFactor = commonCustomizableProperties.contains("height") ? 1 : 0;
   }
   
 }

@@ -1,5 +1,27 @@
 Changes:
 
+Editor for property "thickness" set.
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCustomizerPropertyTable.java 
+CVS: ----------------------------------------------------------------------
+
+CustomizerNoneStyle didn't work (see how setBackground, setForground and setFont 
+are implemented in JComponent and Component). This class wasn't really necessary
+though. Alternative: PropertyChangeListeners have to listen on the enclosed component
+instead of the JCustomizer!
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	JCustomizer.java 
+CVS: ----------------------------------------------------------------------
 
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
