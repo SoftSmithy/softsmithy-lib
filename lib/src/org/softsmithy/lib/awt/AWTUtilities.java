@@ -23,7 +23,7 @@ package org.softsmithy.lib.awt;
 import java.awt.*;
 
 /**
- *
+ * A collection of utility methods for AWT.
  * @author  puce
  */
 public class AWTUtilities {
@@ -73,6 +73,12 @@ public class AWTUtilities {
   
   /*
    * Not yet used!
+   */
+  /**
+   * Calculates the center of a Component.
+   * @param comp the component
+   * @param point if not null, this point is used as return value
+   * @return the center of the component
    */
   public static Point calculateCenter(Component comp, Point point) {
     Point center = point;

@@ -1,7 +1,7 @@
 Changes:
 
 
-ShapeIcon repsect aspect ratio
+ShapeIcon respect aspect ratio
 -some minor changes
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies

@@ -173,15 +173,15 @@ public class ShapeIconTest extends TestCase {
     newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(NEW_WIDTH, -1);
     newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(NEW_WIDTH, -1);
     assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
+    assertEquals(24, newFilledIcon.getIconHeight());
     assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
+    assertEquals(24, newBorderIcon.getIconHeight());
     
     newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(-1, NEW_HEIGHT);
     newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(-1, NEW_HEIGHT);
-    assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
+    assertEquals(25, newFilledIcon.getIconWidth());
     assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
-    assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
+    assertEquals(25, newBorderIcon.getIconWidth());
     assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
   }
   
