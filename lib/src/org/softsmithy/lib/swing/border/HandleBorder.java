@@ -48,10 +48,10 @@ public class HandleBorder extends AbstractBorder {
     this(6, lineColor);
   }
   
-    public HandleBorder(int thick, Color lineColor) {
+  public HandleBorder(int thick, Color lineColor) {
     this(thick, lineColor, thick/2);
   }
-    
+  
   public HandleBorder(int thick) {
     this(thick, Color.black);
   }
@@ -147,13 +147,21 @@ public class HandleBorder extends AbstractBorder {
       }
     }
   }
-  public Insets getBorderInsets() {
-    return new Insets(fThick,fThick,fThick,fThick);
+  public Insets getBorderInsets(Component c) {
+    return getBorderInsets(c, new Insets(0, 0, 0, 0));
   }
+  
+  public Insets getBorderInsets(Component c, Insets insets) {
+    insets.left = insets.top = insets.right = insets.bottom = fLineInset+1;
+    return insets;
+  }
+  
+  
   protected void paintRectangle(Component c, Graphics g, int w, int h) {
     g.setColor(fLineColor);
     g.drawRect(fLineInset,fLineInset,w-2*fLineInset-1,h-2*fLineInset-1);
   }
+  
   protected void paintHandles(Component c, Graphics g, int w, int h) {
     Graphics2D g2 = (Graphics2D) g;
     g2.setColor(fLineColor);
@@ -222,6 +230,7 @@ public class HandleBorder extends AbstractBorder {
   public Handle[] getHandles(){
     return fHandles;
   }
+  
   
   
   public static abstract class Handle{
