@@ -21,12 +21,13 @@
 package org.softsmithy.lib.swing;
 
 import javax.swing.*;
+import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *
  * @author  puce
  */
-public abstract class JButtonCustomizer extends JTextCustomizer {
+public abstract class JButtonCustomizer extends AbstractTextCustomizer {
   
   /** Creates a new instance of JLabelCustomizer */
   public JButtonCustomizer() {

@@ -28,7 +28,7 @@ import javax.swing.*;
  *
  * @author  puce
  */
-public class ShapeIcon implements Icon {
+public class ShapeIcon implements XIcon {
   
   /** Holds value of property shape. */
   private Shape shape = null;
@@ -53,7 +53,7 @@ public class ShapeIcon implements Icon {
    *
    */
   public int getIconHeight() {
-    return shape != null ? shape.getBounds().height + shape.getBounds().y : 0;
+    return shape != null ? shape.getBounds().height : -1; //+ shape.getBounds().y : 0;
   }
   
   /** Returns the icon's width.
@@ -62,7 +62,7 @@ public class ShapeIcon implements Icon {
    *
    */
   public int getIconWidth() {
-    return shape != null ? shape.getBounds().width + shape.getBounds().x : 0;
+    return shape != null ? shape.getBounds().width : -1; //+ shape.getBounds().x : 0;
   }
   
   /** Draw the icon at the specified location.  Icon implementations
@@ -93,7 +93,7 @@ public class ShapeIcon implements Icon {
    */
   public Shape getShape() {
     return this.shape;
-  }  
+  }
   
   /** Setter for property shape.
    * @param shape New value of property shape.
@@ -135,8 +135,22 @@ public class ShapeIcon implements Icon {
     this.stroke = stroke;
   }
   
-  public void transform(AffineTransform at){
-    setShape(at.createTransformedShape(getShape()));
+  //  public void transform(AffineTransform at){
+  //    setShape(at.createTransformedShape(getShape()));
+  //  }
+  
+  public ShapeIcon getTransformedInstance(AffineTransform at){
+    ShapeIcon icon = getShape() != null ? new ShapeIcon(at.createTransformedShape(getShape()))
+    : new ShapeIcon();
+    icon.setFilled(isFilled());
+    icon.setStroke(getStroke());
+    return icon;
+  }
+  
+  public XIcon getScaledInstance(int newWidth, int newHeight) { //????
+    double sx = (getIconWidth() > 0.0) ? ((double) newWidth -0.25) / getIconWidth() : 1.0;
+    double sy = (getIconHeight() > 0.0) ? ((double) newHeight -0.25) / getIconHeight() : 1.0;
+    return getTransformedInstance(AffineTransform.getScaleInstance(sx, sy));
   }
   
 }
