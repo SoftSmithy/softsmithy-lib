@@ -58,7 +58,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         }
       }
       public void applyBorder(){
-        customizer.setBorder(LINE_BORDER);
+        customizer.applyBorder(LINE_BORDER);
       }
     };
     
@@ -412,7 +412,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     
     public void applyBorder(){
-      customizer.setBorder(null);
+      customizer.applyBorder(null);
     }
     
     public void applyCursor(){
@@ -442,16 +442,17 @@ public class StateManager implements FocusListener, MouseInputListener {
       JCustomizer customizer = getCustomizer();
       JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
       StateManager manager = customizer.getStateManager();
-      if (pane.getSelectionManager().isSelected(customizer)){
-        manager.setStateSelected();
-      } else {
-        pane.getSelectionManager().deselect(customizer);
-      }
+//      if (pane.getSelectionManager().isSelected(customizer)){
+//        manager.setStateSelected();
+////      } else {
+////        System.out.println("deselected");
+////        pane.getSelectionManager().deselect(customizer);
+//      }
     }
   }
   public static abstract class BoundState extends ActiveState{
     
-    protected static final HandleBorder HANDLE_BORDER = new HandleBorder(Color.BLUE);
+    protected static final HandleBorder HANDLE_BORDER = new HandleBorder(Color.BLUE, 0);
     
     /** Holds value of property startX. */
     private int startX;
@@ -471,7 +472,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       super(customizer);
     }
     public void applyBorder(){
-      getCustomizer().setBorder(HANDLE_BORDER);
+      getCustomizer().applyBorder(HANDLE_BORDER);
     }
     public void mouseMoved(MouseEvent e){
       StateManager manager = getCustomizer().getStateManager();
