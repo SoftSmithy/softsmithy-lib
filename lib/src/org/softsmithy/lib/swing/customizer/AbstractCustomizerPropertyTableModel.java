@@ -38,11 +38,11 @@ public abstract class AbstractCustomizerPropertyTableModel extends PropertyTable
   /** Creates a new instance of AbstractCustomizerPropertyTableModel */
   public AbstractCustomizerPropertyTableModel(List properties, AbstractCustomizer activeCustomizer, String propertiesRBBaseName, Locale locale) {
     super(properties, activeCustomizer, propertiesRBBaseName, locale);
-    if (activeCustomizer != null){
-      for (Iterator i=properties.iterator(); i.hasNext();){
-        activeCustomizer.addPropertyChangeListener((String) i.next(), this);
-      }
-    }
+//    if (activeCustomizer != null){
+//      for (Iterator i=properties.iterator(); i.hasNext();){
+//        activeCustomizer.addPropertyChangeListener((String) i.next(), this);
+//      }
+//    }
   }
   
   
@@ -70,17 +70,17 @@ public abstract class AbstractCustomizerPropertyTableModel extends PropertyTable
     getActiveCustomizer().repaint();
   }
  
-  public void stopListening(){
-    stopPropertyChangeListening();
-  }
-  
-  private void stopPropertyChangeListening(){
-    if (getActiveCustomizer() != null){
-      for (Iterator i=getProperties().iterator(); i.hasNext();){
-        getActiveCustomizer().removePropertyChangeListener((String) i.next(), this);
-      }
-    }
-  }
+//  public void stopListening(){
+//    stopPropertyChangeListening();
+//  }
+//  
+//  private void stopPropertyChangeListening(){
+//    if (getActiveCustomizer() != null){
+//      for (Iterator i=getPropertyNames().iterator(); i.hasNext();){
+//        getActiveCustomizer().removePropertyChangeListener((String) i.next(), this);
+//      }
+//    }
+//  }
   
   public AbstractCustomizer getActiveCustomizer(){
     return (AbstractCustomizer) getBean();

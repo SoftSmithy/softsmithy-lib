@@ -1,4 +1,29 @@
 Changes:
+v20030514:  -org.softsmithy.lib.beans.BeanIntrospector now supports 
+             PropertyChangeListeners
+            -org.softsmithy.lib.swing.JCustomizer + 
+             org.softsmithy.lib.swing.customizer.StateManager +
+             org.softsmithy.lib.swing.customizer.State
+             support now the border color property
+            -org.softsmithy.lib.swing.JCustomizerPane supports now properties
+             for its border colors, the default border colors of its customizers
+             and the color of the layout help. Additionally it now takes control
+             over the activation border itself instead of the 
+             org.softsmithy.lib.swing.customizer.ActivationManager
+            -org.softsmithy.lib.swing.customizer.StyleProvider now works on the
+             interface org.softsmithy.lib.swing.style.Styleable
+            -org.softsmithy.lib.swing.customizer.StateAdapter ->
+             org.softsmithy.lib.swing.customizer.AbstractState
+            -org.softsmithy.lib.swing.JMultiSplitPane +
+             org.softsmithy.lib.swing.JStyledPanel +  
+             org.softsmithy.lib.swing.JXSplitPane support the style property 
+            -org.softsmithy.lib.swing.JPropertyTable now supports editors and
+             renderers per property
+            -org.softsmithy.lib.swing.table.PropertyTableModel supports 
+             PropertyChangeListeners
+            -org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException
+             added
+            -some minor changes
 v20030410:  -org.softsmithy.lib.beans.XMLEncoderX now supports 
              CustomStyleProvider
             -org.softsmithy.lib.swing.CustomizerActionFactory now has a first 

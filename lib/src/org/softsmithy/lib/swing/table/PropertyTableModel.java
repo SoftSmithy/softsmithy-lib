@@ -32,14 +32,15 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public class PropertyTableModel extends AbstractTableModel implements PropertyChangeListener, CellTableModel{
+public class PropertyTableModel extends AbstractTableModel implements CellTableModel{
   
-  private List properties;
+  private List propertyNames;
   private Object bean;
   private String propertiesRBBaseName;
   private ResourceBundle propertiesRB;
   private ResourceBundle columnNamesRB;
   private Locale locale;
+  private final BeanPropertyListener beanPropertyListener = new BeanPropertyListener();
   
   /** Creates a new instance of AbstractCustomizerPropertyTableModel */
   public PropertyTableModel(Object bean, String propertiesRBBaseName, Locale locale) throws IntrospectionException{
@@ -70,8 +71,31 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
   }
   
   private void init(List readableProperties, Object bean){
-    this.properties = Collections.unmodifiableList(readableProperties);
+    this.propertyNames = Collections.unmodifiableList(readableProperties);
     this.bean = bean;
+    if (bean != null){
+      if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(bean.getClass())){
+        try {
+          for (Iterator i=readableProperties.iterator(); i.hasNext();){
+            BeanIntrospector.addPropertyChangeListener(bean, (String) i.next(), beanPropertyListener);
+          }
+        } catch (NoSuchMethodException ex1){ // should not happen here
+          ex1.printStackTrace();
+        } catch (IllegalAccessException ex2){ // should not happen here
+          ex2.printStackTrace();
+        }
+      } else {
+        if (BeanIntrospector.supportsPropertyChangeListeners(bean.getClass())){
+          try {
+            BeanIntrospector.addPropertyChangeListener(bean, beanPropertyListener);
+          } catch (NoSuchMethodException ex1){ // should not happen here
+            ex1.printStackTrace();
+          } catch (IllegalAccessException ex2){ // should not happen here
+            ex2.printStackTrace();
+          }
+        }
+      }
+    }
     //    if (activeCustomizer != null){
     //      for (Iterator i=properties.iterator(); i.hasNext();){
     //        activeCustomizer.addPropertyChangeListener((String) i.next(), this);
@@ -101,7 +125,7 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
    *
    */
   public int getRowCount() {
-    return properties.size();
+    return propertyNames.size();
   }
   
   /** Returns the value for the cell at <code>columnIndex</code> and
@@ -118,7 +142,7 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
       switch (columnIndex){
         case 0: value = getPropertyDescriptor(rowIndex).getDisplayName(); break;
         case 1:
-          value = BeanIntrospector.getPropertyValue((String) properties.get(rowIndex), bean, propertiesRB);
+          value = BeanIntrospector.getPropertyValue(getPropertyName(rowIndex), bean, propertiesRB);
           break;
       }
     } catch (Exception e){
@@ -139,14 +163,14 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
    */
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     try{
-      BeanIntrospector.setPropertyValue((String) properties.get(rowIndex), aValue, bean, propertiesRB);
+      BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue, bean, propertiesRB);
     } catch (Exception ex2){
       ex2.printStackTrace();
     }
   }
   
   private PropertyDescriptor getPropertyDescriptor(int index) throws IntrospectionException{
-    return BeanIntrospector.getPropertyDescriptor((String) properties.get(index), bean.getClass(), propertiesRB);
+    return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.getClass(), propertiesRB);
   }
   
   /**  Returns false.  This is the default implementation for all cells.
@@ -159,7 +183,7 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
   public boolean isCellEditable(int rowIndex, int columnIndex) {
     boolean isCellEditable = false;
     try{
-      isCellEditable = columnIndex == 1 && BeanIntrospector.isPropertyWriteable((String) properties.get(rowIndex), bean.getClass(), propertiesRB);
+      isCellEditable = columnIndex == 1 && BeanIntrospector.isPropertyWriteable(getPropertyName(rowIndex), bean.getClass(), propertiesRB);
     } catch(IntrospectionException ex){
       ex.printStackTrace();
     }
@@ -221,13 +245,17 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
    *   	and the property that has changed.
    *
    */
-  public void propertyChange(PropertyChangeEvent evt) {
-    //    System.out.println(evt.getPropertyName() + " changed");
-    this.fireTableCellUpdated(properties.indexOf(evt.getPropertyName()), 1);
+  //  public void propertyChange(PropertyChangeEvent evt) {
+  //    //    System.out.println(evt.getPropertyName() + " changed");
+  //    this.fireTableCellUpdated(propertyNames.indexOf(evt.getPropertyName()), 1);
+  //  }
+  
+  public List getPropertyNames(){
+    return this.propertyNames;
   }
   
-  public List getProperties(){
-    return this.properties;
+  public String getPropertyName(int row){
+    return (String) propertyNames.get(row);
   }
   
   public Object getBean(){
@@ -263,6 +291,52 @@ public class PropertyTableModel extends AbstractTableModel implements PropertyCh
       this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName, locale);
     }
     fireTableDataChanged();
+  }
+  
+  public void stopListening(){
+    stopPropertyChangeListening();
+  }
+  
+  private void stopPropertyChangeListening(){
+    if (getBean() != null){
+      if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(getBean().getClass())){
+        try {
+          for (Iterator i=getPropertyNames().iterator(); i.hasNext();){
+            BeanIntrospector.removePropertyChangeListener(getBean(), (String) i.next(), beanPropertyListener);
+          }
+        } catch (NoSuchMethodException ex1){ // should not happen here
+          ex1.printStackTrace();
+        } catch (IllegalAccessException ex2){ // should not happen here
+          ex2.printStackTrace();
+        }
+      } else {
+        if (BeanIntrospector.supportsPropertyChangeListeners(getBean().getClass())){
+          try {
+            BeanIntrospector.removePropertyChangeListener(getBean(), beanPropertyListener);
+          } catch (NoSuchMethodException ex1){ // should not happen here
+            ex1.printStackTrace();
+          } catch (IllegalAccessException ex2){ // should not happen here
+            ex2.printStackTrace();
+          }
+        }
+      }
+    }
+  }
+  
+  private class BeanPropertyListener implements PropertyChangeListener{
+    
+    /** This method gets called when a bound property is changed.
+     * @param evt A PropertyChangeEvent object describing the event source
+     *   	and the property that has changed.
+     *
+     */
+    public void propertyChange(PropertyChangeEvent evt) {
+      int row = propertyNames.indexOf(evt.getPropertyName());
+      if (row >= 0){
+        PropertyTableModel.this.fireTableCellUpdated(row, 1);
+      }
+    }
+    
   }
   
 }

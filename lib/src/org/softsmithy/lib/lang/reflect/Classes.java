@@ -212,4 +212,18 @@ public class Classes {
     return (Class) WRAPPER_CLASSES.get(primitiveClass);
   }
   
+  public static boolean containsMethod(Class aClass, String name, Class[] parameterTypes){
+    boolean containsMethod = false;
+    Method[] methods = aClass.getMethods();
+    for (int i=0; i<methods.length; i++){
+      if (methods[i].getName().equals(name)){
+        containsMethod = Arrays.equals(methods[i].getParameterTypes(), parameterTypes);
+      }
+      if (containsMethod){
+        break;
+      }
+    }
+    return containsMethod;
+  }
+  
 }

@@ -22,6 +22,7 @@ package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
 import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.swing.style.*;
 
 /**
  *
@@ -35,8 +36,8 @@ public class ParentStyleProvider implements StyleProvider, Singleton {
   private ParentStyleProvider() {
   }
   
-  public Style getStyle(AbstractCustomizer customizer) {
-    return customizer.getParentStyle();
+  public Style getStyle(Styleable styleable) {
+    return styleable.getParentStyle();
   }
   
   public String toString(Locale locale) {

@@ -34,4 +34,9 @@ public abstract class AbstractStyle implements Style {
     return false;
   }
   
+  public void startListening() {
+  }
+  
+  public void stopListening() {
+  }
 }

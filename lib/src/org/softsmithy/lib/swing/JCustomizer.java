@@ -342,6 +342,22 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+  public Color getNormalBorderColor(){
+    return getStateManager().getNormalBorderColor();
+  }
+  
+//  public void setNormalBorederColor(Color normalBorderColor){
+//    getStateManager().setNormalBorderColor(normalBorderColor);
+//  }
+//  
+  public Color getSelectedBorderColor(){
+    return getStateManager().getSelectedBorderColor();
+  }
+  
+//  public void setSelectedBorderColor(Color selectedBorderColor){
+//    getStateManager().setSelectedBorderColor(selectedBorderColor);
+//  }
+  
   /** Getter for property noneStyle.
    * @return Value of property noneStyle.
    *
@@ -351,6 +367,37 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     return noneStyle;
   }
   
+  /** Getter for property usingDefaultNormalBorderColor.
+   * @return Value of property usingDefaultNormalBorderColor.
+   *
+   */
+  public boolean isUsingDefaultNormalBorderColor() {
+    return getStateManager().isUsingDefaultNormalBorderColor();
+  }  
+  
+  /** Setter for property usingDefaultNormalBorderColor.
+   * @param usingDefaultNormalBorderColor New value of property usingDefaultNormalBorderColor.
+   *
+   */
+  public void setUsingDefaultNormalBorderColor(boolean usingDefaultNormalBorderColor) {
+    getStateManager().setUsingDefaultNormalBorderColor(usingDefaultNormalBorderColor);
+  }
+  
+  /** Getter for property usingDefaultSelectedBorderColor.
+   * @return Value of property usingDefaultSelectedBorderColor.
+   *
+   */
+  public boolean isUsingDefaultSelectedBorderColor() {
+    return getStateManager().isUsingDefaultSelectedBorderColor();
+  }
+  
+  /** Setter for property usingDefaultSelectedBorderColor.
+   * @param usingDefaultSelectedBorderColor New value of property usingDefaultSelectedBorderColor.
+   *
+   */
+  public void setUsingDefaultSelectedBorderColor(boolean usingDefaultSelectedBorderColor) {
+    getStateManager().setUsingDefaultSelectedBorderColor(usingDefaultSelectedBorderColor);
+  }
   
   private class NoneStyle extends AbstractCustomizer.NoneStyle{
     

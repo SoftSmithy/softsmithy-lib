@@ -52,11 +52,11 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
       JCustomizerPane oldActivePane = this.activePane;
       if (pane != null){
         pane.setActive(true);
-        pane.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+//        pane.setBorder(BorderFactory.createLineBorder(Color.GREEN));
       }
       if (activePane != null){
         activePane.setActive(false);
-        setDefaultBorder(activePane);
+//        setDefaultBorder(activePane);
       }
       activePane = pane;
       propertyChangeSupport.firePropertyChange("active", oldActivePane, activePane);
@@ -78,7 +78,8 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
   public void addCustomizerPane(JCustomizerPane pane) {
     pane.addFocusListener(this);
     pane.getSelectionManager().addCustomizerSelectionListener(this);
-    setDefaultBorder(pane);
+    pane.setActivationBorderEnabled(true);
+//    setDefaultBorder(pane);
     panes.add(pane);
   }
   
@@ -127,7 +128,7 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
     propertyChangeSupport.removePropertyChangeListener("active", l);
   }
   
-  private void setDefaultBorder(JCustomizerPane pane){
-    pane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
-  }
+//  private void setDefaultBorder(JCustomizerPane pane){
+//    pane.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+//  }
 }

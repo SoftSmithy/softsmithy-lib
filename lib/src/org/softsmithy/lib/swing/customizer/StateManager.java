@@ -16,6 +16,7 @@ package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
@@ -44,6 +45,29 @@ public class StateManager implements FocusListener, MouseInputListener {
   private ResizeState nWResizeState;
   private ResizeState[] resizeStates;
   
+  //  /** Holds value of property normalBorderColor. */
+  //  private Color normalBorderColor = Color.GRAY;
+  //
+  //  /** Holds value of property selectedBorderColor. */
+  //  private Color selectedBorderColor = Color.BLUE;
+  
+  /** Holds value of property defaultNormalBorderColor. */
+  private final BorderColor defaultNormalBorderColor = new DefaultNormalBorderColor();
+  
+  /** Holds value of property defaultSelectedBorderColor. */
+  private final BorderColor defaultSelectedBorderColor = new DefaultSelectedBorderColor();
+  
+  /** Holds value of property customNormalBorderColor. */
+  private final CustomBorderColor customNormalBorderColor = new CustomBorderColor(Color.GRAY);
+  
+  /** Holds value of property customSelectedBorderColor. */
+  private final CustomBorderColor customSelectedBorderColor = new CustomBorderColor(Color.BLUE);
+  
+  /** Holds value of property currentNormalBorderColor. */
+  private BorderColor currentNormalBorderColor;
+  
+  /** Holds value of property currentSelectedBorderColor. */
+  private BorderColor currentSelectedBorderColor;
   
   //private JCustomizer customizer;
   
@@ -61,8 +85,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       }
     };
     
-    selectedState = new DefaultState(customizer){
-      private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
+    selectedState = new DefaultState(customizer, Color.BLUE){
+      //      private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
       public void mousePressed(MouseEvent e) {
         JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
         if (e.isControlDown()){
@@ -71,9 +95,9 @@ public class StateManager implements FocusListener, MouseInputListener {
           pane.getSelectionManager().singleSelect(customizer, e.getPoint());
         }
       }
-      public void applyBorder(){
-        customizer.applyBorder(LINE_BORDER);
-      }
+      //      public void applyBorder(){
+      //        customizer.applyBorder(LINE_BORDER);
+      //      }
     };
     
     moveState = new BoundState(customizer){
@@ -89,7 +113,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getNHandle();
+        return getHandleBorder().getNHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 0, 1, 0, -1);
@@ -100,7 +124,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getNEHandle();
+        return getHandleBorder().getNEHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 0, 1, 1, - 1);
@@ -112,7 +136,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getEHandle();
+        return getHandleBorder().getEHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 0, 0, 1, 0);
@@ -123,7 +147,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getSEHandle();
+        return getHandleBorder().getSEHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 0, 0, 1, 1);
@@ -134,7 +158,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getSHandle();
+        return getHandleBorder().getSHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 0, 0, 0, 1);
@@ -145,7 +169,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getSWHandle();
+        return getHandleBorder().getSWHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 1, 0, - 1, 1);
@@ -156,7 +180,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getWHandle();
+        return getHandleBorder().getWHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 1, 0, - 1, 0);
@@ -167,7 +191,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
       }
       public Handle getHandle(){
-        return HANDLE_BORDER.getNWHandle();
+        return getHandleBorder().getNWHandle();
       }
       public CustomizerEvent createCustomizerEvent(MouseEvent e) {
         return createCustomizerEvent(e, 1, 1, - 1, - 1);
@@ -175,15 +199,22 @@ public class StateManager implements FocusListener, MouseInputListener {
     };
     resizeStates = new ResizeState[]{nResizeState, nEResizeState, eResizeState, sEResizeState,
     sResizeState, sWResizeState, wResizeState, nWResizeState};
+    setUsingDefaultNormalBorderColor(true);
+    setUsingDefaultSelectedBorderColor(true);
+    //    getNormalState().resetBorder(getNormalBorderColor());
+    //    getSelectedState().resetBorder(getSelectedBorderColor());
+    //    getMoveState().resetBorder(getSelectedBorderColor());
     setState(normalState);
   }
   
   protected void setState(State state){
     if (current != null){
       current.unconfigureCustomizer();
+      current.setActive(false);
     }
     current = state;
     current.configureCustomizer();
+    current.setActive(true);
   }
   
   public void setStateBound(Point point){
@@ -214,6 +245,8 @@ public class StateManager implements FocusListener, MouseInputListener {
   
   public void unconfigureCustomizer(){
   }
+  
+  
   
   /** Invoked when the mouse button has been clicked (pressed
    * and released) on a component.
@@ -425,24 +458,208 @@ public class StateManager implements FocusListener, MouseInputListener {
     setState(wResizeState);
   }
   
+  /** Getter for property normalBorderColor.
+   * @return Value of property normalBorderColor.
+   *
+   */
+  public Color getNormalBorderColor() {
+    return getCurrentNormalBorderColor().getColor();
+  }
+  
+  //  /** Setter for property normalBorderColor.
+  //   * @param normalBorderColor New value of property normalBorderColor.
+  //   *
+  //   */
+  //  public void setNormalBorderColor(Color normalBorderColor) {
+  //    this.normalBorderColor = normalBorderColor;
+  //    getNormalState().resetBorder(normalBorderColor);
+  //  }
+  
+  /** Getter for property selectedBorderColor.
+   * @return Value of property selectedBorderColor.
+   *
+   */
+  public Color getSelectedBorderColor() {
+    return getCurrentSelectedBorderColor().getColor();
+  }
+  
+  //  /** Setter for property selectedBorderColor.
+  //   * @param selectedBorderColor New value of property selectedBorderColor.
+  //   *
+  //   */
+  //  public void setSelectedBorderColor(Color selectedBorderColor) {
+  //    this.selectedBorderColor = selectedBorderColor;
+  //    getSelectedState().resetBorder(selectedBorderColor);
+  //    getMoveState().resetBorder(selectedBorderColor);
+  //  }
+  
+  /** Getter for property usingDefaultNormalBorderColor.
+   * @return Value of property usingDefaultNormalBorderColor.
+   *
+   */
+  public boolean isUsingDefaultNormalBorderColor() {
+    return getCurrentNormalBorderColor().isDefault();
+  }
+  
+  /** Setter for property usingDefaultNormalBorderColor.
+   * @param usingDefaultNormalBorderColor New value of property usingDefaultNormalBorderColor.
+   *
+   */
+  public void setUsingDefaultNormalBorderColor(boolean usingDefaultNormalBorderColor) {
+    if (usingDefaultNormalBorderColor){
+      setCurrentNormalBorderColor(defaultNormalBorderColor);
+    } else {
+      setCurrentNormalBorderColor(customNormalBorderColor);
+    }
+  }
+  
+  /** Getter for property usingDefaultSelectedBorderColor.
+   * @return Value of property usingDefaultSelectedBorderColor.
+   *
+   */
+  public boolean isUsingDefaultSelectedBorderColor() {
+    return getCurrentSelectedBorderColor().isDefault();
+  }
+  
+  /** Setter for property usingDefaultSelectedBorderColor.
+   * @param usingDefaultSelectedBorderColor New value of property usingDefaultSelectedBorderColor.
+   *
+   */
+  public void setUsingDefaultSelectedBorderColor(boolean usingDefaultSelectedBorderColor) {
+    if (usingDefaultSelectedBorderColor){
+      setCurrentSelectedBorderColor(defaultSelectedBorderColor);
+    } else {
+      setCurrentSelectedBorderColor(customSelectedBorderColor);
+    }
+  }
+  
+  /** Getter for property defaultNormalBorderColor.
+   * @return Value of property defaultNormalBorderColor.
+   *
+   */
+  private BorderColor getDefaultNormalBorderColor() {
+    return this.defaultNormalBorderColor;
+  }
+  
+  /** Getter for property defaultSelectedBorderColor.
+   * @return Value of property defaultSelectedBorderColor.
+   *
+   */
+  private BorderColor getDefaultSelectedBorderColor() {
+    return this.defaultSelectedBorderColor;
+  }
+  
+  /** Getter for property customNormalBorderColor.
+   * @return Value of property customNormalBorderColor.
+   *
+   */
+  public Color getCustomNormalBorderColor() {
+    return this.customNormalBorderColor.getColor();
+  }
+  
+  public void setCustomNormalBorderColor(Color color){
+    customNormalBorderColor.setColor(color);
+  }
+  
+  /** Getter for property customSelectedBorderColor.
+   * @return Value of property customSelectedBorderColor.
+   *
+   */
+  public Color getCustomSelectedBorderColor() {
+    return this.customSelectedBorderColor.getColor();
+  }
+  
+  public void setCustomSelectedBorderColor(Color color){
+    customSelectedBorderColor.setColor(color);
+  }
   
   
-  public static class DefaultState extends StateAdapter{
+  /** Getter for property currentNormalBorderColor.
+   * @return Value of property currentNormalBorderColor.
+   *
+   */
+  private BorderColor getCurrentNormalBorderColor() {
+    return this.currentNormalBorderColor;
+  }
+  
+  /** Setter for property currentNormalBorderColor.
+   * @param currentNormalBorderColor New value of property currentNormalBorderColor.
+   *
+   */
+  private void setCurrentNormalBorderColor(BorderColor currentNormalBorderColor) {
+    if (this.currentNormalBorderColor != null){
+      this.currentNormalBorderColor.stopListening();
+    }
+    this.currentNormalBorderColor = currentNormalBorderColor;
+    this.currentNormalBorderColor.startListening();
+    getNormalState().resetBorder(currentNormalBorderColor.getColor());
+  }
+  
+  /** Getter for property currentSelectedBorderColor.
+   * @return Value of property currentSelectedBorderColor.
+   *
+   */
+  private BorderColor getCurrentSelectedBorderColor() {
+    return this.currentSelectedBorderColor;
+  }
+  
+  /** Setter for property currentSelectedBorderColor.
+   * @param currentSelectedBorderColor New value of property currentSelectedBorderColor.
+   *
+   */
+  public void setCurrentSelectedBorderColor(BorderColor currentSelectedBorderColor) {
+    if (this.currentSelectedBorderColor != null){
+      this.currentSelectedBorderColor.stopListening();
+    }
+    this.currentSelectedBorderColor = currentSelectedBorderColor;
+    this.currentSelectedBorderColor.startListening();
+    resetSelectedBorder();
+  }
+  
+  private void resetSelectedBorder(){
+    getSelectedState().resetBorder(getCurrentSelectedBorderColor().getColor());
+    getMoveState().resetBorder(getCurrentSelectedBorderColor().getColor());
+    for (int i=0; i<resizeStates.length; i++){
+      resizeStates[i].setBorder(getMoveState().getBorder());
+    }
+  }
+  
+  public static class DefaultState extends AbstractState{
     
-    private final Border normalBorder = BorderFactory.createLineBorder(Color.GRAY);
+    private Border border;
     
     private final JCustomizer customizer;
     
     public DefaultState(JCustomizer customizer){
+      this(customizer, Color.GRAY);
+    }
+    
+    public DefaultState(JCustomizer customizer, Color color){
       this.customizer = customizer;
+      resetBorder(color);
     }
     
     public void applyBorder(){
-      customizer.applyBorder(normalBorder);
+      customizer.applyBorder(border);
     }
     
     public void applyCursor(){
       customizer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+    
+    public void resetBorder(Color borderColor){
+      setBorder(BorderFactory.createLineBorder(borderColor));
+    }
+    
+    public Border getBorder(){
+      return border;
+    }
+    
+    public void setBorder(Border border){
+      this.border = border;
+      if (isActive()){
+        applyBorder();
+      }
     }
     
     public void configureCustomizer(){
@@ -465,7 +682,7 @@ public class StateManager implements FocusListener, MouseInputListener {
   
   public static abstract class BoundState extends DefaultState{
     
-    protected static final HandleBorder HANDLE_BORDER = new HandleBorder(Color.BLUE, 0);
+    //    protected static HandleBorder HANDLE_BORDER;
     
     /** Holds value of property startX. */
     private int startX;
@@ -484,9 +701,14 @@ public class StateManager implements FocusListener, MouseInputListener {
     public BoundState(JCustomizer customizer){
       super(customizer);
     }
-    public void applyBorder(){
-      getCustomizer().applyBorder(HANDLE_BORDER);
+    //    public void applyBorder(){
+    //      getCustomizer().applyBorder(HANDLE_BORDER);
+    //    }
+    
+    public HandleBorder getHandleBorder(){
+      return (HandleBorder) getBorder();
     }
+    
     public void mouseMoved(MouseEvent e){
       StateManager manager = getCustomizer().getStateManager();
       BoundState state = manager.getBoundStateAt(e.getPoint());
@@ -597,6 +819,12 @@ public class StateManager implements FocusListener, MouseInputListener {
       return dragging;
     }
     
+    public void resetBorder(Color borderColor){
+      setBorder(new HandleBorder(borderColor, 0));
+      for (int i=0; i<getHandleBorder().getHandles().length; i++){
+        getHandleBorder().getHandles()[i].setRect(getCustomizer().getWidth(), getCustomizer().getHeight());
+      }
+    }
   }
   
   public static abstract class ResizeState extends BoundState{
@@ -635,5 +863,159 @@ public class StateManager implements FocusListener, MouseInputListener {
       draggingStarted = false;
     }
     
+  }
+  
+  private static interface BorderColor{
+    Color getColor();
+    boolean isDefault();
+    void startListening();
+    void stopListening();
+  }
+  
+  private static abstract class AbstractDefaultBorderColor implements BorderColor{
+    public boolean isDefault(){
+      return true;
+    }
+  }
+  
+  private class DefaultNormalBorderColor extends AbstractDefaultBorderColor{
+    private HierarchyListener parentListener = new ParentListener();
+    private PropertyChangeListener defaultNormalCustomizerBorderColorListener = new DefaultNormalCustomizerBorderColorListener();
+    
+    public Color getColor(){
+      return getCustomizer().getParentCustomizerPane() != null ? getCustomizer().getParentCustomizerPane().getDefaultNormalCustomizerBorderColor() : customNormalBorderColor.getColor();
+    }
+    public void startListening() {
+      getCustomizer().addHierarchyListener(parentListener);
+      if (getCustomizer().getParentCustomizerPane() != null){
+        getCustomizer().getParentCustomizerPane().addPropertyChangeListener("defaultNormalCustomizerBorderColor", defaultNormalCustomizerBorderColorListener);
+      }
+      
+    }
+    
+    public void stopListening() {
+      getCustomizer().removeHierarchyListener(parentListener);
+      if (getCustomizer().getParentCustomizerPane() != null){
+        getCustomizer().getParentCustomizerPane().removePropertyChangeListener("defaultNormalCustomizerBorderColor", defaultNormalCustomizerBorderColorListener);
+      }
+    }
+    
+    private class ParentListener implements HierarchyListener{
+      
+      /** Called when the hierarchy has been changed. To discern the actual
+       * type of change, call <code>HierarchyEvent.getChangeFlags()</code>.
+       *
+       * @see HierarchyEvent#getChangeFlags()
+       *
+       */
+      public void hierarchyChanged(HierarchyEvent e) {
+        //System.out.println("hierarchyChanged!!!");
+        // optimize??
+        if (e.getChangedParent() != null){ // why is this neccessary?
+          e.getChangedParent().removePropertyChangeListener("defaultNormalCustomizerBorderColor", defaultNormalCustomizerBorderColorListener);
+        }
+        if (getCustomizer().getParentCustomizerPane() != null){
+          getCustomizer().getParentCustomizerPane().addPropertyChangeListener("defaultNormalCustomizerBorderColor", defaultNormalCustomizerBorderColorListener);
+        }
+        getNormalState().resetBorder(getColor());
+      }
+    }
+    
+    private class DefaultNormalCustomizerBorderColorListener implements PropertyChangeListener{
+      
+      /** This method gets called when a bound property is changed.
+       * @param evt A PropertyChangeEvent object describing the event source
+       *   	and the property that has changed.
+       *
+       */
+      public void propertyChange(PropertyChangeEvent evt) {
+        //System.out.println("Default Normal Border Color changed");
+        getNormalState().resetBorder(getColor());
+      }
+      
+    }
+  }
+  
+  private class DefaultSelectedBorderColor extends AbstractDefaultBorderColor{
+    private HierarchyListener parentListener = new ParentListener();
+    private PropertyChangeListener defaultSelectedCustomizerBorderColorListener = new DefaultSelectedCustomizerBorderColorListener();
+    
+    public Color getColor(){
+      return getCustomizer().getParentCustomizerPane() != null ? getCustomizer().getParentCustomizerPane().getDefaultSelectedCustomizerBorderColor() : customSelectedBorderColor.getColor();
+    }
+    public void startListening() {
+      getCustomizer().addHierarchyListener(parentListener);
+      if (getCustomizer().getParentCustomizerPane() != null){
+        getCustomizer().getParentCustomizerPane().addPropertyChangeListener("defaultSelectedCustomizerBorderColor", defaultSelectedCustomizerBorderColorListener);
+      }
+      
+    }
+    
+    public void stopListening() {
+      getCustomizer().removeHierarchyListener(parentListener);
+      if (getCustomizer().getParentCustomizerPane() != null){
+        getCustomizer().getParentCustomizerPane().removePropertyChangeListener("defaultSelectedCustomizerBorderColor", defaultSelectedCustomizerBorderColorListener);
+      }
+      
+    }
+    private class ParentListener implements HierarchyListener{
+      
+      /** Called when the hierarchy has been changed. To discern the actual
+       * type of change, call <code>HierarchyEvent.getChangeFlags()</code>.
+       *
+       * @see HierarchyEvent#getChangeFlags()
+       *
+       */
+      public void hierarchyChanged(HierarchyEvent e) {
+        //System.out.println("hierarchyChanged");
+        // optimize??
+        if (e.getChangedParent() != null){ // why is this neccessary?
+          e.getChangedParent().removePropertyChangeListener("defaultSelectedCustomizerBorderColor", defaultSelectedCustomizerBorderColorListener);
+        }
+        if (getCustomizer().getParentCustomizerPane() != null){
+          getCustomizer().getParentCustomizerPane().addPropertyChangeListener("defaultSelectedCustomizerBorderColor", defaultSelectedCustomizerBorderColorListener);
+        }
+        resetSelectedBorder();
+      }
+    }
+    
+    private class DefaultSelectedCustomizerBorderColorListener implements PropertyChangeListener{
+      
+      /** This method gets called when a bound property is changed.
+       * @param evt A PropertyChangeEvent object describing the event source
+       *   	and the property that has changed.
+       *
+       */
+      public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println("Default Selected Border Color changed");
+        resetSelectedBorder();
+      }
+    }
+  }
+  
+  private static class CustomBorderColor implements BorderColor{
+    private Color color;
+    
+    public CustomBorderColor(Color color){
+      this.color = color;
+    }
+    
+    public Color getColor(){
+      return this.color;
+    }
+    
+    public void setColor(Color color){
+      this.color = color;
+    }
+    
+    public boolean isDefault(){
+      return false;
+    }
+    
+    public void startListening(){
+    }
+    
+    public void stopListening(){
+    }
   }
 }

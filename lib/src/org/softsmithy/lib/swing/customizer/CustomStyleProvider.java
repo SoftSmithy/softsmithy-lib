@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
-import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.style.*;
 
 /**
  *
@@ -36,7 +36,7 @@ public class CustomStyleProvider implements StyleProvider {
     this.style = style;
   }
   
-  public Style getStyle(AbstractCustomizer customizer) {
+  public Style getStyle(Styleable styleable) {
     minimizeCustomStyleProviderObjects();
     return getStyle();
   }

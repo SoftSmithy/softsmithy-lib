@@ -309,6 +309,10 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     return rows;
   }
   
+  public void drawLayoutHelp(Container container, Graphics g) {
+    drawGrid(container, g);
+  }
+  
   private static abstract class InfiniteAxis extends AbstractTableLayout.AbstractAxis{
     
     /** Holds value of property defaultSize. */

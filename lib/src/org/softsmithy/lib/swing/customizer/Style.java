@@ -36,6 +36,7 @@ public interface Style {
   Font getFont();
   boolean isNull();
   StyleProvider getStyleProvider();
-  
-  
+  void startListening();
+  void stopListening();
+    
 }

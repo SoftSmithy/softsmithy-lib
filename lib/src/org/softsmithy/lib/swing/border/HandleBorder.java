@@ -219,7 +219,9 @@ public class HandleBorder extends AbstractBorder {
     return handle;
   }
   
-  
+  public Handle[] getHandles(){
+    return fHandles;
+  }
   
   
   public static abstract class Handle{

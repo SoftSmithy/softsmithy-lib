@@ -49,7 +49,7 @@ public class CustomizerPropertyTableModel extends AbstractCustomizerPropertyTabl
   private void updateBounds(){
     String[] bounds = {"x", "y", "width", "height"};
     for (int i=0; i<bounds.length; i++){
-      int index = getProperties().indexOf(bounds[i]);
+      int index = getPropertyNames().indexOf(bounds[i]);
       if (index >= 0){
         fireTableCellUpdated(index, 1);
       }

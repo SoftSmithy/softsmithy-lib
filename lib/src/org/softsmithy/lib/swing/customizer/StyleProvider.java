@@ -21,6 +21,7 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
+import org.softsmithy.lib.swing.style.*;
 
 /**
  *
@@ -28,7 +29,7 @@ import java.util.*;
  */
 public interface StyleProvider {
    
-  Style getStyle(AbstractCustomizer customizer);
+  Style getStyle(Styleable styleable);
   String toString(Locale locale);
   
 }

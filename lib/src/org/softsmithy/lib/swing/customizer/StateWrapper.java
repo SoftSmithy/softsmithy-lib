@@ -14,6 +14,7 @@
 
 package org.softsmithy.lib.swing.customizer;
 
+import java.awt.*;
 import java.awt.event.*;
 import org.softsmithy.lib.swing.*;
 
@@ -77,5 +78,26 @@ public class StateWrapper implements State {
     return this.state;
   }
   
+  public void resetBorder(Color borderColor) {
+    state.resetBorder(borderColor);
+  }  
+  
+  /** Getter for property active.
+   * @return Value of property active.
+   *
+   *
+   */
+  public boolean isActive() {
+    return state.isActive();
+  }
+  
+  /** Setter for property active.
+   * @param active New value of property active.
+   *
+   *
+   */
+  public void setActive(boolean active) {
+    state.setActive(active);
+  }
   
 }

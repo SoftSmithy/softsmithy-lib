@@ -23,6 +23,7 @@ package org.softsmithy.lib.beans;
 import java.beans.*;
 import java.lang.reflect.*;
 import java.util.*;
+import org.softsmithy.lib.lang.reflect.*;
 
 /**
  *
@@ -75,6 +76,82 @@ public final class BeanIntrospector {
   
   public static void setPropertyValue(String propertyName, Object newValue, Object bean, ResourceBundle rb) throws IntrospectionException, IllegalAccessException, InvocationTargetException{
     getPropertyDescriptor(propertyName, bean.getClass(), rb).getWriteMethod().invoke(bean, new Object[]{newValue});
+  }
+  
+  public static boolean supportsPropertyChangeListeners(Class beanClass){
+    boolean supportsPropertyChangeListeners = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{PropertyChangeListener.class})
+    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
+//    if (supportsPropertyChangeListeners){
+//      try { // ensure that no IllegalAccessException will be thrown (is this code right?)
+//        supportsPropertyChangeListeners = getAddPropertyChangeListenerMethod(beanClass).isAccessible()
+//        && getRemovePropertyChangeListenerMethod(beanClass).isAccessible();
+//      } catch (NoSuchMethodException ex){ // should not happen here
+//        ex.printStackTrace();
+//      }
+//    }
+    return supportsPropertyChangeListeners;
+  }
+  
+  public static boolean supportsPropertyChangeListenersByPropertyName(Class beanClass){
+    boolean supportsPropertyChangeListenersByPropertyName = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class})
+    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+//    if (supportsPropertyChangeListenersByPropertyName){
+//      try { // ensure that no IllegalAccessException will be thrown (is this code right?)
+//        supportsPropertyChangeListenersByPropertyName = getAddPropertyChangeListenerByPropertyNameMethod(beanClass).isAccessible()
+//        && getRemovePropertyChangeListenerByPropertyNameMethod(beanClass).isAccessible();
+//      } catch (NoSuchMethodException ex){ // should not happen here
+//        ex.printStackTrace();
+//      }
+//    }
+    return supportsPropertyChangeListenersByPropertyName;
+  }
+  
+  private static Method getAddPropertyChangeListenerMethod(Class beanClass) throws NoSuchMethodException{
+    return beanClass.getMethod("addPropertyChangeListener", new Class[]{PropertyChangeListener.class});
+  }
+  
+  private static Method getAddPropertyChangeListenerByPropertyNameMethod(Class beanClass) throws NoSuchMethodException{
+    return beanClass.getMethod("addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+  }
+  
+  private static Method getRemovePropertyChangeListenerMethod(Class beanClass) throws NoSuchMethodException{
+    return beanClass.getMethod("removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
+  }
+  
+  private static Method getRemovePropertyChangeListenerByPropertyNameMethod(Class beanClass) throws NoSuchMethodException{
+    return beanClass.getMethod("removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+  }
+  
+  public static void addPropertyChangeListener(Object bean, PropertyChangeListener listener) throws NoSuchMethodException, IllegalAccessException{
+    try{
+      getAddPropertyChangeListenerMethod(bean.getClass()).invoke(bean, new Object[]{listener});
+    } catch(InvocationTargetException ex){ // no checked exception should have been thrown
+      throw new InvocationTargetRuntimeException(ex.getCause(), ex.getLocalizedMessage());
+    }
+  }
+  
+  public static void addPropertyChangeListener(Object bean, String propertyName, PropertyChangeListener listener) throws NoSuchMethodException, IllegalAccessException{
+    try{
+      getAddPropertyChangeListenerByPropertyNameMethod(bean.getClass()).invoke(bean, new Object[]{propertyName, listener});
+    } catch(InvocationTargetException ex){ // no checked exception should have been thrown
+      throw new InvocationTargetRuntimeException(ex.getCause(), ex.getLocalizedMessage());
+    }
+  }
+  
+  public static void removePropertyChangeListener(Object bean, PropertyChangeListener listener) throws NoSuchMethodException, IllegalAccessException{
+    try{
+      getRemovePropertyChangeListenerMethod(bean.getClass()).invoke(bean, new Object[]{listener});
+    } catch(InvocationTargetException ex){ // no checked exception should have been thrown
+      throw new InvocationTargetRuntimeException(ex.getCause(), ex.getLocalizedMessage());
+    }
+  }
+  
+  public static void removePropertyChangeListener(Object bean, String propertyName, PropertyChangeListener listener) throws NoSuchMethodException, IllegalAccessException{
+    try{
+      getRemovePropertyChangeListenerByPropertyNameMethod(bean.getClass()).invoke(bean, new Object[]{propertyName, listener});
+    } catch(InvocationTargetException ex){ // no checked exception should have been thrown
+      throw new InvocationTargetRuntimeException(ex.getCause(), ex.getLocalizedMessage());
+    }
   }
   
   /*public static EventSetDescriptor getEventSetDescriptor(String eventSetName, Class beanClass, ResourceBundle rb) throws IntrospectionException{

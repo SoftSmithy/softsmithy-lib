@@ -22,6 +22,7 @@ package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
 import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.swing.style.*;
 
 /**
  *
@@ -35,8 +36,8 @@ public class NoneStyleProvider implements StyleProvider, Singleton {
   private NoneStyleProvider() {
   }
   
-  public Style getStyle(AbstractCustomizer customizer) {
-    return customizer.getNoneStyle();
+  public Style getStyle(Styleable styleable) {
+    return styleable.getNoneStyle();
   }
   
   public String toString(Locale locale) {

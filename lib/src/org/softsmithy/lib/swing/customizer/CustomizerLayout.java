@@ -35,4 +35,6 @@ public interface CustomizerLayout extends LayoutManager2 {
   
   void layoutComponent(Container parent, Component comp);
   
+  void drawLayoutHelp(Container container, Graphics g);
+  
 }
