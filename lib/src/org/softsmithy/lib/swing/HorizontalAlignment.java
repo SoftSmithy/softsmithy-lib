@@ -141,8 +141,8 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     }
   }
   
-  public static HorizontalAlignment getHorizontalAlignment(int horizontalAlignment){
-    return (HorizontalAlignment) alignments.get(new Integer(horizontalAlignment));
+  public static HorizontalAlignment getHorizontalAlignment(int swingConstant){
+    return (HorizontalAlignment) alignments.get(new Integer(swingConstant));
   }
   
 }

@@ -273,6 +273,16 @@ CVS: 	JWindowMenu.java
 CVS: ----------------------------------------------------------------------
 
 
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	docs/CHANGES.txt 
+CVS: 	src/org/softsmithy/lib/swing/CustomizerActionFactory.java 
+CVS: 	src/org/softsmithy/lib/swing/HorizontalAlignment.java 
+CVS: ----------------------------------------------------------------------
 
 v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
              preferredSize 

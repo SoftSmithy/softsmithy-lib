@@ -106,7 +106,7 @@ public class JHtmlCustomizer extends JTextCustomizer {
   protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
     horizontalAlignment = alignment;
     if (inited){
-      StyleConstants.setAlignment(attributeSet, alignment.getStyleConstant());
+      StyleConstants.setAlignment(attributeSet, alignment.getStyleConstant(this.getComponentOrientation()));
     }
     configureHtmlText();
   }
