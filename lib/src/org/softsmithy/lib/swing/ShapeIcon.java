@@ -31,7 +31,7 @@ import javax.swing.*;
 public class ShapeIcon implements Icon {
   
   /** Holds value of property shape. */
-  private Shape shape;
+  private Shape shape = null;
   
   /** Holds value of property filled. */
   private boolean filled = false;

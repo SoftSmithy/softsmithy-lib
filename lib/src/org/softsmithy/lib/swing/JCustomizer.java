@@ -80,7 +80,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     //    getInputMap().put(KeyStroke.getKeyStroke("DELETE"), deleteAction.getValue(Action.NAME));
   }
   
-  
+  public JCustomizer(JComponent component){
+    this();
+    setComponent(component);
+  }
   
   /** Getter for property fComponent.
    * @return Value of property fComponent.
@@ -157,6 +160,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     constr.setAbsoluteBounds(bounds, cl);
     cl.setConstraints(this, constr);
     cl.layoutComponent(pane, this);
+    revalidate(); // seems to be necessary?!?
     repaint();
   }
   

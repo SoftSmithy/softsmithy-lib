@@ -33,9 +33,22 @@ public abstract class JIconCustomizer extends JCustomizer {
   
   /** Creates a new instance of JImageCustomizer */
   public JIconCustomizer() {
-    setComponent(new JLabel());
+    this(new JLabel());
+    initForDefaultLabel();
   }
   
+  public JIconCustomizer(JLabel label){
+    super(label);
+  }
+  
+  public JIconCustomizer(Icon icon){
+    this(new JLabel(icon));
+    initForDefaultLabel();
+  }
+  
+  private void initForDefaultLabel(){
+    setBackground(Color.WHITE);
+  }
   /** Getter for property imageSrc.
    * @return Value of property imageSrc.
    *
@@ -55,9 +68,16 @@ public abstract class JIconCustomizer extends JCustomizer {
       throw new IllegalArgumentException("comp must be a JLabel");
     }
     JLabel label = (JLabel) component;
-    label.setOpaque(false);
     super.setComponent(label);
     adjustIcon();
+  }
+  
+  public void setLabel(JLabel label){
+    setComponent(label);
+  }
+  
+  public JLabel getLabel(){
+    return (JLabel) getComponent();
   }
   
   public abstract void adjustIcon();

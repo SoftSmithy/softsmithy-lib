@@ -20,6 +20,7 @@
 
 package org.softsmithy.lib.swing;
 
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -31,9 +32,22 @@ public class JLabelCustomizer extends JTextCustomizer {
   
   /** Creates a new instance of JLabelCustomizer */
   public JLabelCustomizer() {
-    JLabel label = new JLabel("");
+    this(new JLabel(""));
+    initForDefaultLabel();
+  }
+  
+  public JLabelCustomizer(JLabel label){
+    super(label);
     //label.setOpaque(true);
-    setComponent(label);
+  }
+  
+  public JLabelCustomizer(String text){
+    this(new JLabel(text));
+    initForDefaultLabel();
+  }
+  
+  private void initForDefaultLabel(){
+    setBackground(Color.WHITE);
   }
   
   public String getText() {

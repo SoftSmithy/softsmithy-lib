@@ -35,7 +35,12 @@ public class JShapeCustomizer extends JIconCustomizer {
   
   /** Creates a new instance of JImageCustomizer */
   public JShapeCustomizer() {
-    ((JLabel) getComponent()).setIcon(shapeIcon);
+    getLabel().setIcon(shapeIcon);
+  }
+  
+  public JShapeCustomizer(Shape shape){
+    this();
+    setShape(shape);
   }
   
   /** Getter for property imageSrc.

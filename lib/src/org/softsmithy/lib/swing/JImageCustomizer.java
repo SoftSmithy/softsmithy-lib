@@ -37,6 +37,10 @@ public class JImageCustomizer extends JIconCustomizer {
   public JImageCustomizer() {
   }
   
+  public JImageCustomizer(Image image){
+    setImage(image);
+  }
+  
   /** Getter for property imageSrc.
    * @return Value of property imageSrc.
    *
@@ -51,7 +55,7 @@ public class JImageCustomizer extends JIconCustomizer {
    */
   public void setImage(Image image) {
     this.image = image;
-    adjustIcon();
+    //adjustIcon();
   }
   
   

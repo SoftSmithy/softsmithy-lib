@@ -229,6 +229,14 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
     super.setLayout(mgr);
   }
   
+  public void setCustomizerLayout(CustomizerLayout cl){
+    setLayout(cl);
+  }
+  
+  public CustomizerLayout getCustomizerLayout(){
+    return (CustomizerLayout) getLayout();
+  }
+  
   /** Adds the specified component to this container at the specified
    * index. This method also notifies the layout manager to add
    * the component to this container's layout using the specified
