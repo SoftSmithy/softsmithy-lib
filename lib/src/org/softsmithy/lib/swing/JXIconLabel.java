@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author  puce
  */
-public class JXIconLabel extends JLabel {
+public class JXIconLabel extends JXLabel {
   
   //private ShapeIcon shapeIcon = new ShapeIcon();
   
