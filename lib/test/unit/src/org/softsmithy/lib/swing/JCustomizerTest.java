@@ -19,14 +19,14 @@
  * Created on 27. August 2002, 08:54
  */
 
-package puce.swing;
+package org.softsmithy.lib.swing;
 
-import puce.swing.border.HandleBorder.*;
+import org.softsmithy.lib.swing.border.HandleBorder.*;
 import java.awt.event.*;
 import junit.framework.*;
-import puce.swing.JCustomizer.StateManager.*;
-import puce.swing.JCustomizerTest.StateManagerTest.*;
-import puce.swing.JCustomizerTest.*;
+import org.softsmithy.lib.swing.customizer.StateManager.*;
+import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.*;
+import org.softsmithy.lib.swing.JCustomizerTest.*;
 import java.awt.*;
 import junit.textui.*;
 
@@ -58,7 +58,7 @@ public class JCustomizerTest extends TestCase {
     super.setUp();
     customizer = new JCustomizer();
     pane = new JCustomizerPane();
-    pane.add(customizer, new DefaultTableConstraints(5,5, 30, 10));
+    pane.add(customizer, new AbsoluteTableConstraints(5,5, 30, 10));
     pane.doLayout();
   }
   

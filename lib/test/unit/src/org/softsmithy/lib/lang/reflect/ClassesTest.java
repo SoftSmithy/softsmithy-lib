@@ -19,7 +19,7 @@
  * Created on 4. Juli 2002, 22:28
  */
 
-package puce.lang.reflect;
+package org.softsmithy.lib.lang.reflect;
 
 import junit.framework.*;
 import java.util.*;

@@ -19,12 +19,12 @@
  * Created on 27. August 2002, 09:32
  */
 
-package puce.awt.layout;
+package org.softsmithy.lib.awt.layout;
 
 import java.awt.*;
 import junit.framework.*;
 import junit.textui.*;
-import puce.swing.*;
+import org.softsmithy.lib.swing.*;
 
 
 /**

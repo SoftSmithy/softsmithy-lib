@@ -19,7 +19,7 @@
  * Created on 4. Juli 2002, 22:25
  */
 
-package puce.util;
+package org.softsmithy.lib.util;
 
 import junit.framework.*;
 
