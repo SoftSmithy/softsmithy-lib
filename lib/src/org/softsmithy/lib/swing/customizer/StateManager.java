@@ -32,18 +32,18 @@ public class StateManager implements FocusListener, MouseInputListener {
   
   private JCustomizer customizer;
   private State current;
-  private State normalState;
-  private State selectedState;
-  private BoundState moveState;
-  private ResizeState nResizeState;
-  private ResizeState nEResizeState;
-  private ResizeState eResizeState;
-  private ResizeState sEResizeState;
-  private ResizeState sResizeState;
-  private ResizeState sWResizeState;
-  private ResizeState wResizeState;
-  private ResizeState nWResizeState;
-  private ResizeState[] resizeStates;
+  private final State normalState;
+  private final State selectedState;
+  private final BoundState moveState;
+  private final ResizeState nResizeState;
+  private final ResizeState nEResizeState;
+  private final ResizeState eResizeState;
+  private final ResizeState sEResizeState;
+  private final ResizeState sResizeState;
+  private final ResizeState sWResizeState;
+  private final ResizeState wResizeState;
+  private final ResizeState nWResizeState;
+  private final ResizeState[] resizeStates;
   
   //  /** Holds value of property normalBorderColor. */
   //  private Color normalBorderColor = Color.GRAY;
@@ -74,129 +74,18 @@ public class StateManager implements FocusListener, MouseInputListener {
   public StateManager(final JCustomizer customizer){
     this.customizer = customizer;
     
-    normalState =  new DefaultState(customizer){
-      public void mousePressed(MouseEvent e) {
-        JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
-        if (e.isControlDown()){
-          pane.getSelectionManager().select(customizer, e.getPoint());
-        } else {
-          pane.getSelectionManager().singleSelect(customizer, e.getPoint());
-        }
-      }
-    };
+    normalState = new NormalState(customizer);
+    selectedState = new SelectedState(customizer);
+    moveState = new MoveState(customizer);
+    nResizeState = new NResizeState(customizer);
+    nEResizeState = new NEResizeState(customizer);
+    eResizeState = new EResizeState(customizer);
+    sEResizeState = new SEResizeState(customizer);
+    sResizeState = new SResizeState(customizer);
+    sWResizeState = new SWResizeState(customizer);
+    wResizeState = new WResizeState(customizer);
+    nWResizeState = new NWResizeState(customizer);
     
-    selectedState = new DefaultState(customizer, Color.BLUE){
-      //      private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
-      public void mousePressed(MouseEvent e) {
-        JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
-        if (e.isControlDown()){
-          pane.getSelectionManager().deselect(customizer);
-        } else {
-          pane.getSelectionManager().singleSelect(customizer, e.getPoint());
-        }
-      }
-      //      public void applyBorder(){
-      //        customizer.applyBorder(LINE_BORDER);
-      //      }
-    };
-    
-    moveState = new BoundState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 1, 1, 0, 0);
-      }
-    };
-    nResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getNHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 0, 1, 0, -1);
-      }
-    };
-    nEResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getNEHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 0, 1, 1, - 1);
-      }
-    };
-    
-    eResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getEHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 0, 0, 1, 0);
-      }
-    };
-    sEResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getSEHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 0, 0, 1, 1);
-      }
-    };
-    sResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getSHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 0, 0, 0, 1);
-      }
-    };
-    sWResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getSWHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 1, 0, - 1, 1);
-      }
-    };
-    wResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getWHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 1, 0, - 1, 0);
-      }
-    };
-    nWResizeState = new ResizeState(customizer){
-      public void applyCursor(){
-        customizer.setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-      }
-      public Handle getHandle(){
-        return getHandleBorder().getNWHandle();
-      }
-      public Rectangle createRelRectangle(MouseEvent e) {
-        return createRelRectangle(e, 1, 1, - 1, - 1);
-      }
-    };
     resizeStates = new ResizeState[]{nResizeState, nEResizeState, eResizeState, sEResizeState,
     sResizeState, sWResizeState, wResizeState, nWResizeState};
     setUsingDefaultNormalBorderColor(true);
@@ -630,13 +519,13 @@ public class StateManager implements FocusListener, MouseInputListener {
     
     private final JCustomizer customizer;
     
-    public DefaultState(JCustomizer customizer){
-      this(customizer, Color.GRAY);
-    }
+//    public DefaultState(JCustomizer customizer){
+//      this(customizer, Color.GRAY);
+//    }
     
-    public DefaultState(JCustomizer customizer, Color color){
+    public DefaultState(JCustomizer customizer){//, Color color){
       this.customizer = customizer;
-      resetBorder(color);
+      //resetBorder(color);
     }
     
     public void applyBorder(){
@@ -678,6 +567,42 @@ public class StateManager implements FocusListener, MouseInputListener {
         getCustomizer().fireActionEvent(new ActionEvent(getCustomizer(), ActionEvent.ACTION_PERFORMED, ""));
       }
     }
+  }
+  
+  private static class NormalState extends DefaultState{
+    
+    public NormalState(JCustomizer customizer){
+      super(customizer);
+    }
+    
+    public void mousePressed(MouseEvent e) {
+      JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
+      if (e.isControlDown()){
+        pane.getSelectionManager().select(getCustomizer(), e.getPoint());
+      } else {
+        pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
+      }
+    }
+  }
+  
+  private static class SelectedState extends DefaultState{
+    
+    public SelectedState(JCustomizer customizer){
+      super(customizer);//, Color.BLUE);
+    }
+    
+    //      private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
+    public void mousePressed(MouseEvent e) {
+      JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
+      if (e.isControlDown()){
+        pane.getSelectionManager().deselect(getCustomizer());
+      } else {
+        pane.getSelectionManager().singleSelect(getCustomizer(), e.getPoint());
+      }
+    }
+    //      public void applyBorder(){
+    //        customizer.applyBorder(LINE_BORDER);
+    //      }
   }
   
   public static abstract class BoundState extends DefaultState{
@@ -829,13 +754,26 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
   }
   
+  private static class MoveState extends BoundState{
+    
+    public MoveState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 1, 1, 0, 0);
+    }
+  }
+  
   public static abstract class ResizeState extends BoundState{
     
     private boolean draggingStarted = false;
     
     public ResizeState(JCustomizer customizer){
       super(customizer);
-      getHandle().setRect(customizer.getWidth(), customizer.getHeight());
+      //getHandle().setRect(customizer.getWidth(), customizer.getHeight());
     }
     
     public abstract Handle getHandle();
@@ -867,6 +805,134 @@ public class StateManager implements FocusListener, MouseInputListener {
       draggingStarted = false;
     }
     
+  }
+  
+  private static class NResizeState extends ResizeState{
+    
+    public NResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getNHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 0, 1, 0, -1);
+    }
+  }
+  private static class NEResizeState extends ResizeState{
+    
+    public NEResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getNEHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 0, 1, 1, - 1);
+    }
+  }
+  private static class EResizeState extends ResizeState{
+    
+    public EResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
+    }
+    
+    public Handle getHandle(){
+      return getHandleBorder().getEHandle();
+    }
+    
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 0, 0, 1, 0);
+    }
+  }
+  
+  private static class SEResizeState extends ResizeState{
+    public SEResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
+    }
+    
+    public Handle getHandle(){
+      return getHandleBorder().getSEHandle();
+    }
+    
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 0, 0, 1, 1);
+    }
+  }
+  
+  private static class SResizeState extends ResizeState{
+    public SResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getSHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 0, 0, 0, 1);
+    }
+  }
+  
+  private static class SWResizeState extends ResizeState{
+    public SWResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getSWHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 1, 0, - 1, 1);
+    }
+  }
+  
+  private static class WResizeState extends ResizeState{
+    public WResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getWHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 1, 0, - 1, 0);
+    }
+  }
+  
+  private static class NWResizeState extends ResizeState{
+    public NWResizeState(JCustomizer customizer){
+      super(customizer);
+    }
+    public void applyCursor(){
+      getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
+    }
+    public Handle getHandle(){
+      return getHandleBorder().getNWHandle();
+    }
+    public Rectangle createRelRectangle(MouseEvent e) {
+      return createRelRectangle(e, 1, 1, - 1, - 1);
+    }
   }
   
   private static interface BorderColor{

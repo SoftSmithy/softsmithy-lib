@@ -172,7 +172,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         parent.requestFocus();
       }
       Rectangle bounds = customizer.getBounds();
-      parent.remove(customizer);
+      parent.remove(customizer); //TODO: unregister listeners eg. in StateCustomizer
       parent.repaint(bounds.x, bounds.y, bounds.width, bounds.height);
     }
     clearSelection(); // this causes an ConcurrentModificationException since it

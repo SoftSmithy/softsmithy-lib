@@ -103,6 +103,31 @@ public class ParentStyle extends AbstractStyle{
     return this.styleable;
   }
   
+  //TODO: Check if an AncestorListener is better than HierarchyListener (or addNotify in JComponent?)
+ /* private class ParentListener implements AncestorListener{
+    
+    public void ancestorAdded(AncestorEvent event) {
+      System.out.println("ancestorAdd");
+      getStyleable().getParent().addPropertyChangeListener("background", parentBackgroundListener);
+      getStyleable().getParent().addPropertyChangeListener("foreground", parentForegroundListener);
+      getStyleable().getParent().addPropertyChangeListener("font", parentFontListener);
+      getStyleable().getParent().addPropertyChangeListener("opaque", parentOpaqueListener);
+    }
+    
+    public void ancestorMoved(AncestorEvent event) {
+      System.out.println("ancestorMoved - do nothing!?");
+    }
+    
+    public void ancestorRemoved(AncestorEvent event) {
+      System.out.println("ancestorRemoved");
+      getStyleable().getParent().removePropertyChangeListener("background", parentBackgroundListener);
+      getStyleable().getParent().removePropertyChangeListener("foreground", parentForegroundListener);
+      getStyleable().getParent().removePropertyChangeListener("font", parentFontListener);
+      getStyleable().getParent().removePropertyChangeListener("opaque", parentOpaqueListener);
+    }
+    
+  }*/
+  
   private class ParentListener implements HierarchyListener{
     
     /** Called when the hierarchy has been changed. To discern the actual
