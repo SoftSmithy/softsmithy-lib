@@ -23,12 +23,15 @@ package org.softsmithy.lib.swing;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
+import org.softsmithy.lib.swing.icon.*;
 
 /**
+ * Depricated!
+ * Use JXIconCustomizer and ShapeIcon instead!
  *
  * @author  puce
  */
-public class JShapeCustomizer extends JIconCustomizer {
+class JShapeCustomizer extends JIconCustomizer {
   
   /** Holds value of property imageSrc. */
   private ShapeIcon shapeIcon = new ShapeIcon();
