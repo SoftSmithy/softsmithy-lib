@@ -760,7 +760,7 @@ public class StateManager implements FocusListener, MouseInputListener {
         dragging = true;
       }
       //      e.translatePoint(- startX, - startY);
-      getCustomizer().fireCustomizerReshapeRel(createCustomizerEvent(e));
+      getCustomizer().fireCustomizerResetBoundsRel(createCustomizerEvent(e));
       //      e.translatePoint(startX, startY);
       lastX = e.getX();
       lastY = e.getY();
@@ -768,7 +768,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     
     public void mouseReleased(MouseEvent e){
       if (isDragging()){
-        getCustomizer().fireCustomizerFinishDragging(createCustomizerEvent(e));
+        getCustomizer().fireCustomizerReshapeRel(createCustomizerEvent(e));
         dragging = false;
       }
     }
