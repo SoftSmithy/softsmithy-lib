@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author  puce
  */
-public abstract class CompundFileFilter implements FileFilter {
+public abstract class CompoundFileFilter implements FileFilter {
   
   /** Holds value of property firstFilter. */
   private FileFilter firstFilter;
@@ -21,7 +21,7 @@ public abstract class CompundFileFilter implements FileFilter {
   private FileFilter secondFilter;
   
   /** Creates a new instance of CompundFileFilter */
-  public CompundFileFilter(FileFilter first, FileFilter second) {
+  public CompoundFileFilter(FileFilter first, FileFilter second) {
     this.firstFilter = first;
     this.secondFilter = second;
   }
