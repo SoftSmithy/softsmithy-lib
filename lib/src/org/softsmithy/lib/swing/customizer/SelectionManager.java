@@ -92,18 +92,14 @@ public class SelectionManager implements CustomizerListener{
     }
   }
   
-  public void customizerMoveRel(CustomizerEvent e){
-    for (int i=0; i<selectedList.size(); i++){
-      ((JCustomizer) selectedList.get(i)).moveRel(e.getDx(), e.getDy());
-    }
-  }
-  
-  public void customizerResizeRel(CustomizerEvent e){
-    for (int i=0; i<selectedList.size(); i++){
-      ((JCustomizer) selectedList.get(i)).resizeRel(e.getDwidth(), e.getDheight());
-    }
-  }
   public void customizerReshapeRel(CustomizerEvent e){
+    for (int i=0; i<selectedList.size(); i++){
+      JCustomizer customizer = (JCustomizer) selectedList.get(i);
+      customizer.setBoundsRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
+      customizer.doLayout();
+    }
+  }
+  public void customizerFinishReshapeRel(CustomizerEvent e){
     for (int i=0; i<selectedList.size(); i++){
       ((JCustomizer) selectedList.get(i)).reshapeRel(e.getDx(), e.getDy(), e.getDwidth(), e.getDheight());
     }

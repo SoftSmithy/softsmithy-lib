@@ -30,12 +30,13 @@ public class StateManager implements FocusListener, MouseInputListener {
   private ResizeState nWResizeState;
   private ResizeState[] resizeStates;
   
+  
   //private JCustomizer customizer;
   
   public StateManager(final JCustomizer customizer){
     this.customizer = customizer;
     
-    normalState =  new State(customizer){
+    normalState =  new DefaultState(customizer){
       public void mousePressed(MouseEvent e) {
         JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
         if (e.isControlDown()){
@@ -46,7 +47,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       }
     };
     
-    selectedState = new State(customizer){
+    selectedState = new DefaultState(customizer){
       private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
       public void mousePressed(MouseEvent e) {
         JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
@@ -65,8 +66,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public void applyCursor(){
         customizer.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerMoveRel(new CustomizerEvent(customizer, e.getX(), e.getY(), 0, 0));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 1, 1, 0, 0);
       }
     };
     nResizeState = new ResizeState(customizer){
@@ -76,8 +77,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getNHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerReshapeRel(new CustomizerEvent(customizer, 0, e.getY(), 0, -e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 0, 1, 0, -1);
       }
     };
     nEResizeState = new ResizeState(customizer){
@@ -87,8 +88,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getNEHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerReshapeRel(new CustomizerEvent(customizer, 0, e.getY(), e.getX(), - e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 0, 1, 1, - 1);
       }
     };
     
@@ -99,8 +100,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getEHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerResizeRel(new CustomizerEvent(customizer, 0, 0, e.getX(), 0));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 0, 0, 1, 0);
       }
     };
     sEResizeState = new ResizeState(customizer){
@@ -110,8 +111,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getSEHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerResizeRel(new CustomizerEvent(customizer, 0, 0, e.getX(), e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 0, 0, 1, 1);
       }
     };
     sResizeState = new ResizeState(customizer){
@@ -121,8 +122,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getSHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerResizeRel(new CustomizerEvent(customizer, 0, 0, 0, e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 0, 0, 0, 1);
       }
     };
     sWResizeState = new ResizeState(customizer){
@@ -132,8 +133,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getSWHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerReshapeRel(new CustomizerEvent(customizer, e.getX(), 0, - e.getX(), e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 1, 0, - 1, 1);
       }
     };
     wResizeState = new ResizeState(customizer){
@@ -143,8 +144,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getWHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerReshapeRel(new CustomizerEvent(customizer, e.getX(), 0, - e.getX(), 0));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 1, 0, - 1, 0);
       }
     };
     nWResizeState = new ResizeState(customizer){
@@ -154,8 +155,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       public Handle getHandle(){
         return HANDLE_BORDER.getNWHandle();
       }
-      public void processMouseDragged(MouseEvent e) {
-        customizer.fireCustomizerReshapeRel(new CustomizerEvent(customizer, e.getX(), e.getY(), - e.getX(), - e.getY()));
+      public CustomizerEvent createCustomizerEvent(MouseEvent e) {
+        return createCustomizerEvent(e, 1, 1, - 1, - 1);
       }
     };
     resizeStates = new ResizeState[]{nResizeState, nEResizeState, eResizeState, sEResizeState,
@@ -163,10 +164,12 @@ public class StateManager implements FocusListener, MouseInputListener {
     setState(normalState);
   }
   
-  private void setState(State state){
+  protected void setState(State state){
+    if (current != null){
+      current.unconfigureCustomizer();
+    }
     current = state;
-    current.applyBorder();
-    current.applyCursor();
+    current.configureCustomizer();
   }
   
   public void setStateBound(Point point){
@@ -174,6 +177,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     if(!customizer.hasFocus()){
       customizer.requestFocus();
     }
+    customizer.invalidate();
+    customizer.doLayout();
   }
   
   private BoundState getBoundStateAt(Point p){
@@ -191,6 +196,7 @@ public class StateManager implements FocusListener, MouseInputListener {
    */
   public void mouseClicked(MouseEvent e) {
     current.mouseClicked(e);
+    e.consume();
   }
   
   /** Invoked when a mouse button is pressed on a component and then
@@ -205,18 +211,21 @@ public class StateManager implements FocusListener, MouseInputListener {
    */
   public void mouseDragged(MouseEvent e) {
     current.mouseDragged(e);
+    e.consume();
   }
   
   /** Invoked when the mouse enters a component.
    */
   public void mouseEntered(MouseEvent e) {
     current.mouseEntered(e);
+    e.consume();
   }
   
   /** Invoked when the mouse exits a component.
    */
   public void mouseExited(MouseEvent e) {
     current.mouseExited(e);
+    e.consume();
   }
   
   /** Invoked when the mouse button has been moved on a component
@@ -224,18 +233,21 @@ public class StateManager implements FocusListener, MouseInputListener {
    */
   public void mouseMoved(MouseEvent e) {
     current.mouseMoved(e);
+    e.consume();
   }
   
   /** Invoked when a mouse button has been pressed on a component.
    */
   public void mousePressed(MouseEvent e) {
     current.mousePressed(e);
+    e.consume();
   }
   
   /** Invoked when a mouse button has been released on a component.
    */
   public void mouseReleased(MouseEvent e) {
     current.mouseReleased(e);
+    e.consume();
   }
   
   /** Invoked when a component gains the keyboard focus.
@@ -389,83 +401,56 @@ public class StateManager implements FocusListener, MouseInputListener {
     setState(wResizeState);
   }
   
-  public static class State{
+  
+  
+  public static class DefaultState extends StateAdapter{
     
-    private JCustomizer fCustomizer;
+    private final JCustomizer customizer;
     
-    public State(JCustomizer customizer){
-      fCustomizer = customizer;
+    public DefaultState(JCustomizer customizer){
+      this.customizer = customizer;
     }
     
     public void applyBorder(){
-      fCustomizer.setBorder(null);
+      customizer.setBorder(null);
     }
     
     public void applyCursor(){
-      fCustomizer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+      customizer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+    
+    public void configureCustomizer(){
+      applyBorder();
+      applyCursor();
     }
     
     public JCustomizer getCustomizer(){
-      return fCustomizer;
+      return customizer;
     }
     
-    /** Invoked when the mouse button has been clicked (pressed
-     * and released) on a component.
-     */
-    public void mouseClicked(MouseEvent e) {
-    }
     
-    /** Invoked when a mouse button is pressed on a component and then
-     * dragged.  <code>MOUSE_DRAGGED</code> events will continue to be
-     * delivered to the component where the drag originated until the
-     * mouse button is released (regardless of whether the mouse position
-     * is within the bounds of the component).
-     * <p>
-     * Due to platform-dependent Drag&Drop implementations,
-     * <code>MOUSE_DRAGGED</code> events may not be delivered during a native
-     * Drag&Drop operation.
-     */
-    public void mouseDragged(MouseEvent e) {
-    }
+  }
+  
+  public static class ActiveState extends DefaultState{
     
-    /** Invoked when the mouse enters a component.
-     */
-    public void mouseEntered(MouseEvent e) {
-    }
-    
-    /** Invoked when the mouse exits a component.
-     */
-    public void mouseExited(MouseEvent e) {
-    }
-    
-    /** Invoked when the mouse button has been moved on a component
-     * (with no buttons down).
-     */
-    public void mouseMoved(MouseEvent e) {
-    }
-    
-    /** Invoked when a mouse button has been pressed on a component.
-     */
-    public void mousePressed(MouseEvent e) {
-    }
-    
-    /** Invoked when a mouse button has been released on a component.
-     */
-    public void mouseReleased(MouseEvent e) {
-    }
-    
-    /** Invoked when a component gains the keyboard focus.
-     */
-    public void focusGained(FocusEvent e) {
+    public ActiveState(JCustomizer customizer){
+      super(customizer);
     }
     
     /** Invoked when a component loses the keyboard focus.
      */
     public void focusLost(FocusEvent e) {
+      JCustomizer customizer = getCustomizer();
+      JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
+      StateManager manager = customizer.getStateManager();
+      if (pane.getSelectionManager().isSelected(customizer)){
+        manager.setStateSelected();
+      } else {
+        pane.getSelectionManager().deselect(customizer);
+      }
     }
   }
-  
-  public static abstract class BoundState extends State{
+  public static abstract class BoundState extends ActiveState{
     
     protected static final HandleBorder HANDLE_BORDER = new HandleBorder(Color.BLUE);
     
@@ -474,6 +459,14 @@ public class StateManager implements FocusListener, MouseInputListener {
     
     /** Holds value of property startY. */
     private int startY;
+    
+    private boolean dragging;
+    
+    /** Holds value of property lastX. */
+    private int lastX;
+    
+    /** Holds value of property lastY. */
+    private int lastY;
     
     public BoundState(JCustomizer customizer){
       super(customizer);
@@ -509,6 +502,8 @@ public class StateManager implements FocusListener, MouseInputListener {
       super.mousePressed(e);
       startX = e.getX();
       startY = e.getY();
+      lastX = e.getX();
+      lastY = e.getY();
     }
     
     /** Invoked when a mouse button is pressed on a component and then
@@ -523,27 +518,60 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public void mouseDragged(MouseEvent e) {
       super.mouseDragged(e);
-      e.translatePoint(- startX, - startY);
-      processMouseDragged(e);
-      e.translatePoint(startX, startY);
-        /*startX = e.getX();
-        startY = e.getY();*/
+      if (! dragging){
+        dragging = true;
+      }
+      //      e.translatePoint(- startX, - startY);
+      getCustomizer().fireCustomizerReshapeRel(createCustomizerEvent(e));
+      //      e.translatePoint(startX, startY);
+      lastX = e.getX();
+      lastY = e.getY();
     }
     
-    public abstract void processMouseDragged(MouseEvent e);
-    
-    /** Invoked when a component loses the keyboard focus.
-     */
-    public void focusLost(FocusEvent e) {
-      JCustomizer customizer = (JCustomizer) e.getComponent();
-      JCustomizerPane pane = (JCustomizerPane) customizer.getParent();
-      StateManager manager = customizer.getStateManager();
-      if (pane.getSelectionManager().isSelected(customizer)){
-        manager.setStateSelected();
-      } else {
-        pane.getSelectionManager().deselect(customizer);
+    public void mouseReleased(MouseEvent e){
+      if (dragging){
+        getCustomizer().fireCustomizerFinishDragging(createCustomizerEvent(e));
+        dragging = false;
       }
     }
+    
+    public abstract CustomizerEvent createCustomizerEvent(MouseEvent e);
+    
+    public CustomizerEvent createCustomizerEvent(MouseEvent e, int xFactor,
+    int yFactor, int widthFactor, int heightFactor){
+      int dx = e.getX() - getStartX();
+      int dy = e.getY() - getStartY();
+      int dwidth;
+      int dheight;
+      if (xFactor == 0){
+        dwidth = e.getX() - getLastX();
+      } else {
+        dwidth = e.getX() - getStartX();
+      }
+      if (yFactor == 0){
+        dheight = e.getY() - getLastY();
+      } else {
+        dheight = e.getY() - getStartY();
+      }
+      return new CustomizerEvent(getCustomizer(), xFactor*dx,  yFactor*dy, widthFactor*dwidth, heightFactor*dheight);
+    }
+    
+    /** Getter for property lastX.
+     * @return Value of property lastX.
+     *
+     */
+    public int getLastX() {
+      return this.lastX;
+    }
+    
+    /** Getter for property lastY.
+     * @return Value of property lastY.
+     *
+     */
+    public int getLastY() {
+      return this.lastY;
+    }
+    
   }
   
   public static abstract class ResizeState extends BoundState{

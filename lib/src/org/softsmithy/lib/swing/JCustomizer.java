@@ -11,6 +11,8 @@ import java.util.*;
 import javax.swing.*;
 import puce.swing.customizer.*;
 import puce.swing.event.*;
+import puce.test.*;
+
 
 
 
@@ -22,19 +24,21 @@ import puce.swing.event.*;
 public class JCustomizer extends JPanel{
   
   private JComponent fComponent;
+  private JPanel glassPane = new JPanel();
   
-  private final StateManager fManager;
+  private StateManager stateManager;
   private final Set listeners = new HashSet();
+  private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
   
   /** Creates a new instance of JCustomizer */
   public JCustomizer() {
-    setLayout(new BorderLayout());
-    fManager = new StateManager(this);
-    addMouseListener(fManager);
-    addMouseMotionListener(fManager);
-    addFocusListener(fManager);
+    setLayout(new TableLayout(new double[][]{{TableLayout.FILL}, {TableLayout.FILL}}));//new BorderLayout());
+    glassPane.setLayout(new BorderLayout());
+    glassPane.setOpaque(false);
+    add(glassPane, CONSTRAINTS);
+    setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
-    setComponent(new JLabel("testtest"));
+    //setComponent(new JLabel("testtest"));
   }
   
   
@@ -50,10 +54,14 @@ public class JCustomizer extends JPanel{
    * @param fComponent New value of property fComponent.
    */
   public void setComponent(JComponent component) {
-    removeAll();
+    //removeAll();
+    if (fComponent != null){
+      this.remove(fComponent);
+    }
     fComponent = component;
     //fComponent.setEnabled(false);
-    add("Center", fComponent);
+    //add(BorderLayout.CENTER, fComponent);
+    add(fComponent, CONSTRAINTS);
     //??
     /*fComponent.addMouseListener(fManager);
     fComponent.addMouseMotionListener(fManager);
@@ -61,62 +69,81 @@ public class JCustomizer extends JPanel{
   }
   
   public StateManager getStateManager(){
-    return fManager;
+    return stateManager;
   }
   
-  public void moveRel(int dx, int dy) {
-    JCustomizerPane pane = (JCustomizerPane) getParent();
-    TableLayout tl = (TableLayout) pane.getLayout();
-    Point loc = calculateLocation(dx, dy);
-    TableConstraints tc = tl.getConstraints(this);
-    //Point location = tl.location(p);
-    
-    tl.setConstraints(this,
-    new DefaultTableConstraints(tl.columnIndex(loc.x), tl.rowIndex(loc.y), tc.getWidth(), tc.getHeight()));
-    pane.doLayout(); //??
+  protected void setStateManager(StateManager manager){
+    if (stateManager != null){
+      glassPane.removeMouseListener(stateManager);
+      glassPane.removeMouseMotionListener(stateManager);
+      removeFocusListener(stateManager);
+    }
+    stateManager = manager;
+    glassPane.addMouseListener(stateManager);
+    glassPane.addMouseMotionListener(stateManager);
+    addFocusListener(stateManager);
   }
   
-  public void resizeRel(int dwidth, int dheight){
-    JCustomizerPane pane = (JCustomizerPane) getParent();
-    InfiniteTableLayout tl = (InfiniteTableLayout) pane.getLayout();
-    TableConstraints tc = tl.getConstraints(this);
-    Dimension dim = calculateSize(dwidth, dheight);
-    int colSpan = tl.colSpan(tc.getX(), dim.width);
-    int rowSpan =  tl.rowSpan(tc.getY(), dim.height);
-    tl.setConstraints(this,
-    new DefaultTableConstraints(tc.getX(), tc.getY(), colSpan, rowSpan));
-    pane.doLayout();
-  }
+  //  public void moveRel(int dx, int dy) {
+  //    JCustomizerPane pane = (JCustomizerPane) getParent();
+  //    TableLayout tl = (TableLayout) pane.getLayout();
+  //    Point loc = calculateLocation(dx, dy);
+  //    TableConstraints tc = tl.getConstraints(this);
+  //    //Point location = tl.location(p);
+  //
+  //    tl.setConstraints(this,
+  //    new DefaultTableConstraints(tl.columnIndex(loc.x), tl.rowIndex(loc.y), tc.getWidth(), tc.getHeight()));
+  //    tl.layoutComponent(pane, this); //??
+  //  }
+  //
+  //  public void resizeRel(int dwidth, int dheight){
+  //    JCustomizerPane pane = (JCustomizerPane) getParent();
+  //    InfiniteTableLayout tl = (InfiniteTableLayout) pane.getLayout();
+  //    TableConstraints tc = tl.getConstraints(this);
+  //    Dimension dim = calculateSize(dwidth, dheight);
+  //    int colSpan = tl.colSpan(tc.getX(), dim.width);
+  //    int rowSpan =  tl.rowSpan(tc.getY(), dim.height);
+  //    tl.setConstraints(this,
+  //    new DefaultTableConstraints(tc.getX(), tc.getY(), colSpan, rowSpan));
+  //    tl.layoutComponent(pane, this);
+  //  }
   
   public void reshapeRel(int dx, int dy, int dwidth, int dheight) {
     JCustomizerPane pane = (JCustomizerPane) getParent();
-    InfiniteTableLayout tl = (InfiniteTableLayout) pane.getLayout();
-    Point loc = calculateLocation(dx, dy);
-    Dimension dim = calculateSize(dwidth, dheight);
-    int x = tl.columnIndex(loc.x);
-    int y = tl.rowIndex(loc.y);
-    int colSpan =  tl.colSpan(x, dim.width);
-    int rowSpan =  tl.rowSpan(y, dim.height);
-    tl.setConstraints(this,  new DefaultTableConstraints(x, y, colSpan, rowSpan));
-    pane.doLayout();
+    CustomizerLayout cl = (CustomizerLayout) pane.getLayout();
+    Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
+    CustomizerConstraints constr = cl.getConstraints(this);
+    constr.setAbsoluteBounds(bounds, cl);
+    cl.setConstraints(this, constr);
+    cl.layoutComponent(pane, this);
   }
   
-  private Point calculateLocation(int dx, int dy){
-    Point location = getLocation();
-    return new Point(location.x + dx, location.y + dy);
+  public void setBoundsRel(int dx, int dy, int dwidth, int dheight){
+    Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
+    setBounds(bounds);
   }
-  private Dimension calculateSize(int dwidth, int dheight) {
-    Dimension dim = getSize();
-    int width = dim.width + dwidth;
-    int height = dim.height + dheight;
-    /*if (width < 1){
-      width = 1;
-    }
-    if (height < 1){
-      height = 1;
-    }*/
-    return new Dimension(width, height);
+  
+  private Rectangle calculateBounds(int dx, int dy, int dwidth, int dheight){
+    Rectangle bounds = getBounds();
+    return new Rectangle(bounds.x + dx, bounds.y + dy, bounds.width + dwidth,
+    bounds.height + dheight);
   }
+  //  private Point calculateLocation(int dx, int dy){
+  //    Point location = getLocation();
+  //    return new Point(location.x + dx, location.y + dy);
+  //  }
+  //  private Dimension calculateSize(int dwidth, int dheight) {
+  //    Dimension dim = getSize();
+  //    int width = dim.width + dwidth;
+  //    int height = dim.height + dheight;
+  //    /*if (width < 1){
+  //      width = 1;
+  //    }
+  //    if (height < 1){
+  //      height = 1;
+  //    }*/
+  //    return new Dimension(width, height);
+  //  }
   
   public void addCustomizerListener(CustomizerListener listener){
     listeners.add(listener);
@@ -126,21 +153,35 @@ public class JCustomizer extends JPanel{
     listeners.remove(listener);
   }
   
-  public void fireCustomizerMoveRel(CustomizerEvent e){
-    for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerMoveRel(e);
-    }    
-  }
-  
-  public void fireCustomizerResizeRel(CustomizerEvent e){
-    for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerResizeRel(e);
-    }
-  }
+  //  public void fireCustomizerMoveRel(CustomizerEvent e){
+  //    for (Iterator i=listeners.iterator(); i.hasNext();){
+  //      ((CustomizerListener) i.next()).customizerMoveRel(e);
+  //    }
+  //  }
+  //
+  //  public void fireCustomizerResizeRel(CustomizerEvent e){
+  //    for (Iterator i=listeners.iterator(); i.hasNext();){
+  //      ((CustomizerListener) i.next()).customizerResizeRel(e);
+  //    }
+  //  }
   public void fireCustomizerReshapeRel(CustomizerEvent e){
     for (Iterator i=listeners.iterator(); i.hasNext();){
       ((CustomizerListener) i.next()).customizerReshapeRel(e);
     }
+  }
+  
+  public void fireCustomizerFinishDragging(CustomizerEvent e){
+    for (Iterator i=listeners.iterator(); i.hasNext();){
+      ((CustomizerListener) i.next()).customizerFinishReshapeRel(e);
+    }
+  }
+  
+  /** Getter for property glassPane.
+   * @return Value of property glassPane.
+   *
+   */
+  public JPanel getGlassPane() {
+    return glassPane;
   }
   
   

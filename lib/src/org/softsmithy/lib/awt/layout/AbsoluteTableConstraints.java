@@ -30,40 +30,56 @@ public final class AbsoluteTableConstraints implements TableConstraints{
   /** Creates a new instance of DefaultTableLayoutConstraints */
   public AbsoluteTableConstraints(int x, int y, int width, int height,
   TableLayout tl){
-    setBounds(new Rectangle(x, y, width, height), tl);
+    setAbsoluteBounds(new Rectangle(x, y, width, height), tl);
   }
   
   /** Getter for property x.
    * @return Value of property x.
    */
-  public int getX(TableLayout tl) {
+  public int getX(Component comp, TableLayout tl) {
     return this.x;
+  }
+  
+  public void setX(int x){
+    this.x = x;
   }
   
   /** Getter for property y.
    * @return Value of property y.
    */
-  public int getY(TableLayout tl){
+  public int getY(Component comp, TableLayout tl){
     return this.y;
+  }
+  
+    public void setY(int y){
+    this.y = y;
   }
   
   /** Getter for property width.
    * @return Value of property width.
    */
-  public int getWidth(TableLayout tl)  {
+  public int getWidth(Component comp, TableLayout tl)  {
     return this.width;
   }
   
+    public void setWidth(int width){
+    this.width = width;
+  }
+    
   /** Getter for property height.
    * @return Value of property height.
    */
-  public int getHeight(TableLayout tl) {
+  public int getHeight(Component comp, TableLayout tl) {
     return this.height;
   }
   
-  public void setBounds(Rectangle bounds, CustomizerLayout cl){
+    public void setHeight(int height){
+    this.height = height;
+  }
+    
+  public void setAbsoluteBounds(Rectangle bounds, CustomizerLayout cl){
     if (!(cl instanceof TableLayout)){
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("cl must be a Tablelayout!");
     }
     TableLayout tl = (TableLayout) cl;
     Rectangle adjustedBounds = tl.adjustBounds(bounds);
@@ -73,5 +89,21 @@ public final class AbsoluteTableConstraints implements TableConstraints{
     this.height = adjustedBounds.height;
   }
   
+  public Rectangle getAbsoluteBounds(Component comp, TableLayout tl) {
+    return new Rectangle(x, y, width, height);
+  }  
+  
+  public Rectangle getRelativeBounds(Component comp, TableLayout tl) {
+    int column = tl.columnIndex(x);
+    int row = tl.rowIndex(y);
+    return new Rectangle(column, row, tl.colSpan(column, width), tl.rowSpan(row, height));
+  }
+  
+  public void setRelativeBounds(Rectangle bounds, TableLayout tl) {
+    setX(tl.xLocation(bounds.x));
+    setY(tl.yLocation(bounds.y));
+    setWidth(tl.width(bounds.x, bounds.width));
+    setHeight(tl.height(bounds.y, bounds.height));
+  }
   
 }

@@ -14,8 +14,8 @@ import java.util.*;
  */
 public interface CustomizerListener extends EventListener {
   
-  public void customizerMoveRel(CustomizerEvent e);
-  public void customizerResizeRel(CustomizerEvent e);
-  public void customizerReshapeRel(CustomizerEvent e);
+  
+  void customizerReshapeRel(CustomizerEvent e);
+  void customizerFinishReshapeRel(CustomizerEvent e);
   
 }

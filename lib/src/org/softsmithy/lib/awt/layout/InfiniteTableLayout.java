@@ -24,25 +24,28 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   /** Holds value of property constraints. */
   private Map constraints = new HashMap();
   
-  private final Axis columns;
+  private final InfiniteAxis columns;
   
-  private final Axis rows;
+  private final InfiniteAxis rows;
   
   private Dimension occupiedDimension = new Dimension(0,0);
   
+  private final Container parent;
+  
   /** Creates a new instance of UnlimitedTableLayout */
   public InfiniteTableLayout(int defaultColumnWidth, int defaultRowHeight, Container parent) {
-    columns = new Axis(defaultColumnWidth){
+    columns = new InfiniteAxis(defaultColumnWidth){
       public void drawLine(int startPixel, int endPixel, int offset, Graphics g){
         g.drawLine(offset, startPixel, offset, endPixel);
       }
     };
-    rows = new Axis(defaultRowHeight){
+    rows = new InfiniteAxis(defaultRowHeight){
       public void drawLine(int startPixel, int endPixel, int offset, Graphics g){
         g.drawLine(startPixel, offset, endPixel, offset);
       }
     };
     ensureValidity(parent);
+    this.parent = parent;
   }
   
   public InfiniteTableLayout(Container parent) {
@@ -92,6 +95,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
    */
   public void setDefaultColumnWidth(int defaultColumnWidth) {
     columns.setDefaultSize(defaultColumnWidth);
+    this.invalidateLayout(parent);
   }
   
   /** Getter for property defaultRowHeight.
@@ -106,45 +110,12 @@ public class InfiniteTableLayout extends AbstractTableLayout {
    */
   public void setDefaultRowHeight(int defaultRowHeight) {
     rows.setDefaultSize(defaultRowHeight);
+    this.invalidateLayout(parent);
   }
   
-  protected void calculateColumnOffsets(int x, int width) {
-    columns.calculateOffsets(x, width);
-  }
   
-  protected void calculateColumnSizes(int innerWidth) {
-  }
   
-  protected void calculateRowOffsets(int y, int height) {
-    rows.calculateOffsets(y, height);
-  }
   
-  protected void calculateRowSizes(int innerHeight) {
-  }
-  
-  /** If the layout manager uses a per-component string,
-   * adds the component <code>comp</code> to the layout,
-   * associating it
-   * with the string specified by <code>name</code>.
-   *
-   * @param name the string to be associated with the component
-   * @param comp the component to be added
-   */
-  public void addLayoutComponent(String name, Component comp) {
-    throw new IllegalArgumentException();
-  }
-  
-  /** Adds the specified component to the layout, using the specified
-   * constraint object.
-   * @param comp the component to be added
-   * @param constraints  where/how the component is added to the layout.
-   */
-  public void addLayoutComponent(Component comp, Object constr) {
-    if (!(constr instanceof TableConstraints)){
-      throw new IllegalArgumentException();
-    }
-    setConstraints(comp, (TableConstraints) constr);
-  }
   
   /** Getter for property constraints.
    * @return Value of property constraints.
@@ -161,11 +132,11 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       throw new IllegalArgumentException();
     }
     TableConstraints tc = (TableConstraints) constr;
-    int preferredWidth = tc.getX(this) + tc.getWidth(this); //??
+    int preferredWidth = tc.getX(comp, this) + tc.getWidth(comp, this); //??
     if (preferredWidth > occupiedDimension.width){
       occupiedDimension.width = preferredWidth;
     }
-    int preferredHeight = tc.getY(this) + tc.getHeight(this); //??
+    int preferredHeight = tc.getY(comp, this) + tc.getHeight(comp, this); //??
     if (preferredHeight > occupiedDimension.height){
       occupiedDimension.height = preferredHeight;
     }
@@ -190,36 +161,27 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   public void insertRow(int i, double height) {
   }
   
-  /**
-   * Lays out the specified container.
-   * @param parent the container to be laid out
-   */
-  public void layoutContainer(Container parent) {
-    ensureValidity(parent);
-    for (Iterator i=constraints.keySet().iterator(); i.hasNext();){
-      layoutComponent(parent, (Component) i.next());
-    }
-  }
   
-  public void layoutComponent(Container parent, Component comp) {
-    TableConstraints constr = (TableConstraints) getConstraints(comp);
-    if (constr != null){
-      ensureValidity(parent);
-      int x = constr.getX(this); //columns.getOffset(constr.getX());
-      if (x >= 0){
-        int y = constr.getY(this); //rows.getOffset(constr.getY());
-        if (y >= 0){
-          int width = constr.getWidth(this); //columns.getOffset(constr.getX() + constr.getWidth()) - x; //??
-          if (width > 0){
-            int height = constr.getHeight(this); //rows.getOffset(constr.getY() + constr.getHeight()) - y;// ??
-            if (height > 0){
-              comp.setBounds(x, y, width, height);
-            }
-          }
-        }
-      }
-    }
-  }
+  //  public void layoutComponent(Container parent, Component comp) {
+  //    TableConstraints constr = (TableConstraints) getConstraints(comp);
+  //    if (constr != null){
+  //      ensureValidity(parent);
+  //      //constr.layoutComponent(comp, this);
+  //      int x = constr.getX(this); //columns.getOffset(constr.getX());
+  //      if (x >= 0){
+  //        int y = constr.getY(this); //rows.getOffset(constr.getY());
+  //        if (y >= 0){
+  //          int width = constr.getWidth(this); //columns.getOffset(constr.getX() + constr.getWidth()) - x; //??
+  //          if (width > 0){
+  //            int height = constr.getHeight(this); //rows.getOffset(constr.getY() + constr.getHeight()) - y;// ??
+  //            if (height > 0){
+  //              comp.setBounds(x, y, width, height);
+  //            }
+  //          }
+  //        }
+  //      }
+  //    }
+  //  }
   
   /**
    * Calculates the minimum size dimensions for the specified
@@ -257,19 +219,19 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   }
   
   public int columnIndex(int pixel) {
-    return columns.index(pixel);
+    return columns.offsetIndex(pixel);
   }
   
   public int rowIndex(int pixel) {
-    return rows.index(pixel);
+    return rows.offsetIndex(pixel);
   }
   
   public int colSpan(int fromIndex, int pixelWidth) {
-    return columns.span(fromIndex, pixelWidth);
+    return columns.offsetSpan(fromIndex, pixelWidth);
   }
   
   public int rowSpan(int fromIndex, int pixelHeight) {
-    return rows.span(fromIndex, pixelHeight);
+    return rows.offsetSpan(fromIndex, pixelHeight);
   }
   
   public int width(int fromIndex, int colSpan) {
@@ -289,34 +251,52 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   }
   
   public int adjustX(int pixel) {
-    return columns.location(columns.index(pixel));
+    ensureValidity(parent);
+    return columns.location(columns.offsetIndex(pixel));
   }
   
   public int adjustY(int pixel) {
-    return rows.location(rows.index(pixel));
+    ensureValidity(parent);
+    return rows.location(rows.offsetIndex(pixel));
   }
   
   public int adjustWidth(int xPixel, int pixelWidth) {
+    ensureValidity(parent);
     int xIndex = columns.index(xPixel);
     return columns.size(xIndex, columns.span(xIndex, pixelWidth));
   }
   
   public int adjustHeight(int yPixel, int pixelHeight) {
+    ensureValidity(parent);
     int yIndex = rows.index(yPixel);
     return rows.size(yIndex, rows.span(yIndex, pixelHeight));
   }
   
   public Rectangle adjustBounds(Rectangle bounds){
+    ensureValidity(parent);
     int xIndex = columns.index(bounds.x);
     int yIndex = rows.index(bounds.y);
-    bounds.x = columns.getOffset(xIndex);
-    bounds.y = rows.getOffset(yIndex);
+    bounds.x = columns.location(xIndex);
+    bounds.y = rows.location(yIndex);
     bounds.width = columns.size(xIndex, columns.span(xIndex, bounds.width));
     bounds.height = rows.size(yIndex, rows.span(yIndex, bounds.height));
     return bounds;
   }
   
-  private static abstract class Axis{
+  /** Indicates whether or not the size of the cells are known for the last known
+   * size of the container.  If valid is false or the container has been resized,
+   * the cell sizes must be recalculated using calculateSize.
+   *
+   */
+  protected AbstractAxis getColumns() {
+    return columns;
+  }
+  
+  protected AbstractAxis getRows() {
+    return rows;
+  }
+  
+  private static abstract class InfiniteAxis extends AbstractTableLayout.AbstractAxis{
     
     /** Holds value of property defaultSize. */
     private int defaultSize;
@@ -326,7 +306,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     
     private List offsets = new ArrayList();
     
-    public Axis(int defaultSize) {
+    public InfiniteAxis(int defaultSize) {
       this.defaultSize = defaultSize;
     }
     
@@ -370,6 +350,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     }
     
     public void calculateOffsets(int start, int length) {
+      offsets.clear();
       offsets.add(new Integer(start));
       for (int availableLength = length, i=0; availableLength > 0; i++){
         int size = getSize(i);
@@ -380,6 +361,14 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       }
     }
     
+    public int getOffset(int index) {
+      int offset = -1;
+      if (index < offsets.size()){
+        offset = ((Integer) offsets.get(index)).intValue();
+      }
+      return offset;
+    }
+    
     public int preferredLayoutSize(int occupiedSize) {//??
       int size = 0;
       for (int i=0; i<occupiedSize; i++){
@@ -388,13 +377,6 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       return size;
     }
     
-    public int getOffset(int index) {
-      int offset = -1;
-      if (index < offsets.size()){
-        offset = ((Integer) offsets.get(index)).intValue();
-      }
-      return offset;
-    }
     
     public int location(int index){
       int location;
@@ -409,7 +391,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       return location;
     }
     
-    public int index(int pixel) {
+    public int offsetIndex(int pixel) {
       int index = offsets.size(); // out of offsets
       for (int i=0; i<offsets.size(); i++){
         if (pixel <= getOffset(i) + getSize(i)/2){
@@ -420,13 +402,41 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       return index;
     }
     
-    public int span(int fromIndex, int pixelSize){
+    public int index(int pixel){
+      int index;
+      if (pixel < getOffset(offsets.size()-1) + getSize(offsets.size()-1)/2){
+        index = offsetIndex(pixel);
+      } else {
+        int i = offsets.size();
+        for (int offset=getOffset(offsets.size()-1)+getSize(offsets.size()-1);
+        pixel>offset+getSize(i)/2; i++){
+          offset += getSize(i);
+        }
+        index = i;
+      }
+      return index;
+    }
+    
+    public int offsetSpan(int fromIndex, int pixelSize){
       int span = 1;
       for (int i=fromIndex; i<offsets.size(); i++){
         if (pixelSize <= getOffset(i) + getSize(i)/2 - getOffset(fromIndex)){
           span = i - fromIndex;
           break;
         }
+      }
+      if (span < 1){
+        span = 1;
+      }
+      return span;
+    }
+    
+    public int span(int fromIndex, int pixelSize){
+      int lastIndex = offsets.size()-1;
+      int fromLocation = location(fromIndex);
+      int span = 0;
+      for (int i=fromIndex; pixelSize>location(i)+getSize(i)/2-fromLocation; i++){
+        span++;
       }
       if (span < 1){
         span = 1;
@@ -443,7 +453,9 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       return size;
     }
     
-    public void draw(int startPixel, int pixelSize, Graphics g){
+    protected void calculateSizes(int innerSize) {
+    }
+        public void draw(int startPixel, int pixelSize, Graphics g){
       int endPixel = startPixel + pixelSize - 1;
       for (int i=0; i< offsets.size(); i++){
         int offset = getOffset(i);
@@ -451,7 +463,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       }
     }
     
-    public abstract void drawLine(int startPixel, int endPixel, int offset, Graphics g);
+    protected abstract void drawLine(int startPixel, int endPixel, int offset, Graphics g);
   }
   
 }

@@ -8,9 +8,10 @@ package puce.swing;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
+import puce.awt.layout.*;
 import puce.swing.customizer.*;
+
 
 
 /**
@@ -29,8 +30,9 @@ public class JCustomizerPane extends JPanel { //implements MouseListener{
   /** Creates new form JCustomizerPane */
   public JCustomizerPane() {
     initComponents();
-    setLayout(new InfiniteTableLayout());
+    setLayout(new InfiniteTableLayout(this));
     setSize(400, 300);
+    setFocusable(true);//setRequestFocusEnabled(true);
   }
   
   /** This method is called from within the constructor to

@@ -1,5 +1,6 @@
 package puce.lang.reflect;
 
+import java.lang.reflect.*;
 import java.util.*;
 
 /**
@@ -10,13 +11,13 @@ import java.util.*;
  * @see       java.lang.Class
  */
 public class Classes {
-
+  
   /**
    * No public constructor.
    */
   private Classes() { }
-
-
+  
+  
   /**
    * Tests if the specified class implements (directly or indirectly) the
    * specified interface.
@@ -40,7 +41,7 @@ public class Classes {
     }
     return impl;
   }
-
+  
   /**
    * Tests if the first class extends (directly or indirectly) the second class.
    *
@@ -53,9 +54,26 @@ public class Classes {
     boolean ext = false;
     for (Class current = subclass.getSuperclass(); (current != null) && (!ext); current = current.getSuperclass()) {
       ext = current.equals(superclass);
-
+      
     }
     return ext;
   }
-
+  
+  public static String createWrapper(Class aClass){
+    return "";
+  }
+  
+  public static String createAdapter(Class anInterface){
+    if (!anInterface.isInterface()) {
+      throw new IllegalArgumentException(anInterface.getName() + " is not an interface!");
+    }
+    String adapter = "public class " + anInterface.getName() + "Adapter implements "
+    + anInterface.getName() + "{+\n\n";
+    Method[] methods = anInterface.getMethods();
+    for (int i=0; i<methods.length; i++){
+      adapter += methods[i].toString() + "{}\n\n";
+    }
+    return adapter;
+  }
+  
 }
