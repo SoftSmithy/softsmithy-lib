@@ -27,7 +27,10 @@ import org.softsmithy.lib.awt.*;
 import org.softsmithy.lib.awt.event.*;
 
 /**
- *
+ * Depricated!
+ * Use JXIconCustomizer instead!
+ * 
+ * @depricated
  * @author  puce
  */
 abstract class JIconCustomizer extends JCustomizer { // should it be renamed to IconCustomizer because it is abstract
