@@ -1,5 +1,30 @@
 Changes:
 
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	docs/CHANGES.txt 
+CVS: 	src/org/softsmithy/lib/swing/DoubleCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/FloatCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/JDoubleField.java 
+CVS: 	src/org/softsmithy/lib/swing/JFloatField.java 
+CVS: 	src/org/softsmithy/lib/swing/JRealNumberField.java 
+CVS: 	src/org/softsmithy/lib/swing/JXTable.java 
+CVS: Added Files:
+CVS: 	src/org/softsmithy/lib/swing/AbstractCellRenderer.java 
+CVS: 	src/org/softsmithy/lib/swing/BigDecimalCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/LocalizedBigDecimalCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/LocalizedDoubleCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/LocalizedFloatCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/LocalizedRealNumberCellRenderer.java 
+CVS: ----------------------------------------------------------------------
+
+
+
 CVS: ----------------------------------------------------------------------
 CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
 CVS: 
