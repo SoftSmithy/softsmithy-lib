@@ -1,0 +1,50 @@
+
+package org.softsmithy.lib.swing.text;
+
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import org.softsmithy.lib.math.*;
+
+/**
+ *
+ * @author  puce
+ */
+public class ByteFormatter extends WholeNumberFormatter {
+  
+  /** Creates a new instance of IntegerFormatter */
+  public ByteFormatter() {
+    this(Locale.getDefault());
+  }
+  
+  public ByteFormatter(Locale locale){
+    this(Byte.MIN_VALUE, Byte.MAX_VALUE, locale);
+  }
+  
+  public ByteFormatter(byte minByteValue, byte maxByteValue, Locale locale){
+    super(locale);
+    setMinimumMinimumValue(BigIntegers.MIN_BYTE);
+    setMaximumMaximumValue(BigIntegers.MAX_BYTE);
+    setMinimumByteValue(minByteValue);
+    setMaximumByteValue(maxByteValue);
+    System.out.println("min: "+ getMinimum());
+    System.out.println("max: "+getMaximum());
+  }
+  
+  public byte getMinimumByteValue(){
+    return getMinimumBigIntegerValue().byteValue();
+  }
+  
+  public void setMinimumByteValue(byte minByteValue){
+    setMinimumBigIntegerValue(BigInteger.valueOf(minByteValue));
+  }
+  
+  public byte getMaximumByteValue(){
+    return getMaximumBigIntegerValue().byteValue();
+  }
+  
+  public void setMaximumByteValue(byte maxByteValue){
+    setMaximumBigIntegerValue(BigInteger.valueOf(maxByteValue));
+  }
+  
+}
