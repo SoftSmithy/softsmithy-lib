@@ -23,6 +23,8 @@ package org.softsmithy.lib.swing;
 import java.awt.*;
 
 /**
+ * A CustomizerBar can be registered to a JCustomizerPane. It is a mechanism to 
+ * add new customizers to the JCustomizerPane.
  *
  * @author  puce
  */
