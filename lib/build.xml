@@ -64,7 +64,8 @@
   <property name="app.version"   value="0.1"/>
   <property name="build.home"    value="build"/>
   <property name="dist.home"     value="dist"/>
-  <property name="apidoc.home"     value="docs/api"/>
+  <property name="apidoc.home"   value="docs/api"/>
+  <property name="i18n.home"     value="i18n" />
 
 
 
@@ -212,7 +213,7 @@
 
 -->
 
-  <target name="dist" depends="distPrepare,javadoc"
+  <target name="dist" depends="distPrepare,compile"
    description="Create binary distribution">
 
     <!-- Copy documentation subdirectory -->
@@ -221,6 +222,9 @@
     </copy> -->
 
     <!-- Create application JAR file -->
+     <!--<copy toDir="${build.home}">
+        <fileset dir="${i18n.home}" includes="*.properties" />
+    </copy>-->
     <jar jarfile="${dist.home}/${app.name}.jar"
          basedir="${build.home}"/>
          
@@ -240,22 +244,25 @@
 
 -->
 
-  <target name="i18n" depends="distPrepare,compile"
+  <target name="i18n" depends="distPrepare"
    description="Create i18n distribution">
 
     <!-- Copy documentation subdirectory -->
     <!-- <copy    todir="${dist.home}/docs">
       <fileset dir="docs"/>
     </copy> -->
-
-    <java classname="org.softsmithy.lib.dev.ant.I18n"
+    <jar jarfile="${dist.home}/${app.name}-i18n.jar"
+         basedir="${i18n.home}"
+        />
+         
+    <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
           classpath="${build.home}"
           fork="true"
-          dir="i18n">
+          dir="${i18n.home}">
           <arg value="${app.name}-i18n" />
           <arg value="../${dist.home}" />
           <arg value="." />
-   </java>
+   </java>-->
 
   </target>
 
