@@ -48,9 +48,9 @@ import org.softsmithy.lib.test.*;
  */
 public class JCustomizer extends AbstractCustomizer {//implements CustomizerModelListener{
   
-  private JComponent fComponent = new JPanel();
+  private JComponent component;
   private JPanel componentContainer = new JPanel();
-  private JPanel glassPane = new JPanel();
+  private JPanel glassPane = new JPanel(); // intercepts events
   
   private StateManager stateManager;
   private final Set listeners = new HashSet();
@@ -61,6 +61,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   
   /** Creates a new instance of JCustomizer */
   public JCustomizer() {
+    this(new JPanel());
+  }
+  
+  public JCustomizer(JComponent component){
     //setModel(new DefaultCustomizerModel());
     setLayout(new TableLayout(new double[][]{{TableLayout.FILL}, {TableLayout.FILL}}));//new BorderLayout());
     glassPane.setLayout(new BorderLayout());
@@ -69,6 +73,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     componentContainer.setLayout(new BorderLayout());
     componentContainer.setOpaque(false);
     add(componentContainer, CONSTRAINTS);
+    setComponent(component);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
     setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
@@ -89,35 +94,31 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     //    deleteAction);
     //
     //    getInputMap().put(KeyStroke.getKeyStroke("DELETE"), deleteAction.getValue(Action.NAME));
+    
   }
   
-  public JCustomizer(JComponent component){
-    this();
-    setComponent(component);
-  }
-  
-  /** Getter for property fComponent.
-   * @return Value of property fComponent.
+  /** Getter for property component.
+   * @return Value of property component.
    */
   public JComponent getComponent() {
-    return fComponent;
+    return component;
   }
   
   private JPanel getComponentContainer(){
     return componentContainer;
   }
   
-  /** Setter for property fComponent.
-   * @param fComponent New value of property fComponent.
+  /** Setter for property component.
+   * @param component New value of property component.
    */
   public void setComponent(JComponent component) {
-    if (fComponent != null){
-      //this.remove(fComponent);
-      getComponentContainer().remove(fComponent);
+    if (this.component != null){
+      //this.remove(this.component);
+      getComponentContainer().remove(this.component);
     }
-    fComponent = component;
-    //add(fComponent, CONSTRAINTS);
-    getComponentContainer().add(fComponent, BorderLayout.CENTER);
+    this.component = component;
+    //add(this.component, CONSTRAINTS);
+    getComponentContainer().add(component, BorderLayout.CENTER);
     
   }
   
@@ -301,19 +302,26 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     if (getGlassPane() != null){
       getGlassPane().setToolTipText(text);
     }
-    if (fComponent != null){
-      fComponent.setToolTipText(text);
+    if (getComponent() != null){
+      getComponent().setToolTipText(text);
     }
   }
   
   public void applyBorder(Border border) {
-    getGlassPane().setBorder(border);
-//    System.out.println("bounds before: "+getComponent().getBounds());
-//    Insets insets = getGlassPane().getInsets();
-//    getComponentContainer().setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
-//    getComponentContainer().doLayout();
-//    System.out.println("bounds after: "+getComponent().getBounds());
-//    repaint();
+    getGlassPane().setBorder(border); // painted on glass pane so the handles of HandleBorder are always visible
+    Insets insets = getGlassPane().getInsets();
+    if (! insets.equals(getComponentContainer().getInsets())){
+      getComponentContainer().setBorder(BorderFactory.createEmptyBorder(insets.top, 
+      insets.left, insets.bottom, insets.right));
+    }
+    
+    
+    //    System.out.println("bounds before: "+getComponent().getBounds());
+    //    Insets insets = getGlassPane().getInsets();
+    //    getComponentContainer().setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+    //    getComponentContainer().doLayout();
+    //    System.out.println("bounds after: "+getComponent().getBounds());
+    //    repaint();
   }
   
   /**
@@ -360,34 +368,34 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    *
    */
   public String getToolTipText() {
-    return (fComponent != null) ? fComponent.getToolTipText() : super.getToolTipText();
+    return (getComponent() != null) ? getComponent().getToolTipText() : super.getToolTipText();
   }
   
   public void setDefaultBackground(Color bg){
     super.setDefaultBackground(bg);
-    if (fComponent != null){
-      fComponent.setBackground(bg);
+    if (getComponent() != null){
+      getComponent().setBackground(bg);
     }
   }
   
   public void setDefaultForeground(Color fg){
     super.setDefaultForeground(fg); // to update listeners etc.
-    if (fComponent != null){
-      fComponent.setForeground(fg);
+    if (getComponent() != null){
+      getComponent().setForeground(fg);
     }
   }
   
   public void setDefaultFont(Font font){
     super.setDefaultFont(font);
-    if (fComponent != null){
-      fComponent.setFont(font);
+    if (getComponent() != null){
+      getComponent().setFont(font);
     }
   }
   
   public void setDefaultOpaque(boolean isOpaque){
     super.setDefaultOpaque(isOpaque);
-    if (fComponent != null){
-      fComponent.setOpaque(isOpaque);
+    if (getComponent() != null){
+      getComponent().setOpaque(isOpaque);
     }
   }
   

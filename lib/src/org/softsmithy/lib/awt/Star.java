@@ -46,12 +46,12 @@ public class Star implements Shape {
    * @param height  height of the star
    */
   public Star(int x, int y, int width, int height) {
-    double bigRadiusX = width / 2;
-    double smallRadiusX = width / 4;
-    double bigRadiusY = height / 2;
-    double smallRadiusY = height / 4;
-    double centerX = x + (width / 2);
-    double centerY = y + (height / 2);
+    double bigRadiusX = ((double) width) / 2;
+    double smallRadiusX = ((double) width) / 4;
+    double bigRadiusY = ((double) height) / 2;
+    double smallRadiusY = ((double) height) / 4;
+    double centerX = x - 2 + (((double) width) / 2); // -2 seems to be necessary?? (Tested with ShapeIcon and JXIconCustomizer)
+    double centerY = y + (((double) height) / 2);
     fPolygon.addPoint((int) Math.round(centerX), (int) Math.round(centerY - bigRadiusY));
     fPolygon.addPoint((int) Math.round(centerX + smallRadiusX * COS_54), (int) Math.round(centerY - smallRadiusY * SIN_54));
     fPolygon.addPoint((int) Math.round(centerX + bigRadiusX * COS_18), (int) Math.round(centerY - bigRadiusY * SIN_18));

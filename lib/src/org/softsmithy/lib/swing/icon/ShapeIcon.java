@@ -148,8 +148,8 @@ public class ShapeIcon implements XIcon {
   }
   
   public XIcon getScaledInstance(int newWidth, int newHeight) { //????
-    double sx = (getIconWidth() > 0.0) ? ((double) newWidth -0.25) / getIconWidth() : 1.0;
-    double sy = (getIconHeight() > 0.0) ? ((double) newHeight -0.25) / getIconHeight() : 1.0;
+    double sx = (getIconWidth() > 0.0) ? ((double) newWidth -0.25) / getIconWidth() : 1.0; // -0.25 seems to be necessary (tested with JXiconCustomizer)
+    double sy = (getIconHeight() > 0.0) ? ((double) newHeight -0.25) / getIconHeight() : 1.0; // -0.25 seems to be necessary (tested with JXiconCustomizer)
     return getTransformedInstance(AffineTransform.getScaleInstance(sx, sy));
   }
   

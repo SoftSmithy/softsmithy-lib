@@ -648,7 +648,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     
     public void resetBorder(Color borderColor){
-      setBorder(BorderFactory.createLineBorder(borderColor, 10));
+      setBorder(BorderFactory.createLineBorder(borderColor, 1)); //10));
     }
     
     public Border getBorder(){

@@ -15,7 +15,7 @@
 /*
  * Locales.java
  *
- * Created on 12. März 2003, 23:04
+ * Created on 12. Mï¿½rz 2003, 23:04
  */
 
 package org.softsmithy.lib.util;
@@ -51,6 +51,18 @@ public class Locales {
     }
     return keys;
   }
+  
+//    public static Locale getLocale(LanguageCode lc) {
+//    return new Locale(lc.getA2());
+//  }
+//    
+//  public static Locale getLocale(LanguageCode lc, CountryCode cc) {
+//    return new Locale(lc.getA2(), cc.getA2());
+//  }
+//  
+//    public static Locale getLocale(LanguageCode lc, CountryCode cc, String variant) {
+//    return new Locale(lc.getA2(), cc.getA2(), variant);
+//  }
   
   private static class LocaleCollationKey implements Comparable{
     
