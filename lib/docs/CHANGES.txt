@@ -1,5 +1,50 @@
 Changes:
 
+
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Modified Files:
+CVS: 	src/org/softsmithy/lib/awt/layout/InfiniteTableLayout.java 
+CVS: 	src/org/softsmithy/lib/swing/CellRenderer.java 
+CVS: 	src/org/softsmithy/lib/swing/FormattedCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/IntegerCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.form 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPropertyTable.java 
+CVS: 	src/org/softsmithy/lib/swing/JXTable.java 
+CVS: 	src/org/softsmithy/lib/swing/LocaleCellRenderer.java 
+CVS: 	src/org/softsmithy/lib/swing/LongCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/table/XDefaultTableCellRenderer.java 
+CVS: 	src/org/softsmithy/lib/swing/text/WholeNumberFormatter.java 
+CVS: Added Files:
+CVS: 	src/org/softsmithy/lib/swing/BigIntegerCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/ByteCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/ShortCellEditor.java 
+CVS: 	src/org/softsmithy/lib/swing/WholeNumberCellRenderer.java 
+CVS: 	src/org/softsmithy/lib/util/Comparables.java 
+CVS: ----------------------------------------------------------------------
+
+
+Number components added
+CVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: Committing in .
+CVS: 
+CVS: Added Files:
+CVS: 	text/ByteFormatter.java text/ByteFormatterFactory.java 
+CVS: 	text/IntegerFormatter.java text/IntegerFormatterFactory.java 
+CVS: 	text/LongFormatter.java text/LongFormatterFactory.java 
+CVS: 	text/ShortFormatter.java text/ShortFormatterFactory.java 
+CVS: 	text/WholeNumberFormatter.java 
+CVS: 	text/WholeNumberFormatterFactory.java JByteField.java 
+CVS: 	JIntegerField.java JLongField.java JWholeNumberField.java 
+CVS: 	JShortField.java 
+CVS: ----------------------------------------------------------------------
+
 v20030909:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fixes
             -style specific classes moved from 
              org.softsmithy.lib.swing.customizer -> 

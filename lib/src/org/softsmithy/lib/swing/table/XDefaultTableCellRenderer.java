@@ -75,10 +75,16 @@ public class XDefaultTableCellRenderer extends DefaultTableCellRenderer {
    */
   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
     configureFromTable(table);
+    configureFromCellRenderer();
     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
   }
   
   protected void configureFromTable(JTable table){
     setLocale(table.getLocale());
   }
+  
+  protected void configureFromCellRenderer(){
+    setHorizontalAlignment(getCellRenderer().getHorizontalAlignment().getSwingConstant());
+  }
+  
 }

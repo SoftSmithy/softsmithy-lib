@@ -25,8 +25,11 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.math.*;
 import java.util.*;
 import org.softsmithy.lib.awt.*;
+import org.softsmithy.lib.awt.layout.AbstractTableLayout.*;
+import org.softsmithy.lib.math.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
@@ -184,12 +187,16 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   
   private int getRightPosition(Component comp){
     TableConstraints tc = (TableConstraints) constraints.get(comp);
-    return tc.getX() + tc.getWidth();
+    BigInteger rightPosition = BigInteger.valueOf(tc.getX()).add(BigInteger.valueOf(tc.getWidth()));
+    rightPosition = rightPosition.min(BigIntegers.MAX_INTEGER); // ???
+    return rightPosition.intValue();
   }
   
   private int getBottomPosition(Component comp){
     TableConstraints tc = (TableConstraints) constraints.get(comp);
-    return tc.getY() + tc.getHeight();
+    BigInteger leftPosition = BigInteger.valueOf(tc.getY()).add(BigInteger.valueOf(tc.getHeight()));
+    leftPosition = leftPosition.min(BigIntegers.MAX_INTEGER); //???
+    return leftPosition.intValue();
   }
   
   private void resetOccupiedDimension(){
@@ -449,7 +456,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   
 
   
-  private static abstract class InfiniteAxis extends AbstractTableLayout.AbstractAxis{
+  private abstract static class InfiniteAxis extends AbstractAxis{
     
     /** Holds value of property defaultSize. */
     private int defaultSize;
@@ -550,26 +557,26 @@ public class InfiniteTableLayout extends AbstractTableLayout {
       return offset;
     }
     
-    public int preferredLayoutSize(int occupiedSize) {//??
-      int size = 0;
-      for (int i=0; i<occupiedSize; i++){
-        size += getSize(i);
-      }
-      return size;
-    }
+//    public int preferredLayoutSize(int occupiedSize) {//??
+//      int size = 0;
+//      for (int i=0; i<occupiedSize; i++){
+//        size += getSize(i);
+//      }
+//      return size;
+//    }
     
     
     public int location(int index){
-      int location;
+      BigInteger location;
       if (index < offsets.size()){
-        location = getOffset(index);
+        location = BigInteger.valueOf(getOffset(index));
       } else {
-        location = getOffset(offsets.size()-1);
+        location = BigInteger.valueOf(getOffset(offsets.size()-1));
         for (int i=offsets.size(); i<= index; i++){
-          location += getSize(i);
+          location = location.add(BigInteger.valueOf(getSize(i)));
         }
       }
-      return location;
+      return location.min(BigIntegers.MAX_INTEGER).intValue();
     }
     
     public int offsetIndex(int pixel) {
@@ -614,9 +621,10 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     
     public int span(int fromIndex, int pixelSize){
       int lastIndex = offsets.size()-1;
-      int fromLocation = location(fromIndex);
+      BigInteger fromLocation = BigInteger.valueOf(location(fromIndex));
       int span = 0;
-      for (int i=fromIndex; pixelSize>location(i)+getSize(i)/2-fromLocation; i++){
+      BigInteger pSize = BigInteger.valueOf(pixelSize);
+      for (int i=fromIndex; pSize.compareTo(BigInteger.valueOf(location(i)).add(BigInteger.valueOf(getSize(i)/2)).subtract(fromLocation)) > 0; i++){
         span++;
       }
       if (span < 1){
@@ -626,12 +634,12 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     }
     
     public int size(int fromIndex, int span){
-      int size=0;
+      BigInteger size = BigInteger.ZERO;
       int toIndex = span+fromIndex;
       for (int i=fromIndex; i<toIndex; i++){
-        size += getSize(i);
+        size = size.add(BigInteger.valueOf(getSize(i)));
       }
-      return size;
+      return size.min(BigIntegers.MAX_INTEGER).intValue();
     }
     
     protected void calculateSizes(int innerSize) {

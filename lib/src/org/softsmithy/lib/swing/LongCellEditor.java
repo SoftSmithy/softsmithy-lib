@@ -20,9 +20,7 @@
 
 package org.softsmithy.lib.swing;
 
-import java.text.*;
 import java.util.*;
-import javax.swing.*;
 
 /**
  *
@@ -32,7 +30,15 @@ public class LongCellEditor extends FormattedCellEditor {
   
   /** Creates a new instance of IntegerCellEditor */
   public LongCellEditor(Locale locale) {
-    super(NumberFormat.getIntegerInstance(locale), JTextField.RIGHT);
+    super(new JLongField(locale));
+  }
+  
+  public LongCellEditor(long minValue, long maxValue, Locale locale) {
+    super(new JLongField(minValue, maxValue, locale));
+  }
+  
+  public JLongField getLongField(){
+    return (JLongField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -40,11 +46,20 @@ public class LongCellEditor extends FormattedCellEditor {
    *
    *
    */
-  public Object getCellEditorValue() {
-    System.out.println(super.getCellEditorValue().getClass());
-    System.out.println(super.getCellEditorValue());
-    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
-    return new Long(number.longValue());
+  //  public Object getCellEditorValue() {
+  //    System.out.println(super.getCellEditorValue().getClass());
+  //    System.out.println(super.getCellEditorValue());
+  //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
+  //    return new Integer(number.intValue());
+  //  }
+  
+  protected void setValue(Object value) {
+    getLongField().setLongValue(((Long) value).longValue());
+  }
+  
+  protected Object getValue() {
+    return new Long(getLongField().getLongValue());
   }
   
 }
+

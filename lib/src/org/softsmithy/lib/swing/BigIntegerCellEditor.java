@@ -20,25 +20,27 @@
 
 package org.softsmithy.lib.swing;
 
+import java.math.*;
 import java.util.*;
+
 
 /**
  *
  * @author  puce
  */
-public class IntegerCellEditor extends FormattedCellEditor {
+public class BigIntegerCellEditor extends FormattedCellEditor {
   
   /** Creates a new instance of IntegerCellEditor */
-  public IntegerCellEditor(Locale locale) {
-    super(new JIntegerField(locale));
+  public BigIntegerCellEditor(Locale locale) {
+    super(new JWholeNumberField(locale));
   }
   
-  public IntegerCellEditor(int minValue, int maxValue, Locale locale) {
-    super(new JIntegerField(minValue, maxValue, locale));
+  public BigIntegerCellEditor(BigInteger minValue, BigInteger maxValue, Locale locale) {
+    super(new JWholeNumberField(minValue, maxValue, locale));
   }
   
-  public JIntegerField getIntegerField(){
-    return (JIntegerField) getFormattedTextField();
+  public JWholeNumberField getWholeNumberField(){
+    return (JWholeNumberField) getFormattedTextField();
   }
   
   /** Returns the value contained in the editor.
@@ -54,11 +56,11 @@ public class IntegerCellEditor extends FormattedCellEditor {
 //  }
   
   protected void setValue(Object value) {
-    getIntegerField().setIntValue(((Integer) value).intValue());
+    getWholeNumberField().setBigIntegerValue((BigInteger) value);
   }
   
   protected Object getValue() {
-    return new Integer(getIntegerField().getIntValue());
+    return getWholeNumberField().getBigIntegerValue();
   }
   
 }

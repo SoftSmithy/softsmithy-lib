@@ -31,17 +31,22 @@ import javax.swing.table.*;
  */
 public class FormattedCellEditor extends DefaultCellEditor implements TableCellEditor {
   
-  private JFormattedTextField editor;
-  
   /** Creates a new instance of FormattedEditor */
   public FormattedCellEditor(Format format) {
     this(format, new JFormattedTextField().getHorizontalAlignment());
   }
   
   public FormattedCellEditor(Format format, int horizontalAlignment) {
-    super(new JFormattedTextField(format));
-    editor = (JFormattedTextField) getComponent();
-    editor.setHorizontalAlignment(horizontalAlignment);
+    this(new JFormattedTextField(format));
+    getFormattedTextField().setHorizontalAlignment(horizontalAlignment);
+  }
+  
+  public FormattedCellEditor(JFormattedTextField ftf){
+    super(ftf);
+  }
+  
+  public JFormattedTextField getFormattedTextField(){
+    return (JFormattedTextField) getComponent();
   }
   
   
@@ -50,9 +55,9 @@ public class FormattedCellEditor extends DefaultCellEditor implements TableCellE
    *
    */
   public Object getCellEditorValue() {
-        System.out.println(editor.getValue().getClass());
-    System.out.println(editor.getValue());
-    return editor.getValue();
+    System.out.println(getFormattedTextField().getValue().getClass());
+    System.out.println(getFormattedTextField().getValue());
+    return getValue();
   }
   
   /**  Sets an initial <code>value</code> for the editor.  This will cause
@@ -81,8 +86,16 @@ public class FormattedCellEditor extends DefaultCellEditor implements TableCellE
    *
    */
   public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-    editor.setValue(value);
-    return editor;
+    setValue(value);
+    return getFormattedTextField();
+  }
+  
+  protected void setValue(Object value){
+    getFormattedTextField().setValue(value);
+  }
+  
+  protected Object getValue(){
+    return getFormattedTextField().getValue();
   }
   
 }

@@ -26,10 +26,11 @@ import java.util.*;
  *
  * @author  puce
  */
-public class LocaleCellRenderer implements CellRenderer {
+public class LocaleCellRenderer extends AbstractCellRenderer {
   
   /** Creates a new instance of LocaleCellRenderer */
   public LocaleCellRenderer() {
+    super(HorizontalAlignment.LEADING);
   }
   
   public Object getDisplayValue(Object value, Locale locale) {

@@ -28,4 +28,5 @@ import java.util.*;
  */
 public interface CellRenderer {
   Object getDisplayValue(Object value, Locale locale);
+  HorizontalAlignment getHorizontalAlignment();
 }

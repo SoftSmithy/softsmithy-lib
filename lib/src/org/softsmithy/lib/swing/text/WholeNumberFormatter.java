@@ -10,15 +10,13 @@ import java.math.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.text.*;
+import org.softsmithy.lib.util.*;
 
 /**
  *
  * @author  puce
  */
 public class WholeNumberFormatter extends NumberFormatter {
-  
-//  public static final BigInteger MIN_MIN_VALUE = BigInteger.valueOf(Integer.MIN_VALUE);
-//  public static final BigInteger MAX_MAX_VALUE = BigInteger.valueOf(Integer.MAX_VALUE);
   
   /** Holds value of property locale. */
   private Locale locale;
@@ -45,8 +43,8 @@ public class WholeNumberFormatter extends NumberFormatter {
     super.setValueClass(BigInteger.class);
     setMinimumBigIntegerValue(minIntValue);
     setMaximumBigIntegerValue(maxIntValue);
-//    System.out.println("min: "+ getMinimum());
-//    System.out.println("max: "+getMaximum());
+    //    System.out.println("min: "+ getMinimum());
+    //    System.out.println("max: "+getMaximum());
   }
   
   /** Getter for property locale.
@@ -68,10 +66,10 @@ public class WholeNumberFormatter extends NumberFormatter {
   
   
   public void setMaximum(Comparable max) {
-    if (! (max instanceof BigInteger)){
-      throw new IllegalArgumentException("max must be an instance of BigInteger");
+    if (max != null && ! (max instanceof BigInteger)){
+      throw new IllegalArgumentException("max must be an instance of BigInteger or null");
     }
-    if (getMinimum() != null && max.compareTo(getMinimum()) < 0){
+    if (max != null && getMinimum() != null && Comparables.isSmaller(max, getMinimum())){
       throw new IllegalArgumentException("max mustn't be smaller than minimum!");
     }
     //    if (max.compareTo(MAX_MAX_VALUE) > 0){
@@ -81,10 +79,10 @@ public class WholeNumberFormatter extends NumberFormatter {
   }
   
   public void setMinimum(Comparable minimum) {
-    if (! (minimum instanceof BigInteger)){
-      throw new IllegalArgumentException("minimum must be an instance of BigInteger");
+    if (minimum != null && ! (minimum instanceof BigInteger)){
+      throw new IllegalArgumentException("minimum must be an instance of BigInteger or null");
     }
-    if (getMaximum() != null && minimum.compareTo(getMaximum()) > 0){
+    if (minimum != null && getMaximum() != null && Comparables.isBigger(minimum, getMaximum())){
       throw new IllegalArgumentException("minimum mustn't be bigger than max!");
     }
     //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
@@ -218,7 +216,7 @@ public class WholeNumberFormatter extends NumberFormatter {
    *
    */
   public void setMinimumBigIntegerValue(BigInteger minimumBigIntegerValue) {
-    setMaximum(minimumBigIntegerValue);
+    setMinimum(minimumBigIntegerValue);
   }
   
 }

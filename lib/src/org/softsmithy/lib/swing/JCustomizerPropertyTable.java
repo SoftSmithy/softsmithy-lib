@@ -51,6 +51,11 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
   private void init(){
     setDefaultRenderer(Style.class, new StyleRenderer(getLocale()));
     setDefaultEditor(Style.class, new StyleCellEditor(getLocale())); // note: Style is an interface
+    // for performance issues set max to 10000 (should be enough anyway)
+    setPropertyEditor("x", new IntegerCellEditor(0, 10000, getLocale()));
+    setPropertyEditor("y", new IntegerCellEditor(0, 10000, getLocale()));
+    setPropertyEditor("width", new IntegerCellEditor(1, 10000, getLocale()));
+    setPropertyEditor("height", new IntegerCellEditor(1, 10000, getLocale()));
   }
   
   public void reinit(){
