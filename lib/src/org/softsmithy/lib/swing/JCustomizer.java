@@ -25,7 +25,7 @@ import puce.test.*;
  */
 public class JCustomizer extends JPanel {//implements CustomizerModelListener{
   
-  private JComponent fComponent;
+  private JComponent fComponent = new JPanel();
   private JPanel glassPane = new JPanel();
   
   private StateManager stateManager;
@@ -48,7 +48,7 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
     //setComponent(new JLabel("testtest"));
-    this.setOpaque(false);
+    //this.setOpaque(false);
     Action deleteAction = new AbstractAction("delete") {
       public void actionPerformed(ActionEvent e) {
         ((JCustomizer) e.getSource()).fireCustomizerDelete(new CustomizerEvent(e.getSource(), 0, 0, 0, 0));
@@ -229,7 +229,12 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    */
   public void setToolTipText(String text) {
     super.setToolTipText(text);
-    getGlassPane().setToolTipText(text);
+    if (getGlassPane() != null){
+      getGlassPane().setToolTipText(text);
+    }
+    if (fComponent != null){
+      fComponent.setToolTipText(text);
+    }
   }
   
   public void applyBorder(Border border) {
@@ -238,11 +243,11 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
   
   public void setX(int x) {
     reshapeRel(x-getX(), 0, 0, 0);
-  }  
-
+  }
+  
   public void setY(int y) {
     reshapeRel(0, y-getY(), 0, 0);
-  }  
+  }
   
   public void setWidth(int width) {
     reshapeRel(0, 0, width-getWidth(), 0);
@@ -266,6 +271,154 @@ public class JCustomizer extends JPanel {//implements CustomizerModelListener{
    */
   public void setCustomizableProperties(Set customizableProperties) {
     this.customizableProperties = customizableProperties;
+  }
+  
+  /** Sets the font for this component.
+   *
+   * @param the desired <code>Font</code> for this component
+   * @see java.awt.Component#getFont
+   *
+   * @beaninfo
+   *    preferred: true
+   *        bound: true
+   *    attribute: visualUpdate true
+   *  description: The font for the component.
+   *
+   */
+  public void setFont(Font font) {
+    super.setFont(font);
+    if (fComponent != null){
+      fComponent.setFont(font);
+    }
+  }
+  
+  /** Returns the tooltip string that has been set with
+   * <code>setToolTipText</code>.
+   *
+   * @return the text of the tool tip
+   * @see #TOOL_TIP_TEXT_KEY
+   *
+   */
+  public String getToolTipText() {
+    return (fComponent != null) ? fComponent.getToolTipText() : super.getToolTipText();
+  }
+  
+  /** Gets the foreground color of this component.
+   * @return this component's foreground color; if this component does
+   * not have a foreground color, the foreground color of its parent
+   * is returned
+   * @see #setForeground
+   * @since JDK1.0
+   * @beaninfo
+   *       bound: true
+   *
+   */
+  public Color getForeground() {
+    return (fComponent != null) ? fComponent.getForeground() : super.getForeground();
+  }
+  
+  /** Sets the background color of this component.
+   *
+   * @param bg the desired background <code>Color</code>
+   * @see java.awt.Component#getBackground
+   *
+   * @beaninfo
+   *    preferred: true
+   *        bound: true
+   *    attribute: visualUpdate true
+   *  description: The background color of the component.
+   *
+   */
+  public void setBackground(Color bg) {
+    super.setBackground(bg);
+    if (fComponent != null){
+      fComponent.setBackground(bg);
+    }
+  }
+  
+  /** If true the component paints every pixel within its bounds.
+   * Otherwise, the component may not paint some or all of its
+   * pixels, allowing the underlying pixels to show through.
+   * <p>
+   * The default value of this property is false for <code>JComponent</code>.
+   * However, the default value for this property on most standard
+   * <code>JComponent</code> subclasses (such as <code>JButton</code> and
+   * <code>JTree</code>) is look-and-feel dependent.
+   *
+   * @param isOpaque  true if this component should be opaque
+   * @see #isOpaque
+   * @beaninfo
+   *        bound: true
+   *       expert: true
+   *  description: The component's opacity
+   *
+   */
+  public void setOpaque(boolean isOpaque) {
+    super.setOpaque(isOpaque);
+    if (fComponent != null){
+      fComponent.setOpaque(isOpaque);
+    }
+  }
+  
+  /** Returns true if this component is completely opaque.
+   * <p>
+   * An opaque component paints every pixel within its
+   * rectangular bounds. A non-opaque component paints only a subset of
+   * its pixels or none at all, allowing the pixels underneath it to
+   * "show through".  Therefore, a component that does not fully paint
+   * its pixels provides a degree of transparency.
+   * <p>
+   * Subclasses that guarantee to always completely paint their contents
+   * should override this method and return true.
+   *
+   * @return true if this component is completely opaque
+   * @see #setOpaque
+   *
+   */
+  public boolean isOpaque() {
+    return (fComponent != null) ? fComponent.isOpaque() : super.isOpaque();
+  }
+  
+  /** Gets the font of this component.
+   * @return this component's font; if a font has not been set
+   * for this component, the font of its parent is returned
+   * @see #setFont
+   * @since JDK1.0
+   *
+   */
+  public Font getFont() {
+    return (fComponent != null) ? fComponent.getFont() : super.getFont();
+  }
+  
+  /** Gets the background color of this component.
+   * @return this component's background color; if this component does
+   * 		not have a background color,
+   * 		the background color of its parent is returned
+   * @see #setBackground
+   * @since JDK1.0
+   *
+   */
+  public Color getBackground() {
+    return (fComponent != null) ? fComponent.getBackground() : super.getBackground();
+  }
+  
+  /** Sets the foreground color of this component.
+   *
+   * @param fg  the desired foreground <code>Color</code>
+   * @see java.awt.Component#getForeground
+   *
+   * @beaninfo
+   *    preferred: true
+   *        bound: true
+   *    attribute: visualUpdate true
+   *  description: The foreground color of the component.
+   *
+   */
+  public void setForeground(Color fg) {
+    super.setForeground(fg); // to update listeners etc.
+    if (fComponent != null){
+      fComponent.setForeground(fg);
+    }
   }
   
 }

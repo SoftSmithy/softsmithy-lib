@@ -38,6 +38,8 @@ public abstract class JTextCustomizer extends JCustomizer {
   
   public abstract String getText();
   public abstract void setText(String text);
+  public abstract void setHorizontalAlignment(HorizontalAlignment alignment);
+  public abstract HorizontalAlignment getHorizontalAlignment();
   
   //  public void setComponent(JComponent comp){
   //    if (! (comp instanceof JTextComponent)){

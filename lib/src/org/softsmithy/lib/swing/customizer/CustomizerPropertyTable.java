@@ -7,17 +7,17 @@
 package puce.swing.customizer;
 
 import java.util.*;
-import javax.swing.*;
+import puce.swing.*;
 
 /**
  *
  * @author  puce
  */
-public class CustomizerPropertyTable extends JTable {
+public class CustomizerPropertyTable extends JCellTable {
   
   /** Creates a new instance of PropertyTable */
   public CustomizerPropertyTable() {
-    setModel(new CustomizerPropertyTableModel(new ArrayList(), new ArrayList(), null));
+    super(new CustomizerPropertyTableModel(new ArrayList(), new ArrayList(), null, Locale.getDefault()));
   }
   
 }

@@ -12,25 +12,32 @@ import javax.swing.table.*;
 import puce.beans.*;
 import puce.swing.*;
 import puce.swing.event.*;
+import puce.swing.table.*;
+import puce.util.*;
 
 /**
  *
  * @author  puce
  */
-public class CustomizerPropertyTableModel extends AbstractTableModel implements CustomizerListener{
+public class CustomizerPropertyTableModel extends AbstractTableModel implements CustomizerListener, CellTableModel{
   
   private List customizers;
   private List properties;
   private Class topMostCommonClass;
+  private ResourceBundleCache cache = new ResourceBundleCache("puce.swing.customizer.Properties");
+  
+  /** Holds value of property locale. */
+  private Locale locale;
   
   /** Creates a new instance of PropertyTableModel */
-  public CustomizerPropertyTableModel(List properties, List customizers, Class topMostCommonClass) {
+  public CustomizerPropertyTableModel(List properties, List customizers, Class topMostCommonClass, Locale locale) {
     this.properties = properties;
     this.customizers = customizers;
     this.topMostCommonClass = topMostCommonClass;
     if (customizers.size() > 0){
       ((JCustomizer) customizers.get(customizers.size()-1)).addCustomizerListener(this);//addPropertyChangeListener(this); // where should it be removed?
     }
+    setLocale(locale);
   }
   
   /** Returns the number of columns in the model. A
@@ -79,6 +86,7 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
       e.printStackTrace();
       //value = "";
     }
+    //System.out.print(value);
     return value;
   }
   
@@ -93,20 +101,21 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     for (Iterator i=customizers.iterator(); i.hasNext();){
       JCustomizer customizer = (JCustomizer) i.next();
-      try{
-        getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{new Integer((String) aValue)});
-      } catch (Exception ex1){
+//      try{
+//        getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{new Integer((String) aValue)});
+//      } catch (Exception ex1){
         try{
           getPropertyDescriptor(rowIndex).getWriteMethod().invoke(customizer, new Object[]{aValue});
         } catch (Exception ex2){
           ex2.printStackTrace();
         }
-      }
+//      }
+      customizer.repaint();
     }
   }
   
   private PropertyDescriptor getPropertyDescriptor(int index) throws IntrospectionException{
-    return BeanIntrospector.getPropertyDescriptor((String) properties.get(index), topMostCommonClass);
+    return BeanIntrospector.getPropertyDescriptor((String) properties.get(index), topMostCommonClass, cache.getBundle(getLocale()));
   }
   
   /**  Returns false.  This is the default implementation for all cells.
@@ -178,5 +187,35 @@ public class CustomizerPropertyTableModel extends AbstractTableModel implements 
   //    }
   //
   //  }
+  public Class getCellClass(int row, int column){
+    Class cellClass;
+    try{
+      switch (column){
+        case 0: cellClass = String.class; break;
+        case 1: cellClass = getPropertyDescriptor(row).getPropertyType(); break;
+        default: cellClass = getColumnClass(column); // should not happen
+      }
+    } catch (IntrospectionException ex){
+      cellClass = getColumnClass(column);
+    }
+    //System.out.print(cellClass+": ");
+    return cellClass;
+  }
+  
+  /** Getter for property locale.
+   * @return Value of property locale.
+   *
+   */
+  public Locale getLocale() {
+    return this.locale;
+  }
+  
+  /** Setter for property locale.
+   * @param locale New value of property locale.
+   *
+   */
+  public void setLocale(Locale locale) {
+    this.locale = locale;
+  }
   
 }

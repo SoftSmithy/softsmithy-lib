@@ -173,10 +173,9 @@ public class StateManager implements FocusListener, MouseInputListener {
   }
   
   public void setStateBound(Point point){
-    setState(getBoundStateAt(point));
-    if(!customizer.hasFocus()){
-      customizer.requestFocus();
-    }
+    BoundState state = getBoundStateAt(point);
+    state.setStart(point);
+    setState(state);
     customizer.invalidate();
     customizer.doLayout();
   }
@@ -480,9 +479,9 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public void mousePressed(MouseEvent e) {
       super.mousePressed(e);
-      if(!getCustomizer().hasFocus()){
-        getCustomizer().requestFocus();
-      }
+//      if(!getCustomizer().hasFocus()){
+//        getCustomizer().requestFocus();
+//      }
       startX = e.getX();
       startY = e.getY();
       lastX = e.getX();
@@ -553,6 +552,11 @@ public class StateManager implements FocusListener, MouseInputListener {
      */
     public int getLastY() {
       return this.lastY;
+    }
+    
+    public void setStart(Point point) {
+      startX = point.x;
+      startY = point.y;
     }
     
   }

@@ -1,5 +1,6 @@
 package puce.lang.reflect;
 
+import java.beans.*;
 import java.lang.reflect.*;
 import java.util.*;
 
@@ -12,6 +13,21 @@ import java.util.*;
  */
 public class Classes {
   
+  private static final Map WRAPPER_CLASSES;
+  
+  static{
+    Map wrappers = new HashMap();
+    wrappers.put(Boolean.TYPE, Boolean.class);
+    wrappers.put(Character.TYPE, Character.class);
+    wrappers.put(Byte.TYPE, Byte.class);
+    wrappers.put(Short.TYPE, Short.class);
+    wrappers.put(Integer.TYPE, Integer.class);
+    wrappers.put(Long.TYPE, Long.class);
+    wrappers.put(Float.TYPE, Float.class);
+    wrappers.put(Double.TYPE, Double.class);
+    wrappers.put(Void.TYPE, Void.class);
+    WRAPPER_CLASSES = Collections.unmodifiableMap(wrappers);
+  }
   /**
    * No public constructor.
    */
@@ -76,8 +92,63 @@ public class Classes {
   }
   
   
-  public static String createWrapper(Class aClass){
-    return "";
+  public static String createWrapper(Class aClass, String packageName){
+    String[] names = aClass.getName().split("\\.");
+    String className = names[names.length-1];
+    String wrappedObj = Introspector.decapitalize(className);
+    StringBuffer wrapper = new StringBuffer("package ").append(packageName).append(";\n\n");
+//    if (! aClass.getPackage().getName().equals(packageName)){
+//      wrapper.append("import ").append(aClass.getPackage().getName()).append(";\n\n");
+//    }
+    wrapper.append("public class ").append(className).append("Wrapper ");
+    wrapper.append(aClass.isInterface()? "implements " : "extends ");
+    wrapper.append(aClass.getName()).append("{\n\n");
+    wrapper.append("private ").append(aClass.getName()).append(" ").append(wrappedObj).append(";\n\n");
+    wrapper.append("public ").append(className).append("Wrapper(");
+    wrapper.append(aClass.getName()).append(" ").append(wrappedObj).append("){\n");
+    wrapper.append("this.").append(wrappedObj).append(" = ").append(wrappedObj).append(";\n}\n\n");
+    Method[] methods = aClass.getMethods();
+    for (int i=0; i<methods.length; i++){
+      int modifiers = methods[i].getModifiers();
+      if (Modifier.isPublic(modifiers)){
+        wrapper.append("public ");
+      } else if (Modifier.isProtected(modifiers)){
+        wrapper.append("protected ");
+      }
+      if (Modifier.isStatic(modifiers)){
+        wrapper.append("static ");
+      }
+      wrapper.append(methods[i].getReturnType().getName()).append(" ");
+      String[] methodNames = methods[i].getName().split("\\.");
+      String methodName = methodNames[methodNames.length-1];
+      wrapper.append(methodName).append("(");
+      Class[] parameterTypes = methods[i].getParameterTypes();
+      List args = new ArrayList();
+      for (int j=0; j<parameterTypes.length; j++){
+        wrapper.append(parameterTypes[j].getName()).append(" ");
+        String[] typeNames = parameterTypes[j].getName().split("\\.");
+        String argName = Introspector.decapitalize(typeNames[typeNames.length-1]);
+        args.add(argName);
+        wrapper.append(argName);
+        if (j < parameterTypes.length-1){
+          wrapper.append(", ");
+        }
+      }
+      wrapper.append("){\n");
+      if (! methods[i].getReturnType().equals(Void.TYPE)){
+        wrapper.append("return ");
+      }
+      wrapper.append(wrappedObj).append(".").append(methodName).append("(");
+      for (Iterator j=args.iterator(); j.hasNext();){
+        wrapper.append(j.next());
+        if (j.hasNext()){
+          wrapper.append(", ");
+        }
+      }
+      wrapper.append(");\n}\n\n");
+    }
+    wrapper.append("}");
+    return wrapper.toString();
   }
   
   public static String createAdapter(Class anInterface){
@@ -91,6 +162,13 @@ public class Classes {
       adapter += methods[i].toString() + "{}\n\n";
     }
     return adapter;
+  }
+  
+  public static Class getWrapperClass(Class primitiveClass) {
+    if (! primitiveClass.isPrimitive()){
+      throw new IllegalArgumentException("primitiveClass must be a primitive class!");
+    }
+    return (Class) WRAPPER_CLASSES.get(primitiveClass);
   }
   
 }

@@ -51,11 +51,19 @@ public class SelectionManager implements CustomizerListener{
     }
     setSelected(customizer);
     customizer.addCustomizerListener(this);
+    if(!customizer.hasFocus()){
+      customizer.requestFocus();
+    }
   }
   
   public void singleSelect(JCustomizer customizer, Point point){
     clearSelectionOnly();
     select(customizer, point);
+  }
+  
+  public void singleSelect(JCustomizer customizer){
+    clearSelectionOnly();
+    select(customizer);
   }
   
   public void deselect(JCustomizer customizer){
@@ -158,6 +166,10 @@ public class SelectionManager implements CustomizerListener{
     for(Iterator i = listeners.iterator(); i.hasNext();){
       ((CustomizerSelectionListener) i.next()).selectionChanged(e);
     }
+  }
+  
+  public JCustomizer[] getSelectedCustomizers(){
+    return (JCustomizer[]) selectedList.toArray(new JCustomizer[selectedList.size()]);
   }
   
 }

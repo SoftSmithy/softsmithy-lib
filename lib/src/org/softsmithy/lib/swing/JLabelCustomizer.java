@@ -18,7 +18,7 @@ public class JLabelCustomizer extends JTextCustomizer {
   /** Creates a new instance of JLabelCustomizer */
   public JLabelCustomizer() {
     JLabel label = new JLabel("");
-    label.setOpaque(true);
+    //label.setOpaque(true);
     setComponent(label);
   }
   
@@ -44,6 +44,18 @@ public class JLabelCustomizer extends JTextCustomizer {
     }
     JLabel label = (JLabel) component;
     super.setComponent(label);
+  }
+  
+  public void setHorizontalAlignment(HorizontalAlignment alignment) {
+    JLabel label = (JLabel) getComponent();
+    if (label != null){
+      label.setHorizontalAlignment(alignment.getSwingConstant());
+    }
+  }
+  
+  public HorizontalAlignment getHorizontalAlignment() {
+    JLabel label = (JLabel) getComponent();
+    return label != null ? HorizontalAlignment.getHorizontalAlignment(label.getHorizontalAlignment()) : HorizontalAlignment.getHorizontalAlignment(new JLabel().getHorizontalAlignment());
   }
   
 }

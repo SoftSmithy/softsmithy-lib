@@ -8,6 +8,7 @@ package puce.swing;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 import puce.awt.layout.*;
 import puce.swing.customizer.*;
@@ -37,7 +38,7 @@ public class JCustomizerPane extends JPanel implements MouseListener{
     setSize(400, 300);
     //setFocusable(true);//setRequestFocusEnabled(true);
     addMouseListener(this);
-    this.setBackground(Color.ORANGE);
+    this.setBackground(Color.WHITE);
 //    Action deleteAction = new AbstractAction("delete") {
 //      public void actionPerformed(ActionEvent e) {
 //        System.out.println(e.getSource() + " deleted!");
@@ -103,7 +104,10 @@ public class JCustomizerPane extends JPanel implements MouseListener{
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (isShowingConstraints()){
+      Color oldColor = g.getColor();
+      g.setColor(Color.LIGHT_GRAY);
       ((TableLayout) getLayout()).drawGrid(this, g);
+      g.setColor(oldColor);
     }
     /* First painting occurs at (x,y), where x is at least
       insets.left, and y is at least insets.height. */
@@ -178,6 +182,10 @@ public class JCustomizerPane extends JPanel implements MouseListener{
    */
   public void setSelectionManager(SelectionManager selectionManager) {
     this.selectionManager = selectionManager;
+  }
+  
+  public JCustomizer[] getCustomizers() {
+    return (JCustomizer[]) Arrays.asList(getComponents()).toArray(new JCustomizer[getComponents().length]);
   }
   
   // Variables declaration - do not modify//GEN-BEGIN:variables
