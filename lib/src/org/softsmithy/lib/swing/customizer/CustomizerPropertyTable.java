@@ -21,6 +21,7 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.util.*;
+import javax.swing.table.*;
 import org.softsmithy.lib.swing.*;
 
 /**
@@ -31,7 +32,7 @@ public class CustomizerPropertyTable extends JCellTable {
   
   /** Creates a new instance of PropertyTable */
   public CustomizerPropertyTable() {
-    super(new CustomizerPropertyTableModel(new ArrayList(), new HashSet(), null, Locale.getDefault()));
+    super(new CustomizerPropertyTableModel(new ArrayList(), null, null));
     init();
   }
   
@@ -39,5 +40,22 @@ public class CustomizerPropertyTable extends JCellTable {
     setDefaultRenderer(Style.class, new StyleRenderer(getLocale()));
     setDefaultEditor(Style.class, new StyleCellEditor(getLocale())); // note: Style is an interface
   }
+  
+  public void setModel(TableModel model){
+    if (! (model instanceof CustomizerPropertyTableModel)){
+      throw new IllegalArgumentException("model must be a CustomizerPropertyTableModel");
+    }
+    super.setModel(model);
+  }
+  
+  
+  public CustomizerPropertyTableModel getCustomizerPropertyTableModel(){
+    return (CustomizerPropertyTableModel) getModel();
+  }
+  
+  public void getCustomizerPropertyTableModel(CustomizerPropertyTableModel model){
+    setModel(model);
+  }
+  
   
 }

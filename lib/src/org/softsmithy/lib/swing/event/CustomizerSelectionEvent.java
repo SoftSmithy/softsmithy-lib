@@ -38,10 +38,11 @@ public class CustomizerSelectionEvent extends EventObject {
   private Set commonCustomizableProperties;
   
   /** Creates a new instance of CustomizerSelectionEvent */
-  public CustomizerSelectionEvent(Object source, Set selectedCustomizers, JCustomizer activeCustomizer) {
+  public CustomizerSelectionEvent(Object source, Set selectedCustomizers, JCustomizer activeCustomizer, Set commonCustomizableProperties) {
     super(source);
     this.selectedCustomizers = selectedCustomizers;
     this.activeCustomizer = activeCustomizer;
+    this.commonCustomizableProperties = commonCustomizableProperties;
   }
   
   /** Getter for property selectedCustomizers.
@@ -61,9 +62,7 @@ public class CustomizerSelectionEvent extends EventObject {
   }
   
   public Set getCommonCustomizableProperties(){
-    if (commonCustomizableProperties == null){
-      commonCustomizableProperties = JCustomizer.getCommonCustomizableProperties(getSelectedCustomizers());
-    }
     return commonCustomizableProperties;
   }
+  
 }

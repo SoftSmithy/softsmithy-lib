@@ -24,9 +24,9 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
-import org.softsmithy.lib.lang.reflect.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.util.*;
 
 
 
@@ -37,6 +37,8 @@ import org.softsmithy.lib.swing.event.*;
 public class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListener{
   
   private CustomizerPropertyTable table;
+  private final ResourceBundleCache cache = new ResourceBundleCache("org.softsmithy.lib.swing.customizer.Properties");
+  
   /** Creates new form PropertyPane */
   public JCustomizerPropertyPane() {
     initComponents();
@@ -60,14 +62,8 @@ public class JCustomizerPropertyPane extends JPanel implements CustomizerSelecti
   }
   
   public void selectionChanged(CustomizerSelectionEvent e) {
-    Set properties = JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
-    // Class topMostCommonClass = Classes.getTopMostCommonClass(Classes.getClasses(e.getSelectedCustomizers()));
-    ((CustomizerPropertyTableModel) table.getModel()).stopListening();
-    table.setModel(new CustomizerPropertyTableModel(new ArrayList(properties), e.getSelectedCustomizers(), e.getActiveCustomizer(), getLocale()));
-    //      for (int j=0; j<descriptors.length; j++){
-    //        System.out.println(descriptors[j].getName() + ": " +descriptors[j].getDisplayName());
-    //      }
-    
+    table.getCustomizerPropertyTableModel().stopListening();
+    table.setModel(new CustomizerPropertyTableModel(new ArrayList(e.getCommonCustomizableProperties()), e.getActiveCustomizer(), cache.getBundle(getLocale())));
   }
   
   

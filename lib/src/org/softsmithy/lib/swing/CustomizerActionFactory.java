@@ -201,8 +201,7 @@ public class CustomizerActionFactory {
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{
-        BeanIntrospector.getPropertyDescriptor("horizontalAlignment", customizers[i].getClass(), null).
-        getWriteMethod().invoke(customizers[i], new Object[]{HorizontalAlignment.LEFT});
+        BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.LEFT, customizers[i], null);
       } catch(IntrospectionException ex1){
         ex1.printStackTrace();
       } catch(IllegalAccessException ex2){
@@ -218,8 +217,7 @@ public class CustomizerActionFactory {
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{
-        BeanIntrospector.getPropertyDescriptor("horizontalAlignment", customizers[i].getClass(), null).
-        getWriteMethod().invoke(customizers[i], new Object[]{HorizontalAlignment.CENTER});
+        BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.CENTER, customizers[i], null);
       } catch(IntrospectionException ex1){
         ex1.printStackTrace();
       } catch(IllegalAccessException ex2){
@@ -235,8 +233,7 @@ public class CustomizerActionFactory {
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{
-        BeanIntrospector.getPropertyDescriptor("horizontalAlignment", customizers[i].getClass(), null).
-        getWriteMethod().invoke(customizers[i], new Object[]{HorizontalAlignment.RIGHT});
+        BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.RIGHT, customizers[i], null);
       } catch(IntrospectionException ex1){
         ex1.printStackTrace();
       } catch(IllegalAccessException ex2){

@@ -65,6 +65,7 @@ public abstract class JTextCustomizer extends JCustomizer {
     HorizontalAlignment oldValue = getHorizontalAlignment();
     if (! alignment.equals(oldValue)){
       setHorizontalAlignmentOnly(alignment);
+      repaint();
       firePropertyChange("horizontalAlignment", oldValue, alignment);
     }
   }
