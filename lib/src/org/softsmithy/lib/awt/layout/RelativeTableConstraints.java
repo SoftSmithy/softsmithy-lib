@@ -7,7 +7,8 @@
  * http://www.sun.com/
  *
  * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
- * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights
+Reserved.
  *
  * Contributor(s): .
  */
@@ -28,7 +29,7 @@ import org.softsmithy.lib.swing.customizer.*;
  * @author  Daniel E. Barbalace
  */
 
-public class RelativeTableConstraints implements TableConstraints{
+public class RelativeTableConstraints extends AbstractTableConstraints{
   
   
   /** Cell in which the upper left corner of the component lays */
@@ -42,19 +43,19 @@ public class RelativeTableConstraints implements TableConstraints{
   private int rowSpan;
   
   
-  public RelativeTableConstraints() {
-    this(0, 0, 1, 1);
+  public RelativeTableConstraints(Component component, TableLayout tl) {
+    this(0, 0, 1, 1, component, tl);
+  }  
+  
+  public RelativeTableConstraints(int column, int row, int colSpan, int rowSpan,
+  Component component, TableLayout tl) {
+    this(new Rectangle(column, row, colSpan, rowSpan), component, tl);
   }
   
-
-  
-  public RelativeTableConstraints(int column, int row, int colSpan, int rowSpan) {
-    setColumn(column);
-    setRow(row);
-    setColSpan(colSpan);
-    setRowSpan(rowSpan);
+  public RelativeTableConstraints(Rectangle bounds, Component component, TableLayout tl) {
+    super(component, tl);
+    setRelativeBounds(bounds);
   }
-  
   
   
   /**
@@ -115,31 +116,31 @@ public class RelativeTableConstraints implements TableConstraints{
     return this.rowSpan;
   }
   
-  public int getHeight(Component comp, TableLayout tl) {
-    return tl.height(getRow(), getRowSpan());
+  public int getHeight() {
+    return getTableLayout().height(getRow(), getRowSpan());
   }
   
-  public int getWidth(Component comp, TableLayout tl) {
-    return tl.width(getColumn(), getColSpan());
+  public int getWidth() {
+    return getTableLayout().width(getColumn(), getColSpan());
   }
   
-  public int getX(Component comp, TableLayout tl) {
-    return tl.xLocation(getColumn());
+  public int getX() {
+    return getTableLayout().xLocation(getColumn());
   }
   
-  public int getY(Component comp, TableLayout tl) {
-    return tl.yLocation(getRow());
+  public int getY() {
+    return getTableLayout().yLocation(getRow());
   }
   
-  public void setAbsoluteBounds(Rectangle bounds, CustomizerLayout cl) {
-    if (!(cl instanceof TableLayout)){
-      throw new IllegalArgumentException("cl must be a Tablelayout!");
-    }
-    TableLayout tl = (TableLayout) cl;
-    column = tl.columnIndex(bounds.x);
-    row = tl.rowIndex(bounds.y);
-    colSpan = tl.colSpan(column, bounds.width);
-    rowSpan = tl.rowSpan(row, bounds.height);
+  protected void setAbsoluteBoundsOnly(Rectangle bounds) {
+    //    if (!(cl instanceof TableLayout)){
+    //      throw new IllegalArgumentException("cl must be a Tablelayout!");
+    //    }
+    //    TableLayout tl = (TableLayout) cl;
+    setColumnOnly(getTableLayout().columnIndex(bounds.x));
+    setRowOnly(getTableLayout().rowIndex(bounds.y));
+    setColSpanOnly(getTableLayout().colSpan(column, bounds.width));
+    setRowSpanOnly(getTableLayout().rowSpan(row, bounds.height));
   }
   
   /** Setter for property colSpan.
@@ -147,6 +148,11 @@ public class RelativeTableConstraints implements TableConstraints{
    *
    */
   public void setColSpan(int colSpan) {
+    setColSpanOnly(colSpan);
+    updateTableLayout();
+  }
+  
+  private void setColSpanOnly(int colSpan) {
     this.colSpan = colSpan >= 1 ? colSpan : 1;
   }
   
@@ -155,6 +161,11 @@ public class RelativeTableConstraints implements TableConstraints{
    *
    */
   public void setColumn(int column) {
+    setColumnOnly(column);
+    updateTableLayout();
+  }
+  
+  private void setColumnOnly(int column) {
     this.column = column;
   }
   
@@ -163,6 +174,11 @@ public class RelativeTableConstraints implements TableConstraints{
    *
    */
   public void setRow(int row) {
+    setRowOnly(row);
+    updateTableLayout();
+  }
+  
+  private void setRowOnly(int row) {
     this.row = row;
   }
   
@@ -171,23 +187,27 @@ public class RelativeTableConstraints implements TableConstraints{
    *
    */
   public void setRowSpan(int rowSpan) {
+    setRowSpanOnly(rowSpan);
+    updateTableLayout();
+  }
+  
+  private void setRowSpanOnly(int rowSpan) {
     this.rowSpan = rowSpan >= 1 ? rowSpan : 1;
   }
   
-  public Rectangle getAbsoluteBounds(Component comp, TableLayout tl) {
-    return new Rectangle(getX(comp, tl), getY(comp, tl),
-    getWidth(comp, tl), getHeight(comp, tl));
+  public Rectangle getAbsoluteBounds() {
+    return new Rectangle(getX(), getY(), getWidth(), getHeight());
   }
   
-  public Rectangle getRelativeBounds(Component comp, TableLayout tl) {
+  public Rectangle getRelativeBounds() {
     return new Rectangle(column, row, colSpan,  rowSpan);
   }
   
-  public void setRelativeBounds(Rectangle bounds, TableLayout tl) {
-    setColumn(bounds.x);
-    setRow(bounds.y);
-    setColSpan(bounds.width);
-    setRowSpan(bounds.height);
+  protected void setRelativeBoundsOnly(Rectangle bounds) {
+    setColumnOnly(bounds.x);
+    setRowOnly(bounds.y);
+    setColSpanOnly(bounds.width);
+    setRowSpanOnly(bounds.height);
   }
   
   

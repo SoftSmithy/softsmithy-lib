@@ -27,7 +27,7 @@ import org.softsmithy.lib.swing.customizer.*;
  *
  * @author  puce
  */
-public final class AbsoluteTableConstraints implements TableConstraints{
+public class AbsoluteTableConstraints extends AbstractTableConstraints{
   
   /** Holds value of property x. */
   private int x;
@@ -43,81 +43,107 @@ public final class AbsoluteTableConstraints implements TableConstraints{
   
   /** Creates a new instance of DefaultTableLayoutConstraints */
   public AbsoluteTableConstraints(int x, int y, int width, int height,
-  TableLayout tl){
-    setAbsoluteBounds(new Rectangle(x, y, width, height), tl);
+  Component component, TableLayout tl){
+    this(new Rectangle(x, y, width, height), component, tl);
+  }
+  
+  public AbsoluteTableConstraints(Rectangle bounds, Component component, TableLayout tl){
+    super(component, tl);
+    setAbsoluteBounds(bounds);
   }
   
   /** Getter for property x.
    * @return Value of property x.
    */
-  public int getX(Component comp, TableLayout tl) {
+  public int getX() {
     return this.x;
   }
   
   public void setX(int x){
-    this.x = x;
+    setXOnly(x);
+    updateTableLayout();
+  }
+  
+  private void setXOnly(int x){
+    this.x = getTableLayout().adjustX(x);
   }
   
   /** Getter for property y.
    * @return Value of property y.
    */
-  public int getY(Component comp, TableLayout tl){
+  public int getY(){
     return this.y;
   }
   
-    public void setY(int y){
-    this.y = y;
+  public void setY(int y){
+    setYOnly(y);
+    updateTableLayout();
+  }
+  
+  private void setYOnly(int y){
+    this.y = getTableLayout().adjustY(y);
   }
   
   /** Getter for property width.
    * @return Value of property width.
    */
-  public int getWidth(Component comp, TableLayout tl)  {
+  public int getWidth()  {
     return this.width;
   }
   
-    public void setWidth(int width){
-    this.width = width;
+  public void setWidth(int width){
+    setWidthOnly(width);
+    updateTableLayout();
   }
-    
+  
+  private void setWidthOnly(int width){
+    this.width = getTableLayout().adjustWidth(getX(), width);
+  }
+  
   /** Getter for property height.
    * @return Value of property height.
    */
-  public int getHeight(Component comp, TableLayout tl) {
+  public int getHeight() {
     return this.height;
   }
   
-    public void setHeight(int height){
-    this.height = height;
+  public void setHeight(int height){
+    setHeightOnly(height);
+    updateTableLayout();
   }
-    
-  public void setAbsoluteBounds(Rectangle bounds, CustomizerLayout cl){
-    if (!(cl instanceof TableLayout)){
-      throw new IllegalArgumentException("cl must be a Tablelayout!");
-    }
-    TableLayout tl = (TableLayout) cl;
-    Rectangle adjustedBounds = tl.adjustBounds(bounds);
+  
+  private void setHeightOnly(int height){
+    this.height = getTableLayout().adjustHeight(getY(), height);
+  }
+  
+  protected void setAbsoluteBoundsOnly(Rectangle bounds){
+    //    if (!(cl instanceof TableLayout)){
+    //      throw new IllegalArgumentException("cl must be a Tablelayout!");
+    //    }
+    //    TableLayout tl = (TableLayout) cl;
+    Rectangle adjustedBounds = getTableLayout().adjustBounds(bounds);
     this.x= adjustedBounds.x;
     this.y = adjustedBounds.y;
     this.width = adjustedBounds.width;
     this.height = adjustedBounds.height;
   }
   
-  public Rectangle getAbsoluteBounds(Component comp, TableLayout tl) {
+  public Rectangle getAbsoluteBounds() {
     return new Rectangle(x, y, width, height);
-  }  
-  
-  public Rectangle getRelativeBounds(Component comp, TableLayout tl) {
-    int column = tl.columnIndex(x);
-    int row = tl.rowIndex(y);
-    return new Rectangle(column, row, tl.colSpan(column, width), tl.rowSpan(row, height));
   }
   
-  public void setRelativeBounds(Rectangle bounds, TableLayout tl) {
-    setX(tl.xLocation(bounds.x));
-    setY(tl.yLocation(bounds.y));
-    setWidth(tl.width(bounds.x, bounds.width));
-    setHeight(tl.height(bounds.y, bounds.height));
+  public Rectangle getRelativeBounds() {
+    int column = getTableLayout().columnIndex(x);
+    int row = getTableLayout().rowIndex(y);
+    return new Rectangle(column, row, getTableLayout().colSpan(column, width),
+    getTableLayout().rowSpan(row, height));
+  }
+  
+  protected void setRelativeBoundsOnly(Rectangle bounds) {
+    setX(getTableLayout().xLocation(bounds.x));
+    setY(getTableLayout().yLocation(bounds.y));
+    setWidth(getTableLayout().width(bounds.x, bounds.width));
+    setHeight(getTableLayout().height(bounds.y, bounds.height));
   }
   
   

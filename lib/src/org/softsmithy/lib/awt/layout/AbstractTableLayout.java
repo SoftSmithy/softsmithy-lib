@@ -14,8 +14,11 @@
 
 package org.softsmithy.lib.awt.layout;
 
-import org.softsmithy.lib.awt.*;
 import java.awt.*;
+import org.softsmithy.lib.awt.event.*;
+
+import java.util.*;
+import org.softsmithy.lib.awt.*;
 
 
 public abstract class AbstractTableLayout implements TableLayout {
@@ -37,6 +40,9 @@ public abstract class AbstractTableLayout implements TableLayout {
   
   protected abstract AbstractAxis getColumns();
   protected abstract AbstractAxis getRows();
+  
+  private final Set allComponentLayoutListeners = new HashSet();
+  private final Map componentLayoutListeners = new HashMap();
   
    /*protected void insertColumn(int i, double width);
   protected void insertRow(int i, double height);
@@ -66,7 +72,7 @@ public abstract class AbstractTableLayout implements TableLayout {
     if (!(constr instanceof TableConstraints)){
       throw new IllegalArgumentException();
     }
-    setConstraints(comp, (TableConstraints) constr);
+    setTableConstraints(comp, (TableConstraints) constr);
   }
   
   /**
@@ -159,7 +165,7 @@ public abstract class AbstractTableLayout implements TableLayout {
   public void ensureValidity(Container container) {
     Rectangle innerArea = AWTUtilities.calculateInnerArea(container, null);
     ensureValidity(innerArea);
-  } 
+  }
   public void ensureValidity(Rectangle innerArea){
     if (! isValid(innerArea)){
       validateLayout(innerArea);
@@ -179,15 +185,54 @@ public abstract class AbstractTableLayout implements TableLayout {
   }
   
   public void layoutComponent(Container parent, Component comp) {
-    TableConstraints constr = (TableConstraints) getConstraints(comp);
+    TableConstraints constr =  getTableConstraints(comp); //(TableConstraints) getConstraints(comp);
     if (constr != null){
       ensureValidity(parent);
-      comp.setBounds(constr.getAbsoluteBounds(comp, this));
+      Rectangle bounds = constr.getAbsoluteBounds();
+      comp.setBounds(bounds);
+      fireComponentLayoutEvent(new ComponentLayoutEvent(this, comp, bounds));
     }
   }
   
   public Component[] getComponents(Container parent){
     return parent.getComponents();
+  }
+  
+  public void addComponentLayoutListener(ComponentLayoutListener listener) {
+    allComponentLayoutListeners.add(listener);
+  }
+  
+  public void addComponentLayoutListener(Component component, ComponentLayoutListener listener) {
+    Set listeners;
+    if (componentLayoutListeners.containsKey(component)){
+      listeners = (Set) componentLayoutListeners.get(component);
+    } else {
+      listeners = new HashSet();
+      componentLayoutListeners.put(component, listeners);
+    }
+    listeners.add(listener);
+  }
+  
+  public void removeComponentLayoutListener(ComponentLayoutListener listener) {
+    allComponentLayoutListeners.remove(listener);
+  }
+  
+  public void removeComponentLayoutListener(Component component, ComponentLayoutListener listener) {
+    if (componentLayoutListeners.containsKey(component)){
+      ((Set) componentLayoutListeners.get(component)).remove(listener);
+    }
+  }
+  
+  private void fireComponentLayoutEvent(ComponentLayoutEvent evt){
+    for (Iterator i=allComponentLayoutListeners.iterator(); i.hasNext();){
+      ((ComponentLayoutListener) i.next()).componentLayouted(evt);
+    }
+    Set listeners = (Set) componentLayoutListeners.get(evt.getComponent());
+    if (listeners != null){
+      for (Iterator i=listeners.iterator(); i.hasNext();){
+        ((ComponentLayoutListener) i.next()).componentLayouted(evt);
+      }
+    }
   }
   
 /*
@@ -256,7 +301,7 @@ public abstract class AbstractTableLayout implements TableLayout {
     }
     
     
-
+    
     protected abstract void calculateSizes(int innerSize);
     protected abstract void calculateOffsets(int innerStart, int innerSize);
   }

@@ -13,23 +13,23 @@
  */
 
 /*
- * CustomizerConstraints.java
+ * CustomizerListener.java
  *
- * Created on 2. September 2002, 16:18
+ * Created on 30. August 2002, 16:40
  */
 
-package org.softsmithy.lib.swing.customizer;
+package org.softsmithy.lib.awt.event;
 
-import java.awt.*;
-//import org.softsmithy.lib.awt.layout.*;
+import java.util.*;
 
 /**
  *
  * @author  puce
  */
-public interface CustomizerConstraints{
+public interface ComponentLayoutListener extends EventListener {
   
-    Rectangle getAbsoluteBounds();
-    void setAbsoluteBounds(Rectangle bounds);//, CustomizerLayout cm);
+  
+  void componentLayouted(ComponentLayoutEvent e);
+
   
 }

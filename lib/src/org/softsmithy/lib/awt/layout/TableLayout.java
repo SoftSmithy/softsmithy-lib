@@ -66,9 +66,17 @@ public interface TableLayout extends CustomizerLayout{
   
   int adjustHeight(int yPixel, int pixelHeight);
   
+  TableConstraints getTableConstraints(Component component);
+  
+  void setTableConstraints(Component component, TableConstraints constraint);
+  
+  void layoutComponent(Container parent, Component component);
+  
   Rectangle adjustBounds(Rectangle bounds);
   
-  //  void layoutComponent(Container parent, Component comp);
+  //void setAbsoluteBounds(Component component, Rectangle bounds);
+  
+  void setRelativeBounds(Component component, Rectangle bounds);
   
   
 }

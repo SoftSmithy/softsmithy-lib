@@ -1,9 +1,21 @@
 Changes:
+CVS: 	docs/CHANGES.txt 
 CVS: 	src/org/softsmithy/lib/awt/layout/AbsoluteTableConstraints.java 
 CVS: 	src/org/softsmithy/lib/awt/layout/InfiniteTableLayout.java 
 CVS: 	src/org/softsmithy/lib/awt/layout/RelativeTableConstraints.java 
 CVS: 	src/org/softsmithy/lib/awt/layout/TableConstraints.java 
 CVS: 	src/org/softsmithy/lib/awt/layout/TableLayout.java 
+CVS: 	src/org/softsmithy/lib/awt/layout/AbstractTableLayout.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/JCustomizerPane.java 
+CVS: 	src/org/softsmithy/lib/swing/JIconCustomizer.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerConstraints.java 
+CVS: 	src/org/softsmithy/lib/swing/customizer/CustomizerLayout.java 
+CVS: Added Files:
+CVS: 	src/org/softsmithy/lib/awt/layout/AbstractTableConstraints.java 
+CVS: 	src/org/softsmithy/lib/awt/event/ComponentLayoutEvent.java 
+CVS: 	src/org/softsmithy/lib/awt/event/ComponentLayoutListener.java 
+
 v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
              preferredSize 
             -org.softsmithy.lib.beans.XDefaultPersistenceDelegate work around

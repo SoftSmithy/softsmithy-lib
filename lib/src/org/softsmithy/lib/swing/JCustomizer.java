@@ -152,14 +152,20 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    tl.layoutComponent(pane, this);
   //  }
   
+//  public void reshapeRelOnly(int dx, int dy, int dwidth, int dheight) {
+//    getParentCustomizerPane().getCustomizerLayout().setAbsoluteBounds(this,
+//    calculateBounds(dx, dy, dwidth, dheight));
+//    //    CustomizerConstraints constr = cl.getCustomizerConstraints(this);
+//    //    constr.setAbsoluteBounds(bounds);
+//    //cl.setCustomizerConstraints(this, constr);
+//  }
+  
   public void reshapeRel(int dx, int dy, int dwidth, int dheight) {
-    JCustomizerPane pane = (JCustomizerPane) getParent();
-    CustomizerLayout cl = (CustomizerLayout) pane.getLayout();
-    Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
-    CustomizerConstraints constr = cl.getConstraints(this);
-    constr.setAbsoluteBounds(bounds, cl);
-    cl.setConstraints(this, constr);
-    cl.layoutComponent(pane, this);
+     getParentCustomizerPane().setAbsoluteCustomizerBounds(this, calculateBounds(dx, dy, dwidth, dheight));
+//    reshapeRelOnly(dx, dy, dwidth, dheight);
+//    JCustomizerPane pane = (JCustomizerPane) getParent();
+//    CustomizerLayout cl = pane.getCustomizerLayout();
+//    cl.layoutCustomizer(pane, this);
     revalidate(); // seems to be necessary?!?
     repaint();
   }
@@ -346,17 +352,17 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     return getStateManager().getNormalBorderColor();
   }
   
-//  public void setNormalBorederColor(Color normalBorderColor){
-//    getStateManager().setNormalBorderColor(normalBorderColor);
-//  }
-//  
+  //  public void setNormalBorederColor(Color normalBorderColor){
+  //    getStateManager().setNormalBorderColor(normalBorderColor);
+  //  }
+  //
   public Color getSelectedBorderColor(){
     return getStateManager().getSelectedBorderColor();
   }
   
-//  public void setSelectedBorderColor(Color selectedBorderColor){
-//    getStateManager().setSelectedBorderColor(selectedBorderColor);
-//  }
+  //  public void setSelectedBorderColor(Color selectedBorderColor){
+  //    getStateManager().setSelectedBorderColor(selectedBorderColor);
+  //  }
   
   /** Getter for property noneStyle.
    * @return Value of property noneStyle.
@@ -373,7 +379,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    */
   public boolean isUsingDefaultNormalBorderColor() {
     return getStateManager().isUsingDefaultNormalBorderColor();
-  }  
+  }
   
   /** Setter for property usingDefaultNormalBorderColor.
    * @param usingDefaultNormalBorderColor New value of property usingDefaultNormalBorderColor.

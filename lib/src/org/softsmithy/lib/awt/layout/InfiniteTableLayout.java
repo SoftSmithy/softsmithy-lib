@@ -50,6 +50,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   private final SortedSet sortedCompHeights = new TreeSet(new CompHeightsComparator());
   private final Map compWidths = new HashMap();
   private final SortedSet sortedCompWidths = new TreeSet(new CompWidthsComparator());
+ 
   
   /** Creates a new instance of UnlimitedTableLayout */
   public InfiniteTableLayout(int defaultColumnWidth, int defaultRowHeight, Container parent) {
@@ -69,6 +70,10 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   
   public InfiniteTableLayout(Container parent) {
     this(10, 10, parent);
+  }
+  
+  public Container getParent(){
+    return this.parent;
   }
   
   public void setColumnWidth(int column, double width) {
@@ -112,8 +117,11 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   /** Setter for property defaultColumnWidth.
    * @param defaultColumnWidth New value of property defaultColumnWidth.
    */
-  public void setDefaultColumnWidth(int defaultColumnWidth) {
+  public void setDefaultColumnWidth(int defaultColumnWidth, boolean absolute) {
+    Map bounds = getBounds(absolute);
     columns.setDefaultSize(defaultColumnWidth);
+    setBounds(bounds, absolute);
+    
   }
   
   /** Getter for property defaultRowHeight.
@@ -126,29 +134,31 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   /** Setter for property defaultRowHeight.
    * @param defaultRowHeight New value of property defaultRowHeight.
    */
-  public void setDefaultRowHeight(int defaultRowHeight) {
+  public void setDefaultRowHeight(int defaultRowHeight, boolean absolute) {
+    Map bounds = getBounds(absolute);
     rows.setDefaultSize(defaultRowHeight);
+    setBounds(bounds, absolute);
   }
-  
-  
-  
-  
   
   /** Getter for property constraints.
    * @return Value of property constraints.
    */
-  public CustomizerConstraints getConstraints(Component comp) {
+  public TableConstraints getTableConstraints(Component comp) {
     return (TableConstraints) constraints.get(comp);
+  }
+  
+  public CustomizerConstraints getCustomizerConstraints(Component comp){
+    return getTableConstraints(comp);
   }
   
   /** Setter for property constraints.
    * @param constraints New value of property constraints.
    */
-  public void setConstraints(Component comp, CustomizerConstraints constr){
-    if (!(constr instanceof TableConstraints)){
-      throw new IllegalArgumentException();
-    }
-    TableConstraints tc = (TableConstraints) constr;
+  public void setTableConstraints(Component comp, TableConstraints tc){
+    //    if (!(constr instanceof TableConstraints)){
+    //      throw new IllegalArgumentException();
+    //    }
+    //    TableConstraints tc = (TableConstraints) constr;
     constraints.put(comp, tc);
     int preferredWidth =  getRightPosition(comp);//??
     if (sortedCompWidths.contains(comp)){
@@ -165,14 +175,21 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     resetOccupiedDimension();
   }
   
+  public void setCustomizerConstraints(Component comp, CustomizerConstraints cc){
+    if (! (cc instanceof TableConstraints)){
+      throw new IllegalArgumentException("CustomizerConstraints must be an instance of TableConstraints!");
+    }
+    setTableConstraints(comp, (TableConstraints) cc);
+  }
+  
   private int getRightPosition(Component comp){
     TableConstraints tc = (TableConstraints) constraints.get(comp);
-    return tc.getX(comp, this) + tc.getWidth(comp, this);
+    return tc.getX() + tc.getWidth();
   }
   
   private int getBottomPosition(Component comp){
     TableConstraints tc = (TableConstraints) constraints.get(comp);
-    return tc.getY(comp, this) + tc.getHeight(comp, this);
+    return tc.getY() + tc.getHeight();
   }
   
   private void resetOccupiedDimension(){
@@ -199,6 +216,10 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     ensureValidity(innerArea);
     columns.draw(innerArea.y, innerArea.height, g);
     rows.draw(innerArea.x, innerArea.width, g);
+  }
+  
+  public void drawLayoutHelp(Container container, Graphics g) {
+    drawGrid(container, g);
   }
   
   public void insertColumn(int i, boolean absolute) {
@@ -236,9 +257,8 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     Map bounds = new HashMap();
     Component[] components = getComponents(parent);
     for (int i=0; i < components.length; i++){
-      bounds.put(components[i],
-      ((TableConstraints) getConstraints(components[i])).
-      getAbsoluteBounds(components[i], this));
+      bounds.put(components[i], getTableConstraints(components[i]).
+      getAbsoluteBounds());
     }
     return bounds;
   }
@@ -247,9 +267,8 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     Map bounds = new HashMap();
     Component[] components = getComponents(parent);
     for (int i=0; i < components.length; i++){
-      bounds.put(components[i],
-      ((TableConstraints) getConstraints(components[i])).
-      getRelativeBounds(components[i], this));
+      bounds.put(components[i], getTableConstraints(components[i]).
+      getRelativeBounds());
     }
     return bounds;
   }
@@ -257,20 +276,16 @@ public class InfiniteTableLayout extends AbstractTableLayout {
   private void setAbsoluteBounds(Map bounds){
     Component[] components = getComponents(parent);
     for (int i=0; i < components.length; i++){
-      TableConstraints constraints = (TableConstraints) getConstraints(components[i]);
-      constraints.setAbsoluteBounds((Rectangle) bounds.get(components[i]), this);
-      setConstraints(components[i], constraints);
-      layoutComponent(parent, components[i]);
+      setAbsoluteBounds(components[i], (Rectangle) bounds.get(components[i]));
+      //setTableConstraints(components[i], constraints);
     }
   }
   
   private void setRelativeBounds(Map bounds){
     Component[] components = getComponents(parent);
     for (int i=0; i < components.length; i++){
-      TableConstraints constraints = (TableConstraints) getConstraints(components[i]);
-      constraints.setRelativeBounds((Rectangle) bounds.get(components[i]), this);
-      setConstraints(components[i], constraints);
-      layoutComponent(parent, components[i]);
+      setRelativeBounds(components[i], (Rectangle) bounds.get(components[i]));
+      //setTableConstraints(components[i], constraints);
     }
   }
   
@@ -408,9 +423,31 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     return rows;
   }
   
-  public void drawLayoutHelp(Container container, Graphics g) {
-    drawGrid(container, g);
+  public void setAbsoluteBounds(Component component, Rectangle bounds) {
+    TableConstraints tc = getTableConstraints(component);
+    if (tc == null){
+      //      tc = new AbsoluteTableConstraints(bounds, component, this);
+      //      getParent().add(component, tc);
+    } else {
+      tc.setAbsoluteBounds(bounds);
+      setTableConstraints(component, tc);
+      layoutComponent(getParent(), component);
+    }
   }
+  
+  public void setRelativeBounds(Component component, Rectangle bounds) {
+    TableConstraints tc = getTableConstraints(component);
+    if (tc == null){
+      //      tc = new RelativeTableConstraints(bounds, component, this);
+      //      getParent().add(component, tc);
+    } else {
+      tc.setRelativeBounds(bounds);
+      setTableConstraints(component, tc);
+      layoutComponent(getParent(), component);
+    }
+  }
+  
+
   
   private static abstract class InfiniteAxis extends AbstractTableLayout.AbstractAxis{
     

@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
-import org.softsmithy.lib.awt.layout.*;
+import org.softsmithy.lib.awt.event.*;
 
 /**
  *
@@ -29,12 +29,22 @@ import org.softsmithy.lib.awt.layout.*;
  */
 public interface CustomizerLayout extends LayoutManager2 {
   
-  CustomizerConstraints getConstraints(Component component);
+  CustomizerConstraints getCustomizerConstraints(Component component);
   
-  void setConstraints(Component component, CustomizerConstraints constraint);
+  void setCustomizerConstraints(Component component, CustomizerConstraints constraint);
   
-  void layoutComponent(Container parent, Component comp);
+  void setAbsoluteBounds(Component component, Rectangle bounds);
+  
+  void layoutComponent(Container parent, Component customizer);
   
   void drawLayoutHelp(Container container, Graphics g);
+  
+  void addComponentLayoutListener(ComponentLayoutListener listener);
+  
+  void addComponentLayoutListener(Component component, ComponentLayoutListener listener);
+  
+  void removeComponentLayoutListener(ComponentLayoutListener listener);
+  
+  void removeComponentLayoutListener(Component component, ComponentLayoutListener listener);
   
 }

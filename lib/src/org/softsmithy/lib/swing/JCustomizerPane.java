@@ -27,7 +27,6 @@ import javax.swing.*;
 import org.softsmithy.lib.awt.event.*;
 import org.softsmithy.lib.awt.layout.*;
 import org.softsmithy.lib.swing.customizer.*;
-import org.softsmithy.lib.swing.event.*;
 
 
 
@@ -310,6 +309,26 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
   
   public void addCustomizer(JCustomizer customizer, CustomizerConstraints constraints){
     add(customizer, constraints);
+  }
+  
+  public void setAbsoluteCustomizerBounds(JCustomizer customizer, Rectangle bounds){
+    getCustomizerLayout().setAbsoluteBounds(customizer, bounds);
+  }
+  
+  public void addComponentLayoutListener(ComponentLayoutListener listener){
+    
+  }
+  
+  public void addComponentLayoutListener(Component component, ComponentLayoutListener listener){
+    
+  }
+  
+  public void removeComponentLayoutListener(ComponentLayoutListener listener){
+    
+  }
+  
+  public void removeComponentLayoutListener(Component component, ComponentLayoutListener listener){
+    
   }
   
   /** Getter for property active.
