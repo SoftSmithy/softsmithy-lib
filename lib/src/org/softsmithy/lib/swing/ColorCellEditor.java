@@ -35,8 +35,17 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
   private JButton button;
   private JPanel editor;
   private Color color = null;
+  
+  /** Holds value of property alpha. */
+  private int alpha;
+  
   /** Creates a new instance of ColorCellEditor */
   public ColorCellEditor() {
+    this(255);
+  }
+  
+  public ColorCellEditor(int alpha){
+    this.alpha = alpha;
     renderer = new ColorCellRenderer(true);
     button = new JButton(". . ."){
       public Dimension getPreferredSize(){
@@ -49,7 +58,7 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
       public void actionPerformed(ActionEvent e){
         Color color = JColorChooser.showDialog(editor.getParent(), "Choose Color", getColor());
         if (color != null){
-          setColor(color);
+          setNewColor(color);
           stopCellEditing();
           System.out.println("Stop");
         } else {
@@ -71,7 +80,7 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
    *
    */
   public Object getCellEditorValue() {
-    return color;
+    return getColor();
   }
   
   /**  Sets an initial <code>value</code> for the editor.  This will cause
@@ -100,8 +109,8 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
    *
    */
   public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-    color = (Color) value;
-    renderer.setColor(color);//(Color) value);
+    setColor((Color) value);
+    renderer.setColor(getColor());//(Color) value);
     
     //    Color color = JColorChooser.showDialog(editor, "Choose Color", (Color) value);
     //    if (color != null){
@@ -120,7 +129,7 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
    * @return Value of property color.
    *
    */
-  public java.awt.Color getColor() {
+  public Color getColor() {
     return color;
   }
   
@@ -128,8 +137,35 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
    * @param color New value of property color.
    *
    */
-  public void setColor(java.awt.Color color) {
+  public void setColor(Color color) {
     this.color = color;
+  }
+  
+  public void setNewColor(Color newColor){
+    if (getAlpha() == 255){
+      setColor(newColor);
+    } else {
+      setColor(new Color(newColor.getRed(), newColor.getGreen(), newColor.getBlue(), getAlpha()));
+    }
+  }
+  
+  /** Getter for property alpha.
+   * @return Value of property alpha.
+   *
+   */
+  public int getAlpha() {
+    return this.alpha;
+  }
+  
+  /** Setter for property alpha.
+   * @param alpha New value of property alpha.
+   *
+   */
+  public void setAlpha(int alpha) {
+    if (alpha < 0 || alpha > 255){
+      throw new IllegalArgumentException("Alpha must be in the range [0, 255].");
+    }
+    this.alpha = alpha;
   }
   
 }

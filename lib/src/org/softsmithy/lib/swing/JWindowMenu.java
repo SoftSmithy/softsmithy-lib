@@ -30,7 +30,7 @@ import javax.swing.event.*;
  *
  * @author  puce
  */
-public class JWindowMenu extends JMenu{
+class JWindowMenu extends JMenu{
   
   private ButtonGroup group = new ButtonGroup();
   private List buttons = new ArrayList();

@@ -19,7 +19,7 @@ public class JXViewport extends JViewport {
   private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
   private static final Dimension defaultDimension = new Dimension(0, 0);
   
-  private final JPanel viewPane = new JPanel();
+  private final JStyledPanel viewPane = new JStyledPanel();
   private Component viewComponent = null;
   
   /** Holds value of property viewGlassed. */
@@ -31,12 +31,13 @@ public class JXViewport extends JViewport {
   /** Creates a new instance of JXViewport */
   public JXViewport() {
     viewPane.setLayout(new TableLayout(new double[][]{{TableLayout.FILL}, {TableLayout.FILL}}));
+    viewPane.setStyle(viewPane.getParentStyle());
     //    viewPane.setBackground(Color.RED);
     //    viewPane.setOpaque(true);
     //    //viewPane.setPreferredSize(new Dimension(200, 200));
     //    viewPane.setSize(new Dimension(200, 200));
     //viewPane.setMinimumSize(new Dimension(200, 200));
-    viewPane.setOpaque(false);
+    //viewPane.setOpaque(false);
     super.setView(viewPane);
   }
   
