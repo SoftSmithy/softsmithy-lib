@@ -227,8 +227,8 @@ public abstract class AbstractTableLayout implements TableLayout {
     for (Iterator i=allComponentLayoutListeners.iterator(); i.hasNext();){
       ((ComponentLayoutListener) i.next()).componentLayouted(evt);
     }
-    Set listeners = (Set) componentLayoutListeners.get(evt.getComponent());
-    if (listeners != null){
+    Set listeners = (Set) componentLayoutListeners.get(evt.getComponent()); // ClassCastException if null?
+    if (listeners != null){ //?
       for (Iterator i=listeners.iterator(); i.hasNext();){
         ((ComponentLayoutListener) i.next()).componentLayouted(evt);
       }
