@@ -38,7 +38,7 @@ public class HiddenStateManager extends EditableStateManager {
   private State editableState;
   
   /** Creates a new instance of EditableStateManager */
-  public HiddenStateManager(final JTextCustomizer customizer){
+  public HiddenStateManager(final AbstractTextCustomizer customizer){
     super(customizer);
     
   }

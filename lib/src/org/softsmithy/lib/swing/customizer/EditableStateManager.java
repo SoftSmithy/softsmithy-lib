@@ -25,6 +25,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.customizer.StateManager.*;
 
 /**
@@ -40,7 +41,7 @@ public class EditableStateManager extends StateManager {
   private EditableListener editableListener = new EditableListener();
   
   /** Creates a new instance of EditableStateManager */
-  public EditableStateManager(final JTextCustomizer customizer){
+  public EditableStateManager(final AbstractTextCustomizer customizer){
     super(customizer);
     editableState = new DefaultState(customizer){
       Component component = null;
@@ -90,8 +91,8 @@ public class EditableStateManager extends StateManager {
     setState(getEditableState());
   }
   
-  public JTextCustomizer getTextCustomizer(){
-    return (JTextCustomizer) getCustomizer();
+  public AbstractTextCustomizer getTextCustomizer(){
+    return (AbstractTextCustomizer) getCustomizer();
   }
   
   public void configureCustomizer() {
