@@ -20,6 +20,7 @@ v20030319:  -org.softsmithy.lib.swing.JPropertyTable added
               -org.softsmithy.lib.beans.XMLEncoderX
               -org.softsmithy.lib.swing.JXTable
             -several convenience constructors for JCustomizer and its subclasses
+            -version naming convention changed: ddmmyyyy -> yyyymmdd (better for sorting)
 v04032003:  -Fixed some bugs with setting styles
             -Added a property table model for arbitrary beans 
              (org.softsmithy.lib.swing.table.PropertyTableModel)
