@@ -25,7 +25,7 @@ public class DefaultCustomizerAction extends DefaultXAction implements Customize
   }
   
   public DefaultCustomizerAction(Set neededCustomizableProperties) {
-    setNeededCustomizableProperties(Collections.EMPTY_SET);
+    setNeededCustomizableProperties(neededCustomizableProperties);
   }
   
   /**
