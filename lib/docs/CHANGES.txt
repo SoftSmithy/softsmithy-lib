@@ -7,7 +7,6 @@ v20030523:  -org.softsmithy.lib.swing.JHtmlCustomizer bug fixes for foreground
              icon is null
             -org.softsmithy.lib.swing.JXPanel added which has a backgroundPaint
              property
-
 v20030514:  -org.softsmithy.lib.beans.BeanIntrospector now supports 
              PropertyChangeListeners
             -org.softsmithy.lib.swing.JCustomizer + 
