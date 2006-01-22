@@ -68,12 +68,27 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
   public SelectionManager() {
   }
   
+  /**
+   * Add the specified customizer to the selection.
+   * If the specified point is in the region of a resize handle the state of the
+   * customizer will be changed to the accordant resize state. Otherwise the
+   * state will be changed to "move".
+   * @param customizer the customizer to be added to the current selection
+   * @param point If the specified point is in the region of a resize handle the 
+   * state of the customizer will be changed to the accordant resize state. 
+   * Otherwise the state will be changed to "move".
+   */
   public void select(JCustomizer customizer, Point point) {
     selectOnly(customizer);
     customizer.getStateManager().setStateBound(point);
     fireSelectionChanged();
   }
   
+  /**
+   * Add the specified customizer to the selection.
+   * The state of the customizer will be changed to "move".
+   * @param customizer the customizer to be added to the current selection
+   */
   public void select(JCustomizer customizer){
     selectOnly(customizer);
     customizer.getStateManager().setStateMove();
@@ -92,11 +107,26 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     revalidate();
   }
   
+  /**
+   * Clear the current selection and then add the specified customizer to the 
+   * selection. If the specified point is in the region of a resize handle the 
+   * state of the customizer will be changed to the accordant resize state. 
+   * Otherwise the state will be changed to "move".
+   * @param customizer the customizer to be added to the current selection
+   * @param point If the specified point is in the region of a resize handle the 
+   * state of the customizer will be changed to the accordant resize state. 
+   * Otherwise the state will be changed to "move".
+   */
   public void singleSelect(JCustomizer customizer, Point point){
     clearSelectionOnly();
     select(customizer, point);
   }
   
+  /**
+   * Clear the current selection and then add the specified customizer to the 
+   * selection. The state of the customizer will be changed to "move".
+   * @param customizer the customizer to be added to the current selection
+   */
   public void singleSelect(JCustomizer customizer){
     clearSelectionOnly();
     select(customizer);
