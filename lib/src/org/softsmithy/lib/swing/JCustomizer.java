@@ -39,6 +39,7 @@ import org.softsmithy.lib.test.*;
  * Eg. the component can be moved or resized with the mouse.
  *
  * Note: JCustomizer expects a JCustomizerPane as its parent.
+ * Note: For mulit-selection: press the Ctrl-button while selecting.
  * Note: If you're interested in the values of the properties "x", "y", "width"
  *       and "height", then you might want to register a CustomizerListener in
  *       addition to PropertyChangeListeners to listen for all changes, absolute
