@@ -393,7 +393,5 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
   public void setSmallSelectedIcon(Icon icon) {
     putValue(XAction.SMALL_SELECTED_ICON, icon);
   }
-
-
-  
+ 
 }

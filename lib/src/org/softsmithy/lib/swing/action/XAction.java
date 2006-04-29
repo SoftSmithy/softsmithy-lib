@@ -235,7 +235,6 @@ public interface XAction extends Action {
    *
    * @return   the menmonic key as an int value defined by KeyEvent
    */
-
   public int getMnemonicKey();
 
   /**
@@ -243,7 +242,6 @@ public interface XAction extends Action {
    *
    * @param menmonicKey  The new mnemonicKey value
    */
-
   public void setMnemonicKey(int menmonicKey);
 
   /**

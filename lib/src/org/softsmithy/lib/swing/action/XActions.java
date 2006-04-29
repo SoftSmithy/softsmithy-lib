@@ -18,7 +18,6 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.beans.*;
 import java.net.*;
-
 import java.util.*;
 import javax.swing.*;
 import org.softsmithy.lib.util.*;
@@ -474,4 +473,3 @@ public class XActions {
   }
   
 }
-

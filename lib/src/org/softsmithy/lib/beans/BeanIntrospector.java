@@ -39,7 +39,7 @@ public final class BeanIntrospector {
   /** Creates a new instance of BeanIntrospector */
   private BeanIntrospector() {
   }
-  
+ 
   public static PropertyDescriptor getPropertyDescriptor(String propertyName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
     PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, propertyName, beanClass, rb);
     if (descriptor == null){

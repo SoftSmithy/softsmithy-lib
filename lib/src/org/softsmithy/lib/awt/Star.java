@@ -194,11 +194,9 @@ public class Star implements Shape {
    * @return    a PathIterator object that provides access to the geometry of
    *      this Star.
    */
-
   public PathIterator getPathIterator(AffineTransform at) {
     return fPolygon.getPathIterator(at);
   }
-
 
   /**
    * Returns an iterator object that iterates along the boundary of the Shape
@@ -218,7 +216,6 @@ public class Star implements Shape {
    * @return          a PathIterator object that provides access to the Shape
    *      object's geometry.
    */
-
   public PathIterator getPathIterator(AffineTransform at, double flatness) {
     return fPolygon.getPathIterator(at, flatness);
   }

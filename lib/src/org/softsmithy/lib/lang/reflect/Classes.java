@@ -22,7 +22,7 @@ import java.util.*;
  * A utility class for Classes.
  *
  * @author    Florian Brunner
- * @created   March 7, 2002
+ * @created   March 7, 200
  * @see       java.lang.Class
  */
 public class Classes {

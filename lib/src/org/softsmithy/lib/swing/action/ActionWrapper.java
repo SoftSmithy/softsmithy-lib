@@ -44,4 +44,3 @@ public class ActionWrapper extends ActionListenerWrapper implements Action{
     return action.isEnabled();
   }
 }
-
