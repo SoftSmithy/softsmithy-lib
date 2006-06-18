@@ -105,14 +105,11 @@ public class JXIconLabel extends JXLabel {
   }
   
   public void resizeIcon(){
-    Rectangle innerArea = SwingUtilities.calculateInnerArea(this, null);
-    if (originalIcon != null && innerArea.width > 0 && innerArea.height > 0){
-      //      Dimension bounds = calculateIconBounds(innerArea.width, innerArea.height);
-      Dimension bounds = getZoomingStrategy().calculateDimension(originalIcon.getIconWidth(),
-      originalIcon.getIconHeight(), innerArea.width, innerArea.height);
-      setIconOnly(originalIcon.getScaledInstance(bounds.width, bounds.height));
-      
-    }
+      XIcon scaledIcon = XIcons.calculateScaledIcon(originalIcon, 
+              getZoomingStrategy(), this);
+      if (scaledIcon != null){
+          setIconOnly(scaledIcon);
+      }
   }
   
   //  private Dimension calculateIconBounds(int width, int height){
