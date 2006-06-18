@@ -1,7 +1,7 @@
 /*
- * VepFrame.java
+ * VepFrame2.java
  *
- * Created on 4. Mai 2006, 23:09
+ * Created on 18. Juni 2006, 23:23
  */
 
 package org.softsmithy.vep;
@@ -12,32 +12,43 @@ import org.softsmithy.lib.swing.action.IconType;
 import org.softsmithy.lib.swing.action.MediaActionFactory;
 import org.softsmithy.lib.swing.action.XAction;
 import org.softsmithy.lib.swing.action.XActions;
+
 /**
  *
  * @author  florian.brunner
  */
 public class VepFrame extends javax.swing.JFrame {
     
-    /** Creates new form VepFrame */
+    private final  VisualFieldPane visualFieldPane;
+    /** Creates new form VepFrame2 */
     public VepFrame() {
         initComponents();
+        visualFieldPane = new VisualFieldPane();
         try {
             XAction start = MediaActionFactory.PLAY.createXAction(this, Locale.getDefault());
             start.setShortDescription("Start");
             XActions.configureButton(startButton, start, IconType.LARGE_ICON, false, false);
             XAction stop = MediaActionFactory.STOP.createXAction(this, Locale.getDefault());
+            stop.setEnabled(false);
             XActions.configureButton(stopButton, stop, IconType.LARGE_ICON, false, false);
         } catch (NoSuchMethodException ex) {
             ex.printStackTrace();
         }
+        jSplitPane1.setLeftComponent(visualFieldPane);
+        visualFieldPane.setVisualFieldTest((VisualFieldTest) visualFieldTestBox.getSelectedItem());
+        visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
     }
     
     public void mediaPlay(ActionEvent e){
-    
+        visualFieldPane.start();
+        startButton.setEnabled(false);
+        stopButton.setEnabled(true);
     }
     
     public void mediaStop(ActionEvent e){
-    
+        visualFieldPane.stop();
+        startButton.setEnabled(true);
+        stopButton.setEnabled(false);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -46,86 +57,105 @@ public class VepFrame extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
+        jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        visualFieldTestBox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        frequencyBox = new javax.swing.JComboBox();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
-        visualFieldPane1 = new org.softsmithy.vep.VisualFieldPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jLabel1.setText("jLabel1");
+        setTitle("Visually Evoked Potentials");
+        jSplitPane1.setDividerLocation(250);
+        jSplitPane1.setResizeWeight(1.0);
+        jSplitPane1.setOneTouchExpandable(true);
+        jLabel1.setLabelFor(visualFieldTestBox);
+        jLabel1.setText("Visual Field Test: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        visualFieldTestBox.setModel(new javax.swing.DefaultComboBoxModel(VisualFieldTest.values()));
+        visualFieldTestBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualFieldTestBoxActionPerformed(evt);
+            }
+        });
 
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 11, Short.MAX_VALUE)
-                .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-            .add(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, startButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, stopButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(20, 20, 20)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(105, 105, 105)
-                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(177, Short.MAX_VALUE))
-        );
+        jLabel2.setLabelFor(frequencyBox);
+        jLabel2.setText("Hz: ");
 
-        org.jdesktop.layout.GroupLayout visualFieldPane1Layout = new org.jdesktop.layout.GroupLayout(visualFieldPane1);
-        visualFieldPane1.setLayout(visualFieldPane1Layout);
-        visualFieldPane1Layout.setHorizontalGroup(
-            visualFieldPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
-        );
-        visualFieldPane1Layout.setVerticalGroup(
-            visualFieldPane1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 391, Short.MAX_VALUE)
-        );
+        frequencyBox.setModel(new javax.swing.DefaultComboBoxModel(new Integer[]{2, 4, 8, 16}));
+        frequencyBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frequencyBoxActionPerformed(evt);
+            }
+        });
+
+        stopButton.setEnabled(false);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(visualFieldPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(16, 16, 16)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(jLabel2)
+                            .add(jLabel1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(visualFieldPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(30, 30, 30)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .add(16, 16, 16)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .add(35, 35, 35)
+                .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(21, 21, 21)
+                .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
+        jSplitPane1.setRightComponent(jPanel1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void frequencyBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frequencyBoxActionPerformed
+        visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
+    }//GEN-LAST:event_frequencyBoxActionPerformed
+    
+    private void visualFieldTestBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualFieldTestBoxActionPerformed
+        visualFieldPane.setVisualFieldTest((VisualFieldTest) visualFieldTestBox.getSelectedItem());
+    }//GEN-LAST:event_visualFieldTestBoxActionPerformed
     
     /**
      * @param args the command line arguments
@@ -139,13 +169,14 @@ public class VepFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox frequencyBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
-    private org.softsmithy.vep.VisualFieldPane visualFieldPane1;
+    private javax.swing.JComboBox visualFieldTestBox;
     // End of variables declaration//GEN-END:variables
     
 }

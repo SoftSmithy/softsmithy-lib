@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.softsmithy.lib.swing.icon.XIcon;
+import org.softsmithy.lib.swing.icon.XImageIcon;
 
 /**
  *
@@ -27,11 +29,11 @@ import java.util.Set;
 public class VisualField {
     
     
-    private Image defaultVisualField;
-    private Image leftVisualField;
-    private Image rightVisualField;
-    private Image leftHalfVisualField;
-    private Image rightHalfVisualField;
+    private XIcon defaultVisualField;
+    private XIcon leftVisualField;
+    private XIcon rightVisualField;
+    private XIcon leftHalfVisualField;
+    private XIcon rightHalfVisualField;
     
     /** Creates a new instance of VisualField */
     public VisualField(double fixationRadius, double radiusInc, int nSections, int nOutterCircles) {
@@ -46,7 +48,7 @@ public class VisualField {
         for (int i=0; i<nOutterCircles; i++){
             radius += radiusInc;
             Area circle = new Area(new Ellipse2D.Double(center.x - radius, center.y - radius, 2*radius, 2*radius));
-            circle.subtract(fixation);
+            //circle.subtract(fixation);
             for (Area area : circles){
                 circle.subtract(area);
             }
@@ -78,11 +80,11 @@ public class VisualField {
     
     public void paint(Graphics2D g){
         
-        g.drawImage(defaultVisualField, 0, 0, null);
+        /*g.drawImage(defaultVisualField, 0, 0, null);
         g.drawImage(leftVisualField, 0, 300, null);
         g.drawImage(rightVisualField, 300, 300, null);
         g.drawImage(leftHalfVisualField, 0, 600, null);
-        g.drawImage(rightHalfVisualField, 300, 600, null);
+        g.drawImage(rightHalfVisualField, 300, 600, null);*/
         //g.fill(section);
         
         /*Area fixation = new Area(new Ellipse2D.Double(center.x - 10, center.y - 10, 20, 20));
@@ -110,11 +112,11 @@ public class VisualField {
     
     
     private void createImages(Area fixation, List<List<Area>> segments, int radius) {
-        defaultVisualField = createImage(fixation, segments, radius, Collections.EMPTY_SET);
-        leftVisualField = createImage(fixation, segments, radius, new HashSet(Arrays.asList(10, 14)));
-        rightVisualField = createImage(fixation, segments, radius, new HashSet(Arrays.asList(2,6)));
-        leftHalfVisualField = createImage(fixation, segments, radius, new HashSet(Arrays.asList(8)));
-        rightHalfVisualField = createImage(fixation, segments, radius, new HashSet(Arrays.asList(0, 8)));
+        defaultVisualField = new XImageIcon(createImage(fixation, segments, radius, Collections.EMPTY_SET));
+        leftVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(10, 14))));
+        rightVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(2,6))));
+        leftHalfVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(8))));
+        rightHalfVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(0, 8))));
         
     }
     
@@ -124,8 +126,7 @@ public class VisualField {
         Graphics2D big = bi.createGraphics();
         big.setBackground(new Color(0,0,0, 0));
         Color oldColor = big.getColor();
-        big.setColor(Color.BLACK);
-        big.fill(fixation);
+
         
         boolean red = true;
         for (int i=0; i<segments.size(); i++){
@@ -144,8 +145,26 @@ public class VisualField {
             }
             
         }
+        big.setColor(Color.BLACK);
+        big.fill(fixation);
         big.setColor(oldColor);
         return bi;
+    }
+
+    public List<XIcon> getLeftImages() {
+        return Arrays.asList(defaultVisualField, leftVisualField);
+    }
+    
+    public List<XIcon> getRightImages() {
+        return Arrays.asList(defaultVisualField, rightVisualField);
+    }
+    
+    public List<XIcon> getLeftHalfmages() {
+        return Arrays.asList(defaultVisualField, leftHalfVisualField);
+    }
+    
+    public List<XIcon> getRightHalfImages() {
+        return Arrays.asList(defaultVisualField, rightHalfVisualField);
     }
     
 }
