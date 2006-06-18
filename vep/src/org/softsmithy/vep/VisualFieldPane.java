@@ -63,12 +63,14 @@ public class VisualFieldPane extends javax.swing.JPanel {
     
     public void start(){
         currentIndex = 0;
+        displayCurrentImage();
         timer.start();
     }
     
     public void stop(){
         timer.stop();
         currentIndex = 0;
+        displayCurrentImage();
     }
     
     private void displayCurrentImage(){
