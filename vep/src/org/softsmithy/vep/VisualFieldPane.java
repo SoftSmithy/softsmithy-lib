@@ -23,7 +23,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        VisualField visualField = new VisualField();
+        VisualField visualField = new VisualField(15, 20, 16, 4);
         visualField.paint(g2);
     }
     
