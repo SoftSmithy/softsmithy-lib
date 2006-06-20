@@ -184,7 +184,7 @@ public class CustomizerActionFactory {
   }
   
   public void textAlignCenter(ActionEvent e){
-    System.out.println("textAlignCenter start");
+    //System.out.println("textAlignCenter start");
     JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
     for (int i=0; i<customizers.length; i++){
       try{

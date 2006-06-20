@@ -55,8 +55,8 @@ public class DoubleFormatter extends RealNumberFormatter {
     setMaximumMaximumValue(BigDecimals.MAX_DOUBLE);
     setMinimumDoubleValue(minDoubleValue);
     setMaximumDoubleValue(maxDoubleValue);
-    System.out.println("min: "+ getMinimum());
-    System.out.println("max: "+getMaximum());
+    //System.out.println("min: "+ getMinimum());
+    //System.out.println("max: "+getMaximum());
   }
   
   public double getMinimumDoubleValue(){

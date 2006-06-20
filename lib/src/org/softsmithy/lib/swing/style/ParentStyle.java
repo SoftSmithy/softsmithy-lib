@@ -137,7 +137,7 @@ public class ParentStyle extends AbstractStyle{
      *
      */
     public void hierarchyChanged(HierarchyEvent e) {
-      System.out.println("hierarchyChanged");
+      //System.out.println("hierarchyChanged");
       // optimize??
       getStyleable().getParent().removePropertyChangeListener("background", parentBackgroundListener);
       getStyleable().getParent().removePropertyChangeListener("foreground", parentForegroundListener);

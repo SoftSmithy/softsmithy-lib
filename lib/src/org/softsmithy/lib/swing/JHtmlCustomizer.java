@@ -136,15 +136,15 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
 
     // note: JEditorPane removes the last (and only the last) \n in the body text if existing
 
-    System.out.println("1: "+newText);
+    //System.out.println("1: "+newText);
 
     newText = newText.replaceFirst("(?s).*?<body>\\s{1,5}(<div.*?>\\s{1,7})?", "");
 
-    System.out.println("2: "+newText);
+    //System.out.println("2: "+newText);
 
     newText = newText.replaceFirst("(?s)(\\s{0,5}</div>)?\\s{0,3}</body>.*?$", "");
 
-    System.out.println("3: "+newText);
+    //System.out.println("3: "+newText);
 
     //labelText = labelText.replaceFirst("(?s)^\\s{4}", "");
 
@@ -156,7 +156,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
 
     newText = newText.replaceAll("&lt;br&gt;", "<br>");
 
-    System.out.println("4: "+newText);
+    //System.out.println("4: "+newText);
 
     setHtmlBody(newText);
 
@@ -336,13 +336,13 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
 
     htmlText.append(HTML_END);
 
-    System.out.println("Family: "+getFont().getFamily());
+    //System.out.println("Family: "+getFont().getFamily());
 
-    System.out.println("Name: "+getFont().getName());
+    //System.out.println("Name: "+getFont().getName());
 
-    System.out.println("FontName: "+getFont().getFontName());
+    //System.out.println("FontName: "+getFont().getFontName());
 
-    System.out.println("html: " + htmlText.toString());
+    //System.out.println("html: " + htmlText.toString());
 
     return htmlText.toString();
 

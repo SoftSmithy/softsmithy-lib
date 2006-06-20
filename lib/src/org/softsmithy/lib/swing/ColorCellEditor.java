@@ -122,13 +122,13 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
 
           stopCellEditing();
 
-          System.out.println("Stop");
+          //System.out.println("Stop");
 
         } else {
 
           cancelCellEditing();
 
-          System.out.println("Cancel");
+          //System.out.println("Cancel");
 
         }
 

@@ -45,8 +45,8 @@ public class ByteFormatter extends WholeNumberFormatter {
     setMaximumMaximumValue(BigIntegers.MAX_BYTE);
     setMinimumByteValue(minByteValue);
     setMaximumByteValue(maxByteValue);
-    System.out.println("min: "+ getMinimum());
-    System.out.println("max: "+getMaximum());
+    //System.out.println("min: "+ getMinimum());
+    //System.out.println("max: "+getMaximum());
   }
   
   public byte getMinimumByteValue(){

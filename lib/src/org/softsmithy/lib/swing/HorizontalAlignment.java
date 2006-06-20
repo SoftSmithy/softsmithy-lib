@@ -130,7 +130,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
 
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
 
-      System.out.println("in Left Alignment");
+      //System.out.println("in Left Alignment");
 
       customizer.setX(position);
 
@@ -190,7 +190,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
 
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
 
-      System.out.println("in Right Alignment");
+      //System.out.println("in Right Alignment");
 
       customizer.setX(position-customizer.getWidth());
 

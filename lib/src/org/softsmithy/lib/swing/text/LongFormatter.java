@@ -45,8 +45,8 @@ public class LongFormatter extends WholeNumberFormatter {
     setMaximumMaximumValue(BigIntegers.MAX_LONG);
     setMinimumLongValue(minLongValue);
     setMaximumLongValue(maxLongValue);
-    System.out.println("min: "+ getMinimum());
-    System.out.println("max: "+getMaximum());
+    //System.out.println("min: "+ getMinimum());
+    //System.out.println("max: "+getMaximum());
   }
   
   public long getMinimumLongValue(){

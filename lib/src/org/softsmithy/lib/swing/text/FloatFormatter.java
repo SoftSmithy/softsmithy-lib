@@ -55,8 +55,8 @@ public class FloatFormatter extends RealNumberFormatter {
     setMaximumMaximumValue(BigDecimals.MAX_FLOAT);
     setMinimumFloatValue(minFloatValue);
     setMaximumFloatValue(maxFloatValue);
-    System.out.println("min: "+ getMinimum());
-    System.out.println("max: "+getMaximum());
+    //System.out.println("min: "+ getMinimum());
+    //System.out.println("max: "+getMaximum());
   }
   
   public float getMinimumFloatValue(){

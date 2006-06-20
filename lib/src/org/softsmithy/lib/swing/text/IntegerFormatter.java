@@ -51,8 +51,8 @@ public class IntegerFormatter extends WholeNumberFormatter {
     setMaximumMaximumValue(BigIntegers.MAX_INTEGER);
     setMinimumIntValue(minIntValue);
     setMaximumIntValue(maxIntValue);
-    System.out.println("min: "+ getMinimum());
-    System.out.println("max: "+getMaximum());
+    //System.out.println("min: "+ getMinimum());
+    //System.out.println("max: "+getMaximum());
   }
   
   public int getMinimumIntValue(){

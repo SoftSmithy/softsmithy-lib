@@ -112,9 +112,9 @@ public class FormattedCellEditor extends DefaultCellEditor implements TableCellE
 
   public Object getCellEditorValue() {
 
-    System.out.println(getFormattedTextField().getValue().getClass());
+    //System.out.println(getFormattedTextField().getValue().getClass());
 
-    System.out.println(getFormattedTextField().getValue());
+    //System.out.println(getFormattedTextField().getValue());
 
     return getValue();
 

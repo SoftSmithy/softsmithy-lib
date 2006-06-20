@@ -29,7 +29,7 @@ public class TypesafeEnumItem{
   public TypesafeEnumItem(TypesafeEnum typesafeEnum, Locale locale){
     this.typesafeEnum = typesafeEnum;
     this.locale = locale;
-    System.out.println("item created");
+    //System.out.println("item created");
   }
   
   public TypesafeEnum getTypesafeEnum() {
@@ -58,7 +58,7 @@ public class TypesafeEnumItem{
    *
    */
   public String toString() {
-    System.out.println("toString start");
+    //System.out.println("toString start");
     return getTypesafeEnum().toString(getLocale());
   }
   

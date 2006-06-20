@@ -110,13 +110,13 @@ public class FontCellEditor extends AbstractCellEditor implements TableCellEdito
 
           stopCellEditing();
 
-          System.out.println("Stop");
+          //System.out.println("Stop");
 
         } else {
 
           cancelCellEditing();
 
-          System.out.println("Cancel");
+          //System.out.println("Cancel");
 
         }
 
