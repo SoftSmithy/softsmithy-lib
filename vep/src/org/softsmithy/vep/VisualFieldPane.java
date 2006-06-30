@@ -6,6 +6,7 @@
 
 package org.softsmithy.vep;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
@@ -79,8 +80,8 @@ public class VisualFieldPane extends javax.swing.JPanel {
         if (scaledVisualFieldImages.containsKey(currentIcon)){
             icon = scaledVisualFieldImages.get(currentIcon);
         } else {
-            icon = XIcons.calculateScaledIcon(currentIcon, 
-                    FullZooming.RESPECTING_ASPECT_RATIO_INSTANCE, 
+            icon = XIcons.calculateScaledIcon(currentIcon,
+                    FullZooming.RESPECTING_ASPECT_RATIO_INSTANCE,
                     this);
             scaledVisualFieldImages.put(currentIcon, icon);
         }
@@ -127,14 +128,62 @@ public class VisualFieldPane extends javax.swing.JPanel {
         visualFieldImages = visualFieldTest.getImages(visualField);
         scaledVisualFieldImages.clear();
     }
-
-
+    
+    
     /**
      * Setter for property frequency.
      * @param frequency New value of property frequency.
      */
     public void setFrequency(int frequency) {
         timer.setDelay(1000/frequency);
+    }
+    
+    /**
+     * Holds value of property primaryColor.
+     */
+    private Color primaryColor;
+    
+    /**
+     * Getter for property firstColor.
+     * @return Value of property firstColor.
+     */
+    public Color getPrimaryColor() {
+        return visualField.getPrimaryColor();
+    }
+    
+    /**
+     * Setter for property firstColor.
+     * @param firstColor New value of property firstColor.
+     */
+    public void setPrimaryColor(Color primaryColor) {
+        visualField.setPrimaryColor(primaryColor);
+        visualFieldImages = visualFieldTest.getImages(visualField);
+        scaledVisualFieldImages.clear();
+        displayCurrentImage();
+    }
+    
+    /**
+     * Holds value of property secondaryColor.
+     */
+    private Color secondaryColor;
+    
+    /**
+     * Getter for property secondColor.
+     * @return Value of property secondColor.
+     */
+    public Color getSecondaryColor() {
+        return visualField.getSecondaryColor();
+    }
+    
+    /**
+     * Setter for property secondColor.
+     * @param secondColor New value of property secondColor.
+     */
+    public void setSecondaryColor(Color secondaryColor) {
+        visualField.setSecondaryColor(secondaryColor);
+        visualFieldImages = visualFieldTest.getImages(visualField);
+        scaledVisualFieldImages.clear();
+        displayCurrentImage();
     }
     
 }

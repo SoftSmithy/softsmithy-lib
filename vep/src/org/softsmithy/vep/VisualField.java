@@ -34,6 +34,12 @@ public class VisualField {
     private XIcon rightVisualField;
     private XIcon leftHalfVisualField;
     private XIcon rightHalfVisualField;
+    private XIcon middleVisualField;
+    private XIcon fullVisualField;
+    
+    private int diameter;
+    private List<List<Area>> segments;
+    private Area fixation;
     
     /** Creates a new instance of VisualField */
     public VisualField(double fixationRadius, double radiusInc, int nSections, int nOutterCircles) {
@@ -41,7 +47,7 @@ public class VisualField {
         double centerCoord = nOutterCircles * radiusInc + fixationRadius;
         Point2D.Double center = new Point2D.Double(centerCoord, centerCoord);
         double radius = fixationRadius;
-        Area fixation = new Area(new Ellipse2D.Double(center.x - radius, center.y - radius, 2*radius, 2*radius));
+        fixation = new Area(new Ellipse2D.Double(center.x - radius, center.y - radius, 2*radius, 2*radius));
         
         
         List<Area> circles = new ArrayList<Area>();
@@ -56,7 +62,7 @@ public class VisualField {
         }
         double angle = ((double) 360)/ nSections;
         Area section = new Area(new Arc2D.Double(circles.get(nOutterCircles-1).getBounds2D(), 90, angle, Arc2D.PIE ));
-        List<List<Area>> segments = new ArrayList<List<Area>>();
+        segments = new ArrayList<List<Area>>();
         
         AffineTransform at = AffineTransform.getRotateInstance(2*Math.PI / nSections, center.x, center.y);
         
@@ -75,7 +81,8 @@ public class VisualField {
             }
             segments.add(sectionSegments);
         }
-        createImages(fixation, segments, (int) Math.ceil(2*radius));
+        diameter = (int) Math.ceil(2*radius);
+        createImages();
     }
     
     public void paint(Graphics2D g){
@@ -111,18 +118,20 @@ public class VisualField {
     }
     
     
-    private void createImages(Area fixation, List<List<Area>> segments, int radius) {
-        defaultVisualField = new XImageIcon(createImage(fixation, segments, radius, Collections.EMPTY_SET));
-        leftVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(10, 14))));
-        rightVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(2,6))));
-        leftHalfVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(8))));
-        rightHalfVisualField = new XImageIcon(createImage(fixation, segments, radius, new HashSet(Arrays.asList(0, 8))));
+    private void createImages() {
+        defaultVisualField = new XImageIcon(createImage(fixation, segments, diameter, Collections.EMPTY_SET));
+        leftVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(10, 14))));
+        rightVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(2,6))));
+        leftHalfVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(8))));
+        rightHalfVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(0, 8))));
+        middleVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(0, 2, 6, 10, 14))));
+        fullVisualField = new XImageIcon(createImage(fixation, segments, diameter, new HashSet(Arrays.asList(0))));
         
     }
     
-    private Image createImage(Area fixation, List<List<Area>> segments, int radius,
+    private Image createImage(Area fixation, List<List<Area>> segments, int diameter,
             Set<Integer> nonColorSwitchingIndices) {
-        BufferedImage bi = new BufferedImage(radius, radius, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bi = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
         Graphics2D big = bi.createGraphics();
         big.setBackground(new Color(0,0,0, 0));
         Color oldColor = big.getColor();
@@ -136,9 +145,9 @@ public class VisualField {
             List<Area> list = segments.get(i);
             for (Area segment : list){
                 if (red){
-                    big.setColor(Color.red);
+                    big.setColor(getSecondaryColor());
                 } else {
-                    big.setColor(Color.lightGray);
+                    big.setColor(getPrimaryColor());
                 }
                 red = !red;
                 big.fill(segment);
@@ -165,6 +174,58 @@ public class VisualField {
     
     public List<XIcon> getRightHalfImages() {
         return Arrays.asList(defaultVisualField, rightHalfVisualField);
+    }
+    
+    public List<XIcon> getMiddleImages() {
+        return Arrays.asList(defaultVisualField, middleVisualField);
+    }
+    
+    public List<XIcon> getFullImages() {
+        return Arrays.asList(defaultVisualField, fullVisualField);
+    }
+
+    /**
+     * Holds value of property firstColor.
+     */
+    private Color firstColor = Color.lightGray;
+
+    /**
+     * Getter for property firstColor.
+     * @return Value of property firstColor.
+     */
+    public Color getPrimaryColor() {
+        return this.firstColor;
+    }
+
+    /**
+     * Setter for property firstColor.
+     * @param firstColor New value of property firstColor.
+     */
+    public void setPrimaryColor(Color firstColor) {
+        this.firstColor = firstColor;
+        createImages();
+    }
+
+    /**
+     * Holds value of property secondColor.
+     */
+    private Color secondColor = Color.red;
+
+    /**
+     * Getter for property secondColor.
+     * @return Value of property secondColor.
+     */
+    public Color getSecondaryColor() {
+        return this.secondColor;
+    }
+
+    /**
+     * Setter for property secondColor.
+     * @param secondColor New value of property secondColor.
+     */
+    public void setSecondaryColor(Color secondColor) {
+        this.secondColor = secondColor;
+        createImages();
     }
     
 }

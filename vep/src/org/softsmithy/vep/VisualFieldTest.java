@@ -40,6 +40,18 @@ public enum VisualFieldTest {
             return visualField.getRightHalfImages();
         }
         
+    },
+     MIDDLE{
+        public List<XIcon> getImages(VisualField visualField) {
+            return visualField.getMiddleImages();
+        }
+        
+    },
+     FULL{
+        public List<XIcon> getImages(VisualField visualField) {
+            return visualField.getFullImages();
+        }
+        
     };
     
     public abstract List<XIcon> getImages(VisualField visualField);

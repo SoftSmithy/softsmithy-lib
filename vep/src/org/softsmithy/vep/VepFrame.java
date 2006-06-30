@@ -1,3 +1,4 @@
+
 /*
  * VepFrame2.java
  *
@@ -6,8 +7,10 @@
 
 package org.softsmithy.vep;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.Locale;
+import javax.swing.JColorChooser;
 import org.softsmithy.lib.swing.action.IconType;
 import org.softsmithy.lib.swing.action.MediaActionFactory;
 import org.softsmithy.lib.swing.action.XAction;
@@ -37,6 +40,8 @@ public class VepFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(visualFieldPane);
         visualFieldPane.setVisualFieldTest((VisualFieldTest) visualFieldTestBox.getSelectedItem());
         visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
+        firstColorLabel.setBackground(visualFieldPane.getPrimaryColor());
+        secondColorLabel.setBackground(visualFieldPane.getSecondaryColor());
     }
     
     public void mediaPlay(ActionEvent e){
@@ -65,6 +70,12 @@ public class VepFrame extends javax.swing.JFrame {
         frequencyBox = new javax.swing.JComboBox();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
+        firstColorCaptionLabel = new javax.swing.JLabel();
+        secondColorCaptionLabel = new javax.swing.JLabel();
+        firstColorLabel = new javax.swing.JLabel();
+        secondColorLabel = new javax.swing.JLabel();
+        firstColorButton = new javax.swing.JButton();
+        secondColorButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Visually Evoked Potentials");
@@ -82,7 +93,7 @@ public class VepFrame extends javax.swing.JFrame {
         });
 
         jLabel2.setLabelFor(frequencyBox);
-        jLabel2.setText("Hz: ");
+        jLabel2.setText("Frequency [Hz]: ");
 
         frequencyBox.setModel(new javax.swing.DefaultComboBoxModel(new Integer[]{2, 4, 8, 16}));
         frequencyBox.addActionListener(new java.awt.event.ActionListener() {
@@ -93,32 +104,61 @@ public class VepFrame extends javax.swing.JFrame {
 
         stopButton.setEnabled(false);
 
+        firstColorCaptionLabel.setText("First Color: ");
+
+        secondColorCaptionLabel.setText("Second Color: ");
+
+        firstColorLabel.setOpaque(true);
+
+        secondColorLabel.setOpaque(true);
+
+        firstColorButton.setText("...");
+        firstColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                firstColorButtonActionPerformed(evt);
+            }
+        });
+
+        secondColorButton.setText("...");
+        secondColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                secondColorButtonActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(secondColorCaptionLabel)
+                    .add(firstColorCaptionLabel)
+                    .add(jLabel2)
+                    .add(jLabel1)
+                    .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jLabel2)
-                            .add(jLabel1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .add(secondColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(secondColorButton))
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .add(firstColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(16, 16, 16)
+                                .add(firstColorButton)))))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                 .add(30, 30, 30)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -128,11 +168,21 @@ public class VepFrame extends javax.swing.JFrame {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel2)
                             .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                .add(35, 35, 35)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(firstColorCaptionLabel)
+                    .add(firstColorButton)
+                    .add(firstColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(secondColorCaptionLabel)
+                    .add(secondColorButton)
+                    .add(secondColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(21, 21, 21)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .add(108, 108, 108))
         );
         jSplitPane1.setRightComponent(jPanel1);
 
@@ -144,10 +194,26 @@ public class VepFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void secondColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondColorButtonActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getSecondaryColor());
+        if (color != null){
+            secondColorLabel.setBackground(color);
+            visualFieldPane.setSecondaryColor(color);
+        }
+    }//GEN-LAST:event_secondColorButtonActionPerformed
+        
+    private void firstColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstColorButtonActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getPrimaryColor());
+        if (color != null){
+            firstColorLabel.setBackground(color);
+            visualFieldPane.setPrimaryColor(color);
+        }
+    }//GEN-LAST:event_firstColorButtonActionPerformed
     
     private void frequencyBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frequencyBoxActionPerformed
         visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
@@ -169,11 +235,17 @@ public class VepFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton firstColorButton;
+    private javax.swing.JLabel firstColorCaptionLabel;
+    private javax.swing.JLabel firstColorLabel;
     private javax.swing.JComboBox frequencyBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton secondColorButton;
+    private javax.swing.JLabel secondColorCaptionLabel;
+    private javax.swing.JLabel secondColorLabel;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JComboBox visualFieldTestBox;
