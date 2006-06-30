@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+  <head>
+    <title>SoftSmithy Utility Library Tutorial - The Customizer Framework</title>
+  </head>
+  <body>
+  <h1>The Customizer Framework</h1>
+  <em>The Customizer Framework</em> is a framework to customize Swing components
+  with a GUI. Thus it can be used as a base for applications like layout editors.
+  Currently you can move and resize components with the mouse, snap-to-grid 
+  feature is supported and many things more covered in this trail.
+  <ul>
+      <li><a href="#jcustomizer">JCustomizer and JCustomizerPane</a></li>
+      <li><a href="#selection">Selection</a></li>
+  </ul>
+
+  
+  <h2><a name="jcustomizer">JCustomizer and JCustomizerPane</a></h2>
+  <a href="../../../api/org/softsmithy/lib/swing/JCustomizer.html">JCustomizer</a> 
+  wraps a JComponent and allows customization of the
+  following properties:
+  <ul>
+      <li>x</li>
+      <li>y</li>
+      <li>width</li>
+      <li>height</li>
+      <li>foreground</li>
+      <li>background</li>
+      <li>font</li>
+      <li>opaque</li>
+  </ul>
+
+  <blockquote><pre>
+package printerlayouteditor;
+ 
+import javax.swing.*;
+import org.softsmithy.lib.awt.layout.*;
+import org.softsmithy.lib.swing.*;
+ 
+ 
+public class LayoutEditor extends JFrame{
+    
+    /** Creates a new instance of LayoutEditor */
+    public LayoutEditor() {
+        // create a pane that supports customizers and "snap-to-grid" feature
+        JCustomizerPane pane = new JCustomizerPane();
+        // create a CustomizerLayout
+        InfiniteTableLayout itl = new InfiniteTableLayout(50, 50, pane);
+        // set the layout
+        pane.setCustomizerLayout(itl);
+        // create a JCustomizer that wraps a component and listens to mouse events
+        JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
+        // add it to the JCustomizerPane
+        pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(0, 0, 150, 50, simpleCustomizer, itl));
+        getContentPane().add(pane);
+        setSize(800,  600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // create a pane that support customizers and "snap-to-grid" feature
+        
+        LayoutEditor editor = new LayoutEditor();
+        editor.setVisible(true);
+        
+    }
+    
+}
+
+  </pre></blockquote>
+  <h2><a name="selection">Selection</a></h2>
+  </body>
+</html>
