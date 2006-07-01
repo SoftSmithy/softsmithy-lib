@@ -6,6 +6,12 @@
 
 package samples.swing.customizer;
 
+import javax.swing.JLabel;
+import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
+import org.softsmithy.lib.swing.JCustomizer;
+import org.softsmithy.lib.swing.JCustomizerPane;
+
 /**
  *
  * @author  florian.brunner
@@ -15,6 +21,18 @@ public class SimpleSingleCustomizerSample extends javax.swing.JFrame {
     /** Creates new form SimpleSingleCustomizerSample */
     public SimpleSingleCustomizerSample() {
         initComponents();
+         // create a pane that supports customizers and "snap-to-grid" feature
+        JCustomizerPane pane = new JCustomizerPane();
+        // create a CustomizerLayout
+        InfiniteTableLayout itl = new InfiniteTableLayout(50, 50, pane);
+        // set the layout
+        pane.setCustomizerLayout(itl);
+        // create a JCustomizer that wraps a component and listens to mouse events
+        JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
+        // add it to the JCustomizerPane
+        pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(50, 50, 150, 50, simpleCustomizer, itl));
+        getContentPane().add(pane);
+        setSize(500,  300);
     }
     
     /** This method is called from within the constructor to
@@ -24,15 +42,9 @@ public class SimpleSingleCustomizerSample extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        jCustomizerPane1 = new org.softsmithy.lib.swing.JCustomizerPane();
-
-        getContentPane().setLayout(new java.awt.GridLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A Simple Single Customizer Sample");
-
-        getContentPane().add(jCustomizerPane1);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
@@ -48,7 +60,6 @@ public class SimpleSingleCustomizerSample extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.softsmithy.lib.swing.JCustomizerPane jCustomizerPane1;
     // End of variables declaration//GEN-END:variables
     
 }
