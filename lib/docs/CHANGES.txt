@@ -9,6 +9,7 @@ XIcons
 StandardActions.properteis (media)
 properties-files: i18n -> src
 - commented out system outputs
+- README.txt
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies
              for icons. Image and shape icons supported.

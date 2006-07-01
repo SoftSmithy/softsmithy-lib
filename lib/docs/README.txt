@@ -11,4 +11,7 @@ puce@users.sourceforge.net
 Have a look at CHANGES.txt for notes about changes.
 
 The source can be obtained via CVS:
-cvs -z3 -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/softsmithy co lib
+http://sourceforge.net/cvs/?group_id=64833
+
+cvs -z3 -d:pserver:anonymous@softsmithy.cvs.sourceforge.net:/cvsroot/softsmithy co -P lib
+
