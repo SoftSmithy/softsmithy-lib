@@ -8,7 +8,6 @@
     <description>A Simple Single Customizer Sample</description>
     <icon href="../../../logo.jpg"/>
     <offline-allowed/>
-    <shortcut online="true"/>
   </information>
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="1.4+"/>
