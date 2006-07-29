@@ -58,7 +58,7 @@ public class CustomizerBarSample extends javax.swing.JFrame {
                         new AbsoluteTableConstraints(point.x, point.y, 110, 20, customizer, itl));
                 // display the customizer
                 pane.revalidate(); 
-                // avoid that a new Customizer gets created whenever the user clicks in the JCustomizerPane
+                // avoid that a new customizer gets created whenever the user clicks in the JCustomizerPane
                 clearSelection();
             }
         };
@@ -82,7 +82,7 @@ public class CustomizerBarSample extends javax.swing.JFrame {
                         new AbsoluteTableConstraints(point.x, point.y, 120, 20, customizer, itl));
                  // display the customizer
                 pane.revalidate();
-                // avoid that a new Customizer gets created whenever the user clicks in the JCustomizerPane
+                // avoid that a new customizer gets created whenever the user clicks in the JCustomizerPane
                 clearSelection();
             }
         };
