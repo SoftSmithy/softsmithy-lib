@@ -15,7 +15,7 @@
 /*
  * XDefaultListCellRenderer.java
  *
- * Created on 5. März 2003, 16:12
+ * Created on 5. MÃ¤rz 2003, 16:12
  */
 
 package org.softsmithy.lib.swing;

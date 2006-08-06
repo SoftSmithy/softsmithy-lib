@@ -15,7 +15,7 @@
 /*
  * LocaleDisplay.java
  *
- * Created on 12. März 2003, 22:50
+ * Created on 12. MÃ¤rz 2003, 22:50
  */
 
 package org.softsmithy.lib.util;

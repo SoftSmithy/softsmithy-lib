@@ -1,6 +1,6 @@
 build
-dist
 docs/api
-build.properties
 .nbattrs
- 
+build.properties
+dist
+

@@ -13,20 +13,27 @@
  */
 
 /*
- * CellRenderer.java
+ * PolkaDot.java
  *
- * Created on 5. März 2003, 16:34
+ * Created on 11. Februar 2003, 18:39
  */
 
-package org.softsmithy.lib.swing;
+package org.softsmithy.lib.awt;
 
-import java.util.*;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.image.*;
 
 /**
  *
  * @author  puce
  */
-public interface CellRenderer {
-  Object getDisplayValue(Object value, Locale locale);
-  HorizontalAlignment getHorizontalAlignment();
+class PolkaDotImage extends ShapeImage{
+  
+  /** Creates a new instance of PolkaDot */
+  public PolkaDotImage(int radius, int size, Color circleColor, Color backgroundColor) {
+    super(new Ellipse2D.Float(size/2-radius, size/2-radius, 2*radius, 2*radius), circleColor, true, null);
+  }
+
 }
+

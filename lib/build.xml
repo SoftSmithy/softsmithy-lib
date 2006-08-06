@@ -163,4 +163,30 @@
    </java>-->
 
   </target>
+  
+     <!--
+    ===============
+    DIST SECTION
+    ===============
+    -->
+    
+    <!--
+
+  puce: The "deploy" target creates a binary distribution of the library along
+  with the javadoc and other docs like the tutorial and samples.
+
+-->
+    <target name="dist" depends="clean,jar,javadoc,tutorial">
+       
+    </target>
+    
+    <target name="samples" depends="init">
+        <ant dir="${docs.samples.dir}" target="compile" inheritall="false" />
+    </target>
+    
+    <target name="tutorial" depends="samples">
+         <copy todir="${dist.docs.tutorial.dir}">
+             <fileset dir="${docs.tutorial.dir}" />
+         </copy>
+    </target>
 </project>

@@ -15,7 +15,7 @@
 /*
  * XDefaultTableCellRenderer.java
  *
- * Created on 5. März 2003, 18:22
+ * Created on 5. MÃ¤rz 2003, 18:22
  */
 
 package org.softsmithy.lib.swing.table;

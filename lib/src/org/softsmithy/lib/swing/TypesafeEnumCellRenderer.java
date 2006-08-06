@@ -13,35 +13,36 @@
  */
 
 /*
- * LocaleCellRenderer.java
+ * TypesafeEnumCellRenderer.java
  *
- * Created on 5. März 2003, 18:36
+ * Created on 5. März 2003, 18:51
  */
 
 package org.softsmithy.lib.swing;
 
 import java.util.*;
+import org.softsmithy.lib.util.*;
 
 /**
  *
  * @author  puce
  */
-public class LocaleCellRenderer extends AbstractCellRenderer {
+public class TypesafeEnumCellRenderer extends AbstractCellRenderer {
   
-  /** Creates a new instance of LocaleCellRenderer */
-  public LocaleCellRenderer() {
+  /** Creates a new instance of TypesafeEnumCellRenderer */
+  public TypesafeEnumCellRenderer() {
     super(HorizontalAlignment.LEADING);
   }
   
   public Object getDisplayValue(Object value, Locale locale) {
-    String displayName = null;
+    String typesafeEnumString = null;
     if (value != null){
-      if (! (value instanceof Locale)){
-        throw new IllegalArgumentException("value must be an instance of Locale");
+      if (! (value instanceof TypesafeEnum)){
+        throw new IllegalArgumentException("value must be an instance of TypesafeEnum");
       }
-      displayName = ((Locale) value).getDisplayName(locale);
+      typesafeEnumString = ((TypesafeEnum) value).toString(locale);
     }
-    return displayName;
+    return typesafeEnumString;
   }
   
 }
