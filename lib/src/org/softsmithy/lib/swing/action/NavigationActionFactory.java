@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- *
+ * http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html
  * @author  puce
  */
 public class NavigationActionFactory extends StandardActionFactory{

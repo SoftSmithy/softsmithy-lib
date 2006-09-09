@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- *
+ * http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html
  * @author  puce
  */
 public class DevelopmentActionFactory extends StandardActionFactory{

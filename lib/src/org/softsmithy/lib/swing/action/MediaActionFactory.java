@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- *
+ * http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html
  * @author  puce
  */
 public class MediaActionFactory extends StandardActionFactory{

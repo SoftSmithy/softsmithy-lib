@@ -24,7 +24,11 @@ import java.util.*;
 import org.softsmithy.lib.util.*;
 
 /**
- *
+ * http://java.sun.com/developer/techDocs/hi/repository/index.html
+ * http://java.sun.com/products/jlf/ed2/guidelines.html
+ * http://java.sun.com/products/jlf/ed2/book/Appendix.A.html
+ * http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html
+ * http://java.sun.com/products/jlf/ed2/book/Appendix.C.html
  * @author  puce
  */
 public abstract class StandardActionFactory extends TypesafeEnum{
