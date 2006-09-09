@@ -36,11 +36,11 @@ public class IconType extends TypesafeEnum {
   }
 
   /**
-   * Large icon type.
+   * Large icon type. By convention large icons have 24x24 pixel.
    */
   public final static IconType LARGE_ICON = new IconType("largeIcon");
   /**
-   * Small icon type.
+   * Small icon type. By convention small icons have 16x16 pixel.
    */
   public final static IconType SMALL_ICON = new IconType("smallIcon");
   /**
