@@ -1,94 +1,94 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
-  <head>
-    <title>SoftSmithy Utility Library Tutorial - The Customizer Framework</title>
-  </head>
-  <body>
-  <h1>The Customizer Framework</h1>
-  <em>The Customizer Framework</em> is a framework to customize Swing components
-  with a GUI. Thus it can be used as a base for applications like layout editors.
-  Currently you can move and resize components with the mouse, snap-to-grid 
-  feature is supported and many things more covered in this trail.
-  <ul>
-      <li><a href="#jcustomizer">JCustomizer and JCustomizerPane</a></li>
-      <li><a href="#text">Text Customizers</a></li>
-      <li><a href="#icon">Icon Customizers</a></li>
-      <li><a href="#selection">Selection Manager</a></li>
-      <li><a href="#JCustomizerPropertyTable">JCustomizerPropertyTable</a></li>
-      <li><a href="#actions">Customizer Actions</a></li>
-      <li><a href="#CustomizerBar">CustomizerBar</a></li>
-      <li><a href="#appearance">Customize Appearance</a></li>
-  </ul>
+    <head>
+        <title>SoftSmithy Utility Library Tutorial - The Customizer Framework</title>
+    </head>
+    <body>
+        <h1>The Customizer Framework</h1>
+        <em>The Customizer Framework</em> is a framework to customize Swing components
+        with a GUI. Thus it can be used as a base for applications like layout editors.
+        Currently you can move and resize components with the mouse, snap-to-grid 
+        feature is supported and many things more covered in this trail.
+        <ul>
+            <li><a href="#jcustomizer">JCustomizer and JCustomizerPane</a></li>
+            <li><a href="#text">Text Customizers</a></li>
+            <li><a href="#icon">Icon Customizers</a></li>
+            <li><a href="#selection">Selection Manager</a></li>
+            <li><a href="#JCustomizerPropertyTable">JCustomizerPropertyTable</a></li>
+            <li><a href="#actions">Customizer Actions</a></li>
+            <li><a href="#CustomizerBar">CustomizerBar</a></li>
+            <li><a href="#appearance">Customize Appearance</a></li>
+        </ul>
 
   
-  <h2><a name="jcustomizer">JCustomizer and JCustomizerPane</a></h2>
-  <a href="../../../api/org/softsmithy/lib/swing/JCustomizer.html">JCustomizer</a> 
-  wraps a JComponent and allows customization of the
-  following properties:
-  <ul>
-      <li>x</li>
-      <li>y</li>
-      <li>width</li>
-      <li>height</li>
-      <li>foreground</li>
-      <li>background</li>
-      <li>font</li>
-      <li>opaque</li>
-  </ul>
+        <h2><a name="jcustomizer">JCustomizer and JCustomizerPane</a></h2>
+        <a href="../../../api/org/softsmithy/lib/swing/JCustomizer.html">JCustomizer</a> 
+        wraps a JComponent and allows customization of the
+        following properties:
+        <ul>
+            <li>x</li>
+            <li>y</li>
+            <li>width</li>
+            <li>height</li>
+            <li>foreground</li>
+            <li>background</li>
+            <li>font</li>
+            <li>opaque</li>
+        </ul>
 
-  To move and resize the JCustomizer with the mouse you have to add it to a <a href="http://../../../api/org/softsmithy/lib/swing/JCustomizerPane.html">JCustomizerPane</a>.<br/>
-  <br/>
-  Here's a picture of an application that uses a single JCustomizer added to a JCustomizerPane:
+        To move and resize the JCustomizer with the mouse you have to add it to a <a href="http://../../../api/org/softsmithy/lib/swing/JCustomizerPane.html">JCustomizerPane</a>.<br/>
+        <br/>
+        Here's a picture of an application that uses a single JCustomizer added to a JCustomizerPane:
   
-  <p><center><img src="SimpleSingleCustomizerSample.jpg" width="500" height="300" alt="A snapshot of the SimpleSingleCustomizerSample"/>
-  </center></p>
-  <br/>
-  <blockquote>
-  <hr/>
-  <strong>Try this:</strong>
-  <ol>
-      <li><a href="SimpleSingleCustomizerSample.jnlp">Run SimpleSingleCustomizerSample</a> using 
-          <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
-      <li>Select the JCustomizer by clicking it. Then the handles appear. 
-          You can move and resize the component with the mouse. When you release
-          the JCustomizer it snaps to the grid. If you resize the frame 
-          the grid adjusts to its size.</li>
-  </ol>
-  <hr/>
-  </blockquote>
-  Below is the code from 
-  <a href="../../../samples/src/samples/swing/customizer/SimpleSingleCustomizerSample.java">SimpleSingleCustomizerSample.java</a> 
-  that creates and configures the JCustomizer and the JCustomizerPane.
-  <blockquote><pre>
-  // create a pane that supports customizers and "snap-to-grid" feature
-  JCustomizerPane pane = new JCustomizerPane();
-  // create a CustomizerLayout
-  InfiniteTableLayout itl = new InfiniteTableLayout(50, 50, pane);
-  // set the layout
-  pane.setCustomizerLayout(itl);
-  // create a JCustomizer that wraps a component and listens to mouse events
-  JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
-  // add it to the JCustomizerPane
-  pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(50, 50, 150, 50, simpleCustomizer, itl));
+        <p><center><img src="SimpleSingleCustomizerSample.jpg" width="500" height="300" alt="A snapshot of the SimpleSingleCustomizerSample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li><a href="SimpleSingleCustomizerSample.jnlp">Run SimpleSingleCustomizerSample</a> using 
+                <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
+                <li>Select the JCustomizer by clicking it. Then the handles appear. 
+                You can move and resize the component with the mouse. When you release
+                the JCustomizer it snaps to the grid. If you resize the frame 
+                the grid adjusts to its size.</li>
+            </ol>
+            <hr/>
+        </blockquote>
+        Below is the code from 
+        <a href="../../../samples/src/samples/swing/customizer/SimpleSingleCustomizerSample.java">SimpleSingleCustomizerSample.java</a> 
+        that creates and configures the JCustomizer and the JCustomizerPane.
+        <blockquote><pre>
+        // create a pane that supports customizers and "snap-to-grid" feature
+        JCustomizerPane pane = new JCustomizerPane();
+        // create a CustomizerLayout
+        InfiniteTableLayout itl = new InfiniteTableLayout(50, 50, pane);
+        // set the layout
+        pane.setCustomizerLayout(itl);
+        // create a JCustomizer that wraps a component and listens to mouse events
+        JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
+        // add it to the JCustomizerPane
+        pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(50, 50, 150, 50, simpleCustomizer, itl));
 
-  </pre></blockquote>
-  <h2><a name="text">Text Customizers</a></h2>
-  <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a> 
-  <a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> 
-  <a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> 
-  <a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> 
-  <h2><a name="icon">Icon Customizers</a></h2>
-  The <a href="../../../api/org/softsmithy/lib/swing/JXIconCustomizer.html">JXIconCustomizer</a> 
-  allows visual scaling of icons. (See here for more information about the <a href="../icon/index.html">Extended Icon Framework</a>.)
-  <a href="../../../api/org/softsmithy/lib/swing/JLine2DCustomizer.html">JLine2DCustomizer</a> 
-  is specialized JXIconCustomizer to customize a line.
+        </pre></blockquote>
+        <h2><a name="text">Text Customizers</a></h2>
+        <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a> 
+        <a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> 
+        <a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> 
+        <a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> 
+        <h2><a name="icon">Icon Customizers</a></h2>
+        The <a href="../../../api/org/softsmithy/lib/swing/JXIconCustomizer.html">JXIconCustomizer</a> 
+        allows visual scaling of icons. (See here for more information about the <a href="../icon/index.html">Extended Icon Framework</a>.)
+        <a href="../../../api/org/softsmithy/lib/swing/JLine2DCustomizer.html">JLine2DCustomizer</a> 
+        is specialized JXIconCustomizer to customize a line.
   
-  <h2><a name="selection">Selection Manager</a></h2>
-  <h2><a name="JCustomizerPropertyTable">JCustomizerPropertyTable</a></h2>
-  <h2><a name="actions">Customizer Actions</a></h2>
-  <h2><a name="CustomizerBar">CustomizerBar</a></h2>
-  <h2><a name="appearance">Customize Appearance</a></h2>
+        <h2><a name="selection">Selection Manager</a></h2>
+        <h2><a name="JCustomizerPropertyTable">JCustomizerPropertyTable</a></h2>
+        <h2><a name="actions">Customizer Actions</a></h2>
+        <h2><a name="CustomizerBar">CustomizerBar</a></h2>
+        <h2><a name="appearance">Customize Appearance</a></h2>
   
-  </body>
+    </body>
 </html>

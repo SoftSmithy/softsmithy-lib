@@ -50,32 +50,104 @@
         AbstractXAction</a> class implements the XAction interface by extending 
         the AbstractAction and implementing all new methods of XAction. The
         actionPerfomed method remains abstract.
+        
+        <blockquote><pre>
+        XAction saveAction = new AbstractXAction() {
+            public void actionPerformed(ActionEvent e) {
+                // save things
+            }
+        };
+        
+        saveAction.setName("Save");
+        saveAction.setSmallIcon(new ImageIcon(getClass().getResource("/toolbarButtonGraphics/general/Save16.gif")));
+        saveAction.setLargeIcon(new ImageIcon(getClass().getResource("/toolbarButtonGraphics/general/Save24.gif")));
+        saveAction.setShortDescription("Save");
+        saveAction.setAccelerator(KeyStroke.getKeyStroke("control S"));
+        saveAction.setMnemonicKey('S');
+        </pre></blockquote>
         <h2><a name="reflective">Reflective Actions</a></h2>
         <a href="../../../api/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>
+        is a trampoline class that implements the <a href="../../../api/org/softsmithy/lib/swing/action/XAction.html">
+        XAction</a> interface and delegates the actionPerformed method to a reflectivly called action method. That method must
+        be public and take an ActionEvent object as its single parameter.<br>
+        <p>
+ 
+            Normally there are two standard ways to implement the ActionListener interface:
+            The first is to let a class implement the ActionListener interface and then add an
+            object of this class to the addActionListener methods of the components
+            firing ActionEvents. You then have to check the source in the
+            actionPerformed method. You end up with a big ugly, unmaintainable and
+            unstable if-then-else- statement. The second approach is to define a class for
+            every such component. You end up with tons of small classes all
+            increasing the memory footprint (typically 3K per class). 
+        </p>
+        <p>
+            Now this approach using reflection lets you define a method for each such component avoiding the
+            mentioned drawbacks and has the following advantages:
+            <ul>
+                <li>No other classes implementing ActionListener are used.</li>
+                <li>The code is very clear.</li>
+            </ul> 
+            The new drawbacks are however:
+            <ul>
+                <li>Reflectivly calling method does not identify typos during
+                compile-time.</li>
+                <li> Calling a method refectivly is slower (but it's unlikely the user
+                notices it).</li>
+            </ul>
+            More to read about reflective actions and trampolines: <a
+            href="http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.html#11197">
+            Chapter 6.2.3, p. 73</a> of the Java Series Book <a
+            href="http://java.sun.com/docs/books/performance/"> Java Platform Performance
+            Strategies and Tactics</a> by Steve Wilson and Jeff Kesselman.<br>
+        </p> 
+        <p>
+            Although there are no compile time errors if the specified method doesn't
+            exist, you don't have to wait for the method to be called to get
+            an Exception. The constructor will already throw a NoSuchMethodException in 
+            that case. 
+        </p>
+        
+        <blockquote><pre>
+        try {
+            Action myAction = new ReflectiveXAction(this, "myActionMethod");
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        ...
+        
+        
+        public void myActionMethod(ActionEvent e){
+            // do something
+        }
+        
+        </pre></blockquote>
+        Reflective actions are heavily used and supported throughout the whole 
+        <em>Extended Action Framework</em>.
         <h2><a name="utility">The XActions Utility Class</a></h2>
         <a href="../../../api/org/softsmithy/lib/swing/action/XActions.html">XActions</a>
         <h2><a name="factories">The Standard Action Factories</a></h2>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">x</a>
-        http://java.sun.com/products/jlf/ed2/guidelines.html
-        http://java.sun.com/products/jlf/ed2/book/Appendix.A.html
-        http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html
-        http://java.sun.com/products/jlf/ed2/book/Appendix.C.html
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">x</a><br/>
+        <a href="http://java.sun.com/products/jlf/ed2/guidelines.html">x</a><br/>
+        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A.html">x</a><br/>
+        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html">x</a><br/>
+        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.C.html">x</a><br/>
         <a href="../../../api/org/softsmithy/lib/swing/action/StandardActionFactory.html">StandardActionFactory</a><br/>
         <a href="../../../api/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">x</a>        
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">x</a><br/>        
         <a href="../../../api/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">x</a>
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">x</a><br/>
       
         <a href="../../../api/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">x</a>
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">x</a><br/>
 
         <a href="../../../api/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">x</a>  
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">x</a><br/> 
 
         <a href="../../../api/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">x</a>        
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">x</a><br/>        
 
         <a href="../../../api/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">x</a>
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">x</a><br/>
     </body>
 </html>
