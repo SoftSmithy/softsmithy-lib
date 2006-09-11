@@ -26,12 +26,12 @@ import java.lang.reflect.*;
  * Normally there are two standard ways to implement the ActionListener interface:
  * The first is to let a class implement the ActionListener interface and then add an
  * object of this class to the addActionListener methods of the components
- * fireing ActionEvents. You then have to check the source in the
+ * firing ActionEvents. You then have to check the source in the
  * actionPerformed method. You end up with a big ugly, unmaintainable and
  * unstable if-then-else- statement. The second approach is to define a class for
  * every such component. You end up with tons of small classes all
- * increasing the memory footprint (typically 3K per class). This approach using
- * reflection lets you define a method for each such component avoiding the
+ * increasing the memory footprint (typically 3K per class). 
+ * Now this approach using reflection lets you define a method for each such component avoiding the
  * mentioned drawbacks. The new drawbacks are however:
  * <ol>
  *   <li> Reflectivly calling method does not identify typos during
@@ -62,7 +62,7 @@ public class ReflectiveXAction extends AbstractXAction {
    * Creates a new ReflectiveAction
    *
    * @param target                     the object with the specified method
-   * @param methodName                 the method name (must take an ActionEvent
+   * @param methodName                 the method name (must be public and take an ActionEvent
    *      obect as its single parameter)
    * @exception NoSuchMethodException  if no such method found
    */
