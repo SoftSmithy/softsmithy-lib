@@ -125,7 +125,27 @@
         Reflective actions are heavily used and supported throughout the whole 
         <em>Extended Action Framework</em>.
         <h2><a name="utility">The XActions Utility Class</a></h2>
-        <a href="../../../api/org/softsmithy/lib/swing/action/XActions.html">XActions</a>
+        The <a href="../../../api/org/softsmithy/lib/swing/action/XActions.html">XActions</a> 
+        class is a utility class providing convenience methods, which are described in this section.
+        <blockquote><pre>
+        public static void configureButton(AbstractButton button, XAction action, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        The configureButton method configures an AbstractButton with an XAction.
+        It can be specified, which icon type should be use (small icons, 
+        large icons or no icons), if the text should be displayed and if the 
+        buttons should have a cool style. If cool style is set to true, then the
+        border of the button will be drawn only if the mouse pointer is over the
+        button. Note: Since Java 1.4 you can create a similar effect by setting 
+        the rollover property of the toolbar to true. However look and feels may
+        ignore this property and the Java Look and Feel does so.
+         <blockquote><pre>
+         </pre></blockquote>
+        Note:
+        <blockquote>
+            <hr/>
+            <hr/>
+        </blockquote>
+        
         <h2><a name="factories">The Standard Action Factories</a></h2>
         <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">x</a><br/>
         <a href="http://java.sun.com/products/jlf/ed2/guidelines.html">x</a><br/>
