@@ -68,7 +68,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
 
   /** Creates a new instance of CoolButtonController */
 
-  public CoolButtonController(AbstractButton button) {
+  public CoolButtonController(AbstractButton button) { // TODO: should be public?
 
     this.button = button;
 

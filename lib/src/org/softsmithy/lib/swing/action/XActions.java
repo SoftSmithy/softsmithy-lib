@@ -72,28 +72,28 @@ public class XActions {
   /**
    * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
    * <br>
-   * name.name: the name to be displayed <br>
-   * name.shortDescription: Tool Tip <br>
-   * name.acceleratorKey: Shortcut <br>
-   * name.mnemonicKey: Mnemonic <br>
-   * name.largeDisabledIcon: File Name <br>
-   * name.largeDisabledSelectedIcon: File Name <br>
-   * name.largeIcon: File Name <br>
-   * name.largePressedIcon: File Name <br>
-   * name.largeRolloverIcon: File Name <br>
-   * name.largeRolloverSelectedIcon: File Name <br>
-   * name.largeSelectedIcon: File Name <br>
-   * name.smallDisabledIcon: File Name <br>
-   * name.smallDisabledSelectedIcon: File Name <br>
-   * name.smallIcon: File Name <br>
-   * name.smallPressedIcon: File Name <br>
-   * name.smallRolloverIcon: File Name <br>
-   * name.smallRolloverSelectedIcon: File Name <br>
-   * name.smallSelectedIcon: File Name <br>
+   * &lt;name&gt;.name: the name to be displayed <br>
+   * &lt;name&gt;.shortDescription: Tool Tip <br>
+   * &lt;name&gt;.acceleratorKey: Shortcut <br>
+   * &lt;name&gt;.mnemonicKey: Mnemonic <br>
+   * &lt;name&gt;.largeDisabledIcon: File Name <br>
+   * &lt;name&gt;.largeDisabledSelectedIcon: File Name <br>
+   * &lt;name&gt;.largeIcon: File Name <br>
+   * &lt;name&gt;.largePressedIcon: File Name <br>
+   * &lt;name&gt;.largeRolloverIcon: File Name <br>
+   * &lt;name&gt;.largeRolloverSelectedIcon: File Name <br>
+   * &lt;name&gt;.largeSelectedIcon: File Name <br>
+   * &lt;name&gt;.smallDisabledIcon: File Name <br>
+   * &lt;name&gt;.smallDisabledSelectedIcon: File Name <br>
+   * &lt;name&gt;.smallIcon: File Name <br>
+   * &lt;name&gt;.smallPressedIcon: File Name <br>
+   * &lt;name&gt;.smallRolloverIcon: File Name <br>
+   * &lt;name&gt;.smallRolloverSelectedIcon: File Name <br>
+   * &lt;name&gt;.smallSelectedIcon: File Name <br>
    * <br>
    * E.g. <br>
    * myAction.name = MyAction <br>
-   * myAction.shortDescription = MyAction <br>
+   * myAction.shortDescription = My Action <br>
    * myAction.acceleratorKey = Control M <br>
    * myAction.mnemonicKey = A <br>
    * myAction.largeIcon = /myGraphics/MyAction24.gif <br>
