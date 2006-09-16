@@ -175,11 +175,29 @@
         <br/>
         <blockquote>
             <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li><a href="ConfigureButtonsSample.jnlp">Run ConfigureButtonsSample</a> using 
+                <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
+                <li>This sample shows 1 menu and 2 toolbars all configured by the same XAction objects.</li>
+            </ol>
             <hr/>
         </blockquote>
         
         Like this you can first specify all information in one XAction object and then
         specify which data should be displayed using this same XAction object.
+        </p>
+        <p>
+        The configureButton method is  twice overloaded:
+        <blockquote><pre>
+            public static void configureButton(AbstractButton button, XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
+  
+            public static void configureButton(AbstractButton button, XAction action, ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        They provide support for 
+        <a href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/ButtonGroup.html"><em>ButtonGroup</em>s</a>
+        and <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/event/ItemListener.html"><em>ItemListener</em>s</a>
+        respectivly.
         </p>
         <p>
         </p>
