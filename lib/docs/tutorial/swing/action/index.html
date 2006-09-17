@@ -5,6 +5,20 @@
         <title>SoftSmithy Utility Library Tutorial - The Extended Action Framework</title>
     </head>
     <body>
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="..">
+                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../..">
+                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </p>
         <h1>The Extended Action Framework</h1>
         <em>The Extended Action Framework</em> extends the Action framework provided 
         by Swing. It mainly provides convenience methods and fields.
@@ -192,16 +206,57 @@
         <p>
         The configureButton method is  twice overloaded:
         <blockquote><pre>
-            public static void configureButton(AbstractButton button, XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
-  
             public static void configureButton(AbstractButton button, XAction action, ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle)
+            
+            public static void configureButton(AbstractButton button, XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
         </pre></blockquote>
-        They provide support for 
-        <a href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/ButtonGroup.html"><em>ButtonGroup</em>s</a>
-        and <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/event/ItemListener.html"><em>ItemListener</em>s</a>
-        respectivly.
+        The first variant additionally adds the button to a 
+        <a href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/ButtonGroup.html">ButtonGroup</a>.
+        The second variant registers a
+        <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/event/ItemListener.html">ItemListener</a>
+        to the button.
         </p>
         <p>
+        <blockquote><pre>
+            public static JButton createButton(XAction action, IconType iconType, boolean showText, boolean coolStyle)
+  
+            public static JCheckBox createCheckBox(XAction action, ItemListener listener, IconType iconType, boolean showText)
+  
+            public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action, ItemListener listener, IconType iconType, boolean showText)
+  
+            public static JMenuItem createMenuItem(XAction action, IconType iconType, boolean showText)
+  
+            public static JRadioButton createRadioButton(XAction action, ButtonGroup group, IconType iconType, boolean showText)
+  
+            public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action, ButtonGroup group, IconType iconType, boolean showText)
+  
+            public static JToggleButton createToggleButton(XAction action, ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle)
+  
+            public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        With this methods the previous sample could be rewritten like:
+        <blockquote><pre>
+    private void addMenuItems(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
+            menu.add(item);
+        }
+    }
+    
+    private void addToolbarStandardButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, false);
+            toolBarStandard.add(button);
+        }
+    }
+    
+    private void addToolbarCoolButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, true);
+            toolBarCool.add(button);
+        }
+    }
+        </pre></blockquote>
         </p>
         
         <h2><a name="factories">The Standard Action Factories</a></h2>
@@ -227,5 +282,20 @@
 
         <a href="../../../api/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a><br/>
         <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">x</a><br/>
+        
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="..">
+                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../..">
+                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </p>
     </body>
 </html>

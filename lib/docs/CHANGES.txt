@@ -1,7 +1,7 @@
 Changes:
 
 
-ShapeIcon respect aspect ratio
+ShapeIcon respects aspect ratio
 JListBox
 NetBeans Ant Projectfiles
 -some minor changes
@@ -10,6 +10,8 @@ StandardActions.properteis (media)
 properties-files: i18n -> src
 - commented out system outputs
 - README.txt
+Tutorial & samples added
+
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies
              for icons. Image and shape icons supported.
