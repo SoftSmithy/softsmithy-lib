@@ -29,10 +29,10 @@ import org.softsmithy.lib.swing.action.XActions;
  *
  * @author  puce
  */
-public class ConfigureButtonsSample extends javax.swing.JFrame {
+public class CreateButtonsSample extends javax.swing.JFrame {
     
     /** Creates new form ConfigureButtonsSample */
-    public ConfigureButtonsSample() {
+    public CreateButtonsSample() {
         initComponents();
         XAction[] xActions = createActions();
         addMenuItems(xActions);
@@ -55,7 +55,7 @@ public class ConfigureButtonsSample extends javax.swing.JFrame {
         menu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Configure Buttons Sample");
+        setTitle("Create Buttons Sample");
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jPanel1.add(toolBarStandard);
@@ -86,37 +86,34 @@ public class ConfigureButtonsSample extends javax.swing.JFrame {
     
     private void addMenuItems(XAction[] xActions ) {
         for (int i=0; i < xActions.length; i++){
-            JMenuItem item = new JMenuItem();
-            XActions.configureButton(item, xActions[i], IconType.SMALL_ICON, true, false);
+            JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
             menu.add(item);
         }
     }
     
     private void addToolbarStandardButtons(XAction[] xActions ) {
         for (int i=0; i < xActions.length; i++){
-            JButton button = new JButton();
-            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, false);
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, false);
             toolBarStandard.add(button);
         }
     }
     
     private void addToolbarCoolButtons(XAction[] xActions ) {
         for (int i=0; i < xActions.length; i++){
-            JButton button = new JButton();
-            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, true);
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, true);
             toolBarCool.add(button);
         }
     }
     
     
-    private XAction[] createActions() {   
+    private XAction[] createActions() {    
         GeneralActionFactory[] factories = {GeneralActionFactory.CUT, GeneralActionFactory.COPY, GeneralActionFactory.PASTE};
         XAction[] xActions = new XAction[factories.length];
         for (int i=0; i<factories.length; i++){
             GeneralActionFactory factory = factories[i];
             XAction xAction = new AbstractXAction() {
                 public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showMessageDialog(ConfigureButtonsSample.this,
+                    JOptionPane.showMessageDialog(CreateButtonsSample.this,
                             "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);
                 }
             };
