@@ -34,442 +34,502 @@ import org.softsmithy.lib.swing.*;
  */
 
 public class XActions {
-  
-  //private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
-  private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.action.StandardMenus";
-  private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
-  private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
-  //  private static final Map MNEMONICS = new HashMap();
-  //
-  //  static{
-  //    KeyEvent.VK_A
-  //  }
-  
-  /**
-   * No public constructor!
-   */
-  private XActions() { }
-  
-  /**
-   * Creates a new XAction from a ResourceBundle.
-   *
-   * @param name                       the method name (must take an ActionEvent
-   *                                   obect as its single parameter) that gets
-   *                                   called when an ActionEvent occurs
-   * @param target                     he object with the specified method
-   * @param rb                         a ResourceBundle (must not specify all
-   * Action properties)
-   * @return                           a XAction configured by a ResourceBundle
-   * @exception NoSuchMethodException  if no such method found
-   */
-  public static XAction createXAction(String name, Object target, ResourceBundle rb)
-  throws NoSuchMethodException {
-    XAction action = new ReflectiveXAction(target, name);
-    configureXAction(action, name, rb);
-    return action;
-  }
-  
-  /**
-   * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
-   * <br>
-   * &lt;name&gt;.name: the name to be displayed <br>
-   * &lt;name&gt;.shortDescription: Tool Tip <br>
-   * &lt;name&gt;.acceleratorKey: Shortcut <br>
-   * &lt;name&gt;.mnemonicKey: Mnemonic <br>
-   * &lt;name&gt;.largeDisabledIcon: File Name <br>
-   * &lt;name&gt;.largeDisabledSelectedIcon: File Name <br>
-   * &lt;name&gt;.largeIcon: File Name <br>
-   * &lt;name&gt;.largePressedIcon: File Name <br>
-   * &lt;name&gt;.largeRolloverIcon: File Name <br>
-   * &lt;name&gt;.largeRolloverSelectedIcon: File Name <br>
-   * &lt;name&gt;.largeSelectedIcon: File Name <br>
-   * &lt;name&gt;.smallDisabledIcon: File Name <br>
-   * &lt;name&gt;.smallDisabledSelectedIcon: File Name <br>
-   * &lt;name&gt;.smallIcon: File Name <br>
-   * &lt;name&gt;.smallPressedIcon: File Name <br>
-   * &lt;name&gt;.smallRolloverIcon: File Name <br>
-   * &lt;name&gt;.smallRolloverSelectedIcon: File Name <br>
-   * &lt;name&gt;.smallSelectedIcon: File Name <br>
-   * <br>
-   * E.g. <br>
-   * myAction.name = MyAction <br>
-   * myAction.shortDescription = My Action <br>
-   * myAction.acceleratorKey = Control M <br>
-   * myAction.mnemonicKey = A <br>
-   * myAction.largeIcon = /myGraphics/MyAction24.gif <br>
-   * myAction.smallIcon = /myGraphics/MyAction16.gif <br>
-   */
-  public static void configureXAction(XAction action, String name, ResourceBundle rb){
-    configureStringProperties(action, name, rb);
-    configureIconProperties(action, name, rb);
-    configureKeyStrokeProperties(action, name, rb);
-    configureMnemonicKeyProperties(action, name, rb);
-  }
-  
-  private static void configureStringProperties(XAction action, String name, ResourceBundle rb){
-    String[] string_properties = {Action.NAME, Action.SHORT_DESCRIPTION};
-    for (int i = 0; i < string_properties.length; i++) {
-      try {
-        action.putValue(string_properties[i], rb.getString(name + "." +
-        Introspector.decapitalize(string_properties[i])));
-      } catch (MissingResourceException ex) {
-        //System.out.println("Couln'dt find: " + name + string_properties[i] );
-        // ignore it
-      }
+    
+    //private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
+    private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.action.StandardMenus";
+    private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
+    private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
+    //  private static final Map MNEMONICS = new HashMap();
+    //
+    //  static{
+    //    KeyEvent.VK_A
+    //  }
+    
+    /**
+     * No public constructor!
+     */
+    private XActions() { }
+    
+    /**
+     * Creates a new XAction from a ResourceBundle.
+     *
+     * @param name                       the method name (must take an ActionEvent
+     *                                   obect as its single parameter) that gets
+     *                                   called when an ActionEvent occurs
+     * @param target                     he object with the specified method
+     * @param rb                         a ResourceBundle (must not specify all
+     * Action properties)
+     * @return                           a XAction configured by a ResourceBundle
+     * @exception NoSuchMethodException  if no such method found
+     */
+    public static XAction createXAction(String name, Object target, ResourceBundle rb)
+    throws NoSuchMethodException {
+        XAction action = new ReflectiveXAction(target, name);
+        configureXAction(action, name, rb);
+        return action;
     }
-  }
-  
-  private static void configureIconProperties(XAction action, String name, ResourceBundle rb){
-    String[] icon_properties = {Action.SMALL_ICON,
-    XAction.LARGE_DISABLED_ICON,
-    XAction.LARGE_DISABLED_SELECTED_ICON,
-    XAction.LARGE_ICON,
-    XAction.LARGE_PRESSED_ICON,
-    XAction.LARGE_ROLLOVER_ICON,
-    XAction.LARGE_ROLLOVER_SELECTED_ICON,
-    XAction.LARGE_SELECTED_ICON,
-    XAction.SMALL_DISABLED_ICON,
-    XAction.SMALL_DISABLED_SELECTED_ICON,
-    XAction.SMALL_PRESSED_ICON,
-    XAction.SMALL_ROLLOVER_ICON,
-    XAction.SMALL_ROLLOVER_SELECTED_ICON,
-    XAction.SMALL_SELECTED_ICON};
-    for (int i = 0; i < icon_properties.length; i++) {
-      try {
-        URL url = (XActions.class).getResource(rb.getString(name +
-        "." + Introspector.decapitalize(icon_properties[i])));
-        if (url != null) {
-          action.putValue(icon_properties[i], new ImageIcon(url));
+    
+    /**
+     * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
+     * <br>
+     * <table border="1">
+     *      <tr>
+     *           <th>Key</th>
+     *           <th>Value</th>
+     *       </tr>
+     *       <tr>
+     *           <td>&lt;name&gt;.name</td>
+     *           <td>The name to be displayed</td>
+     *       </tr>
+     *       <tr>
+     *           <td>&lt;name&gt;.shortDescription</td>
+     *           <td>Tool Tip</td>
+     *       </tr>
+     *       <tr>
+     *           <td>&lt;name&gt;.acceleratorKey</td>
+     *           <td>Shortcut</td>
+     *       </tr>
+     *       <tr>
+     *           <td>&lt;name&gt;.mnemonicKey</td>
+     *           <td>Mnemonic</td>
+     *       </tr>
+     *       <tr>
+     *           <td>&lt;name&gt;.largeDisabledIcon</td>
+     *           <td>File Name</td>
+     *       </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largeDisabledSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largeIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largePressedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largeRolloverIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largeRolloverSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.largeSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallDisabledIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallDisabledSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallPressedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallRolloverIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallRolloverSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *           <tr>
+     *               <td>&lt;name&gt;.smallSelectedIcon</td>
+     *               <td>File Name</td>
+     *           </tr>
+     *       </table>
+     * <br>
+     * E.g. <br>
+     * myAction.name = MyAction <br>
+     * myAction.shortDescription = My Action <br>
+     * myAction.acceleratorKey = Control M <br>
+     * myAction.mnemonicKey = A <br>
+     * myAction.largeIcon = /myGraphics/MyAction24.gif <br>
+     * myAction.smallIcon = /myGraphics/MyAction16.gif <br>
+     */
+    public static void configureXAction(XAction action, String name, ResourceBundle rb){
+        configureStringProperties(action, name, rb);
+        configureIconProperties(action, name, rb);
+        configureKeyStrokeProperties(action, name, rb);
+        configureMnemonicKeyProperties(action, name, rb);
+    }
+    
+    private static void configureStringProperties(XAction action, String name, ResourceBundle rb){
+        String[] string_properties = {Action.NAME, Action.SHORT_DESCRIPTION};
+        for (int i = 0; i < string_properties.length; i++) {
+            try {
+                action.putValue(string_properties[i], rb.getString(name + "." +
+                        Introspector.decapitalize(string_properties[i])));
+            } catch (MissingResourceException ex) {
+                //System.out.println("Couln'dt find: " + name + string_properties[i] );
+                // ignore it
+            }
         }
-      } catch (MissingResourceException ex) {
-        //System.out.println("Couln'dt find: " + name + icon_properties[i] );
-        // ignore it
-      }
     }
-  }
-  
-  private static void configureKeyStrokeProperties(XAction action, String name, ResourceBundle rb){
-    String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};
-    for (int i = 0; i < keyStrokeProperties.length; i++) {
-      try {
-        action.putValue(keyStrokeProperties[i], KeyStroke.getKeyStroke(rb.getString(name + "." +
-        Introspector.decapitalize(keyStrokeProperties[i]))));
-      } catch (MissingResourceException ex) {
-        // ignore it
-      }
-    }
-  }
-  
-  private static void configureMnemonicKeyProperties(XAction action, String name, ResourceBundle rb){
-    String[] mnemonicKeyProperties = {Action.MNEMONIC_KEY};
-    for (int i = 0; i < mnemonicKeyProperties.length; i++) {
-      try {
-        String mnemonicKeyString = rb.getString(name + "." +Introspector.decapitalize(mnemonicKeyProperties[i]));
-        if (mnemonicKeyString.length() > 0){
-          char mnemonicKey = mnemonicKeyString.substring(0,1).toUpperCase().charAt(0);
-          if (Character.isUpperCase(mnemonicKey)){ //TODO: Check if this is enough (Uniocde)
-            action.setMnemonicKey(mnemonicKey);
-          }
+    
+    private static void configureIconProperties(XAction action, String name, ResourceBundle rb){
+        String[] icon_properties = {Action.SMALL_ICON,
+        XAction.LARGE_DISABLED_ICON,
+        XAction.LARGE_DISABLED_SELECTED_ICON,
+        XAction.LARGE_ICON,
+        XAction.LARGE_PRESSED_ICON,
+        XAction.LARGE_ROLLOVER_ICON,
+        XAction.LARGE_ROLLOVER_SELECTED_ICON,
+        XAction.LARGE_SELECTED_ICON,
+        XAction.SMALL_DISABLED_ICON,
+        XAction.SMALL_DISABLED_SELECTED_ICON,
+        XAction.SMALL_PRESSED_ICON,
+        XAction.SMALL_ROLLOVER_ICON,
+        XAction.SMALL_ROLLOVER_SELECTED_ICON,
+        XAction.SMALL_SELECTED_ICON};
+        for (int i = 0; i < icon_properties.length; i++) {
+            try {
+                URL url = (XActions.class).getResource(rb.getString(name +
+                        "." + Introspector.decapitalize(icon_properties[i])));
+                if (url != null) {
+                    action.putValue(icon_properties[i], new ImageIcon(url));
+                }
+            } catch (MissingResourceException ex) {
+                //System.out.println("Couln'dt find: " + name + icon_properties[i] );
+                // ignore it
+            }
         }
-      } catch (MissingResourceException ex) {
-        // ignore it
-      }
-    }
-  }
-  
-  /**
-   * Creates a configured button.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured button
-   */
-  public static JButton createButton(XAction action, IconType iconType,
-  boolean showText, boolean coolStyle) {
-    JButton button = new JButton();
-    configureButton(button, action, iconType, showText, coolStyle);
-    return button;
-  }
-  
-  /**
-   * Creates a configured toggle button.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured toggle button
-   */
-  public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
-    JToggleButton button = new JToggleButton();
-    configureButton(button, action, listener, iconType, showText, coolStyle);
-    return button;
-  }
-  
-  /**
-   * Creates a configured toggle button.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured toggle button
-   */
-  public static JToggleButton createToggleButton(XAction action, ButtonGroup group,
-  IconType iconType, boolean showText, boolean coolStyle) {
-    JToggleButton button = new JToggleButton();
-    configureButton(button, action, group, iconType, showText, coolStyle);
-    return button;
-  }
-  
-  /**
-   * Creates a configured radio button.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured radio button
-   */
-  public static JRadioButton createRadioButton(XAction action, ButtonGroup group,
-  IconType iconType, boolean showText) {
-    JRadioButton button = new JRadioButton();
-    configureButton(button, action, group, iconType, showText, false);
-    return button;
-  }
-  
-  /**
-   * Creates a configured check box.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured check box
-   */
-  public static JCheckBox createCheckBox(XAction action, ItemListener listener,
-  IconType iconType, boolean showText) {
-    JCheckBox checkBox = new JCheckBox();
-    configureButton(checkBox, action, listener, iconType, showText, false);
-    return checkBox;
-  }
-  
-  /**
-   * Creates a configured menu item.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured menu item
-   */
-  public static JMenuItem createMenuItem(XAction action, IconType iconType,
-  boolean showText) {
-    JMenuItem item = new JMenuItem();
-    configureButton(item, action, iconType, showText, false);
-    return item;
-  }
-  
-  /**
-   * Creates a configured radio button menu item.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured radio button menu item
-   */
-  public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action,
-  ButtonGroup group, IconType iconType, boolean showText) {
-    JRadioButtonMenuItem item = new JRadioButtonMenuItem();
-    configureButton(item, action, group, iconType, showText, false);
-    return item;
-  }
-  
-  /**
-   * Creates a configured check button menu item.
-   *
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   * @return          a configured check button menu item
-   */
-  public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action,
-  ItemListener listener, IconType iconType, boolean showText) {
-    JCheckBoxMenuItem item = new JCheckBoxMenuItem();
-    configureButton(item, action, listener, iconType, showText, false);
-    return item;
-  }
-  
-  public static void configureButton(AbstractButton button, XAction action,
-  ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
-    button.addItemListener(listener);
-    configureButton(button, action, iconType, showText, coolStyle);
-  }
-  
-  public static void configureButton(AbstractButton button, XAction action,
-  ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle) {
-    group.add(button);
-    configureButton(button, action, iconType, showText, coolStyle);
-  }
-  /**
-   * Configures an abstract button.
-   *
-   * @param button    the abstract button  to configure
-   * @param action    the XAction with the configuration data
-   * @param iconType  the icon type
-   * @param showText  if the label text should be shown
-   */
-  public static void configureButton(AbstractButton button, XAction action,
-  IconType iconType, boolean showText, boolean coolStyle) {
-    
-    button.setAction(action);
-    //??? noch nicht durchgedacht...
-    
-    if (iconType == IconType.LARGE_ICON) {
-      setLargeIcons(button, action);
-    } else if (iconType == IconType.SMALL_ICON) {
-      setSmallIcons(button, action);
-    } else if (iconType == IconType.NO_ICON) {
-      button.setIcon(null);
-      // was set by setAction()
     }
     
-    if (!showText) {
-      button.setText("");
+    private static void configureKeyStrokeProperties(XAction action, String name, ResourceBundle rb){
+        String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};
+        for (int i = 0; i < keyStrokeProperties.length; i++) {
+            try {
+                action.putValue(keyStrokeProperties[i], KeyStroke.getKeyStroke(rb.getString(name + "." +
+                        Introspector.decapitalize(keyStrokeProperties[i]))));
+            } catch (MissingResourceException ex) {
+                // ignore it
+            }
+        }
     }
     
-    if (coolStyle){
-      CoolButtonController.addCoolButtonController(button);
+    private static void configureMnemonicKeyProperties(XAction action, String name, ResourceBundle rb){
+        String[] mnemonicKeyProperties = {Action.MNEMONIC_KEY};
+        for (int i = 0; i < mnemonicKeyProperties.length; i++) {
+            try {
+                String mnemonicKeyString = rb.getString(name + "." +Introspector.decapitalize(mnemonicKeyProperties[i]));
+                if (mnemonicKeyString.length() > 0){
+                    char mnemonicKey = mnemonicKeyString.substring(0,1).toUpperCase().charAt(0);
+                    if (Character.isUpperCase(mnemonicKey)){ //TODO: Check if this is enough (Uniocde)
+                        action.setMnemonicKey(mnemonicKey);
+                    }
+                }
+            } catch (MissingResourceException ex) {
+                // ignore it
+            }
+        }
     }
-  }
-  
-  /**
-   * Sets the large icon properties defined by a XAction for an abstract button.
-   *
-   * @param button  the abstract button
-   * @param action  the XAction
-   */
-  protected static void setLargeIcons(AbstractButton button, XAction action) {
-    Icon icon = action.getLargeDisabledIcon();
-    if (icon != null) {
-      button.setDisabledIcon(icon);
+    
+    /**
+     * Creates a configured button.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured button
+     */
+    public static JButton createButton(XAction action, IconType iconType,
+            boolean showText, boolean coolStyle) {
+        JButton button = new JButton();
+        configureButton(button, action, iconType, showText, coolStyle);
+        return button;
     }
-    icon = action.getLargeDisabledSelectedIcon();
-    if (icon != null) {
-      button.setDisabledSelectedIcon(icon);
+    
+    /**
+     * Creates a configured toggle button.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured toggle button
+     */
+    public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
+        JToggleButton button = new JToggleButton();
+        configureButton(button, action, listener, iconType, showText, coolStyle);
+        return button;
     }
-    icon = action.getLargeIcon();
-    if (icon != null) {
-      button.setIcon(icon);
-    } else {
-      button.setIcon(LARGE_NULL_ICON);
+    
+    /**
+     * Creates a configured toggle button.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured toggle button
+     */
+    public static JToggleButton createToggleButton(XAction action, ButtonGroup group,
+            IconType iconType, boolean showText, boolean coolStyle) {
+        JToggleButton button = new JToggleButton();
+        configureButton(button, action, group, iconType, showText, coolStyle);
+        return button;
     }
-    icon = action.getLargePressedIcon();
-    if (icon != null) {
-      button.setPressedIcon(icon);
+    
+    /**
+     * Creates a configured radio button.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured radio button
+     */
+    public static JRadioButton createRadioButton(XAction action, ButtonGroup group,
+            IconType iconType, boolean showText) {
+        JRadioButton button = new JRadioButton();
+        configureButton(button, action, group, iconType, showText, false);
+        return button;
     }
-    icon = action.getLargeRolloverIcon();
-    if (icon != null) {
-      button.setRolloverIcon(icon);
+    
+    /**
+     * Creates a configured check box.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured check box
+     */
+    public static JCheckBox createCheckBox(XAction action, ItemListener listener,
+            IconType iconType, boolean showText) {
+        JCheckBox checkBox = new JCheckBox();
+        configureButton(checkBox, action, listener, iconType, showText, false);
+        return checkBox;
     }
-    icon = action.getLargeRolloverSelectedIcon();
-    if (icon != null) {
-      button.setRolloverSelectedIcon(icon);
+    
+    /**
+     * Creates a configured menu item.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured menu item
+     */
+    public static JMenuItem createMenuItem(XAction action, IconType iconType,
+            boolean showText) {
+        JMenuItem item = new JMenuItem();
+        configureButton(item, action, iconType, showText, false);
+        return item;
     }
-    icon = action.getLargeSelectedIcon();
-    if (icon != null) {
-      button.setSelectedIcon(icon);
+    
+    /**
+     * Creates a configured radio button menu item.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured radio button menu item
+     */
+    public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action,
+            ButtonGroup group, IconType iconType, boolean showText) {
+        JRadioButtonMenuItem item = new JRadioButtonMenuItem();
+        configureButton(item, action, group, iconType, showText, false);
+        return item;
     }
-  }
-  
-  /**
-   * Sets the small icon properties defined by a XAction for an abstract button.
-   *
-   * @param button  the abstract button
-   * @param action  the XAction
-   */
-  protected static void setSmallIcons(AbstractButton button, XAction action) {
-    Icon icon = action.getSmallDisabledIcon();
-    if (icon != null) {
-      button.setDisabledIcon(icon);
+    
+    /**
+     * Creates a configured check button menu item.
+     *
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     * @return          a configured check button menu item
+     */
+    public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action,
+            ItemListener listener, IconType iconType, boolean showText) {
+        JCheckBoxMenuItem item = new JCheckBoxMenuItem();
+        configureButton(item, action, listener, iconType, showText, false);
+        return item;
     }
-    icon = action.getSmallDisabledSelectedIcon();
-    if (icon != null) {
-      button.setDisabledSelectedIcon(icon);
+    
+    public static void configureButton(AbstractButton button, XAction action,
+            ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
+        button.addItemListener(listener);
+        configureButton(button, action, iconType, showText, coolStyle);
     }
-    icon = action.getSmallIcon();
-    if (icon != null) {
-      button.setIcon(icon);
-    } else {
-      button.setIcon(SMALL_NULL_ICON);
+    
+    public static void configureButton(AbstractButton button, XAction action,
+            ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle) {
+        group.add(button);
+        configureButton(button, action, iconType, showText, coolStyle);
     }
-    icon = action.getSmallPressedIcon();
-    if (icon != null) {
-      button.setPressedIcon(icon);
+    /**
+     * Configures an abstract button.
+     *
+     * @param button    the abstract button  to configure
+     * @param action    the XAction with the configuration data
+     * @param iconType  the icon type
+     * @param showText  if the label text should be shown
+     */
+    public static void configureButton(AbstractButton button, XAction action,
+            IconType iconType, boolean showText, boolean coolStyle) {
+        
+        button.setAction(action);
+        //??? noch nicht durchgedacht...
+        
+        if (iconType == IconType.LARGE_ICON) {
+            setLargeIcons(button, action);
+        } else if (iconType == IconType.SMALL_ICON) {
+            setSmallIcons(button, action);
+        } else if (iconType == IconType.NO_ICON) {
+            button.setIcon(null);
+            // was set by setAction()
+        }
+        
+        if (!showText) {
+            button.setText("");
+        }
+        
+        if (coolStyle){
+            CoolButtonController.addCoolButtonController(button);
+        }
     }
-    icon = action.getSmallRolloverIcon();
-    if (icon != null) {
-      button.setRolloverIcon(icon);
+    
+    /**
+     * Sets the large icon properties defined by a XAction for an abstract button.
+     *
+     * @param button  the abstract button
+     * @param action  the XAction
+     */
+    protected static void setLargeIcons(AbstractButton button, XAction action) {
+        Icon icon = action.getLargeDisabledIcon();
+        if (icon != null) {
+            button.setDisabledIcon(icon);
+        }
+        icon = action.getLargeDisabledSelectedIcon();
+        if (icon != null) {
+            button.setDisabledSelectedIcon(icon);
+        }
+        icon = action.getLargeIcon();
+        if (icon != null) {
+            button.setIcon(icon);
+        } else {
+            button.setIcon(LARGE_NULL_ICON);
+        }
+        icon = action.getLargePressedIcon();
+        if (icon != null) {
+            button.setPressedIcon(icon);
+        }
+        icon = action.getLargeRolloverIcon();
+        if (icon != null) {
+            button.setRolloverIcon(icon);
+        }
+        icon = action.getLargeRolloverSelectedIcon();
+        if (icon != null) {
+            button.setRolloverSelectedIcon(icon);
+        }
+        icon = action.getLargeSelectedIcon();
+        if (icon != null) {
+            button.setSelectedIcon(icon);
+        }
     }
-    icon = action.getSmallRolloverSelectedIcon();
-    if (icon != null) {
-      button.setRolloverSelectedIcon(icon);
+    
+    /**
+     * Sets the small icon properties defined by a XAction for an abstract button.
+     *
+     * @param button  the abstract button
+     * @param action  the XAction
+     */
+    protected static void setSmallIcons(AbstractButton button, XAction action) {
+        Icon icon = action.getSmallDisabledIcon();
+        if (icon != null) {
+            button.setDisabledIcon(icon);
+        }
+        icon = action.getSmallDisabledSelectedIcon();
+        if (icon != null) {
+            button.setDisabledSelectedIcon(icon);
+        }
+        icon = action.getSmallIcon();
+        if (icon != null) {
+            button.setIcon(icon);
+        } else {
+            button.setIcon(SMALL_NULL_ICON);
+        }
+        icon = action.getSmallPressedIcon();
+        if (icon != null) {
+            button.setPressedIcon(icon);
+        }
+        icon = action.getSmallRolloverIcon();
+        if (icon != null) {
+            button.setRolloverIcon(icon);
+        }
+        icon = action.getSmallRolloverSelectedIcon();
+        if (icon != null) {
+            button.setRolloverSelectedIcon(icon);
+        }
+        icon = action.getSmallSelectedIcon();
+        if (icon != null) {
+            button.setSelectedIcon(icon);
+        }
     }
-    icon = action.getSmallSelectedIcon();
-    if (icon != null) {
-      button.setSelectedIcon(icon);
+    
+    
+    
+    
+    
+    
+    //  private static XAction getStandardAction(String name, Object target, Locale
+    //  locale) throws NoSuchMethodException{
+    //    if (! standardActions.containsKey(locale)){
+    //      standardActions.put(locale, new HashMap());
+    //    }
+    //    XAction standardAction;
+    //    if (! ((Map) standardActions.get(locale)).containsKey(name)){
+    //      standardAction = XActions.createXAction(name, target,
+    //      ResourceBundle.getBundle(STANDARD_ACTIONS_RB_BASE_NAME, locale));
+    //      ((Map) standardActions.get(locale)).put(name, standardAction);
+    //    } else {
+    //      standardAction = (XAction) ((Map) standardActions.get(locale)).get(name);
+    //    }
+    //    return standardAction;
+    //  }
+    
+    public static JMenu createFileMenu(Locale locale) {
+        return createStandardMenu("file", locale);
     }
-  }
-  
-  
-  
-  
-  
-  
-  //  private static XAction getStandardAction(String name, Object target, Locale
-  //  locale) throws NoSuchMethodException{
-  //    if (! standardActions.containsKey(locale)){
-  //      standardActions.put(locale, new HashMap());
-  //    }
-  //    XAction standardAction;
-  //    if (! ((Map) standardActions.get(locale)).containsKey(name)){
-  //      standardAction = XActions.createXAction(name, target,
-  //      ResourceBundle.getBundle(STANDARD_ACTIONS_RB_BASE_NAME, locale));
-  //      ((Map) standardActions.get(locale)).put(name, standardAction);
-  //    } else {
-  //      standardAction = (XAction) ((Map) standardActions.get(locale)).get(name);
-  //    }
-  //    return standardAction;
-  //  }
-  
-  public static JMenu createFileMenu(Locale locale) {
-    return createStandardMenu("file", locale);
-  }
-  
-  public static JMenu createEditMenu(Locale locale) {
-    return createStandardMenu("edit", locale);
-  }
-  
+    
+    public static JMenu createEditMenu(Locale locale) {
+        return createStandardMenu("edit", locale);
+    }
+    
   /*public static JWindowMenu createWindowMenu(Locale locale) {
     JWindowMenu menu = new JWindowMenu();
     configureStandardMenu(menu, "window", locale);
     return menu;
   }*/
-  
-  public static JMenu createHelpMenu(Locale locale) {
-    return createStandardMenu("help", locale);
-  }
-  
-  private static JMenu createStandardMenu(String name, Locale locale){
-    JMenu menu = new JMenu();
-    configureStandardMenu(menu, name, locale);
-    return menu;
-  }
-  
-  private static void configureStandardMenu(JMenu menu, String name, Locale
-  locale){
-    ResourceBundle rb = ResourceBundle.getBundle(STANDARD_MENUS_RB_BASE_NAME, locale);
-    try {
-      menu.setText(rb.getString(name + "." + "text"));
-    } catch (MissingResourceException ex) {
-      // ignore it
+    
+    public static JMenu createHelpMenu(Locale locale) {
+        return createStandardMenu("help", locale);
     }
-  }
-  
+    
+    private static JMenu createStandardMenu(String name, Locale locale){
+        JMenu menu = new JMenu();
+        configureStandardMenu(menu, name, locale);
+        return menu;
+    }
+    
+    private static void configureStandardMenu(JMenu menu, String name, Locale
+            locale){
+        ResourceBundle rb = ResourceBundle.getBundle(STANDARD_MENUS_RB_BASE_NAME, locale);
+        try {
+            menu.setText(rb.getString(name + "." + "text"));
+        } catch (MissingResourceException ex) {
+            // ignore it
+        }
+    }
+    
 }
