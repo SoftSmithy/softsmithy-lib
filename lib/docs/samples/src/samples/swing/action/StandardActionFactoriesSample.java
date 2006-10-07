@@ -7,12 +7,17 @@
 package samples.swing.action;
 
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
+import org.apache.xpath.axes.LocPathIterator;
 import org.softsmithy.lib.swing.action.AbstractXAction;
 import org.softsmithy.lib.swing.action.DevelopmentActionFactory;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;
@@ -47,7 +52,9 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
         addMenuItems(tableActions, tableMenu);
         addMenuItems(textActions, textMenu);
         addToolbarButtons(developmentActions, developmentToolBar);
-        addToolbarButtons(generalActions, generalToolBar);
+        List generalActionsList = Arrays.asList(generalActions);
+        addToolbarButtons((XAction[])generalActionsList.subList(0,23).toArray(new XAction[23]), generalToolBar1);
+        addToolbarButtons((XAction[])generalActionsList.subList(23,generalActionsList.size()).toArray(new XAction[generalActionsList.size()-23]), generalToolBar2);
         addToolbarButtons(mediaActions, mediaToolBar);
         addToolbarButtons(navigationActions, navigationToolBar);
         addToolbarButtons(tableActions, tableToolBar);
@@ -64,7 +71,8 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
     private void initComponents() {
         jPanel1 = new javax.swing.JPanel();
         developmentToolBar = new javax.swing.JToolBar();
-        generalToolBar = new javax.swing.JToolBar();
+        generalToolBar1 = new javax.swing.JToolBar();
+        generalToolBar2 = new javax.swing.JToolBar();
         mediaToolBar = new javax.swing.JToolBar();
         navigationToolBar = new javax.swing.JToolBar();
         tableToolBar = new javax.swing.JToolBar();
@@ -79,12 +87,14 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
         textMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Create Buttons Sample");
-        jPanel1.setLayout(new java.awt.GridLayout(6, 1));
+        setTitle("Standard Action Factories Sample");
+        jPanel1.setLayout(new java.awt.GridLayout(7, 1));
 
         jPanel1.add(developmentToolBar);
 
-        jPanel1.add(generalToolBar);
+        jPanel1.add(generalToolBar1);
+
+        jPanel1.add(generalToolBar2);
 
         jPanel1.add(mediaToolBar);
 
@@ -126,6 +136,8 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Locale.setDefault(Locale.ENGLISH);
+        JComponent.setDefaultLocale(Locale.getDefault());
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new StandardActionFactoriesSample().setVisible(true);
@@ -160,7 +172,7 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
                             "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);
                 }
             };
-            factory.configureXAction(xAction, Locale.ENGLISH);
+            factory.configureXAction(xAction, Locale.getDefault());
             xActions[i] = xAction;
         }
         return xActions;
@@ -294,7 +306,8 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
     private javax.swing.JMenu developmentMenu;
     private javax.swing.JToolBar developmentToolBar;
     private javax.swing.JMenu generalMenu;
-    private javax.swing.JToolBar generalToolBar;
+    private javax.swing.JToolBar generalToolBar1;
+    private javax.swing.JToolBar generalToolBar2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
