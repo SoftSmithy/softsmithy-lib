@@ -59,7 +59,7 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
         addToolbarButtons(navigationActions, navigationToolBar);
         addToolbarButtons(tableActions, tableToolBar);
         addToolbarButtons(textActions, textToolBar);
-        setSize(1050, 500);
+        setSize(870, 500);
     }
     
     /** This method is called from within the constructor to

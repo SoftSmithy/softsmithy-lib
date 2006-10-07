@@ -408,42 +408,320 @@
             </pre></blockquote>
         </p>
         <h2><a name="factories">The Standard Action Factories</a></h2>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">x</a><br/>
-        <a href="http://java.sun.com/products/jlf/ed2/guidelines.html">x</a><br/>
-        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A.html">x</a><br/>
-        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html">x</a><br/>
-        <a href="http://java.sun.com/products/jlf/ed2/book/Appendix.C.html">x</a><br/>
-        <a href="../../../api/org/softsmithy/lib/swing/action/StandardActionFactory.html">StandardActionFactory</a><br/>
-        <a href="../../../api/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">x</a><br/>        
-        <a href="../../../api/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">x</a><br/>
-      
-        <a href="../../../api/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">x</a><br/>
-
-        <a href="../../../api/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">x</a><br/> 
-
-        <a href="../../../api/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">x</a><br/>        
-
-        <a href="../../../api/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a><br/>
-        <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">x</a><br/>
-        
         <p>
-        <table bgcolor="aqua" width="100%">
+            The <em>Standard Action Factories</em> provide utility methods to create
+            and configure <a href="../../../api/org/softsmithy/lib/swing/action/XAction.html">
+            XAction</a>s for standard actions. However they do not provide any 
+            functionality for the actions since that is application specific.
+        </p>
+        <p>
+            All <em>Standard Action Factory</em> classes are typesafe enums, 
+            which provide one action factory instance for each supported 
+            standard action. They all derive from the base class
+            <a href="../../../api/org/softsmithy/lib/swing/action/StandardActionFactory.html">
+            StandardActionFactory</a>. The StandardActionFactory provides two
+            methods:
+            <blockquote><pre>
+                public XAction createXAction(Object target, Locale locale) throws NoSuchMethodException
+                public void configureXAction(XAction action, Locale locale)
+            </pre></blockquote>
+            Note: The createXAction-method expects that the object 'target' has
+            a method:
+            <blockquote><pre>
+                public void &lt;name&gt;(ActionEvent e)
+            </pre></blockquote>
+            where &lt;name&gt; is equal to the output of the toString()-method
+            of the action factory.
+        </p>
+        <p>
+            E.g. to create the standard action "save" you could use:
+            <blockquote><pre>
+                try {
+                    XAction saveAction = GeneralActionFactory.SAVE.createXAction(this, Locale.ENGLISH);
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+                
+                ...
+        
+                public void save(ActionEvent e){
+                    // do save
+                }
+            </pre></blockquote>
+            or:
+            <blockquote><pre>
+                XAction saveAction = new AbstractXAction() {
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        // do save
+                    }
+                };
+                GeneralActionFactory.SAVE.configureXAction(saveAction, Locale.ENGLISH);
+            </pre></blockquote>
+        </p>
+        <p>
+            The data in the resource bundles that backup the 
+            <em>Standard Action Factories</em> is based on the following
+            sources:
+            <ul>
+                <li><a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">The Java Look and Feel Graphics Repository</a></li>
+                <li>
+                    <a href="http://java.sun.com/products/jlf/ed2/guidelines.html">The Java Look and Feel Design Guidelines, Second Edition</a><br/>
+                    Especially on the follwing sections:
+                    <ul>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A.html">A: Keyboard Shortcuts, Mnemonics, and Other Keyboard Operations</a></li>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html">Common Mnemonics</a></li>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.C.html">C: Localization Word Lists</a></li>
+                    </ul>
+                </li>
+            </ul>
+            Currently the following locales are supported:
+            <ul>
+                <li>english (en)</li>
+                <li>german  (de)</li>
+            </ul>
+            Note: The data in the resource bundles is not complete yet!
+        </p>
+        <p>
+        There is one <em>Standard Action Factory</em> class for each part of the
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">
+        Java Look and Feel Graphics Repository</a>:
+        <blockquote>
+        <table border="1">
+            <tr>
+                <th>Action Factory</th>
+                <th>Button Graphics</th>
+            </tr>
             <tr>
                 <td>
-                    <a href="..">
-                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
-                    </a>
-                    <a href="../..">
-                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
-                    </a>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">Development Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">General Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">Media Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">Navigation Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">Table Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">Text Toolbar Button Graphics</a>
                 </td>
             </tr>
         </table>
+        </blockquote>
+        </p>
+        <p>
+        The follwing sample provides an overview over what data is already available.
+        </p>
+        <p><center>
+            <img src="StandardActionFactoriesSample.jpg" width="870" height="500" alt="Standard Action Factories Sample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li><a href="StandardActionFactoriesSample.jnlp">Run StandardActionFactoriesSample</a> using 
+                <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
+                <li>This sample shows 1 menu and 1 toolbar for each <em>Standard Action Factory</em> class.<br/>
+                    (Except the GeneralActionFactory class for which there are 2 toolbars.)
+                </li>
+            </ol>
+            <p>
+            Source code: 
+            <a href="../../../samples/src/samples/swing/action/StandardActionFactoriesSample.java">StandardActionFactoriesSample.java</a> 
+            </p>
+            <hr/>
+        </blockquote>
+        <p>
+        From the source code:
+        <blockquote><pre>
+    private XAction[] createActions(StandardActionFactory[] factories) {
+        XAction[] xActions = new XAction[factories.length];
+        for (int i=0; i < factories.length; i++){
+            StandardActionFactory factory = factories[i];
+            XAction xAction = new AbstractXAction(){
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(StandardActionFactoriesSample.this,
+                            "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);
+                }
+            };
+            factory.configureXAction(xAction, Locale.getDefault());
+            xActions[i] = xAction;
+        }
+        return xActions;
+    }
+    
+    
+    private XAction[] createDevelopmentActions() {
+        DevelopmentActionFactory[] factories = {
+            DevelopmentActionFactory.APPLET,
+            DevelopmentActionFactory.APPLICATION,
+            DevelopmentActionFactory.APPLICATION_DEPLOY,
+            DevelopmentActionFactory.BEAN,
+            DevelopmentActionFactory.BEAN_ADD,
+            DevelopmentActionFactory.ENTERPRISE_JAVA_BEAN,
+            DevelopmentActionFactory.ENTERPRISE_JAVA_BEAN_JAR,
+            DevelopmentActionFactory.HOST,
+            DevelopmentActionFactory.J2EE_APPLICATION,
+            DevelopmentActionFactory.J2EE_APPLICATION_CLIENT,
+            DevelopmentActionFactory.J2EE_APPLICATION_CLIENT_ADD,
+            DevelopmentActionFactory.J2EE_SERVER,
+            DevelopmentActionFactory.JAR,
+            DevelopmentActionFactory.JAR_ADD,
+            DevelopmentActionFactory.SERVER,
+            DevelopmentActionFactory.WAR,
+            DevelopmentActionFactory.WAR_ADD,
+            DevelopmentActionFactory.WEB_COMPONENT,
+            DevelopmentActionFactory.WEB_COMPONENT_ADD};
+        return createActions(factories);
+    }
+    
+    private XAction[] createGeneralActions() {
+        GeneralActionFactory[] factories = {
+            GeneralActionFactory.ABOUT,
+            GeneralActionFactory.ADD,
+            GeneralActionFactory.ALIGN_BOTTOM,
+            GeneralActionFactory.ALIGN_CENTER,
+            GeneralActionFactory.ALIGN_JUSTIFY_HORIZONTAL,
+            GeneralActionFactory.ALIGN_JUSTIFY_VERTICAL,
+            GeneralActionFactory.ALIGN_LEFT,
+            GeneralActionFactory.ALIGN_RIGHT,
+            GeneralActionFactory.ALIGN_TOP,
+            GeneralActionFactory.BOOKMARKS,
+            GeneralActionFactory.COMPOSE_MAIL,
+            GeneralActionFactory.CONTEXTUAL_HELP,
+            GeneralActionFactory.COPY,
+            GeneralActionFactory.CUT,
+            GeneralActionFactory.DELETE,
+            GeneralActionFactory.EDIT,
+            GeneralActionFactory.EXPORT,
+            GeneralActionFactory.FIND,
+            GeneralActionFactory.FIND_AGAIN,
+            GeneralActionFactory.HELP,
+            GeneralActionFactory.HISTORY,
+            GeneralActionFactory.IMPORT,
+            GeneralActionFactory.INFORMATION,
+            GeneralActionFactory.NEW,
+            GeneralActionFactory.OPEN,
+            GeneralActionFactory.PAGE_SETUP,
+            GeneralActionFactory.PASTE,
+            GeneralActionFactory.PREFERENCES,
+            GeneralActionFactory.PRINT,
+            GeneralActionFactory.PRINT_PREVIEW,
+            GeneralActionFactory.PROPERTIES,
+            GeneralActionFactory.REDO,
+            GeneralActionFactory.REFRESH,
+            GeneralActionFactory.REMOVE,
+            GeneralActionFactory.REPLACE,
+            GeneralActionFactory.SAVE,
+            GeneralActionFactory.SAVE_ALL,
+            GeneralActionFactory.SAVE_AS,
+            GeneralActionFactory.SEARCH,
+            GeneralActionFactory.SEND_MAIL,
+            GeneralActionFactory.STOP,
+            GeneralActionFactory.TIP_OF_THE_DAY,
+            GeneralActionFactory.UNDO,
+            GeneralActionFactory.ZOOM,
+            GeneralActionFactory.ZOOM_IN,
+            GeneralActionFactory.ZOOM_OUT};
+        return createActions(factories);
+    }
+    
+    private XAction[] createMediaActions() {
+        MediaActionFactory[] factories = {
+            MediaActionFactory.FAST_FORWARD,
+            MediaActionFactory.MOVIE,
+            MediaActionFactory.PAUSE,
+            MediaActionFactory.PLAY,
+            MediaActionFactory.REWIND,
+            MediaActionFactory.STEP_BACK,
+            MediaActionFactory.STEP_FORWARD,
+            MediaActionFactory.STOP,
+            MediaActionFactory.VOLUME};
+        return createActions(factories);
+    }
+    
+    private XAction[] createNavigationActions() {
+         NavigationActionFactory[] factories = {
+             NavigationActionFactory.BACK,
+             NavigationActionFactory.DOWN,
+             NavigationActionFactory.FORWARD,
+             NavigationActionFactory.HOME,
+             NavigationActionFactory.UP};
+        return createActions(factories);
+    }
+    
+    private XAction[] createTableActions() {
+        TableActionFactory[] factories = {
+            TableActionFactory.COLUMN_DELETE,
+            TableActionFactory.COLUMN_INSERT_AFTER,
+            TableActionFactory.COLUMN_INSERT_BEFORE,
+            TableActionFactory.ROW_DELETE,
+            TableActionFactory.ROW_INSERT_AFTER,
+            TableActionFactory.ROW_INSERT_BEFORE};
+        return createActions(factories);
+    }
+
+    private XAction[] createTextActions() {
+        TextActionFactory[] factories = {
+            TextActionFactory.ALIGN_CENTER,
+            TextActionFactory.ALIGN_JUSTIFY,
+            TextActionFactory.ALIGN_LEFT,
+            TextActionFactory.ALIGN_RIGHT,
+            TextActionFactory.BOLD,
+            TextActionFactory.ITALIC,
+            TextActionFactory.NORMAL,
+            TextActionFactory.UNDERLINE};
+       return createActions(factories);
+    }
+         </pre></blockquote>
+        </p>
+        <p>
+            <table bgcolor="aqua" width="100%">
+                <tr>
+                    <td>
+                        <a href="..">
+                            <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                        <a href="../..">
+                            <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </p>
     </body>
 </html>
