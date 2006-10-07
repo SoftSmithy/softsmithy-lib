@@ -10,6 +10,14 @@ puce@users.sourceforge.net
 
 Have a look at CHANGES.txt for notes about changes.
 
+The contents of the files, which originate from softsmithy.org, are subject to 
+the Sun Public License Version 1.0 (the "License"); you may not use these files 
+except in compliance with the License.
+(This License has been apporved by OSI.)
+You can find a copy of this license in SPL.txt shipped with this distribution, 
+at http://www.sun.com/ or at http://www.opensource.org/licenses/.
+
+
 The source can be obtained via CVS:
 http://sourceforge.net/cvs/?group_id=64833
 
