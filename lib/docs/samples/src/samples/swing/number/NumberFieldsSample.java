@@ -1,4 +1,6 @@
 package samples.swing.number;
+
+import java.util.Locale;
 /*
  * NumberFieldsSample.java
  *
@@ -14,6 +16,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
     /** Creates new form NumberFieldsSample */
     public NumberFieldsSample() {
         initComponents();
+        setSize(400, 300);
     }
     
     /** This method is called from within the constructor to
@@ -51,115 +54,149 @@ public class NumberFieldsSample extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        jLabel1.setText("jLabel1");
+        setTitle("Number Fields Sample");
+        jLabel1.setLabelFor(jWholeNumberField1);
+        jLabel1.setText("Whole Number (BigInteger): ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel1, gridBagConstraints);
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setLabelFor(jByteField1);
+        jLabel2.setText("Byte: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel2, gridBagConstraints);
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setLabelFor(jShortField1);
+        jLabel3.setText("Short: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel3, gridBagConstraints);
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setLabelFor(jIntegerField1);
+        jLabel4.setText("Integer: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setLabelFor(jLongField1);
+        jLabel5.setText("Long: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel5, gridBagConstraints);
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setLabelFor(jRealNumberField1);
+        jLabel6.setText("Real Number (BigDecimal): ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel6, gridBagConstraints);
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setLabelFor(jFloatField1);
+        jLabel7.setText("Float: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel7, gridBagConstraints);
 
-        jLabel8.setText("jLabel8");
+        jLabel8.setLabelFor(jDoubleField1);
+        jLabel8.setText("Double: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel8, gridBagConstraints);
 
-        jLabel9.setText("jLabel9");
+        jLabel9.setLabelFor(jLocalizedRealNumberField1);
+        jLabel9.setText("Localized Real Number (BigDecimal): ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel9, gridBagConstraints);
 
-        jLabel10.setText("jLabel10");
+        jLabel10.setLabelFor(jLocalizedFloatField1);
+        jLabel10.setText("Localized Float: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel10, gridBagConstraints);
 
-        jLabel11.setText("jLabel11");
+        jLabel11.setLabelFor(jLocalizedDoubleField1);
+        jLabel11.setText("Localized Double: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel11, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jWholeNumberField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jByteField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jShortField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jIntegerField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLongField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jRealNumberField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jFloatField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jDoubleField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLocalizedRealNumberField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLocalizedFloatField1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLocalizedDoubleField1, gridBagConstraints);
 
         pack();
@@ -169,6 +206,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Locale.setDefault(Locale.US);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NumberFieldsSample().setVisible(true);

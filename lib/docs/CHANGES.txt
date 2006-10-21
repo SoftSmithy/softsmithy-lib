@@ -6,11 +6,15 @@ JListBox
 NetBeans Ant Projectfiles
 -some minor changes
 XIcons
-StandardActions.properteis (media)
+StandardActions.properties (media)
 properties-files: i18n -> src
 - commented out system outputs
 - README.txt
 Tutorial & samples added
+SPL.txt added
+Dist structure changed a bit
+All jlfgr icons in StandardActions.properties referenced
+New Ant targets added to the build.xml (e.g. "dist")
 
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies

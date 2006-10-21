@@ -163,7 +163,10 @@
    </java>-->
 
   </target>
-  
+
+
+    
+    
      <!--
     ===============
     DIST SECTION
@@ -176,17 +179,33 @@
   with the javadoc and other docs like the tutorial and samples.
 
 -->
-    <target name="dist" depends="clean,jar,javadoc,tutorial">
+    <target name="dist" depends="clean,jar,javadoc,zip-src,tutorial,cp-important-files">
        
     </target>
     
     <target name="samples" depends="init">
         <ant dir="${docs.samples.dir}" target="compile" inheritall="false" />
+        <copy todir="${dist.docs.samples.dir}">
+             <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**"/>
+         </copy>
     </target>
     
     <target name="tutorial" depends="samples">
          <copy todir="${dist.docs.tutorial.dir}">
              <fileset dir="${docs.tutorial.dir}" />
+         </copy>
+    </target>
+    
+    <target name="zip-src" depends="init">
+        <zip destfile="${dist.src.zip}"
+             basedir="${src.dir}"
+        />
+    </target>
+    
+    <target name="cp-important-files" depends="init">
+         <copy todir="${dist.dir}">
+             <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt"
+              />
          </copy>
     </target>
 </project>
