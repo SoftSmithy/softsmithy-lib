@@ -1,6 +1,14 @@
 package samples.swing.number;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Locale;
+import org.softsmithy.lib.swing.text.DoubleFormatter;
+import org.softsmithy.lib.swing.text.DoubleFormatterFactory;
+import org.softsmithy.lib.swing.text.FloatFormatter;
+import org.softsmithy.lib.swing.text.FloatFormatterFactory;
+import org.softsmithy.lib.swing.text.RealNumberFormatter;
+import org.softsmithy.lib.swing.text.RealNumberFormatterFactory;
 /*
  * NumberFieldsSample.java
  *
@@ -16,6 +24,11 @@ public class NumberFieldsSample extends javax.swing.JFrame {
     /** Creates new form NumberFieldsSample */
     public NumberFieldsSample() {
         initComponents();
+        jRealNumberField1.setRealNumberFormatterFactory(new RealNumberFormatterFactory(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
+        jFloatField1.setFloatFormatterFactory(new FloatFormatterFactory(new FloatFormatter(NumberFormat.getPercentInstance())));
+        jDoubleField1.setMaximumDoubleValue(-1);
+        DecimalFormat format = new DecimalFormat("Negative value: #,##0.0#");
+        jDoubleField1.setDoubleFormatterFactory(new DoubleFormatterFactory(new DoubleFormatter(format)));
         setSize(400, 300);
     }
     
@@ -206,7 +219,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Locale.setDefault(Locale.US);
+        Locale.setDefault(new Locale("de", "CH"));// Locale.US);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NumberFieldsSample().setVisible(true);
