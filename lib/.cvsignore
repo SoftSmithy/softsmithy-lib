@@ -1,5 +1,6 @@
 build
 docs/api
+deploy
 .nbattrs
 build.properties
 dist

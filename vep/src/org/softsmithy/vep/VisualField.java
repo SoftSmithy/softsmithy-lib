@@ -31,21 +31,19 @@ public class VisualField {
     
     
     private XIcon defaultVisualField;
-    private XIcon leftVisualField;
-    private XIcon rightVisualField;
-    private XIcon leftHalfVisualField;
-    private XIcon rightHalfVisualField;
-    private XIcon middleVisualField;
-    private XIcon fullVisualField;
     
     private final int diameter;
     private final List<List<Area>> segments;
     private final Area fixation;
-    private final int greyCircleIndex;
+    private final int deviderCircleIndex;
+
+    private Color deviderColor = Color.GRAY;
+
+    private Color fixationColor = Color.BLACK;
     
     /** Creates a new instance of VisualField */
-    public VisualField(double fixationRadius, int nSections, int greyCircleIndex, double... radiusInc) {
-        this.greyCircleIndex = greyCircleIndex;
+    public VisualField(double fixationRadius, int nSections, int deviderCircleIndex, double... radiusInc) {
+        this.deviderCircleIndex = deviderCircleIndex;
         double centerCoord = XMath.sum(radiusInc) + fixationRadius;
         Point2D.Double center = new Point2D.Double(centerCoord, centerCoord);
         double radius = fixationRadius;
@@ -84,157 +82,131 @@ public class VisualField {
             segments.add(sectionSegments);
         }
         diameter = (int) Math.ceil(2*radius);
-        createImages();
+        createDefaultImage();
     }
     
-    public void paint(Graphics2D g){
-        
-        /*g.drawImage(defaultVisualField, 0, 0, null);
-        g.drawImage(leftVisualField, 0, 300, null);
-        g.drawImage(rightVisualField, 300, 300, null);
-        g.drawImage(leftHalfVisualField, 0, 600, null);
-        g.drawImage(rightHalfVisualField, 300, 600, null);*/
-        //g.fill(section);
-        
-        /*Area fixation = new Area(new Ellipse2D.Double(center.x - 10, center.y - 10, 20, 20));
-        Line2D.Double line = new Line2D.Double(center.x - 20, center.y, center.x + 20, center.y);
-         
-        Area circle1 = new Area(new Ellipse2D.Double(center.x - 20, center.y - 20, 40, 40));
-        circle1.subtract(fixation);
-        Area circle2 = new Area(new Ellipse2D.Double(center.x - 40, center.y - 40, 80, 80));
-        circle2.subtract(fixation);
-        circle2.subtract(circle1);
-         
-        g.setColor(Color.black);
-        g.fill(fixation);
-        g.draw(line);
-        g.setColor(Color.red);
-        g.fill(circle1);
-        g.setColor(Color.lightGray);
-        g.fill(circle2);
-         
-        g.setColor(Color.red);
-        VisualSegment s1 = new VisualSegment(new Point2D.Double(100, 200), new Point2D.Double(200, 200), new Point2D.Double(250, 320), new Point2D.Double(50, 320));
-        //g.fill(s1);*/
-        
+    public int getNSections(){
+        return segments.size();
     }
     
     
-    private void createImages() {
-        defaultVisualField = new XImageIcon(createImage(Collections.EMPTY_SET));
-        leftVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(10, 14))));
-        rightVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(2,6))));
-        //leftHalfVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(8))));
-        //rightHalfVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(0, 8))));
-        //middleVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(0, 2, 6, 10, 14))));
-        //fullVisualField = new XImageIcon(createImage(new HashSet<Integer>(Arrays.asList(0))));
-        
+    
+    private void createDefaultImage() {
+        defaultVisualField = new XImageIcon(createImage(Collections.EMPTY_SET, false));
     }
     
-    private Image createImage(Set<Integer> nonColorSwitchingIndices) {
+    private Image createImage(Set<Integer> colorSwitchingIndices, boolean inner) {
         BufferedImage bi = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
         Graphics2D big = bi.createGraphics();
-        big.setBackground(new Color(0,0,0, 0));
+        big.setBackground(new Color(0,0,0, 0)); //needed???
         Color oldColor = big.getColor();
         
-        
-        boolean red = true;
+        boolean sectionStartPrimary = true;
         for (int i=0; i<segments.size(); i++){
-            if (! nonColorSwitchingIndices.contains(i)){
-                red = !red;
-            }
+            boolean primary = sectionStartPrimary;
             List<Area> sectionSegments = segments.get(i);
             int j = 0;
             for (Area segment : sectionSegments){
-                if (j == greyCircleIndex){
-                    big.setColor(Color.GRAY);
+                if (j == deviderCircleIndex){
+                    big.setColor(deviderColor);
                 } else {
-                    if (red){
-                        big.setColor(getSecondaryColor());
-                    } else {
-                        big.setColor(getPrimaryColor());
+                    if (((inner && j == 0) || (j == deviderCircleIndex + 1)) && colorSwitchingIndices.contains(i)){
+                        primary = !primary;
                     }
-                    red = !red;
+                    if (primary){
+                        big.setColor(getPrimaryColor());
+                    } else {
+                        big.setColor(getSecondaryColor());
+                    }
+                    primary = !primary;
                 }
+                
                 big.fill(segment);
                 j++;
             }
-            
+            sectionStartPrimary = !sectionStartPrimary;
         }
-        big.setColor(Color.GRAY);
+        big.setColor(deviderColor);
         big.fillRect(diameter/2 - fixation.getBounds().width/2, 0, fixation.getBounds().width, diameter);
-        big.setColor(Color.BLACK);
+        big.setColor(fixationColor);
         big.fill(fixation);
         big.setColor(oldColor);
         return bi;
     }
     
-    public List<XIcon> getLeftImages() {
-        return Arrays.asList(defaultVisualField, leftVisualField);
+    private XIcon createXIcon(Set<Integer> nonColorSwitchingIndices, boolean inner) {
+        return new XImageIcon(createImage(nonColorSwitchingIndices, inner));
     }
     
-    public List<XIcon> getRightImages() {
-        return Arrays.asList(defaultVisualField, rightVisualField);
-    }
     
-    public List<XIcon> getLeftHalfmages() {
-        return Arrays.asList(defaultVisualField, leftHalfVisualField);
-    }
-    
-    public List<XIcon> getRightHalfImages() {
-        return Arrays.asList(defaultVisualField, rightHalfVisualField);
-    }
-    
-    public List<XIcon> getMiddleImages() {
-        return Arrays.asList(defaultVisualField, middleVisualField);
-    }
-    
-    public List<XIcon> getFullImages() {
-        return Arrays.asList(defaultVisualField, fullVisualField);
+    public List<XIcon> createImages(VisualFieldTest visualFieldTest) {
+        return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections()), visualFieldTest.isInner()));
     }
     
     /**
      * Holds value of property firstColor.
      */
-    private Color firstColor = Color.lightGray;
+    private Color primaryColor = Color.lightGray;
     
     /**
      * Getter for property firstColor.
      * @return Value of property firstColor.
      */
     public Color getPrimaryColor() {
-        return this.firstColor;
+        return this.primaryColor;
     }
     
     /**
      * Setter for property firstColor.
      * @param firstColor New value of property firstColor.
      */
-    public void setPrimaryColor(Color firstColor) {
-        this.firstColor = firstColor;
-        createImages();
+    public void setPrimaryColor(Color primaryColor) {
+        this.primaryColor = primaryColor;
+        createDefaultImage();
     }
     
     /**
      * Holds value of property secondColor.
      */
-    private Color secondColor = Color.red;
+    private Color secondaryColor = Color.red;
     
     /**
      * Getter for property secondColor.
      * @return Value of property secondColor.
      */
     public Color getSecondaryColor() {
-        return this.secondColor;
+        return this.secondaryColor;
     }
     
     /**
      * Setter for property secondColor.
      * @param secondColor New value of property secondColor.
      */
-    public void setSecondaryColor(Color secondColor) {
-        this.secondColor = secondColor;
-        createImages();
+    public void setSecondaryColor(Color secondaryColor) {
+        this.secondaryColor = secondaryColor;
+        createDefaultImage();
     }
+
+    public Color getDeviderColor() {
+        return deviderColor;
+    }
+
+    public void setDeviderColor(Color deviderColor) {
+        this.deviderColor = deviderColor;
+        createDefaultImage();
+    }
+
+    public Color getFixationColor() {
+        return fixationColor;
+    }
+
+    public void setFixationColor(Color fixationColor) {
+        this.fixationColor = fixationColor;
+        createDefaultImage();
+    }
+    
+    
+    
+    
     
 }

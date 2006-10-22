@@ -40,8 +40,10 @@ public class VepFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(visualFieldPane);
         visualFieldPane.setVisualFieldTest((VisualFieldTest) visualFieldTestBox.getSelectedItem());
         visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
-        firstColorLabel.setBackground(visualFieldPane.getPrimaryColor());
-        secondColorLabel.setBackground(visualFieldPane.getSecondaryColor());
+        primaryColorLabel.setBackground(visualFieldPane.getPrimaryColor());
+        secondaryColorLabel.setBackground(visualFieldPane.getSecondaryColor());
+        deviderColorLabel.setBackground(visualFieldPane.getDeviderColor());
+        fixationColorLabel.setBackground(visualFieldPane.getFixationColor());
     }
     
     public void mediaPlay(ActionEvent e){
@@ -70,12 +72,18 @@ public class VepFrame extends javax.swing.JFrame {
         frequencyBox = new javax.swing.JComboBox();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
-        firstColorCaptionLabel = new javax.swing.JLabel();
-        secondColorCaptionLabel = new javax.swing.JLabel();
-        firstColorLabel = new javax.swing.JLabel();
-        secondColorLabel = new javax.swing.JLabel();
-        firstColorButton = new javax.swing.JButton();
-        secondColorButton = new javax.swing.JButton();
+        primaryColorCaptionLabel = new javax.swing.JLabel();
+        secondaryColorCaptionLabel = new javax.swing.JLabel();
+        primaryColorLabel = new javax.swing.JLabel();
+        secondaryColorLabel = new javax.swing.JLabel();
+        primaryColorButton = new javax.swing.JButton();
+        secondaryColorButton = new javax.swing.JButton();
+        deviderColorButton = new javax.swing.JButton();
+        deviderColorLabel = new javax.swing.JLabel();
+        deviderColorCaptionLabel = new javax.swing.JLabel();
+        fixationColorButton = new javax.swing.JButton();
+        fixationColorLabel = new javax.swing.JLabel();
+        fixationColorCaptionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Visually Evoked Potentials");
@@ -104,85 +112,136 @@ public class VepFrame extends javax.swing.JFrame {
 
         stopButton.setEnabled(false);
 
-        firstColorCaptionLabel.setText("First Color: ");
+        primaryColorCaptionLabel.setLabelFor(primaryColorLabel);
+        primaryColorCaptionLabel.setText("Primary Color: ");
 
-        secondColorCaptionLabel.setText("Second Color: ");
+        secondaryColorCaptionLabel.setLabelFor(secondaryColorLabel);
+        secondaryColorCaptionLabel.setText("Secondary Color: ");
 
-        firstColorLabel.setOpaque(true);
+        primaryColorLabel.setOpaque(true);
 
-        secondColorLabel.setOpaque(true);
+        secondaryColorLabel.setOpaque(true);
 
-        firstColorButton.setText("...");
-        firstColorButton.addActionListener(new java.awt.event.ActionListener() {
+        primaryColorButton.setText("...");
+        primaryColorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstColorButtonActionPerformed(evt);
+                primaryColorButtonActionPerformed(evt);
             }
         });
 
-        secondColorButton.setText("...");
-        secondColorButton.addActionListener(new java.awt.event.ActionListener() {
+        secondaryColorButton.setText("...");
+        secondaryColorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secondColorButtonActionPerformed(evt);
+                secondaryColorButtonActionPerformed(evt);
             }
         });
+
+        deviderColorButton.setText("...");
+        deviderColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deviderColorButtonActionPerformed(evt);
+            }
+        });
+
+        deviderColorLabel.setOpaque(true);
+
+        deviderColorCaptionLabel.setLabelFor(deviderColorLabel);
+        deviderColorCaptionLabel.setText("Devider Color: ");
+
+        fixationColorButton.setText("...");
+        fixationColorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fixationColorButtonActionPerformed(evt);
+            }
+        });
+
+        fixationColorLabel.setOpaque(true);
+
+        fixationColorCaptionLabel.setLabelFor(fixationColorLabel);
+        fixationColorCaptionLabel.setText("Fixation Color: ");
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(secondColorCaptionLabel)
-                    .add(firstColorCaptionLabel)
-                    .add(jLabel2)
-                    .add(jLabel1)
-                    .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .add(secondColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(secondColorButton))
+                        .addContainerGap()
+                        .add(jLabel1))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(secondaryColorCaptionLabel)
+                            .add(primaryColorCaptionLabel)
+                            .add(deviderColorCaptionLabel)
+                            .add(fixationColorCaptionLabel)
+                            .add(jLabel2)
+                            .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(firstColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(16, 16, 16)
-                                .add(firstColorButton)))))
-                .addContainerGap(75, Short.MAX_VALUE))
+                                .add(12, 12, 12)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(fixationColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(fixationColorButton))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(secondaryColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(secondaryColorButton))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(primaryColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(primaryColorButton))
+                                    .add(jPanel1Layout.createSequentialGroup()
+                                        .add(deviderColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(deviderColorButton))))
+                            .add(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(30, 30, 30)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .add(16, 16, 16)
-                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(visualFieldTestBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(15, 15, 15)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(frequencyBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(firstColorCaptionLabel)
-                    .add(firstColorButton)
-                    .add(firstColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(primaryColorCaptionLabel)
+                    .add(primaryColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(primaryColorButton))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(secondColorCaptionLabel)
-                    .add(secondColorButton)
-                    .add(secondColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(secondaryColorCaptionLabel)
+                    .add(secondaryColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(secondaryColorButton))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(deviderColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(deviderColorCaptionLabel)
+                    .add(deviderColorButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(fixationColorButton)
+                    .add(fixationColorLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(fixationColorCaptionLabel))
+                .add(46, 46, 46)
                 .add(startButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(stopButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(108, 108, 108))
+                .add(119, 119, 119))
         );
         jSplitPane1.setRightComponent(jPanel1);
 
@@ -190,30 +249,46 @@ public class VepFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 505, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+            .add(jSplitPane1)
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void secondColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondColorButtonActionPerformed
+    
+    private void fixationColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fixationColorButtonActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getFixationColor());
+        if (color != null){
+            fixationColorLabel.setBackground(color);
+            visualFieldPane.setFixationColor(color);
+        }
+    }//GEN-LAST:event_fixationColorButtonActionPerformed
+    
+    private void deviderColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deviderColorButtonActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getDeviderColor());
+        if (color != null){
+            deviderColorLabel.setBackground(color);
+            visualFieldPane.setDeviderColor(color);
+        }
+    }//GEN-LAST:event_deviderColorButtonActionPerformed
+    
+    private void secondaryColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondaryColorButtonActionPerformed
         Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getSecondaryColor());
         if (color != null){
-            secondColorLabel.setBackground(color);
+            secondaryColorLabel.setBackground(color);
             visualFieldPane.setSecondaryColor(color);
         }
-    }//GEN-LAST:event_secondColorButtonActionPerformed
-        
-    private void firstColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstColorButtonActionPerformed
+    }//GEN-LAST:event_secondaryColorButtonActionPerformed
+    
+    private void primaryColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_primaryColorButtonActionPerformed
         Color color = JColorChooser.showDialog(this, "Choose a color...", visualFieldPane.getPrimaryColor());
         if (color != null){
-            firstColorLabel.setBackground(color);
+            primaryColorLabel.setBackground(color);
             visualFieldPane.setPrimaryColor(color);
         }
-    }//GEN-LAST:event_firstColorButtonActionPerformed
+    }//GEN-LAST:event_primaryColorButtonActionPerformed
     
     private void frequencyBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frequencyBoxActionPerformed
         visualFieldPane.setFrequency((Integer) frequencyBox.getSelectedItem());
@@ -235,17 +310,23 @@ public class VepFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton firstColorButton;
-    private javax.swing.JLabel firstColorCaptionLabel;
-    private javax.swing.JLabel firstColorLabel;
+    private javax.swing.JButton deviderColorButton;
+    private javax.swing.JLabel deviderColorCaptionLabel;
+    private javax.swing.JLabel deviderColorLabel;
+    private javax.swing.JButton fixationColorButton;
+    private javax.swing.JLabel fixationColorCaptionLabel;
+    private javax.swing.JLabel fixationColorLabel;
     private javax.swing.JComboBox frequencyBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton secondColorButton;
-    private javax.swing.JLabel secondColorCaptionLabel;
-    private javax.swing.JLabel secondColorLabel;
+    private javax.swing.JButton primaryColorButton;
+    private javax.swing.JLabel primaryColorCaptionLabel;
+    private javax.swing.JLabel primaryColorLabel;
+    private javax.swing.JButton secondaryColorButton;
+    private javax.swing.JLabel secondaryColorCaptionLabel;
+    private javax.swing.JLabel secondaryColorLabel;
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JComboBox visualFieldTestBox;

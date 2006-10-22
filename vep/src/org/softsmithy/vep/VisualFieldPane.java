@@ -125,7 +125,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
      */
     public void setVisualFieldTest(VisualFieldTest visualFieldTest) {
         this.visualFieldTest = visualFieldTest;
-        visualFieldImages = visualFieldTest.getImages(visualField);
+        visualFieldImages = visualField.createImages(visualFieldTest);
         scaledVisualFieldImages.clear();
     }
     
@@ -137,11 +137,6 @@ public class VisualFieldPane extends javax.swing.JPanel {
     public void setFrequency(int frequency) {
         timer.setDelay(1000/frequency);
     }
-    
-    /**
-     * Holds value of property primaryColor.
-     */
-    private Color primaryColor;
     
     /**
      * Getter for property firstColor.
@@ -157,15 +152,9 @@ public class VisualFieldPane extends javax.swing.JPanel {
      */
     public void setPrimaryColor(Color primaryColor) {
         visualField.setPrimaryColor(primaryColor);
-        visualFieldImages = visualFieldTest.getImages(visualField);
-        scaledVisualFieldImages.clear();
-        displayCurrentImage();
+        recreateImages();
     }
     
-    /**
-     * Holds value of property secondaryColor.
-     */
-    private Color secondaryColor;
     
     /**
      * Getter for property secondColor.
@@ -181,7 +170,32 @@ public class VisualFieldPane extends javax.swing.JPanel {
      */
     public void setSecondaryColor(Color secondaryColor) {
         visualField.setSecondaryColor(secondaryColor);
-        visualFieldImages = visualFieldTest.getImages(visualField);
+        recreateImages();
+    }
+    
+
+    public Color getDeviderColor() {
+        return visualField.getDeviderColor();
+    }
+    
+
+    public void setDeviderColor(Color deviderColor) {
+        visualField.setDeviderColor(deviderColor);
+        recreateImages();
+    }
+    
+    public Color getFixationColor() {
+        return visualField.getFixationColor();
+    }
+    
+
+    public void setFixationColor(Color fixationColor) {
+        visualField.setFixationColor(fixationColor);
+        recreateImages();
+    }
+    
+    private void recreateImages(){
+        visualFieldImages = visualField.createImages(visualFieldTest);
         scaledVisualFieldImages.clear();
         displayCurrentImage();
     }
