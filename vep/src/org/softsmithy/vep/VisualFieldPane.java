@@ -38,7 +38,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
     /** Creates new form VisualFieldPane */
     public VisualFieldPane() {
         initComponents();
-        visualField = new VisualField(50, 150, 16, 4);
+        visualField = new VisualField(50, 24, 2, 100, 100, 50, 200, 200, 200, 200, 300, 300);
         timer = new Timer(0, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextImage();
