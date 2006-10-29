@@ -23,6 +23,7 @@ package org.softsmithy.lib.swing;
 import java.math.*;
 import java.text.*;
 import javax.swing.JFormattedTextField.*;
+import org.softsmithy.lib.math.Floats;
 import org.softsmithy.lib.swing.text.*;
 
 
@@ -33,7 +34,7 @@ import org.softsmithy.lib.swing.text.*;
 public class JFloatField extends JRealNumberField {
   
   private static final float DEFAULT_VALUE = 0;
-  private static final float DEFAULT_MIN_VALUE = Float.MIN_VALUE;
+  private static final float DEFAULT_MIN_VALUE = Floats.MAX_NEGATIVE_VALUE;
   private static final float DEFAULT_MAX_VALUE = Float.MAX_VALUE;
   
   public JFloatField(){

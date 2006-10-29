@@ -26,6 +26,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
         initComponents();
         jRealNumberField1.setRealNumberFormatterFactory(new RealNumberFormatterFactory(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
         jFloatField1.setFloatFormatterFactory(new FloatFormatterFactory(new FloatFormatter(NumberFormat.getPercentInstance())));
+        System.out.println(Double.MAX_VALUE + ", " + Double.MIN_VALUE);
         jDoubleField1.setMaximumDoubleValue(-1);
         DecimalFormat format = new DecimalFormat("Negative value: #,##0.0#");
         jDoubleField1.setDoubleFormatterFactory(new DoubleFormatterFactory(new DoubleFormatter(format)));

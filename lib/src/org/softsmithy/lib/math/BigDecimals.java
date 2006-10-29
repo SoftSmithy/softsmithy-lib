@@ -32,8 +32,12 @@ public class BigDecimals {
   public static final BigDecimal ONE = BigDecimal.valueOf(1);
   public static final BigDecimal MIN_DOUBLE = new BigDecimal(Double.MIN_VALUE);
   public static final BigDecimal MAX_DOUBLE = new BigDecimal(Double.MAX_VALUE);
+  public static final BigDecimal MIN_NEGATIVE_DOUBLE = new BigDecimal(Doubles.MIN_NEGATIVE_VALUE);
+  public static final BigDecimal MAX_NEGATIVE_DOUBLE = new BigDecimal(Doubles.MAX_NEGATIVE_VALUE);
   public static final BigDecimal MIN_FLOAT = new BigDecimal(Float.MIN_VALUE);
   public static final BigDecimal MAX_FLOAT = new BigDecimal(Float.MAX_VALUE);
+  public static final BigDecimal MIN_NEGATIVE_FLOAT = new BigDecimal(Floats.MIN_NEGATIVE_VALUE);
+  public static final BigDecimal MAX_NEGATIVE_FLOAT = new BigDecimal(Floats.MAX_NEGATIVE_VALUE);
   
   /** Creates a new instance of BigDecimals */
   private BigDecimals() {

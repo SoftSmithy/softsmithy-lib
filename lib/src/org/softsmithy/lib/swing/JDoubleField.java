@@ -23,6 +23,7 @@ package org.softsmithy.lib.swing;
 import java.math.*;
 import java.text.*;
 import javax.swing.JFormattedTextField.*;
+import org.softsmithy.lib.math.Doubles;
 import org.softsmithy.lib.swing.text.*;
 
 
@@ -33,7 +34,7 @@ import org.softsmithy.lib.swing.text.*;
 public class JDoubleField extends JRealNumberField {
   
   private static final double DEFAULT_VALUE = 0;
-  private static final double DEFAULT_MIN_VALUE = Double.MIN_VALUE;
+  private static final double DEFAULT_MIN_VALUE = Doubles.MAX_NEGATIVE_VALUE;
   private static final double DEFAULT_MAX_VALUE = Double.MAX_VALUE;
   
   public JDoubleField(){

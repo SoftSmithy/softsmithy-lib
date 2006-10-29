@@ -37,7 +37,7 @@ public class LocalizedDoubleFormatter extends LocalizedRealNumberFormatter {
   }
   
   public LocalizedDoubleFormatter(Locale locale){
-    this(Double.MIN_VALUE, Double.MAX_VALUE, locale);
+    this(Doubles.MAX_NEGATIVE_VALUE, Double.MAX_VALUE, locale);
   }
   
   public LocalizedDoubleFormatter(double minDoubleValue, double maxDoubleValue){
@@ -46,7 +46,7 @@ public class LocalizedDoubleFormatter extends LocalizedRealNumberFormatter {
   
   public LocalizedDoubleFormatter(double minDoubleValue, double maxDoubleValue, Locale locale){
     super(locale);
-    setMinimumMinimumValue(BigDecimals.MIN_DOUBLE);
+    setMinimumMinimumValue(BigDecimals.MAX_NEGATIVE_DOUBLE);
     setMaximumMaximumValue(BigDecimals.MAX_DOUBLE);
     setMinimumDoubleValue(minDoubleValue);
     setMaximumDoubleValue(maxDoubleValue);

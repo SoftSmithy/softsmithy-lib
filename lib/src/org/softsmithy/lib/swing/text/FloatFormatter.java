@@ -33,12 +33,12 @@ public class FloatFormatter extends RealNumberFormatter {
   
   /** Creates a new instance of FloatFormatter */
   public FloatFormatter() {
-    init(Float.MIN_VALUE, Float.MAX_VALUE);
+    init(Floats.MAX_NEGATIVE_VALUE, Float.MAX_VALUE);
   }
   
   public FloatFormatter(NumberFormat format){
     super(format);
-    init(Float.MIN_VALUE, Float.MAX_VALUE);
+    init(Floats.MAX_NEGATIVE_VALUE, Float.MAX_VALUE);
   }
   
   public FloatFormatter(float minFloatValue, float maxFloatValue){
@@ -51,7 +51,7 @@ public class FloatFormatter extends RealNumberFormatter {
   }
   
   private void init(float minFloatValue, float maxFloatValue){
-    setMinimumMinimumValue(BigDecimals.MIN_FLOAT);
+    setMinimumMinimumValue(BigDecimals.MAX_NEGATIVE_FLOAT);
     setMaximumMaximumValue(BigDecimals.MAX_FLOAT);
     setMinimumFloatValue(minFloatValue);
     setMaximumFloatValue(maxFloatValue);

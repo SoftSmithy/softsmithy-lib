@@ -33,12 +33,12 @@ public class DoubleFormatter extends RealNumberFormatter {
   
   /** Creates a new instance of DoubleFormatter */
   public DoubleFormatter() {
-    init(Double.MIN_VALUE, Double.MAX_VALUE);
+    init(Doubles.MAX_NEGATIVE_VALUE, Double.MAX_VALUE);
   }
   
   public DoubleFormatter(NumberFormat format){
     super(format);
-    init(Double.MIN_VALUE, Double.MAX_VALUE);
+    init(Doubles.MAX_NEGATIVE_VALUE, Double.MAX_VALUE);
   }
   
   public DoubleFormatter(double minDoubleValue, double maxDoubleValue){
@@ -51,7 +51,7 @@ public class DoubleFormatter extends RealNumberFormatter {
   }
   
   private void init(double minDoubleValue, double maxDoubleValue){
-    setMinimumMinimumValue(BigDecimals.MIN_DOUBLE);
+    setMinimumMinimumValue(BigDecimals.MAX_NEGATIVE_DOUBLE);
     setMaximumMaximumValue(BigDecimals.MAX_DOUBLE);
     setMinimumDoubleValue(minDoubleValue);
     setMaximumDoubleValue(maxDoubleValue);
