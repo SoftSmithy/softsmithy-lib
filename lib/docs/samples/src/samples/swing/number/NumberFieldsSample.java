@@ -26,9 +26,8 @@ public class NumberFieldsSample extends javax.swing.JFrame {
         initComponents();
         jRealNumberField1.setRealNumberFormatterFactory(new RealNumberFormatterFactory(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
         jFloatField1.setFloatFormatterFactory(new FloatFormatterFactory(new FloatFormatter(NumberFormat.getPercentInstance())));
-        DecimalFormat format = new DecimalFormat("0.0000000000");
+        DecimalFormat format = new DecimalFormat("#,##0.00000");
         jDoubleField1.setDoubleFormatterFactory(new DoubleFormatterFactory(new DoubleFormatter(format)));
-        //jDoubleField1.setMaximumDoubleValue(-1);
         setSize(400, 300);
     }
     
@@ -63,6 +62,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
         jLocalizedRealNumberField1 = new org.softsmithy.lib.swing.JLocalizedRealNumberField();
         jLocalizedFloatField1 = new org.softsmithy.lib.swing.JLocalizedFloatField();
         jLocalizedDoubleField1 = new org.softsmithy.lib.swing.JLocalizedDoubleField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -212,6 +212,12 @@ public class NumberFieldsSample extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jLocalizedDoubleField1, gridBagConstraints);
 
+        jFormattedTextField1.setValue(new Double(0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        getContentPane().add(jFormattedTextField1, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
@@ -231,6 +237,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
     private org.softsmithy.lib.swing.JByteField jByteField1;
     private org.softsmithy.lib.swing.JDoubleField jDoubleField1;
     private org.softsmithy.lib.swing.JFloatField jFloatField1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private org.softsmithy.lib.swing.JIntegerField jIntegerField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -1,21 +1,23 @@
 Changes:
 
-
-ShapeIcon respects aspect ratio
-JListBox
-NetBeans Ant Projectfiles
--some minor changes
-XIcons
-StandardActions.properties (media)
-properties-files: i18n -> src
-- commented out system outputs
-- README.txt
-Tutorial & samples added
-SPL.txt added
-Dist structure changed a bit
-All jlfgr icons in StandardActions.properties referenced
-New Ant targets added to the build.xml (e.g. "dist")
-
+v20061029:  - ShapeIcon respects aspect ratio
+            - org.softsmithy.lib.swing.JListBox added
+            - org.softsmithy.lib.swing.icon.XIcons added
+            - StandardActions.properties some media information added
+            - All jlfgr icons referenced in StandardActions.properties
+            - org.softsmithy.lib.math.Doubles added
+            - org.softsmithy.lib.math.Floats added
+            - Bug 1581780 fixed
+            - commented out system outputs
+            - Javadocs added
+            - First trails of a tutorial & samples added
+            - a copy of the Sun Public License added (SPL.txt)
+            - README.txt changed
+            - New Ant targets added to the build.xml (e.g. "dist")
+            - NetBeans Ant Projectfiles v5.0
+            - Dist structure changed a bit
+            - properties-files moved: i18n -> src (only one jar)
+            - some minor changes
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies
              for icons. Image and shape icons supported.

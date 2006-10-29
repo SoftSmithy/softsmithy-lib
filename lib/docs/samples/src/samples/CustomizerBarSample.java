@@ -1,4 +1,4 @@
-package samples.swing.customizer;
+package samples;
 
 import java.awt.Point;
 import javax.swing.JLabel;

@@ -186,7 +186,7 @@
     <target name="samples" depends="init">
         <ant dir="${docs.samples.dir}" target="compile" inheritall="false" />
         <copy todir="${dist.docs.samples.dir}">
-             <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**"/>
+             <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**,src/samples/*.*"/>
          </copy>
     </target>
     

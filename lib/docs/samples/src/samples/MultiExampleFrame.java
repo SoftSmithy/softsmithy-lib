@@ -4,7 +4,9 @@
  * Created on 1. Juni 2004, 18:46
  */
 
-package samples.swing.customizer;
+package samples;
+
+import samples.swing.customizer.*;
 
 /**
  *

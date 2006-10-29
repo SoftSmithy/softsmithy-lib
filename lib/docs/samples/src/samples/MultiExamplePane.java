@@ -18,7 +18,7 @@
  * Created on 9. M�rz 2003, 18:23
  */
 
-package samples.swing.customizer;
+package samples;
 
 import java.awt.*;
 import java.awt.geom.*;

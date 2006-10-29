@@ -1,8 +1,7 @@
 Contains:
 
 softsmithy.jar - The SoftSmithy Utility Library
-softsmithy-i18n.jar - localized property files ("en" and "de" so far)
-docs-directory - contains the Javadoc, CHANGES.txt and this readme-file
+docs-directory - contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
@@ -23,3 +22,6 @@ http://sourceforge.net/cvs/?group_id=64833
 
 cvs -z3 -d:pserver:anonymous@softsmithy.cvs.sourceforge.net:/cvsroot/softsmithy co -P lib
 
+Used:
+jdk 1.4.2_11-b06
+NetBeans IDE 5.0
