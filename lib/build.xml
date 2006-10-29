@@ -207,5 +207,9 @@
              <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt"
               />
          </copy>
+         <copy todir="${dist.docs.dir}">
+             <fileset dir="${docs.dir}" includes="index.html"
+              />
+         </copy>
     </target>
 </project>
