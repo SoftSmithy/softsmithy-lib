@@ -1,7 +1,8 @@
 Contains:
 
 softsmithy.jar - The SoftSmithy Utility Library
-docs-directory - contains the Javadoc, a tutorial and samples
+src.zip        - The source code
+docs-directory - Contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
@@ -17,7 +18,7 @@ You can find a copy of this license in SPL.txt shipped with this distribution,
 at http://www.sun.com/ or at http://www.opensource.org/licenses/.
 
 
-The source can be obtained via CVS:
+The newest version can be obtained via CVS:
 http://sourceforge.net/cvs/?group_id=64833
 
 cvs -z3 -d:pserver:anonymous@softsmithy.cvs.sourceforge.net:/cvsroot/softsmithy co -P lib

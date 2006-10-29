@@ -17,6 +17,7 @@ v20061029:  - ShapeIcon respects aspect ratio
             - NetBeans Ant Projectfiles v5.0
             - Dist structure changed a bit
             - properties-files moved: i18n -> src (only one jar)
+            - src.zip added
             - some minor changes
 
 v20040727:  -Extended Icon Framework added which supports zooming strategies
