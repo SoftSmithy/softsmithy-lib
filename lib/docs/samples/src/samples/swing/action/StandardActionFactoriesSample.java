@@ -136,7 +136,7 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Locale.setDefault(Locale.ENGLISH);
+        //Locale.setDefault(Locale.ENGLISH); // throws java.security.AccessControlException when executed via Java WebStart
         JComponent.setDefaultLocale(Locale.getDefault());
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
