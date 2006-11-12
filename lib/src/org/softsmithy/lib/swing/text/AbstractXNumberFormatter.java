@@ -12,11 +12,6 @@
  * Contributor(s): .
  */
 
-/*
- * IntegerFormatter.java
- *
- * Created on 9. September 2003, 19:18
- */
 
 package org.softsmithy.lib.swing.text;
 
@@ -27,8 +22,8 @@ import javax.swing.text.*;
 import org.softsmithy.lib.util.*;
 
 /**
- *
- * @author  puce
+ * The base class of the number formatters.
+ * @author puce
  */
 public abstract class AbstractXNumberFormatter extends NumberFormatter {
     
@@ -39,31 +34,61 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     /** Holds value of property minimumMinimumValue. */
     private Number minimumMinimumValue = null;
     
-    /** Creates a new instance of IntegerFormatter */
+    /**
+     * Creates a new instance of this class.
+     */
     public AbstractXNumberFormatter() {
         init(null, null);
     }
     
+    /**
+     * Creates a new instance of this class.
+     * @param format the number format
+     */
     public AbstractXNumberFormatter(NumberFormat format){
         super(format);
         init(null, null);
     }
     
+    /**
+     * Creates a new instance of this class.
+     * @param minValue the minimum value
+     * @param maxValue the maximum value
+     */
     public AbstractXNumberFormatter(Number minValue, Number maxValue){
         init(minValue, maxValue);
     }
     
+    /**
+     * Creates a new instance of this class.
+     * @param format the number format
+     * @param minValue the minimum value
+     * @param maxValue the maximum value
+     */
     public AbstractXNumberFormatter(NumberFormat format, Number minValue, Number maxValue){
         super(format);
         init(minValue, maxValue);
     }
     
+    /**
+     * Initializes this formatter.
+     * @param minValue the minimum value
+     * @param maxValue the maximum value
+     */
     private void init(Number minValue, Number maxValue){
         setMinimumNumberValue(minValue);
         setMaximumNumberValue(maxValue);
     }
     
     
+    /**
+     * Sets the maximum value.
+     * It must be an instance of Number or null.
+     * It mustn't be smaller than the minimum value.
+     * It ensures that the maximum value is in the range of the maximum
+     * maximum value and the minimum minimum value.
+     * @param max the maximum number value
+     */
     public void setMaximum(Comparable max) {
         if (max != null && ! (max instanceof Number)){
             throw new IllegalArgumentException("max must be an instance of Number or null");
@@ -77,6 +102,14 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         super.setMaximum((Comparable) maximumToRange((Number) max));
     }
     
+    /**
+     * Sets the minimum value.
+     * It must be an instance of Number or null.
+     * It mustn't be bigger than the maximum value.
+     * It ensures that the minimum value is in the range of the maximum
+     * maximum value and the minimum minimum value.
+     * @param minimum the minimum number value
+     */
     public void setMinimum(Comparable minimum) {
         if (minimum != null && ! (minimum instanceof Number)){
             throw new IllegalArgumentException("minimum must be an instance of Number or null");
@@ -90,6 +123,13 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         super.setMinimum((Comparable) minimumToRange((Number) minimum));
     }
     
+    /**
+     * Returns the <code>Number</code> representation of the
+     * <code>String</code> <code>text</code>.
+     * @param text <code>String</code> to convert
+     * @return <code>Number</code> representation of text
+     * @throws ParseException if there is an error in the conversion
+     */
     public Object stringToValue(String text) throws ParseException {
         Number value = null;
         try{
@@ -116,6 +156,13 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         return value;
     }
     
+    /**
+     * Returns the <code>Number</code> representation of the
+     * <code>String</code> <code>text</code>.
+     * @param text <code>String</code> to convert
+     * @return <code>Number</code> representation of text
+     * @throws java.lang.NumberFormatException if there is an error in the conversion
+     */
     protected abstract Number stringToNumber(String text) throws NumberFormatException;
     
     public Number valueToRange(Number value){
