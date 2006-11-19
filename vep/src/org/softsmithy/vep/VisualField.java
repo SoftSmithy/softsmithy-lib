@@ -36,14 +36,16 @@ public class VisualField {
     private final List<List<Area>> segments;
     private final Area fixation;
     private final int deviderCircleIndex;
-
+    private final int nDeviderSectionsFromMiddle;
+    
     private Color deviderColor = Color.GRAY;
-
+    
     private Color fixationColor = Color.BLACK;
     
     /** Creates a new instance of VisualField */
-    public VisualField(double fixationRadius, int nSections, int deviderCircleIndex, double... radiusInc) {
+    public VisualField(double fixationRadius, int nSections, int deviderCircleIndex, int nDeviderSectionsFromMiddle, double... radiusInc) {
         this.deviderCircleIndex = deviderCircleIndex;
+        this.nDeviderSectionsFromMiddle = nDeviderSectionsFromMiddle;
         double centerCoord = XMath.sum(radiusInc) + fixationRadius;
         Point2D.Double center = new Point2D.Double(centerCoord, centerCoord);
         double radius = fixationRadius;
@@ -107,7 +109,10 @@ public class VisualField {
             List<Area> sectionSegments = segments.get(i);
             int j = 0;
             for (Area segment : sectionSegments){
-                if (j == deviderCircleIndex){
+                if (j == deviderCircleIndex ||
+                        i < nDeviderSectionsFromMiddle ||
+                        i >= segments.size()/2 - nDeviderSectionsFromMiddle && i < segments.size()/2  + nDeviderSectionsFromMiddle ||
+                        i >= segments.size()-nDeviderSectionsFromMiddle){
                     big.setColor(deviderColor);
                 } else {
                     if (((inner && j == 0) || (!(inner && outer) && (j == deviderCircleIndex + 1))) && colorSwitchingIndices.contains(i)){
@@ -127,7 +132,7 @@ public class VisualField {
             sectionStartPrimary = !sectionStartPrimary;
         }
         big.setColor(deviderColor);
-        big.fillRect(diameter/2 - fixation.getBounds().width/2, 0, fixation.getBounds().width, diameter);
+        //big.fillRect(diameter/2 - fixation.getBounds().width/2, 0, fixation.getBounds().width, diameter);
         big.setColor(fixationColor);
         big.fill(fixation);
         big.setColor(oldColor);
@@ -140,7 +145,7 @@ public class VisualField {
     
     
     public List<XIcon> createImages(VisualFieldTest visualFieldTest) {
-        return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections()), visualFieldTest.isInner(), visualFieldTest.isOuter()));
+        return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections(), nDeviderSectionsFromMiddle), visualFieldTest.isInner(), visualFieldTest.isOuter()));
     }
     
     /**
@@ -186,20 +191,20 @@ public class VisualField {
         this.secondaryColor = secondaryColor;
         createDefaultImage();
     }
-
+    
     public Color getDeviderColor() {
         return deviderColor;
     }
-
+    
     public void setDeviderColor(Color deviderColor) {
         this.deviderColor = deviderColor;
         createDefaultImage();
     }
-
+    
     public Color getFixationColor() {
         return fixationColor;
     }
-
+    
     public void setFixationColor(Color fixationColor) {
         this.fixationColor = fixationColor;
         createDefaultImage();

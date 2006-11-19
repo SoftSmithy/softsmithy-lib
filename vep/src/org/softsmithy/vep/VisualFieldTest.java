@@ -19,31 +19,31 @@ import java.util.Set;
  */
 public enum VisualFieldTest {
     LEFT_INNER(true, false){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getLeftColorSwitchingIndices(nSections);
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getLeftColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
         
     },
     RIGHT_INNER(true, false){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getRightColorSwitchingIndices(nSections);
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getRightColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
         
     },
     LEFT_OUTER(false, true){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getLeftColorSwitchingIndices(nSections);
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getLeftColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
         
     },
     RIGHT_OUTER(false, true){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getRightColorSwitchingIndices(nSections);
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getRightColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
     },
     FULL(true, true){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getAllIndices(nSections);
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getAllColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
         
     };
@@ -55,7 +55,7 @@ public enum VisualFieldTest {
         this.inner = inner;
         this.outer = outer;
     }
-    public abstract Set<Integer> getColorSwitchingIndices(int nSections);
+    public abstract Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle);
     
     public boolean isInner(){
         return inner;
@@ -66,27 +66,25 @@ public enum VisualFieldTest {
         return outer;
     }
     
-    private static Set<Integer> getLeftColorSwitchingIndices(int nSections){
+    private static Set<Integer> getLeftColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle){
         Set<Integer> set = new HashSet<Integer>();
-        for (int i=nSections/2; i<nSections; i++){
+        for (int i=nSections/2+nDeviderSectionsFromMiddle; i<nSections-nDeviderSectionsFromMiddle; i++){
             set.add(i);
         }
         return set; //return new HashSet<Integer>(Arrays.asList(nSections/2));
     }
     
-    private static Set<Integer> getRightColorSwitchingIndices(int nSections){
+    private static Set<Integer> getRightColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle){
         Set<Integer> set = new HashSet<Integer>();
-        for (int i=0; i<nSections/2; i++){
+        for (int i=nDeviderSectionsFromMiddle; i<nSections/2-nDeviderSectionsFromMiddle; i++){
             set.add(i);
         }
         return set; //new HashSet<Integer>(Arrays.asList(0, nSections/2));
     }
     
-    private static Set<Integer> getAllIndices(int nSections){
-        Set<Integer> set = new HashSet<Integer>();
-        for (int i=0; i<nSections; i++){
-            set.add(i);
-        }
+    private static Set<Integer> getAllColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle){
+        Set<Integer> set = getRightColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
+        set.addAll(getLeftColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle));
         return set; //new HashSet<Integer>(Arrays.asList(0, nSections/2));
     }
 
