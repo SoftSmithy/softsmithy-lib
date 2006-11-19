@@ -92,10 +92,10 @@ public class VisualField {
     
     
     private void createDefaultImage() {
-        defaultVisualField = new XImageIcon(createImage(Collections.EMPTY_SET, false));
+        defaultVisualField = new XImageIcon(createImage(Collections.EMPTY_SET, false, false));
     }
     
-    private Image createImage(Set<Integer> colorSwitchingIndices, boolean inner) {
+    private Image createImage(Set<Integer> colorSwitchingIndices, boolean inner, boolean outer) {
         BufferedImage bi = new BufferedImage(diameter, diameter, BufferedImage.TYPE_INT_ARGB);
         Graphics2D big = bi.createGraphics();
         big.setBackground(new Color(0,0,0, 0)); //needed???
@@ -110,7 +110,7 @@ public class VisualField {
                 if (j == deviderCircleIndex){
                     big.setColor(deviderColor);
                 } else {
-                    if (((inner && j == 0) || (j == deviderCircleIndex + 1)) && colorSwitchingIndices.contains(i)){
+                    if (((inner && j == 0) || (!(inner && outer) && (j == deviderCircleIndex + 1))) && colorSwitchingIndices.contains(i)){
                         primary = !primary;
                     }
                     if (primary){
@@ -134,13 +134,13 @@ public class VisualField {
         return bi;
     }
     
-    private XIcon createXIcon(Set<Integer> nonColorSwitchingIndices, boolean inner) {
-        return new XImageIcon(createImage(nonColorSwitchingIndices, inner));
+    private XIcon createXIcon(Set<Integer> nonColorSwitchingIndices, boolean inner, boolean outer) {
+        return new XImageIcon(createImage(nonColorSwitchingIndices, inner, outer));
     }
     
     
     public List<XIcon> createImages(VisualFieldTest visualFieldTest) {
-        return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections()), visualFieldTest.isInner()));
+        return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections()), visualFieldTest.isInner(), visualFieldTest.isOuter()));
     }
     
     /**

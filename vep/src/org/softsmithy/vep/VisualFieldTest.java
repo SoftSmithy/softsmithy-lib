@@ -18,40 +18,52 @@ import java.util.Set;
  * @author florian.brunner
  */
 public enum VisualFieldTest {
-    LEFT_INNER(true){
+    LEFT_INNER(true, false){
         public Set<Integer> getColorSwitchingIndices(int nSections) {
             return getLeftColorSwitchingIndices(nSections);
         }
         
     },
-    RIGHT_INNER(true){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-             return getRightColorSwitchingIndices(nSections);
-        }
-        
-    },
-    LEFT_OUTER(false){
-        public Set<Integer> getColorSwitchingIndices(int nSections) {
-            return getLeftColorSwitchingIndices(nSections);
-        }
-        
-    },
-    RIGHT_OUTER(false){
+    RIGHT_INNER(true, false){
         public Set<Integer> getColorSwitchingIndices(int nSections) {
             return getRightColorSwitchingIndices(nSections);
         }
         
+    },
+    LEFT_OUTER(false, true){
+        public Set<Integer> getColorSwitchingIndices(int nSections) {
+            return getLeftColorSwitchingIndices(nSections);
+        }
+        
+    },
+    RIGHT_OUTER(false, true){
+        public Set<Integer> getColorSwitchingIndices(int nSections) {
+            return getRightColorSwitchingIndices(nSections);
+        }
+    },
+    FULL(true, true){
+        public Set<Integer> getColorSwitchingIndices(int nSections) {
+            return getAllIndices(nSections);
+        }
+        
     };
-
-    private final boolean inner;
     
-    private VisualFieldTest(boolean inner){
+    private final boolean inner;
+    private final boolean outer;
+    
+    private VisualFieldTest(boolean inner, boolean outer){
         this.inner = inner;
+        this.outer = outer;
     }
     public abstract Set<Integer> getColorSwitchingIndices(int nSections);
     
     public boolean isInner(){
         return inner;
+    }
+    
+    
+    public boolean isOuter() {
+        return outer;
     }
     
     private static Set<Integer> getLeftColorSwitchingIndices(int nSections){
@@ -69,4 +81,13 @@ public enum VisualFieldTest {
         }
         return set; //new HashSet<Integer>(Arrays.asList(0, nSections/2));
     }
+    
+    private static Set<Integer> getAllIndices(int nSections){
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i=0; i<nSections; i++){
+            set.add(i);
+        }
+        return set; //new HashSet<Integer>(Arrays.asList(0, nSections/2));
+    }
+
 }
