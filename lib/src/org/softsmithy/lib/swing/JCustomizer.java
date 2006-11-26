@@ -37,34 +37,57 @@ import org.softsmithy.lib.test.*;
 /**
  * This component wraps another component to make it visually customizable.
  * Eg. the component can be moved or resized with the mouse.
- *
+ * 
  * Note: JCustomizer expects a JCustomizerPane as its parent.
- * Note: For mulit-selection: press the Ctrl-button while selecting.
+ * Note: For multi-selection: press the Ctrl-button while selecting.
  * Note: If you're interested in the values of the properties "x", "y", "width"
  *       and "height", then you might want to register a CustomizerListener in
  *       addition to PropertyChangeListeners to listen for all changes, absolute
  *       and relative ones.
- *
- * @author  puce
+ * @author puce
  */
 public class JCustomizer extends AbstractCustomizer {//implements CustomizerModelListener{
   
+    /**
+     * The wrapped component.
+     */
   private JComponent component;
+    /**
+     * The container of the wrapped component.
+     */
   private final JPanel componentContainer = new JPanel();
+    /**
+     * The glass pane over the wrapped component.
+     */
   private final JPanel glassPane = new JPanel(); // intercepts events
   
+    /**
+     * The state manager.
+     */
   private StateManager stateManager;
+    /**
+     * The customizer listeners.
+     */
   private final Set listeners = new HashSet();
+    /**
+     * The layout constraints.
+     */
   private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
   
   /** Holds value of property model. */
   //private CustomizerModel model;
   
-  /** Creates a new instance of JCustomizer */
+  /**
+     * Creates a new instance of this class.
+     */
   public JCustomizer() {
     this(new JPanel());
   }
   
+    /**
+     * Creates a new instance of this class.
+     * @param component the wrapped component
+     */
   public JCustomizer(JComponent component){
     //setModel(new DefaultCustomizerModel());
     setLayout(new TableLayout(new double[][]{{TableLayout.FILL}, {TableLayout.FILL}}));//new BorderLayout());
@@ -98,20 +121,26 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     
   }
   
-  /** Getter for property component.
-   * @return Value of property component.
-   */
+  /**
+     * Gets the wrapped component.
+     * @return the wrapped component
+     */
   public JComponent getComponent() {
     return component;
   }
   
+    /**
+     * Gets the container of the wrapped component.
+     * @return the container of the wrapped component
+     */
   private JPanel getComponentContainer(){
     return componentContainer;
   }
   
-  /** Setter for property component.
-   * @param component New value of property component.
-   */
+  /**
+     * Sets the wrapped component.
+     * @param component the wrapped component
+     */
   public void setComponent(JComponent component) {
     if (this.component != null){
       //this.remove(this.component);
@@ -123,10 +152,18 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     
   }
   
+    /**
+     * Gets the state manager.
+     * @return the state manager
+     */
   public StateManager getStateManager(){
     return stateManager;
   }
   
+    /**
+     * Sets the state manager.
+     * @param manager the state manager
+     */
   protected void setStateManager(StateManager manager){
     if (stateManager != null){
       glassPane.removeMouseListener(stateManager);
@@ -174,13 +211,27 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //  }
   
   /**
-   * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
-   */
+     * Relatively reshapes this customizer. </br>
+     * This will ask the parent to relayout its components. </br>
+     * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
+     * @param dx delta x
+     * @param dy delta y
+     * @param dwidth delta width
+     * @param dheight delta height
+     */
   public void reshapeRel(int dx, int dy, int dwidth, int dheight) {
     reshapeRelOnly(dx, dy, dwidth, dheight);
     fireCustomizerReshapeRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
+    /**
+     * Relatively reshapes this customizer without firing an event. </br>
+     * This will ask the parent to relayout its components.
+     * @param dx delta x
+     * @param dy delta y
+     * @param dwidth delta width
+     * @param dheight delta height
+     */
   protected void reshapeRelOnly(int dx, int dy, int dwidth, int dheight){
     getParentCustomizerPane().setAbsoluteCustomizerBounds(this, calculateBounds(dx, dy, dwidth, dheight));
     //    reshapeRelOnly(dx, dy, dwidth, dheight);
@@ -194,13 +245,27 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-   * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
-   */
+     * Relatively changes the bounds of this customizer. </br>
+     * This will NOT ask the parent to relayout its components. </br>
+     * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
+     * @param dx delta x
+     * @param dy delta y
+     * @param dwidth delta width
+     * @param dheight delta height
+     */
   public void setBoundsRel(int dx, int dy, int dwidth, int dheight){
     setBoundsRelOnly(dx, dy, dwidth, dheight);
     fireCustomizerResetBoundsRel(new CustomizerEvent(this, dx, dy, dwidth, dheight));
   }
   
+    /**
+     * Relatively changes the bounds of this customizer without firing an event. </br>
+     * This will NOT ask the parent to relayout its components. </br>
+     * @param dx delta x
+     * @param dy delta y
+     * @param dwidth delta width
+     * @param dheight delta height
+     */
   protected void setBoundsRelOnly(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = calculateBounds(dx, dy, dwidth, dheight);
     setBounds(bounds);
@@ -208,6 +273,14 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     repaint();
   }
   
+    /**
+     * Calculates the bounds.
+     * @param dx delta x
+     * @param dy delta y
+     * @param dwidth delta width
+     * @param dheight delta height
+     * @return the bounds
+     */
   private Rectangle calculateBounds(int dx, int dy, int dwidth, int dheight){
     Rectangle bounds = getBounds();
     return new Rectangle(bounds.x + dx, bounds.y + dy, bounds.width + dwidth,
@@ -230,10 +303,18 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    return new Dimension(width, height);
   //  }
   
+    /**
+     * Adds a CustomizerListener.
+     * @param listener a CustomizerListener
+     */
   public void addCustomizerListener(CustomizerListener listener){
     listeners.add(listener);
   }
   
+    /**
+     * Removes a CustomizerListener.
+     * @param listener a CustomizerListener
+     */
   public void removeCustomizerListener(CustomizerListener listener){
     listeners.remove(listener);
   }
@@ -249,12 +330,22 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //      ((CustomizerListener) i.next()).customizerResizeRel(e);
   //    }
   //  }
+    /**
+     * Fires a CustomizerEvent to notify the CustomizerListeners that the bounds
+     * of this customizer have been relatively changed.
+     * @param e the CustomizerEvent
+     */
   public void fireCustomizerResetBoundsRel(CustomizerEvent e){
     for (Iterator i=listeners.iterator(); i.hasNext();){
       ((CustomizerListener) i.next()).customizerResetBoundsRel(e);
     }
   }
   
+      /**
+     * Fires a CustomizerEvent to notify the CustomizerListeners this customizer 
+     * have been relatively reshaped.
+     * @param e the CustomizerEvent
+     */
   public void fireCustomizerReshapeRel(CustomizerEvent e){
     for (Iterator i=listeners.iterator(); i.hasNext();){
       ((CustomizerListener) i.next()).customizerReshapeRel(e);
@@ -275,15 +366,16 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    }
   //  }
   //
-  /** Getter for property glassPane.
-   * @return Value of property glassPane.
-   *
-   */
+  /**
+     * Gets the glass pane over the wrapped component.
+     * @return the glass pane over the wrapped component
+     */
   public JPanel getGlassPane() {
     return glassPane;
   }
   
-  /** Registers the text to display in a tool tip.
+  /** 
+   * Registers the text to display in a tool tip.
    * The text displays when the cursor lingers over the component.
    * <p>
    * See <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tooltip.html">How to Use Tool Tips</a>
@@ -308,6 +400,11 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+    /**
+     * Applys a border to this customizer. </br>
+     * Usually you will use this method rather than setBorder.
+     * @param border a border
+     */
   public void applyBorder(Border border) {
     getGlassPane().setBorder(border); // painted on glass pane so the handles of HandleBorder are always visible
     Insets insets = getGlassPane().getInsets();
@@ -326,8 +423,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
-   */
+     * Sets the x coordinate. </br>
+     * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+     * @param x the x coordinate
+     */
   public void setX(int x) {
     int oldValue = getX();
     reshapeRelOnly(x-getX(), 0, 0, 0);
@@ -335,8 +434,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
-   */
+     * Sets the y coordinate. </br>
+     * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+     * @param y the y coordinate
+     */
   public void setY(int y) {
     int oldValue = getY();
     reshapeRelOnly(0, y-getY(), 0, 0);
@@ -344,8 +445,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
-   */
+     * Sets the width. </br>
+     * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+     * @param width the width
+     */
   public void setWidth(int width) {
     int oldValue = getWidth();
     reshapeRelOnly(0, 0, width-getWidth(), 0);
@@ -353,15 +456,18 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-   * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
-   */
+     * Sets the height. </br>
+     * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
+     * @param height the height
+     */
   public void setHeight(int height) {
     int oldValue = getX();
     reshapeRelOnly(0, 0, 0, height-getHeight());
     firePropertyChange("height", oldValue, getHeight());
   }
   
-  /** Returns the tooltip string that has been set with
+  /** 
+   * Returns the tooltip string that has been set with
    * <code>setToolTipText</code>.
    *
    * @return the text of the tool tip
@@ -400,20 +506,38 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+    /**
+     * Gets the parent JCustomizerPane. </br>
+     * Note: If the parent is not an instance of JCustomizerPane a ClassCastException
+     * will be thrown!
+     * @return the parent JCustomizerPane
+     */
   public JCustomizerPane getParentCustomizerPane() {
     // There seems to be no way to ensure this!?
     return (JCustomizerPane) getParent();
   }
   
   
+    /**
+     * Adds an ActionListener.
+     * @param l an ActionListener
+     */
   public void addActionListener(ActionListener l) {
     listenerList.add(ActionListener.class, l);
   }
   
+    /**
+     * Removes an ActionListener.
+     * @param l an ActionListener
+     */
   public void removeActionListener(ActionListener l) {
     listenerList.remove(ActionListener.class, l);
   }
   
+    /**
+     * Fires an ActionEvent.
+     * @param ev an ActionEvent
+     */
   public void fireActionEvent(ActionEvent ev){
     ActionListener[] listeners = (ActionListener[]) getListeners(ActionListener.class);
     for (int i=0; i<listeners.length; i++){
@@ -421,6 +545,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+    /**
+     * Gets the color of the border of the normal state.
+     * @return the color of the border of the normal state
+     */
   public Color getNormalBorderColor(){
     return getStateManager().getNormalBorderColor();
   }
@@ -429,6 +557,10 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //    getStateManager().setNormalBorderColor(normalBorderColor);
   //  }
   //
+    /**
+     * Gets the color of the border of the selected state.
+     * @return the color of the border of the selected state
+     */
   public Color getSelectedBorderColor(){
     return getStateManager().getSelectedBorderColor();
   }
@@ -439,34 +571,39 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   
   
   
-  /** Getter for property usingDefaultNormalBorderColor.
-   * @return Value of property usingDefaultNormalBorderColor.
-   *
-   */
+  /**
+     * Tells if this customizer is using the default color of the border of the normal 
+     * state.
+     * @return true if the default color is used, else false
+     */
   public boolean isUsingDefaultNormalBorderColor() {
     return getStateManager().isUsingDefaultNormalBorderColor();
   }
   
-  /** Setter for property usingDefaultNormalBorderColor.
-   * @param usingDefaultNormalBorderColor New value of property usingDefaultNormalBorderColor.
-   *
-   */
+  /**
+     * Specifies if this customizer should use the default or a custom color of 
+     * the border of the normal state.
+     * @param usingDefaultNormalBorderColor true if the default color should be used, else false
+     */
   public void setUsingDefaultNormalBorderColor(boolean usingDefaultNormalBorderColor) {
     getStateManager().setUsingDefaultNormalBorderColor(usingDefaultNormalBorderColor);
   }
   
-  /** Getter for property usingDefaultSelectedBorderColor.
-   * @return Value of property usingDefaultSelectedBorderColor.
-   *
-   */
+
+    /**
+     * Tells if this customizer is using the default color of the border of the selected 
+     * state.
+     * @return true if the default color is used, else false
+     */
   public boolean isUsingDefaultSelectedBorderColor() {
     return getStateManager().isUsingDefaultSelectedBorderColor();
   }
   
-  /** Setter for property usingDefaultSelectedBorderColor.
-   * @param usingDefaultSelectedBorderColor New value of property usingDefaultSelectedBorderColor.
-   *
-   */
+  /**
+     * Specifies if this customizer should use the default or a custom color of 
+     * the border of the selected state.
+     * @param usingDefaultSelectedBorderColor true if the default color should be used, else false
+     */
   public void setUsingDefaultSelectedBorderColor(boolean usingDefaultSelectedBorderColor) {
     getStateManager().setUsingDefaultSelectedBorderColor(usingDefaultSelectedBorderColor);
   }

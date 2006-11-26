@@ -36,8 +36,17 @@ import org.softsmithy.lib.swing.*;
 public class XActions {
     
     //private static final String STANDARD_ACTIONS_RB_BASE_NAME ="org.softsmithy.lib.swing.StandardActions";
+    /**
+     * The ResourceBundle base name of the standard menus.
+     */
     private static final String STANDARD_MENUS_RB_BASE_NAME = "org.softsmithy.lib.swing.action.StandardMenus";
+    /**
+     * A large empty icon. (24x24)
+     */
     private static final Icon LARGE_NULL_ICON = new ImageIcon(new BufferedImage(24,24,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null24.gif"));
+    /**
+     * A small empty icon. (16x16)
+     */
     private static final Icon SMALL_NULL_ICON = new ImageIcon(new BufferedImage(16,16,BufferedImage.TYPE_INT_ARGB));//(XActions.class).getResource("/org/softsmithy/lib/buttonGraphics/general/null16.gif"));
     //  private static final Map MNEMONICS = new HashMap();
     //
@@ -52,15 +61,13 @@ public class XActions {
     
     /**
      * Creates a new XAction from a ResourceBundle.
-     *
-     * @param name                       the method name (must take an ActionEvent
+     * @param name the method name (must take an ActionEvent
      *                                   obect as its single parameter) that gets
      *                                   called when an ActionEvent occurs
-     * @param target                     he object with the specified method
-     * @param rb                         a ResourceBundle (must not specify all
-     * Action properties)
-     * @return                           a XAction configured by a ResourceBundle
-     * @exception NoSuchMethodException  if no such method found
+     * @param target the object with the specified method
+     * @param rb a ResourceBundle (doesn't have to specify all XAction properties)
+     * @return a XAction configured by a ResourceBundle
+     * @exception NoSuchMethodException if no such method found
      */
     public static XAction createXAction(String name, Object target, ResourceBundle rb)
     throws NoSuchMethodException {
@@ -158,6 +165,10 @@ public class XActions {
      * myAction.mnemonicKey = A <br>
      * myAction.largeIcon = /myGraphics/MyAction24.gif <br>
      * myAction.smallIcon = /myGraphics/MyAction16.gif <br>
+     *
+     * @param action the XAction to configure
+     * @param name the base name of the keys
+     * @param rb a ResourceBundle (doesn't have to specify all XAction properties)
      */
     public static void configureXAction(XAction action, String name, ResourceBundle rb){
         configureStringProperties(action, name, rb);
@@ -166,6 +177,13 @@ public class XActions {
         configureMnemonicKeyProperties(action, name, rb);
     }
     
+    
+    /**
+     * Configures the string properties of a XAction from a ResourceBundle.
+     * @param action the XAction to configure
+     * @param name the base name of the keys
+     * @param rb a ResourceBundle (doesn't have to specify all string properties of XAction)
+     */
     private static void configureStringProperties(XAction action, String name, ResourceBundle rb){
         String[] string_properties = {Action.NAME, Action.SHORT_DESCRIPTION};
         for (int i = 0; i < string_properties.length; i++) {
@@ -179,6 +197,12 @@ public class XActions {
         }
     }
     
+    /**
+     * Configures the icon properties of a XAction from a ResourceBundle.
+     * @param action the XAction to configure
+     * @param name the base name of the keys
+     * @param rb a ResourceBundle (doesn't have to specify all icon properties of XAction)
+     */
     private static void configureIconProperties(XAction action, String name, ResourceBundle rb){
         String[] icon_properties = {Action.SMALL_ICON,
         XAction.LARGE_DISABLED_ICON,
@@ -208,6 +232,12 @@ public class XActions {
         }
     }
     
+    /**
+     * Configures the KeyStroke properties of a XAction from a ResourceBundle.
+     * @param action the XAction to configure
+     * @param name the base name of the keys
+     * @param rb a ResourceBundle (doesn't have to specify all KeyStroke properties of XAction)
+     */
     private static void configureKeyStrokeProperties(XAction action, String name, ResourceBundle rb){
         String[] keyStrokeProperties = {Action.ACCELERATOR_KEY};
         for (int i = 0; i < keyStrokeProperties.length; i++) {
@@ -220,6 +250,12 @@ public class XActions {
         }
     }
     
+    /**
+     * Configures the mnemonic key properties of a XAction from a ResourceBundle.
+     * @param action the XAction to configure
+     * @param name the base name of the keys
+     * @param rb a ResourceBundle (doesn't have to specify all mnemonic key properties of XAction)
+     */
     private static void configureMnemonicKeyProperties(XAction action, String name, ResourceBundle rb){
         String[] mnemonicKeyProperties = {Action.MNEMONIC_KEY};
         for (int i = 0; i < mnemonicKeyProperties.length; i++) {
@@ -238,12 +274,18 @@ public class XActions {
     }
     
     /**
-     * Creates a configured button.
-     *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured button
+     * Creates a configured button.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
+     * @param action the XAction with the configuration data
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
+     * @return a configured button
      */
     public static JButton createButton(XAction action, IconType iconType,
             boolean showText, boolean coolStyle) {
@@ -253,12 +295,20 @@ public class XActions {
     }
     
     /**
-     * Creates a configured toggle button.
+     * Creates a configured toggle button.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
      *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured toggle button
+     * @param action the XAction with the configuration data
+     * @param listener a listener, which listens to the item state
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
+     * @return a configured toggle button
      */
     public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
         JToggleButton button = new JToggleButton();
@@ -267,12 +317,20 @@ public class XActions {
     }
     
     /**
-     * Creates a configured toggle button.
+     * Creates a configured toggle button.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
      *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured toggle button
+     * @param action the XAction with the configuration data
+     * @param group a ButtonGroup to which this button will be added
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
+     * @return a configured toggle button
      */
     public static JToggleButton createToggleButton(XAction action, ButtonGroup group,
             IconType iconType, boolean showText, boolean coolStyle) {
@@ -284,10 +342,11 @@ public class XActions {
     /**
      * Creates a configured radio button.
      *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured radio button
+     * @param action the XAction with the configuration data
+     * @param group a ButtonGroup to which this button will be added
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @return a configured radio button
      */
     public static JRadioButton createRadioButton(XAction action, ButtonGroup group,
             IconType iconType, boolean showText) {
@@ -298,11 +357,11 @@ public class XActions {
     
     /**
      * Creates a configured check box.
-     *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured check box
+     * @param action the XAction with the configuration data
+     * @param listener a listener, which listens to the item state
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @return a configured check box
      */
     public static JCheckBox createCheckBox(XAction action, ItemListener listener,
             IconType iconType, boolean showText) {
@@ -329,10 +388,11 @@ public class XActions {
     /**
      * Creates a configured radio button menu item.
      *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured radio button menu item
+     * @param action the XAction with the configuration data
+     * @param group a ButtonGroup to which this button will be added
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @return a configured radio button menu item
      */
     public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action,
             ButtonGroup group, IconType iconType, boolean showText) {
@@ -344,10 +404,11 @@ public class XActions {
     /**
      * Creates a configured check button menu item.
      *
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
-     * @return          a configured check button menu item
+     * @param action the XAction with the configuration data
+     * @param listener a listener, which listens to the item state
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @return a configured check button menu item
      */
     public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action,
             ItemListener listener, IconType iconType, boolean showText) {
@@ -356,24 +417,65 @@ public class XActions {
         return item;
     }
     
+    /**
+     * Configures a button from a XAction.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
+     *
+     * @param button the button to configure
+     * @param action the XAction with the configuration data
+     * @param listener a listener, which listens to the item state
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
+     */
     public static void configureButton(AbstractButton button, XAction action,
             ItemListener listener, IconType iconType, boolean showText, boolean coolStyle) {
         button.addItemListener(listener);
         configureButton(button, action, iconType, showText, coolStyle);
     }
     
+    
+    /**
+     * Configures a button from a XAction.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
+     *
+     * @param button the button to configure
+     * @param action the XAction with the configuration data
+     * @param group a ButtonGroup to which this button will be added
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
+     */
     public static void configureButton(AbstractButton button, XAction action,
             ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle) {
         group.add(button);
         configureButton(button, action, iconType, showText, coolStyle);
     }
+    
     /**
-     * Configures an abstract button.
+     * Configures a button from a XAction.</br>
+     * </br>
+     * If cool style is set to true, then the border of the button will be drawn
+     * only if the mouse pointer is over the button.
+     * Note: Since Java 1.4 you can create a similar effect by setting the
+     * rollover property of the toolbar to true. However look and feels may
+     * ignore this property and the Java Look and Feel does so.
      *
-     * @param button    the abstract button  to configure
-     * @param action    the XAction with the configuration data
-     * @param iconType  the icon type
-     * @param showText  if the label text should be shown
+     * @param button the button to configure
+     * @param action the XAction with the configuration data
+     * @param iconType the icon type
+     * @param showText if the label text should be shown
+     * @param coolStyle specifies if the cool style should be applied
      */
     public static void configureButton(AbstractButton button, XAction action,
             IconType iconType, boolean showText, boolean coolStyle) {
@@ -405,7 +507,7 @@ public class XActions {
      * @param button  the abstract button
      * @param action  the XAction
      */
-    protected static void setLargeIcons(AbstractButton button, XAction action) {
+    private static void setLargeIcons(AbstractButton button, XAction action) {
         Icon icon = action.getLargeDisabledIcon();
         if (icon != null) {
             button.setDisabledIcon(icon);
@@ -444,7 +546,7 @@ public class XActions {
      * @param button  the abstract button
      * @param action  the XAction
      */
-    protected static void setSmallIcons(AbstractButton button, XAction action) {
+    private static void setSmallIcons(AbstractButton button, XAction action) {
         Icon icon = action.getSmallDisabledIcon();
         if (icon != null) {
             button.setDisabledIcon(icon);
@@ -498,10 +600,20 @@ public class XActions {
     //    return standardAction;
     //  }
     
+    /**
+     * Creates a file menu with a localized text.
+     * @param locale the locale
+     * @return a file menu with a localized text
+     */
     public static JMenu createFileMenu(Locale locale) {
         return createStandardMenu("file", locale);
     }
     
+    /**
+     * Creates an edit menu with a localized text.
+     * @param locale the locale
+     * @return an edit menu with a localized text
+     */
     public static JMenu createEditMenu(Locale locale) {
         return createStandardMenu("edit", locale);
     }
@@ -512,16 +624,34 @@ public class XActions {
     return menu;
   }*/
     
+    /**
+     * Creates a help menu with a localized text.
+     * @param locale the locale
+     * @return a help menu with a localized text
+     */
     public static JMenu createHelpMenu(Locale locale) {
         return createStandardMenu("help", locale);
     }
     
+    /**
+     * Creates a standard menu with a localized text.
+     * @param name the base name of the ResourceBundle keys
+     * @param locale the locale
+     * @return a standard menu with a localized text
+     */
     private static JMenu createStandardMenu(String name, Locale locale){
         JMenu menu = new JMenu();
         configureStandardMenu(menu, name, locale);
         return menu;
     }
     
+    /**
+     * Creates a standard menu with a localized text.
+     *
+     * @param menu the menu to configure
+     * @param name the base name of the ResourceBundle keys
+     * @param locale the locale
+     */
     private static void configureStandardMenu(JMenu menu, String name, Locale
             locale){
         ResourceBundle rb = ResourceBundle.getBundle(STANDARD_MENUS_RB_BASE_NAME, locale);
