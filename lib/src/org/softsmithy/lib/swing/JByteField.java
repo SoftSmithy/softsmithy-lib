@@ -24,81 +24,83 @@ import org.softsmithy.lib.swing.text.*;
  * @author puce
  */
 public class JByteField extends JWholeNumberField {
-  
+    
     /**
      * The default value.
      */
-  private static final byte DEFAULT_VALUE = 0;
+    private static final byte DEFAULT_VALUE = 0;
+    
     /**
      * The default minimum value.
      */
-  private static final byte DEFAULT_MIN_VALUE = Byte.MIN_VALUE;
+    private static final byte DEFAULT_MIN_VALUE = Byte.MIN_VALUE;
+    
     /**
      * The default maximum value.
      */
-  private static final byte DEFAULT_MAX_VALUE = Byte.MAX_VALUE;
-  
-  /**
+    private static final byte DEFAULT_MAX_VALUE = Byte.MAX_VALUE;
+    
+    /**
      * Creates a new instance of this class.
      */
-  public JByteField() {
-    this(Locale.getDefault());
-  }
-  
+    public JByteField() {
+        this(Locale.getDefault());
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param locale the locale
      */
-  public JByteField(Locale locale){
-    this(DEFAULT_VALUE, locale);
-  }
-  
+    public JByteField(Locale locale){
+        this(DEFAULT_VALUE, locale);
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param value the value
      */
-  public JByteField(byte value){
-    this(value, Locale.getDefault());
-  }
-  
+    public JByteField(byte value){
+        this(value, Locale.getDefault());
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param value the value
      * @param locale the locale
      */
-  public JByteField(byte value, Locale locale){
-    this(value, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, locale);
-  }
-  
+    public JByteField(byte value, Locale locale){
+        this(value, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE, locale);
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param minValue the minimum value
      * @param maxValue the maximum value
      */
-  public JByteField(byte minValue, byte maxValue){
-    this(minValue, maxValue, Locale.getDefault());
-  }
-  
+    public JByteField(byte minValue, byte maxValue){
+        this(minValue, maxValue, Locale.getDefault());
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param minValue the minimum value
      * @param maxValue the maximum value
      * @param locale the locale
      */
-  public JByteField(byte minValue, byte maxValue, Locale locale){
-    this(DEFAULT_VALUE, minValue, maxValue, locale);
-  }
-  
+    public JByteField(byte minValue, byte maxValue, Locale locale){
+        this(DEFAULT_VALUE, minValue, maxValue, locale);
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param value the value
      * @param minValue the minimum value
      * @param maxValue the maximum value
      */
-  public JByteField(byte value, byte minValue, byte maxValue){
-    this(value, minValue, maxValue, Locale.getDefault());
-  }
-  
+    public JByteField(byte value, byte minValue, byte maxValue){
+        this(value, minValue, maxValue, Locale.getDefault());
+    }
+    
     /**
      * Creates a new instance of this class.
      * @param value the value
@@ -106,63 +108,63 @@ public class JByteField extends JWholeNumberField {
      * @param maxValue the maximum value
      * @param locale the locale
      */
-  public JByteField(byte value, byte minValue, byte maxValue, Locale locale){
-    super(new ByteFormatterFactory(new ByteFormatter()));
-    setMinimumByteValue(minValue);
-    setMaximumByteValue(maxValue);
-    setByteValue(value);
-    setLocale(locale);
-  }
-  
-  
+    public JByteField(byte value, byte minValue, byte maxValue, Locale locale){
+        super(new ByteFormatterFactory(new ByteFormatter()));
+        setMinimumByteValue(minValue);
+        setMaximumByteValue(maxValue);
+        setByteValue(value);
+        setLocale(locale);
+    }
+    
+    
     /**
      * Gets the value.
      * @return the value.
      */
-  public byte getByteValue(){
-    return getBigIntegerValue().byteValue();
-  }
-  
+    public byte getByteValue(){
+        return getBigIntegerValue().byteValue();
+    }
+    
     /**
-     * Set the value.
+     * Sets the value.
      * @param i the value
      */
-  public void setByteValue(byte i){
-    setBigIntegerValue(BigInteger.valueOf(i));
-  }
-  
+    public void setByteValue(byte i){
+        setBigIntegerValue(BigInteger.valueOf(i));
+    }
+    
     /**
      * Gets the minimum value.
      * @return the minimum value
      */
-  public byte getMinimumByteValue(){
-    return getMinimumBigIntegerValue().byteValue();
-  }
-  
+    public byte getMinimumByteValue(){
+        return getMinimumBigIntegerValue().byteValue();
+    }
+    
     /**
      * Sets the minimum value.
      * @param minByteValue the minimum value
      */
-  public void setMinimumByteValue(byte minByteValue){
-    setMinimumBigIntegerValue(BigInteger.valueOf(minByteValue));
-  }
-  
+    public void setMinimumByteValue(byte minByteValue){
+        setMinimumBigIntegerValue(BigInteger.valueOf(minByteValue));
+    }
+    
     /**
      * Gets the maximum value.
      * @return the maximum value
      */
-  public byte getMaximumByteValue(){
-    return getMaximumBigIntegerValue().byteValue();
-  }
-  
+    public byte getMaximumByteValue(){
+        return getMaximumBigIntegerValue().byteValue();
+    }
+    
     /**
      * Sets the maximum value.
      * @param maxByteValue the maximum value
      */
-  public void setMaximumByteValue(byte maxByteValue){
-    setMaximumBigIntegerValue(BigInteger.valueOf(maxByteValue));
-  }
-  
+    public void setMaximumByteValue(byte maxByteValue){
+        setMaximumBigIntegerValue(BigInteger.valueOf(maxByteValue));
+    }
+    
     /**
      * Sets the formatter.
      * Must be an instance of ByteFormatter.
@@ -170,29 +172,29 @@ public class JByteField extends JWholeNumberField {
      * more information.
      * @param formatter the number formatter
      */
-  protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
-    if (! (formatter instanceof ByteFormatter)){
-      throw new IllegalArgumentException("formatter must be an instance of ByteFormatter!");
+    protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
+        if (! (formatter instanceof ByteFormatter)){
+            throw new IllegalArgumentException("formatter must be an instance of ByteFormatter!");
+        }
+        super.setFormatter(formatter);
     }
-    super.setFormatter(formatter);
-  }
-  
+    
     /**
      * Gets the number formatter.
      * @return the number formatter
      */
-  public ByteFormatter getByteFormatter(){
-    return (ByteFormatter) getWholeNumberFormatter();
-  }
-  
+    public ByteFormatter getByteFormatter(){
+        return (ByteFormatter) getWholeNumberFormatter();
+    }
+    
     /**
      * Gets the number formatter factory.
      * @return the number formatter factory
      */
-  public ByteFormatterFactory getByteFormatterFactory(){
-    return (ByteFormatterFactory) getWholeNumberFormatterFactory();
-  }
-  
+    public ByteFormatterFactory getByteFormatterFactory(){
+        return (ByteFormatterFactory) getWholeNumberFormatterFactory();
+    }
+    
     /**
      * Sets the number formatter factory.
      * Calls the reinit method.
@@ -202,11 +204,11 @@ public class JByteField extends JWholeNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param factory the number formatter factory
      */
-  public void setByteFormatterFactory(ByteFormatterFactory factory){
-    setWholeNumberFormatterFactory(factory);
-  }
-  
-        /**
+    public void setByteFormatterFactory(ByteFormatterFactory factory){
+        setWholeNumberFormatterFactory(factory);
+    }
+    
+    /**
      * Sets the formatter factory.
      * Must be an instance of ByteFormatterFactory.
      * Calls the reinit method.
@@ -216,11 +218,11 @@ public class JByteField extends JWholeNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
-  public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-    if (! (aff instanceof ByteFormatterFactory)){
-      throw new IllegalArgumentException("aff must be an instance of ByteFormatterFactory!");
+    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
+        if (! (aff instanceof ByteFormatterFactory)){
+            throw new IllegalArgumentException("aff must be an instance of ByteFormatterFactory!");
+        }
+        super.setFormatterFactory(aff);
     }
-    super.setFormatterFactory(aff);
-  }
-  
+    
 }
