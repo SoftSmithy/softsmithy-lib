@@ -24,38 +24,47 @@ import java.awt.*;
 import java.util.*;
 
 /**
- *
- * @author  puce
+ * An event which indicates that a component has been layed out.
+ * @author puce
  */
 public class ComponentLayoutEvent extends EventObject {
-  
-  /** Holds value of property bounds. */
-  private final Rectangle bounds;  
-  
-  /** Holds value of property component. */
-  private Component component;
-  
-  /** Creates a new instance of CustomizerEvent */
-  public ComponentLayoutEvent(Object source, Component component, Rectangle bounds) {
-    super(source);
-    this.component = component;
-    this.bounds = bounds;
-  }
-  
-  /** Getter for property bounds.
-   * @return Value of property bounds.
-   *
-   */
-  public Rectangle getBounds() {
-    return this.bounds;
-  }
-  
-  /** Getter for property component.
-   * @return Value of property component.
-   *
-   */
-  public Component getComponent() {
-    return this.component;
-  }  
-
+    
+    /**
+     * The new bounds of the component.
+     */
+    private final Rectangle bounds;
+    
+    /**
+     * The component which has been layed out.
+     */
+    private Component component;
+    
+    /**
+     * Creates a new instance of this class.
+     * @param source the source of this event
+     * @param component the component which has been layed out
+     * @param bounds the new bounds of the component.
+     */
+    public ComponentLayoutEvent(Object source, Component component, Rectangle bounds) {
+        super(source);
+        this.component = component;
+        this.bounds = bounds;
+    }
+    
+    /**
+     * Gets the new bounds of the component.
+     * @return the new bounds of the component
+     */
+    public Rectangle getBounds() {
+        return this.bounds;
+    }
+    
+    /**
+     * Gets the component which has been layed out.
+     * @return the component which has been layed out
+     */
+    public Component getComponent() {
+        return this.component;
+    }
+    
 }

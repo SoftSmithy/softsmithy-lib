@@ -23,13 +23,17 @@ package org.softsmithy.lib.awt.event;
 import java.util.*;
 
 /**
- *
- * @author  puce
+ * The listener interface for receiving component layout events.
+ * @author puce
  */
 public interface ComponentLayoutListener extends EventListener {
-  
-  
-  void componentLayouted(ComponentLayoutEvent e);
-
-  
+    
+    
+    /**
+     * Invoked when a component has been layed out.
+     * @param e a component layout event
+     */
+    void componentLayouted(ComponentLayoutEvent e);
+    
+    
 }

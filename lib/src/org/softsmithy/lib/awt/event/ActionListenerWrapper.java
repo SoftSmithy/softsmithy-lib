@@ -18,15 +18,30 @@ package org.softsmithy.lib.awt.event;
 
 import java.awt.event.*;
 
+/**
+ * Wrapps an ActionListener. </br>
+ * E.g. can be used as a base class for decorators.
+ */
 public class ActionListenerWrapper implements ActionListener{
-
-  private ActionListener actionListener;
-
-  public ActionListenerWrapper(ActionListener actionListener){
-    this.actionListener = actionListener;
-  }
-
-  public void actionPerformed(ActionEvent actionEvent){
-    actionListener.actionPerformed(actionEvent);
-  }
+    
+    /**
+     * The wrapped ActionListener.
+     */
+    private ActionListener actionListener;
+    
+    /**
+     * Creates a new instance of this class.
+     * @param actionListener the wrapped ActionListener
+     */
+    public ActionListenerWrapper(ActionListener actionListener){
+        this.actionListener = actionListener;
+    }
+    
+    /**
+     * Delegates this method to the wrapped ActionListener.
+     * @param actionEvent an ActionEvent
+     */
+    public void actionPerformed(ActionEvent actionEvent){
+        actionListener.actionPerformed(actionEvent);
+    }
 }
