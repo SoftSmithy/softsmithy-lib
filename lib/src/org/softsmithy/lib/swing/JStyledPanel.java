@@ -29,39 +29,47 @@ import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.style.*;
 
 /**
- *
- * @author  puce
+ * A styleable panel.
+ * @author puce
  */
 public class JStyledPanel extends JPanel implements Styleable{
   
-  /** Holds value of property noneStyle. */
+  /**
+     * The none (null) style.
+     */
   private final Style noneStyle = new NoneStyle(this);
   
-  /** Holds value of property parentStyle. */
+  /**
+     * The parent style.
+     */
   private final Style parentStyle = new ParentStyle(this);
   
-  /** Holds value of property style. */
+  /**
+     * The style of this panel.
+     */
   private Style style = noneStyle;
   
   private boolean inited = false;
   
-  /** Creates a new instance of JStyledPanel */
+  /**
+     * Creates a new instance of this class.
+     */
   public JStyledPanel() {
     inited = true;
   }
   
-  /** Getter for property style.
-   * @return Value of property style.
-   *
-   */
+  /**
+     * Gets the style.
+     * @return Value of property style.
+     */
   public Style getStyle() {
     return this.style;
   }
   
-  /** Setter for property style.
-   * @param style New value of property style.
-   *
-   */
+  /**
+     * Sets the style.
+     * @param style the style
+     */
   public void setStyle(Style style) {
     Style oldStyle = this.style;
     this.style = Styles.mutateStyle(this, style);
@@ -71,28 +79,28 @@ public class JStyledPanel extends JPanel implements Styleable{
   
 
   
-  /** Getter for property noneStyle.
-   * @return Value of property noneStyle.
-   *
-   */
+  /**
+     * Gets the none style.
+     * @return the none style
+     */
   public Style getNoneStyle() {
     return this.noneStyle;
   }
   
-  /** Getter for property parentStyle.
-   * @return Value of property parentStyle.
-   *
-   */
+  /**
+     * Gets the parent style.
+     * @return 
+     */
   public Style getParentStyle() {
     return this.parentStyle;
   }
   
-  /** Gets the background color of this component.
+  /** 
+   * Gets the background color of this component.
    * @return this component's background color; if this component does
    * 		not have a background color,
    * 		the background color of its parent is returned
    * @see #setBackground
-   * @since JDK1.0
    *
    */
   public Color getBackground() {
@@ -100,7 +108,8 @@ public class JStyledPanel extends JPanel implements Styleable{
     //return (fComponent != null) ? fComponent.getBackground() : super.getBackground();
   }
   
-  /** Sets the background color of this component.
+  /** 
+   * Sets the background color of this component.
    *
    * @param bg the desired background <code>Color</code>
    * @see java.awt.Component#getBackground
