@@ -15,8 +15,23 @@
 <html>
     <head>
         <title>SoftSmithy Utility Library Tutorial - The Customizer Framework</title>
+       <link type="text/css" rel="stylesheet" href="../../Styles/SyntaxHighlighter.css"></link>
     </head>
     <body>
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="..">
+                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../..">
+                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </p>
         <h1>The Customizer Framework</h1>
         <em>The Customizer Framework</em> is a framework to customize Swing components
         with a GUI. Thus it can be used as a base for applications like layout editors.
@@ -73,6 +88,7 @@
         <a href="../../../samples/src/samples/swing/customizer/SimpleSingleCustomizerSample.java">SimpleSingleCustomizerSample.java</a> 
         that creates and configures the JCustomizer and the JCustomizerPane.
         <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
         // create a pane that supports customizers and "snap-to-grid" feature
         JCustomizerPane pane = new JCustomizerPane();
         // create a CustomizerLayout
@@ -83,7 +99,7 @@
         JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
         // add it to the JCustomizerPane
         pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(50, 50, 150, 50, simpleCustomizer, itl));
-
+            </textarea>
         </pre></blockquote>
         <h2><a name="text">Text Customizers</a></h2>
         <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a> 
@@ -102,5 +118,25 @@
         <h2><a name="CustomizerBar">CustomizerBar</a></h2>
         <h2><a name="appearance">Customize Appearance</a></h2>
   
+        <p>
+            <table bgcolor="aqua" width="100%">
+                <tr>
+                    <td>
+                        <a href="..">
+                            <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                        <a href="../..">
+                            <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </p>
+        <!-- the following code should be place at the bottom of the page -->  
+        <script language="javascript" src="../../Scripts/shCore.js"></script>  
+        <script language="javascript" src="../../Scripts/shBrushJava.js"></script>   
+        <script language="javascript">  
+            dp.SyntaxHighlighter.HighlightAll('code');  
+        </script>  
     </body>
 </html>

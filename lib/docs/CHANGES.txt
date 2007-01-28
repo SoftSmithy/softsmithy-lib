@@ -1,4 +1,8 @@
 Changes:
+- Javadoc updates
+- tutorial trail and sample of the number fields
+- syntax highlighting in the tutorial
+- small tutorial updates
 
 v20061029:  - ShapeIcon respects aspect ratio
             - org.softsmithy.lib.swing.JListBox added

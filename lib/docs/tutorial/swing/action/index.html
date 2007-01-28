@@ -79,6 +79,7 @@
         actionPerfomed method remains abstract.
         
         <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
         XAction saveAction = new AbstractXAction() {
             public void actionPerformed(ActionEvent e) {
                 // save things
@@ -91,6 +92,7 @@
         saveAction.setShortDescription("Save");
         saveAction.setAccelerator(KeyStroke.getKeyStroke("control S"));
         saveAction.setMnemonicKey('S');
+            </textarea>
         </pre></blockquote>
         <h2><a name="reflective">Reflective Actions</a></h2>
         <a href="../../../api/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>
@@ -136,6 +138,7 @@
         </p>
         
         <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
         try {
             Action myAction = new ReflectiveXAction(this, "myActionMethod");
         } catch (NoSuchMethodException ex) {
@@ -147,7 +150,7 @@
         public void myActionMethod(ActionEvent e){
             // do something
         }
-        
+            </textarea>
         </pre></blockquote>
         Reflective actions are heavily used and supported throughout the whole 
         <em>Extended Action Framework</em>.
@@ -172,6 +175,7 @@
         the rollover property of the toolbar to true. However look and feels may
         ignore this property and the Java Look and Feel does so.
         <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
    private void addMenuItems(XAction[] xActions ) {
         for (int i=0; i < xActions.length; i++){
             JMenuItem item = new JMenuItem();
@@ -195,6 +199,7 @@
             toolBarCool.add(button);
         }
     }
+            </textarea>
          </pre></blockquote>
         <p><center>
        <img src="ConfigureButtonsSample.jpg" width="500" height="300" alt="Configure Buttons Sample"/>
@@ -258,6 +263,7 @@
         </pre></blockquote>
         With these methods the previous sample could be rewritten like this:
         <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
     private void addMenuItems(XAction[] xActions ) {
         for (int i=0; i < xActions.length; i++){
             JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
@@ -278,6 +284,7 @@
             toolBarCool.add(button);
         }
     }
+            </textarea>
         </pre></blockquote>
         The modified source code: 
         <a href="../../../samples/src/samples/swing/action/CreateButtonsSample.java">CreateButtonsSample.java</a> 
@@ -437,6 +444,7 @@
         <p>
             E.g. to create the standard action "save" you could use:
             <blockquote><pre>
+                <textarea name="code" class="java" cols="60" rows="10">
                 try {
                     XAction saveAction = GeneralActionFactory.SAVE.createXAction(this, Locale.ENGLISH);
                 } catch (NoSuchMethodException ex) {
@@ -448,15 +456,18 @@
                 public void save(ActionEvent e){
                     // do save
                 }
+                </textarea>
             </pre></blockquote>
             or:
             <blockquote><pre>
+                <textarea name="code" class="java" cols="60" rows="10">
                 XAction saveAction = new AbstractXAction() {
                     public void actionPerformed(ActionEvent actionEvent) {
                         // do save
                     }
                 };
                 GeneralActionFactory.SAVE.configureXAction(saveAction, Locale.ENGLISH);
+                </textarea>
             </pre></blockquote>
         </p>
         <p>
