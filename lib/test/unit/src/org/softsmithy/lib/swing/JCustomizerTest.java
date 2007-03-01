@@ -53,34 +53,34 @@ public class JCustomizerTest extends TestCase {
     
     return suite;
   }
-  
-  protected void setUp() throws java.lang.Exception {
-    super.setUp();
-    customizer = new JCustomizer();
-    pane = new JCustomizerPane();
-    pane.add(customizer, new AbsoluteTableConstraints(5,5, 30, 10));
-    pane.doLayout();
-  }
+//  
+//  protected void setUp() throws java.lang.Exception {
+//    super.setUp();
+//    customizer = new JCustomizer();
+//    pane = new JCustomizerPane();
+//    pane.add(customizer, new AbsoluteTableConstraints(5,5, 30, 10));
+//    pane.doLayout();
+//  }
   
   /** Test of moveRel method, of class puce.swing.JCustomizer. */
-  public void testMoveRel() {
-    System.out.println("testMoveRel");
-    customizer.moveRel(10, 15);
-    pane.doLayout();
-    Rectangle bounds = customizer.getBounds();
-    assertEquals(35, bounds.x);
-    assertEquals(40, bounds.y);
-  }
+//  public void testMoveRel() {
+//    System.out.println("testMoveRel");
+//    customizer.moveRel(10, 15);
+//    pane.doLayout();
+//    Rectangle bounds = customizer.getBounds();
+//    assertEquals(35, bounds.x);
+//    assertEquals(40, bounds.y);
+//  }
   
   /** Test of resizeRel method, of class puce.swing.JCustomizer. */
-  public void testResizeRel() {
-    System.out.println("testResizeRel");
-    customizer.resizeRel(-5, 5);
-    pane.doLayout();
-    Rectangle bounds = customizer.getBounds();
-    assertEquals(145, bounds.width);
-    assertEquals(55, bounds.height);
-  }
+//  public void testResizeRel() {
+//    System.out.println("testResizeRel");
+//    customizer.resizeRel(-5, 5);
+//    pane.doLayout();
+//    Rectangle bounds = customizer.getBounds();
+//    assertEquals(145, bounds.width);
+//    assertEquals(55, bounds.height);
+//  }
   
   /** Test of reshapeRel method, of class puce.swing.JCustomizer. */
   public void testReshapeRel() {
@@ -349,20 +349,20 @@ public class JCustomizerTest extends TestCase {
       }*/
       
       /** Generated implementation of abstract class puce.swing.JCustomizer.StateManager.BoundState. Please fill dummy bodies of generated methods. */
-      private class BoundStateImpl extends BoundState {
-        
-        public BoundStateImpl(JCustomizer customizer) {
-          super(customizer);
-        }
-        
-        public void processMouseDragged(MouseEvent e) {
-          //fill the body in order to provide useful implementation
-        }
-        
-        public Rectangle createRelRectangle(MouseEvent e) {
-        }
-        
-      }
+//      private class BoundStateImpl extends BoundState {
+//        
+//        public BoundStateImpl(JCustomizer customizer) {
+//          super(customizer);
+//        }
+//        
+//        public void processMouseDragged(MouseEvent e) {
+//          //fill the body in order to provide useful implementation
+//        }
+//        
+//        public Rectangle createRelRectangle(MouseEvent e) {
+//        }
+//        
+//      }
       
     }
     
@@ -391,23 +391,23 @@ public class JCustomizerTest extends TestCase {
       }*/
       
       /** Generated implementation of abstract class puce.swing.JCustomizer.StateManager.ResizeState. Please fill dummy bodies of generated methods. */
-      private class ResizeStateImpl extends ResizeState {
-        
-        public ResizeStateImpl(JCustomizer customizer) {
-          super(customizer);
-        }
-        
-        public Handle getHandle() {
-          //fill the body in order to provide useful implementation
-          
-          return null;
-        }
-        
-        public void processMouseDragged(MouseEvent e) {
-          //fill the body in order to provide useful implementation
-        }
-        
-      }
+//      private class ResizeStateImpl extends ResizeState {
+//        
+//        public ResizeStateImpl(JCustomizer customizer) {
+//          super(customizer);
+//        }
+//        
+//        public Handle getHandle() {
+//          //fill the body in order to provide useful implementation
+//          
+//          return null;
+//        }
+//        
+//        public void processMouseDragged(MouseEvent e) {
+//          //fill the body in order to provide useful implementation
+//        }
+//        
+//      }
       
     }
     

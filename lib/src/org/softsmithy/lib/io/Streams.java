@@ -28,32 +28,43 @@ import java.util.*;
  * @author  puce
  */
 public class Streams {
-  
-  /** Creates a new instance of Streams */
-  private Streams() {
-  }
-  
-  /**
-   * Is this good?
-   * Does not close (any?) stream!
-   * Return type may change to List<String> in future!?
-   */
-  public static String[] readLines(InputStream input) throws IOException{
-    return readLines(new InputStreamReader(new BufferedInputStream(input)));
-  }
-  
-  /**
-   * Is this good?
-   * Does not close (any?) stream!
-   * Return type may change to List<String> in future!?
-   */
-  public static String[] readLines(Reader reader) throws IOException{
-    List lines = new ArrayList();
-    String line;
-    BufferedReader breader = new BufferedReader(reader);
-    while ((line = breader.readLine()) != null){
-      lines.add(line);
+    
+    /** Creates a new instance of Streams */
+    private Streams() {
     }
-    return (String[]) lines.toArray(new String[lines.size()]);
-  }
+    
+    /**
+     * Is this good?
+     * Does not close (any?) stream!
+     * Return type may change to List<String> in future!?
+     */
+    public static String[] readLines(InputStream input) throws IOException{
+        return readLines(new InputStreamReader(new BufferedInputStream(input)));
+    }
+    
+    /**
+     * Is this good?
+     * Does not close (any?) stream!
+     * Return type may change to List<String> in future!?
+     */
+    public static String[] readLines(Reader reader) throws IOException{
+        List lines = new ArrayList();
+        String line;
+        BufferedReader breader = new BufferedReader(reader);
+        while ((line = breader.readLine()) != null){
+            lines.add(line);
+        }
+        return (String[]) lines.toArray(new String[lines.size()]);
+    }
+    
+    /**
+     * Copies bytes from an InputStream to an OutputStream.
+     */
+    public static void copy(InputStream in, OutputStream out) throws IOException{
+        int c;
+        
+        while ((c = in.read()) != -1) {
+            out.write(c);
+        }
+    }
 }

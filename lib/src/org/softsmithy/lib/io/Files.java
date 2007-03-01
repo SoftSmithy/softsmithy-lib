@@ -115,4 +115,17 @@ public class Files {
     return lines;
   }
   
+  /**
+   * Deletes (optionally recursivly) the specified file or directory.
+   */
+  public static boolean delete(File file, boolean recursivly){
+      boolean deleted = true;
+      if (recursivly && file.isDirectory()){
+          File[] files = file.listFiles();
+          for (int i=0; i<files.length; i++){
+              deleted = delete(files[i], recursivly) && deleted;
+          }
+      }
+      return file.delete() && deleted;
+  }
 }
