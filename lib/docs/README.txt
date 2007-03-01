@@ -18,11 +18,11 @@ You can find a copy of this license in SPL.txt shipped with this distribution,
 at http://www.sun.com/ or at http://www.opensource.org/licenses/.
 
 
-The newest version can be obtained via CVS:
-http://sourceforge.net/cvs/?group_id=64833
+The newest version can be obtained via Subversion:
+http://sourceforge.net/svn/?group_id=64833
 
 cvs -z3 -d:pserver:anonymous@softsmithy.cvs.sourceforge.net:/cvsroot/softsmithy co -P lib
 
 Used:
-jdk 1.4.2_11-b06
-NetBeans IDE 5.0
+jdk 1.4.2_13-b06
+NetBeans IDE 5.5
