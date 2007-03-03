@@ -4,7 +4,7 @@ Changes:
 - util.zip.ZipFiles: extract zip files added
 - Javadoc updates
 - tutorial trail and sample of the number fields
-- syntax highlighting in the tutorial
+- syntax highlighting in the tutorial (syntax Highlighter shippt with the tutorial is covered by the LGPL)
 - small tutorial updates
 
 v20061029:  - ShapeIcon respects aspect ratio
