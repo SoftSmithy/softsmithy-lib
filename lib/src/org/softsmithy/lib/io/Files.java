@@ -106,8 +106,14 @@ public class Files {
   }
   
   /**
-   * Return type may change to List<String> in future!?
-   */
+     * Reads the lines from a text file.
+     * 
+     * Return type may change to List<String> in future!?
+     * @param file the text file
+     * @throws java.io.FileNotFoundException 
+     * @throws java.io.IOException 
+     * @return the lines read from a text file
+     */
   public static String[] readLines(File file) throws FileNotFoundException, IOException{
     FileReader reader = new FileReader(file);
     String[] lines = Streams.readLines(reader);
@@ -116,8 +122,12 @@ public class Files {
   }
   
   /**
-   * Deletes (optionally recursivly) the specified file or directory.
-   */
+     * Deletes (optionally recursivly) the specified file or directory.
+     * @param file the file or directory to be deleted
+     * @param recursivly If true, deletes the directory recursivly. If false or if file is
+     * not a directory, only the specified file gets deleted.
+     * @return true, if all files/ directories could be deleted, else false.
+     */
   public static boolean delete(File file, boolean recursivly){
       boolean deleted = true;
       if (recursivly && file.isDirectory()){

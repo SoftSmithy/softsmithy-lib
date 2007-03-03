@@ -24,8 +24,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- *
- * @author  puce
+ * A utility class for Streams.
+ * @author puce
  */
 public class Streams {
     
@@ -34,18 +34,28 @@ public class Streams {
     }
     
     /**
+     * Reads the lines of an input stream.
+     * 
      * Is this good?
      * Does not close (any?) stream!
      * Return type may change to List<String> in future!?
+     * @param input the input stream
+     * @throws java.io.IOException 
+     * @return the lines read from the input stream
      */
     public static String[] readLines(InputStream input) throws IOException{
         return readLines(new InputStreamReader(new BufferedInputStream(input)));
     }
     
     /**
+     * Reads the lines from a Reader.
+     * 
      * Is this good?
      * Does not close (any?) stream!
      * Return type may change to List<String> in future!?
+     * @param reader the reader
+     * @throws java.io.IOException 
+     * @return the lines read from the reader
      */
     public static String[] readLines(Reader reader) throws IOException{
         List lines = new ArrayList();
@@ -59,6 +69,9 @@ public class Streams {
     
     /**
      * Copies bytes from an InputStream to an OutputStream.
+     * @param in the InputStream
+     * @param out the OutputStream
+     * @throws java.io.IOException 
      */
     public static void copy(InputStream in, OutputStream out) throws IOException{
         int c;

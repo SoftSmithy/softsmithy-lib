@@ -56,11 +56,11 @@ public class ZipFiles {
     }
     
     /**
-     * Extracts a zip entry of a zip file to a specified directory.
+     * Extracts an entry of a zip file to a specified directory.
      * @param zipFile the zip file to extract from
      * @param zipEntry the entry of the zip file to extract
      * @param toDir the target directory
-     * @throws java.io.IOException
+     * @throws java.io.IOException 
      */
     public static void extract(ZipFile zipFile, ZipEntry zipEntry, File toDir) throws IOException {
         File file = new File(toDir, zipEntry.getName());
