@@ -1,11 +1,14 @@
 Changes:
-- io.Files: delete recursivly added
-- io.Streams: copy streams added
-- util.zip.ZipFiles: extract zip files added
-- Javadoc updates
-- tutorial trail and sample of the number fields
-- syntax highlighting in the tutorial (syntax Highlighter shippt with the tutorial is covered by the LGPL)
-- small tutorial updates
+v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
+(Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
+            - org.softsmithy.lib.util.zip.ZipFiles class added 
+              (extract zip files)
+            - Javadoc updates
+            - Sample and tutorial trail about the number fields added
+            - Syntax highlighting in the tutorial added
+              (syntax Highlighter shipped with the tutorial is covered 
+               by the LGPL)
+            - small tutorial updates
 
 v20061029:  - ShapeIcon respects aspect ratio
             - org.softsmithy.lib.swing.JListBox added

@@ -208,8 +208,7 @@
               />
          </copy>
          <copy todir="${dist.docs.dir}">
-             <fileset dir="${docs.dir}" includes="index.html"
-              />
+             <fileset dir="${docs.dir}" includes="index.html"/>
          </copy>
     </target>
 </project>

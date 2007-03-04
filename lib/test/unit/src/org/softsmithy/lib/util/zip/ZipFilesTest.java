@@ -41,13 +41,14 @@ public class ZipFilesTest extends TestCase {
     public void testExtract() throws Exception {
         System.out.println("extract");
         
-        String testZip = "/home/brunner/JavaApplication1.zip";
-        String toDirName = "/home/brunner/tmp";
+        String testZip = "/home/brunner/JavaApplication1.zip"; // TODO: other zip
+        String toDirName = "/home/brunner/tmp"; // TODO: other dir
         ZipFile zipFile = new ZipFile(testZip);
         File toDir = new File(toDirName);
         
         ZipFiles.extract(zipFile, toDir);
         
+        // TODO: delete extracted directories and files
         // TODO review the generated test code and remove the default call to fail.
         assertTrue("The test case is a prototype.", true);
     }
