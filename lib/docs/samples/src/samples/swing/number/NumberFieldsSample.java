@@ -218,7 +218,7 @@ public class NumberFieldsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        Locale.setDefault(Locale.US);
+        // Locale.setDefault(Locale.US); // throws java.security.AccessControlException when executed via Java WebStart
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NumberFieldsSample().setVisible(true);
