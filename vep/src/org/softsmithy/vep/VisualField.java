@@ -94,7 +94,8 @@ public class VisualField {
     
     
     private void createDefaultImage() {
-        defaultVisualField = new XImageIcon(createImage(Collections.EMPTY_SET, false, false));
+        Set<Integer> colorSwitchingIndices = Collections.emptySet();
+        defaultVisualField = new XImageIcon(createImage(colorSwitchingIndices, false, false));
     }
     
     private Image createImage(Set<Integer> colorSwitchingIndices, boolean inner, boolean outer) {
