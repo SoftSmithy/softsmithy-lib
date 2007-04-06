@@ -29,6 +29,10 @@ public class VisualFieldPane extends javax.swing.JPanel {
     private Timer timer;
     private int currentIndex = 0;
     /**
+     * Holds value of property visualFieldDisplayed.
+     */
+    private boolean visualFieldDisplayed = true;
+    /**
      * Holds value of property visualFieldTest.
      */
     private VisualFieldTest visualFieldTest;
@@ -53,7 +57,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
         });
     }
     
-    private void nextImage(){
+    private synchronized void nextImage(){
         if (currentIndex == (visualFieldImages.size() - 1)){
             currentIndex = 0;
         } else {
@@ -62,7 +66,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
         displayCurrentImage();
     }
     
-    public void start(){
+    public synchronized void start(){
         currentIndex = 0;
         displayCurrentImage();
         timer.start();
@@ -74,7 +78,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
         displayCurrentImage();
     }
     
-    private void displayCurrentImage(){
+    private synchronized  void displayCurrentImage(){
         XIcon currentIcon = visualFieldImages.get(currentIndex);
         XIcon icon;
         if (scaledVisualFieldImages.containsKey(currentIcon)){
@@ -85,7 +89,9 @@ public class VisualFieldPane extends javax.swing.JPanel {
                     this);
             scaledVisualFieldImages.put(currentIcon, icon);
         }
-        visualFieldImageLabel.setIcon(icon);
+        if (visualFieldDisplayed){
+            visualFieldImageLabel.setIcon(icon);
+        }
     }
     
     /** This method is called from within the constructor to
@@ -99,6 +105,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        visualFieldImageLabel.setBackground(new java.awt.Color(0, 0, 0));
         visualFieldImageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         add(visualFieldImageLabel, java.awt.BorderLayout.CENTER);
 
@@ -173,12 +180,12 @@ public class VisualFieldPane extends javax.swing.JPanel {
         recreateImages();
     }
     
-
+    
     public Color getDeviderColor() {
         return visualField.getDeviderColor();
     }
     
-
+    
     public void setDeviderColor(Color deviderColor) {
         visualField.setDeviderColor(deviderColor);
         recreateImages();
@@ -188,7 +195,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
         return visualField.getFixationColor();
     }
     
-
+    
     public void setFixationColor(Color fixationColor) {
         visualField.setFixationColor(fixationColor);
         recreateImages();
@@ -198,6 +205,48 @@ public class VisualFieldPane extends javax.swing.JPanel {
         visualFieldImages = visualField.createImages(visualFieldTest);
         scaledVisualFieldImages.clear();
         displayCurrentImage();
+    }
+    
+    
+    
+    /**
+     * Getter for property disabledColor.
+     * @return Value of property disabledColor.
+     */
+    public Color getDisabledColor() {
+        return visualFieldImageLabel.getBackground();
+    }
+    
+    /**
+     * Setter for property disabledColor.
+     * @param disabledColor New value of property disabledColor.
+     */
+    public void setDisabledColor(Color disabledColor) {
+        visualFieldImageLabel.setBackground(disabledColor);
+    }
+    
+    
+    
+    /**
+     * Getter for property visualFieldDisplayed.
+     * @return Value of property visualFieldDisplayed.
+     */
+    public boolean isVisualFieldDisplayed() {
+        return this.visualFieldDisplayed;
+    }
+    
+    /**
+     * Setter for property visualFieldDisplayed.
+     * @param visualFieldDisplayed New value of property visualFieldDisplayed.
+     */
+    public synchronized void setVisualFieldDisplayed(boolean visualFieldDisplayed) {
+        this.visualFieldDisplayed = visualFieldDisplayed;
+        visualFieldImageLabel.setOpaque(! visualFieldDisplayed);
+        if (visualFieldDisplayed){
+            displayCurrentImage();
+        } else {
+                visualFieldImageLabel.setIcon(null);
+        }
     }
     
 }
