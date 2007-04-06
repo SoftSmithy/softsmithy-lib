@@ -41,6 +41,16 @@ public enum VisualFieldTest {
             return getRightColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
         }
     },
+    LEFT_HALF(true, true){
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getLeftColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
+        }
+    },
+    RIGHT_HALF(true, true){
+        public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
+            return getRightColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
+        }
+    },
     FULL(true, true){
         public Set<Integer> getColorSwitchingIndices(int nSections, int nDeviderSectionsFromMiddle) {
             return getAllColorSwitchingIndices(nSections, nDeviderSectionsFromMiddle);
