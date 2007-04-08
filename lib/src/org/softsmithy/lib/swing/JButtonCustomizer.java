@@ -56,7 +56,7 @@ import org.softsmithy.lib.swing.customizer.*;
 
  */
 
-public abstract class JButtonCustomizer extends AbstractTextCustomizer {
+public class JButtonCustomizer extends AbstractTextCustomizer {
 
   
 
@@ -64,13 +64,31 @@ public abstract class JButtonCustomizer extends AbstractTextCustomizer {
 
   public JButtonCustomizer() {
 
+    this("");
+
+  }
+
+  
+
+  public JButtonCustomizer(AbstractButton button){
+
+    super(button);
+
+  }
+
+  
+
+  public JButtonCustomizer(String text){
+
+    this(new JButton(text));
+    getButton().setBorder(BorderFactory.createRaisedBevelBorder());
   }
 
   
 
   public String getText() {
 
-    JButton button = (JButton) getComponent();
+    AbstractButton button = getButton();
 
     return button != null ? button.getText() : "";
 
@@ -80,7 +98,7 @@ public abstract class JButtonCustomizer extends AbstractTextCustomizer {
 
   public void setText(String text) {
 
-    JButton button = (JButton) getComponent();
+    AbstractButton button = getButton();
 
     if (button != null){
 
@@ -102,14 +120,40 @@ public abstract class JButtonCustomizer extends AbstractTextCustomizer {
 
   public void setComponent(JComponent component) {
 
-    if (! (component instanceof JButton)){
+    if (! (component instanceof AbstractButton)){
 
-      throw new IllegalArgumentException("comp must be a JButton");
+      throw new IllegalArgumentException("comp must be an AbstractButton");
 
     }
 
     super.setComponent(component);
 
+  }
+
+    protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
+
+    AbstractButton button = getButton();
+
+    if (button != null){
+
+      button.setHorizontalAlignment(alignment.getSwingConstant());
+
+    }
+
+  }
+
+  
+  public HorizontalAlignment getHorizontalAlignment() {
+
+    AbstractButton button = getButton();
+
+    return button != null ? HorizontalAlignment.getHorizontalAlignment(button.getHorizontalAlignment()) : HorizontalAlignment.getHorizontalAlignment(new JButton().getHorizontalAlignment());
+
+  }
+  
+  // TODO replace with generic getComponent!?
+  private AbstractButton getButton(){
+      return (AbstractButton) getComponent();
   }
 
   

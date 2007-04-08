@@ -1,4 +1,8 @@
 Changes:
+- JButtonCustomizer completed
+- a text customizers sample added
+- small sample updates
+- small documentation updates
 v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
 (Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
             - org.softsmithy.lib.util.zip.ZipFiles class added 
