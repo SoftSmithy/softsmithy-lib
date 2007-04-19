@@ -46,7 +46,7 @@ public class ZipFiles {
             ZipEntry zipEntry = (ZipEntry) entries.nextElement();
             if (zipEntry.isDirectory()) {
                 File dir = new File(toDir, zipEntry.getName());
-                if (! dir.exists()){
+                if (! dir.exists()){ // make sure also empty directories get created!
                     dir.mkdirs();
                 }
             } else {
@@ -86,4 +86,7 @@ public class ZipFiles {
             }
         }
     }
+    
+    // must not be absolute!? name must use '/' as path delimiter!?
+    //public static String getEntryName(File file){}
 }
