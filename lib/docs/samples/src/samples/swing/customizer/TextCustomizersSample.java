@@ -32,7 +32,7 @@ public class TextCustomizersSample extends javax.swing.JFrame {
         // create a JButtonCustomizer, which supports inline editing of a text
         JButtonCustomizer buttonCustomizer = new JButtonCustomizer("Double click to edit this button!");
         // add it to the JCustomizerPane
-        customizerPane.addCustomizer(buttonCustomizer, new AbsoluteTableConstraints(50, 100,  200, 50, buttonCustomizer, itl));
+        customizerPane.addCustomizer(buttonCustomizer, new AbsoluteTableConstraints(300, 100,  210, 50, buttonCustomizer, itl));
         // create a JLabelCustomizer, which supports inline editing of a text
         JHtmlCustomizer htmlCustomizer = new JHtmlCustomizer();
         htmlCustomizer.setHtmlBody("<b>This is an <i>editable</i> HTML</b> text! Double click!<br> " +
@@ -42,7 +42,8 @@ public class TextCustomizersSample extends javax.swing.JFrame {
                 "<font color=\"#00FFFF\">colored text!</font><br><br>" +
                 "This is a very long text that shows automatic line wrapping!");
         // add it to the JCustomizerPane
-        customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(50, 180,  270, 150, htmlCustomizer, itl));
+        customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(150, 200,  270, 150, htmlCustomizer, itl));
+        setSize(640, 480);
     }
     
     /** This method is called from within the constructor to
@@ -58,30 +59,14 @@ public class TextCustomizersSample extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A Text Customizers Sample");
+        contentPane.setLayout(new java.awt.BorderLayout());
 
         contentScrollPane.setViewportView(customizerPane);
 
-        org.jdesktop.layout.GroupLayout contentPaneLayout = new org.jdesktop.layout.GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, contentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, contentScrollPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-        );
+        contentPane.add(contentScrollPane, java.awt.BorderLayout.CENTER);
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, contentPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(contentPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(contentPane, java.awt.BorderLayout.CENTER);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     

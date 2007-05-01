@@ -513,6 +513,9 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
   }
   
+  /**
+   * The default state. Fires an ActionEvent when double-clicked!
+   */
   public static class DefaultState extends AbstractState{
     
     private Border border;

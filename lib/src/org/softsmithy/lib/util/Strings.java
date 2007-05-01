@@ -70,7 +70,7 @@ public class Strings {
      * Otherwise the first n characters of the string will be returned,
      * where n is equal to the specified length.
      */
-    // TODO good name? better 'substring'? only length parameter?
+    // TODO good name? better 'substring'? Or 'left' and 'right'? only length parameter? 
     public static String cut(String s, int length){
         return s.length() <= length ? s : s.substring(0, length);
     }

@@ -27,8 +27,10 @@ import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
- *
- * @author  puce
+ * This is a base class for customizers of components, which can display a text.
+ * <br>
+ * Double-click: inline edit support
+ * @author puce
  */
 public abstract class AbstractTextCustomizer extends JCustomizer {
   
@@ -74,9 +76,26 @@ public abstract class AbstractTextCustomizer extends JCustomizer {
     return editor;
   }
   
+  /**
+     * Gets the text from the wrapped component.
+     * @return the text from the wrapped component
+     */
   public abstract String getText();
+    /**
+     * Sets the text of the wrapped component.
+     * @param text the text to be set
+     */
   public abstract void setText(String text);
+    /**
+     * Sets the horizontal alignment of the text. This method should not 
+     * fire any events!
+     * @param alignment the horizontal alignment of the text
+     */
   protected abstract void setHorizontalAlignmentOnly(HorizontalAlignment alignment);
+    /**
+     * Gets the horizontal alignment of the text.
+     * @return the horizontal alignment of the text
+     */
   public abstract HorizontalAlignment getHorizontalAlignment();
   
   public void setHorizontalAlignment(HorizontalAlignment alignment){
@@ -143,6 +162,10 @@ public abstract class AbstractTextCustomizer extends JCustomizer {
     //    }
   }
   
+  /**
+     * Sets the state mananger of this text customizer. It must be an instance of EditableStateManager!
+     * @param manager 
+     */
   protected void setStateManager(StateManager manager) {
     if (inited && ! (manager instanceof EditableStateManager)){
       throw new IllegalArgumentException("manager must be an instance of EditableStateManager!");
