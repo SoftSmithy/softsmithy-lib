@@ -65,6 +65,11 @@
         </ul>
 
         To move and resize the JCustomizer with the mouse you have to add it to a <a href="../../../api/org/softsmithy/lib/swing/JCustomizerPane.html">JCustomizerPane</a>.<br/>
+        
+        Double-clicking on a JCustomizer will fire an  
+        <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/event/ActionEvent.html">ActionEvent</a>.
+        You can register an <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/event/ActionListener.html">ActionListener</a> to get notified about these events. <br/>
+        
         <br/>
         Here's a picture of an application that uses a single JCustomizer added to a JCustomizerPane:
   
@@ -102,7 +107,9 @@
             </textarea>
         </pre></blockquote>
         <h2><a name="text">Text Customizers</a></h2>
-        <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a> 
+        <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a>
+        is a base class to write customizer for components, which can display 
+        texts, with inline-editing support.
         <a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> 
         <a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> 
         <a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> 
@@ -127,7 +134,7 @@
         that creates and configures the JCustomizer and the JCustomizerPane.
         <blockquote><pre>
             <textarea name="code" class="java" cols="60" rows="10">
-                // create a CustomizerLayout
+        // create a CustomizerLayout
         InfiniteTableLayout itl = new InfiniteTableLayout(customizerPane);
         // set the layout
         customizerPane.setCustomizerLayout(itl);
@@ -135,10 +142,22 @@
         JLabelCustomizer labelCustomizer = new JLabelCustomizer("A Label Customizer - double click to edit!");
         // add it to the JCustomizerPane
         customizerPane.addCustomizer(labelCustomizer, new AbsoluteTableConstraints(50, 50,  270, 20, labelCustomizer, itl));
-        // create a JButtonCustomizer, which supports inline editing of a text
+        // create a JButtonCustomizer to customize a button using the String constructor.
         JButtonCustomizer buttonCustomizer = new JButtonCustomizer("Double click to edit this button!");
         // add it to the JCustomizerPane
         customizerPane.addCustomizer(buttonCustomizer, new AbsoluteTableConstraints(300, 100,  210, 50, buttonCustomizer, itl));
+        // create a JButtonCustomizer to customize a JCheckBox
+        JButtonCustomizer checkBoxCustomizer = new JButtonCustomizer(new JCheckBox("Double click to edit this check box!", true));
+        // set the background color to white
+        checkBoxCustomizer.setBackground(Color.WHITE);
+        // add it to the JCustomizerPane
+        customizerPane.addCustomizer(checkBoxCustomizer, new AbsoluteTableConstraints(30, 160,  250, 20, checkBoxCustomizer, itl));
+        // create a JButtonCustomizer to customize a JRadioButton
+        JButtonCustomizer radioButtonCustomizer = new JButtonCustomizer(new JRadioButton("Double click to edit this radio button!", true));
+        // set the background color to white
+        radioButtonCustomizer.setBackground(Color.WHITE);
+        // add it to the JCustomizerPane
+        customizerPane.addCustomizer(radioButtonCustomizer, new AbsoluteTableConstraints(300, 200,  270, 20, radioButtonCustomizer, itl));
         // create a JHtmlCustomizer, which supports inline editing of a text
         JHtmlCustomizer htmlCustomizer = new JHtmlCustomizer();
         // set some HTML text
@@ -149,7 +168,7 @@
                 "<font color=\"#00FFFF\">colored text!</font><br><br>" +
                 "This is a very long text that shows automatic line wrapping!");
         // add it to the JCustomizerPane
-        customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(150, 200,  270, 150, htmlCustomizer, itl));
+        customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(150, 250,  270, 150, htmlCustomizer, itl));
             </textarea>
         </pre></blockquote>
         <h2><a name="icon">Icon Customizers</a></h2>
