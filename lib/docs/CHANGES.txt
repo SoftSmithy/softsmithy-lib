@@ -4,6 +4,7 @@ Changes:
 - org.softsmithy.lib.util.Strings.cut added
 - small sample updates
 - small documentation updates
+            - Javadocs added
 
 v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
 (Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
