@@ -106,6 +106,52 @@
         <a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> 
         <a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> 
         <a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> 
+          <p><center><img src="TextCustomizersSample.jpg" width="640" height="480" alt="A snapshot of the TextCustomizersSample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li><a href="TextCustomizersSample.jnlp">Run TextCustomizersSample</a> using 
+                <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
+                <li>Select the JCustomizer by clicking it. Then the handles appear. 
+                You can move and resize the component with the mouse. When you release
+                the JCustomizer it snaps to the grid. If you resize the frame 
+                the grid adjusts to its size.</li>
+            </ol>
+            <hr/>
+        </blockquote>
+        Below is the code from 
+        <a href="../../../samples/src/samples/swing/customizer/TextCustomizersSample.java">TextCustomizersSample.java</a> 
+        that creates and configures the JCustomizer and the JCustomizerPane.
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+                // create a CustomizerLayout
+        InfiniteTableLayout itl = new InfiniteTableLayout(customizerPane);
+        // set the layout
+        customizerPane.setCustomizerLayout(itl);
+        // create a JLabelCustomizer, which supports inline editing of a text
+        JLabelCustomizer labelCustomizer = new JLabelCustomizer("A Label Customizer - double click to edit!");
+        // add it to the JCustomizerPane
+        customizerPane.addCustomizer(labelCustomizer, new AbsoluteTableConstraints(50, 50,  270, 20, labelCustomizer, itl));
+        // create a JButtonCustomizer, which supports inline editing of a text
+        JButtonCustomizer buttonCustomizer = new JButtonCustomizer("Double click to edit this button!");
+        // add it to the JCustomizerPane
+        customizerPane.addCustomizer(buttonCustomizer, new AbsoluteTableConstraints(300, 100,  210, 50, buttonCustomizer, itl));
+        // create a JHtmlCustomizer, which supports inline editing of a text
+        JHtmlCustomizer htmlCustomizer = new JHtmlCustomizer();
+        // set some HTML text
+        htmlCustomizer.setHtmlBody("<b>This is an <i>editable</i> HTML</b> text! Double click!<br> " +
+                "<a href=\"http://www.softsmithy.org\">This is a link!</a><br>" +
+                "<font color=\"#FF0000\">And this </font>" +
+                "<font color=\"#00FF00\">is a </font>" +
+                "<font color=\"#00FFFF\">colored text!</font><br><br>" +
+                "This is a very long text that shows automatic line wrapping!");
+        // add it to the JCustomizerPane
+        customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(150, 200,  270, 150, htmlCustomizer, itl));
+            </textarea>
+        </pre></blockquote>
         <h2><a name="icon">Icon Customizers</a></h2>
         The <a href="../../../api/org/softsmithy/lib/swing/JXIconCustomizer.html">JXIconCustomizer</a> 
         allows visual scaling of icons. (See here for more information about the <a href="../icon/index.html">Extended Icon Framework</a>.)

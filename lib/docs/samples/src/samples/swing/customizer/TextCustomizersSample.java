@@ -47,8 +47,9 @@ public class TextCustomizersSample extends javax.swing.JFrame {
         JButtonCustomizer buttonCustomizer = new JButtonCustomizer("Double click to edit this button!");
         // add it to the JCustomizerPane
         customizerPane.addCustomizer(buttonCustomizer, new AbsoluteTableConstraints(300, 100,  210, 50, buttonCustomizer, itl));
-        // create a JLabelCustomizer, which supports inline editing of a text
+        // create a JHtmlCustomizer, which supports inline editing of a text
         JHtmlCustomizer htmlCustomizer = new JHtmlCustomizer();
+        // set some HTML text
         htmlCustomizer.setHtmlBody("<b>This is an <i>editable</i> HTML</b> text! Double click!<br> " +
                 "<a href=\"http://www.softsmithy.org\">This is a link!</a><br>" +
                 "<font color=\"#FF0000\">And this </font>" +
