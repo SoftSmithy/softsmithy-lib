@@ -106,13 +106,13 @@ public class Files {
   }
   
   /**
-     * Reads the lines from a text file.
-     * 
-     * Return type may change to List<String> in future!?
+     * Reads the lines from a text file.<br>
+     * <br>
+     * Return type may change to List&lt;String&gt; in future!?
      * @param file the text file
+     * @return the lines read from a text file
      * @throws java.io.FileNotFoundException 
      * @throws java.io.IOException 
-     * @return the lines read from a text file
      */
   public static String[] readLines(File file) throws FileNotFoundException, IOException{
     FileReader reader = new FileReader(file);
@@ -139,5 +139,22 @@ public class Files {
       return file.delete() && deleted;
   }
   
-  //public static String[] getPathNames(){}
+    /**
+     * Gets the path names of the specified path. <br>
+     * <br>
+     * Note: return type might change to List&lt;String&gt; with java v1.5
+     * @param path the path
+     * @return the path names
+     */
+  public static String[] getPathNames(File path){
+      List pathList = new ArrayList();
+      File currentPath = path;
+      pathList.add(currentPath.getName());
+      while (currentPath.getParentFile() != null){
+          currentPath = currentPath.getParentFile();
+          pathList.add(currentPath.getName());
+      }
+      Collections.reverse(pathList);
+      return (String[]) pathList.toArray(new String[pathList.size()]);
+  }
 }

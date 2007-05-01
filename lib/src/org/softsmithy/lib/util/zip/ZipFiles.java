@@ -32,7 +32,9 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.softsmithy.lib.io.Files;
 import org.softsmithy.lib.io.Streams;
+import org.softsmithy.lib.util.Strings;
 
 /**
  * A utility class for zip files.
@@ -74,7 +76,7 @@ public class ZipFiles {
      * @param zipFile the zip file to extract from
      * @param zipEntry the entry of the zip file to extract
      * @param toDir the target directory
-     * @throws java.io.IOException 
+     * @throws java.io.IOException
      */
     public static void extract(ZipFile zipFile, ZipEntry zipEntry, File toDir) throws IOException {
         File file = new File(toDir, zipEntry.getName());
@@ -102,5 +104,28 @@ public class ZipFiles {
     }
     
     // must not be absolute!? name must use '/' as path delimiter!?
-    //public static String getEntryName(File file){}
+    /**
+     * Creates a valid ZipEntry name from a file. A valid ZipEntry name is not absolute
+     * and uses '/' as file separator not the platform specific one!<br>
+     * If the file is absolute the root directory will not appear in the name!<br>
+     * The file must not be a root directory!
+     * @param file the file the entry name gets created from. <br>
+     * May be an absolute path but must not be a root directory
+     * @return a valid ZipEntry name
+     */
+    public static String createEntryName(File file){
+        String[] allPathNames = Files.getPathNames(file);
+        String[] pathNames;
+        if (file.isAbsolute()){
+            if (file.getParentFile() != null){
+                pathNames = new String[allPathNames.length - 1];
+                System.arraycopy(allPathNames, 1, pathNames, 0, pathNames.length);
+            } else {
+                throw new IllegalArgumentException("The file must not be a root directory!");
+            }
+        } else {
+            pathNames = allPathNames;
+        }
+        return Strings.join(pathNames, "/");
+    }
 }

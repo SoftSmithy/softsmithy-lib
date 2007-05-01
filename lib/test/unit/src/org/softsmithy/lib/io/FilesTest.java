@@ -117,5 +117,19 @@ public class FilesTest extends TestCase {
         assertFalse(dir.exists());
         
     }
+
+    /**
+     * Test of getPathNames method, of class org.softsmithy.lib.io.Files.
+     */
+    public void testGetPathNames() {
+        System.out.println("getPathNames");
+        
+        File path = new File(new File("path1", "path2"), "path3");
+        
+        String[] expResult = new String[]{"path1", "path2", "path3"};
+        String[] result = Files.getPathNames(path);
+        assertTrue(Arrays.equals(expResult, result));
+        
+    }
     
 }

@@ -18,6 +18,8 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import org.softsmithy.lib.io.Streams;
+import org.softsmithy.lib.io.Files;
+import org.softsmithy.lib.util.Strings;
 
 /**
  *
@@ -51,6 +53,22 @@ public class ZipFilesTest extends TestCase {
         // TODO: delete extracted directories and files
         // TODO review the generated test code and remove the default call to fail.
         assertTrue("The test case is a prototype.", true);
+    }
+
+    /**
+     * Test of createEntryName method, of class org.softsmithy.lib.util.zip.ZipFiles.
+     */
+    public void testCreateEntryName() {
+        System.out.println("createEntryName");
+        
+        File file = new File(new File("path1", "path2"), "path3");
+        
+        String expResult = "path1/path2/path3";
+        String result1 = ZipFiles.createEntryName(file);
+        assertEquals(expResult, result1);
+        
+        String result2 = ZipFiles.createEntryName(new File(File.listRoots()[0], file.getPath()));
+        assertEquals(expResult, result2);
     }
     
 }
