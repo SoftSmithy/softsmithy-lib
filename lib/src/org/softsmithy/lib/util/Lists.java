@@ -41,7 +41,7 @@ public class Lists {
         return true;
     }
     
-        /**
+    /**
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
      */
