@@ -8,6 +8,10 @@ Changes:
             - Javadocs added
 - org.softsmithy.lib.io.Files: getPathNames added
 - org.softsmithy.lib.util.zip.ZipFiles: createEntryName added
+- org.softsmithy.lib.util.Lists class added
+- org.softsmithy.lib.util.EqualityVerifier interface added
+- org.softsmithy.lib.util.ComparatorEqualityVerifier class added
+- org.softsmithy.lib.util.ObjectEqualityVerifier class added
 
 v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
 (Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
