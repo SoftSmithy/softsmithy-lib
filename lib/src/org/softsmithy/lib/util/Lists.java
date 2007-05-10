@@ -24,6 +24,10 @@ public class Lists {
     private Lists() {
     }
     
+    /**
+     * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
+     *
+     */
     // TODO use generics with jdk v1.5
     public static boolean equals(List listA, List listB, EqualityVerifier verifier){
         if (listA.size() != listB.size()){
@@ -37,6 +41,10 @@ public class Lists {
         return true;
     }
     
+        /**
+     * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
+     *
+     */
     // TODO use generics with jdk v1.5
     public static boolean equalsIgnoreOrder(List listA, List listB, Comparator comparator){
         if (listA.size() != listB.size()){

@@ -11,6 +11,8 @@ package org.softsmithy.lib.util;
 
 /**
  *
+ * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
+ *
  * @author puce
  */
 // TODO use generics with jdk v1,5
