@@ -9,6 +9,7 @@
 
 package org.softsmithy.lib.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -50,20 +51,16 @@ public class Lists {
         if (listA.size() != listB.size()){
             return false;
         }
-        Collections.sort(listB, comparator);
-        EqualityVerifier verifier = new ComparatorEqualityVerifier(comparator);
+        List sortedList = new ArrayList(listB); // make a copy, so the orignial list doesn't get modified
+        Collections.sort(sortedList, comparator);
         // use enhanced for loop with jdk v1.5
         for (Iterator iterator = listA.iterator(); iterator.hasNext();){
             Object obj = iterator.next();
-            int index = Collections.binarySearch(listB, obj, comparator);
-            if (index < listB.size()){
-                if (! verifier.equals(obj, listB.get(index))){
-                    return false;
-                }
-            } else {
+            int index = Collections.binarySearch(sortedList, obj, comparator);
+            if (index < 0){
                 return false;
             }
-            listB.remove(index); // to reduce search
+            sortedList.remove(index); // to reduce search
         }
         return true;
     }

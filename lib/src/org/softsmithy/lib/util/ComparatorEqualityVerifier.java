@@ -15,6 +15,7 @@ import java.util.Comparator;
  *
  * @author puce
  */
+// Not yet used!
 public class ComparatorEqualityVerifier implements EqualityVerifier{
 
     private final Comparator comparator;
