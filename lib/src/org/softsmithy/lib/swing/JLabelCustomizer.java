@@ -25,66 +25,98 @@ import javax.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
 
 /**
- *
- * @author  puce
+ * A customizer to customize the text of a JLabel.
+ * @author puce
  */
 public class JLabelCustomizer extends AbstractTextCustomizer {
-  
-  
-  /** Creates a new instance of JLabelCustomizer */
-  public JLabelCustomizer() {
-    this(new JLabel(""));
-    initForDefaultLabel();
-  }
-  
-  public JLabelCustomizer(JLabel label){
-    super(label);
-    //label.setOpaque(true);
-  }
-  
-  public JLabelCustomizer(String text){
-    this(new JLabel(text));
-    initForDefaultLabel();
-  }
-  
-  private void initForDefaultLabel(){
-    setBackground(Color.WHITE);
-  }
-  
-  public String getText() {
-    JLabel label = (JLabel) getComponent();
-    return label != null ? label.getText() : "";
-  }
-  
-  public void setText(String text) {
-    JLabel label = (JLabel) getComponent();
-    if (label != null){
-      label.setText(text);
+    
+    
+    /**
+     * Creates a new instance of this class by creating a new JLabel with an empty string.
+     */
+    public JLabelCustomizer() {
+        this(new JLabel(""));
+        initForDefaultLabel();
     }
-  }
-  
-  /** Setter for property fComponent.
-   * @param fComponent New value of property fComponent.
-   *
-   */
-  public void setComponent(JComponent component) {
-    if (! (component instanceof JLabel)){
-      throw new IllegalArgumentException("comp must be a JLabel");
+    
+    /**
+     * Creates a new text customizer for the specified JLabel.
+     * @param label the label to customize
+     */
+    public JLabelCustomizer(JLabel label){
+        super(label);
+        //label.setOpaque(true);
     }
-    JLabel label = (JLabel) component;
-    super.setComponent(label);
-  }
-  
-  protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
-    JLabel label = (JLabel) getComponent();
-    if (label != null){
-      label.setHorizontalAlignment(alignment.getSwingConstant());
+    
+    /**
+     * Creates a new instance of this class by creating a new JLabel with the specified String.
+     * @param text the initial text
+     */
+    public JLabelCustomizer(String text){
+        this(new JLabel(text));
+        initForDefaultLabel();
     }
-  }
-  
-  public HorizontalAlignment getHorizontalAlignment() {
-    JLabel label = (JLabel) getComponent();
-    return label != null ? HorizontalAlignment.getHorizontalAlignment(label.getHorizontalAlignment()) : HorizontalAlignment.getHorizontalAlignment(new JLabel().getHorizontalAlignment());
-  }
-  
+    
+    /**
+     * Initializes the default JLabel.
+     */
+    private void initForDefaultLabel(){
+        setBackground(Color.WHITE);
+    }
+    
+    /**
+     * Gets the text from the wrapped JLabel.
+     * @return the text from the wrapped JLabel
+     */
+    public String getText() {
+        JLabel label = (JLabel) getComponent();
+        return label != null ? label.getText() : "";
+    }
+    
+    /**
+     * Sets the text of the wrapped JLabel.
+     * @param text the text to be set
+     */
+    public void setText(String text) {
+        JLabel label = (JLabel) getComponent();
+        if (label != null){
+            label.setText(text);
+        }
+    }
+    
+    /**
+     * Sets the JLabel to wrap.
+     * 
+     * Throws an unchecked IllegalArgumentException if the component is not a JLabel!
+     * @param component the JLabel to wrap
+     */
+    public void setComponent(JComponent component) {
+        if (! (component instanceof JLabel)){
+            throw new IllegalArgumentException("comp must be a JLabel");
+        }
+        JLabel label = (JLabel) component;
+        super.setComponent(label);
+    }
+    
+    /**
+     * Sets the horizontal alignment of the text. This method should not
+     * fire any events!
+     * @param alignment the horizontal alignment of the text
+     */
+    protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
+        JLabel label = (JLabel) getComponent();
+        if (label != null){
+            label.setHorizontalAlignment(alignment.getSwingConstant());
+        }
+    }
+    
+    /**
+     * Gets the horizontal alignment of the text.
+     * @return the horizontal alignment of the text
+     */
+    public HorizontalAlignment getHorizontalAlignment() {
+        JLabel label = (JLabel) getComponent();
+        return label != null ? HorizontalAlignment.getHorizontalAlignment(label.getHorizontalAlignment()) : HorizontalAlignment.getHorizontalAlignment(new JLabel().getHorizontalAlignment());
+    }
+    
 }
