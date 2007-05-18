@@ -204,7 +204,7 @@
     
     <target name="cp-important-files" depends="init">
         <exec executable="svnversion" output="svnversion.txt">
-             <arg line="-n -c ."/>
+             <arg line="-n -c . /repos/svn/trunk"/>
         </exec>
          <copy todir="${dist.dir}">
              <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt,LGPL.txt"
