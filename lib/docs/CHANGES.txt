@@ -2,17 +2,17 @@ Changes:
 
 @version@:  - JButtonCustomizer completed
 (Rev.: @r@) - a text customizers sample added
-- text customizers tutorial section completed
-- org.softsmithy.lib.util.Strings.cut added
-- small sample updates
-- small documentation updates
+            - text customizers tutorial section completed
+            - org.softsmithy.lib.util.Strings.cut added
+            - small sample updates
+            - small documentation updates
             - Javadocs added
-- org.softsmithy.lib.io.Files: getPathNames added
-- org.softsmithy.lib.util.zip.ZipFiles: createEntryName added
-- org.softsmithy.lib.util.Lists class added
-- org.softsmithy.lib.util.EqualityVerifier interface added
-- org.softsmithy.lib.util.ComparatorEqualityVerifier class added
-- org.softsmithy.lib.util.ObjectEqualityVerifier class added
+            - org.softsmithy.lib.io.Files: getPathNames added
+            - org.softsmithy.lib.util.zip.ZipFiles: createEntryName added
+            - org.softsmithy.lib.util.Lists class added
+            - org.softsmithy.lib.util.EqualityVerifier interface added
+            - org.softsmithy.lib.util.ComparatorEqualityVerifier class added
+            - org.softsmithy.lib.util.ObjectEqualityVerifier class added
 
 v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
 (Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
