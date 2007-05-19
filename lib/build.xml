@@ -66,7 +66,7 @@
     nbproject/build-impl.xml file. 
 
     -->
-     <!--
+    <!--
     ===============
     JAVADOC SECTION
     ===============
@@ -136,8 +136,8 @@
     
     <!-- ==================== I18n Target ===================================== -->
 
-
-<!--
+    
+    <!--
 
   The "i18n" target creates a binary distribution of your i18n-files
   in a directory structure ready to be archived in a tar.gz or zip file.
@@ -146,14 +146,14 @@
 
 -->
 
-  <target name="i18n" depends="init,-pre-pre-jar"
-   description="Create i18n distribution">
-    <jar jarfile="${i18n.jar}"
-         basedir="${i18n.dir}"
-         manifest="${manifest-i18n.file}"
+    <target name="i18n" depends="init,-pre-pre-jar"
+            description="Create i18n distribution">
+        <jar jarfile="${i18n.jar}"
+             basedir="${i18n.dir}"
+             manifest="${manifest-i18n.file}"
         />
-         
-    <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
+        
+        <!--<java classname="org.softsmithy.lib.dev.ant.I18n"
           classpath="${build.home}"
           fork="true"
           dir="${i18n.home}">
@@ -162,12 +162,12 @@
           <arg value="." />
    </java>-->
 
-  </target>
-
-
+    </target>
     
     
-     <!--
+    
+    
+    <!--
     ===============
     DIST SECTION
     ===============
@@ -180,20 +180,20 @@
 
 -->
     <target name="dist" depends="clean,jar,javadoc,zip-src,tutorial,cp-important-files">
-       
+        
     </target>
     
     <target name="samples" depends="init">
         <ant dir="${docs.samples.dir}" target="compile" inheritall="false" />
         <copy todir="${dist.docs.samples.dir}">
-             <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**,src/samples/*.*"/>
-         </copy>
+            <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**,src/samples/*.*"/>
+        </copy>
     </target>
     
     <target name="tutorial" depends="samples">
-         <copy todir="${dist.docs.tutorial.dir}">
-             <fileset dir="${docs.tutorial.dir}" />
-         </copy>
+        <copy todir="${dist.docs.tutorial.dir}">
+            <fileset dir="${docs.tutorial.dir}" />
+        </copy>
     </target>
     
     <target name="zip-src" depends="init">
@@ -203,15 +203,18 @@
     </target>
     
     <target name="cp-important-files" depends="init">
-        <exec executable="svnversion" output="svnversion.txt">
-             <arg line="-n ."/>
+        <exec executable="svnversion" outputproperty="svnversion">
+            <arg line="-n ."/>
         </exec>
-         <copy todir="${dist.dir}">
-             <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt,LGPL.txt"
-              />
-         </copy>
-         <copy todir="${dist.docs.dir}">
-             <fileset dir="${docs.dir}" includes="index.html"/>
-         </copy>
+        <tstamp /> <!-- sets the DSTAMP property -->
+
+        <copy todir="${dist.dir}">
+            <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt,LGPL.txt"
+            />
+        </copy>
+        <replace dir="${dist.dir}" includes="CHANGES.txt" token="@r@" value="${svnversion}"/>
+        <copy todir="${dist.docs.dir}">
+            <fileset dir="${docs.dir}" includes="index.html"/>
+        </copy>
     </target>
 </project>

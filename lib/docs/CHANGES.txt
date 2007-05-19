@@ -1,6 +1,7 @@
 Changes:
-- JButtonCustomizer completed
-- a text customizers sample added
+
+@version@:  - JButtonCustomizer completed
+(Rev.: @r@) - a text customizers sample added
 - text customizers tutorial section completed
 - org.softsmithy.lib.util.Strings.cut added
 - small sample updates
