@@ -203,18 +203,20 @@
     </target>
     
     <target name="cp-important-files" depends="init">
-        <exec executable="svnversion" outputproperty="svnversion">
-            <arg line="-n ."/>
-        </exec>
-        <tstamp /> <!-- sets the DSTAMP property -->
-
         <copy todir="${dist.dir}">
             <fileset dir="${docs.dir}" includes="CHANGES.txt,README.txt,SPL.txt,LGPL.txt"
             />
         </copy>
-        <replace dir="${dist.dir}" includes="CHANGES.txt" token="@r@" value="${svnversion}"/>
         <copy todir="${dist.docs.dir}">
             <fileset dir="${docs.dir}" includes="index.html"/>
         </copy>
+        <exec executable="svnversion" outputproperty="svnversion">
+            <arg line="-n ."/>
+        </exec>
+        <tstamp /> <!-- sets the DSTAMP property -->
+        <property name="version" value="v${DSTAMP}"/>
+        <replace dir="${dist.dir}" includes="CHANGES.txt" token="@r@" value="${svnversion}"/>
+        <replace dir="${dist.dir}" includes="CHANGES.txt" token="@version@" value="${version}"/>
+        <replace dir="${dist.docs.dir}" includes="index.html" token="@version@" value="${version}"/>
     </target>
 </project>
