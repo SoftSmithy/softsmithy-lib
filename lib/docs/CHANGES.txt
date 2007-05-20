@@ -3,7 +3,7 @@ Changes:
 @version@:  - JButtonCustomizer completed
 (Rev.: @r@) - a text customizers sample added
             - text customizers tutorial section completed
-            - org.softsmithy.lib.util.Strings.cut added
+            - org.softsmithy.lib.util.Strings: cut added
             - org.softsmithy.lib.io.Files: getPathNames added
             - org.softsmithy.lib.util.zip.ZipFiles: createEntryName added
             - org.softsmithy.lib.util.Lists class added
