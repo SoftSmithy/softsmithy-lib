@@ -33,15 +33,6 @@ public class StringsTest extends TestCase {
     super(testName);
   }
   
-  public static void main(java.lang.String[] args) {
-    junit.textui.TestRunner.run(suite());
-  }
-  
-  public static Test suite() {
-    TestSuite suite = new TestSuite(StringsTest.class);
-    
-    return suite;
-  }
   
   /** Test of join method, of class org.softsmithy.lib.util.Strings. */
   public void testJoin() {

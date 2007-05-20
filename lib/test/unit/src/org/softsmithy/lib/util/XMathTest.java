@@ -33,15 +33,6 @@ public class XMathTest extends TestCase {
     super(testName);
   }
   
-  public static void main(java.lang.String[] args) {
-    junit.textui.TestRunner.run(suite());
-  }
-  
-  public static Test suite() {
-    TestSuite suite = new TestSuite(XMathTest.class);
-    
-    return suite;
-  }
   
   /** Test of toStandardInterval method, of class puce.util.XMath. */
   public void testToStandardInterval() {
