@@ -13,6 +13,8 @@ Changes:
             - org.softsmithy.lib.util.EqualityVerifier interface added
             - org.softsmithy.lib.util.ComparatorEqualityVerifier class added
             - org.softsmithy.lib.util.ObjectEqualityVerifier class added
+            - org.softsmithy.lib.swing.customizer.AbstractTextCustomizer: 
+              String constructor removed
 
 v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
 (Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added

@@ -86,9 +86,8 @@ public class JLabelCustomizer extends AbstractTextCustomizer {
     
     /**
      * Sets the JLabel to wrap.
-     * 
-     * Throws an unchecked IllegalArgumentException if the component is not a JLabel!
      * @param component the JLabel to wrap
+     * @throws IllegalArgumentException if the component is not a JLabel
      */
     public void setComponent(JComponent component) {
         if (! (component instanceof JLabel)){
