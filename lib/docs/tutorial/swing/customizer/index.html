@@ -107,16 +107,26 @@
             </textarea>
         </pre></blockquote>
         <h2><a name="text">Text Customizers</a></h2>
-        <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a>
-        is a base class to write customizers for components, which can display 
-        texts, with inline-editing support. The framework provides 3 implementations: <br/>
-        <ul>
-            <li><a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> can customize the text of a JLabel.</li>
-            <li><a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> can customize the text of an AbstractButton.</li>
-            <li><a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> can customize a multi-line HTML text using a JEditorPane.</li>
-        </ul>
-       
-        
+        <p>
+            <a href="../../../api/org/softsmithy/lib/swing/customizer/AbstractTextCustomizer.html">AbstractTextCustomizer</a>
+            is a base class to write customizers for components, which can display 
+            texts, with inline-editing support. The framework provides 3 implementations: <br/>
+            <ul>
+                <li><a href="../../../api/org/softsmithy/lib/swing/JLabelCustomizer.html">JLabelCustomizer</a> can customize the text of a JLabel.</li>
+                <li><a href="../../../api/org/softsmithy/lib/swing/JButtonCustomizer.html">JButtonCustomizer</a> can customize the text of an AbstractButton.</li>
+                <li><a href="../../../api/org/softsmithy/lib/swing/JHtmlCustomizer.html">JHtmlCustomizer</a> 
+                    can customize a multi-line HTML text using a JEditorPane. 
+                    Note that the HTML support is very rudimental. If you need extended 
+                    HTML support and have a better editor at hand you can register it either
+                    as an inline editor using the setEditor-method (if the editor is a 
+                    JTextComponent) or configure it as the property editor in the 
+                    <a href="#JCustomizerPropertyTable">JCustomizerPropertyTable</a>. 
+                    Otherwise this customizer can still be used to edit a simple multi-line 
+                text with automatic and forced line wrapping support.</li>
+            </ul>
+        </p>
+        <br/>
+        <br/>
         
         <p><center><img src="TextCustomizersSample.jpg" width="640" height="480" alt="A snapshot of the TextCustomizersSample"/>
         </center></p>
@@ -127,16 +137,14 @@
             <ol>
                 <li><a href="TextCustomizersSample.jnlp">Run TextCustomizersSample</a> using 
                 <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
-                <li>Select the JCustomizer by clicking it. Then the handles appear. 
-                You can move and resize the component with the mouse. When you release
-                the JCustomizer it snaps to the grid. If you resize the frame 
-                the grid adjusts to its size.</li>
+                <li>Double-click a text editor to edit its text and resize the 
+                JHtmlCustomizer to see how the text wraps automatically!</li>
             </ol>
             <hr/>
         </blockquote>
         Below is the code from 
         <a href="../../../samples/src/samples/swing/customizer/TextCustomizersSample.java">TextCustomizersSample.java</a> 
-        that creates and configures the JCustomizer and the JCustomizerPane.
+        that creates and configures the text customizers.
         <blockquote><pre>
             <textarea name="code" class="java" cols="60" rows="10">
         // create a CustomizerLayout
@@ -176,6 +184,12 @@
         customizerPane.addCustomizer(htmlCustomizer, new AbsoluteTableConstraints(150, 250,  270, 150, htmlCustomizer, itl));
             </textarea>
         </pre></blockquote>
+        <p>
+            Implementing your own text customizer can be quite easy. Have a look
+            at the source code of JLabelCustomizer for an example. 
+            (The source code gets shipped with the library or can be retrieved
+            from the Subversion repository of the SoftSmithy project).
+        </p>
         <h2><a name="icon">Icon Customizers</a></h2>
         The <a href="../../../api/org/softsmithy/lib/swing/JXIconCustomizer.html">JXIconCustomizer</a> 
         allows visual scaling of icons. (See here for more information about the <a href="../icon/index.html">Extended Icon Framework</a>.)

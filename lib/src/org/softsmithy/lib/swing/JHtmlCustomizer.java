@@ -228,10 +228,10 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
         return htmlText.toString();
     }
     
-
+    
     /**
-     * 
-     * @param c 
+     * Sets the forground color of this customizer.
+     * @param c the forground color
      */
     public void setDefaultForeground(Color c) {
         super.setDefaultForeground(c);
@@ -242,10 +242,10 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
         }
     }
     
-
+    
     /**
-     * 
-     * @param f 
+     * Sets the font of this customizer.
+     * @param f the font
      */
     public void setDefaultFont(Font f) {
         super.setDefaultFont(f);
@@ -259,7 +259,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
         }
     }
     
-
+    
     /**
      * Gets the HTML body.
      * @return the HTML body
@@ -268,7 +268,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
         return htmlBody;
     }
     
-
+    
     /**
      * Sets the HTML body.
      * @param htmlBody the HTML body
@@ -306,7 +306,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
     //  }
     
     /**
-     *
+     * A text action, which replaces the selection with "&lt;br&gt;\n".
      */
     private static class InsertHtmlBreakAction extends TextAction {
         
