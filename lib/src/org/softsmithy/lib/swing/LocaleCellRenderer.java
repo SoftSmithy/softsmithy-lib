@@ -21,27 +21,35 @@
 package org.softsmithy.lib.swing;
 
 import java.util.*;
+import org.softsmithy.lib.util.LocaleDisplay;
 
 /**
  *
  * @author  puce
  */
 public class LocaleCellRenderer extends AbstractCellRenderer {
-  
-  /** Creates a new instance of LocaleCellRenderer */
-  public LocaleCellRenderer() {
-    super(HorizontalAlignment.LEADING);
-  }
-  
-  public Object getDisplayValue(Object value, Locale locale) {
-    String displayName = null;
-    if (value != null){
-      if (! (value instanceof Locale)){
-        throw new IllegalArgumentException("value must be an instance of Locale");
-      }
-      displayName = ((Locale) value).getDisplayName(locale);
+    
+    private final LocaleDisplay localeDisplay;
+    
+    /** Creates a new instance of LocaleCellRenderer */
+    public LocaleCellRenderer() {
+        this(LocaleDisplay.NAME);
     }
-    return displayName;
-  }
-  
+    
+    public LocaleCellRenderer(LocaleDisplay localeDisplay){
+        super(HorizontalAlignment.LEADING);
+        this.localeDisplay = localeDisplay;
+    }
+    
+    public Object getDisplayValue(Object value, Locale inLocale) {
+        String displayName = null;
+        if (value != null){
+            if (! (value instanceof Locale)){
+                throw new IllegalArgumentException("value must be an instance of Locale");
+            }
+            displayName = localeDisplay.getString((Locale) value, inLocale);
+        }
+        return displayName;
+    }
+    
 }

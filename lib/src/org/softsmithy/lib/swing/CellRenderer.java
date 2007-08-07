@@ -25,8 +25,12 @@ import java.util.*;
 /**
  *
  * @author  puce
+ * Note: with jdk 1.5 this interface might become parameterized!
  */
 public interface CellRenderer {
-  Object getDisplayValue(Object value, Locale locale);
+    /**
+     * Note: with jdk 1.5 the type of value might change to the parameterized type of this interface
+     */
+  Object getDisplayValue(Object value, Locale inLocale);
   HorizontalAlignment getHorizontalAlignment();
 }
