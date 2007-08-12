@@ -50,5 +50,5 @@ http://sourceforge.net/svn/?group_id=64833
 svn co https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/lib softsmithy/trunk/lib
 
 Used:
-jdk 1.4.2_13-b06
+jdk 1.4.2_15-b02
 NetBeans IDE 5.5
