@@ -2,6 +2,8 @@ Changes:
 
 @version@:  - LocaleCellRenderer supports LocaleDisplay
 (Rev.: @r@) - Javadocs added
+            - Project setting changed
+            - LocaleSelectionSample
 
 v20070520:  - JButtonCustomizer completed
 (Rev.: 337) - a text customizers sample added
