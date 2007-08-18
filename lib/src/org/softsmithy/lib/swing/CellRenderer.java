@@ -23,14 +23,28 @@ package org.softsmithy.lib.swing;
 import java.util.*;
 
 /**
- *
- * @author  puce
+ * An abstraction to share common implementations between various kinds of 
+ * cell renderers (eg. cell renderers for lists, tables, trees). <br/>
+ * <br/>
  * Note: with jdk 1.5 this interface might become parameterized!
+ * @author puce
+ * 
+ * @see XDefaultListCellRenderer
+ * @see org.softsmithy.lib.swing.table.XDefaultTableCellRenderer
  */
 public interface CellRenderer {
     /**
+     * Gets the display value.<br/>
+     * <br/>
      * Note: with jdk 1.5 the type of value might change to the parameterized type of this interface
+     * @param value the source value
+     * @param inLocale the Locale used for localization
+     * @return the display value
      */
   Object getDisplayValue(Object value, Locale inLocale);
+    /**
+     * Gets the horizontal alignment.
+     * @return the horizontal alignment
+     */
   HorizontalAlignment getHorizontalAlignment();
 }

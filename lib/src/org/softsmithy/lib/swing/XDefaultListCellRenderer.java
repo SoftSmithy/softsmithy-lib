@@ -24,36 +24,56 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
- * @author  puce
+ * This is an adapter class to use a CellRenderer as a ListCellRenderer.
+ * @author puce
+ * @see CellRenderer
+ * @see javax.swing.ListCellRenderer
  */
 public class XDefaultListCellRenderer extends DefaultListCellRenderer {
   
   /** Holds value of property cellRenderer. */
   private CellRenderer cellRenderer;  
   
-  /** Creates a new instance of XDefaultListCellRenderer */
+  /**
+     * Creates a new instance of XDefaultListCellRenderer
+     * @param cellRenderer the CellRenderer delegate
+     */
   public XDefaultListCellRenderer(CellRenderer cellRenderer) {
     this.cellRenderer = cellRenderer;
   }
   
+    /**
+     * Configures this ListCellRenderer from the JList. <br/>
+     * <br/>
+     * By default sets the Locale of this renderer to the Locale of the 
+     * JList.
+     * @param list the parent JList
+     */
   protected void configureFromList(JList list){
     setLocale(list.getLocale());
   }
   
+    /**
+     * Delegates the generation of the display value to the CellRenderer.<br/>
+     * <br/>
+     * Note: Should this method be private instead of protected?
+     * @param value the source value
+     * @return the display value
+     */
   protected Object getDisplayValue(Object value){
     return cellRenderer.getDisplayValue(value, getLocale());
   }
   
+
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     configureFromList(list);
     return  super.getListCellRendererComponent(list, getDisplayValue(value), index, isSelected, cellHasFocus);
   }
   
-  /** Getter for property cellRenderer.
-   * @return Value of property cellRenderer.
-   *
-   */
+  /**
+     * Gets the CellRenderer delegate.
+     * @return the CellRenderer delegate
+     */
   public CellRenderer getCellRenderer() {
     return this.cellRenderer;
   }

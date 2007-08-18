@@ -24,6 +24,7 @@ import java.text.*;
 import java.util.*;
 
 /**
+ * An utility class for Locales.
  *
  * @author  puce
  */
@@ -33,6 +34,15 @@ public class Locales {
   private Locales() {
   }
   
+  
+    /**
+     * Sorts an array of Locales according to the specified LocaleDisplay and in the 
+     * specified Locale.
+     * @param locales the locales to sort
+     * @param display the LocaleDisplay used to sort
+     * @param inLocale the Locale to sort in
+     * @return the sorted locales
+     */
   public static Locale[] sort(Locale[] locales, LocaleDisplay display, Locale inLocale){
     LocaleCollationKey[] keys = getLocaleCollationKeys(locales, display, inLocale);
     Arrays.sort(keys);
