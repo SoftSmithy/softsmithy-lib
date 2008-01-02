@@ -8,20 +8,25 @@
  */
 
 package org.softsmithy.vep;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.softsmithy.lib.swing.icon.XIcon;
 import org.softsmithy.lib.swing.icon.XImageIcon;
 import org.softsmithy.lib.util.XMath;
+
 
 /**
  *
