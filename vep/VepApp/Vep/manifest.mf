@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.softsmithy.vep
+OpenIDE-Module-Layer: org/softsmithy/vep/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/softsmithy/vep/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
