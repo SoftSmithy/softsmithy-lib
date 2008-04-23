@@ -35,7 +35,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
     /**
      * Holds value of property visualFieldTest.
      */
-    private VisualFieldTest visualFieldTest;
+    private AnimationMode visualFieldAnimationMode = AnimationMode.FULL;
     private List<XIcon> visualFieldImages;
     private Map<XIcon, XIcon> scaledVisualFieldImages = new HashMap<XIcon, XIcon>();
     
@@ -43,6 +43,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
     public VisualFieldPane() {
         initComponents();
         visualField = new VisualField(50, 24, 3, 1, 100, 100, 100, 100, 200, 200, 200, 300, 300);
+        recreateImages();
         timer = new Timer(0, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextImage();
@@ -56,6 +57,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
             }
             
         });
+        setFrequency(2);
     }
     
     private synchronized void nextImage(){
@@ -123,17 +125,17 @@ public class VisualFieldPane extends javax.swing.JPanel {
      * Getter for property visualFieldTest.
      * @return Value of property visualFieldTest.
      */
-    public VisualFieldTest getVisualFieldTest() {
-        return this.visualFieldTest;
+    public AnimationMode getVisualFieldAnimationMode() {
+        return this.visualFieldAnimationMode;
     }
     
     /**
      * Setter for property visualFieldTest.
      * @param visualFieldTest New value of property visualFieldTest.
      */
-    public void setVisualFieldTest(VisualFieldTest visualFieldTest) {
-        this.visualFieldTest = visualFieldTest;
-        visualFieldImages = visualField.createImages(visualFieldTest);
+    public void setVisualFieldAnimationMode(AnimationMode visualFieldAnimationMode) {
+        this.visualFieldAnimationMode = visualFieldAnimationMode;
+        visualFieldImages = visualField.createImages(visualFieldAnimationMode);
         scaledVisualFieldImages.clear();
     }
     
@@ -203,7 +205,7 @@ public class VisualFieldPane extends javax.swing.JPanel {
     }
     
     private void recreateImages(){
-        visualFieldImages = visualField.createImages(visualFieldTest);
+        visualFieldImages = visualField.createImages(visualFieldAnimationMode);
         scaledVisualFieldImages.clear();
         displayCurrentImage();
     }

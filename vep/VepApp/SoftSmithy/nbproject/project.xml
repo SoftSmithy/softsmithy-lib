@@ -36,6 +36,10 @@
                 <runtime-relative-path>ext/softsmithy.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/softsmithy.jar</binary-origin>
             </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jlfgr-1_0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jlfgr-1_0.jar</binary-origin>
+            </class-path-extension>
         </data>
     </configuration>
 </project>

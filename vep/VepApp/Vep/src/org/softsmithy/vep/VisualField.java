@@ -48,7 +48,8 @@ public class VisualField {
     private Color fixationColor = Color.BLACK;
     
     /** Creates a new instance of VisualField */
-    public VisualField(double fixationRadius, int nSections, int deviderCircleIndex, int nDeviderSectionsFromMiddle, double... radiusInc) {
+    public VisualField(double fixationRadius, int nSections, int deviderCircleIndex,
+            int nDeviderSectionsFromMiddle, double... radiusInc) {
         this.deviderCircleIndex = deviderCircleIndex;
         this.nDeviderSectionsFromMiddle = nDeviderSectionsFromMiddle;
         double centerCoord = XMath.sum(radiusInc) + fixationRadius;
@@ -150,7 +151,7 @@ public class VisualField {
     }
     
     
-    public List<XIcon> createImages(VisualFieldTest visualFieldTest) {
+    public List<XIcon> createImages(AnimationMode visualFieldTest) {
         return Arrays.asList(defaultVisualField, createXIcon(visualFieldTest.getColorSwitchingIndices(getNSections(), nDeviderSectionsFromMiddle), visualFieldTest.isInner(), visualFieldTest.isOuter()));
     }
     

@@ -1,4 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
+    <folder name="Actions">
+        <folder name="VisualField">
+            <file name="org-softsmithy-vep-StartAnimationAction.instance"/>
+            <file name="org-softsmithy-vep-StopAnimationAction.instance"/>
+        </folder>
+        <folder name="Window">
+            <file name="org-softsmithy-vep-VisualFieldControllerAction.instance"/>
+            <file name="org-softsmithy-vep-VisualFieldViewAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="VisualField">
+            <file name="StartAnimationAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/VisualField/org-softsmithy-vep-StartAnimationAction.instance"/>
+            </file>
+            <file name="StopAnimationAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/VisualField/org-softsmithy-vep-StopAnimationAction.instance"/>
+            </file>
+        </folder>
+        <folder name="Window">
+            <file name="VisualFieldControllerAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-softsmithy-vep-VisualFieldControllerAction.instance"/>
+            </file>
+            <file name="VisualFieldViewAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-softsmithy-vep-VisualFieldViewAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Toolbars">
+        <folder name="VisualField">
+            <file name="StartAnimationAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/VisualField/org-softsmithy-vep-StartAnimationAction.instance"/>
+            </file>
+            <file name="StopAnimationAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/VisualField/org-softsmithy-vep-StopAnimationAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="VisualFieldControllerTopComponent.settings" url="VisualFieldControllerTopComponentSettings.xml"/>
+            <file name="VisualFieldViewTopComponent.settings" url="VisualFieldViewTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="VisualFieldViewTopComponent.wstcref" url="VisualFieldViewTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="output">
+                <file name="VisualFieldControllerTopComponent.wstcref" url="VisualFieldControllerTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>
