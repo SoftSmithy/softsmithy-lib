@@ -45,10 +45,12 @@
             <file name="VisualFieldViewTopComponent.settings" url="VisualFieldViewTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
-            <folder name="editor">
+            <file name="view.wsmode" url="ViewWsmode.xml"/>
+            <file name="controller.wsmode" url="ControllerWsmode.xml"/>
+            <folder name="view">
                 <file name="VisualFieldViewTopComponent.wstcref" url="VisualFieldViewTopComponentWstcref.xml"/>
             </folder>
-            <folder name="output">
+            <folder name="controller">
                 <file name="VisualFieldControllerTopComponent.wstcref" url="VisualFieldControllerTopComponentWstcref.xml"/>
             </folder>
         </folder>

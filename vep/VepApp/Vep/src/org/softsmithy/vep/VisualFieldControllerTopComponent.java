@@ -5,6 +5,7 @@
 
 package org.softsmithy.vep;
 
+import java.awt.Dimension;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import org.openide.util.NbBundle;
@@ -27,6 +28,8 @@ final class VisualFieldControllerTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(VisualFieldControllerTopComponent.class, "CTL_VisualFieldControllerTopComponent"));
         setToolTipText(NbBundle.getMessage(VisualFieldControllerTopComponent.class, "HINT_VisualFieldControllerTopComponent"));
+        // setPreferredSize(new Dimension(200, 300) );
+         setSize(new Dimension(200, 300) );
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 

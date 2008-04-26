@@ -8,6 +8,10 @@ package org.softsmithy.vep;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import javax.swing.JColorChooser;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
+import org.softsmithy.lib.swing.action.IconType;
+import org.softsmithy.lib.swing.action.XActions;
 
 /**
  *
@@ -31,7 +35,11 @@ public class ControlPanel extends javax.swing.JPanel {
         fixationColorLabel.setBackground(visualFieldPane.getFixationColor());
         backgroundColorLabel.setBackground(visualFieldPane.getBackground());
         disabledColorLabel.setBackground(disabledColor);
-        //startButton.setAction(StartAnimationAction.g);
+        Lookup lookup = Lookups.forPath("Actions/VisualField");
+        javax.swing.Action action = lookup.lookup(StartAnimationAction.class);
+        XActions.configureButton(startButton, lookup.lookup(StartAnimationAction.class), IconType.LARGE_ICON, false, false);
+        XActions.configureButton(stopButton, lookup.lookup(StopAnimationAction.class), IconType.LARGE_ICON, false, false);
+        //setPreferredSize(new java.awt.Dimension(200, 300));
     }
 
     /** This method is called from within the constructor to
@@ -67,6 +75,8 @@ public class ControlPanel extends javax.swing.JPanel {
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         showVisualFieldCheckBox = new javax.swing.JCheckBox();
+
+        setPreferredSize(new java.awt.Dimension(200, 300));
 
         visualFieldTestBox.setModel(new javax.swing.DefaultComboBoxModel(AnimationMode.values()));
         visualFieldTestBox.addActionListener(new java.awt.event.ActionListener() {
