@@ -20,6 +20,8 @@
 
 package org.softsmithy.lib.swing;
 
+import javax.swing.Icon;
+
 /**
  *
  * @author  puce
@@ -48,6 +50,12 @@ public abstract class AbstractCellRenderer implements CellRenderer {
    */
   public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
     this.horizontalAlignment = horizontalAlignment;
-  }  
+  }
+
+    public Icon getIcon(Object value) {
+        return null;
+    }
+  
+  
   
 }

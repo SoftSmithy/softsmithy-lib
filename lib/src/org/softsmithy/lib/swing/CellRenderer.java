@@ -21,6 +21,7 @@
 package org.softsmithy.lib.swing;
 
 import java.util.*;
+import javax.swing.Icon;
 
 /**
  * An abstraction to share common implementations between various kinds of 
@@ -47,4 +48,6 @@ public interface CellRenderer {
      * @return the horizontal alignment
      */
   HorizontalAlignment getHorizontalAlignment();
+  
+  Icon getIcon(Object value);
 }
