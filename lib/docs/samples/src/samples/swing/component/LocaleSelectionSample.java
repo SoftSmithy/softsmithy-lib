@@ -4,7 +4,7 @@
  * Created on 11. August 2007, 18:48
  */
 
-package samples;
+package samples.swing.component;
 
 import java.util.Locale;
 import javax.swing.ComboBoxModel;
