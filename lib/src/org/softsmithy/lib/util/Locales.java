@@ -181,6 +181,7 @@ public class Locales {
      * @see     java.util.Hashtable
      *
      */
+    @Override
     public int hashCode() {
       int result = 17;
       result = 37*result + collationKey.hashCode();
@@ -230,6 +231,7 @@ public class Locales {
      * @see     java.util.Hashtable
      *
      */
+    @Override
     public boolean equals(Object obj) {
       if (obj == this){
         return true;
