@@ -1,9 +1,18 @@
 Changes:
 
 @version@:  - LocaleCellRenderer supports LocaleDisplay
-(Rev.: @r@) - Javadocs added
+(Rev.: @r@) - org.softsmithy.lib.swing.CellRenderer: icon support added
+            - org.softsmithy.lib.swing.XDefaultListCellRenderer: icon support added
+            - org.softsmithy.lib.swing.JFileRootComboBox class added
+            - org.softsmithy.lib.swing.JFileRootList class added
+            - org.softsmithy.lib.swing.filechooser.FileRootComboBoxModel class added
+            - org.softsmithy.lib.swing.filechooser.FileRootCellRenderer class added
+            - Javadocs added
             - Project setting changed
             - LocaleSelectionSample
+            - FileRootSelectionSample
+            - changed to JDK 1.5 -> please report regressions if you find any!
+            - changed to NetBeans 6.1
 
 v20070520:  - JButtonCustomizer completed
 (Rev.: 337) - a text customizers sample added
