@@ -65,6 +65,7 @@ public class XDefaultListCellRenderer extends DefaultListCellRenderer {
   }
   
 
+    @Override
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     configureFromList(list);
     super.getListCellRendererComponent(list, getDisplayValue(value), index, isSelected, cellHasFocus);
