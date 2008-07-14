@@ -210,7 +210,7 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
 
     public String toString() {
 
-      return horizontalAlignment.toString(getLocale());
+      return horizontalAlignment.getDisplayString(getLocale());
 
     }
 
