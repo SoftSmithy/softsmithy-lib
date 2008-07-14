@@ -33,7 +33,7 @@ import javax.swing.Icon;
  * @see XDefaultListCellRenderer
  * @see org.softsmithy.lib.swing.table.XDefaultTableCellRenderer
  */
-public interface CellRenderer {
+public interface CellRenderer<T> {
     /**
      * Gets the display value.<br/>
      * <br/>
@@ -42,12 +42,12 @@ public interface CellRenderer {
      * @param inLocale the Locale used for localization
      * @return the display value
      */
-  Object getDisplayValue(Object value, Locale inLocale);
+  Object getDisplayValue(T value, Locale inLocale);
     /**
      * Gets the horizontal alignment.
      * @return the horizontal alignment
      */
   HorizontalAlignment getHorizontalAlignment();
   
-  Icon getIcon(Object value);
+  Icon getIcon(T value);
 }
