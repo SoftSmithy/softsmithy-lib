@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing;
 
 import java.util.Locale;
-import org.softsmithy.lib.util.LocaleDisplay;
+import org.softsmithy.lib.util.LocaleLocalizer;
 
 
 
@@ -31,14 +31,14 @@ import org.softsmithy.lib.util.LocaleDisplay;
  */
 public class LocaleCellRenderer extends AbstractCellRenderer<Locale> {
     
-    private final LocaleDisplay localeDisplay;
+    private final LocaleLocalizer localeDisplay;
     
     /** Creates a new instance of LocaleCellRenderer */
     public LocaleCellRenderer() {
-        this(LocaleDisplay.NAME);
+        this(LocaleLocalizer.NAME);
     }
     
-    public LocaleCellRenderer(LocaleDisplay localeDisplay){
+    public LocaleCellRenderer(LocaleLocalizer localeDisplay){
         this.localeDisplay = localeDisplay;
     }
     

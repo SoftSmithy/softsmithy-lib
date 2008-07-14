@@ -13,7 +13,7 @@
  */
 
 /*
- * LocaleDisplay.java
+ * LocaleLocalizer.java
  *
  * Created on 12. März 2003, 22:50
  */
@@ -29,7 +29,7 @@ import java.util.Locale;
  * Note: Is this really a ennum? Better way??
  * @author puce
  */
-public enum LocaleDisplay implements Localizer<Locale> {
+public enum LocaleLocalizer implements Localizer<Locale> {
 
     /**
      * Selects the Locale.getDisplayName method.
