@@ -13,8 +13,9 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import org.softsmithy.lib.swing.LocaleCellRenderer;
 import org.softsmithy.lib.swing.XDefaultListCellRenderer;
-import org.softsmithy.lib.util.LocaleDisplay;
-import org.softsmithy.lib.util.Locales;
+import org.softsmithy.lib.util.LocaleLocalizer;
+import org.softsmithy.lib.util.Localizables;
+
 
 /**
  *
@@ -24,7 +25,7 @@ public class LocaleSelectionSample extends javax.swing.JFrame {
     
     private Locale currentLocale = Locale.ENGLISH;
     private final Locale[] supportedLocales;
-    private final LocaleDisplay localeDisplay = LocaleDisplay.NAME;
+    private final LocaleLocalizer localeDisplay = LocaleLocalizer.NAME;
     
     /** Creates new form LocaleSelectionSample */
     public LocaleSelectionSample() {
@@ -87,8 +88,8 @@ public class LocaleSelectionSample extends javax.swing.JFrame {
     }
     
     private void updateModel() {
-        Locale[] sortedLocales = Locales.sort(supportedLocales, localeDisplay, currentLocale);
-        ComboBoxModel model = new DefaultComboBoxModel(sortedLocales);
+        Localizables.sort(localeDisplay, currentLocale, supportedLocales);
+        ComboBoxModel model = new DefaultComboBoxModel(supportedLocales);
         model.setSelectedItem(currentLocale);
         localeBox.setModel(model);
     }
