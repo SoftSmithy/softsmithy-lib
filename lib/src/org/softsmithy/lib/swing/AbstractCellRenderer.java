@@ -17,7 +17,6 @@
  *
  * Created on 11. September 2003, 19:51
  */
-
 package org.softsmithy.lib.swing;
 
 import javax.swing.Icon;
@@ -26,36 +25,29 @@ import javax.swing.Icon;
  *
  * @author  puce
  */
-public abstract class AbstractCellRenderer implements CellRenderer {
-  
-  /** Holds value of property horizontalAlignment. */
-  private HorizontalAlignment horizontalAlignment;
-  
-  /** Creates a new instance of LeadingCellRenderer */
-  public AbstractCellRenderer(HorizontalAlignment horizontalAlignment) {
-    this.horizontalAlignment = horizontalAlignment;
-  }
-  
-  /** Getter for property horizontalAlignment.
-   * @return Value of property horizontalAlignment.
-   *
-   */
-  public HorizontalAlignment getHorizontalAlignment() {
-    return this.horizontalAlignment;
-  }  
+public abstract class AbstractCellRenderer<T> implements CellRenderer<T> {
 
-  /** Setter for property horizontalAlignment.
-   * @param horizontalAlignment New value of property horizontalAlignment.
-   *
-   */
-  public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-    this.horizontalAlignment = horizontalAlignment;
-  }
+    /** Holds value of property horizontalAlignment. */
+    private final HorizontalAlignment horizontalAlignment;
 
-    public Icon getIcon(Object value) {
+    public AbstractCellRenderer() {
+        this(HorizontalAlignment.LEADING);
+    }
+
+    /** Creates a new instance of LeadingCellRenderer */
+    public AbstractCellRenderer(HorizontalAlignment horizontalAlignment) {
+        this.horizontalAlignment = horizontalAlignment;
+    }
+
+    /** Getter for property horizontalAlignment.
+     * @return Value of property horizontalAlignment.
+     *
+     */
+    public HorizontalAlignment getHorizontalAlignment() {
+        return this.horizontalAlignment;
+    }
+
+    public Icon getIcon(T value) {
         return null;
     }
-  
-  
-  
 }
