@@ -100,7 +100,7 @@ public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
 
   protected void setValue(Object value) {
 
-    super.setValue(((TypesafeEnum) value).toString(getLocale()));
+    super.setValue(((TypesafeEnum) value).getDisplayString(getLocale()));
 
   }  
 

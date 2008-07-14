@@ -100,7 +100,7 @@ public class HorizontalAlignmentRenderer extends DefaultTableCellRenderer{
 
   protected void setValue(Object value) {
 
-    super.setValue(((HorizontalAlignment) value).toString(getLocale()));
+    super.setValue(((HorizontalAlignment) value).getDisplayString(getLocale()));
 
   }  
 
