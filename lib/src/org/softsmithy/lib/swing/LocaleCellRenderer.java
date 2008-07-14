@@ -20,14 +20,16 @@
 
 package org.softsmithy.lib.swing;
 
-import java.util.*;
+import java.util.Locale;
 import org.softsmithy.lib.util.LocaleDisplay;
+
+
 
 /**
  *
  * @author  puce
  */
-public class LocaleCellRenderer extends AbstractCellRenderer {
+public class LocaleCellRenderer extends AbstractCellRenderer<Locale> {
     
     private final LocaleDisplay localeDisplay;
     
@@ -37,17 +39,13 @@ public class LocaleCellRenderer extends AbstractCellRenderer {
     }
     
     public LocaleCellRenderer(LocaleDisplay localeDisplay){
-        super(HorizontalAlignment.LEADING);
         this.localeDisplay = localeDisplay;
     }
     
-    public Object getDisplayValue(Object value, Locale inLocale) {
+    public Object getDisplayValue(Locale value, Locale inLocale) {
         String displayName = null;
         if (value != null){
-            if (! (value instanceof Locale)){
-                throw new IllegalArgumentException("value must be an instance of Locale");
-            }
-            displayName = localeDisplay.getString((Locale) value, inLocale);
+            displayName = localeDisplay.getDisplayString(value, inLocale);
         }
         return displayName;
     }

@@ -27,20 +27,17 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
-public class TypesafeEnumCellRenderer extends AbstractCellRenderer {
+public class TypesafeEnumCellRenderer extends AbstractCellRenderer<TypesafeEnum> {
   
   /** Creates a new instance of TypesafeEnumCellRenderer */
   public TypesafeEnumCellRenderer() {
     super(HorizontalAlignment.LEADING);
   }
   
-  public Object getDisplayValue(Object value, Locale locale) {
+  public Object getDisplayValue(TypesafeEnum value, Locale locale) {
     String typesafeEnumString = null;
     if (value != null){
-      if (! (value instanceof TypesafeEnum)){
-        throw new IllegalArgumentException("value must be an instance of TypesafeEnum");
-      }
-      typesafeEnumString = ((TypesafeEnum) value).toString(locale);
+      typesafeEnumString = value.getDisplayString(locale);
     }
     return typesafeEnumString;
   }
