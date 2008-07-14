@@ -20,8 +20,10 @@
 
 package org.softsmithy.lib.swing;
 
-import java.text.*;
-import java.util.*;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+
 
 /**
  *
