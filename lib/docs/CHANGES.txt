@@ -7,6 +7,11 @@ Changes:
             - org.softsmithy.lib.swing.JFileRootList class added
             - org.softsmithy.lib.swing.filechooser.FileRootComboBoxModel class added
             - org.softsmithy.lib.swing.filechooser.FileRootCellRenderer class added
+            - org.softsmithy.lib.util.Localizable added
+            - org.softsmithy.lib.util.Localizer added
+            - org.softsmithy.lib.util.Localizables added
+            - org.softsmithy.lib.util.Locales removed (replaced by Localizables)
+            - generified classes
             - Javadocs added
             - Project setting changed
             - LocaleSelectionSample
