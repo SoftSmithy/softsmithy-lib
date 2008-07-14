@@ -59,7 +59,7 @@ public class TypesafeEnumItem{
    */
   public String toString() {
     //System.out.println("toString start");
-    return getTypesafeEnum().toString(getLocale());
+    return getTypesafeEnum().getDisplayString(getLocale());
   }
   
   /** Getter for property locale.
