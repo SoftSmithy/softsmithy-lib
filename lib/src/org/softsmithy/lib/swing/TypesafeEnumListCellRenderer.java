@@ -42,13 +42,14 @@ public class TypesafeEnumListCellRenderer extends DefaultListCellRenderer {
     this.locale = locale;
   }
   
+    @Override
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     String typesafeEnumString = null;
     if (value != null){
       if (! (value instanceof TypesafeEnum)){
         throw new IllegalArgumentException("value must be an instance of TypesafeEnum");
       }
-      typesafeEnumString = ((TypesafeEnum) value).toString(getLocale());
+      typesafeEnumString = ((TypesafeEnum) value).getDisplayString(getLocale());
     }
     return super.getListCellRendererComponent(list, typesafeEnumString, index, isSelected, cellHasFocus);
   }
@@ -57,6 +58,7 @@ public class TypesafeEnumListCellRenderer extends DefaultListCellRenderer {
    * @return Value of property locale.
    *
    */
+    @Override
   public Locale getLocale() {
     return this.locale;
   }
@@ -65,6 +67,7 @@ public class TypesafeEnumListCellRenderer extends DefaultListCellRenderer {
    * @param locale New value of property locale.
    *
    */
+    @Override
   public void setLocale(Locale locale) {
     this.locale = locale;
   }
