@@ -18,7 +18,12 @@ public class FileRootCellRenderer extends AbstractCellRenderer<File> {
 
     public Object getDisplayValue(File value, Locale inLocale) {
         if (value != null) {
-            return FileSystemView.getFileSystemView().getSystemDisplayName(value);
+            String displayName = FileSystemView.getFileSystemView().getSystemDisplayName(value);
+            if (!displayName.equals("")) {
+                return displayName;
+            } else {
+                return value;
+            }
         } else {
             return "";
         }
