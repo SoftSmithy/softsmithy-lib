@@ -11,6 +11,8 @@ Changes:
             - org.softsmithy.lib.util.Localizer added
             - org.softsmithy.lib.util.Localizables added
             - org.softsmithy.lib.util.Locales removed (replaced by Localizables)
+            - new utility methods in org.softsmithy.lib.io.Files
+            - bug fix in org.softsmithy.lib.util.zip.ZipFiles
             - generified classes
             - Javadocs added
             - Project setting changed

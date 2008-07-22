@@ -104,6 +104,9 @@ public class ZipFiles {
     }
     
     // must not be absolute!? name must use '/' as path delimiter!?
+    // http://www.pkware.com/documents/casestudies/APPNOTE.TXT
+    // Section:
+    // file name: (Variable)
     /**
      * Creates a valid ZipEntry name from a file. A valid ZipEntry name is not absolute
      * and uses '/' as file separator not the platform specific one!<br>
@@ -114,17 +117,14 @@ public class ZipFiles {
      * @return a valid ZipEntry name
      */
     public static String createEntryName(File file){
-        String[] allPathNames = Files.getPathNames(file);
-        String[] pathNames;
-        if (file.isAbsolute()){
-            if (file.getParentFile() != null){
-                pathNames = new String[allPathNames.length - 1];
-                System.arraycopy(allPathNames, 1, pathNames, 0, pathNames.length);
-            } else {
-                throw new IllegalArgumentException("The file must not be a root directory!");
+        String[] pathNames = Files.getPathNames(file);
+        for (String pathName : pathNames){
+            // TODO: just strip leading empty paths?
+            // TODO: test pathNames.length > 0?
+            // TODO: test path names don't contain '/', '\' or drive letters?
+            if (pathName.equals("")){
+                throw new IllegalArgumentException("path names must not be empty!");
             }
-        } else {
-            pathNames = allPathNames;
         }
         return Strings.join(pathNames, "/");
     }

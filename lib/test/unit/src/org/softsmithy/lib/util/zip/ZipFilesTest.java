@@ -83,6 +83,9 @@ public class ZipFilesTest extends TestCase {
         
         String result2 = ZipFiles.createEntryName(new File(File.listRoots()[0], file.getPath()));
         assertEquals(expResult, result2);
+        
+        String result3 = ZipFiles.createEntryName(new File(File.separator + file.getPath()));
+        assertEquals(expResult, result3);
     }
     
 }
