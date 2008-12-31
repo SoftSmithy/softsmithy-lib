@@ -41,8 +41,8 @@ public abstract class AbstractTableLayout implements TableLayout {
   protected abstract AbstractAxis getColumns();
   protected abstract AbstractAxis getRows();
   
-  private final Set allComponentLayoutListeners = new HashSet();
-  private final Map componentLayoutListeners = new HashMap();
+  private final Set<ComponentLayoutListener> allComponentLayoutListeners = new HashSet<ComponentLayoutListener>();
+  private final Map<Component, Set<ComponentLayoutListener>> componentLayoutListeners = new HashMap<Component, Set<ComponentLayoutListener>>();
   
    /*protected void insertColumn(int i, double width);
   protected void insertRow(int i, double height);
@@ -203,11 +203,11 @@ public abstract class AbstractTableLayout implements TableLayout {
   }
   
   public void addComponentLayoutListener(Component component, ComponentLayoutListener listener) {
-    Set listeners;
+    Set<ComponentLayoutListener> listeners;
     if (componentLayoutListeners.containsKey(component)){
-      listeners = (Set) componentLayoutListeners.get(component);
+      listeners = componentLayoutListeners.get(component);
     } else {
-      listeners = new HashSet();
+      listeners = new HashSet<ComponentLayoutListener>();
       componentLayoutListeners.put(component, listeners);
     }
     listeners.add(listener);
