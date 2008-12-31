@@ -15,8 +15,6 @@
 package org.softsmithy.lib.swing.text;
 
 import java.util.*;
-import javax.swing.*;
-import javax.swing.*;
 
 /**
  *

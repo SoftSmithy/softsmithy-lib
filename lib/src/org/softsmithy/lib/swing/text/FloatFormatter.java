@@ -22,7 +22,6 @@ package org.softsmithy.lib.swing.text;
 
 import java.math.*;
 import java.text.*;
-import java.util.*;
 import org.softsmithy.lib.math.*;
 
 /**

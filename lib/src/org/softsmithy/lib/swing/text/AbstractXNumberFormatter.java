@@ -15,9 +15,7 @@
 
 package org.softsmithy.lib.swing.text;
 
-import java.math.*;
 import java.text.*;
-import java.util.*;
 import javax.swing.text.*;
 import org.softsmithy.lib.util.*;
 
@@ -89,6 +87,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * maximum value and the minimum minimum value.
      * @param max the maximum number value
      */
+    @Override
     public void setMaximum(Comparable max) {
         if (max != null && ! (max instanceof Number)){
             throw new IllegalArgumentException("max must be an instance of Number or null");
@@ -110,6 +109,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * maximum value and the minimum minimum value.
      * @param minimum the minimum number value
      */
+    @Override
     public void setMinimum(Comparable minimum) {
         if (minimum != null && ! (minimum instanceof Number)){
             throw new IllegalArgumentException("minimum must be an instance of Number or null");
@@ -130,6 +130,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * @return <code>Number</code> representation of text
      * @throws ParseException if there is an error in the conversion
      */
+    @Override
     public Object stringToValue(String text) throws ParseException {
         Number value = null;
         try{
@@ -295,6 +296,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         setMinimum((Comparable) minimumValue);
     }
     
+    @Override
     public void setValueClass(Class valueClass) {
         if (! Number.class.isAssignableFrom(valueClass)){
             throw new IllegalArgumentException("Number class must be assignable from valueClass");
@@ -302,6 +304,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         super.setValueClass(valueClass);
     }
     
+    @Override
     public void setFormat(Format format) {
         if (format != null && ! (format instanceof NumberFormat)){
             throw new IllegalArgumentException("format must be an instance of NumberFormat or null");

@@ -22,9 +22,6 @@ package org.softsmithy.lib.swing.text;
 
 import java.math.*;
 import java.text.*;
-import java.util.*;
-import javax.swing.text.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -59,6 +56,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
   }
   
   
+  @Override
   public void setMaximum(Comparable max) {
     if (max != null && ! (max instanceof BigDecimal)){
       throw new IllegalArgumentException("max must be an instance of BigDecimal or null");
@@ -66,6 +64,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
     super.setMaximum(max);
   }
   
+  @Override
   public void setMinimum(Comparable minimum) {
     if (minimum != null && ! (minimum instanceof BigDecimal)){
       throw new IllegalArgumentException("minimum must be an instance of BigDecimal or null");
@@ -73,6 +72,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
     super.setMinimum(minimum);
   }
   
+  @Override
   public void setValueClass(Class valueClass) {
     throw new UnsupportedOperationException("This operation is not supported!"); // always use BigDecimal!
   }
@@ -129,7 +129,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
    *
    */
   public void setMaximumBigDecimalValue(BigDecimal maximumBigDecimalValue) {
-    setMaximum(maximumBigDecimalValue);;
+    setMaximum(maximumBigDecimalValue);
   }
   
   /** Getter for property minimumBigDecimalValue.
