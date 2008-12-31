@@ -14,7 +14,6 @@
 package org.softsmithy.lib.swing;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import org.softsmithy.lib.swing.chooser.*;
 

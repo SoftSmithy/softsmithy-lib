@@ -53,6 +53,7 @@ public class JCellTable extends JXTable {
    * @see #getCellClass
    */
   
+  @Override
   public TableCellRenderer getCellRenderer(int row, int column) {
     TableCellRenderer renderer = getDefaultRenderer(getCellClass(row, column));
     return renderer;
@@ -74,6 +75,7 @@ public class JCellTable extends JXTable {
    * @see #getCellClass
    *
    */
+  @Override
   public TableCellEditor getCellEditor(int row, int column) {
     return getDefaultEditor(getCellClass(row, column));
   }
@@ -104,6 +106,7 @@ public class JCellTable extends JXTable {
    * @see     #getModel
    *
    */
+  @Override
   public void setModel(TableModel cellTableModel) {
     if (! (cellTableModel instanceof CellTableModel)){
       throw new IllegalArgumentException("cellTableModel must be a CellTableModel");

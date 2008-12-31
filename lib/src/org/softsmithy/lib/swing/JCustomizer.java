@@ -27,7 +27,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
-import org.softsmithy.lib.swing.style.*;
 import org.softsmithy.lib.test.*;
 
 
@@ -390,6 +389,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    * description: The text to display in a tool tip.
    *
    */
+  @Override
   public void setToolTipText(String text) {
     super.setToolTipText(text);
     if (getGlassPane() != null){
@@ -474,10 +474,12 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    * @see #TOOL_TIP_TEXT_KEY
    *
    */
+  @Override
   public String getToolTipText() {
     return (getComponent() != null) ? getComponent().getToolTipText() : super.getToolTipText();
   }
   
+  @Override
   public void setDefaultBackground(Color bg){
     super.setDefaultBackground(bg);
     if (getComponent() != null){
@@ -485,6 +487,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+  @Override
   public void setDefaultForeground(Color fg){
     super.setDefaultForeground(fg); // to update listeners etc.
     if (getComponent() != null){
@@ -492,6 +495,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+  @Override
   public void setDefaultFont(Font font){
     super.setDefaultFont(font);
     if (getComponent() != null){
@@ -499,6 +503,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     }
   }
   
+  @Override
   public void setDefaultOpaque(boolean isOpaque){
     super.setDefaultOpaque(isOpaque);
     if (getComponent() != null){

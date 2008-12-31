@@ -150,6 +150,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
    * @see #paint
    * @see ComponentUI
    */
+  @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (isShowingLayoutHelp()){
@@ -255,6 +256,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
    * @see #getLayout
    *
    */
+  @Override
   public void setLayout(LayoutManager mgr) {
     if (inited){
       if (! (mgr instanceof CustomizerLayout)){
@@ -315,6 +317,7 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
    * @since     JDK1.1
    *
    */
+  @Override
   protected void addImpl(Component comp, Object constraints, int index) {
     if (! (comp instanceof JCustomizer)){
       throw new IllegalArgumentException("comp must be an instance of JCustomizer!");

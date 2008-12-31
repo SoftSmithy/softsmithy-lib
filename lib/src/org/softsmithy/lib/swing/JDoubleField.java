@@ -173,6 +173,7 @@ public class JDoubleField extends JRealNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(AbstractFormatter formatter) {
         if (! (formatter instanceof DoubleFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of DoubleFormatter!");
@@ -219,6 +220,7 @@ public class JDoubleField extends JRealNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(AbstractFormatterFactory aff) {
         if (! (aff instanceof DoubleFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of DoubleFormatterFactory!");

@@ -57,11 +57,13 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
         setPropertyEditor("thickness", new LocalizedFloatCellEditor(1, 10000, getLocale()));
     }
 
+    @Override
     public void reinit() {
         super.reinit();
         init();
     }
 
+    @Override
     public void setModel(TableModel model) {
         if (!(model instanceof CustomizerPropertyTableModel)) {
             throw new IllegalArgumentException("model must be a CustomizerPropertyTableModel");
@@ -72,6 +74,7 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
         super.setModel(model);
     }
 
+    @Override
     public void setPropertyTableModel(PropertyTableModel model) {
         if (!(model instanceof CustomizerPropertyTableModel)) {
             throw new IllegalArgumentException("model must be a CustomizerPropertyTableModel");
