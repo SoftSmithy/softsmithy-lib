@@ -24,7 +24,6 @@ import java.io.*;
 import java.util.*;
 import java.util.jar.*;
 import java.util.regex.*;
-import java.util.zip.*;
 import org.softsmithy.lib.io.*;
 
 /**
