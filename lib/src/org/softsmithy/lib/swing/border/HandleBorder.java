@@ -133,6 +133,8 @@ public class HandleBorder extends AbstractBorder {
     fHandles = new Handle[]{fNHandle,fNEHandle,fEHandle,fSEHandle,fSHandle,
     fSWHandle,fWHandle,fNWHandle};
   }
+
+  @Override
   public void paintBorder(Component c, Graphics g, int x,
   int y, int w, int h) {
     Graphics copy = g.create();
@@ -147,10 +149,13 @@ public class HandleBorder extends AbstractBorder {
       }
     }
   }
+
+  @Override
   public Insets getBorderInsets(Component c) {
     return getBorderInsets(c, new Insets(0, 0, 0, 0));
   }
   
+  @Override
   public Insets getBorderInsets(Component c, Insets insets) {
     insets.left = insets.top = insets.right = insets.bottom = fLineInset+1;
     return insets;
