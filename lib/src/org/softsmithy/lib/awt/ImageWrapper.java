@@ -73,6 +73,7 @@ class ImageWrapper extends Image {
    * @since      JDK1.1
    *
    */
+  @Override
   public Image getScaledInstance(int width, int height, int hints) {
     return new ImageWrapper(image.getScaledInstance(width, height, hints));
   }

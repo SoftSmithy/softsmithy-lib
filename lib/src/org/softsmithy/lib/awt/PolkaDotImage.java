@@ -22,7 +22,6 @@ package org.softsmithy.lib.awt;
 
 import java.awt.*;
 import java.awt.geom.*;
-import java.awt.image.*;
 
 /**
  *
