@@ -120,6 +120,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * @param component the JEditorPane to wrap
      * @throws IllegalArgumentException if the component is not a JEditorPane
      */
+    @Override
     public void setComponent(JComponent component) {
         if (! (component instanceof JEditorPane)){
             throw new IllegalArgumentException("comp must be a JEditorPane");
@@ -233,6 +234,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * Sets the forground color of this customizer.
      * @param c the forground color
      */
+    @Override
     public void setDefaultForeground(Color c) {
         super.setDefaultForeground(c);
         if (inited){
@@ -247,6 +249,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * Sets the font of this customizer.
      * @param f the font
      */
+    @Override
     public void setDefaultFont(Font f) {
         super.setDefaultFont(f);
         if (inited){

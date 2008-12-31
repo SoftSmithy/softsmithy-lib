@@ -22,7 +22,6 @@ package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import java.awt.geom.*;
-import javax.swing.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.icon.*;
 
@@ -66,6 +65,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
    *
    *
    */
+  @Override
   public void setXIcon(XIcon icon){
     if (! (icon instanceof Line2DIcon)){
       throw new IllegalArgumentException("icon must be a Line2DIcon");
@@ -127,6 +127,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
   }
   
   private static class Line2DIcon extends ShapeIcon{
+    @Override
     public void setShape(Shape shape){
       if (! (shape instanceof Line2D)){
         throw new IllegalArgumentException("shape must be an instance of Line2D");

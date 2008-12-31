@@ -389,6 +389,7 @@ public class JFontChooser extends JPanel {
             super(name);
         }
 
+        @Override
         public String getResourceBundleBaseName() {
             return BASE_NAME;
         }
@@ -464,6 +465,7 @@ public class JFontChooser extends JPanel {
             selectFont(initialFont);
         }
 
+        @Override
         public Option showUp() {
             initialFont = JFontChooser.this.getFont();
             return super.showUp();
