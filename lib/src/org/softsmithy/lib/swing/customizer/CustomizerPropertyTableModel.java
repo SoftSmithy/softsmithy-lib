@@ -55,6 +55,7 @@ public class CustomizerPropertyTableModel extends AbstractCustomizerPropertyTabl
         }
     }
 
+    @Override
     public void stopListening() {
         super.stopListening();
         stopCustomizerListening();

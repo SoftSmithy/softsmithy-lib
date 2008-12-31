@@ -20,11 +20,9 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.util.*;
-import javax.swing.*;
 import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.event.*;
 

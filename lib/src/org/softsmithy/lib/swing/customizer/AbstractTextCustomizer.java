@@ -24,7 +24,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import org.softsmithy.lib.swing.*;
-import org.softsmithy.lib.swing.customizer.*;
 
 /**
  * This is a base class for customizers of components, which can display a text.
@@ -165,6 +164,7 @@ public abstract class AbstractTextCustomizer extends JCustomizer {
      * Returns a string representation of this text customizer.
      * @return a string representation of this text customizer
      */
+    @Override
     public String toString(){
         return getClass().getName() + "[" + getText() + "]";
     }
@@ -211,6 +211,7 @@ public abstract class AbstractTextCustomizer extends JCustomizer {
      * @param manager 
      * @throws IllegalArgumentException if the state manager is not an EditableStateManager
      */
+    @Override
     protected void setStateManager(StateManager manager) {
         if (inited && ! (manager instanceof EditableStateManager)){
             throw new IllegalArgumentException("manager must be an instance of EditableStateManager!");

@@ -20,9 +20,6 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.text.*;
 import org.softsmithy.lib.swing.*;
 
 /**
@@ -40,6 +37,7 @@ public class HiddenStateManager extends EditableStateManager {
 
     }
 
+    @Override
     protected void setState(State state) {
         if (state instanceof ResizeState) {
             super.setState(new HiddenState(state));
@@ -54,6 +52,7 @@ public class HiddenStateManager extends EditableStateManager {
             super(state);
         }
 
+        @Override
         public void configureCustomizer() {
             super.configureCustomizer();
             JCustomizer customizer = getCustomizer();
@@ -61,6 +60,7 @@ public class HiddenStateManager extends EditableStateManager {
             comp.setVisible(false);
         }
 
+        @Override
         public void unconfigureCustomizer() {
             JCustomizer customizer = getCustomizer();
             Component comp = customizer.getComponent();

@@ -24,8 +24,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
-import org.softsmithy.lib.swing.*;
-import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.customizer.StateManager.*;
 
 /**
@@ -58,11 +56,13 @@ public class EditableStateManager extends StateManager {
     return (AbstractTextCustomizer) getCustomizer();
   }
   
+  @Override
   public void configureCustomizer() {
     super.configureCustomizer();
     getCustomizer().addActionListener(editableListener);
   }
   
+  @Override
   public void unconfigureCustomizer() {
     getCustomizer().removeActionListener(editableListener);
     super.unconfigureCustomizer();
@@ -93,9 +93,12 @@ public class EditableStateManager extends StateManager {
     //          focusLostNow(e);
     //        }
     //      };
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(null);//Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
     }
+
+    @Override
     public void configureCustomizer(){
       super.configureCustomizer();
       JTextComponent editor = ((AbstractTextCustomizer) getCustomizer()).getEditor();
@@ -115,6 +118,8 @@ public class EditableStateManager extends StateManager {
     //      public void focusLostNow(FocusEvent e){
     //         super.focusLost(e);
     //      }
+
+    @Override
     public void unconfigureCustomizer(){
       JTextComponent editor = ((AbstractTextCustomizer) getCustomizer()).getEditor();
       getCustomizer().getGlassPane().remove(component);

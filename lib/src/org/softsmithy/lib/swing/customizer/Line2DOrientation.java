@@ -39,6 +39,7 @@ public abstract class Line2DOrientation extends TypesafeEnum {
     super(name);
   }
   
+  @Override
   public String getResourceBundleBaseName(){
     return BASE_NAME;
   }

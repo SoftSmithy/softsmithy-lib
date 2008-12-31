@@ -23,7 +23,6 @@ import javax.swing.event.*;
 import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.border.*;
 import org.softsmithy.lib.swing.border.HandleBorder.*;
-import org.softsmithy.lib.swing.event.*;
 
 /*
  * Is this the right place? Should it be nested or in puce.swing?
@@ -531,14 +530,17 @@ public class StateManager implements FocusListener, MouseInputListener {
       //resetBorder(color);
     }
     
+    @Override
     public void applyBorder(){
       customizer.applyBorder(border);
     }
     
+    @Override
     public void applyCursor(){
       customizer.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
     
+    @Override
     public void resetBorder(Color borderColor){
       setBorder(BorderFactory.createLineBorder(borderColor, 1)); //10));
     }
@@ -554,6 +556,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       }
     }
     
+    @Override
     public void configureCustomizer(){
       applyBorder();
       applyCursor();
@@ -563,6 +566,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       return customizer;
     }
     
+    @Override
     public void mouseClicked(MouseEvent e) {
       if (e.getClickCount() > 1){
         JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
@@ -578,6 +582,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       super(customizer);
     }
     
+    @Override
     public void mousePressed(MouseEvent e) {
       JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
       if (e.isControlDown()){
@@ -595,6 +600,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     }
     
     //      private final Border LINE_BORDER = BorderFactory.createLineBorder(Color.BLUE);
+    @Override
     public void mousePressed(MouseEvent e) {
       JCustomizerPane pane = (JCustomizerPane) getCustomizer().getParent();
       if (e.isControlDown()){
@@ -637,6 +643,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       return (HandleBorder) getBorder();
     }
     
+    @Override
     public void mouseMoved(MouseEvent e){
       StateManager manager = getCustomizer().getStateManager();
       BoundState state = manager.getBoundStateAt(e.getPoint());
@@ -661,6 +668,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     
     /** Invoked when a mouse button has been pressed on a component.
      */
+    @Override
     public void mousePressed(MouseEvent e) {
       super.mousePressed(e);
       //      if(!getCustomizer().hasFocus()){
@@ -682,6 +690,7 @@ public class StateManager implements FocusListener, MouseInputListener {
      * <code>MOUSE_DRAGGED</code> events may not be delivered during a native
      * Drag&Drop operation.
      */
+    @Override
     public void mouseDragged(MouseEvent e) {
       super.mouseDragged(e);
       if (! isDragging()){
@@ -695,6 +704,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       lastY = e.getY();
     }
     
+    @Override
     public void mouseReleased(MouseEvent e){
       if (isDragging()){
         Rectangle relRect = createRelRectangle(e);
@@ -749,6 +759,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       return dragging;
     }
     
+    @Override
     public void resetBorder(Color borderColor){
       setBorder(new HandleBorder(borderColor, 0));
       for (int i=0; i<getHandleBorder().getHandles().length; i++){
@@ -762,6 +773,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public MoveState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
     }
@@ -788,6 +801,7 @@ public class StateManager implements FocusListener, MouseInputListener {
     /** Invoked when the mouse exits a component.
      *
      */
+    @Override
     public void mouseExited(MouseEvent e) {
       if (! draggingStarted){
         StateManager manager = getCustomizer().getStateManager();
@@ -798,11 +812,13 @@ public class StateManager implements FocusListener, MouseInputListener {
     /** Invoked when a mouse button has been pressed on a component.
      *
      */
+    @Override
     public void mousePressed(MouseEvent e) {
       super.mousePressed(e);
       draggingStarted = true;
     }
     
+    @Override
     public void mouseReleased(MouseEvent e) {
       super.mouseReleased(e);
       draggingStarted = false;
@@ -816,6 +832,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       super(customizer);
     }
     
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.N_RESIZE_CURSOR));
     }
@@ -831,6 +848,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public NEResizeState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.NE_RESIZE_CURSOR));
     }
@@ -847,6 +866,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       super(customizer);
     }
     
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
     }
@@ -865,6 +885,7 @@ public class StateManager implements FocusListener, MouseInputListener {
       super(customizer);
     }
     
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.SE_RESIZE_CURSOR));
     }
@@ -882,6 +903,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public SResizeState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
     }
@@ -897,6 +920,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public SWResizeState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.SW_RESIZE_CURSOR));
     }
@@ -912,6 +937,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public WResizeState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.W_RESIZE_CURSOR));
     }
@@ -927,6 +954,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     public NWResizeState(JCustomizer customizer){
       super(customizer);
     }
+
+    @Override
     public void applyCursor(){
       getCustomizer().setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
     }
