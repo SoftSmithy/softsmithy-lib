@@ -80,6 +80,7 @@ public class JButtonCustomizer extends AbstractTextCustomizer {
      * @param component the AbstractButton to wrap
      * @throws IllegalArgumentException if the component is not an AbstractButton
      */
+  @Override
   public void setComponent(JComponent component) {
     if (! (component instanceof AbstractButton)){
       throw new IllegalArgumentException("comp must be an AbstractButton");

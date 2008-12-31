@@ -48,6 +48,7 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
      * @see EditorDelegate#getCellEditorValue
      *
      */
+    @Override
     public Object getCellEditorValue() {
         return ((HorizontalAlignmentItem) super.getCellEditorValue()).getHorizontalAlignment();
     }
@@ -102,6 +103,7 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
          * @return  a string representation of the object.
          *
          */
+        @Override
         public String toString() {
             return horizontalAlignment.getDisplayString(getLocale());
         }
