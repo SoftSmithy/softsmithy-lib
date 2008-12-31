@@ -14,7 +14,6 @@
 
 package org.softsmithy.lib.swing.action;
 
-import java.beans.*;
 import javax.swing.*;
 
 public class XActionWrapper extends ActionWrapper implements XAction{
