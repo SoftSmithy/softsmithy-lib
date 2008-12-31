@@ -71,6 +71,7 @@ public class InvocationTargetRuntimeException extends RuntimeException {
      *
      * @return  the cause of this exception.
      */
+    @Override
     public Throwable getCause() {
         return target;
     }
