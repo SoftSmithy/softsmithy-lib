@@ -14,7 +14,6 @@
 
 package org.softsmithy.lib.swing.action;
 
-import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 /**
