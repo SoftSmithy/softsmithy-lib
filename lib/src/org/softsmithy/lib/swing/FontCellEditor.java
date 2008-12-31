@@ -42,6 +42,7 @@ public class FontCellEditor extends AbstractCellEditor implements TableCellEdito
         renderer = new FontCellRenderer(true);
         button = new JButton(". . .") {
 
+            @Override
             public Dimension getPreferredSize() {
                 Dimension dim = super.getPreferredSize();
                 dim.width = getFontMetrics(getFont()).stringWidth(getText());

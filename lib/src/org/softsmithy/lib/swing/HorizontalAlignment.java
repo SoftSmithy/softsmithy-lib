@@ -31,6 +31,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   }
   
   
+  @Override
   public String getResourceBundleBaseName(){
     return BASE_NAME;
   }
@@ -102,6 +103,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public int getSwingConstant(){
       return SwingConstants.LEADING;
     }
+    @Override
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? LEFT : RIGHT;
     }
@@ -110,6 +112,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     public int getSwingConstant(){
       return SwingConstants.TRAILING;
     }
+    @Override
     public HorizontalAlignment orient(ComponentOrientation co){
       return co.isLeftToRight() ? RIGHT : LEFT;
     }

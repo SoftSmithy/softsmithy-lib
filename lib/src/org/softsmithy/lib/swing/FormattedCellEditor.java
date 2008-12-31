@@ -52,6 +52,7 @@ public class FormattedCellEditor extends DefaultCellEditor implements TableCellE
      * @return the value contained in the editor
      *
      */
+    @Override
     public Object getCellEditorValue() {
         //System.out.println(getFormattedTextField().getValue().getClass());
         //System.out.println(getFormattedTextField().getValue());
@@ -83,6 +84,7 @@ public class FormattedCellEditor extends DefaultCellEditor implements TableCellE
      * @return	the component for editing
      *
      */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         setValue(value);
         return getFormattedTextField();

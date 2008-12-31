@@ -61,6 +61,7 @@ public class FontCellRenderer extends JLabel implements TableCellRenderer {
      * @see #setText
      *
      */
+    @Override
     public String getText() {
         return (getSelectedFont() != null ? getSelectedFont().getName() + " " + getSelectedFont().getSize() : "");
     }
