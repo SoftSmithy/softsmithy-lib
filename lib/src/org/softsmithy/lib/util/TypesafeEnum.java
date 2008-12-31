@@ -97,6 +97,7 @@ public class TypesafeEnum implements Localizable{
     return rb;
   }
   
+  @Override
   public String toString(){
     return fName;
   }
@@ -106,10 +107,12 @@ public class TypesafeEnum implements Localizable{
    * All equal objects of the enumerated type are also identical
    * (a.equals(b) if and only if a==b).
    */
+  @Override
   public final boolean equals(Object obj){
     return super.equals(obj);
   }
 
+  @Override
   public final int hashCode(){
     return super.hashCode();
   }

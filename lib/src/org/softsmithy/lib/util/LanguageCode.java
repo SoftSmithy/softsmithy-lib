@@ -20,8 +20,6 @@
 
 package org.softsmithy.lib.util;
 
-import java.util.*;
-
 /**
  *http://www.ics.uci.edu/pub/ietf/http/related/iso639.txt
  * @author  puce
