@@ -89,6 +89,7 @@ public class ImagePreview extends JComponent
    *
    * @param g  the graphics context
    */
+  @Override
   public void paintComponent(Graphics g) {
     if (thumbnail == null) {
       loadImage();

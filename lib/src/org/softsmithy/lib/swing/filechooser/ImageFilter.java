@@ -16,7 +16,6 @@ package org.softsmithy.lib.swing.filechooser;
 
 import java.io.File;
 import org.softsmithy.lib.io.Files;
-import javax.swing.*;
 import javax.swing.filechooser.*;
 
 /**

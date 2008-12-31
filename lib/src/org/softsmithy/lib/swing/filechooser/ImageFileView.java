@@ -40,6 +40,7 @@ public class ImageFileView extends FileView {
    * @param f  the file
    * @return   the name
    */
+  @Override
   public String getName(File f) {
     // let the L&F FileView figure this out
     return null;
@@ -51,6 +52,7 @@ public class ImageFileView extends FileView {
    * @param f  the file
    * @return   a human readable description of the file
    */
+  @Override
   public String getDescription(File f) {
     // let the L&F FileView figure this out
     return null;
@@ -64,6 +66,7 @@ public class ImageFileView extends FileView {
    * @param f  the file
    * @return   true if traversable; false otherwise
    */
+  @Override
   public Boolean isTraversable(File f) {
     // let the L&F FileView figure this out
     return null;
@@ -75,6 +78,7 @@ public class ImageFileView extends FileView {
    * @param f  the image file
    * @return   a human readable description
    */
+  @Override
   public String getTypeDescription(File f) {
     String extension = Files.getExtension(f);
     String type = null;
@@ -99,6 +103,7 @@ public class ImageFileView extends FileView {
    * @param f  the image file
    * @return   the icon that represents this image file in the JFileChooser
    */
+  @Override
   public Icon getIcon(File f) {
     String extension = Files.getExtension(f);
     Icon icon = null;
