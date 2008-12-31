@@ -57,6 +57,7 @@ public class TypesafeEnumItem{
    * @return  a string representation of the object.
    *
    */
+  @Override
   public String toString() {
     //System.out.println("toString start");
     return getTypesafeEnum().getDisplayString(getLocale());
@@ -105,6 +106,7 @@ public class TypesafeEnumItem{
    * @see     java.util.Hashtable
    *
    */
+  @Override
   public int hashCode() {
     int hashCode = 17;
     hashCode = 37*hashCode + typesafeEnum.hashCode();
@@ -155,6 +157,7 @@ public class TypesafeEnumItem{
    * @see     java.util.Hashtable
    *
    */
+  @Override
   public boolean equals(Object obj) {
     if (!(obj instanceof TypesafeEnumItem)){
       return false;
