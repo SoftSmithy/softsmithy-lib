@@ -46,10 +46,12 @@ public class JXScrollPane extends JScrollPane {
     super(vsbPolicy, hsbPolicy);
   }
   
+  @Override
   protected JViewport createViewport() {
     return new JXViewport();
   }
   
+  @Override
   public void setViewport(JViewport viewport) {
     if (! (viewport instanceof JXViewport)){
       throw new IllegalArgumentException("viewport must be an instance of JXViewport!");
@@ -98,6 +100,7 @@ public class JXScrollPane extends JScrollPane {
     firePropertyChange("viewportViewGlassPane", oldViewportViewGlassPane, viewportViewGlassPane);
   }
   
+  @Override
   public void setViewportView(Component view) {
     setViewportViewComponent(view);
   }

@@ -20,8 +20,6 @@
 
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-
 /**
  *
  * @author  puce

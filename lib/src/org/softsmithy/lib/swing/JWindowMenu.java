@@ -102,6 +102,7 @@ class JWindowMenu extends JMenu {
         /** Invoked when an internal frame is activated.
          *
          */
+        @Override
         public void internalFrameActivated(InternalFrameEvent e) {
             JRadioButtonMenuItem item = (JRadioButtonMenuItem) items.get(e.getSource());
             item.setSelected(true);

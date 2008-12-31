@@ -21,7 +21,6 @@
 package org.softsmithy.lib.swing;
 
 import java.awt.*;
-import java.beans.*;
 import javax.swing.*;
 
 /**
@@ -72,6 +71,7 @@ public class JXPanel extends JPanel {
    * @see ComponentUI
    *
    */
+  @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (isOpaque() && getBackgroundPaint() != null){

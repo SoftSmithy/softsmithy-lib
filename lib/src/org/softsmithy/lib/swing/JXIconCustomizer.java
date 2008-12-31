@@ -22,8 +22,6 @@ package org.softsmithy.lib.swing;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import org.softsmithy.lib.awt.event.*;
 import org.softsmithy.lib.swing.icon.*;
 
 /**
@@ -77,6 +75,7 @@ public class JXIconCustomizer extends JCustomizer { // should it be renamed to I
    * @param fComponent New value of property fComponent.
    *
    */
+  @Override
   public void setComponent(JComponent component) {
     if (! (component instanceof JXIconLabel)){
       throw new IllegalArgumentException("comp must be a JXIconLabel");

@@ -20,7 +20,6 @@
 
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
 import javax.swing.*;
 
 /**

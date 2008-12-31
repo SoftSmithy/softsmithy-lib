@@ -79,6 +79,7 @@ public class JXIconLabel extends JXLabel {
     setMinimumSize(new Dimension(1, 1)); // TODO: Check: Ok?
   }
   
+  @Override
   public void setIcon(Icon icon){
     if (icon != null && ! (icon instanceof XIcon)){
       throw new IllegalArgumentException("icon must be an instance of XIcon or null!");
@@ -148,6 +149,7 @@ public class JXIconLabel extends JXLabel {
   
   private static class SizeListener extends ComponentAdapter{
     
+    @Override
     public void componentResized(ComponentEvent e) {
       //System.out.println("Component resized!");
       ((JXIconLabel) e.getComponent()).resizeIcon();
