@@ -21,7 +21,6 @@
 package org.softsmithy.lib.swing.style;
 
 import java.util.*;
-import org.softsmithy.lib.swing.style.*;
 
 /**
  *
@@ -72,6 +71,7 @@ public class CustomStyleProvider implements StyleProvider {
    * @return  a string representation of the object.
    *
    */
+  @Override
   public String toString() {
     return getStyle().getName();
   }

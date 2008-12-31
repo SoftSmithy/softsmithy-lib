@@ -24,7 +24,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.util.*;
-import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *
@@ -72,6 +71,7 @@ public class ParentStyle extends AbstractStyle{
     return ParentStyleProvider.INSTANCE;
   }
   
+  @Override
   public void startListening() {
     super.startListening();
     getStyleable().addHierarchyListener(parentListener);
@@ -84,6 +84,7 @@ public class ParentStyle extends AbstractStyle{
     
   }
   
+  @Override
   public void stopListening() {
     super.stopListening();
     getStyleable().removeHierarchyListener(parentListener);
