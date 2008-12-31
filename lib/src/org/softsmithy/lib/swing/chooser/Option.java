@@ -14,8 +14,6 @@
 
 package org.softsmithy.lib.swing.chooser;
 
-import java.awt.*;
-import java.awt.event.*;
 import org.softsmithy.lib.util.*;
 
 public class Option extends TypesafeEnum {
