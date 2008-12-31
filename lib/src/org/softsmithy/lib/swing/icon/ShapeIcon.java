@@ -21,7 +21,6 @@ package org.softsmithy.lib.swing.icon;
 
 import java.awt.*;
 import java.awt.geom.*;
-import javax.swing.*;
 
 /**
  *
