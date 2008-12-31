@@ -29,6 +29,7 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   }
   
   
+  @Override
   public String getResourceBundleBaseName(){
     return BASE_NAME;
   }
@@ -70,7 +71,7 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   
   private static final ScalingAlgorithm[] PRIVATE_VALUES = {AREA_AVERAGING, DEFAULT, FAST, REPLICATE, SMOOTH};
   public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
-  private static final Map algorithms = new HashMap();
+  private static final Map<Integer, ScalingAlgorithm> algorithms = new HashMap<Integer, ScalingAlgorithm>();
   static{
     for (int i=0; i<PRIVATE_VALUES.length; i++){
       algorithms.put(new Integer(PRIVATE_VALUES[i].getImageConstant()), PRIVATE_VALUES[i]);
