@@ -46,11 +46,13 @@ public class JPropertyTable extends JCellTable {
         //setPropertyRenderer("htmlBody", new TextFieldTableCellRenderer());
     }
 
+    @Override
     public void reinit() {
         super.reinit();
         init();
     }
 
+    @Override
     public void setModel(TableModel model) {
         if (!(model instanceof PropertyTableModel)) {
             throw new IllegalArgumentException("model must be a CustomizerPropertyTableModel");
@@ -72,6 +74,7 @@ public class JPropertyTable extends JCellTable {
      * @since JDK1.1
      *
      */
+    @Override
     public void setLocale(Locale locale) {
         super.setLocale(locale);
         if (getPropertyTableModel() != null) {
@@ -117,6 +120,7 @@ public class JPropertyTable extends JCellTable {
      *
      *
      */
+    @Override
     public TableCellEditor getCellEditor(int row, int column) {
         TableCellEditor editor = null;
         switch (column) {
@@ -159,6 +163,7 @@ public class JPropertyTable extends JCellTable {
      *
      *
      */
+    @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
         TableCellRenderer renderer = null;
         switch (column) {

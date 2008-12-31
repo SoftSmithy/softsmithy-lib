@@ -129,6 +129,7 @@ public class JRealNumberField extends AbstractNumberField {
      * Must be an instance of BigDecimal or null.
      * @param value the value
      */
+    @Override
     public void setValue(Object value) {
         // use BigDecimal to recognize if the value is out of range if the range is
         // (Integer.MIN_VALUE, Integer.MAX_VALUE)
@@ -184,6 +185,7 @@ public class JRealNumberField extends AbstractNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(AbstractFormatter formatter) {
         if (! (formatter instanceof RealNumberFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of RealNumberFormatter!");
@@ -230,6 +232,7 @@ public class JRealNumberField extends AbstractNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(AbstractFormatterFactory aff) {
         if (! (aff instanceof RealNumberFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of RealNumberFormatterFactory!");
@@ -242,6 +245,7 @@ public class JRealNumberField extends AbstractNumberField {
      * Must be null or an instance of BigDecimal!
      * @param maxValue the maximum value (BigDecimal)
      */
+    @Override
     public void setMaximumNumberValue(Number maxValue) {
         if (maxValue != null && ! (maxValue instanceof BigDecimal)){
             throw new IllegalArgumentException("maxValue must be an instance of BigDecimal");
@@ -254,6 +258,7 @@ public class JRealNumberField extends AbstractNumberField {
      * Must be null or an instance of BigDecimal!
      * @param minValue the minimum value (BigDecimal)
      */
+    @Override
     public void setMinimumNumberValue(Number minValue) {
         if (minValue != null && ! (minValue instanceof BigDecimal)){
             throw new IllegalArgumentException("minValue must be an instance of BigDecimal");

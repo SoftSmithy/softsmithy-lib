@@ -21,11 +21,7 @@
 package org.softsmithy.lib.swing;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.util.*;
 import javax.swing.*;
-import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.style.*;
 
 /**
@@ -103,6 +99,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    * @see #setBackground
    *
    */
+  @Override
   public Color getBackground() {
     return Styles.getBackground(this, inited);
     //return (fComponent != null) ? fComponent.getBackground() : super.getBackground();
@@ -121,6 +118,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *  description: The background color of the component.
    *
    */
+  @Override
   public void setBackground(Color bg) {
 //    System.out.println("Set background!!!!!!!!!!!!!!!!!!");
 //    System.out.println("Old bg: " + getBackground());
@@ -145,6 +143,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *       bound: true
    *
    */
+  @Override
   public Color getForeground() {
     return Styles.getForeground(this, inited);
     //return (fComponent != null) ? fComponent.getForeground() : super.getForeground();
@@ -163,6 +162,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *  description: The foreground color of the component.
    *
    */
+  @Override
   public void setForeground(Color fg) {
     Styles.setForeground(this, fg, inited);
   }
@@ -178,6 +178,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    * @since JDK1.0
    *
    */
+  @Override
   public Font getFont() {
     return Styles.getFont(this, inited);
     //return (fComponent != null) ? fComponent.getFont() : super.getFont();
@@ -195,6 +196,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *  description: The font for the component.
    *
    */
+  @Override
   public void setFont(Font font) {
     Styles.setFont(this, font, inited);
   }
@@ -218,6 +220,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    * @see #setOpaque
    *
    */
+  @Override
   public boolean isOpaque() {
     return Styles.isOpaque(this, inited);
     //return (fComponent != null) ? fComponent.isOpaque() : super.isOpaque();
@@ -240,6 +243,7 @@ public class JStyledPanel extends JPanel implements Styleable{
    *  description: The component's opacity
    *
    */
+  @Override
   public void setOpaque(boolean isOpaque) {
     Styles.setOpaque(this, isOpaque, inited);
   }
