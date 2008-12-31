@@ -55,6 +55,7 @@ public class JXViewport extends JViewport {
     super.setView(viewPane);
   }
   
+  @Override
   public void setView(Component viewComponent) {
     throw new UnsupportedOperationException("Use 'setViewComponent' instead!");
   }
@@ -136,6 +137,7 @@ public class JXViewport extends JViewport {
     }
   }
   
+  @Override
   public void setViewSize(Dimension newSize) {
     super.setViewSize(newSize);
     Dimension oldSize = viewPane.getSize();
@@ -144,6 +146,7 @@ public class JXViewport extends JViewport {
     }
   }
   
+  @Override
   public void setViewPosition(Point p) {
     super.setViewPosition(p);
   }

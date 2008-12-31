@@ -192,6 +192,7 @@ public class JXTable extends JTable {
      * @see     #getColumnClass
      *
      */
+    @Override
     public TableCellEditor getDefaultEditor(Class columnClass) {
         TableCellEditor editor = super.getDefaultEditor(columnClass);
         if (editor == null && columnClass != null && columnClass.isPrimitive()) {
@@ -215,6 +216,7 @@ public class JXTable extends JTable {
      * @see     #getColumnClass
      *
      */
+    @Override
     public TableCellRenderer getDefaultRenderer(Class columnClass) {
         TableCellRenderer renderer = super.getDefaultRenderer(columnClass);
         if (renderer == null && columnClass != null && columnClass.isPrimitive()) {
