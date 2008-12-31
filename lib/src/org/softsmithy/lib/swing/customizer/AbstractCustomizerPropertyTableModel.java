@@ -20,13 +20,8 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.beans.*;
 import java.util.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.beans.*;
-import org.softsmithy.lib.swing.*;
 import org.softsmithy.lib.swing.table.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -54,6 +49,7 @@ public abstract class AbstractCustomizerPropertyTableModel extends PropertyTable
    *  @param  columnIndex  column of cell
    *
    */
+  @Override
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     //    for (Iterator i=customizers.iterator(); i.hasNext();){
     //      AbstractCustomizer customizer = (AbstractCustomizer) i.next();
