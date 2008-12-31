@@ -77,6 +77,7 @@ public class JTabbedCustomizerBar extends JTabbedPane implements CustomizerBar {
      * @see #removeTabAt
      *
      */
+    @Override
     public void insertTab(String title, Icon icon, Component component, String tip, int index) {
         if (!(component instanceof CustomizerBar)) {
             throw new IllegalArgumentException("Component must be a CustomizerBar!");

@@ -23,7 +23,6 @@ package org.softsmithy.lib.swing;
 import java.math.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.text.*;
 import org.softsmithy.lib.swing.text.*;
 
 /**
@@ -123,6 +122,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * It gets called by the constructors,
      * the setLocale and the setFormatterFactory methods.
      */
+    @Override
     protected void reinit(){
         getWholeNumberFormatterFactory().setLocale(getLocale());
     }
@@ -149,6 +149,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * Must be an instance of BigInteger or null.
      * @param value the value
      */
+    @Override
     public void setValue(Object value) {
         // use BigInteger to recognize if the value is out of range if the range is
         // (Integer.MIN_VALUE, Integer.MAX_VALUE)
@@ -205,6 +206,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
         if (! (formatter instanceof WholeNumberFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of WholeNumberFormatter!");
@@ -251,6 +253,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
         if (! (aff instanceof WholeNumberFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of WholeNumberFormatterFactory!");
@@ -263,6 +266,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * Must be null or an instance of BigInteger!
      * @param maxValue the maximum value (BigInteger)
      */
+    @Override
     public void setMaximumNumberValue(Number maxValue) {
         if (maxValue != null && ! (maxValue instanceof BigInteger)){
             throw new IllegalArgumentException("maxValue must be an instance of BigInteger");
@@ -275,6 +279,7 @@ public class JWholeNumberField extends AbstractNumberField {
      * Must be null or an instance of BigInteger!
      * @param minValue the minimum value (BigInteger)
      */
+    @Override
     public void setMinimumNumberValue(Number minValue) {
         if (minValue != null && ! (minValue instanceof BigInteger)){
             throw new IllegalArgumentException("minValue must be an instance of BigInteger");

@@ -67,6 +67,7 @@ public class JTypesafeEnumComboBox extends JComboBox {
    *  description: Model that the combo box uses to get data to display.
    *
    */
+  @Override
   public void setModel(ComboBoxModel aModel) {
     if (! (aModel instanceof TypesafeEnumComboBoxModel)){
       throw new IllegalArgumentException("aModel must be a TypesafeEnumComboBoxModel");
@@ -80,6 +81,7 @@ public class JTypesafeEnumComboBox extends JComboBox {
    * @since JDK1.1
    *
    */
+  @Override
   public void setLocale(Locale l) {
     super.setLocale(l);
     TypesafeEnumListCellRenderer renderer = (TypesafeEnumListCellRenderer) getRenderer();
@@ -94,6 +96,7 @@ public class JTypesafeEnumComboBox extends JComboBox {
    * @return true if the <code>JComboBox</code> is editable, else false
    *
    */
+  @Override
   public boolean isEditable() {
     return false;
   }
@@ -119,6 +122,7 @@ public class JTypesafeEnumComboBox extends JComboBox {
    *  description: The renderer that paints the item selected in the list.
    *
    */
+  @Override
   public void setRenderer(ListCellRenderer aRenderer) {
     if (inited && ! (aRenderer instanceof TypesafeEnumListCellRenderer)){
       throw new IllegalArgumentException("aRenderer must be a TypesafeEnumListCellRenderer");
