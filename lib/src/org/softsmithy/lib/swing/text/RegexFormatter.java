@@ -15,9 +15,7 @@
 package org.softsmithy.lib.swing.text;
 
 import java.text.*;
-import java.util.*;
 import java.util.regex.*;
-import javax.swing.*;
 import javax.swing.text.*;
 
 /**
@@ -98,6 +96,7 @@ public class RegexFormatter extends DefaultFormatter {
      * @param text String to convert
      * @return Object representation of text
      */
+    @Override
     public Object stringToValue(String text) throws ParseException {
         Pattern pattern = getPattern();
 

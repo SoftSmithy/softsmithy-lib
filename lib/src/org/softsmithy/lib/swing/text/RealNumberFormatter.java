@@ -148,6 +148,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
     setMinimum(minimumBigDecimalValue);
   }
   
+  @Override
   protected void setMaximumMaximumValue(Number maximumMaximumValue) {
     if (maximumMaximumValue != null && ! (maximumMaximumValue instanceof BigDecimal)){
       throw new IllegalArgumentException("maximumMaximumValue must be an instance of BigDecimal or null");
@@ -155,6 +156,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
     super.setMaximumMaximumValue(maximumMaximumValue);
   }
   
+  @Override
   protected void setMinimumMinimumValue(Number minimumMinimumValue) {
     if (minimumMinimumValue != null && ! (minimumMinimumValue instanceof BigDecimal)){
       throw new IllegalArgumentException("minimumMinimumValue must be an instance of BigDecimal or null");

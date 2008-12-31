@@ -24,8 +24,6 @@ import java.math.*;
 import java.text.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.text.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -75,6 +73,7 @@ public class WholeNumberFormatter extends AbstractXNumberFormatter {
   }
   
   
+  @Override
   public void setMaximum(Comparable max) {
     if (max != null && ! (max instanceof BigInteger)){
       throw new IllegalArgumentException("max must be an instance of BigInteger or null");
@@ -82,6 +81,7 @@ public class WholeNumberFormatter extends AbstractXNumberFormatter {
     super.setMaximum(max);
   }
   
+  @Override
   public void setMinimum(Comparable minimum) {
     if (minimum != null && ! (minimum instanceof BigInteger)){
       throw new IllegalArgumentException("minimum must be an instance of BigInteger or null");
@@ -89,6 +89,7 @@ public class WholeNumberFormatter extends AbstractXNumberFormatter {
     super.setMinimum(minimum);
   }
   
+  @Override
   public void setValueClass(Class valueClass) {
     throw new UnsupportedOperationException("This operation is not supported!"); // always use BigInteger!
   }
@@ -138,7 +139,7 @@ public class WholeNumberFormatter extends AbstractXNumberFormatter {
    *
    */
   public void setMaximumBigIntegerValue(BigInteger maximumBigIntegerValue) {
-    setMaximum(maximumBigIntegerValue);;
+    setMaximum(maximumBigIntegerValue);
   }
   
   /** Getter for property minimumBigIntegerValue.

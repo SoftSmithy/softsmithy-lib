@@ -28,6 +28,7 @@ public class RealNumberFormatterFactory extends AbstractXNumberFormatterFactory 
     super(formatter);
   }
   
+  @Override
   public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
     return getRealNumberFormatter();
   }
