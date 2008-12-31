@@ -29,7 +29,7 @@ import java.util.*;
 class ResourceBundleCache {
   
   private final String baseName;
-  private final Map resourceBundles = new HashMap();
+  private final Map<Locale, ResourceBundle> resourceBundles = new HashMap<Locale, ResourceBundle>();
   
   /** Creates a new instance of ResourceBundleManager */
   public ResourceBundleCache(String baseName) {
