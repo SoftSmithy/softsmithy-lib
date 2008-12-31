@@ -57,7 +57,7 @@ import java.util.*;
 
 public class TypesafeEnum implements Localizable{
 
-  private static final Map caches = new HashMap();
+  private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();
   
   private final String fName;
   private boolean initialized = false;
