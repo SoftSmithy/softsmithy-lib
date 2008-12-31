@@ -23,7 +23,6 @@ package org.softsmithy.lib.swing;
 import java.math.*;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.text.*;
 import org.softsmithy.lib.swing.text.*;
 
 /**
@@ -122,6 +121,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * It gets called by the constructors,
      * the setLocale and the setFormatterFactory methods.
      */
+    @Override
     protected void reinit(){
         getLocalizedRealNumberFormatterFactory().setLocale(getLocale());
     }
@@ -133,6 +133,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
         if (! (formatter instanceof LocalizedRealNumberFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of LocalizedRealNumberFormatter!");
@@ -179,6 +180,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
         if (! (aff instanceof LocalizedRealNumberFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of LocalizedRealNumberFormatterFactory!");

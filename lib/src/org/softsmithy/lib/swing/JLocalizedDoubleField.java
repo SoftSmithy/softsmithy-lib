@@ -178,6 +178,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
         if (! (formatter instanceof LocalizedDoubleFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of LocalizedDoubleFormatter!");
@@ -225,6 +226,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
         if (! (aff instanceof LocalizedDoubleFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of LocalizedDoubleFormatterFactory!");

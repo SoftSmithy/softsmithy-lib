@@ -171,6 +171,7 @@ public class JLongField extends JWholeNumberField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
         if (! (formatter instanceof LongFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of LongFormatter!");
@@ -217,6 +218,7 @@ public class JLongField extends JWholeNumberField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
         if (! (aff instanceof LongFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of LongFormatterFactory!");
