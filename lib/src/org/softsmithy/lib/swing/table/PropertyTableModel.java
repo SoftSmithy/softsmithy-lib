@@ -24,9 +24,6 @@ import java.beans.*;
 import java.util.*;
 import javax.swing.table.*;
 import org.softsmithy.lib.beans.*;
-import org.softsmithy.lib.swing.*;
-import org.softsmithy.lib.swing.table.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -161,6 +158,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
    *  @param  columnIndex  column of cell
    *
    */
+  @Override
   public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
     try{
       BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue, bean, propertiesRB);
@@ -180,6 +178,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
    *  @return false
    *
    */
+  @Override
   public boolean isCellEditable(int rowIndex, int columnIndex) {
     boolean isCellEditable = false;
     try{
@@ -199,6 +198,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
    * @return a string containing the default name of <code>column</code>
    *
    */
+  @Override
   public String getColumnName(int column) {
     String columnName = "";
     try{

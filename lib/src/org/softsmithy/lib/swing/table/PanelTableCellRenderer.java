@@ -99,6 +99,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    *
    * @param c set the foreground color to this value
    */
+  @Override
   public void setForeground(Color c) {
     super.setForeground(c);
     unselectedForeground = c;
@@ -110,6 +111,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    *
    * @param c set the background color to this value
    */
+  @Override
   public void setBackground(Color c) {
     super.setBackground(c);
     unselectedBackground = c;
@@ -123,6 +125,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    *
    * @see JComponent#updateUI
    */
+  @Override
   public void updateUI() {
     super.updateUI();
     setForeground(null);
@@ -187,6 +190,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public boolean isOpaque() {
     Color back = getBackground();
     Component p = getParent();
@@ -205,6 +209,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public void validate() {}
   
   /**
@@ -212,6 +217,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public void revalidate() {}
   
   /**
@@ -219,6 +225,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public void repaint(long tm, int x, int y, int width, int height) {}
   
   /**
@@ -226,6 +233,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public void repaint(Rectangle r) { }
   
   /**
@@ -233,6 +241,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
     // Strings get interned...
     if (propertyName=="text") {
@@ -245,6 +254,7 @@ public abstract class PanelTableCellRenderer extends JPanel implements Serializa
    * See the <a href="#override">Implementation Note</a>
    * for more information.
    */
+  @Override
   public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) { }
   
   

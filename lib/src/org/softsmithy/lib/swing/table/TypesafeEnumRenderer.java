@@ -48,6 +48,7 @@ public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
    *
    *
    */
+  @Override
   protected void setValue(Object value) {
     super.setValue(((TypesafeEnum) value).getDisplayString(getLocale()));
   }  
@@ -56,6 +57,7 @@ public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
    * @return Value of property locale.
    *
    */
+  @Override
   public Locale getLocale() {
     return this.locale;
   }
@@ -64,6 +66,7 @@ public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
    * @param locale New value of property locale.
    *
    */
+  @Override
   public void setLocale(Locale locale) {
     this.locale = locale;
   }

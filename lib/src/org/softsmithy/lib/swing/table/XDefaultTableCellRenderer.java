@@ -53,11 +53,13 @@ public class XDefaultTableCellRenderer extends DefaultTableCellRenderer {
   }
   
 
+  @Override
   protected void setValue(Object value) {
     super.setValue(cellRenderer.getDisplayValue(value, getLocale()));
   }
   
 
+  @Override
   public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
     configureFromTable(table);
     configureFromCellRenderer(); // TODO: shouldn't this method be called in the constructor instead?

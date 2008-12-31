@@ -46,6 +46,7 @@ public class HorizontalAlignmentRenderer extends DefaultTableCellRenderer {
      *
      *
      */
+    @Override
     protected void setValue(Object value) {
         super.setValue(((HorizontalAlignment) value).getDisplayString(getLocale()));
     }
@@ -54,6 +55,7 @@ public class HorizontalAlignmentRenderer extends DefaultTableCellRenderer {
      * @return Value of property locale.
      *
      */
+    @Override
     public Locale getLocale() {
         return this.locale;
     }
@@ -62,6 +64,7 @@ public class HorizontalAlignmentRenderer extends DefaultTableCellRenderer {
      * @param locale New value of property locale.
      *
      */
+    @Override
     public void setLocale(Locale locale) {
         this.locale = locale;
     }

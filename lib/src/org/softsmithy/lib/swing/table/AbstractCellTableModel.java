@@ -41,6 +41,7 @@ public abstract class AbstractCellTableModel extends AbstractTableModel implemen
      *  @return the Object.class
      *
      */
+    @Override
     public Class getColumnClass(int columnIndex) {
         return getCellClass(0, columnIndex);
     }
