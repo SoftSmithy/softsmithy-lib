@@ -52,10 +52,12 @@ public class BigIntegerCellEditor extends FormattedCellEditor {
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
 //    return new Integer(number.intValue());
 //  }
+    @Override
     protected void setValue(Object value) {
         getWholeNumberField().setBigIntegerValue((BigInteger) value);
     }
 
+    @Override
     protected Object getValue() {
         return getWholeNumberField().getBigIntegerValue();
     }
