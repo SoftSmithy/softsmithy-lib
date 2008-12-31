@@ -41,6 +41,7 @@ public class ColorCellRenderer extends JPanel implements TableCellRenderer {
         };
         JLabel colorLabel = new JLabel() {
 
+            @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 if (color != null) {

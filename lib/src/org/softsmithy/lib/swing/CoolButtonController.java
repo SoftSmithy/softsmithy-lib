@@ -41,6 +41,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
     /** Invoked when the mouse enters a component.
      *
      */
+    @Override
     public void mouseEntered(MouseEvent e) {
         if (!button.isBorderPainted() && button.isEnabled()) {
             button.setBorderPainted(true);
@@ -51,6 +52,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
     /** Invoked when the mouse exits a component.
      *
      */
+    @Override
     public void mouseExited(MouseEvent e) {
         if (button.isBorderPainted() && !button.isSelected()) {
             button.setBorderPainted(false);
@@ -122,6 +124,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
      * @see     java.util.Hashtable
      *
      */
+    @Override
     public int hashCode() {
         int hashCode = 17;
         hashCode = 37 * hashCode + button.hashCode();
@@ -171,6 +174,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
      * @see     java.util.Hashtable
      *
      */
+    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof CoolButtonController)) {
             return false;
