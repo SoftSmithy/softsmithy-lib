@@ -41,6 +41,7 @@ public class XDefaultPersistenceDelegate extends DefaultPersistenceDelegate {
     this.constructor = constructorPropertyNames;
   }
   
+  @Override
   protected Expression instantiate(Object oldInstance, Encoder out) {
     int nArgs = constructor.length;
     Class type = oldInstance.getClass();

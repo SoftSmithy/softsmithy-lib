@@ -80,6 +80,7 @@ public class XMLEncoderX extends XMLEncoder {
    * @see java.beans.BeanInfo#getBeanDescriptor
    *
    */
+  @Override
   public PersistenceDelegate getPersistenceDelegate(Class type) {
     PersistenceDelegate retValue;
     if (type != null && TypesafeEnum.class.isAssignableFrom(type)){
@@ -116,6 +117,7 @@ public class XMLEncoderX extends XMLEncoder {
      * @return An expression whose value is <code>oldInstance</code>.
      *
      */
+    @Override
     protected Expression instantiate(Object oldInstance, Encoder out) {
       Class cls = oldInstance.getClass();
       Field[] fields = cls.getFields();
@@ -160,6 +162,7 @@ public class XMLEncoderX extends XMLEncoder {
      * @return An expression whose value is <code>oldInstance</code>.
      *
      */
+    @Override
     protected Expression instantiate(Object oldInstance, Encoder out) {
       try{
         Field instance = oldInstance.getClass().getField("INSTANCE");
