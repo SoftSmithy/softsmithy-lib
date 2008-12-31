@@ -20,7 +20,6 @@
 package org.softsmithy.lib.swing;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.*;
 
 /**
  *

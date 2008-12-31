@@ -16,7 +16,6 @@ package org.softsmithy.lib.swing;
 import java.awt.Component;
 import java.util.*;
 import javax.swing.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -51,6 +50,7 @@ public class TypesafeEnumCellEditor extends DefaultCellEditor {
     }
 
     /** Implements the <code>TableCellEditor</code> interface.  */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         fillComboBox(getClass(table, row, column));
         return super.getTableCellEditorComponent(table, value, isSelected, row, column);

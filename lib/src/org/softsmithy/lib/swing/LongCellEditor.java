@@ -51,10 +51,12 @@ public class LongCellEditor extends FormattedCellEditor {
     //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
     //    return new Integer(number.intValue());
     //  }
+    @Override
     protected void setValue(Object value) {
         getLongField().setLongValue(((Long) value).longValue());
     }
 
+    @Override
     protected Object getValue() {
         return new Long(getLongField().getLongValue());
     }

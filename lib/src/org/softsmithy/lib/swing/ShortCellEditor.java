@@ -19,9 +19,7 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.text.*;
 import java.util.*;
-import javax.swing.*;
 
 /**
  *
@@ -53,10 +51,12 @@ public class ShortCellEditor extends FormattedCellEditor {
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
 //    return new Integer(number.intValue());
 //  }
+    @Override
     protected void setValue(Object value) {
         getShortField().setShortValue(((Short) value).shortValue());
     }
 
+    @Override
     protected Object getValue() {
         return new Short(getShortField().getShortValue());
     }

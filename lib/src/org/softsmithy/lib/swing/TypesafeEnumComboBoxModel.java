@@ -66,6 +66,7 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     return (TypesafeEnum) getSelectedItem();
   }
   
+  @Override
   public void removeElement(Object anObject) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
@@ -73,6 +74,7 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     super.removeElement(anObject);
   }
   
+  @Override
   public void insertElementAt(Object anObject, int index) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
@@ -80,6 +82,7 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     super.insertElementAt(anObject, index);
   }
   
+  @Override
   public void addElement(Object anObject) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
@@ -92,6 +95,7 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
    * @param anObject The combo box value or null for no selection.
    *
    */
+  @Override
   public void setSelectedItem(Object anObject) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
@@ -106,6 +110,7 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
    *         the first position
    *
    */
+  @Override
   public int getIndexOf(Object anObject) {
     if (! (anObject instanceof TypesafeEnum)){
       throw new IllegalArgumentException("anObject must be a TypesafeEnum");
