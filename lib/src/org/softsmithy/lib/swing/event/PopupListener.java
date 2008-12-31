@@ -43,6 +43,7 @@ public class PopupListener extends MouseAdapter {
    *
    * @param e  a MouseEvent object
    */
+  @Override
   public void mousePressed(MouseEvent e) {
     maybeShowPopup(e);
   }
@@ -52,6 +53,7 @@ public class PopupListener extends MouseAdapter {
    *
    * @param e  a MouseEvent object
    */
+  @Override
   public void mouseReleased(MouseEvent e) {
     maybeShowPopup(e);
   }
