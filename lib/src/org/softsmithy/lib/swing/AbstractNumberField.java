@@ -86,6 +86,7 @@ public abstract class AbstractNumberField extends JFormattedTextField {
      * Calls the reinit method.
      * @param locale the locale
      */
+    @Override
     public void setLocale(Locale locale) {
         super.setLocale(locale);
         reinit();
@@ -112,6 +113,7 @@ public abstract class AbstractNumberField extends JFormattedTextField {
      * Must be an instance of Number.
      * @param value the number value
      */
+    @Override
     public void setValue(Object value) {
         // use Number to recognize if the value is out of range if the range is
         // (Integer.MIN_VALUE, Integer.MAX_VALUE)
@@ -182,6 +184,7 @@ public abstract class AbstractNumberField extends JFormattedTextField {
      * more information.
      * @param formatter the number formatter
      */
+    @Override
     protected void setFormatter(AbstractFormatter formatter) {
         if (! (formatter instanceof AbstractXNumberFormatter)){
             throw new IllegalArgumentException("formatter must be an instance of AbstractXNumberFormatter!");
@@ -228,6 +231,7 @@ public abstract class AbstractNumberField extends JFormattedTextField {
      * the minimum value if it is smaller than the minimum value.
      * @param aff the number formatter factory
      */
+    @Override
     public void setFormatterFactory(AbstractFormatterFactory aff) {
         if (! (aff instanceof AbstractXNumberFormatterFactory)){
             throw new IllegalArgumentException("aff must be an instance of AbstractXNumberFormatterFactory!");
