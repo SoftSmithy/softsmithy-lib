@@ -51,10 +51,12 @@ public class LocalizedFloatCellEditor extends FormattedCellEditor {
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
 //    return new Intteger(number.intValue());
 //  }
+    @Override
     protected void setValue(Object value) {
         getLocalizedFloatField().setFloatValue(((Float) value).floatValue());
     }
 
+    @Override
     protected Object getValue() {
         return new Float(getLocalizedFloatField().getFloatValue());
     }

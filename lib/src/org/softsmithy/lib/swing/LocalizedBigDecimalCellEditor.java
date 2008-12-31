@@ -52,10 +52,12 @@ public class LocalizedBigDecimalCellEditor extends FormattedCellEditor {
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
 //    return new Integer(number.intValue());
 //  }
+    @Override
     protected void setValue(Object value) {
         getLocalizedRealNumberField().setBigDecimalValue((BigDecimal) value);
     }
 
+    @Override
     protected Object getValue() {
         return getLocalizedRealNumberField().getBigDecimalValue();
     }

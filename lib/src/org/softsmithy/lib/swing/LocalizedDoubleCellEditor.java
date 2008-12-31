@@ -51,10 +51,12 @@ public class LocalizedDoubleCellEditor extends FormattedCellEditor {
 //    Number number = (Number) super.getCellEditorValue(); //sometimes an Integer is returned, sometimes a Long???
 //    return new Integer(number.intValue());
 //  }
+    @Override
     protected void setValue(Object value) {
         getLocalizedDoubleField().setDoubleValue(((Double) value).doubleValue());
     }
 
+    @Override
     protected Object getValue() {
         return new Double(getLocalizedDoubleField().getDoubleValue());
     }
