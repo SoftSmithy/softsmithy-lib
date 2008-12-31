@@ -23,7 +23,6 @@ package org.softsmithy.lib.swing.style;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -42,6 +41,7 @@ public class StyleProviderListCellRenderer extends DefaultListCellRenderer {
     this.locale = locale;
   }
   
+  @Override
   public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
     String styleProviderString = null;
     if (value != null){
@@ -57,6 +57,7 @@ public class StyleProviderListCellRenderer extends DefaultListCellRenderer {
    * @return Value of property locale.
    *
    */
+  @Override
   public Locale getLocale() {
     return this.locale;
   }
@@ -65,6 +66,7 @@ public class StyleProviderListCellRenderer extends DefaultListCellRenderer {
    * @param locale New value of property locale.
    *
    */
+  @Override
   public void setLocale(Locale locale) {
     this.locale = locale;
   }

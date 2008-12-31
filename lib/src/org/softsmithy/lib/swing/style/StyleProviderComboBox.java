@@ -23,7 +23,6 @@ package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import javax.swing.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -52,6 +51,7 @@ public class StyleProviderComboBox extends JComboBox {
    *  description: Model that the combo box uses to get data to display.
    *
    */
+  @Override
   public void setModel(ComboBoxModel aModel) {
     if (! (aModel instanceof StyleProviderComboBoxModel)){
       throw new IllegalArgumentException("aModel must be a StyleProviderComboBoxModel");
@@ -69,6 +69,7 @@ public class StyleProviderComboBox extends JComboBox {
    * @return true if the <code>JComboBox</code> is editable, else false
    *
    */
+  @Override
   public boolean isEditable() {
     return false;
   }
@@ -79,6 +80,7 @@ public class StyleProviderComboBox extends JComboBox {
    * @since JDK1.1
    *
    */
+  @Override
   public void setLocale(Locale l) {
     super.setLocale(l);
     if (inited){
@@ -110,6 +112,7 @@ public class StyleProviderComboBox extends JComboBox {
    *  description: The renderer that paints the item selected in the list.
    *
    */
+  @Override
   public void setRenderer(ListCellRenderer aRenderer) {
     if (inited && ! (aRenderer instanceof StyleProviderListCellRenderer)){
       throw new IllegalArgumentException("aRenderer must be a StyleProviderListCellRenderer");

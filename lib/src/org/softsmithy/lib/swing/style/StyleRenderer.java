@@ -21,7 +21,6 @@ package org.softsmithy.lib.swing.style;
 
 import java.util.*;
 import javax.swing.table.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
@@ -46,6 +45,7 @@ public class StyleRenderer extends DefaultTableCellRenderer {
      *
      *
      */
+    @Override
     protected void setValue(Object value) {
         super.setValue(((Style) value).getName(getLocale()));
     }
@@ -54,6 +54,7 @@ public class StyleRenderer extends DefaultTableCellRenderer {
      * @return Value of property locale.
      *
      */
+    @Override
     public Locale getLocale() {
         return this.locale;
     }
@@ -62,6 +63,7 @@ public class StyleRenderer extends DefaultTableCellRenderer {
      * @param locale New value of property locale.
      *
      */
+    @Override
     public void setLocale(Locale locale) {
         this.locale = locale;
     }

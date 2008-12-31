@@ -21,7 +21,6 @@
 package org.softsmithy.lib.swing.style;
 
 import java.util.*;
-import org.softsmithy.lib.swing.style.*;
 
 /**
  *

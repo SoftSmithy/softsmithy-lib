@@ -22,7 +22,6 @@ package org.softsmithy.lib.swing.style;
 
 import java.awt.*;
 import java.awt.event.*;
-import org.softsmithy.lib.swing.customizer.*;
 
 /**
  *

@@ -52,6 +52,7 @@ public class StyleCellEditor extends DefaultCellEditor {
     }
 
     /** Implements the <code>TableCellEditor</code> interface.  */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         reloadComboBox();
         Style style = (Style) value;
@@ -68,6 +69,7 @@ public class StyleCellEditor extends DefaultCellEditor {
      * @see EditorDelegate#getCellEditorValue
      *
      */
+    @Override
     public Object getCellEditorValue() {
         StyleProvider provider = (StyleProvider) super.getCellEditorValue();
         return provider.getStyle(DUMMY_CUSTOMIZER);
