@@ -14,12 +14,13 @@ Changes:
             - new utility methods in org.softsmithy.lib.io.Files
             - bug fix in org.softsmithy.lib.util.zip.ZipFiles
             - generified classes
+            - removed warnings
             - Javadocs added
             - Project setting changed
             - LocaleSelectionSample
             - FileRootSelectionSample
             - changed to JDK 1.5 -> please report regressions if you find any!
-            - changed to NetBeans 6.1
+            - changed to NetBeans 6.5
 
 v20070520:  - JButtonCustomizer completed
 (Rev.: 337) - a text customizers sample added
