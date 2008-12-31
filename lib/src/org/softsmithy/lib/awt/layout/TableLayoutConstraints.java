@@ -16,7 +16,6 @@ package org.softsmithy.lib.awt.layout;
 
 
 
-import java.awt.*;
 import java.util.*;
 
 
@@ -186,6 +185,7 @@ public class TableLayoutConstraints implements TableLayoutConstants {
    *         "row, column, horizontal justification, vertical justification"
    */
   
+  @Override
   public String toString() {
     StringBuffer buffer = new StringBuffer();
     

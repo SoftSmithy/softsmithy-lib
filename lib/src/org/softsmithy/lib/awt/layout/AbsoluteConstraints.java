@@ -88,6 +88,7 @@ public class AbsoluteConstraints{
     return height;
   }
   
+  @Override
   public String toString() {
     return super.toString() +" [x="+x+", y="+y+", width="+width+", height="+height+"]";
   }

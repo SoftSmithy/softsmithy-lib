@@ -18,7 +18,6 @@ package org.softsmithy.lib.awt.layout;
 
 
 import java.awt.*;
-import org.softsmithy.lib.swing.customizer.*;
 
 
 /**
