@@ -22,6 +22,7 @@ package org.softsmithy.lib.util;
 import java.text.CollationKey;
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Collections;
 import java.util.ListIterator;
@@ -38,7 +39,7 @@ public class Localizables {
     }
 
     /**
-     * Sort an array of Localizables in the natural order of their toString(Locale)-representation
+     * Sorts an array of Localizables in the natural, locale-sensitive order of their getDisplayString(Locale)-representation
      */
     public static <T extends Localizable> void sort(Locale inLocale, T... localizables) {
         sort(new LocalizableLocalizer<T>(), inLocale, localizables);
@@ -48,7 +49,7 @@ public class Localizables {
         sort(Locale.getDefault(), localizables);
     }
 
-    public static <T> void sort(Localizer<T> localizer, Locale inLocale, T... localizables) {
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, T... localizables) {
         List<LocalizableCollationKey<T>> keys = getLocalizableCollationKeys(localizables, localizer, inLocale);
         Collections.sort(keys);
         int i = 0;
@@ -58,12 +59,12 @@ public class Localizables {
         }
     }
 
-    public static <T> void sort(Localizer<T> localizer, T... localizables) {
+    public static <T> void sort(Localizer<? super T> localizer, T... localizables) {
         sort(localizer, Locale.getDefault(), localizables);
     }
 
     /**
-     * Sort a List of Localizables in the natural order of their toString(Locale)-representation
+     * Sorts a List of Localizables in the natural, locale-sensitive order of their getDisplayString(Locale)-representation
      */
     public static <T extends Localizable> void sort(Locale inLocale, List<T> localizables) {
         sort(new LocalizableLocalizer<T>(), inLocale, localizables);
@@ -73,7 +74,7 @@ public class Localizables {
         sort(Locale.getDefault(), localizables);
     }
 
-    public static <T> void sort(Localizer<T> localizer, Locale inLocale, List<T> localizables) {
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, List<T> localizables) {
         List<LocalizableCollationKey<T>> keys = getLocalizableCollationKeys(localizables, localizer, inLocale);
         Collections.sort(keys);
         ListIterator<T> listIterator = localizables.listIterator();
@@ -83,30 +84,30 @@ public class Localizables {
         }
     }
 
-    public static <T> void sort(Localizer<T> localizer, List<T> localizables) {
+    public static <T> void sort(Localizer<? super T> localizer, List<T> localizables) {
         sort(localizer, Locale.getDefault(), localizables);
     }
 
-    private static <T> List<LocalizableCollationKey<T>> getLocalizableCollationKeys(T[] localizables, Localizer<T> localizer, Locale inLocale) {
+    private static <T> List<LocalizableCollationKey<T>> getLocalizableCollationKeys(T[] localizables, Localizer<? super T> localizer, Locale inLocale) {
         Collator collator = Collator.getInstance(inLocale);
-        List<LocalizableCollationKey<T>> keys = new ArrayList<LocalizableCollationKey<T>>();
+        List<LocalizableCollationKey<T>> keys = new ArrayList<LocalizableCollationKey<T>>(localizables.length);
         for (T localizable : localizables) {
             keys.add(getLocalizableCollationKey(collator, localizable, localizer, inLocale));
         }
         return keys;
     }
 
-    private static <T> List<LocalizableCollationKey<T>> getLocalizableCollationKeys(Iterable<T> localizables, Localizer<T> localizer, Locale inLocale) {
+    private static <T> List<LocalizableCollationKey<T>> getLocalizableCollationKeys(Collection<T> localizables, Localizer<? super T> localizer, Locale inLocale) {
         Collator collator = Collator.getInstance(inLocale);
-        List<LocalizableCollationKey<T>> keys = new ArrayList<LocalizableCollationKey<T>>();
+        List<LocalizableCollationKey<T>> keys = new ArrayList<LocalizableCollationKey<T>>(localizables.size());
         for (T localizable : localizables) {
             keys.add(getLocalizableCollationKey(collator, localizable, localizer, inLocale));
         }
         return keys;
     }
 
-    private static <T> LocalizableCollationKey<T> getLocalizableCollationKey(Collator collator, T localizable, Localizer<T> localizer, Locale inLocale) {
-        return new LocalizableCollationKey(localizable, collator.getCollationKey(localizer.getDisplayString(localizable, inLocale)));
+    private static <T> LocalizableCollationKey<T> getLocalizableCollationKey(Collator collator, T localizable, Localizer<? super T> localizer, Locale inLocale) {
+        return new LocalizableCollationKey<T>(localizable, collator.getCollationKey(localizer.getDisplayString(localizable, inLocale)));
     }
 
     private static class LocalizableLocalizer<T extends Localizable> implements Localizer<T> {
