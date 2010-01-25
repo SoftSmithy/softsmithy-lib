@@ -13,11 +13,11 @@
  */
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Localizable.java
+ *
+ * Created on 24. Dezember 2004, 16:08
  */
-
-package org.softsmithy.lib.util;
+package org.softsmithy.lib.text;
 
 import java.util.Locale;
 
@@ -25,13 +25,13 @@ import java.util.Locale;
  *
  * @author puce
  */
-public interface Localizer<T> {
+public interface Localizable {
 
-     /**
+    /**
      * Returns a string that is appropriate for display to the user.
      * If possible, the string returned will be localized according to inLocale.
      * @param inLocale the string returned will be localized according to this value, if possible
      * @return a string that is appropriate for display to the user.
      */
-    public String getDisplayString(T o, Locale inLocale);
+    public String getDisplayString(Locale inLocale); // TODO: toDisplayString ?
 }

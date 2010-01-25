@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing;
 
 import java.util.Locale;
-import org.softsmithy.lib.util.LocaleLocalizer;
+import org.softsmithy.lib.text.LocaleLocalizer;
 
 
 

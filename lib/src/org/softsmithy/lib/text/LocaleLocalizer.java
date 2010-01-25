@@ -17,7 +17,7 @@
  *
  * Created on 12. März 2003, 22:50
  */
-package org.softsmithy.lib.util;
+package org.softsmithy.lib.text;
 
 import java.util.Locale;
 

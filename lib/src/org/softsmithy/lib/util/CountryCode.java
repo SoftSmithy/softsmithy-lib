@@ -20,6 +20,7 @@
 
 package org.softsmithy.lib.util;
 
+import org.softsmithy.lib.text.Localizable;
 import java.util.*;
 /**
  * http://www.chemie.fu-berlin.de/diverse/doc/ISO_3166.html
@@ -273,9 +274,9 @@ public enum CountryCode implements Localizable{
     ZAMBIA                                        ("ZM", "ZMB", "894"),
     ZIMBABWE                                      ("ZW", "ZWE", "716");
     
-    private static final Map<String, CountryCode> a2ToCode = new HashMap();
-    private static final Map<String, CountryCode> a3ToCode = new HashMap();
-    private static final Map<String, CountryCode> numberToCode = new HashMap();
+    private static final Map<String, CountryCode> a2ToCode = new HashMap<String, CountryCode>();
+    private static final Map<String, CountryCode> a3ToCode = new HashMap<String, CountryCode>();
+    private static final Map<String, CountryCode> numberToCode = new HashMap<String, CountryCode>();
     
     static{
         for (CountryCode cc : values()){

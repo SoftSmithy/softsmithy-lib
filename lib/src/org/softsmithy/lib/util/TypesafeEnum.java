@@ -14,6 +14,7 @@
 
 package org.softsmithy.lib.util;
 
+import org.softsmithy.lib.text.Localizable;
 import java.util.*;
 /**
  * Base class for typsafe enums.<br>

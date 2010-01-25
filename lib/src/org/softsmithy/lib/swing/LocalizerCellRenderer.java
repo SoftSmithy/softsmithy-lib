@@ -20,6 +20,7 @@
 
 package org.softsmithy.lib.swing;
 
+import org.softsmithy.lib.text.Localizer;
 import java.util.*;
 import org.softsmithy.lib.util.*;
 

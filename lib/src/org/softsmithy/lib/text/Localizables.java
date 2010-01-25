@@ -17,7 +17,7 @@
  *
  * Created on 26. Dezember 2004, 16:17
  */
-package org.softsmithy.lib.util;
+package org.softsmithy.lib.text;
 
 import java.text.CollationKey;
 import java.text.Collator;
@@ -54,7 +54,7 @@ public class Localizables {
         Collections.sort(keys);
         int i = 0;
         for (LocalizableCollationKey<T> key : keys) {
-            localizables[i] = key.getLocalizable();
+            localizables[i] = key.getSource();
             i++;
         }
     }
@@ -80,7 +80,7 @@ public class Localizables {
         ListIterator<T> listIterator = localizables.listIterator();
         for (LocalizableCollationKey<T> key : keys) {
             listIterator.next();
-            listIterator.set(key.getLocalizable());
+            listIterator.set(key.getSource());
         }
     }
 
@@ -106,8 +106,35 @@ public class Localizables {
         return keys;
     }
 
-    private static <T> LocalizableCollationKey<T> getLocalizableCollationKey(Collator collator, T localizable, Localizer<? super T> localizer, Locale inLocale) {
-        return new LocalizableCollationKey<T>(localizable, collator.getCollationKey(localizer.getDisplayString(localizable, inLocale)));
+    /**
+     * @see #getLocalizableCollationKey(java.text.Collator, java.lang.Object, org.softsmithy.lib.util.Localizer, java.util.Locale) 
+     * @see LocalizableComparator
+     * @see LocalizerComparator
+     * @param <T>
+     * @param collator
+     * @param localizable
+     * @param inLocale
+     * @return
+     */
+    public static <T extends Localizable> LocalizableCollationKey<T> getLocalizableCollationKey(Collator collator, T localizable, Locale inLocale) {
+        return new LocalizableCollationKey<T>(localizable,
+                collator.getCollationKey(localizable.getDisplayString(inLocale)));
+    }
+
+    /**
+     * @see #getLocalizableCollationKey(java.text.Collator, org.softsmithy.lib.util.Localizable, java.util.Locale)
+     * @see LocalizerComparator
+     * @see LocalizableComparator
+     * @param <T>
+     * @param collator
+     * @param localizable
+     * @param localizer
+     * @param inLocale
+     * @return
+     */
+    public static <T> LocalizableCollationKey<T> getLocalizableCollationKey(Collator collator, T localizable, Localizer<? super T> localizer, Locale inLocale) {
+        return new LocalizableCollationKey<T>(localizable,
+                collator.getCollationKey(localizer.getDisplayString(localizable, inLocale)));
     }
 
     private static class LocalizableLocalizer<T extends Localizable> implements Localizer<T> {
@@ -117,14 +144,21 @@ public class Localizables {
         }
     }
 
-    private static class LocalizableCollationKey<T> implements Comparable<LocalizableCollationKey> {
+    /**
+     * A wrapper around {@link CollationKey}, which has a reference to the orignial source (which doesn't have to be a {@link String}).
+     *
+     * @see #getLocalizableCollationKey(java.text.Collator, org.softsmithy.lib.util.Localizable, java.util.Locale)
+     * @see #getLocalizableCollationKey(java.text.Collator, java.lang.Object, org.softsmithy.lib.text.Localizer, java.util.Locale)
+     * @param <T>
+     */
+    public static class LocalizableCollationKey<T> implements Comparable<LocalizableCollationKey> {
 
-        private T localizable;
+        private T source;
         /** Holds value of property collationKey. */
         private CollationKey collationKey;
 
-        public LocalizableCollationKey(T localizable, CollationKey collationKey) {
-            this.localizable = localizable;
+        private LocalizableCollationKey(T source, CollationKey collationKey) {
+            this.source = source;
             this.collationKey = collationKey;
         }
 
@@ -174,8 +208,8 @@ public class Localizables {
          * @return Value of property locale.
          *
          */
-        public T getLocalizable() {
-            return this.localizable;
+        public T getSource() {
+            return this.source;
         }
 
         /** Getter for property collationKey.
