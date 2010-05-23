@@ -1,0 +1,5 @@
+Changes:
+
+@version@:  - API refactorings/ clean-ups after initial release
+(Rev.: @r@) - New dependency to SoftSmithy Utility Library
+
