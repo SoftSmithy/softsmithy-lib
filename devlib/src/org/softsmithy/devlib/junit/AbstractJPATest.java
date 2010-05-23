@@ -1,17 +1,26 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
  */
 package org.softsmithy.devlib.junit;
 
 import org.softsmithy.devlib.persistence.DbInitializer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.RollbackException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.softsmithy.lib.persistence.ResourceLocalTransactionController;
 
 /**
  *
@@ -19,6 +28,7 @@ import org.junit.BeforeClass;
  */
 public abstract class AbstractJPATest<T extends DbInitializer> {
 
+    private ResourceLocalTransactionController transactionController;
     private T dbInitializer;
 
     public AbstractJPATest() {
@@ -34,22 +44,28 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
 
     @Before
     public void setUp() throws Exception {
-        dbInitializer = createNewDbInitializer();
+        setUpBeforeInitDb();
+        initDb();
+        newTransaction();
+    }
 
-        try {
-            initDb();
-            newTransaction();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
+    protected void setUpBeforeInitDb() {
+        transactionController =
+                new ResourceLocalTransactionController(getPersistenceUnitName());
+        dbInitializer = createNewDbInitializer();
     }
 
     @After
     public void tearDown() throws Exception {
         clearDb();
-        dbInitializer.close();
+        tearDownAfterClearDb();
     }
+
+    protected void tearDownAfterClearDb() {
+        transactionController.close();
+    }
+
+    protected abstract String getPersistenceUnitName();
 
     protected abstract T createNewDbInitializer();
 
@@ -69,25 +85,14 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
     }
 
     protected EntityManager getEntityManager() {
-        return dbInitializer.getEntityManager();
+        return transactionController.getEntityManager();
     }
 
     protected EntityManagerFactory getEntityManagerFactory() {
-        return dbInitializer.getEntityManagerFactory();
+        return transactionController.getEntityManagerFactory();
     }
 
     protected void newTransaction() {
-        try {
-            if (getEntityManager().getTransaction().isActive()) {
-                getEntityManager().getTransaction().commit();
-            }
-        } catch (RollbackException e) {
-            getEntityManager().getTransaction().rollback();
-            throw e;
-        } finally {
-            getEntityManager().getTransaction().begin();
-            System.out.println("Transaction started: Active: " + getEntityManager().
-                    getTransaction().isActive());
-        }
+        transactionController.newTransaction();
     }
 }

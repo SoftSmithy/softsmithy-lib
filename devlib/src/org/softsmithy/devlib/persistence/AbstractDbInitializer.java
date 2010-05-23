@@ -1,13 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *                  Sun Public License Notice
+ *
+ * The contents of this file are subject to the Sun Public License
+ * Version 1.0 (the "License"); you may not use this file except in
+ * compliance with the License. A copy of the License is available at
+ * http://www.sun.com/
+ *
+ * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+ * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ *
+ * Contributor(s): .
  */
+
 package org.softsmithy.devlib.persistence;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.RollbackException;
 
 /**
  *
@@ -15,30 +22,10 @@ import javax.persistence.RollbackException;
  */
 public abstract class AbstractDbInitializer implements DbInitializer {
 
-    private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
 
-    public AbstractDbInitializer(String persistenceUnitName) {
-        //                    Map<String, String> configOverrides = new HashMap<String, String>();
-        //            configOverrides.put("javax.persistence.transaction",
-        //                    PersistenceUnitTransactionType.RESOURCE_LOCAL.name());
-        //            configOverrides.put(TopLinkProperties.JDBC_DRIVER,
-        //                    ClientDriver.class.getName());
-        //            configOverrides.put(TopLinkProperties.JDBC_URL,
-        //                    "jdbc:derby://localhost:1527/contactcenter");
-        //            configOverrides.put(EntityManagerFactoryProvider.DDL_GENERATION,
-        //                    EntityManagerFactoryProvider.DROP_AND_CREATE);
-        entityManagerFactory = Persistence.createEntityManagerFactory(
-                persistenceUnitName); //, configOverrides);
-        entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-    }
-
-    /**
-     * @return the entityManagerFactory
-     */
-    public EntityManagerFactory getEntityManagerFactory() {
-        return entityManagerFactory;
+    public AbstractDbInitializer(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 
     /**
@@ -47,20 +34,5 @@ public abstract class AbstractDbInitializer implements DbInitializer {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
-    public void close() {
-        try {
-            entityManager.getTransaction().commit();
-        } catch (RollbackException e) {
-            entityManager.getTransaction().rollback();
-            throw e;
-        } finally {
-//            if (entityManager.getTransaction().isActive()) {
-//                entityManager.getTransaction().rollback();
-//            }
-            entityManager.close();
-        }
-    }
-
 
 }
