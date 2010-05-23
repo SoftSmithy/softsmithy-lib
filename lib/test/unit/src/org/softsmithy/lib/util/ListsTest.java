@@ -23,10 +23,8 @@ package org.softsmithy.lib.util;
 
 import java.util.Arrays;
 import junit.framework.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,6 +39,7 @@ public class ListsTest extends TestCase {
         super(testName);
     }
     
+    @Override
     protected void setUp() throws Exception {
         testClassComparator = new Comparator() {
             public int compare(Object object1, Object object2) {
@@ -58,6 +57,7 @@ public class ListsTest extends TestCase {
        
     }
     
+    @Override
     protected void tearDown() throws Exception {
     }
     

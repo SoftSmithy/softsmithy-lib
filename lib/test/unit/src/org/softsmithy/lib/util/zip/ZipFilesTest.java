@@ -21,19 +21,10 @@
 
 package org.softsmithy.lib.util.zip;
 
-import junit.framework.*;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import org.softsmithy.lib.io.Streams;
-import org.softsmithy.lib.io.Files;
-import org.softsmithy.lib.util.Strings;
+import junit.framework.TestCase;
 
 /**
  *
@@ -45,9 +36,11 @@ public class ZipFilesTest extends TestCase {
         super(testName);
     }
 
+    @Override
     protected void setUp() throws Exception {
     }
 
+    @Override
     protected void tearDown() throws Exception {
     }
 
