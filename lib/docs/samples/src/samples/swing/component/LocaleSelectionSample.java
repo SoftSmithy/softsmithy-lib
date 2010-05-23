@@ -13,8 +13,8 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import org.softsmithy.lib.swing.LocaleCellRenderer;
 import org.softsmithy.lib.swing.XDefaultListCellRenderer;
-import org.softsmithy.lib.util.LocaleLocalizer;
-import org.softsmithy.lib.util.Localizables;
+import org.softsmithy.lib.text.LocaleLocalizer;
+import org.softsmithy.lib.text.Localizables;
 
 
 /**

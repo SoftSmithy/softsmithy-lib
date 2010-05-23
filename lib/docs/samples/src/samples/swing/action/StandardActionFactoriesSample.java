@@ -30,8 +30,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
-import org.apache.xpath.axes.LocPathIterator;
 import org.softsmithy.lib.swing.action.AbstractXAction;
 import org.softsmithy.lib.swing.action.DevelopmentActionFactory;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;

@@ -21,18 +21,10 @@
 package samples.swing.action;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
-import java.util.Properties;
-import java.util.Set;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
 import org.softsmithy.lib.swing.action.AbstractXAction;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;
 import org.softsmithy.lib.swing.action.IconType;
