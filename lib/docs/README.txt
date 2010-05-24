@@ -8,6 +8,10 @@ Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
 puce@users.sourceforge.net
 
+Note: This library has the following dependencies:
+- JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
+
+
 Have a look at CHANGES.txt for notes about changes.
 
 The contents of the files, which originate from softsmithy.org, are subject to 

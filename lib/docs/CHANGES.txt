@@ -1,26 +1,34 @@
 Changes:
 
-@version@:  - LocaleCellRenderer supports LocaleDisplay
-(Rev.: @r@) - org.softsmithy.lib.swing.CellRenderer: icon support added
+@version@:  - org.softsmithy.lib.io.Files: new utility methods
+(Rev.: @r@) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
+            - org.softsmithy.lib.persistence.AbstractEntity class added
+            - org.softsmithy.lib.persistence.ExtendedBaseDAO class added
+            - org.softsmithy.lib.persistence.GenericDAO class added
+            - org.softsmithy.lib.persistence.ResourceLocalTransactionController class added
+            - org.softsmithy.lib.swing.LocaleCellRenderer: supports LocaleLocalizer
+            - org.softsmithy.lib.swing.CellRenderer: icon support added
             - org.softsmithy.lib.swing.XDefaultListCellRenderer: icon support added
             - org.softsmithy.lib.swing.JFileRootComboBox class added
             - org.softsmithy.lib.swing.JFileRootList class added
             - org.softsmithy.lib.swing.filechooser.FileRootComboBoxModel class added
             - org.softsmithy.lib.swing.filechooser.FileRootCellRenderer class added
-            - org.softsmithy.lib.util.Localizable added
-            - org.softsmithy.lib.util.Localizer added
-            - org.softsmithy.lib.util.Localizables added
-            - org.softsmithy.lib.util.Locales removed (replaced by Localizables)
-            - new utility methods in org.softsmithy.lib.io.Files
-            - bug fix in org.softsmithy.lib.util.zip.ZipFiles
+            - org.softsmithy.lib.text.LocaleLocalizer class added
+            - org.softsmithy.lib.text.Localizable class added
+            - org.softsmithy.lib.text.Localizables class added
+            - org.softsmithy.lib.text.Localizer class added
+            - org.softsmithy.lib.util.Locales: new utility method
+            - org.softsmithy.lib.util.Locales: many methods moved to org.softsmithy.lib.text.Localizables
+            - org.softsmithy.lib.util.CountryCode class added
+            - new dependency added: JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
             - generified classes
             - removed warnings
             - Javadocs added
             - Project setting changed
             - LocaleSelectionSample
             - FileRootSelectionSample
-            - changed to JDK 1.5 -> please report regressions if you find any!
-            - changed to NetBeans 6.5
+            - changed to JDK 1.6 -> please report regressions if you find any!
+            - changed to NetBeans 6.8
 
 v20070520:  - JButtonCustomizer completed
 (Rev.: 337) - a text customizers sample added

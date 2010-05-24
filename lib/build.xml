@@ -184,7 +184,7 @@
     </target>
     
     <target name="samples" depends="init">
-        <ant dir="${docs.samples.dir}" target="compile" inheritall="false" />
+        <!--<ant dir="${docs.samples.dir}" target="compile" inheritall="false" /> TODO: fix-->
         <copy todir="${dist.docs.samples.dir}">
             <fileset dir="${docs.samples.dir}" excludes="build/**,nbproject/private/**,src/samples/*.*"/>
         </copy>
@@ -218,5 +218,6 @@
         <replace dir="${dist.dir}" includes="CHANGES.txt" token="@r@" value="${svnversion}"/>
         <replace dir="${dist.dir}" includes="CHANGES.txt" token="@version@" value="${version}"/>
         <replace dir="${dist.docs.dir}" includes="index.html" token="@version@" value="${version}"/>
+        <copy file="${dist.jar}" tofile="${dist.dir}/${jar.name}-${version}.jar" />
     </target>
 </project>
