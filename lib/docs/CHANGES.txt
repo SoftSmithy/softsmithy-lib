@@ -1,7 +1,11 @@
 Changes:
 
-@version@:  - org.softsmithy.lib.io.Files: new utility methods
-(Rev.: @r@) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
+@version@:  - ...
+(Rev.: @r@) - ...
+            - ...
+
+v20100524:  - org.softsmithy.lib.io.Files: new utility methods
+(Rev.: 470) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
             - org.softsmithy.lib.persistence.AbstractEntity class added
             - org.softsmithy.lib.persistence.ExtendedBaseDAO class added
             - org.softsmithy.lib.persistence.GenericDAO class added
