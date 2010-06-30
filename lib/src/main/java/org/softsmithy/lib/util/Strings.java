@@ -45,7 +45,7 @@ public class Strings {
     }
     
     public static String join(String[] strings, boolean prepend, String delimiter, boolean append){
-        StringBuffer string = new StringBuffer();
+        StringBuilder string = new StringBuilder();
         if (prepend){
             string.append(delimiter);
         }

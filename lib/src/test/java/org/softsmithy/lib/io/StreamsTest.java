@@ -7,10 +7,13 @@
 
 package org.softsmithy.lib.io;
 
-import java.nio.ByteBuffer;
-import junit.framework.*;
-import java.io.*;
-import java.util.*;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import junit.framework.TestCase;
 import org.softsmithy.lib.util.Strings;
 
 /**
@@ -23,9 +26,11 @@ public class StreamsTest extends TestCase {
         super(testName);
     }
 
+    @Override
     protected void setUp() throws Exception {
     }
 
+    @Override
     protected void tearDown() throws Exception {
     }
 

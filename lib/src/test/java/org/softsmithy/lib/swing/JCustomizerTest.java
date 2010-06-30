@@ -57,6 +57,7 @@ public class JCustomizerTest extends TestCase {
     return suite;
   }
   
+    @Override
   protected void setUp() throws java.lang.Exception {
     super.setUp();
     customizer = new JCustomizer();
