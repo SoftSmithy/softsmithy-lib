@@ -11,6 +11,7 @@ import java.nio.ByteBuffer;
 import junit.framework.*;
 import java.io.*;
 import java.util.*;
+import org.softsmithy.lib.util.Strings;
 
 /**
  *
@@ -34,14 +35,26 @@ public class StreamsTest extends TestCase {
     public void testReadLines() throws Exception {
         System.out.println("readLines");
         
-        InputStream input = null;
+        String[] expResult = {"This is the first line", "this the second line", "and this the third."};
+        String buffer = Strings.join(expResult, "\n");
+        ByteArrayOutputStream byteArrayOutputStream =
+                new ByteArrayOutputStream();
+        OutputStreamWriter outputStreamWriter =
+                new OutputStreamWriter(byteArrayOutputStream);
+        outputStreamWriter.write(buffer);
+        outputStreamWriter.close();
+
+        InputStream input = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
         
-        String[] expResult = null;
+        
         String[] result = Streams.readLines(input);
-        assertEquals(expResult, result);
+
+        input.close();
+
+        assertTrue(Arrays.equals(expResult, result));
         
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     /**

@@ -54,6 +54,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
   /** Getter for property x.
    * @return Value of property x.
    */
+    @Override
   public int getX() {
     return this.x;
   }
@@ -70,6 +71,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
   /** Getter for property y.
    * @return Value of property y.
    */
+    @Override
   public int getY(){
     return this.y;
   }
@@ -86,6 +88,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
   /** Getter for property width.
    * @return Value of property width.
    */
+    @Override
   public int getWidth()  {
     return this.width;
   }
@@ -102,6 +105,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
   /** Getter for property height.
    * @return Value of property height.
    */
+    @Override
   public int getHeight() {
     return this.height;
   }
@@ -115,6 +119,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
     this.height = getTableLayout().adjustHeight(getY(), height);
   }
   
+    @Override
   protected void setAbsoluteBoundsOnly(Rectangle bounds){
     //    if (!(cl instanceof TableLayout)){
     //      throw new IllegalArgumentException("cl must be a Tablelayout!");
@@ -127,10 +132,12 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
     this.height = adjustedBounds.height;
   }
   
+    @Override
   public Rectangle getAbsoluteBounds() {
     return new Rectangle(x, y, width, height);
   }
   
+    @Override
   public Rectangle getRelativeBounds() {
     int column = getTableLayout().columnIndex(x);
     int row = getTableLayout().rowIndex(y);
@@ -138,6 +145,7 @@ public class AbsoluteTableConstraints extends AbstractTableConstraints{
     getTableLayout().rowSpan(row, height));
   }
   
+    @Override
   protected void setRelativeBoundsOnly(Rectangle bounds) {
     setX(getTableLayout().xLocation(bounds.x));
     setY(getTableLayout().yLocation(bounds.y));

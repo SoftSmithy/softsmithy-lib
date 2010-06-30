@@ -49,11 +49,13 @@ public abstract class AbstractTableConstraints implements TableConstraints {
   }
   
   
+    @Override
   public void setAbsoluteBounds(Rectangle bounds) {
     setAbsoluteBoundsOnly(bounds);
     updateTableLayout();
   }
   
+    @Override
   public void setRelativeBounds(Rectangle bounds) {
     setRelativeBoundsOnly(bounds);
     updateTableLayout();

@@ -29,6 +29,9 @@ import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.*;
 import org.softsmithy.lib.swing.JCustomizerTest.*;
 import java.awt.*;
 import junit.textui.*;
+import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
+import org.softsmithy.lib.awt.layout.TableLayout;
 
 /**
  *
@@ -53,14 +56,15 @@ public class JCustomizerTest extends TestCase {
     
     return suite;
   }
-//  
-//  protected void setUp() throws java.lang.Exception {
-//    super.setUp();
-//    customizer = new JCustomizer();
-//    pane = new JCustomizerPane();
-//    pane.add(customizer, new AbsoluteTableConstraints(5,5, 30, 10));
-//    pane.doLayout();
-//  }
+  
+  protected void setUp() throws java.lang.Exception {
+    super.setUp();
+    customizer = new JCustomizer();
+    pane = new JCustomizerPane();
+    TableLayout layout = (TableLayout) pane.getLayout();
+    pane.add(customizer, new AbsoluteTableConstraints(5,5, 30, 10, customizer, layout));
+    pane.doLayout();
+  }
   
   /** Test of moveRel method, of class puce.swing.JCustomizer. */
 //  public void testMoveRel() {
@@ -88,10 +92,10 @@ public class JCustomizerTest extends TestCase {
     customizer.reshapeRel(10, 15, -5, 5);
     pane.doLayout();
     Rectangle bounds = customizer.getBounds();
-    assertEquals(35, bounds.x);
-    assertEquals(40, bounds.y);
-    assertEquals(145, bounds.width);
-    assertEquals(55, bounds.height);
+    assertEquals(10, bounds.x);
+    assertEquals(10, bounds.y);
+    assertEquals(20, bounds.width);
+    assertEquals(10, bounds.height);
   }
   
   

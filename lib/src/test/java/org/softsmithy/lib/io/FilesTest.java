@@ -20,74 +20,12 @@ public class FilesTest extends TestCase {
         super(testName);
     }
 
+    @Override
     protected void setUp() throws Exception {
     }
 
+    @Override
     protected void tearDown() throws Exception {
-    }
-
-    /**
-     * Test of getExtension method, of class org.softsmithy.lib.io.Files.
-     */
-    public void testGetExtension() {
-        System.out.println("getExtension");
-
-        File f = null;
-
-        String expResult = "";
-        String result = Files.getExtension(f);
-        assertEquals(expResult, result);
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getFirstName method, of class org.softsmithy.lib.io.Files.
-     */
-    public void testGetFirstName() {
-        System.out.println("getFirstName");
-
-        File f = null;
-
-        String expResult = "";
-        String result = Files.getFirstName(f);
-        assertEquals(expResult, result);
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getName method, of class org.softsmithy.lib.io.Files.
-     */
-    public void testGetName() {
-        System.out.println("getName");
-
-        File f = null;
-
-        String expResult = "";
-        String result = Files.getName(f);
-        assertEquals(expResult, result);
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of readLines method, of class org.softsmithy.lib.io.Files.
-     */
-    public void testReadLines() throws Exception {
-        System.out.println("readLines");
-
-        File file = null;
-
-        String[] expResult = null;
-        String[] result = Files.readLines(file);
-        assertEquals(expResult, result);
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -155,11 +93,4 @@ public class FilesTest extends TestCase {
         assertEquals(null, root4);
     }
     
-    public void testGetFile1(){
-        fail();
-    }
-    
-    public void testGetFile2(){
-        fail();
-    }
 }
