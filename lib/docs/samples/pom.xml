@@ -1,0 +1,29 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.softsmithy</groupId>
+        <artifactId>softsmithy-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>lib-samples</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0-SNAPSHOT</version>
+    <name>SoftSmithy Utility Library Samples</name>
+    <url>http://www.softsmithy.org</url>
+    <description>A Java utilitiy library.</description>
+    <inceptionYear>2002</inceptionYear>
+    <dependencies>
+        <dependency>
+            <groupId>org.softsmithy</groupId>
+            <artifactId>lib</artifactId>
+            <version>0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>swing-layout-1.0.4</artifactId>
+            <version>RELEASE68</version>
+        </dependency>
+    </dependencies>
+</project>
