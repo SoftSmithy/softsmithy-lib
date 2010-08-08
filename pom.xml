@@ -52,6 +52,7 @@
 
     <!-- Dev Environment Defaults -->
         <java.compiler.version>1.6</java.compiler.version>
+        <java.compiler.showDeprecation>true</java.compiler.showDeprecation>
         <properties.filename>project.properties</properties.filename>
 
     <!-- Plugin Versions Defaults -->
@@ -136,6 +137,7 @@
                 <configuration>
                     <source>${java.compiler.version}</source>
                     <target>${java.compiler.version}</target>
+                    <showDeprecation>${java.compiler.showDeprecation}</showDeprecation>
                 </configuration>
             </plugin>
         </plugins>
