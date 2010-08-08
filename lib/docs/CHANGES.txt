@@ -1,8 +1,8 @@
 Changes:
 
-@version@:  - ...
-(Rev.: @r@) - ...
-            - ...
+@version@:  - Project migration: Ant -> Maven
+(Rev.: @r@) - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
+            - small fixes
 
 v20100524:  - org.softsmithy.lib.io.Files: new utility methods
 (Rev.: 470) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
