@@ -10,8 +10,13 @@ package org.softsmithy.lib.io;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.CharArrayReader;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Arrays;
 import junit.framework.TestCase;
 import org.softsmithy.lib.util.Strings;
@@ -65,8 +70,8 @@ public class StreamsTest extends TestCase {
     /**
      * Test of copy method, of class org.softsmithy.lib.io.Streams.
      */
-    public void testCopy() throws Exception {
-        System.out.println("copy");
+    public void testCopyStream() throws Exception {
+        System.out.println("testCopyStream");
         byte[] testInBytes = {5, 8, -128, 127, 42};
 
         InputStream in = new  ByteArrayInputStream(testInBytes);
@@ -76,5 +81,19 @@ public class StreamsTest extends TestCase {
         
         assertTrue(Arrays.equals(testInBytes, out.toByteArray()));
     }
-    
+
+     /**
+     * Test of copy method, of class org.softsmithy.lib.io.Streams.
+     */
+    public void testCopyReader() throws Exception {
+        System.out.println("testCopyReader");
+        String testString = "This is a test string!\n And this another liner.\n And this a third.";
+
+        Reader in = new StringReader(testString);
+        Writer out = new StringWriter();
+
+        Streams.copy(in, out);
+
+        assertEquals(testString, out.toString());
+    }
 }

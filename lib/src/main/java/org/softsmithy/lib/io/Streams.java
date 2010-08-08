@@ -17,7 +17,6 @@
  *
  * Created on 11. M�rz 2004, 18:27
  */
-
 package org.softsmithy.lib.io;
 
 import java.io.*;
@@ -28,11 +27,11 @@ import java.util.*;
  * @author puce
  */
 public class Streams {
-    
+
     /** Creates a new instance of Streams */
     private Streams() {
     }
-    
+
     /**
      * Reads the lines of an input stream.
      * 
@@ -43,10 +42,10 @@ public class Streams {
      * @throws java.io.IOException 
      * @return the lines read from the input stream
      */
-    public static String[] readLines(InputStream input) throws IOException{
+    public static String[] readLines(InputStream input) throws IOException {
         return readLines(new InputStreamReader(new BufferedInputStream(input)));
     }
-    
+
     /**
      * Reads the lines from a Reader.
      * 
@@ -57,25 +56,40 @@ public class Streams {
      * @throws java.io.IOException 
      * @return the lines read from the reader
      */
-    public static String[] readLines(Reader reader) throws IOException{
-        List lines = new ArrayList();
+    public static String[] readLines(Reader reader) throws IOException {
+        List<String> lines = new ArrayList<String>();
         String line;
         BufferedReader breader = new BufferedReader(reader);
-        while ((line = breader.readLine()) != null){
+        while ((line = breader.readLine()) != null) {
             lines.add(line);
         }
-        return (String[]) lines.toArray(new String[lines.size()]);
+        return lines.toArray(new String[lines.size()]);
     }
-    
+
     /**
      * Copies bytes from an InputStream to an OutputStream.
      * @param in the InputStream
      * @param out the OutputStream
      * @throws java.io.IOException 
      */
-    public static void copy(InputStream in, OutputStream out) throws IOException{
+    public static void copy(InputStream in, OutputStream out) throws IOException {
         int c;
-        
+
+        while ((c = in.read()) != -1) {
+            out.write(c);
+        }
+    }
+
+    /**
+     * Copies characters from a Reader to a Writer.
+     *
+     * @param in the Reader
+     * @param out the Writer
+     * @throws IOException
+     */
+    public static void copy(Reader in, Writer out) throws IOException {
+        int c;
+
         while ((c = in.read()) != -1) {
             out.write(c);
         }

@@ -205,7 +205,7 @@ public class Files {
         }
     }
 
-    private static void addPathName(File currentPath, List pathList) {
+    private static void addPathName(File currentPath, List<String> pathList) {
         if (!currentPath.isAbsolute() || currentPath.getParentFile() != null) {
             // avoid empty string from root
             pathList.add(currentPath.getName());
