@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+OpenIDE-Module-Localizing-Bundle: org/softsmithy/holidayplanner/Bundle.properties
+OpenIDE-Module-Layer: org/softsmithy/holidayplanner/layer.xml
