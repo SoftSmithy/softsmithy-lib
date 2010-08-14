@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.0//EN" "http://www.netbeans.org/dtds/filesystem-1_0.dtd">
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
  
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-softsmithy-holidayplanner-holidays-HolidaysOverviewAction.instance">
+                <attr name="component" methodvalue="org.softsmithy.holidayplanner.holidays.HolidaysOverviewTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="org.softsmithy.holidayplanner.holidays.Bundle#CTL_HolidaysOverviewAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="HolidaysOverviewAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-softsmithy-holidayplanner-holidays-HolidaysOverviewAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="HolidaysOverviewTopComponent.settings" url="HolidaysOverviewTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="explorer">
+                <file name="HolidaysOverviewTopComponent.wstcref" url="HolidaysOverviewTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>
