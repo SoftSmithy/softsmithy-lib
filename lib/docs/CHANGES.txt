@@ -2,6 +2,7 @@ Changes:
 
 @version@:  - Project migration: Ant -> Maven
 (Rev.: @r@) - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
+            - Issue 1740983: fixed: org.softsmithy.lib.util.ObjectEqulatiyVerifier -> org.softsmithy.lib.util.ObjectEqualityVerifier
             - small fixes
 
 v20100524:  - org.softsmithy.lib.io.Files: new utility methods

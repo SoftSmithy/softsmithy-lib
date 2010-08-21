@@ -59,6 +59,10 @@
         <plugin.properties.version>1.0-alpha-2</plugin.properties.version>
         <plugin.enforcer.version>1.0-beta-1</plugin.enforcer.version>
 
+    <!-- Dependency Versions Defaults -->
+       <dependency.junit.version>3.8.1</dependency.junit.version>
+       <dependency.eclipse-persistence.version>2.0.0</dependency.eclipse-persistence.version>
+
     </properties>
 
     <!-- Not inherited!?? -->
@@ -142,4 +146,20 @@
             </plugin>
         </plugins>
     </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${dependency.junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>javax.persistence</artifactId>
+                <version>${dependency.eclipse-persistence.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
