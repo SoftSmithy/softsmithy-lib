@@ -13,7 +13,7 @@
  */
 
 /*
- * ObjectEqulatiyVerifier.java
+ * ObjectEqualityVerifier.java
  *
  * Created on 11. Mai 2007, 00:33
  *
@@ -28,12 +28,13 @@ package org.softsmithy.lib.util;
  * @author puce
  */
 // Not yet used
-public class ObjectEqulatiyVerifier implements EqualityVerifier{
+public class ObjectEqualityVerifier implements EqualityVerifier{
     
-    /** Creates a new instance of ObjectEqulatiyVerifier */
-    public ObjectEqulatiyVerifier() {
+    /** Creates a new instance of ObjectEqualityVerifier */
+    public ObjectEqualityVerifier() {
     }
 
+    @Override
     public boolean equals(Object a, Object b) {
         return a.equals(b);
     }
