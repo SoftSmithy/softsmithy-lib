@@ -9,7 +9,7 @@
     </parent>
     <artifactId>lib-samples</artifactId>
     <packaging>jar</packaging>
-    <version>0.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library Samples</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java utilitiy library.</description>
@@ -18,12 +18,7 @@
         <dependency>
             <groupId>org.softsmithy</groupId>
             <artifactId>lib</artifactId>
-            <version>0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.external</groupId>
-            <artifactId>swing-layout-1.0.4</artifactId>
-            <version>RELEASE68</version>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
