@@ -8,18 +8,7 @@
     <packaging>pom</packaging>
 
     <name>HolidayPlanner - NetBeans Platform Application</name>
-
-    <repositories>
-        <!-- this is a remote repository hosting the netbeans api artifacts.
-         the versions of the artifacts are netbeans IDE release based, eg. RELEASE65
-         You might want to use your own repository. To create one, use the nbm:populate-repository goal.
-          -->
-        <repository>
-            <id>netbeans</id>
-            <name>repository hosting netbeans.org api artifacts</name>
-            <url>http://bits.netbeans.org/maven2</url>
-        </repository>
-    </repositories>
+    <inceptionYear>2010</inceptionYear>
 
     <dependencies>
         <dependency>
@@ -61,8 +50,8 @@
     <modules>
         <module>branding</module>
         <module>application</module>
-    <module>Holidays</module>
-  </modules>
+        <module>Holidays</module>
+    </modules>
 
     <properties>
         <netbeans.version>RELEASE691</netbeans.version>

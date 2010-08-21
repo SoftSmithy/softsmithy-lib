@@ -11,18 +11,19 @@
     <packaging>nbm</packaging>
 
     <name>Holidays</name>
+    <inceptionYear>2010</inceptionYear>
 
     <repositories>
         <!-- this is a remote repository hosting the netbeans api artifacts.
          the versions of the artifacts are netbeans IDE release based, eg. RELEASE65.
          You might want to use your own repository. To create one, use the nbm:populate-repository goal.
           -->
-        <repository>
+        <!--<repository>
             <url>http://ftp.ing.umu.se/mirror/eclipse/rt/eclipselink/maven.repo</url>
             <id>eclipselink</id>
             <layout>default</layout>
             <name>Repository for library Library[eclipselink]</name>
-        </repository>
+        </repository>-->
     </repositories>
 
     <dependencies>

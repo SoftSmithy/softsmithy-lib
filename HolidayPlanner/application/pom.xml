@@ -13,6 +13,7 @@
     <packaging>nbm-application</packaging>
 
     <name>HolidayPlanner - NetBeans Platform based application</name>
+    <inceptionYear>2010</inceptionYear>
 
     <dependencies>
         <dependency>
@@ -29,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>org.softsmithy.holidayplanner</groupId>
-            <artifactId>Holidays</artifactId>
+            <artifactId>holidays</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
