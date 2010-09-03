@@ -22,7 +22,7 @@ import javax.persistence.MappedSuperclass;
  * A mapped base class for JPA entities with reasonable defaults:
  *
  * <ul>
- * <li>A generated technical id (surrogate PK) of type {@link Long} with the generation strategy set to {@link javax.persistence.GenerationType.AUTO}.</li>
+ * <li>A generated technical id (surrogate PK) of type {@link Long} with the generation strategy set to {@link javax.persistence.GenerationType#AUTO}.</li>
  * <li>Since a PK should not change, there is no setter method for the id property.</li>
  * <li>Field access</li>
  * <li>implements Serializable</li>
