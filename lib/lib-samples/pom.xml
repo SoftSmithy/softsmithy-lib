@@ -7,6 +7,7 @@
         <artifactId>softsmithy-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <groupId>org.softsmithy.lib</groupId>
     <artifactId>lib-samples</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
@@ -16,7 +17,7 @@
     <inceptionYear>2002</inceptionYear>
     <dependencies>
         <dependency>
-            <groupId>org.softsmithy</groupId>
+            <groupId>org.softsmithy.lib</groupId>
             <artifactId>lib</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
