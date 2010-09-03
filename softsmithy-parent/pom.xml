@@ -43,7 +43,7 @@
 
     <licenses>
         <license>
-            <name>Sun Public License</name>
+            <name>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</name>
             <distribution>repo</distribution>
             <!--<url>http://java.sun.com/spl.html</url>-->
             <url>http://softsmithy.svn.sourceforge.net/viewvc/softsmithy/trunk/lib/docs/SPL.txt?revision=267</url>

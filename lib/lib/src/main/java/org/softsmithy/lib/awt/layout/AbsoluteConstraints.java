@@ -1,10 +1,10 @@
 /*
  *                 Sun Public License Notice
  *
- * The contents of this file are subject to the Sun Public License
+ * The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
  * Version 1.0 (the "License"). You may not use this file except in
  * compliance with the License. A copy of the License is available at
- * http://www.sun.com/
+ * http://www.opensource.org/licenses/cddl1.txt
  *
  * The Original Code is NetBeans. The Initial Developer of the Original
  * Code is Sun Microsystems, Inc. Portions Copyright 1997-2000 Sun

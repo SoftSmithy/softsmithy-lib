@@ -15,11 +15,11 @@ Note: This library has the following dependencies:
 Have a look at CHANGES.txt for notes about changes.
 
 The contents of the files, which originate from softsmithy.org, are subject to 
-the Sun Public License Version 1.0 (the "License"); you may not use these files 
+the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0 (the "License"); you may not use these files
 except in compliance with the License.
 (This License has been apporved by OSI.)
-You can find a copy of this license in SPL.txt shipped with this distribution, 
-at http://www.sun.com/ or at http://www.opensource.org/licenses/.
+You can find a copy of this license in CDDL.txt shipped with this distribution
+or at http://www.opensource.org/licenses/cddl1.txt .
 
 --------------------------------------------------------------------------------
 The following files from the "Code Syntax Highlighter" used in the tutorial:
@@ -54,5 +54,6 @@ http://sourceforge.net/svn/?group_id=64833
 svn co https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/lib softsmithy/trunk/lib
 
 Used:
-jdk 1.5.0_16
-NetBeans IDE 6.5
+jdk 1.6.0_20
+Maven 2.2.1
+NetBeans IDE 6.9
