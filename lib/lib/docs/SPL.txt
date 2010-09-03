@@ -160,10 +160,10 @@ SUN PUBLIC LICENSE Version 1.0
 
     Exhibit A -Sun Public License Notice.
 
-        The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+        The contents of this file are subject to the Sun Public License
         Version 1.0 (the License); you may not use this file except in
         compliance with the License. A copy of the License is available at
-        http://www.opensource.org/licenses/cddl1.txt
+        http://www.sun.com/
 
         The Original Code is _________________. The Initial Developer of the
         Original Code is ___________. Portions created by ______ are Copyright
