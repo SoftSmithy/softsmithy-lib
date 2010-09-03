@@ -46,7 +46,7 @@
             <name>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</name>
             <distribution>repo</distribution>
             <!--<url>http://java.sun.com/spl.html</url>-->
-            <url>http://softsmithy.svn.sourceforge.net/viewvc/softsmithy/trunk/lib/docs/SPL.txt?revision=267</url>
+            <url>https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/softsmithy-parent/docs/CDDL.txt</url>
         </license>
     </licenses>
     <properties>
