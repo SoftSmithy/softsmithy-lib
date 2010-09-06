@@ -17,7 +17,6 @@
  *
  * Created on 5. März 2003, 18:51
  */
-
 package org.softsmithy.lib.swing;
 
 import java.util.*;
@@ -28,18 +27,18 @@ import org.softsmithy.lib.util.*;
  * @author  puce
  */
 public class TypesafeEnumCellRenderer extends AbstractCellRenderer<TypesafeEnum> {
-  
-  /** Creates a new instance of TypesafeEnumCellRenderer */
-  public TypesafeEnumCellRenderer() {
-    super(HorizontalAlignment.LEADING);
-  }
-  
-  public Object getDisplayValue(TypesafeEnum value, Locale locale) {
-    String typesafeEnumString = null;
-    if (value != null){
-      typesafeEnumString = value.getDisplayString(locale);
+
+    /** Creates a new instance of TypesafeEnumCellRenderer */
+    public TypesafeEnumCellRenderer() {
+        super(HorizontalAlignment.LEADING);
     }
-    return typesafeEnumString;
-  }
-  
+
+    @Override
+    public Object getDisplayValue(TypesafeEnum value, Locale locale) {
+        String typesafeEnumString = null;
+        if (value != null) {
+            typesafeEnumString = value.getDisplayString(locale);
+        }
+        return typesafeEnumString;
+    }
 }

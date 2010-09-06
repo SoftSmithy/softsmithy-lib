@@ -20,14 +20,13 @@
 
 package org.softsmithy.lib.swing;
 
-import java.util.*;
+
+import java.util.Locale;
 import javax.swing.Icon;
 
 /**
  * An abstraction to share common implementations between various kinds of 
  * cell renderers (eg. cell renderers for lists, tables, trees). <br/>
- * <br/>
- * Note: with jdk 1.5 this interface might become parameterized!
  * @author puce
  * 
  * @see XDefaultListCellRenderer
@@ -36,8 +35,6 @@ import javax.swing.Icon;
 public interface CellRenderer<T> {
     /**
      * Gets the display value.<br/>
-     * <br/>
-     * Note: with jdk 1.5 the type of value might change to the parameterized type of this interface
      * @param value the source value
      * @param inLocale the Locale used for localization
      * @return the display value

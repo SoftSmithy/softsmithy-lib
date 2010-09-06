@@ -43,10 +43,12 @@ public abstract class AbstractCellRenderer<T> implements CellRenderer<T> {
      * @return Value of property horizontalAlignment.
      *
      */
+    @Override
     public HorizontalAlignment getHorizontalAlignment() {
         return this.horizontalAlignment;
     }
 
+    @Override
     public Icon getIcon(T value) {
         return null;
     }

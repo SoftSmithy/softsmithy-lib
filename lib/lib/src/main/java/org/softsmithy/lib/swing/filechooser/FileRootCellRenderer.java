@@ -26,6 +26,7 @@ import org.softsmithy.lib.swing.AbstractCellRenderer;
  */
 public class FileRootCellRenderer extends AbstractCellRenderer<File> {
 
+    @Override
     public Object getDisplayValue(File value, Locale inLocale) {
         if (value != null) {
             String displayName = FileSystemView.getFileSystemView().getSystemDisplayName(value);

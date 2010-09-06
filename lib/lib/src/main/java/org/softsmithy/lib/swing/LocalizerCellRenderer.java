@@ -17,31 +17,34 @@
  *
  * Created on 5. M�rz 2003, 18:51
  */
-
 package org.softsmithy.lib.swing;
 
+import java.util.Locale;
 import org.softsmithy.lib.text.Localizer;
-import java.util.*;
-import org.softsmithy.lib.util.*;
 
 /**
  *
  * @author  puce
  */
 public class LocalizerCellRenderer<T> extends AbstractCellRenderer<T> {
-  
-    private final Localizer<T> localizer;
-    
-    public LocalizerCellRenderer(Localizer<T> localizer){
+
+    private final Localizer<? super T> localizer;
+
+    public LocalizerCellRenderer(Localizer<? super T> localizer) {
         this.localizer = localizer;
     }
-  
-  public Object getDisplayValue(T value, Locale locale) {
-    String localizedString = null;
-    if (value != null){
-      localizedString = localizer.getDisplayString(value, locale);
+
+    public LocalizerCellRenderer(Localizer<? super T> localizer, HorizontalAlignment horizontalAlignment) {
+        super(horizontalAlignment);
+        this.localizer = localizer;
     }
-    return localizedString;
-  }
-  
+
+    @Override
+    public String getDisplayValue(T value, Locale locale) {
+        String localizedString = null;
+        if (value != null) {
+            localizedString = localizer.getDisplayString(value, locale);
+        }
+        return localizedString;
+    }
 }

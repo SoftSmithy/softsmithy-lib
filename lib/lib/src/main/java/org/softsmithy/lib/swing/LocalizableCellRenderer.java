@@ -12,30 +12,29 @@
  * Contributor(s): .
  */
 
-/*
- * IntegerCellRenderer.java
- *
- * Created on 11. September 2003, 19:37
- */
 package org.softsmithy.lib.swing;
 
-import java.text.NumberFormat;
 import java.util.Locale;
+import org.softsmithy.lib.text.Localizable;
 
 /**
  *
  * @author  puce
  */
-public class WholeNumberCellRenderer extends AbstractCellRenderer<Object> {
+public class LocalizableCellRenderer<T extends Localizable> extends AbstractCellRenderer<T> {
 
-    /** Creates a new instance of IntegerCellRenderer */
-    public WholeNumberCellRenderer() {
-        super(HorizontalAlignment.TRAILING);
+    public LocalizableCellRenderer() {}
+
+    public LocalizableCellRenderer(HorizontalAlignment horizontalAlignment) {
+        super(horizontalAlignment);
     }
 
     @Override
-    public String getDisplayValue(Object value, Locale locale) {
-        NumberFormat nf = NumberFormat.getIntegerInstance(locale);
-        return nf.format(value);
+    public String getDisplayValue(T value, Locale locale) {
+        String localizedString = null;
+        if (value != null) {
+            localizedString = value.getDisplayString(locale);
+        }
+        return localizedString;
     }
 }

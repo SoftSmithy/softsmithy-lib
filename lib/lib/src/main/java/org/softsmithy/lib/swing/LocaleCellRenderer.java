@@ -42,7 +42,8 @@ public class LocaleCellRenderer extends AbstractCellRenderer<Locale> {
         this.localeDisplay = localeDisplay;
     }
     
-    public Object getDisplayValue(Locale value, Locale inLocale) {
+    @Override
+    public String getDisplayValue(Locale value, Locale inLocale) {
         String displayName = null;
         if (value != null){
             displayName = localeDisplay.getDisplayString(value, inLocale);

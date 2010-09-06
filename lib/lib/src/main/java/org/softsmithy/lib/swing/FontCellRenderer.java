@@ -35,6 +35,7 @@ public class FontCellRenderer extends JLabel implements TableCellRenderer {
         setOpaque(false);
     }
 
+    @Override
     public Component getTableCellRendererComponent(JTable table, Object font, boolean isSelected, boolean hasFocus, int row, int column) {
         setSelectedFont((Font) font);
         if (isBordered) {

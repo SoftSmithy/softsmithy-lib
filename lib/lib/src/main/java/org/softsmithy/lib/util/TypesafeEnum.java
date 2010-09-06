@@ -11,11 +11,11 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.util;
 
 import org.softsmithy.lib.text.Localizable;
 import java.util.*;
+
 /**
  * Base class for typsafe enums.<br>
  * Helps documenting the purpose of a subclass.<br>
@@ -55,67 +55,64 @@ import java.util.*;
  *
  * @author Florian Brunner
  */
+public class TypesafeEnum implements Localizable {
 
-public class TypesafeEnum implements Localizable{
+    private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();
+    private final String fName;
+    private boolean initialized = false;
 
-  private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();
-  
-  private final String fName;
-  private boolean initialized = false;
-
-  protected TypesafeEnum(String name){
-    fName = name;
-  }
-
-  protected TypesafeEnum(){
-    this("");
-  }
-
-
-  public String getDisplayString(Locale locale){
-    String string = toString();
-    ResourceBundle rb = getResourceBundle(locale);
-    if (rb != null){
-      string = rb.getString(string);
+    protected TypesafeEnum(String name) {
+        fName = name;
     }
-    return string;
-  }
-  
-  public String getResourceBundleBaseName(){
-    return null;
-  }
-  
-  private ResourceBundle getResourceBundle(Locale locale){
-    ResourceBundle rb = null;
-    String baseName = getResourceBundleBaseName();
-    if (baseName != null){
-      if (! caches.containsKey(baseName)){
-        ResourceBundleCache cache = new ResourceBundleCache(baseName);
-        caches.put(baseName, cache);
-      }
-      rb = ((ResourceBundleCache) caches.get(baseName)).getBundle(locale);
+
+    protected TypesafeEnum() {
+        this("");
     }
-    return rb;
-  }
-  
-  @Override
-  public String toString(){
-    return fName;
-  }
 
-  // Overrride-prevention methods
-  /**
-   * All equal objects of the enumerated type are also identical
-   * (a.equals(b) if and only if a==b).
-   */
-  @Override
-  public final boolean equals(Object obj){
-    return super.equals(obj);
-  }
+    @Override
+    public String getDisplayString(Locale locale) {
+        String string = toString();
+        ResourceBundle rb = getResourceBundle(locale);
+        if (rb != null) {
+            string = rb.getString(string);
+        }
+        return string;
+    }
 
-  @Override
-  public final int hashCode(){
-    return super.hashCode();
-  }
+    public String getResourceBundleBaseName() {
+        return null;
+    }
 
+    private ResourceBundle getResourceBundle(Locale locale) {
+        ResourceBundle rb = null;
+        String baseName = getResourceBundleBaseName();
+        if (baseName != null) {
+            if (!caches.containsKey(baseName)) {
+                ResourceBundleCache cache = new ResourceBundleCache(baseName);
+                caches.put(baseName, cache);
+            }
+            rb = caches.get(baseName).getBundle(locale);
+        }
+        return rb;
+    }
+
+    @Override
+    public String toString() {
+        return fName;
+    }
+
+    // Overrride-prevention methods
+    /**
+     * All equal objects of the enumerated type are also identical
+     * (a.equals(b) if and only if a==b).
+     */
+    @Override
+    public final boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public final int hashCode() {
+        return super.hashCode();
+    }
 }
