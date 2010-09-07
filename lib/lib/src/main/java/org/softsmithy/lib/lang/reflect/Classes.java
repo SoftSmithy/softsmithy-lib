@@ -27,10 +27,10 @@ import java.util.*;
  */
 public class Classes {
   
-  private static final Map WRAPPER_CLASSES;
+  private static final Map<Class, Class> WRAPPER_CLASSES;
   
   static{
-    Map wrappers = new HashMap();
+    Map<Class, Class> wrappers = new HashMap<Class, Class>();
     wrappers.put(Boolean.TYPE, Boolean.class);
     wrappers.put(Character.TYPE, Character.class);
     wrappers.put(Byte.TYPE, Byte.class);
@@ -209,7 +209,7 @@ public class Classes {
     if (! primitiveClass.isPrimitive()){
       throw new IllegalArgumentException("primitiveClass must be a primitive class!");
     }
-    return (Class) WRAPPER_CLASSES.get(primitiveClass);
+    return WRAPPER_CLASSES.get(primitiveClass);
   }
   
   public static boolean containsMethod(Class aClass, String name, Class[] parameterTypes){
