@@ -14,7 +14,7 @@
     <name>SoftSmithy - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>SoftSmithy is a platform for open source Java developers. The core is an extended Java utility library. This SoftSmithy Parent POM should be the parent (either directly or indirectly) of every SoftSmithy project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
-    <inceptionYear>2010</inceptionYear>
+    <inceptionYear>2002</inceptionYear>
     <organization>
         <name>SoftSmithy</name>
         <url>http://www.softsmithy.org</url>
