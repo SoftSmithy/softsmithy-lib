@@ -11,7 +11,7 @@
     <artifactId>softsmithy-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>SoftSmithy Parent POM</name>
+    <name>SoftSmithy - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>SoftSmithy is a platform for open source Java developers. The core is an extended Java utility library. This SoftSmithy Parent POM should be the parent (either directly or indirectly) of every SoftSmithy project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
     <inceptionYear>2010</inceptionYear>
@@ -63,10 +63,6 @@
     <!-- Plugin Versions Defaults -->
         <plugin.properties.version>1.0-alpha-2</plugin.properties.version>
         <plugin.enforcer.version>1.0-beta-1</plugin.enforcer.version>
-
-    <!-- Dependency Versions Defaults -->
-        <dependency.junit.version>3.8.1</dependency.junit.version>
-        <dependency.eclipse-persistence.version>2.0.0</dependency.eclipse-persistence.version>
 
     </properties>
 
@@ -151,20 +147,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${dependency.junit.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
-                <version>${dependency.eclipse-persistence.version}</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
