@@ -1,0 +1,50 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.softsmithy</groupId>
+        <artifactId>softsmithy-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>org.softsmithy.lib</groupId>
+    <artifactId>lib-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>SoftSmithy Utility Library - Parent POM</name>
+    <url>http://www.softsmithy.org</url>
+    <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
+    <inceptionYear>2002</inceptionYear>
+    <organization>
+        <name>SoftSmithy</name>
+        <url>http://www.softsmithy.org</url>
+    </organization>
+
+    <properties>
+
+    <!-- Dependency Versions Defaults -->
+        <dependency.junit.version>3.8.1</dependency.junit.version>
+        <dependency.eclipse-persistence.version>2.0.0</dependency.eclipse-persistence.version>
+
+    </properties>
+
+    <!-- Not inherited!?? -->
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
+  
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${dependency.junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>javax.persistence</artifactId>
+                <version>${dependency.eclipse-persistence.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
