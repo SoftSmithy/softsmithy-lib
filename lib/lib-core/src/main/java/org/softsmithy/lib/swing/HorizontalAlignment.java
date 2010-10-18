@@ -55,15 +55,19 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   
   
   public static final HorizontalAlignment LEFT = new HorizontalAlignment("left"){
+        @Override
     public int getSwingConstant(){
       return SwingConstants.LEFT;
     }
+        @Override
     public String getHtmlConstant(ComponentOrientation co) {
       return "left";
     }
+        @Override
     public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_LEFT;
     }
+        @Override
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
       //System.out.println("in Left Alignment");
       customizer.setX(position);
@@ -71,35 +75,44 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   };
   
   public static final HorizontalAlignment CENTER = new HorizontalAlignment("center"){
+        @Override
     public int getSwingConstant(){
       return SwingConstants.CENTER;
     }
+        @Override
     public String getHtmlConstant(ComponentOrientation co) {
       return "center";
     }
+        @Override
     public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_CENTER;
     }
+        @Override
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
       customizer.setX(position-customizer.getWidth()/2);
     }
   };
   public static final HorizontalAlignment RIGHT = new HorizontalAlignment("right"){
+        @Override
     public int getSwingConstant(){
       return SwingConstants.RIGHT;
     }
+        @Override
     public String getHtmlConstant(ComponentOrientation co) {
       return "right";
     }
+        @Override
     public int getStyleConstant(ComponentOrientation co){
       return StyleConstants.ALIGN_RIGHT;
     }
+        @Override
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co){
       //System.out.println("in Right Alignment");
       customizer.setX(position-customizer.getWidth());
     }
   };
   public static final HorizontalAlignment LEADING = new  RelativeHorizontalAlignment("leading"){
+        @Override
     public int getSwingConstant(){
       return SwingConstants.LEADING;
     }
@@ -109,6 +122,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     }
   };
   public static final HorizontalAlignment TRAILING = new RelativeHorizontalAlignment("trailing"){
+        @Override
     public int getSwingConstant(){
       return SwingConstants.TRAILING;
     }
@@ -123,12 +137,15 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
     private RelativeHorizontalAlignment(String s){
       super(s);
     }
+        @Override
     public String getHtmlConstant(ComponentOrientation co) {
       return orient(co).getHtmlConstant(co);
     }
+        @Override
     public int getStyleConstant(ComponentOrientation co){
       return orient(co).getStyleConstant(co);
     }
+        @Override
     public void alignCustomizer(JCustomizer customizer, int position, ComponentOrientation co) {
       orient(co).alignCustomizer(customizer, position, co);
     }
@@ -137,7 +154,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   
   private static final HorizontalAlignment[] PRIVATE_VALUES = {LEFT, CENTER, RIGHT, LEADING, TRAILING};
   public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
-  private static final Map alignments = new HashMap();
+  private static final Map<Integer, HorizontalAlignment> alignments = new HashMap<Integer, HorizontalAlignment>();
   static{
     for (int i=0; i<PRIVATE_VALUES.length; i++){
       alignments.put(new Integer(PRIVATE_VALUES[i].getSwingConstant()), PRIVATE_VALUES[i]);
@@ -145,7 +162,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   }
   
   public static HorizontalAlignment getHorizontalAlignment(int swingConstant){
-    return (HorizontalAlignment) alignments.get(new Integer(swingConstant));
+    return alignments.get(new Integer(swingConstant));
   }
   
 }

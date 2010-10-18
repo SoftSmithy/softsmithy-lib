@@ -3,23 +3,22 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.softsmithy</groupId>
-        <artifactId>softsmithy-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>org.softsmithy.lib</groupId>
+        <artifactId>lib-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.softsmithy.lib</groupId>
     <artifactId>lib-samples</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
-    <name>SoftSmithy Utility Library Samples</name>
+    <name>SoftSmithy Utility Library - Samples</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java utilitiy library.</description>
     <inceptionYear>2002</inceptionYear>
     <dependencies>
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
-            <artifactId>lib</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <artifactId>lib-core</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

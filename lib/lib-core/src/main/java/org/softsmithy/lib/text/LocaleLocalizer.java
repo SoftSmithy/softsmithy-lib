@@ -36,6 +36,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
      */
     NAME {
 
+        @Override
         public String getDisplayString(Locale locale, Locale inLocale) {
             return locale.getDisplayName(inLocale);
         }
@@ -45,6 +46,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
      */
     LANGUAGE {
 
+        @Override
         public String getDisplayString(Locale locale, Locale inLocale) {
             return locale.getDisplayLanguage(inLocale);
         }
@@ -54,6 +56,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
      */
     COUNTRY {
 
+        @Override
         public String getDisplayString(Locale locale, Locale inLocale) {
             return locale.getDisplayCountry(inLocale);
         }
@@ -63,11 +66,10 @@ public enum LocaleLocalizer implements Localizer<Locale> {
      */
     VARIANT {
 
+        @Override
         public String getDisplayString(Locale locale, Locale inLocale) {
             return locale.getDisplayVariant(inLocale);
         }
     };
     
-    // Note: this redeclaration seems to be need by Ant!???
-    public abstract String getDisplayString(Locale locale, Locale inLocale);
 }
