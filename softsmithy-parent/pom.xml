@@ -9,7 +9,7 @@
     <groupId>org.softsmithy</groupId>
     <artifactId>softsmithy-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <name>SoftSmithy - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>SoftSmithy is a platform for open source Java developers. The core is an extended Java utility library. This SoftSmithy Parent POM should be the parent (either directly or indirectly) of every SoftSmithy project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
@@ -20,9 +20,9 @@
     </organization>
 
     <scm>
-        <connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</connection>
-        <developerConnection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</developerConnection>
-        <url>https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</url>
+        <connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</connection>
+        <developerConnection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</developerConnection>
+        <url>https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</url>
     </scm>
 
     <issueManagement>
