@@ -1,6 +1,5 @@
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -10,7 +9,7 @@
     <groupId>org.softsmithy</groupId>
     <artifactId>softsmithy-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>SoftSmithy - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>SoftSmithy is a platform for open source Java developers. The core is an extended Java utility library. This SoftSmithy Parent POM should be the parent (either directly or indirectly) of every SoftSmithy project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
@@ -21,9 +20,9 @@
     </organization>
 
     <scm>
-        <connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</connection>
-        <developerConnection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</developerConnection>
-        <url>https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk</url>
+        <connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</connection>
+        <developerConnection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</developerConnection>
+        <url>https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/tags/softsmithy-parent-1.0</url>
     </scm>
 
     <issueManagement>
