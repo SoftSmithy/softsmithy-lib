@@ -40,7 +40,8 @@ public class DoubleCellEditor extends FormattedCellEditor {
         super(new JDoubleField(minValue, maxValue));
     }
 
-    public DoubleCellEditor(NumberFormat format, double minValue, double maxValue) {
+    public DoubleCellEditor(NumberFormat format, double minValue,
+            double maxValue) {
         super(new JDoubleField(format, minValue, maxValue));
     }
 
