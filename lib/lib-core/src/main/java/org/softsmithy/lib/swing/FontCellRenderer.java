@@ -36,18 +36,21 @@ public class FontCellRenderer extends JLabel implements TableCellRenderer {
     }
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object font, boolean isSelected, boolean hasFocus, int row, int column) {
+    public Component getTableCellRendererComponent(JTable table, Object font,
+            boolean isSelected, boolean hasFocus, int row, int column) {
         setSelectedFont((Font) font);
         if (isBordered) {
             if (isSelected) {
                 if (selectedBorder == null) {
                     selectedBorder =
-                            BorderFactory.createMatteBorder(2, 5, 2, 5, table.getSelectionBackground());
+                            BorderFactory.createMatteBorder(2, 5, 2, 5, table.
+                            getSelectionBackground());
                 }
                 setBorder(selectedBorder);
             } else {
                 if (unselectedBorder == null) {
-                    unselectedBorder = BorderFactory.createMatteBorder(2, 5, 2, 5, table.getBackground());
+                    unselectedBorder = BorderFactory.createMatteBorder(2, 5, 2,
+                            5, table.getBackground());
                 }
                 setBorder(unselectedBorder);
             }
@@ -64,7 +67,8 @@ public class FontCellRenderer extends JLabel implements TableCellRenderer {
      */
     @Override
     public String getText() {
-        return (getSelectedFont() != null ? getSelectedFont().getName() + " " + getSelectedFont().getSize() : "");
+        return (getSelectedFont() != null ? getSelectedFont().getName() + " " + getSelectedFont().
+                getSize() : "");
     }
 
     /** Getter for property selectedFont.

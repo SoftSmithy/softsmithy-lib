@@ -29,7 +29,8 @@ import org.softsmithy.lib.swing.chooser.*;
  *
  * @author  puce
  */
-public class FontCellEditor extends AbstractCellEditor implements TableCellEditor {
+public class FontCellEditor extends AbstractCellEditor implements
+        TableCellEditor {
 
     private FontCellRenderer renderer;
     private JButton button;
@@ -57,10 +58,10 @@ public class FontCellEditor extends AbstractCellEditor implements TableCellEdito
                 if (option.equals(Option.APPROVE)) {
                     setFont(fontChooser.getSelectedFont());
                     stopCellEditing();
-                //System.out.println("Stop");
+                    //System.out.println("Stop");
                 } else {
                     cancelCellEditing();
-                //System.out.println("Cancel");
+                    //System.out.println("Cancel");
                 }
             }
         });
@@ -105,7 +106,8 @@ public class FontCellEditor extends AbstractCellEditor implements TableCellEdito
      * @return	the component for editing
      *
      */
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+    public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
         setFont((Font) value);
         renderer.setSelectedFont(getFont());//(Color) value);
 
