@@ -6,14 +6,20 @@
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>lib-parent</artifactId>
         <version>0.1-SNAPSHOT</version>
+        <relativePath>../lib-parent</relativePath>
     </parent>
     <artifactId>lib-core</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Core</name>
     <url>http://www.softsmithy.org</url>
-    <description>A Java utilitiy library.</description>
+    <description>A Java utility library.</description>
     <inceptionYear>2002</inceptionYear>
+
+    <properties>
+      <!-- Dev Environment Defaults -->
+        <scm.subpath>${scm.projectsubpath}</scm.subpath>
+    </properties>
 
     <!-- Not inherited!?? -->
     <prerequisites>

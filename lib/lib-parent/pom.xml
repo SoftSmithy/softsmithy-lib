@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>lib-parent</artifactId>
@@ -15,12 +15,20 @@
     <url>http://www.softsmithy.org</url>
     <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
     <inceptionYear>2002</inceptionYear>
-    <organization>
-        <name>SoftSmithy</name>
-        <url>http://www.softsmithy.org</url>
-    </organization>
+
+    <scm>
+        <connection>${scm.connection}</connection>
+        <developerConnection>${scm.developerConnection}</developerConnection>
+        <url>${scm.url}</url>
+    </scm>
 
     <properties>
+    <!-- Dev Environment Defaults -->
+        <scm.projectsubpath>lib</scm.projectsubpath>
+        <scm.subpath>${scm.projectsubpath}/${project.artifactId}</scm.subpath>
+        <scm.connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/${scm.subpath}</scm.connection>
+        <scm.developerConnection>${scm.connection}</scm.developerConnection>
+        <scm.url>http://softsmithy.svn.sourceforge.net/viewvc/softsmithy/trunk/${scm.subpath}</scm.url>
 
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>3.8.1</dependency.junit.version>
