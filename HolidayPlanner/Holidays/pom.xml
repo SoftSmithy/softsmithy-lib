@@ -50,8 +50,14 @@
         </dependency>
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
-            <artifactId>lib</artifactId>
+            <artifactId>lib-core</artifactId>
             <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>devlib-core</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.netbeans.api</groupId>
@@ -66,6 +72,11 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-openide-util-lookup</artifactId>
+            <version>RELEASE691</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-explorer</artifactId>
             <version>RELEASE691</version>
         </dependency>
     </dependencies>
