@@ -6,17 +6,33 @@
     <formats>
         <format>tar.gz</format>
     </formats>
-  <moduleSets>
-    <moduleSet>
+    <moduleSets>
+        <moduleSet>
 
       <!-- Now, select which projects to include in this module-set. -->
-      <includes>
-        <include>${project.groupId}:lib-core</include>
-      </includes>
-      <binaries>
-        <unpack>false</unpack>
-      </binaries>
-    </moduleSet>
-  </moduleSets>
+            <includes>
+                <include>${project.groupId}:lib-core</include>
+                <include>lib-core/src/main/docs</include>
+            </includes>
+            <binaries>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    <files>
+        <file>
+            <source>README.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+    <!--<file>
+      <source>LICENSE.txt</source>
+      <outputDirectory>/</outputDirectory>
+    </file>
+    <file>
+      <source>NOTICE.txt</source>
+      <outputDirectory>/</outputDirectory>
+      <filtered>true</filtered>
+    </file>-->
+    </files>
 
 </assembly>
