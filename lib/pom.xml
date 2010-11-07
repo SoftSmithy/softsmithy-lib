@@ -34,6 +34,7 @@
         <module>lib-parent</module>
         <module>lib-core</module>
         <module>lib-samples</module>
+        <module>devlib-core</module>
     </modules>
 
     <profiles>
