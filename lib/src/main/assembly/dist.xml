@@ -6,16 +6,61 @@
     <formats>
         <format>tar.gz</format>
     </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
     <moduleSets>
         <moduleSet>
 
       <!-- Now, select which projects to include in this module-set. -->
             <includes>
                 <include>${project.groupId}:lib-core</include>
-                <include>lib-core/src/main/docs</include>
             </includes>
+            <sources>
+                <includeModuleDirectory>false</includeModuleDirectory>
+                <excludes>
+                    <exclude>**</exclude>
+                </excludes>
+                <fileSets>
+                    <fileSet>
+                        <directory>${project.basedir}/src/main/docs</directory>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <outputDirectory>docs</outputDirectory>
+                    </fileSet>
+                </fileSets>
+            </sources>
             <binaries>
                 <unpack>false</unpack>
+                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:lib-samples</include>
+            </includes>
+            <sources>
+                <includeModuleDirectory>false</includeModuleDirectory>
+                <excludes>
+                    <exclude>**</exclude>
+                </excludes>
+                <fileSets>
+                    <fileSet>
+                        <directory>${project.basedir}</directory>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <outputDirectory>docs/samples</outputDirectory>
+                        <excludes>
+                            <exclude>**/*.log</exclude>
+                            <exclude>**/${project.build.directory}/**</exclude>
+                        </excludes>
+                    </fileSet>
+                    <fileSet>
+                        <directory>${dist.directory}</directory>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <outputDirectory>docs/samples/dist</outputDirectory>
+                    </fileSet>
+                </fileSets>
+            </sources>
+            <binaries>
+                <unpack>false</unpack>
+                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
             </binaries>
         </moduleSet>
     </moduleSets>
@@ -24,11 +69,15 @@
             <source>README.txt</source>
             <outputDirectory>/</outputDirectory>
         </file>
-    <!--<file>
-      <source>LICENSE.txt</source>
-      <outputDirectory>/</outputDirectory>
-    </file>
-    <file>
+        <file>
+            <source>CHANGES.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>LICENSE.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+     <!--<file>
       <source>NOTICE.txt</source>
       <outputDirectory>/</outputDirectory>
       <filtered>true</filtered>

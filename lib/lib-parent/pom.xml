@@ -29,6 +29,9 @@
         <scm.connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/${scm.subpath}</scm.connection>
         <scm.developerConnection>${scm.connection}</scm.developerConnection>
         <scm.url>http://softsmithy.svn.sourceforge.net/viewvc/softsmithy/trunk/${scm.subpath}</scm.url>
+        <finalName>softsmithy-${project.artifactId}-v${project.version}</finalName>
+        <assembly.outputFileNameMapping>softsmithy-${module.artifactId}-v${module.version}${dashClassifier?}.${module.extension}</assembly.outputFileNameMapping>
+        <dist.directory>${project.build.directory}/dist</dist.directory>
 
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>3.8.1</dependency.junit.version>
@@ -40,7 +43,10 @@
     <prerequisites>
         <maven>${maven.version}</maven>
     </prerequisites>
-  
+
+    <build>
+        <finalName>${finalName}</finalName>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
