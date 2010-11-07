@@ -11,7 +11,7 @@
     <artifactId>devlib-core</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
-    <name>SoftSmithy Development Utility Library - Core</name>
+    <name>SoftSmithy Utility Library - Development - Core</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
             <artifactId>lib-core</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <reporting>
