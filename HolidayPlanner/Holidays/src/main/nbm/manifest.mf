@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module-Localizing-Bundle: org/softsmithy/holidayplanner/holidays/Bundle.properties
-OpenIDE-Module-Layer: org/softsmithy/holidayplanner/holidays/layer.xml
-OpenIDE-Module-Requires: org.openide.windows.WindowManager
