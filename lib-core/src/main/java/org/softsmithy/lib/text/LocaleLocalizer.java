@@ -21,7 +21,6 @@ package org.softsmithy.lib.text;
 
 import java.util.Locale;
 
-
 /**
  * This class specifies, which display String should be used with Locales 
  * (see strategy pattern).<br/>
@@ -71,5 +70,11 @@ public enum LocaleLocalizer implements Localizer<Locale> {
             return locale.getDisplayVariant(inLocale);
         }
     };
-    
+
+    /**
+     * {@inheritDoc}
+     */
+    // needed due to a bug in the java se 6 compiler
+    @Override
+    public abstract String getDisplayString(Locale locale, Locale inLocale);
 }
