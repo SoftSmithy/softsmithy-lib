@@ -15,10 +15,19 @@
     <url>http://www.softsmithy.org</url>
     <description>Samples for the SoftSmithy Utility Library.</description>
     <inceptionYear>2002</inceptionYear>
+
+    <scm>
+        <connection>${scm.connection}</connection>
+        <developerConnection>${scm.developerConnection}</developerConnection>
+        <url>${scm.url}</url>
+    </scm>
+
     <properties>
-      <!-- Dev Environment Defaults -->
-        <scm.subpath>${scm.projectsubpath}</scm.subpath>
+        <scm.connection>${scm.parent.connection}</scm.connection>
+        <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
+        <scm.url>${scm.parent.url}</scm.url>
     </properties>
+    
     <build>
 
         <plugins>

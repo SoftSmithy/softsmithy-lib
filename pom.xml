@@ -16,19 +16,17 @@
     <description>A Java utility library.</description>
     <inceptionYear>2002</inceptionYear>
 
-    <properties>
-      <!-- Dev Environment Defaults -->
-        <scm.subpath>${scm.projectsubpath}</scm.subpath>
-        <scm.connection>scm:svn:https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/${scm.subpath}</scm.connection>
-        <scm.developerConnection>${scm.connection}</scm.developerConnection>
-        <scm.url>http://softsmithy.svn.sourceforge.net/viewvc/softsmithy/trunk/${scm.subpath}</scm.url>
-    </properties>
-
     <scm>
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <url>${scm.url}</url>
     </scm>
+
+    <properties>
+        <scm.connection>${scm.parent.connection}</scm.connection>
+        <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
+        <scm.url>${scm.parent.url}</scm.url>
+    </properties>
 
     <modules>
         <module>lib-parent</module>
