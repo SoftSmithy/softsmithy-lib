@@ -22,6 +22,15 @@
         <url>${scm.parent.url}</url>
     </scm>
 
+    <licenses>
+        <license>
+            <name>COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0</name>
+            <distribution>repo</distribution>
+            <!--<url>http://java.sun.com/spl.html</url>-->
+            <url>../LICENSE.txt</url>
+        </license>
+    </licenses>
+
     <properties>
     <!-- Dev Environment Defaults -->
         <scm.parent.connection>scm:hg:http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden</scm.parent.connection>
