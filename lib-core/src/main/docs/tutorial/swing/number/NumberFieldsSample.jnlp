@@ -10,13 +10,9 @@
     <shortcut online="true"/>
   </information>
   <resources>
-    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.4+"/>
-  </resources>
-  <resources>
-    <jar href="softsmithy-samples.jar" main="true"/>
-  </resources>
-  <resources>
-    <jar href="lib/softsmithy.jar"/>
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="${java.compiler.version}+"/>
+    <jar href="softsmithy-lib-samples-v${project.version}.jar" main="true"/>
+    <jar href="lib/softsmithy-lib-core-v${project.version}.jar"/>
   </resources>
   <application-desc main-class="samples.swing.number.NumberFieldsSample"/>
 </jnlp>
