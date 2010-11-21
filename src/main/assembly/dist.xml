@@ -23,6 +23,7 @@
                     <fileSet>
                         <directory>${project.basedir}/src/main/docs</directory>
                         <useDefaultExcludes>true</useDefaultExcludes>
+                        <filtered>true</filtered>
                         <outputDirectory>docs</outputDirectory>
                     </fileSet>
                 </fileSets>
@@ -58,19 +59,17 @@
                     </fileSet>
                 </fileSets>
             </sources>
-            <binaries>
-                <unpack>false</unpack>
-                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
-            </binaries>
         </moduleSet>
     </moduleSets>
     <files>
         <file>
             <source>README.txt</source>
+            <filtered>true</filtered>
             <outputDirectory>/</outputDirectory>
         </file>
         <file>
             <source>CHANGES.txt</source>
+            <filtered>true</filtered>
             <outputDirectory>/</outputDirectory>
         </file>
         <file>

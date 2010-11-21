@@ -1,6 +1,6 @@
 Changes:
 
-@version@:  - Project migration: Ant -> Maven
+${project.version}:  - Project migration: Ant -> Maven
 (Rev.: @r@) - License upgraded: SPL -> CDDL
             - lib project restructured
             - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added

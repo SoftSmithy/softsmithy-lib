@@ -48,10 +48,10 @@ the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111
 You can find a copy of this license in LGPL.txt shipped with this distribution.
 --------------------------------------------------------------------------------
 
-The newest version can be obtained via Subversion:
-http://sourceforge.net/svn/?group_id=64833
+The newest version can be obtained via Mercurial:
+https://sourceforge.net/scm/?type=hg&group_id=64833
 
-svn co https://softsmithy.svn.sourceforge.net/svnroot/softsmithy/trunk/lib softsmithy/trunk/lib
+hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
 jdk 1.6.0_20
