@@ -42,7 +42,7 @@ class ResourceBundleCache {
       rb = ResourceBundle.getBundle(baseName, locale);
       resourceBundles.put(locale, rb);
     } else {
-      rb = (ResourceBundle) resourceBundles.get(locale);
+      rb =  resourceBundles.get(locale);
     }
     return rb;
   }
