@@ -19,6 +19,7 @@
     </head>
     
     <body>
+         <script src="http://java.com/js/deployJava.js"></script>
          <p>
         <table bgcolor="aqua" width="100%">
             <tr>
@@ -36,7 +37,7 @@
         <h1>Number Fields (based on JFormattedTextField)</h1>
         The <em>SoftSmithy Utility Library</em> provides various number fields
         based on the 
-        <a href="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/JFormattedTextField.html">JFormattedTextField</a>.
+        <a href="${javadoc.url}/javax/swing/JFormattedTextField.html">JFormattedTextField</a>.
         These number fields can be devided in two categories:
         <ul>
             <li><a href="#whole">the whole-number fields</a></li>
@@ -59,8 +60,12 @@
             <hr/>
             <strong>Try this:</strong>
             <ol>
-                <li><a href="NumberFieldsSample.jnlp">Run NumberFieldsSample</a> using 
-                <a href="http://java.sun.com/docs/books/tutorial/information/javawebstart.html">Java Web Start</a>.</li>
+                <li>
+                    <script>
+                    var url = "NumberFieldsSample.jnlp";
+                    deployJava.createWebStartLaunchButton(url, '${java.min.version}');
+                    </script> using
+                    <a href="http://java.sun.com/javase/downloads/index.jsp">Java Web Start</a>.</li>
                 <li>Type into the fields. Only values of the accordant type are accepted.</li>
             </ol>
             <hr/>
@@ -82,7 +87,7 @@
             The base class of the whole-number fields is the
             <a href="../../../api/org/softsmithy/lib/swing/JWholeNumberField.html">JWholeNumberField</a>,
             which is backed up by the 
-            <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/math/BigInteger.html">BigInteger</a> class.
+            <a href="${javadoc.url}/java/math/BigInteger.html">BigInteger</a> class.
             Thus this field can be used for arbitrary big whole-numbers.
         </p>
         <p>
@@ -100,7 +105,7 @@
             The base class of the real number fields is the
             <a href="../../../api/org/softsmithy/lib/swing/JRealNumberField.html">JRealNumberField</a>,
             which is backed up by the 
-            <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/math/BigDecimal.html">BigDecimal</a> class.
+            <a href="${javadoc.url}/java/math/BigDecimal.html">BigDecimal</a> class.
             Thus this field can be used for arbitrary big real numbers.
         </p>
         <p>
@@ -116,7 +121,7 @@
             The base class of the localized real number fields is the
             <a href="../../../api/org/softsmithy/lib/swing/JLocalizedRealNumberField.html">JLocalizedRealNumberField</a>,
             which is backed up by the 
-            <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/math/BigDecimal.html">BigDecimal</a> class.
+            <a href="${javadoc.url}/java/math/BigDecimal.html">BigDecimal</a> class.
             Thus this field can be used for arbitrary big real numbers.
         </p>
         <p>
@@ -146,6 +151,6 @@
         <script language="javascript" src="../../Scripts/shBrushJava.js"></script>   
         <script language="javascript">  
             dp.SyntaxHighlighter.HighlightAll('code');  
-        </script>  
+        </script>
     </body>
 </html>
