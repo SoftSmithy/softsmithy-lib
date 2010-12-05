@@ -26,6 +26,7 @@
         <scm.connection>${scm.parent.connection}</scm.connection>
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
+        <javadoc.url>http://java.sun.com/javase/6/docs/api</javadoc.url>
     </properties>
 
 
@@ -63,6 +64,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>taglist-maven-plugin</artifactId>
                 <version>2.4</version>
             </plugin>
         </plugins>
