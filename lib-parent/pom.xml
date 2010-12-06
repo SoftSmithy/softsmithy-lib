@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>1.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>lib-parent</artifactId>
@@ -42,7 +42,7 @@
 
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.8.2</dependency.junit.version>
-        <dependency.eclipse-persistence.version>2.0.0</dependency.eclipse-persistence.version>
+        <dependency.javax-persistence.version>1.0</dependency.javax-persistence.version>
 
     </properties>
 
@@ -62,9 +62,9 @@
                 <version>${dependency.junit.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
-                <version>${dependency.eclipse-persistence.version}</version>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>${dependency.javax-persistence.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
