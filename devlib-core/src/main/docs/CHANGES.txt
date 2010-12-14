@@ -1,7 +1,7 @@
 Changes:
 
-@version@:  - ...
-(Rev.: @r@) - ...
+${project.version}:	    - Project migration: Ant -> Maven
+(Rev.: ${changeSet}) - License upgraded: SPL -> CDDL
 
 v20100524:  - API refactorings/ clean-ups after initial release
 (Rev.: 470) - New dependency to SoftSmithy Utility Library

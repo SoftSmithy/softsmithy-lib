@@ -8,10 +8,11 @@
         <version>0.1-SNAPSHOT</version>
         <relativePath>../lib-parent</relativePath>
     </parent>
+    <groupId>org.softsmithy.devlib</groupId>
     <artifactId>devlib-core</artifactId>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
-    <name>SoftSmithy Utility Library - Development - Core</name>
+    <name>SoftSmithy Development Utility Library - Core</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
