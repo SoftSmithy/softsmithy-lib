@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1 http://maven.apache.org/xsd/assembly-1.1.1.xsd">
+    <id>dist</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <moduleSets>  
+        <moduleSet>
+      <!-- Now, select which projects to include in this module-set. -->
+            <includes>
+                <include>org.softsmithy.devlib:devlib-core</include>
+            </includes>
+            <sources>
+                <includeModuleDirectory>false</includeModuleDirectory>
+                <excludes>
+                    <exclude>**</exclude>
+                </excludes>
+                <fileSets>
+                    <fileSet>
+                        <directory>${project.basedir}/src/main/docs</directory>
+                        <useDefaultExcludes>true</useDefaultExcludes>
+                        <filtered>true</filtered>
+                        <outputDirectory>docs</outputDirectory>
+                    </fileSet>
+                </fileSets>
+            </sources>
+            <binaries>
+                <unpack>false</unpack>
+                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>org.softsmithy.devlib:devlib-core</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>javadoc</attachmentClassifier>
+                <outputDirectory>docs/api</outputDirectory>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>org.softsmithy.devlib:devlib-core</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>sources</attachmentClassifier>
+                <unpack>false</unpack>
+                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+    <files>
+        <file>
+            <source>README.txt</source>
+            <filtered>true</filtered>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>CHANGES.txt</source>
+            <filtered>true</filtered>
+            <outputDirectory>/</outputDirectory>
+        </file>
+        <file>
+            <source>../LICENSE.txt</source>
+            <outputDirectory>/</outputDirectory>
+        </file>
+     <!--<file>
+      <source>NOTICE.txt</source>
+      <outputDirectory>/</outputDirectory>
+      <filtered>true</filtered>
+    </file>-->
+    </files>
+
+</assembly>
