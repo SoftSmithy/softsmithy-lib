@@ -30,9 +30,9 @@ import org.softsmithy.lib.swing.*;
 public abstract class AbstractCustomizer extends JStyledPanel {
     
     /**
-     * The supported visually customizable bound properties. (Strings)
+     * The supported visually customizable bound properties.
      */
-    private Set customizableProperties = Collections.EMPTY_SET;
+    private Set<String> customizableProperties = Collections.emptySet();
     
     /**
      * Creates a new instance of this class.
@@ -41,20 +41,20 @@ public abstract class AbstractCustomizer extends JStyledPanel {
     }
     
     /**
-     * Gets the supported visually customizable bound properties. (Strings)
-     * @return the supported visually customizable bound properties (Strings)
+     * Gets the supported visually customizable bound properties.
+     * @return the supported visually customizable bound properties
      */
-    public Set getCustomizableProperties() {
+    public Set<String> getCustomizableProperties() {
         return this.customizableProperties;
     }
     
     /**
-     * Sets the supported visually customizable bound properties. (Strings) </br>
+     * Sets the supported visually customizable bound properties.</br>
      * This property is used by different other classes to find which properties
-     * to listen for. A set of bound property names is expected (Set of Strings).
-     * @param customizableProperties the supported visually customizable bound properties (Strings)
+     * to listen for. A set of bound property names is expected.
+     * @param customizableProperties the supported visually customizable bound properties
      */
-    public void setCustomizableProperties(Set customizableProperties) {
+    public void setCustomizableProperties(Set<String> customizableProperties) {
         this.customizableProperties = customizableProperties;
     }
     
@@ -62,19 +62,19 @@ public abstract class AbstractCustomizer extends JStyledPanel {
     // really on AbstractCustomizer or just on subclasses?
     /**
      * Gets the common supported visually customizable bound properties of the
-     * specified customizers. (Strings)
-     * @param customizers the customizers (AbstractCustomizer)
+     * specified customizers.
+     * @param customizers the customizers
      * @return the common supported visually customizable bound properties of the
-     * specified customizers (Strings)
+     * specified customizers
      */
-    public static Set getCommonCustomizableProperties(Collection customizers) {
-        Set properties = Collections.EMPTY_SET;
-        Iterator i = customizers.iterator();
+    public static Set<String> getCommonCustomizableProperties(Collection<? extends AbstractCustomizer> customizers) {
+        Set<String> properties = Collections.emptySet();
+        Iterator<? extends AbstractCustomizer> i = customizers.iterator();
         if (i.hasNext()){
-            AbstractCustomizer customizer = (AbstractCustomizer) i.next();
-            properties = new LinkedHashSet(customizer.getCustomizableProperties());
+            AbstractCustomizer customizer = i.next();
+            properties = new LinkedHashSet<String>(customizer.getCustomizableProperties());
             for (;i.hasNext();){
-                AbstractCustomizer custom = (AbstractCustomizer) i.next();
+                AbstractCustomizer custom = i.next();
                 properties.retainAll(custom.getCustomizableProperties());
             }
         }

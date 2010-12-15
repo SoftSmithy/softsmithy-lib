@@ -67,7 +67,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     /**
      * The customizer listeners.
      */
-  private final Set listeners = new HashSet();
+  private final Set<CustomizerListener> listeners = new HashSet<CustomizerListener>();
     /**
      * The layout constraints.
      */
@@ -544,9 +544,9 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
      * @param ev an ActionEvent
      */
   public void fireActionEvent(ActionEvent ev){
-    ActionListener[] listeners = (ActionListener[]) getListeners(ActionListener.class);
-    for (int i=0; i<listeners.length; i++){
-      listeners[i].actionPerformed(ev);
+    ActionListener[] actionListeners = getListeners(ActionListener.class);
+    for (int i=0; i<actionListeners.length; i++){
+      actionListeners[i].actionPerformed(ev);
     }
   }
   

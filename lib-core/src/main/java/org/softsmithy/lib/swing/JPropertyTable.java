@@ -29,12 +29,12 @@ import org.softsmithy.lib.swing.table.*;
  */
 public class JPropertyTable extends JCellTable {
 
-    private final Map propertyRenderers = new HashMap();
-    private final Map propertyEditors = new HashMap();
+    private final Map<String, TableCellRenderer> propertyRenderers = new HashMap<String, TableCellRenderer>();
+    private final Map<String, TableCellEditor> propertyEditors = new HashMap<String, TableCellEditor>();
 
     /** Creates a new instance of PropertyTable */
     public JPropertyTable() {
-        this(new PropertyTableModel(new ArrayList(), null, null, Locale.getDefault()));
+        this(new PropertyTableModel(new ArrayList<String>(), null, null, Locale.getDefault()));
     }
 
     public JPropertyTable(PropertyTableModel ptm) {
@@ -83,7 +83,7 @@ public class JPropertyTable extends JCellTable {
     }
 
     public TableCellEditor getPropertyEditor(String propertyName) {
-        return (TableCellEditor) this.propertyEditors.get(propertyName);
+        return this.propertyEditors.get(propertyName);
     }
 
     public void setPropertyEditor(String propertyName, TableCellEditor propertyEditor) {
@@ -91,7 +91,7 @@ public class JPropertyTable extends JCellTable {
     }
 
     public TableCellRenderer getPropertyRenderer(String propertyName) {
-        return (TableCellRenderer) propertyRenderers.get(propertyName);
+        return propertyRenderers.get(propertyName);
     }
 
     public void setPropertyRenderer(String propertyName, TableCellRenderer propertyRenderer) {
