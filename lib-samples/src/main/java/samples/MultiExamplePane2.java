@@ -66,12 +66,12 @@ public class MultiExamplePane2 extends JPanel {
     
     //create and configure a customizer for a simple component
     JCustomizer simpleCustomizer = new JCustomizer(new JLabel("A Simple Component"));
-    simpleCustomizer.setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+    simpleCustomizer.setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     pane.addCustomizer(simpleCustomizer, new AbsoluteTableConstraints(0, 0, 140, 20, simpleCustomizer, itl));
     
     //create and configure an editable customizer for a label
     JLabelCustomizer labelCustomizer = new JLabelCustomizer("A Label Customizer - double click to edit!");
-    labelCustomizer.setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+    labelCustomizer.setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     pane.addCustomizer(labelCustomizer, new AbsoluteTableConstraints(50, 50, 270, 20, labelCustomizer, itl));
     
     //create and configure a customizer for a shape
@@ -79,19 +79,19 @@ public class MultiExamplePane2 extends JPanel {
     //starCustomizer.setFilled(true);
     //starCustomizer.setOpaque(false);
     starCustomizer.setForeground(Color.YELLOW);
-    starCustomizer.setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+    starCustomizer.setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     pane.addCustomizer(starCustomizer, new AbsoluteTableConstraints(200, 100, 100, 100, starCustomizer, itl));
     
     JXIconCustomizer ellipseCustomizer = new JXIconCustomizer(new ShapeIcon(new Ellipse2D.Float(0, 0, 100, 100)));
     //ellipseCustomizer.setFilled(true);
     ellipseCustomizer.setOpaque(false);
     ellipseCustomizer.setForeground(Color.BLUE);
-    ellipseCustomizer.setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+    ellipseCustomizer.setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     pane.addCustomizer(ellipseCustomizer, new AbsoluteTableConstraints(0, 150, 100, 100, ellipseCustomizer, itl));
     
     try{
       JXIconCustomizer logoCustomizer = new JXIconCustomizer(new XImageIcon("logo.jpg"));
-      logoCustomizer.setCustomizableProperties(new LinkedHashSet(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+      logoCustomizer.setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
       pane.addCustomizer(logoCustomizer, new AbsoluteTableConstraints(350, 250, 197, 167, logoCustomizer, itl));
     } catch(Exception ex){
       ex.printStackTrace();

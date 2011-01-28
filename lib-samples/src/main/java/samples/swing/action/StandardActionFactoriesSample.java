@@ -64,9 +64,9 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
         addMenuItems(tableActions, tableMenu);
         addMenuItems(textActions, textMenu);
         addToolbarButtons(developmentActions, developmentToolBar);
-        List generalActionsList = Arrays.asList(generalActions);
-        addToolbarButtons((XAction[])generalActionsList.subList(0,23).toArray(new XAction[23]), generalToolBar1);
-        addToolbarButtons((XAction[])generalActionsList.subList(23,generalActionsList.size()).toArray(new XAction[generalActionsList.size()-23]), generalToolBar2);
+        List<XAction> generalActionsList = Arrays.asList(generalActions);
+        addToolbarButtons(generalActionsList.subList(0, 23).toArray(new XAction[23]), generalToolBar1);
+        addToolbarButtons(generalActionsList.subList(23,generalActionsList.size()).toArray(new XAction[generalActionsList.size()-23]), generalToolBar2);
         addToolbarButtons(mediaActions, mediaToolBar);
         addToolbarButtons(navigationActions, navigationToolBar);
         addToolbarButtons(tableActions, tableToolBar);
