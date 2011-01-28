@@ -1,7 +1,9 @@
 Changes:
 
-${project.version}:  - Project migration: Ant -> Maven
-(Rev.: @r@) - License upgraded: SPL -> CDDL
+v${project.version} (Changeset: ${changeSet}):
+	    - Project migration: Ant -> Maven
+            - Project migration: Subversion -> Mercurial
+            - License upgraded: SPL -> CDDL
             - lib project restructured
             - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
             - Issue 1740983: fixed: org.softsmithy.lib.util.ObjectEqulatiyVerifier -> org.softsmithy.lib.util.ObjectEqualityVerifier

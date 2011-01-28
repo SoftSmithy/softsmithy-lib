@@ -1,0 +1,10 @@
+Changes:
+
+v${project.version} (Changeset: ${changeSet}):
+            - Project migration: Ant -> Maven
+            - Project migration: Subversion -> Mercurial
+            - License upgraded: SPL -> CDDL
+
+v20100524:  - API refactorings/ clean-ups after initial release
+(Rev.: 470) - New dependency to SoftSmithy Utility Library
+

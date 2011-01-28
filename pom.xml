@@ -32,15 +32,18 @@
         <module>lib-parent</module>
         <module>lib-core</module>
         <module>lib-samples</module>
-        <module>devlib-core</module>
+        <module>devlib</module>
     </modules>
 
     <profiles>
         <profile>
             <id>sonatype-oss-release</id>
-            <activation><activeByDefault>true</activeByDefault></activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>buildnumber-maven-plugin</artifactId>
+                    </plugin>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <executions>

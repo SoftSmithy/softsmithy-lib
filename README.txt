@@ -1,8 +1,8 @@
 Contains:
 
-softsmithy.jar - The SoftSmithy Utility Library
-src.zip        - The source code
-docs-directory - Contains the Javadoc, a tutorial and samples
+softsmithy-lib-core-v${project.version}.jar             - The SoftSmithy Utility Library
+softsmithy-lib-core-v${project.version}-sources.jar     - The source code
+docs-directory                                      - Contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
@@ -18,7 +18,7 @@ The contents of the files, which originate from softsmithy.org, are subject to
 the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0 (the "License"); you may not use these files
 except in compliance with the License.
 (This License has been apporved by OSI.)
-You can find a copy of this license in CDDL.txt shipped with this distribution
+You can find a copy of this license in LICENSE.txt shipped with this distribution
 or at http://www.opensource.org/licenses/cddl1.txt .
 
 --------------------------------------------------------------------------------
@@ -45,15 +45,16 @@ details.
 You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to 
 the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA"
 
-You can find a copy of this license in LGPL.txt shipped with this distribution.
+You can find a copy of this license in docs/LGPL.txt shipped with this distribution.
 --------------------------------------------------------------------------------
 
 The newest version can be obtained via Mercurial:
 https://sourceforge.net/scm/?type=hg&group_id=64833
+http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
 
 hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
-jdk 1.6.0_20
+jdk 1.6.0_22
 Maven 2.2.1
-NetBeans IDE 6.9
+NetBeans IDE 6.9.1

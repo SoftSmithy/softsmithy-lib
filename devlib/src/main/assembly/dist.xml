@@ -7,11 +7,11 @@
         <format>tar.gz</format>
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
-    <moduleSets>  
+    <moduleSets>
         <moduleSet>
       <!-- Now, select which projects to include in this module-set. -->
             <includes>
-                <include>org.softsmithy.devlib:devlib-core</include>
+                <include>${project.groupId}:devlib-core</include>
             </includes>
             <sources>
                 <includeModuleDirectory>false</includeModuleDirectory>
@@ -34,16 +34,17 @@
         </moduleSet>
         <moduleSet>
             <includes>
-                <include>org.softsmithy.devlib:devlib-core</include>
+                <include>${project.groupId}:devlib-core</include>
             </includes>
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
             <includes>
-                <include>org.softsmithy.devlib:devlib-core</include>
+                <include>${project.groupId}:devlib-core</include>
             </includes>
             <binaries>
                 <attachmentClassifier>sources</attachmentClassifier>
