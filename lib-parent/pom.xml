@@ -39,7 +39,8 @@
         <finalName>softsmithy-${project.artifactId}-v${project.version}</finalName>
         <assembly.outputFileNameMapping>softsmithy-${module.artifactId}-v${module.version}${dashClassifier?}.${module.extension}</assembly.outputFileNameMapping>
         <dist.directory>${project.build.directory}/dist</dist.directory>
-
+        <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
+        
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.8.2</dependency.junit.version>
         <dependency.javax-persistence.version>1.0</dependency.javax-persistence.version>
