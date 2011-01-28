@@ -164,7 +164,7 @@ public class Classes {
       String methodName = methodNames[methodNames.length-1];
       wrapper.append(methodName).append("(");
       Class[] parameterTypes = methods[i].getParameterTypes();
-      List args = new ArrayList();
+      List<String> args = new ArrayList<String>();
       for (int j=0; j<parameterTypes.length; j++){
         wrapper.append(parameterTypes[j].getName()).append(" ");
         String[] typeNames = parameterTypes[j].getName().split("\\.");

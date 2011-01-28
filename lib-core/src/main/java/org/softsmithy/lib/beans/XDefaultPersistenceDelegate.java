@@ -44,7 +44,7 @@ public class XDefaultPersistenceDelegate extends DefaultPersistenceDelegate {
   @Override
   protected Expression instantiate(Object oldInstance, Encoder out) {
     int nArgs = constructor.length;
-    Class type = oldInstance.getClass();
+    Class<?> type = oldInstance.getClass();
     // System.out.println("writeObject: " + oldInstance);
     Object[] constructorArgs = new Object[nArgs];
     for(int i = 0; i < nArgs; i++) {

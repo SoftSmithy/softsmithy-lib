@@ -47,20 +47,20 @@ public class JFontChooser extends JPanel {
         initComponents();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String envfonts[] = ge.getAvailableFontFamilyNames(getLocale());
-        Vector fontNames = new Vector();
-        for (int i = 1; i < envfonts.length; i++) {
+        Vector<String> fontNames = new Vector<String>();
+        for (int i = 1; i < envfonts.length; i++) { // TODO: i=1???
             fontNames.addElement(envfonts[i]);
         }
         fontsBox.setModel(new DefaultComboBoxModel(fontNames));
-        Vector sizes = new Vector();
+        Vector<Integer> sizes = new Vector<Integer>();
         for (int i = 6; i <= 16; i++) {
-            sizes.add(new Integer(i));
+            sizes.add(i);
         }
         for (int i = 18; i <= 28; i += 2) {
-            sizes.add(new Integer(i));
+            sizes.add(i);
         }
         for (int i = 32; i <= 96; i += 4) {
-            sizes.add(new Integer(i));
+            sizes.add(i);
         }
         sizesBox.setModel(new DefaultComboBoxModel(sizes));
         sizesBox.setRenderer(new NumberListCellRenderer());
@@ -397,41 +397,45 @@ public class JFontChooser extends JPanel {
         public abstract int getStyle();
         public static final FontStyle PLAIN = new FontStyle("plain") {
 
+            @Override
             public int getStyle() {
                 return Font.PLAIN;
             }
         };
         public static final FontStyle ITALIC = new FontStyle("italic") {
 
+            @Override
             public int getStyle() {
                 return Font.ITALIC;
             }
         };
         public static final FontStyle BOLD = new FontStyle("bold") {
 
+            @Override
             public int getStyle() {
                 return Font.BOLD;
             }
         };
         public static final FontStyle BOLD_AND_ITALIC = new FontStyle("boldAndItalic") {
 
+            @Override
             public int getStyle() {
                 return Font.BOLD | Font.ITALIC;
             }
         };
         private static final FontStyle[] PRIVATE_VALUES = {PLAIN, BOLD, ITALIC, BOLD_AND_ITALIC};
-        public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
-        private static final Map fontStyles = new HashMap();
+        public static final List<FontStyle> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+        private static final Map<Integer, FontStyle> fontStyles = new HashMap<Integer, FontStyle>();
 
 
         static {
             for (int i = 0; i < PRIVATE_VALUES.length; i++) {
-                fontStyles.put(new Integer(PRIVATE_VALUES[i].getStyle()), PRIVATE_VALUES[i]);
+                fontStyles.put(PRIVATE_VALUES[i].getStyle(), PRIVATE_VALUES[i]);
             }
         }
 
         public static FontStyle getFontStyle(int fontStyle) {
-            return (FontStyle) fontStyles.get(new Integer(fontStyle));
+            return fontStyles.get(fontStyle);
         }
     }
 

@@ -38,7 +38,7 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
 
     /** Creates a new instance of PropertyTable */
     public JCustomizerPropertyTable() {
-        this(new CustomizerPropertyTableModel(new ArrayList(), null, PROPERTIES_BUNDLE_BASE_NAME, Locale.getDefault()));
+        this(new CustomizerPropertyTableModel(new ArrayList<String>(), null, PROPERTIES_BUNDLE_BASE_NAME, Locale.getDefault()));
     }
 
     public JCustomizerPropertyTable(CustomizerPropertyTableModel cptm) {
@@ -90,8 +90,9 @@ public class JCustomizerPropertyTable extends JPropertyTable implements Customiz
         setModel(model);
     }
 
+    @Override
     public void selectionChanged(CustomizerSelectionEvent e) {
-        setCustomizerPropertyTableModel(new CustomizerPropertyTableModel(new ArrayList(e.getCommonCustomizableProperties()), e.getActiveCustomizer(), getRbBaseName(), getLocale()));
+        setCustomizerPropertyTableModel(new CustomizerPropertyTableModel(new ArrayList<String>(e.getCommonCustomizableProperties()), e.getActiveCustomizer(), getRbBaseName(), getLocale()));
     }
 
     /** Getter for property rbBaseName.

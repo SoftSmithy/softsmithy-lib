@@ -37,7 +37,7 @@ class I18n {
   private final File targetDir;
   private final FileFilter propertiesFilter = new ORFileFilter(DirectoryFilter.getInstance(), new ExtensionFileFilter("properties"));
   private final Pattern pattern = Pattern.compile("_.*");
-  private final Map jars = new HashMap();
+  private final Map<String, JarOutputStream> jars = new HashMap<String, JarOutputStream>();
   
   /** Holds value of property jarName. */
   private String jarName;
@@ -60,7 +60,7 @@ class I18n {
   public static void main(String[] args) {
     try{
       I18n i18n = new I18n(args[0], args[1]);
-      List dirs = new ArrayList();
+      List<File> dirs = new ArrayList<File>();
       for (int i=2; i<args.length; i++){
         File dir = new File(args[i]);
         if (dir.isDirectory()){
@@ -68,7 +68,7 @@ class I18n {
         }
       }
       try{
-        i18n.groupFiles((File[]) dirs.toArray(new File[dirs.size()]));
+        i18n.groupFiles(dirs.toArray(new File[dirs.size()]));
       } catch (FileNotFoundException ex1){
         ex1.printStackTrace();
       } catch (IOException ex2){
@@ -115,7 +115,7 @@ class I18n {
         jars.put(localeString, new JarOutputStream(new BufferedOutputStream(
         new FileOutputStream(new File(getTargetDir(), getJarName()+"-"+localeString+".jar"))), new Manifest()));
       }
-      JarOutputStream jos = (JarOutputStream) jars.get(localeString);
+      JarOutputStream jos = jars.get(localeString);
       InputStream is = new BufferedInputStream(new FileInputStream(file));
       byte[] b = new byte[(int) file.length()];
       is.read(b);
@@ -141,8 +141,8 @@ class I18n {
   }
   
   public void closeAll() throws IOException{
-    for(Iterator i=jars.keySet().iterator(); i.hasNext();){
-      ((JarOutputStream) jars.get(i.next())).close();
+    for(Map.Entry<String, JarOutputStream> entry : jars.entrySet()){
+        entry.getValue().close();
     }
   }
   

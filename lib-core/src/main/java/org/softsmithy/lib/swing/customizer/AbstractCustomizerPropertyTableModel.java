@@ -31,7 +31,7 @@ public abstract class AbstractCustomizerPropertyTableModel extends PropertyTable
   
   
   /** Creates a new instance of AbstractCustomizerPropertyTableModel */
-  public AbstractCustomizerPropertyTableModel(List properties, AbstractCustomizer activeCustomizer, String propertiesRBBaseName, Locale locale) {
+  public AbstractCustomizerPropertyTableModel(List<String> properties, AbstractCustomizer activeCustomizer, String propertiesRBBaseName, Locale locale) {
     super(properties, activeCustomizer, propertiesRBBaseName, locale);
 //    if (activeCustomizer != null){
 //      for (Iterator i=properties.iterator(); i.hasNext();){

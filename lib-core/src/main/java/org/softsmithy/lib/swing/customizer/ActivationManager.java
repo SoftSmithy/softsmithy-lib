@@ -35,7 +35,7 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
   private JCustomizerPane activePane;
   /** Utility field holding list of ActivationListeners. */
   private transient ArrayList activationListenerList;
-  private final Set panes = new HashSet();
+  private final Set<JCustomizerPane> panes = new HashSet<JCustomizerPane>();
  
   
   /** Utility field used by bound properties. */

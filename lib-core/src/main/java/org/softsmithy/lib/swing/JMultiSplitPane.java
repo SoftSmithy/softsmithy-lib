@@ -33,9 +33,9 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class JMultiSplitPane extends JStyledPanel {
 
-    private List splitPanes = new ArrayList();
-    private Map fireLocationChangedListeners = new HashMap();
-    private List dividerLocationListeners = new ArrayList();
+    private final List<JXSplitPane> splitPanes = new ArrayList<JXSplitPane>();
+    private final Map<JXSplitPane, FireLocationChangedListener> fireLocationChangedListeners = new HashMap<JXSplitPane, FireLocationChangedListener>();
+    private final List<DividerLocationListener> dividerLocationListeners = new ArrayList<DividerLocationListener>();
     /** Holds value of property orientation. */
     private SplitOrientation splitOrientation;
 
@@ -84,7 +84,7 @@ public class JMultiSplitPane extends JStyledPanel {
         //    pane.setBorder(null);
         JXSplitPane splitPane;
         if (index == splitPanes.size()) {
-            splitPane = (JXSplitPane) splitPanes.get(index - 1);
+            splitPane = splitPanes.get(index - 1);
             Component comp = splitPane.getRightComponent();
             if (shiftComponent) {
                 pane.setRightComponent(comp);
@@ -93,7 +93,7 @@ public class JMultiSplitPane extends JStyledPanel {
             }
             splitPanes.add(index, pane);
         } else {
-            splitPane = (JXSplitPane) splitPanes.get(index);
+            splitPane = splitPanes.get(index);
             Component comp = splitPane.getRightComponent();
             pane.setRightComponent(comp);
             if (shiftComponent) {
@@ -109,9 +109,9 @@ public class JMultiSplitPane extends JStyledPanel {
 
     public void setComponent(int index, Component component) {
         if (index < splitPanes.size()) {
-            ((JXSplitPane) splitPanes.get(index)).setLeftComponent(component);
+            splitPanes.get(index).setLeftComponent(component);
         } else {
-            ((JXSplitPane) splitPanes.get(index - 1)).setRightComponent(component);
+            splitPanes.get(index - 1).setRightComponent(component);
         }
     //repaint();
     }
@@ -119,9 +119,9 @@ public class JMultiSplitPane extends JStyledPanel {
     public Component getPane(int index) {
         Component component;
         if (index < splitPanes.size()) {
-            component = ((JXSplitPane) splitPanes.get(index)).getLeftComponent();
+            component = splitPanes.get(index).getLeftComponent();
         } else {
-            component = ((JXSplitPane) splitPanes.get(index - 1)).getRightComponent();
+            component = splitPanes.get(index - 1).getRightComponent();
         }
         return component;
     }
@@ -131,11 +131,11 @@ public class JMultiSplitPane extends JStyledPanel {
     }
 
     public int getDividerLocation(int index) {
-        return ((JXSplitPane) splitPanes.get(index)).getDividerLocation();
+        return splitPanes.get(index).getDividerLocation();
     }
 
     public void setDividerLocation(int index, int location) {
-        ((JXSplitPane) splitPanes.get(index)).setDividerLocation(location);
+        splitPanes.get(index).setDividerLocation(location);
         fireLocationChanged(new DividerLocationEvent(this, index, location));
     }
 
@@ -177,7 +177,7 @@ public class JMultiSplitPane extends JStyledPanel {
     public void setSplitOrientation(SplitOrientation splitOrientation) {
         this.splitOrientation = splitOrientation;
         for (int i = 0; i < splitPanes.size(); i++) {
-            ((JXSplitPane) splitPanes.get(i)).setOrientation(splitOrientation.getSplitPaneConstant());
+            splitPanes.get(i).setOrientation(splitOrientation.getSplitPaneConstant());
         }
     }
 
@@ -191,15 +191,15 @@ public class JMultiSplitPane extends JStyledPanel {
 
     private void fireLocationChanged(DividerLocationEvent e) {
         for (int i = 0; i < dividerLocationListeners.size(); i++) {
-            ((DividerLocationListener) dividerLocationListeners.get(i)).locationChanged(e);
+            (dividerLocationListeners.get(i)).locationChanged(e);
         }
     }
 
     private void registerFireLocationChangedListeners() {
         for (int i = 0; i < splitPanes.size(); i++) {
-            JSplitPane splitPane = (JSplitPane) splitPanes.get(i);
+            JXSplitPane splitPane = splitPanes.get(i);
             if (fireLocationChangedListeners.containsKey(splitPane)) {
-                FireLocationChangedListener listener = (FireLocationChangedListener) fireLocationChangedListeners.get(splitPane);
+                FireLocationChangedListener listener = fireLocationChangedListeners.get(splitPane);
                 if (listener.getIndex() != i) {
                     listener.setIndex(i);
                 }
@@ -211,9 +211,9 @@ public class JMultiSplitPane extends JStyledPanel {
         }
     }
 
-    private void unregisterFireLocationChangedListener(JSplitPane splitPane) {
+    private void unregisterFireLocationChangedListener(JXSplitPane splitPane) {
         if (fireLocationChangedListeners.containsKey(splitPane)) {
-            FireLocationChangedListener listener = (FireLocationChangedListener) fireLocationChangedListeners.get(splitPane);
+            FireLocationChangedListener listener = fireLocationChangedListeners.get(splitPane);
             splitPane.removePropertyChangeListener("dividerLocation", listener);
             fireLocationChangedListeners.remove(splitPane);
         }
@@ -236,6 +236,7 @@ public class JMultiSplitPane extends JStyledPanel {
             return this.index;
         }
 
+        @Override
         public void propertyChange(PropertyChangeEvent evt) {
             fireLocationChanged(new DividerLocationEvent(JMultiSplitPane.this, getIndex(), ((Integer) evt.getNewValue()).intValue()));
         }

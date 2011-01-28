@@ -38,6 +38,7 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   
   
   public static final ScalingAlgorithm AREA_AVERAGING = new ScalingAlgorithm("areaAveraging"){
+        @Override
     public int getImageConstant(){
       return Image.SCALE_AREA_AVERAGING;
     }
@@ -45,24 +46,28 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   
   
   public static final ScalingAlgorithm DEFAULT = new ScalingAlgorithm("default"){
+        @Override
     public int getImageConstant(){
       return Image.SCALE_DEFAULT;
     }
   };
   
   public static final ScalingAlgorithm FAST = new ScalingAlgorithm("fast"){
+        @Override
     public int getImageConstant(){
       return Image.SCALE_FAST;
     }
   };
   
   public static final ScalingAlgorithm REPLICATE = new ScalingAlgorithm("replicate"){
+        @Override
     public int getImageConstant(){
       return Image.SCALE_REPLICATE;
     }
   };
   
   public static final ScalingAlgorithm SMOOTH = new ScalingAlgorithm("smooth"){
+        @Override
     public int getImageConstant(){
       return Image.SCALE_SMOOTH;
     }
@@ -70,7 +75,7 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   
   
   private static final ScalingAlgorithm[] PRIVATE_VALUES = {AREA_AVERAGING, DEFAULT, FAST, REPLICATE, SMOOTH};
-  public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+  public static final List<ScalingAlgorithm> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
   private static final Map<Integer, ScalingAlgorithm> algorithms = new HashMap<Integer, ScalingAlgorithm>();
   static{
     for (int i=0; i<PRIVATE_VALUES.length; i++){
@@ -79,7 +84,7 @@ public abstract class ScalingAlgorithm extends TypesafeEnum{ // better ImageScal
   }
   
   public static ScalingAlgorithm getScalingAlgorithm(int imageConstant){
-    return (ScalingAlgorithm) algorithms.get(new Integer(imageConstant));
+    return algorithms.get(imageConstant);
   }
   
 }

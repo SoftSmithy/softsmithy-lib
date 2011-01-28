@@ -35,9 +35,9 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
     public HorizontalAlignmentCellEditor(Locale locale) {
         super(new JComboBox());
         JComboBox comboBox = (JComboBox) this.getComponent();
-        Vector horizontalAlignments = new Vector();
-        for (Iterator i = HorizontalAlignment.VALUES.iterator(); i.hasNext();) {
-            horizontalAlignments.add(new HorizontalAlignmentItem((HorizontalAlignment) i.next()));
+        Vector<HorizontalAlignmentItem> horizontalAlignments = new Vector<HorizontalAlignmentItem>();
+        for (HorizontalAlignment horizontalAlignment : HorizontalAlignment.VALUES) {
+            horizontalAlignments.add(new HorizontalAlignmentItem(horizontalAlignment));
         }
         comboBox.setModel(new DefaultComboBoxModel(horizontalAlignments));
         setLocale(locale);

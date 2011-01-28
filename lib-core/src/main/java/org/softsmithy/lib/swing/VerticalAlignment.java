@@ -43,34 +43,37 @@ public abstract class VerticalAlignment extends TypesafeEnum {
     public abstract int getSwingConstant();
     public static final VerticalAlignment TOP = new VerticalAlignment("top") {
 
+        @Override
         public int getSwingConstant() {
             return SwingConstants.TOP;
         }
     };
     public static final VerticalAlignment CENTER = new VerticalAlignment("center") {
 
+        @Override
         public int getSwingConstant() {
             return SwingConstants.CENTER;
         }
     };
     public static final VerticalAlignment BOTTOM = new VerticalAlignment("bottom") {
 
+        @Override
         public int getSwingConstant() {
             return SwingConstants.BOTTOM;
         }
     };
     private static final VerticalAlignment[] PRIVATE_VALUES = {TOP, CENTER, BOTTOM};
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
-    private static final Map alignments = new HashMap();
+    public static final List<VerticalAlignment> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+    private static final Map<Integer, VerticalAlignment> alignments = new HashMap<Integer, VerticalAlignment>();
 
 
     static {
         for (int i = 0; i < PRIVATE_VALUES.length; i++) {
-            alignments.put(new Integer(PRIVATE_VALUES[i].getSwingConstant()), PRIVATE_VALUES[i]);
+            alignments.put(PRIVATE_VALUES[i].getSwingConstant(), PRIVATE_VALUES[i]);
         }
     }
 
     public static VerticalAlignment getVerticalAlignment(int verticalAlignment) {
-        return (VerticalAlignment) alignments.get(new Integer(verticalAlignment));
+        return alignments.get(verticalAlignment);
     }
 }

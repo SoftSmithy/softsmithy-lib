@@ -30,17 +30,17 @@ public class CustomizerEnvironment {
   
   private static final CustomizerEnvironment customizerEnvironment = new CustomizerEnvironment();
   
-  private List styleProviders = Collections.unmodifiableList(Arrays.asList(new Object[]{NoneStyleProvider.INSTANCE, ParentStyleProvider.INSTANCE}));
+  private List<StyleProvider> styleProviders = Collections.unmodifiableList(Arrays.asList(new StyleProvider[]{NoneStyleProvider.INSTANCE, ParentStyleProvider.INSTANCE}));
   
   /** Creates a new instance of CustomizerEnvironment */
   protected CustomizerEnvironment() {
   }
   
-  public List getAllStyleProviders(){
+  public List<StyleProvider> getAllStyleProviders(){
     return styleProviders;
   }
   
-  public void setAllStyleProviders(List styleProviders){
+  public void setAllStyleProviders(List<StyleProvider> styleProviders){
     this.styleProviders = styleProviders;
   }
   

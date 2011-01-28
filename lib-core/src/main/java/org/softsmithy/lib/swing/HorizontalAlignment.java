@@ -153,7 +153,7 @@ public abstract class HorizontalAlignment extends TypesafeEnum{
   }
   
   private static final HorizontalAlignment[] PRIVATE_VALUES = {LEFT, CENTER, RIGHT, LEADING, TRAILING};
-  public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+  public static final List<HorizontalAlignment> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
   private static final Map<Integer, HorizontalAlignment> alignments = new HashMap<Integer, HorizontalAlignment>();
   static{
     for (int i=0; i<PRIVATE_VALUES.length; i++){

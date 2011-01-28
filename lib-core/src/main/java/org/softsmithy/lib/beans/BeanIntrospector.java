@@ -31,7 +31,7 @@ import org.softsmithy.lib.lang.reflect.*;
  */
 public final class BeanIntrospector {
   
-  private static final Map properties = new HashMap();
+  private static final Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> properties = new HashMap<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>>();
   private static final Map eventSets = new HashMap();
   private static final Map methods = new HashMap();
   private static final Object[] EMPTY_OBJECT_ARRAY = new Object[]{};
@@ -40,7 +40,7 @@ public final class BeanIntrospector {
   private BeanIntrospector() {
   }
  
-  public static PropertyDescriptor getPropertyDescriptor(String propertyName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
+  public static PropertyDescriptor getPropertyDescriptor(String propertyName, Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
     PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, propertyName, beanClass, rb);
     if (descriptor == null){
       descriptor = new PropertyDescriptor(propertyName, beanClass);
@@ -49,7 +49,7 @@ public final class BeanIntrospector {
     return descriptor;
   }
   
-  public static PropertyDescriptor[] getPropertyDescriptors(Class beanClass, ResourceBundle rb) throws IntrospectionException{
+  public static PropertyDescriptor[] getPropertyDescriptors(Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
     PropertyDescriptor[] descriptors = Introspector.getBeanInfo(beanClass).getPropertyDescriptors();
     for (int i=0; i<descriptors.length; i++){
       PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, descriptors[i].getName(), beanClass, rb);
@@ -106,19 +106,19 @@ public final class BeanIntrospector {
     return supportsPropertyChangeListenersByPropertyName;
   }
   
-  private static Method getAddPropertyChangeListenerMethod(Class beanClass) throws NoSuchMethodException{
+  private static Method getAddPropertyChangeListenerMethod(Class<?> beanClass) throws NoSuchMethodException{
     return beanClass.getMethod("addPropertyChangeListener", new Class[]{PropertyChangeListener.class});
   }
   
-  private static Method getAddPropertyChangeListenerByPropertyNameMethod(Class beanClass) throws NoSuchMethodException{
+  private static Method getAddPropertyChangeListenerByPropertyNameMethod(Class<?> beanClass) throws NoSuchMethodException{
     return beanClass.getMethod("addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
   }
   
-  private static Method getRemovePropertyChangeListenerMethod(Class beanClass) throws NoSuchMethodException{
+  private static Method getRemovePropertyChangeListenerMethod(Class<?> beanClass) throws NoSuchMethodException{
     return beanClass.getMethod("removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
   }
   
-  private static Method getRemovePropertyChangeListenerByPropertyNameMethod(Class beanClass) throws NoSuchMethodException{
+  private static Method getRemovePropertyChangeListenerByPropertyNameMethod(Class<?> beanClass) throws NoSuchMethodException{
     return beanClass.getMethod("removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
   }
   
@@ -217,27 +217,27 @@ public final class BeanIntrospector {
     // copy the values? how??
   }*/
   
-  private static FeatureDescriptor getDescriptor(Map descriptors, String featureName, Class beanClass, ResourceBundle rb) {
+  private static FeatureDescriptor getDescriptor(Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> descriptors, String featureName, Class<?> beanClass, ResourceBundle rb) {
     FeatureDescriptor descriptor = null;
     if (descriptors.containsKey(beanClass)){
-      Map featureNameMap = (Map) descriptors.get(beanClass);
+      Map<String, Map<ResourceBundle, FeatureDescriptor>> featureNameMap = descriptors.get(beanClass);
       if (featureNameMap.containsKey(featureName)){
-        Map rbMap = (Map) featureNameMap.get(featureName);
-        descriptor = (FeatureDescriptor) rbMap.get(rb);
+        Map<ResourceBundle, FeatureDescriptor> rbMap = featureNameMap.get(featureName);
+        descriptor = rbMap.get(rb);
       }
     }
     return descriptor;
   }
   
-  private static void putDescriptor(Map descriptors, FeatureDescriptor descriptor, Class beanClass, ResourceBundle rb) {
+  private static void putDescriptor(Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> descriptors, FeatureDescriptor descriptor, Class<?> beanClass, ResourceBundle rb) {
     if (! descriptors.containsKey(beanClass)){
-      descriptors.put(beanClass, new HashMap());
+      descriptors.put(beanClass, new HashMap<String, Map<ResourceBundle, FeatureDescriptor>>());
     }
-    Map featureNameMap = (Map) descriptors.get(beanClass);
+    Map<String, Map<ResourceBundle, FeatureDescriptor>> featureNameMap = descriptors.get(beanClass);
     if (! featureNameMap.containsKey(descriptor.getName())){
-      featureNameMap.put(descriptor.getName(), new HashMap());
+      featureNameMap.put(descriptor.getName(), new HashMap<ResourceBundle, FeatureDescriptor>());
     }
-    Map rbMap = (Map) featureNameMap.get(descriptor.getName());
+    Map<ResourceBundle, FeatureDescriptor> rbMap = featureNameMap.get(descriptor.getName());
     rbMap.put(rb, descriptor);
   }
   
@@ -271,7 +271,7 @@ public final class BeanIntrospector {
     }
   }
   
-  private static void setPropertyDescriptor(PropertyDescriptor descriptor, Class beanClass, ResourceBundle rb){
+  private static void setPropertyDescriptor(PropertyDescriptor descriptor, Class<?> beanClass, ResourceBundle rb){
     localizePropertyDescriptor(descriptor, rb);
     putDescriptor(properties, descriptor, beanClass, rb);
   }

@@ -44,7 +44,7 @@ public class Lists {
      *
      */
     // TODO use generics with jdk v1.5
-    public static boolean equals(List listA, List listB, EqualityVerifier verifier){
+    public static <T> boolean equals(List<? extends T> listA, List<? extends T> listB, EqualityVerifier verifier){
         if (listA.size() != listB.size()){
             return false;
         }
@@ -61,16 +61,15 @@ public class Lists {
      *
      */
     // TODO use generics with jdk v1.5
-    public static boolean equalsIgnoreOrder(List listA, List listB, Comparator comparator){
+    public static <T> boolean equalsIgnoreOrder(List<? extends T> listA, List<? extends T> listB, Comparator<? super T> comparator){
         if (listA.size() != listB.size()){
             return false;
         }
-        List sortedList = new ArrayList(listB); // make a copy, so the orignial list doesn't get modified
+        List<T> sortedList = new ArrayList<T>(listB); // make a copy, so the orignial list doesn't get modified
         Collections.sort(sortedList, comparator);
         // use enhanced for loop with jdk v1.5
-        for (Iterator iterator = listA.iterator(); iterator.hasNext();){
-            Object obj = iterator.next();
-            int index = Collections.binarySearch(sortedList, obj, comparator);
+        for (T a : listA){
+            int index = Collections.binarySearch(sortedList, a, comparator);
             if (index < 0){
                 return false;
             }

@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class ListsTest extends TestCase {
     
-    private Comparator testClassComparator;
+    private Comparator<TestClass> testClassComparator;
     
     public ListsTest(String testName) {
         super(testName);
@@ -41,10 +41,8 @@ public class ListsTest extends TestCase {
     
     @Override
     protected void setUp() throws Exception {
-        testClassComparator = new Comparator() {
-            public int compare(Object object1, Object object2) {
-                TestClass testObj1 = (TestClass) object1;
-                TestClass testObj2 = (TestClass) object2;
+        testClassComparator = new Comparator<TestClass>() {
+            public int compare(TestClass testObj1, TestClass testObj2) {
                 int prop1Comparison = testObj1.getProp1().compareTo(testObj2.getProp1());
                 if (prop1Comparison != 0){
                     return prop1Comparison;
@@ -61,7 +59,7 @@ public class ListsTest extends TestCase {
     protected void tearDown() throws Exception {
     }
     
-    private List createList(){
+    private List<TestClass> createList(){
           // create new instances with the same content
          TestClass obj1 = new TestClass("obj1Prop1", "obj1Prop2");
         TestClass obj2 = new TestClass("obj2Prop1", "obj2Prop2");
@@ -76,8 +74,8 @@ public class ListsTest extends TestCase {
     public void testEquals() {
         System.out.println("equals");
         
-        List listA = createList();
-        List listB = createList();
+        List<TestClass> listA = createList();
+        List<TestClass> listB = createList();
         
         
         assertTrue(Lists.equals(listA, listB, new ComparatorEqualityVerifier(testClassComparator)));
@@ -90,8 +88,8 @@ public class ListsTest extends TestCase {
     public void testEqualsIgnoreOrder() {
         System.out.println("equalsIgnoreOrder");
         
-        List listA = createList();
-        List listB = createList();
+        List<TestClass> listA = createList();
+        List<TestClass> listB = createList();
         Collections.reverse(listB);
 
 

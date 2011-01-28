@@ -39,6 +39,7 @@ public class ComparatorEqualityVerifier implements EqualityVerifier{
         this.comparator = comparator;
     }
 
+    @Override
     public boolean equals(Object a, Object b) {
         // TODO complete (null, exception...)
         return Comparables.isEqual(a, b, comparator);

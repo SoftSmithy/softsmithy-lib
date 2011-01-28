@@ -36,13 +36,13 @@ import org.softsmithy.lib.swing.event.*;
 public class CustomizerPropertyButtonManager implements CustomizerSelectionListener{
   
   private JCustomizer activeCustomizer = null;
-  private final Set textBoldButtons = new HashSet();
-  private final Set textItalicButtons = new HashSet();
-  private final Set textAlignLeftButtons = new HashSet();
-  private final Set textAlignCenterButtons = new HashSet();
-  private final Set textAlignRightButtons = new HashSet();
+  private final Set<AbstractButton> textBoldButtons = new HashSet<AbstractButton>();
+  private final Set<AbstractButton> textItalicButtons = new HashSet<AbstractButton>();
+  private final Set<AbstractButton> textAlignLeftButtons = new HashSet<AbstractButton>();
+  private final Set<AbstractButton> textAlignCenterButtons = new HashSet<AbstractButton>();
+  private final Set<AbstractButton> textAlignRightButtons = new HashSet<AbstractButton>();
   
-  private final Set listeners = new HashSet();
+  private final Set<PropertyChangeListener> listeners = new HashSet<PropertyChangeListener>();
   
   private CustomizerPropertyChangeListener textBold = null;
   private CustomizerPropertyChangeListener textItalic = null;

@@ -17,7 +17,6 @@
  *
  * Created on 20. September 2002, 19:14
  */
-
 package org.softsmithy.lib.swing.event;
 
 import java.util.*;
@@ -28,41 +27,42 @@ import org.softsmithy.lib.swing.*;
  * @author  puce
  */
 public class CustomizerSelectionEvent extends EventObject {
-  
-  /** Holds value of property selectedCustomizers. */
-  private final Set selectedCustomizers;
-  
-  /** Holds value of property activeCustomizer. */
-  private final JCustomizer activeCustomizer;
-  
-  private Set commonCustomizableProperties;
-  
-  /** Creates a new instance of CustomizerSelectionEvent */
-  public CustomizerSelectionEvent(Object source, Set selectedCustomizers, JCustomizer activeCustomizer, Set commonCustomizableProperties) {
-    super(source);
-    this.selectedCustomizers = Collections.unmodifiableSet(new LinkedHashSet(selectedCustomizers));
-    this.activeCustomizer = activeCustomizer;
-    this.commonCustomizableProperties = Collections.unmodifiableSet(new LinkedHashSet(commonCustomizableProperties));
-  }
-  
-  /** Getter for property selectedCustomizers.
-   * @return Value of property selectedCustomizers.
-   *
-   */
-  public Set getSelectedCustomizers() {
-    return this.selectedCustomizers;
-  }
-  
-  /** Getter for property activeCustomizer.
-   * @return Value of property activeCustomizer.
-   *
-   */
-  public JCustomizer getActiveCustomizer() {
-    return this.activeCustomizer;
-  }
-  
-  public Set getCommonCustomizableProperties(){
-    return commonCustomizableProperties;
-  }
-  
+
+    /** Holds value of property selectedCustomizers. */
+    private final Set<JCustomizer> selectedCustomizers;
+    /** Holds value of property activeCustomizer. */
+    private final JCustomizer activeCustomizer;
+    private Set<String> commonCustomizableProperties;
+
+    /** Creates a new instance of CustomizerSelectionEvent */
+    public CustomizerSelectionEvent(Object source,
+            Set<JCustomizer> selectedCustomizers, JCustomizer activeCustomizer,
+            Set<String> commonCustomizableProperties) {
+        super(source);
+        this.selectedCustomizers = Collections.unmodifiableSet(new LinkedHashSet<JCustomizer>(
+                selectedCustomizers));
+        this.activeCustomizer = activeCustomizer;
+        this.commonCustomizableProperties = Collections.unmodifiableSet(new LinkedHashSet<String>(
+                commonCustomizableProperties));
+    }
+
+    /** Getter for property selectedCustomizers.
+     * @return Value of property selectedCustomizers.
+     *
+     */
+    public Set<JCustomizer> getSelectedCustomizers() {
+        return this.selectedCustomizers;
+    }
+
+    /** Getter for property activeCustomizer.
+     * @return Value of property activeCustomizer.
+     *
+     */
+    public JCustomizer getActiveCustomizer() {
+        return this.activeCustomizer;
+    }
+
+    public Set<String> getCommonCustomizableProperties() {
+        return commonCustomizableProperties;
+    }
 }

@@ -32,7 +32,7 @@ public class StyleProviderComboBoxModel extends DefaultComboBoxModel {
   
   /** Creates a new instance of StyleProviderComboBoxModel */
   public StyleProviderComboBoxModel() {
-    super(new Vector(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
+    super(new Vector<StyleProvider>(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
   }
 
   

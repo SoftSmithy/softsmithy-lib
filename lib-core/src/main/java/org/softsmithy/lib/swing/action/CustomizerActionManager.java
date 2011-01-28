@@ -38,14 +38,15 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class CustomizerActionManager implements CustomizerSelectionListener {
   
-  private final Set actions = new HashSet();
+  private final Set<CustomizerAction> actions = new HashSet<CustomizerAction>();
   
   /** Creates a new instance of CustomizerActionManager */
   public CustomizerActionManager() {
   }
   
+    @Override
   public void selectionChanged(CustomizerSelectionEvent e) {
-    Set commonProperties = e.getCommonCustomizableProperties(); //JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
+    Set<String> commonProperties = e.getCommonCustomizableProperties(); //JCustomizer.getCommonCustomizableProperties(e.getSelectedCustomizers());
     for (Iterator i = actions.iterator(); i.hasNext();){
       CustomizerAction action = (CustomizerAction) i.next();
       if (e.getSelectedCustomizers().size() > 0){

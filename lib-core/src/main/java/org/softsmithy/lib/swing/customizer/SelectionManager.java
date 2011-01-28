@@ -37,14 +37,14 @@ import org.softsmithy.lib.swing.event.*;
 public class SelectionManager implements PropertyChangeListener, CustomizerListener {
 
 //  private static final Set RECTANGLE_PROPERTIES = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[] {"x", "y", "width", "height"})));
-    private final List selectedList = new ArrayList();
-    private final Set selectedSet = new LinkedHashSet();
+    private final List<JCustomizer> selectedList = new ArrayList<JCustomizer>();
+    private final Set<JCustomizer> selectedSet = new LinkedHashSet<JCustomizer>();
     private JCustomizer activeCustomizer = null;
-    private Set listeners = new HashSet();
+    private Set<CustomizerSelectionListener> listeners = new HashSet<CustomizerSelectionListener>();
     /** Holds value of property fireingSelectionChanged. */
     private boolean fireingSelectionChanged = false;
     /** Holds value of property commonCustomizableProperties. */
-    private Set commonCustomizableProperties = new LinkedHashSet();
+    private Set<String> commonCustomizableProperties = new LinkedHashSet<String>();
 //  private Set commonCustomizableBoundProperties = new HashSet();
     private int dxFactor = 0;
     private int dyFactor = 0;
@@ -124,9 +124,9 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         JCustomizer secondLast = null;
         int size = selectedList.size();
         if (size > 0) {
-            last = (JCustomizer) selectedList.get(size - 1); // == activeCustomizer
+            last = selectedList.get(size - 1); // == activeCustomizer
             if (size > 1) {
-                secondLast = (JCustomizer) selectedList.get(size - 2); // == new activeCustomizer
+                secondLast = selectedList.get(size - 2); // == new activeCustomizer
             }
         }
 
@@ -181,7 +181,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
 
     public void deleteSelection() {
         for (int i = 0; i < selectedList.size(); i++) {
-            JCustomizer customizer = (JCustomizer) selectedList.get(i);
+            JCustomizer customizer = selectedList.get(i);
             Container parent = customizer.getParent();
             if (!parent.hasFocus()) {
                 parent.requestFocus();
@@ -212,7 +212,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     }
 
     public JCustomizer[] getSelectedCustomizers() {
-        return (JCustomizer[]) selectedList.toArray(new JCustomizer[selectedList.size()]);
+        return selectedList.toArray(new JCustomizer[selectedList.size()]);
     }
 
     //  private void resetActiveCustomizer(){
@@ -233,7 +233,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
      * @return Value of property commonCustomizableProperties.
      *
      */
-    public Set getCommonCustomizableProperties() {
+    public Set<String> getCommonCustomizableProperties() {
         return this.commonCustomizableProperties;
     }
 
@@ -244,7 +244,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
                 getActiveCustomizer().removePropertyChangeListener((String) i.next(), this);
             }
         }
-        this.activeCustomizer = selectedList.isEmpty() ? null : (JCustomizer) selectedList.get(selectedList.size() - 1);
+        this.activeCustomizer = selectedList.isEmpty() ? null : selectedList.get(selectedList.size() - 1);
         this.commonCustomizableProperties = JCustomizer.getCommonCustomizableProperties(selectedSet); // Collections.unmodifiableSet(JCustomizer.getCommonCustomizableProperties(selectedSet));
         //System.out.println("Properties: "+this.commonCustomizableProperties);
 //    Set commonCustomizableRectangleProperties = new HashSet(RECTANGLE_PROPERTIES);
@@ -269,10 +269,11 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
      *   	and the property that has changed.
      *
      */
+    @Override
     public void propertyChange(PropertyChangeEvent evt) {
         //System.out.println("Property Changed!!!!!! - " + evt.getPropertyName());
         for (int i = 0; i < selectedList.size() - 1; i++) {
-            JCustomizer customizer = (JCustomizer) selectedList.get(i);
+            JCustomizer customizer = selectedList.get(i);
             try {
                 BeanIntrospector.setPropertyValue(evt.getPropertyName(), evt.getNewValue(), customizer, null);
                 customizer.repaint();
@@ -282,17 +283,19 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         }
     }
 
+    @Override
     public void customizerResetBoundsRel(CustomizerEvent e) {
         for (int i = 0; i < selectedList.size() - 1; i++) {
-            JCustomizer customizer = (JCustomizer) selectedList.get(i);
+            JCustomizer customizer = selectedList.get(i);
             customizer.setBoundsRel(dxFactor * e.getDx(), dyFactor * e.getDy(), dwidthFactor * e.getDwidth(), dheightFactor * e.getDheight());
         //customizer.doLayout();
         }
     }
 
+    @Override
     public void customizerReshapeRel(CustomizerEvent e) {
         for (int i = 0; i < selectedList.size() - 1; i++) {
-            ((JCustomizer) selectedList.get(i)).reshapeRel(dxFactor * e.getDx(), dyFactor * e.getDy(), dwidthFactor * e.getDwidth(), dheightFactor * e.getDheight());
+            selectedList.get(i).reshapeRel(dxFactor * e.getDx(), dyFactor * e.getDy(), dwidthFactor * e.getDwidth(), dheightFactor * e.getDheight());
         }
     }
 
