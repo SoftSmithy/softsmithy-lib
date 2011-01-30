@@ -13,36 +13,31 @@
  */
 
 /*
- * ComparatorEqualityVerifier.java
+ * Matcher.java
  *
- * Created on 11. Mai 2007, 00:30
+ * Created on 11. Mai 2007, 00:24
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
  */
-
 package org.softsmithy.lib.util;
-
-import java.util.Comparator;
 
 /**
  *
+ * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
+ *
  * @author puce
  */
-// Not yet used!
-public class ComparatorEqualityVerifier implements EqualityVerifier{
+// TODO use generics with jdk v1,5
+public interface Matcher<T> {
 
-    private final Comparator comparator;
-    
-    /** Creates a new instance of ComparatorEqualityVerifier */
-    public ComparatorEqualityVerifier(Comparator comparator) {
-        this.comparator = comparator;
-    }
+    public void verify(T t) throws MatchingException;
 
-    @Override
-    public boolean equals(Object a, Object b) {
-        // TODO complete (null, exception...)
-        return Comparables.isEqual(a, b, comparator);
-    }
-    
+    public int hashCode(T t);
+
+    public boolean equals(T a, T b);
+
+    public String toString(T t);
+
+    public Class<T> getType();
 }

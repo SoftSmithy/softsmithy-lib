@@ -12,31 +12,27 @@
  * Contributor(s): .
  */
 
-/*
- * ObjectEqualityVerifier.java
- *
- * Created on 11. Mai 2007, 00:33
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
-
 package org.softsmithy.lib.util;
 
 /**
  *
  * @author puce
  */
-// Not yet used
-public class ObjectEqualityVerifier implements EqualityVerifier{
-    
-    /** Creates a new instance of ObjectEqualityVerifier */
-    public ObjectEqualityVerifier() {
+public class MatchingException extends Exception {
+
+    public MatchingException(Throwable cause) {
+        super(cause);
     }
 
-    @Override
-    public boolean equals(Object a, Object b) {
-        return a.equals(b);
+    public MatchingException(String message, Throwable cause) {
+        super(message, cause);
     }
-    
+
+    public MatchingException(String message) {
+        super(message);
+    }
+
+    public MatchingException() {
+    }
+
 }

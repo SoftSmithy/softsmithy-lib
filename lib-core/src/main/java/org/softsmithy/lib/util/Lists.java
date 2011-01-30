@@ -44,12 +44,12 @@ public class Lists {
      *
      */
     // TODO use generics with jdk v1.5
-    public static <T> boolean equals(List<? extends T> listA, List<? extends T> listB, EqualityVerifier verifier){
+    public static <T> boolean equals(List<? extends T> listA, List<? extends T> listB, Matcher<? super T> matcher){
         if (listA.size() != listB.size()){
             return false;
         }
-        for (Iterator iteratorA = listA.iterator(), iteratorB = listB.iterator(); iteratorA.hasNext();){
-            if (! verifier.equals(iteratorA.next(), iteratorB.next())){
+        for (Iterator<? extends T> iteratorA = listA.iterator(), iteratorB = listB.iterator(); iteratorA.hasNext();){
+            if (! matcher.equals(iteratorA.next(), iteratorB.next())){
                 return false;
             }
         }
