@@ -6,7 +6,7 @@ v${project.version} (Changeset: ${changeSet}):
             - License upgraded: SPL -> CDDL
             - lib project restructured
             - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
-            - Issue 1740983: fixed: org.softsmithy.lib.util.ObjectEqulatiyVerifier -> org.softsmithy.lib.util.ObjectEqualityVerifier
+            - org.softsmithy.lib.util.EqulatiyVerifier framework replaced with -> org.softsmithy.lib.util.Matcher framework
             - small fixes
 
 v20100524:  - org.softsmithy.lib.io.Files: new utility methods
