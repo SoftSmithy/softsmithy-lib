@@ -17,7 +17,7 @@ import java.text.Collator;
 import java.util.Locale;
 
 /**
- *
+ * TODO: good name?
  * @author puce
  */
 public class LocalizedCollator {
@@ -45,9 +45,7 @@ public class LocalizedCollator {
     }
 
     /**
-     * @see #getCollationKey(java.text.Collator, java.lang.Object, org.softsmithy.lib.text.Localizer, java.util.Locale)
-     * @see LocalizableComparator
-     * @see LocalizerComparator
+     * @see #getCollationKey(java.lang.Object, org.softsmithy.lib.text.Localizer) 
      * @param <T>
      * @param source
      * @return
@@ -60,9 +58,7 @@ public class LocalizedCollator {
     }
 
     /**
-     * @see #getCollationKey(java.text.Collator, org.softsmithy.lib.text.Localizable, java.util.Locale)
-     * @see LocalizerComparator
-     * @see LocalizableComparator
+     * @see #getCollationKey(org.softsmithy.lib.text.Localizable)
      * @param <T>
      * @param source
      * @param localizer
