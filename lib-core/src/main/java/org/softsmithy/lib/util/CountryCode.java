@@ -333,6 +333,7 @@ public enum CountryCode implements Localizable{
     
     //public abstract String toString(LanguageCode inLanguageCode);
     
+    @Override
     public String getDisplayString(Locale inLocale){
         //return Locales.getLocale(null, this).getDisplayCountry(inLocale); //TODO: Check: is this correct?
         return new Locale("", getA2()).getDisplayCountry(inLocale);

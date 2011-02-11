@@ -43,7 +43,6 @@ public class Lists {
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
      */
-    // TODO use generics with jdk v1.5
     public static <T> boolean equals(List<? extends T> listA, List<? extends T> listB, Matcher<? super T> matcher){
         if (listA.size() != listB.size()){
             return false;
@@ -60,14 +59,12 @@ public class Lists {
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
      */
-    // TODO use generics with jdk v1.5
     public static <T> boolean equalsIgnoreOrder(List<? extends T> listA, List<? extends T> listB, Comparator<? super T> comparator){
         if (listA.size() != listB.size()){
             return false;
         }
         List<T> sortedList = new ArrayList<T>(listB); // make a copy, so the orignial list doesn't get modified
         Collections.sort(sortedList, comparator);
-        // use enhanced for loop with jdk v1.5
         for (T a : listA){
             int index = Collections.binarySearch(sortedList, a, comparator);
             if (index < 0){

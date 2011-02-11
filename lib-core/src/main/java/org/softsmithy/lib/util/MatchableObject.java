@@ -33,7 +33,7 @@ public class MatchableObject<T> {
         return object;
     }
 
-    public Matcher<? super T> getMatcher() {
+    public Matcher<T> getMatcher() {
         return matcher;
     }
 

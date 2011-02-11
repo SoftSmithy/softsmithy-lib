@@ -24,13 +24,21 @@ package org.softsmithy.lib.util;
 
 /**
  *
- * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
+ * Useful for generated classes, which don't override the equals method 
+ * (e.g. some JAXB class generators)
+ * or if a custom matching algorithm is needed.
  *
  * @author puce
  */
-// TODO use generics with jdk v1,5
 public interface Matcher<T> {
 
+    /**
+     * Verifies that the specified object can be used with this matcher.
+     *
+     * TODO: useful?
+     * @param t the object to test
+     * @throws MatchingException
+     */
     public void verify(T t) throws MatchingException;
 
     public int hashCode(T t);
@@ -39,5 +47,8 @@ public interface Matcher<T> {
 
     public String toString(T t);
 
+    /**
+     * TODO: needed? Better way to implement MatchableObject#equals?
+     */
     public Class<T> getType();
 }

@@ -11,9 +11,9 @@ import java.text.CollationKey;
  */
 public class GenericCollationKey<T> implements Comparable<GenericCollationKey> {
 
-    private T source;
+    private final T source;
     /** Holds value of property collationKey. */
-    private CollationKey collationKey;
+    private final CollationKey collationKey;
 
     GenericCollationKey(T source, CollationKey collationKey) {
         this.source = source;
@@ -172,8 +172,8 @@ public class GenericCollationKey<T> implements Comparable<GenericCollationKey> {
         if (!(obj instanceof GenericCollationKey)) {
             return false;
         }
-        GenericCollationKey lck = (GenericCollationKey) obj;
-        return collationKey == lck.collationKey ||
-                (collationKey != null && collationKey.equals(lck.collationKey));
+        GenericCollationKey gck = (GenericCollationKey) obj;
+        return collationKey == gck.collationKey || (collationKey != null && collationKey.
+                equals(gck.collationKey));
     }
 }

@@ -14,6 +14,7 @@
 package org.softsmithy.lib.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,17 +32,13 @@ public class Matchers {
             Matcher<T> matcher) throws MatchingException {
         List<MatchableObject<T>> matchableObjects =
                 new ArrayList<MatchableObject<T>>();
-        for (T t : list) {
-            matchableObjects.add(new MatchableObject<T>(t, matcher));
-        }
+        wrap(list, matchableObjects, matcher);
         return matchableObjects;
     }
 
     public static <T> List<T> unwrap(List<MatchableObject<T>> list) {
         List<T> objects = new ArrayList<T>();
-        for (MatchableObject<T> matchableObject : list) {
-            objects.add(matchableObject.getObject());
-        }
+        unwrap(list, objects);
         return objects;
     }
 
@@ -49,17 +46,28 @@ public class Matchers {
             Matcher<T> matcher) throws MatchingException {
         Set<MatchableObject<T>> matchableObjects =
                 new LinkedHashSet<MatchableObject<T>>();
-        for (T t : list) {
-            matchableObjects.add(new MatchableObject<T>(t, matcher));
-        }
+        wrap(list, matchableObjects, matcher);
         return matchableObjects;
     }
 
     public static <T> Set<T> unwrap(Set<MatchableObject<T>> list) {
         Set<T> objects = new LinkedHashSet<T>();
-        for (MatchableObject<T> matchableObject : list) {
-            objects.add(matchableObject.getObject());
-        }
+        unwrap(list, objects);
         return objects;
+    }
+
+    public static <T> void wrap(Collection<T> inputCollection,
+            Collection<MatchableObject<T>> outputCollection,
+            Matcher<T> matcher) throws MatchingException {
+        for (T t : inputCollection) {
+            outputCollection.add(new MatchableObject<T>(t, matcher));
+        }
+    }
+
+    public static <T> void unwrap(Collection<MatchableObject<T>> inputCollection,
+            Collection<T> outputCollection) {
+        for (MatchableObject<T> matchableObject : inputCollection) {
+            outputCollection.add(matchableObject.getObject());
+        }
     }
 }

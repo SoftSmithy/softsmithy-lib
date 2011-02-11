@@ -11,7 +11,6 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.text;
 
 import java.util.Locale;
@@ -22,9 +21,10 @@ import java.util.Locale;
  */
 public interface Localizer<T> {
 
-     /**
+    /**
      * Returns a string that is appropriate for display to the user.
      * If possible, the string returned will be localized according to inLocale.
+     * @param o the object to display
      * @param inLocale the string returned will be localized according to this value, if possible
      * @return a string that is appropriate for display to the user.
      */

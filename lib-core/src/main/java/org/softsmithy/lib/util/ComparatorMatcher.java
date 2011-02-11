@@ -29,7 +29,7 @@ import java.util.Comparator;
  * @author puce
  */
 // Not yet used!
-public class ComparatorMatcher<T> extends AbstractMatcher<T> {
+class ComparatorMatcher<T> extends AbstractMatcher<T> {
 
     private final Comparator<? super T> comparator;
 
@@ -44,11 +44,11 @@ public class ComparatorMatcher<T> extends AbstractMatcher<T> {
         // nothing to do
     }
 
+    // should this be abstract? Like this, all t will have the same hashCode...
     @Override
     public int hashCode(T t) {
         int result = 17;
         result = 37 * result + comparator.hashCode();
-        result = 37 * result + t.hashCode();
         return result;
     }
 
