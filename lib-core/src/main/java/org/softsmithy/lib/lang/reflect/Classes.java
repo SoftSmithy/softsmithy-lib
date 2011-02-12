@@ -27,10 +27,10 @@ import java.util.*;
  */
 public class Classes {
   
-  private static final Map<Class, Class> WRAPPER_CLASSES;
+  private static final Map<Class<?>, Class<?>> WRAPPER_CLASSES;
   
   static{
-    Map<Class, Class> wrappers = new HashMap<Class, Class>();
+    Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>();
     wrappers.put(Boolean.TYPE, Boolean.class);
     wrappers.put(Character.TYPE, Character.class);
     wrappers.put(Byte.TYPE, Byte.class);
@@ -89,7 +89,7 @@ public class Classes {
     return ext;
   }
   
-  public static Class getTopMostCommonClass(Class a, Class b){
+  public static Class<?> getTopMostCommonClass(Class<?> a, Class<?> b){
     Class baseClass;
     if (a == null || b == null){
       baseClass = null;
@@ -105,7 +105,7 @@ public class Classes {
     return baseClass;
   }
   
-  public static Class getTopMostCommonClass(Class[] classes){
+  public static Class<?> getTopMostCommonClass(Class<?>[] classes){
     Class topMostCommonClass = null;
     if (classes.length > 0){
       topMostCommonClass = classes[0];
@@ -212,7 +212,7 @@ public class Classes {
     return WRAPPER_CLASSES.get(primitiveClass);
   }
   
-  public static boolean containsMethod(Class aClass, String name, Class[] parameterTypes){
+  public static boolean containsMethod(Class<?> aClass, String name, Class<?>[] parameterTypes){
     boolean containsMethod = false;
     Method[] methods = aClass.getMethods();
     for (int i=0; i<methods.length; i++){

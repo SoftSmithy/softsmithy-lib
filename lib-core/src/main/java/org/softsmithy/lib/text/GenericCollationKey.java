@@ -7,7 +7,7 @@ import java.text.CollationKey;
  *
  * @see LocalizedCollator#getCollationKey(org.softsmithy.lib.text.Localizable)
  * @see LocalizedCollator#getCollationKey(java.lang.Object, org.softsmithy.lib.text.Localizer)
- * @param <T>
+ * @param <T> the type of the source
  *
  * TODO: good name?
  */

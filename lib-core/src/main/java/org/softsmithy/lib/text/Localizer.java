@@ -18,6 +18,7 @@ import java.util.Locale;
 /**
  * Specifies a (possible localizable) string representation of an object that is
  * appropriate to display to the user.
+ * @param T the type of objects to display
  * @see Localizable
  * @see Localizables
  * @author puce

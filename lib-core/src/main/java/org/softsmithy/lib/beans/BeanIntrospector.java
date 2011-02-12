@@ -78,7 +78,7 @@ public final class BeanIntrospector {
     getPropertyDescriptor(propertyName, bean.getClass(), rb).getWriteMethod().invoke(bean, new Object[]{newValue});
   }
   
-  public static boolean supportsPropertyChangeListeners(Class beanClass){
+  public static boolean supportsPropertyChangeListeners(Class<?> beanClass){
     boolean supportsPropertyChangeListeners = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{PropertyChangeListener.class})
     && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
 //    if (supportsPropertyChangeListeners){
@@ -92,7 +92,7 @@ public final class BeanIntrospector {
     return supportsPropertyChangeListeners;
   }
   
-  public static boolean supportsPropertyChangeListenersByPropertyName(Class beanClass){
+  public static boolean supportsPropertyChangeListenersByPropertyName(Class<?> beanClass){
     boolean supportsPropertyChangeListenersByPropertyName = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class})
     && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
 //    if (supportsPropertyChangeListenersByPropertyName){

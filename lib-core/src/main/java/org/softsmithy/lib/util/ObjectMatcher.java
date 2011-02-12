@@ -27,7 +27,7 @@ package org.softsmithy.lib.util;
  * @author puce
  */
 // Not yet used
-public class ObjectMatcher<T> extends AbstractMatcher<T> {
+class ObjectMatcher<T> extends AbstractMatcher<T> {
 
     public ObjectMatcher(Class<T> type) {
         super(type);

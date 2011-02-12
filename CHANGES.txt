@@ -6,11 +6,17 @@ v${project.version} (Changeset: ${changeSet}):
             - License upgraded: SPL -> CDDL
             - Project versioning aligned with Maven versioning, starting with v0.1
             - Project layout restructured
+            - org.softsmithy.lib.text.Localizables.LocalizableCollationKey -> org.softsmithy.lib.text.GenericCollationKey
+            - org.softsmithy.lib.text.LocalizedCollator added
             - org.softsmithy.lib.util.EqulatiyVerifier framework replaced with -> org.softsmithy.lib.util.Matcher framework
             - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
             - org.softsmithy.lib.util.Lists.getFirst(List) added
             - org.softsmithy.lib.util.Lists.getLast(List) added
+            - generified classes
+            - removed warnings
+            - Javadocs added
             - small fixes
+            - changed to NetBeans 6.9.1
 
 v20100524:  - org.softsmithy.lib.io.Files: new utility methods
 (Rev.: 470) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
