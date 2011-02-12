@@ -40,6 +40,58 @@ public class Localizables {
     private Localizables() {
     }
 
+    // useful???
+    private static List<String> getDisplayStrings(Localizable... localizables) {
+        return getDisplayStrings(Locale.getDefault(), localizables);
+    }
+
+    private static List<String> getDisplayStrings(Locale inLocale,
+            Localizable... localizables) {
+        return getDisplayStrings(new LocalizableLocalizer(), inLocale,
+                localizables);
+    }
+
+    private static <T> List<String> getDisplayStrings(
+            Localizer<? super T> localizer, T... objects) {
+        return getDisplayStrings(localizer, Locale.getDefault(), objects);
+    }
+
+    private static <T> List<String> getDisplayStrings(
+            Localizer<? super T> localizer, Locale inLocale,
+            T... objects) {
+        List<String> displayStrings = new ArrayList<String>(objects.length);
+        for (T object : objects) {
+            displayStrings.add(localizer.getDisplayString(object, inLocale));
+        }
+        return displayStrings;
+    }
+
+    private static List<String> getDisplayStrings(
+            List<? extends Localizable> localizables) {
+        return getDisplayStrings(Locale.getDefault(), localizables);
+    }
+
+    private static List<String> getDisplayStrings(Locale inLocale,
+            List<? extends Localizable> localizables) {
+        return getDisplayStrings(new LocalizableLocalizer(), inLocale,
+                localizables);
+    }
+
+    private static <T> List<String> getDisplayStrings(
+            Localizer<? super T> localizer, List<T> objects) {
+        return getDisplayStrings(localizer, Locale.getDefault(), objects);
+    }
+
+    private static <T> List<String> getDisplayStrings(
+            Localizer<? super T> localizer, Locale inLocale,
+            List<T> objects) {
+        List<String> displayStrings = new ArrayList<String>(objects.size());
+        for (T object : objects) {
+            displayStrings.add(localizer.getDisplayString(object, inLocale));
+        }
+        return displayStrings;
+    }
+
     /**
      * Sorts an array of {@link Localizable}s in the natural, locale-sensitive order of
      * their {@link Localizable#getDisplayString(java.util.Locale)}-representation.
