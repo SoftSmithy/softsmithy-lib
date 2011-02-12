@@ -20,10 +20,12 @@
  */
 package org.softsmithy.lib.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import junit.framework.*;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -32,6 +34,8 @@ import java.util.List;
  */
 public class ListsTest extends TestCase {
 
+    public static final String ITEM_1 = "item1";
+    public static final String ITEM_3 = "item3";
     private Comparator<TestClass> testClassComparator;
 
     public ListsTest(String testName) {
@@ -99,6 +103,37 @@ public class ListsTest extends TestCase {
 
         assertTrue(Lists.equalsIgnoreOrder(listA, listB, testClassComparator));
 
+    }
+
+    public void testGetFirst() {
+        System.out.println("getFirst");
+
+        List<String> arrayList = new ArrayList<String>();
+        fillStringList(arrayList);
+        List<String> linkedList = new LinkedList<String>();
+        fillStringList(linkedList);
+
+        assertEquals(ITEM_1, Lists.getFirst(arrayList));
+        assertEquals(ITEM_1, Lists.getFirst(linkedList));
+    }
+
+    public void testGetLast() {
+        System.out.println("getLast");
+
+        List<String> arrayList = new ArrayList<String>();
+        fillStringList(arrayList);
+        List<String> linkedList = new LinkedList<String>();
+        fillStringList(linkedList);
+
+        assertEquals(ITEM_3, Lists.getLast(arrayList));
+
+        assertEquals(ITEM_3, Lists.getLast(linkedList));
+    }
+
+    private void fillStringList(List<String> arrayList) {
+        arrayList.add(ITEM_1);
+        arrayList.add("item2");
+        arrayList.add(ITEM_3);
     }
 
     private static class TestClass {

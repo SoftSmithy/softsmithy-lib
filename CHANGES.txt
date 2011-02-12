@@ -4,9 +4,12 @@ v${project.version} (Changeset: ${changeSet}):
 	    - Project migration: Ant -> Maven
             - Project migration: Subversion -> Mercurial
             - License upgraded: SPL -> CDDL
-            - lib project restructured
-            - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
+            - Project versioning aligned with Maven versioning, starting with v0.1
+            - Project layout restructured
             - org.softsmithy.lib.util.EqulatiyVerifier framework replaced with -> org.softsmithy.lib.util.Matcher framework
+            - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
+            - org.softsmithy.lib.util.Lists.getFirst(List) added
+            - org.softsmithy.lib.util.Lists.getLast(List) added
             - small fixes
 
 v20100524:  - org.softsmithy.lib.io.Files: new utility methods

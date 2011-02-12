@@ -20,7 +20,6 @@
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
  */
-
 package org.softsmithy.lib.util;
 
 import java.util.ArrayList;
@@ -34,44 +33,67 @@ import java.util.List;
  * @author puce
  */
 public class Lists {
-    
+
     /** Creates a new instance of Lists */
     private Lists() {
     }
-    
+
     /**
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
      */
-    public static <T> boolean equals(List<? extends T> listA, List<? extends T> listB, Matcher<? super T> matcher){
-        if (listA.size() != listB.size()){
+    public static <T> boolean equals(List<? extends T> listA,
+            List<? extends T> listB, Matcher<? super T> matcher) {
+        if (listA.size() != listB.size()) {
             return false;
         }
-        for (Iterator<? extends T> iteratorA = listA.iterator(), iteratorB = listB.iterator(); iteratorA.hasNext();){
-            if (! matcher.equals(iteratorA.next(), iteratorB.next())){
+        for (Iterator<? extends T> iteratorA = listA.iterator(), iteratorB = listB.
+                iterator(); iteratorA.hasNext();) {
+            if (!matcher.equals(iteratorA.next(), iteratorB.next())) {
                 return false;
             }
         }
         return true;
     }
-    
+
     /**
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
      */
-    public static <T> boolean equalsIgnoreOrder(List<? extends T> listA, List<? extends T> listB, Comparator<? super T> comparator){
-        if (listA.size() != listB.size()){
+    public static <T> boolean equalsIgnoreOrder(List<? extends T> listA,
+            List<? extends T> listB, Comparator<? super T> comparator) {
+        if (listA.size() != listB.size()) {
             return false;
         }
         List<T> sortedList = new ArrayList<T>(listB); // make a copy, so the orignial list doesn't get modified
         Collections.sort(sortedList, comparator);
-        for (T a : listA){
+        for (T a : listA) {
             int index = Collections.binarySearch(sortedList, a, comparator);
-            if (index < 0){
+            if (index < 0) {
                 return false;
             }
             sortedList.remove(index); // to reduce search
         }
         return true;
+    }
+
+    /**
+     * Gets the first element of the specified list.
+     * @param <E> the type of the elements of the list
+     * @param list the list
+     * @return the first element
+     */
+    public static <E> E getFirst(List<E> list) {
+        return list.get(0);
+    }
+
+    /**
+     * Gets the last element of the specified list.
+     * @param <E> the type of the elements of the list
+     * @param list the list
+     * @return the last element
+     */
+    public static <E> E getLast(List<E> list) {
+        return list.get(list.size() - 1);
     }
 }
