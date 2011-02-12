@@ -31,7 +31,7 @@ import java.util.Locale;
 public enum LocaleLocalizer implements Localizer<Locale> {
 
     /**
-     * Selects the Locale.getDisplayName method.
+     * Selects the {@link Locale#getDisplayName(java.util.Locale)} method.
      */
     NAME {
 
@@ -41,7 +41,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
         }
     },
     /**
-     * Selects the Locale.getDisplayLanguage method.
+     * Selects the {@link Locale#getDisplayLanguage(java.util.Locale)} method.
      */
     LANGUAGE {
 
@@ -51,7 +51,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
         }
     },
     /**
-     * Selects the Locale.getDisplayCountry method.
+     * Selects the {@link Locale#getDisplayCountry(java.util.Locale)} method.
      */
     COUNTRY {
 
@@ -61,7 +61,7 @@ public enum LocaleLocalizer implements Localizer<Locale> {
         }
     },
     /**
-     * Selects the Locale.getDisplayVariant method.
+     * Selects the {@link Locale#getDisplayVariant(java.util.Locale)} method.
      */
     VARIANT {
 

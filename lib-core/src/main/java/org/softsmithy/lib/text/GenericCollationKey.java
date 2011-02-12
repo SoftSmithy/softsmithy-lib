@@ -18,7 +18,7 @@ public class GenericCollationKey<T> implements
     /** Holds value of property collationKey. */
     private final CollationKey collationKey;
 
-    GenericCollationKey(T source, CollationKey collationKey) {
+    /*default*/ GenericCollationKey(T source, CollationKey collationKey) {
         this.source = source;
         this.collationKey = collationKey;
     }
@@ -31,17 +31,17 @@ public class GenericCollationKey<T> implements
         return collationKey.compareTo(o.getCollationKey());
     }
 
-    /** Getter for property locale.
-     * @return Value of property locale.
-     *
+    /**
+     * Gets the original source.
+     * @return the original source
      */
     public T getSource() {
         return this.source;
     }
 
-    /** Getter for property collationKey.
-     * @return Value of property collationKey.
-     *
+    /**
+     * Gets the {@link CollationKey} for the displayString of {@link #getSource() }
+     * @return the CollationKey for the displayString of the source.
      */
     public CollationKey getCollationKey() {
         return this.collationKey;

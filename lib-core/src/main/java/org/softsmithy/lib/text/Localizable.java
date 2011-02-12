@@ -22,16 +22,19 @@ package org.softsmithy.lib.text;
 import java.util.Locale;
 
 /**
- *
+ * An object, which has a (possible localizable) string representation that is
+ * appropriate to display to the user.
+ * @see Localizables
+ * @see Localizer
  * @author puce
  */
 public interface Localizable {
 
     /**
-     * Returns a string that is appropriate for display to the user.
+     * Returns a string that is appropriate to display to the user.
      * If possible, the string returned will be localized according to inLocale.
      * @param inLocale the string returned will be localized according to this value, if possible
-     * @return a string that is appropriate for display to the user.
+     * @return a string that is appropriate to display to the user.
      */
     public String getDisplayString(Locale inLocale); // TODO: toDisplayString ?
 }

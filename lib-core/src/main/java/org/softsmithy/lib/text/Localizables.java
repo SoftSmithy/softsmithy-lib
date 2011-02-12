@@ -27,36 +27,80 @@ import java.util.ListIterator;
 import java.util.Locale;
 
 /**
- *
+ * A utility class for {@link Localizable}s.
+ * @see Localizable
+ * @see Localizer
+ * @see LocalizedCollator
+ * @see Locale
  * @author puce
  */
 public class Localizables {
 
-    /** Creates a new instance of Localizables */
+    /** Should not be used. */
     private Localizables() {
     }
 
     /**
-     * Sorts an array of Localizables in the natural, locale-sensitive order of their getDisplayString(Locale)-representation
+     * Sorts an array of {@link Localizable}s in the natural, locale-sensitive order of
+     * their {@link Localizable#getDisplayString(java.util.Locale)}-representation.
+     * @param inLocale selects the localized display strings and the natural,
+     * locale-sensitive order for this locale
+     * @param localizables the localizables to sort
      */
     public static void sort(Locale inLocale, Localizable... localizables) {
         sort(new LocalizableLocalizer(), inLocale, localizables);
     }
 
-    public static void sort(LocalizedCollator collator, Localizable... localizables) {
+    /**
+     * Sorts an array of {@link Localizable}s in the natural, locale-sensitive order of
+     * their {@link Localizable#getDisplayString(java.util.Locale)}-representation
+     * as specified by the collator.
+     * @param collator selects the localized display strings and specifies the natural,
+     * locale-sensitive order for this locale
+     * @param localizables the localizables to sort
+     */
+    public static void sort(LocalizedCollator collator,
+            Localizable... localizables) {
         sort(new LocalizableLocalizer(), collator, localizables);
     }
 
+    /**
+     * Sorts an array of {@link Localizable}s in the natural, locale-sensitive order of
+     * their {@link Localizable#getDisplayString(java.util.Locale)}-representation
+     * (uses the default locale).
+     * @param localizables the localizables to sort
+     * @see Locale#getDefault()
+     */
     public static void sort(Localizable... localizables) {
         sort(Locale.getDefault(), localizables);
     }
 
-    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, T... array) {
-        sort(localizer, new LocalizedCollator(inLocale), array);
+    /**
+     * Sorts an array of objects in the natural, locale-sensitive order of 
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation.
+     * @param localizer gets the localized display strings of the objects
+     * @param inLocale selects the localized display strings and the natural,
+     * locale-sensitive order for this locale
+     * @param objects the objects to sort
+     */
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale,
+            T... objects) {
+        sort(localizer, new LocalizedCollator(inLocale), objects);
     }
-    
-    public static <T> void sort(Localizer<? super T> localizer, LocalizedCollator collator, T... objects) {
-        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(objects, localizer, collator);
+
+    /**
+     * Sorts an array of objects in the natural, locale-sensitive order of
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation
+     * as specified by the collator.
+     * @param localizer gets the localized display strings of the objects
+     * @param collator selects the localized display strings and specifies the natural,
+     * locale-sensitive order for this locale
+     * @param objects the objects to sort
+     */
+    public static <T> void sort(Localizer<? super T> localizer,
+            LocalizedCollator collator, T... objects) {
+        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(objects,
+                localizer, collator);
         Collections.sort(keys);
         int i = 0;
         for (GenericCollationKey<T> key : keys) {
@@ -65,31 +109,79 @@ public class Localizables {
         }
     }
 
+    /**
+     * Sorts an array of objects in the natural, locale-sensitive order of
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation
+     * (uses the default locale).
+     * @param localizer gets the localized display strings of the objects
+     * @param objects the objects to sort
+     */
     public static <T> void sort(Localizer<? super T> localizer, T... array) {
         sort(localizer, Locale.getDefault(), array);
     }
 
     /**
-     * Sorts a List of Localizables in the natural, locale-sensitive order of their getDisplayString(Locale)-representation
+     * Sorts a list of {@link Localizable}s in the natural, locale-sensitive order of their
+     * {@link Localizable#getDisplayString(java.util.Locale)}-representation.
+     * @param inLocale selects the localized display strings and the natural,
+     * locale-sensitive order for this locale
+     * @param localizables the localizables to sort
      */
-    public static void sort(Locale inLocale, List<? extends Localizable> localizables) {
+    public static void sort(Locale inLocale,
+            List<? extends Localizable> localizables) {
         sort(new LocalizableLocalizer(), inLocale, localizables);
     }
 
-    public static void sort(LocalizedCollator collator, List<? extends Localizable> localizables) {
+    /**
+     * Sorts a list of {@link Localizable}s in the natural, locale-sensitive order of their
+     * {@link Localizable#getDisplayString(java.util.Locale)}-representation
+     * as specified by the collator.
+     * @param collator selects the localized display strings and specifies the natural,
+     * locale-sensitive order for this locale
+     * @param localizables the localizables to sort
+     */
+    public static void sort(LocalizedCollator collator,
+            List<? extends Localizable> localizables) {
         sort(new LocalizableLocalizer(), collator, localizables);
     }
 
+    /**
+     * Sorts a list of {@link Localizable}s in the natural, locale-sensitive order of their
+     * {@link Localizable#getDisplayString(java.util.Locale)}-representation
+     * (uses the default locale).
+     * @param localizables the localizables to sort
+     * @see Locale#getDefault()
+     */
     public static void sort(List<? extends Localizable> localizables) {
         sort(Locale.getDefault(), localizables);
     }
 
-    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, List<T> list) {
+    /**
+     * Sorts a list of objects in the natural, locale-sensitive order of
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation.
+     * @param localizer gets the localized display strings of the objects
+     * @param inLocale selects the localized display strings and the natural,
+     * locale-sensitive order for this locale
+     * @param list the objects to sort
+     */
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale,
+            List<T> list) {
         sort(localizer, new LocalizedCollator(inLocale), list);
     }
-    
-    public static <T> void sort(Localizer<? super T> localizer, LocalizedCollator collator, List<T> list) {
-        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(list, localizer, collator);
+
+    /**
+     * Sorts a list of objects in the natural, locale-sensitive order of
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation
+     * as specified by the collator.
+     * @param localizer gets the localized display strings of the objects
+     * @param collator selects the localized display strings and specifies the natural,
+     * locale-sensitive order for this locale
+     * @param list the objects to sort
+     */
+    public static <T> void sort(Localizer<? super T> localizer,
+            LocalizedCollator collator, List<T> list) {
+        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(list,
+                localizer, collator);
         Collections.sort(keys);
         ListIterator<T> listIterator = list.listIterator();
         for (GenericCollationKey<T> key : keys) {
@@ -98,20 +190,35 @@ public class Localizables {
         }
     }
 
-    public static <T> void sort(Localizer<? super T> localizer, List<T> localizables) {
-        sort(localizer, Locale.getDefault(), localizables);
+    /**
+     * Sorts a list of objects in the natural, locale-sensitive order of
+     * their {@link Localizer#getDisplayString(java.lang.Object, java.util.Locale)}-representation
+     * (uses the default locale).
+     * @param localizer gets the localized display strings of the objects
+     * @param list the objects to sort
+     * @see Locale#getDefault()
+     */
+    public static <T> void sort(Localizer<? super T> localizer,
+            List<T> list) {
+        sort(localizer, Locale.getDefault(), list);
     }
 
-    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(T[] array, Localizer<? super T> localizer, LocalizedCollator collator) {
-        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(array.length);
+    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(
+            T[] array, Localizer<? super T> localizer,
+            LocalizedCollator collator) {
+        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(
+                array.length);
         for (T element : array) {
             keys.add(collator.getCollationKey(element, localizer));
         }
         return keys;
     }
 
-    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(Collection<T> collection, Localizer<? super T> localizer, LocalizedCollator collator) {
-        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(collection.size());
+    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(
+            Collection<T> collection, Localizer<? super T> localizer,
+            LocalizedCollator collator) {
+        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(collection.
+                size());
         for (T element : collection) {
             keys.add(collator.getCollationKey(element, localizer));
         }
