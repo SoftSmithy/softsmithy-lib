@@ -1,9 +1,12 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
-            - Project migration: Ant -> Maven
+	    - Project migration: Ant -> Maven
             - Project migration: Subversion -> Mercurial
             - License upgraded: SPL -> CDDL
+            - Project versioning aligned with Maven versioning, starting with v0.1
+            - Project versioning aligned with org.softsmithy.lib project version
+            - org.softsmithy.devlib.junit.Tests added
 
 v20100524:  - API refactorings/ clean-ups after initial release
 (Rev.: 470) - New dependency to SoftSmithy Utility Library
