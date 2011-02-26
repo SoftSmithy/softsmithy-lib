@@ -53,6 +53,7 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
         sampleTable = new org.softsmithy.lib.swing.JXTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Row Number Header Sample");
 
         sampleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,7 +74,7 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

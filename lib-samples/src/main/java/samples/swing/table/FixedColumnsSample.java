@@ -93,6 +93,7 @@ public class FixedColumnsSample extends javax.swing.JFrame {
         bigBeansTable = new org.softsmithy.lib.swing.JXTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fixed Columns Sample");
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
