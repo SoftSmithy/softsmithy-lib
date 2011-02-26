@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
  */
 public interface TableRowHeaderController {
 
-    void registerRowHeader(JScrollPane scrollPane);
+    void configureRowHeader(JScrollPane scrollPane);
 
-    public void unregisterRowHeader(JScrollPane scrollPane);
+    public void unconfigureRowHeader(JScrollPane scrollPane);
 }

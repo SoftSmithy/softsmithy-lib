@@ -14,29 +14,36 @@
 package org.softsmithy.lib.swing.table;
 
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author puce
+ * @see JRowHeaderTable
  */
 public class DefaultTableRowHeaderController implements TableRowHeaderController {
 
-    private final JRowHeaderTable rowHeaderTable;
+    private final JTable rowHeaderTable;
 
-    public DefaultTableRowHeaderController(JRowHeaderTable rowHeaderTable) {
+    /**
+     * Creates a new instance of this class.
+     * @param rowHeaderTable a row header table
+     * @see JRowHeaderTable
+     */
+    public DefaultTableRowHeaderController(JTable rowHeaderTable) {
         this.rowHeaderTable = rowHeaderTable;
     }
 
     @Override
-    public void registerRowHeader(JScrollPane scrollPane) {
+    public void configureRowHeader(JScrollPane scrollPane) {
         scrollPane.setRowHeaderView(rowHeaderTable);
-        scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER,
+        scrollPane.setCorner(JScrollPane.UPPER_LEADING_CORNER,
                 rowHeaderTable.getTableHeader());
     }
 
     @Override
-    public void unregisterRowHeader(JScrollPane scrollPane) {
+    public void unconfigureRowHeader(JScrollPane scrollPane) {
         scrollPane.setRowHeaderView(null);
-        scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER, null);
+        scrollPane.setCorner(JScrollPane.UPPER_LEADING_CORNER, null);
     }
 }

@@ -244,14 +244,25 @@ public class JXTable extends JTable {
     }
 
     @Override
-    public void addNotify() {
-        super.addNotify();
+    protected void configureEnclosingScrollPane() {
+        super.configureEnclosingScrollPane();
 
         JScrollPane scrollPane = getScrollPaneParent();
 
         if (tableRowHeaderController != null && scrollPane != null) {
-            tableRowHeaderController.registerRowHeader(scrollPane);
+            tableRowHeaderController.configureRowHeader(scrollPane);
         }
+    }
+
+    @Override
+    protected void unconfigureEnclosingScrollPane() {
+        JScrollPane scrollPane = getScrollPaneParent();
+
+        if (tableRowHeaderController != null && scrollPane != null) {
+            tableRowHeaderController.unconfigureRowHeader(scrollPane);
+        }
+
+        super.unconfigureEnclosingScrollPane();
     }
 
     public TableRowHeaderController getTableRowHeaderController() {
@@ -262,11 +273,11 @@ public class JXTable extends JTable {
             TableRowHeaderController tableRowHeaderFactory) {
         JScrollPane scrollPane = getScrollPaneParent();
         if (this.tableRowHeaderController != null && scrollPane != null) {
-            tableRowHeaderFactory.unregisterRowHeader(scrollPane);
+            tableRowHeaderFactory.unconfigureRowHeader(scrollPane);
         }
         this.tableRowHeaderController = tableRowHeaderFactory;
         if (this.tableRowHeaderController != null && scrollPane != null) {
-            tableRowHeaderFactory.registerRowHeader(scrollPane);
+            tableRowHeaderFactory.configureRowHeader(scrollPane);
         }
     }
 

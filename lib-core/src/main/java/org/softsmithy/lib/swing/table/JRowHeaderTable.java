@@ -13,14 +13,9 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JViewport;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import org.softsmithy.lib.swing.JXTable;
 
 /**
@@ -62,30 +57,30 @@ public class JRowHeaderTable extends JXTable {
         setPreferredScrollableViewportSize(getPreferredSize());
     }
 
-    @Override
-    public void addNotify() {
-        super.addNotify();
-
-        Component c = getParent();
-
-        //  Keep scrolling of the row table in sync with the main table.
-
-        if (c instanceof JViewport) {
-            JViewport viewport = (JViewport) c;
-            viewport.addChangeListener(new ChangeListener() {
-
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    //  Keep the scrolling of the row table in sync with main table
-
-                    JViewport viewport = (JViewport) e.getSource();
-                    JScrollPane scrollPane = (JScrollPane) viewport.getParent();
-                    scrollPane.getVerticalScrollBar().setValue(viewport.
-                            getViewPosition().y);
-                }
-            });
-        }
-    }
+//    @Override
+//    public void addNotify() {
+//        super.addNotify();
+//
+//        Component c = getParent();
+//
+//        //  Keep scrolling of the row table in sync with the main table.
+//
+//        if (c instanceof JViewport) {
+//            JViewport viewport = (JViewport) c;
+//            viewport.addChangeListener(new ChangeListener() {
+//
+//                @Override
+//                public void stateChanged(ChangeEvent e) {
+//                    //  Keep the scrolling of the row table in sync with main table
+//
+//                    JViewport viewport = (JViewport) e.getSource();
+//                    JScrollPane scrollPane = (JScrollPane) viewport.getParent();
+//                    scrollPane.getVerticalScrollBar().setValue(viewport.
+//                            getViewPosition().y);
+//                }
+//            });
+//        }
+//    }
 
     /*
      *  Delegate method to main table

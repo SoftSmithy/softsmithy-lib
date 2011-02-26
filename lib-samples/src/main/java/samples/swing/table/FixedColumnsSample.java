@@ -45,8 +45,8 @@ public class FixedColumnsSample extends javax.swing.JFrame {
     }
 
     private List<BigBean> createBigBeans() {
-        List<BigBean> bigBeans = new ArrayList<BigBean>(60000);
-        for (int i = 0; i < 60000; i++) {
+        List<BigBean> bigBeans = new ArrayList<BigBean>(60);
+        for (int i = 0; i < 60; i++) {
             BigBean bigBean = new BigBean();
             bigBean.setA("A " + (i + 1));
             bigBean.setB("B " + (i + 1));
@@ -195,7 +195,7 @@ private static class BigBeanRowHeaderTableModel extends AbstractRowHeaderTableMo
 
         @Override
         public int getRowCount() {
-            return 60000;
+            return bigBeans.size();
         }
 
         @Override
