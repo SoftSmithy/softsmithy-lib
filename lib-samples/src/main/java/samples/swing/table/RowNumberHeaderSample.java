@@ -19,7 +19,6 @@
  */
 package samples.swing.table;
 
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.AbstractTableModel;
 import org.softsmithy.lib.swing.table.DefaultTableRowHeaderController;
@@ -39,7 +38,6 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
         sampleTable.setCellSelectionEnabled(true);
         sampleTable.setTableRowHeaderController(new DefaultTableRowHeaderController(
                 new JRowNumberHeaderTable(sampleTable)));
-        sampleTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
     /** This method is called from within the constructor to

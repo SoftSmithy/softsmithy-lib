@@ -55,15 +55,9 @@ public class JRowHeaderTable extends JXTable {
 
         setFocusable(false);
         setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        //setAutoCreateColumnsFromModel(false);
-        //setModel(main.getModel());
+
         setSelectionModel(mainTable.getSelectionModel());
         rowHeaderTableModel.setTableModel(mainTable.getModel());
-
-//        TableColumn column = new TableColumn();
-//        column.setHeaderValue(" ");
-//        addColumn(column);
-        // column.setCellRenderer(new RowNumberRenderer());
 
         setPreferredScrollableViewportSize(getPreferredSize());
     }
@@ -114,42 +108,4 @@ public class JRowHeaderTable extends JXTable {
     public RowHeaderTableModel getRowHeaderTableModel() {
         return rowHeaderTableModel;
     }
-//
-//  Implement the ChangeListener
-//
-//
-//  Implement the PropertyChangeListener
-//
-    /*
-     *  Borrow the renderer from JDK1.4.2 table header
-     */
-//    private static class RowNumberRenderer extends DefaultTableCellRenderer {
-//
-//        public RowNumberRenderer() {
-//            setHorizontalAlignment(JLabel.CENTER);
-//        }
-//
-//        public Component getTableCellRendererComponent(
-//                JTable table, Object value, boolean isSelected, boolean hasFocus,
-//                int row, int column) {
-//            if (table != null) {
-//                JTableHeader header = table.getTableHeader();
-//
-//                if (header != null) {
-//                    setForeground(header.getForeground());
-//                    setBackground(header.getBackground());
-//                    setFont(header.getFont());
-//                }
-//            }
-//
-//            if (isSelected) {
-//                setFont(getFont().deriveFont(Font.BOLD));
-//            }
-//
-//            setText((value == null) ? "" : value.toString());
-//            setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-//
-//            return this;
-//        }
-//    }
 }
