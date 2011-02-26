@@ -76,8 +76,15 @@
                     <outputDirectory>${dist.directory}</outputDirectory>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
