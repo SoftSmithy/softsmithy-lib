@@ -31,6 +31,7 @@ public abstract class AbstractCellTableModel extends AbstractTableModel implemen
     public AbstractCellTableModel() {
     }
 
+    @Override
     public Class getCellClass(int row, int column) {
         return getValueAt(row, column).getClass();
     }

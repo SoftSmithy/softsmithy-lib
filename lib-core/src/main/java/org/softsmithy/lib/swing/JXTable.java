@@ -24,9 +24,11 @@ import org.softsmithy.lib.util.*;
 
 public class JXTable extends JTable {
 
+    private TableRowHeaderController tableRowHeaderController;
     //
     // Constructors
     //
+
     /**
      * Constructs a default <code>JTable</code> that is initialized with a default
      * data model, a default column model, and a default selection
@@ -147,17 +149,27 @@ public class JXTable extends JTable {
     private void init() {
         setDefaultRenderer(Color.class, new ColorCellRenderer(true));
         setDefaultRenderer(Font.class, new FontCellRenderer(true));
-        setDefaultRenderer(Locale.class, new XDefaultTableCellRenderer(new LocaleCellRenderer()));
-        setDefaultRenderer(Integer.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
-        setDefaultRenderer(Long.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
-        setDefaultRenderer(Short.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
-        setDefaultRenderer(Byte.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
-        setDefaultRenderer(BigInteger.class, new XDefaultTableCellRenderer(new WholeNumberCellRenderer()));
-        setDefaultRenderer(Double.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
-        setDefaultRenderer(Float.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
-        setDefaultRenderer(BigDecimal.class, new XDefaultTableCellRenderer(new LocalizedRealNumberCellRenderer()));
+        setDefaultRenderer(Locale.class, new XDefaultTableCellRenderer(
+                new LocaleCellRenderer()));
+        setDefaultRenderer(Integer.class, new XDefaultTableCellRenderer(
+                new WholeNumberCellRenderer()));
+        setDefaultRenderer(Long.class, new XDefaultTableCellRenderer(
+                new WholeNumberCellRenderer()));
+        setDefaultRenderer(Short.class, new XDefaultTableCellRenderer(
+                new WholeNumberCellRenderer()));
+        setDefaultRenderer(Byte.class, new XDefaultTableCellRenderer(
+                new WholeNumberCellRenderer()));
+        setDefaultRenderer(BigInteger.class, new XDefaultTableCellRenderer(
+                new WholeNumberCellRenderer()));
+        setDefaultRenderer(Double.class, new XDefaultTableCellRenderer(
+                new LocalizedRealNumberCellRenderer()));
+        setDefaultRenderer(Float.class, new XDefaultTableCellRenderer(
+                new LocalizedRealNumberCellRenderer()));
+        setDefaultRenderer(BigDecimal.class, new XDefaultTableCellRenderer(
+                new LocalizedRealNumberCellRenderer()));
         //setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
-        setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(getLocale()));
+        setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(
+                getLocale()));
 
         setDefaultEditor(Color.class, new ColorCellEditor());
         setDefaultEditor(Font.class, new FontCellEditor());
@@ -167,10 +179,14 @@ public class JXTable extends JTable {
         setDefaultEditor(Byte.class, new ByteCellEditor(getLocale()));
         setDefaultEditor(BigInteger.class, new BigIntegerCellEditor(getLocale()));
         setDefaultEditor(Float.class, new LocalizedFloatCellEditor(getLocale()));
-        setDefaultEditor(Double.class, new LocalizedDoubleCellEditor(getLocale()));
-        setDefaultEditor(BigDecimal.class, new LocalizedBigDecimalCellEditor(getLocale()));
-        setDefaultEditor(HorizontalAlignment.class, new HorizontalAlignmentCellEditor(getLocale()));
-        setDefaultEditor(TypesafeEnum.class, new TypesafeEnumCellEditor(getLocale()));
+        setDefaultEditor(Double.class,
+                new LocalizedDoubleCellEditor(getLocale()));
+        setDefaultEditor(BigDecimal.class, new LocalizedBigDecimalCellEditor(
+                getLocale()));
+        setDefaultEditor(HorizontalAlignment.class, new HorizontalAlignmentCellEditor(
+                getLocale()));
+        setDefaultEditor(TypesafeEnum.class, new TypesafeEnumCellEditor(
+                getLocale()));
     }
 
     // E.g. useable after locale has changed
@@ -196,7 +212,8 @@ public class JXTable extends JTable {
     public TableCellEditor getDefaultEditor(Class columnClass) {
         TableCellEditor editor = super.getDefaultEditor(columnClass);
         if (editor == null && columnClass != null && columnClass.isPrimitive()) {
-            editor = super.getDefaultEditor(Classes.getWrapperClass(columnClass));
+            editor =
+                    super.getDefaultEditor(Classes.getWrapperClass(columnClass));
         }
         return editor;
     }
@@ -220,8 +237,50 @@ public class JXTable extends JTable {
     public TableCellRenderer getDefaultRenderer(Class columnClass) {
         TableCellRenderer renderer = super.getDefaultRenderer(columnClass);
         if (renderer == null && columnClass != null && columnClass.isPrimitive()) {
-            renderer = super.getDefaultRenderer(Classes.getWrapperClass(columnClass));
+            renderer = super.getDefaultRenderer(Classes.getWrapperClass(
+                    columnClass));
         }
         return renderer;
+    }
+
+    @Override
+    public void addNotify() {
+        super.addNotify();
+
+        JScrollPane scrollPane = getScrollPaneParent();
+
+        if (tableRowHeaderController != null && scrollPane != null) {
+            tableRowHeaderController.registerRowHeader(scrollPane);
+        }
+    }
+
+    public TableRowHeaderController getTableRowHeaderController() {
+        return tableRowHeaderController;
+    }
+
+    public void setTableRowHeaderController(
+            TableRowHeaderController tableRowHeaderFactory) {
+        JScrollPane scrollPane = getScrollPaneParent();
+        if (this.tableRowHeaderController != null && scrollPane != null) {
+            tableRowHeaderFactory.unregisterRowHeader(scrollPane);
+        }
+        this.tableRowHeaderController = tableRowHeaderFactory;
+        if (this.tableRowHeaderController != null && scrollPane != null) {
+            tableRowHeaderFactory.registerRowHeader(scrollPane);
+        }
+    }
+
+    private JScrollPane getScrollPaneParent() {
+        Component c = getParent();
+        if (c instanceof JViewport) {
+            JViewport viewport = (JViewport) c;
+            if (viewport instanceof JViewport) {
+                Container viewportParent = viewport.getParent();
+                if (viewportParent instanceof JScrollPane) {
+                    return (JScrollPane) viewportParent;
+                }
+            }
+        }
+        return null;
     }
 }

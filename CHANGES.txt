@@ -9,12 +9,19 @@ v${project.version} (Changeset: ${changeSet}):
             - org.softsmithy.lib.text.Localizables.LocalizableCollationKey -> org.softsmithy.lib.text.GenericCollationKey
             - org.softsmithy.lib.text.LocalizedCollator added
             - org.softsmithy.lib.util.EqulatiyVerifier framework replaced with -> org.softsmithy.lib.util.Matcher framework
+            - org.softsmithy.lib.swing.table.TableRowHeaderController framework added
+            - org.softsmithy.lib.swing.table.AbstractRowHeaderTableModel added
+            - org.softsmithy.lib.swing.table.DefaultTableRowHeaderController added
+            - org.softsmithy.lib.swing.table.JRowHeaderTable added
+            - org.softsmithy.lib.swing.table.JRowNumberHeaderTable added
+            - org.softsmithy.lib.swing.table.RowHeaderTableModel added
             - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
             - org.softsmithy.lib.util.Lists.getFirst(List) added
             - org.softsmithy.lib.util.Lists.getLast(List) added
             - generified classes
             - removed warnings
             - Javadocs added
+            - TableRowHeaderController samples added
             - small fixes
             - changed to NetBeans 6.9.1
 
