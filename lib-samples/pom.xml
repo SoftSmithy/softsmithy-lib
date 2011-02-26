@@ -4,12 +4,12 @@
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>lib-parent</artifactId>
-        <version>0.1</version>
+        <version>0.1.1-SNAPSHOT</version>
         <relativePath>../lib-parent</relativePath>
     </parent>
     <artifactId>lib-samples</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Samples</name>
     <url>http://www.softsmithy.org</url>
     <description>Samples for the SoftSmithy Utility Library.</description>

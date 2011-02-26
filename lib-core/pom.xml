@@ -4,12 +4,12 @@
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>lib-parent</artifactId>
-        <version>0.1</version>
+        <version>0.1.1-SNAPSHOT</version>
         <relativePath>../lib-parent</relativePath>
     </parent>
     <artifactId>lib-core</artifactId>
     <packaging>jar</packaging>
-    <version>0.1</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Core</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java utility library.</description>
