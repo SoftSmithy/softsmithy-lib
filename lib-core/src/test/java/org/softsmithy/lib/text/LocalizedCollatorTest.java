@@ -72,7 +72,7 @@ public class LocalizedCollatorTest extends TestCase {
         System.out.println("getCollationKey");
         CountryCode source = TEST_COUNTRY_CODE;
         LocalizedCollator instance = new LocalizedCollator(LOCALE);
-        GenericCollationKey result = instance.getCollationKey(source);
+        GenericCollationKey<CountryCode> result = instance.getCollationKey(source);
         assertEquals(source, result.getSource());
         assertEquals(Collator.getInstance(LOCALE).getCollationKey(TEST_COUNTRY_CODE.getDisplayString(LOCALE)), result.getCollationKey());
     }
@@ -84,8 +84,7 @@ public class LocalizedCollatorTest extends TestCase {
         System.out.println("getCollationKey");
         Locale source = TEST_LOCALE;
         LocalizedCollator instance = new LocalizedCollator(LOCALE);
-        GenericCollationKey expResult = null;
-        GenericCollationKey result =
+        GenericCollationKey<Locale> result =
                 instance.getCollationKey(source, LocaleLocalizer.LANGUAGE);
         assertEquals(source, result.getSource());
         assertEquals(Collator.getInstance(LOCALE).getCollationKey(LocaleLocalizer.LANGUAGE.getDisplayString(source, LOCALE)), result.getCollationKey());

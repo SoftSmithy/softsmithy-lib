@@ -163,8 +163,8 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     }
 
     private void clearSelectionOnly() {
-        for (Iterator i = selectedList.iterator(); i.hasNext();) {
-            JCustomizer customizer = (JCustomizer) i.next();
+        for (Iterator<JCustomizer> i = selectedList.iterator(); i.hasNext();) {
+            JCustomizer customizer = i.next();
             customizer.getStateManager().setStateNormal();
         //customizer.removeCustomizerListener(this);
         }
@@ -205,8 +205,8 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     private void fireSelectionChanged() {
         fireingSelectionChanged = true;
         CustomizerSelectionEvent e = new CustomizerSelectionEvent(this, Collections.unmodifiableSet(selectedSet), getActiveCustomizer(), getCommonCustomizableProperties());
-        for (Iterator i = listeners.iterator(); i.hasNext();) {
-            ((CustomizerSelectionListener) i.next()).selectionChanged(e);
+        for (Iterator<CustomizerSelectionListener> i = listeners.iterator(); i.hasNext();) {
+            i.next().selectionChanged(e);
         }
         fireingSelectionChanged = false;
     }
@@ -240,8 +240,8 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     private void revalidate() {
         if (getActiveCustomizer() != null) {
             getActiveCustomizer().removeCustomizerListener(this);
-            for (Iterator i = commonCustomizableProperties.iterator(); i.hasNext();) {
-                getActiveCustomizer().removePropertyChangeListener((String) i.next(), this);
+            for (Iterator<String> i = commonCustomizableProperties.iterator(); i.hasNext();) {
+                getActiveCustomizer().removePropertyChangeListener(i.next(), this);
             }
         }
         this.activeCustomizer = selectedList.isEmpty() ? null : selectedList.get(selectedList.size() - 1);
@@ -256,8 +256,8 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         resetFactors();
         if (getActiveCustomizer() != null) {
             getActiveCustomizer().addCustomizerListener(this);
-            for (Iterator i = this.commonCustomizableProperties.iterator(); i.hasNext();) {
-                String property = (String) i.next();
+            for (Iterator<String> i = this.commonCustomizableProperties.iterator(); i.hasNext();) {
+                String property = i.next();
                 //System.out.println("Property Change Listener added for: " + property);
                 getActiveCustomizer().addPropertyChangeListener(property, this);
             }
