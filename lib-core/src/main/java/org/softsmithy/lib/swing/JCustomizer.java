@@ -335,9 +335,9 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
      * @param e the CustomizerEvent
      */
   public void fireCustomizerResetBoundsRel(CustomizerEvent e){
-    for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerResetBoundsRel(e);
-    }
+      for (Iterator<CustomizerListener> i = listeners.iterator(); i.hasNext();) {
+          i.next().customizerResetBoundsRel(e);
+      }
   }
   
       /**
@@ -346,9 +346,9 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
      * @param e the CustomizerEvent
      */
   public void fireCustomizerReshapeRel(CustomizerEvent e){
-    for (Iterator i=listeners.iterator(); i.hasNext();){
-      ((CustomizerListener) i.next()).customizerReshapeRel(e);
-    }
+      for (Iterator<CustomizerListener> i = listeners.iterator(); i.hasNext();) {
+          i.next().customizerReshapeRel(e);
+      }
   }
   
   //  /*package-private*/ void registerListeners(JCustomizerPane parent){
