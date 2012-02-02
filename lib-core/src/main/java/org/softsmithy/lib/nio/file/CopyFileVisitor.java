@@ -29,11 +29,13 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
             throws IOException {
-        Path targetdir = target.resolve(source.relativize(dir));
+        Path targetDir = PathUtils.resolve(target, source.relativize(dir));
         try {
-            Files.copy(dir, targetdir);
+            if (!Files.exists(targetDir)) {
+                Files.copy(dir, targetDir);
+            }
         } catch (FileAlreadyExistsException e) {
-            if (!Files.isDirectory(targetdir)) {
+            if (!Files.isDirectory(targetDir)) {
                 throw e;
             }
         }
@@ -41,9 +43,8 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
     }
 
     @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
-            throws IOException {
-        Path targetFile = target.resolve(source.relativize(file));
+    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        Path targetFile = PathUtils.resolve(target, source.relativize(file));
         if (!Files.exists(targetFile)) {
             Files.copy(file, targetFile);
         }
