@@ -20,7 +20,6 @@
 
 package org.softsmithy.lib.swing;
 
-import org.softsmithy.lib.internal.TableLayoutConstraints;
 import org.softsmithy.lib.internal.TableLayout;
 import javax.swing.*;
 
@@ -29,8 +28,6 @@ import javax.swing.*;
  * @author  puce
  */
 class JGlassedComponent extends JXPanel {
-  
-    private static final TableLayoutConstraints CONSTRAINTS = new TableLayoutConstraints();
     
      private JComponent component = null;
   
