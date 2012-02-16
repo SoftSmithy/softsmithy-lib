@@ -20,6 +20,8 @@
 
 package org.softsmithy.lib.swing;
 
+import org.softsmithy.lib.internal.TableLayoutConstraints;
+import org.softsmithy.lib.internal.TableLayout;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -27,7 +29,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import org.softsmithy.lib.swing.customizer.*;
 import org.softsmithy.lib.swing.event.*;
-import org.softsmithy.lib.test.*;
 
 
 

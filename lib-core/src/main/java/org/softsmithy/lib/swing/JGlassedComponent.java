@@ -20,8 +20,9 @@
 
 package org.softsmithy.lib.swing;
 
+import org.softsmithy.lib.internal.TableLayoutConstraints;
+import org.softsmithy.lib.internal.TableLayout;
 import javax.swing.*;
-import org.softsmithy.lib.test.*;
 
 /**
  *

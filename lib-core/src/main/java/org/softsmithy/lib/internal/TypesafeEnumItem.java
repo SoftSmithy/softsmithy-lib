@@ -13,7 +13,7 @@
  */
 
 
-package org.softsmithy.lib.test;
+package org.softsmithy.lib.internal;
 
 import java.util.*;
 import org.softsmithy.lib.util.*;

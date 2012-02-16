@@ -36,4 +36,4 @@
  *
  * <!-- Put @see and @since tags down here. -->
  */
-package org.softsmithy.lib.test;
+package org.softsmithy.lib.internal;

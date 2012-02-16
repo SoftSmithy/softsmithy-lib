@@ -1,4 +1,4 @@
-package org.softsmithy.lib.test;
+package org.softsmithy.lib.internal;
 
 
 
