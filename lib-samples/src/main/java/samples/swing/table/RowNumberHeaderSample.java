@@ -34,10 +34,11 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
     public RowNumberHeaderSample() {
         initComponents();
         sampleTable.setModel(new SampleTableModel());
-        sampleTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        sampleTable.setSelectionMode(
+                ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         sampleTable.setCellSelectionEnabled(true);
-        sampleTable.setTableRowHeaderController(new DefaultTableRowHeaderController(
-                new JRowNumberHeaderTable(sampleTable)));
+        sampleTable.setTableRowHeaderController(new DefaultTableRowHeaderController(new JRowNumberHeaderTable(
+                sampleTable)));
     }
 
     /** This method is called from within the constructor to
@@ -104,7 +105,7 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private org.softsmithy.lib.swing.JXTable sampleTable;
     // End of variables declaration//GEN-END:variables
-private class SampleTableModel extends AbstractTableModel {
+    private class SampleTableModel extends AbstractTableModel {
 
         @Override
         public int getRowCount() {
