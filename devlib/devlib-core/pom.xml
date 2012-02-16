@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.softsmithy.lib</groupId>
-        <artifactId>lib-parent</artifactId>
+        <artifactId>softsmithy-lib-parent</artifactId>
         <version>0.1.1-SNAPSHOT</version>
         <relativePath>../../lib-parent</relativePath>
     </parent>
     <groupId>org.softsmithy.devlib</groupId>
-    <artifactId>devlib-core</artifactId>
+    <artifactId>softsmithy-devlib-core</artifactId>
     <packaging>jar</packaging>
     <version>0.1.1-SNAPSHOT</version>
     <name>SoftSmithy Development Utility Library - Core</name>
@@ -33,10 +33,42 @@
         <maven>${maven.version}</maven>
     </prerequisites>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <reportPlugins> 
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <configuration>
+                                <detectLinks>true</detectLinks>
+                                <links>
+                                    <!-- javadoc link for javax.persistence -->
+                                    <link>http://java.sun.com/javaee/6/docs/api</link>
+                                </links>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>cobertura-maven-plugin</artifactId>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>    
+        </plugins>    
+    </build>
+    
     <dependencies>
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
-            <artifactId>lib-core</artifactId>
+            <artifactId>softsmithy-lib-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -50,24 +82,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <detectLinks>true</detectLinks>
-                    <links>
-                        <!-- javadoc link for javax.persistence -->
-                        <link>http://java.sun.com/javaee/6/docs/api</link>
-                    </links>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.4</version>
-            </plugin>
-        </plugins>
-    </reporting>
+   
 </project>
