@@ -10,7 +10,7 @@
     <artifactId>softsmithy-lib-all</artifactId>
     <version>0.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>SoftSmithy Utility Library - Multi Module Project</name>
+    <name>SoftSmithy Utility Library - All</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java utility library.</description>
     <inceptionYear>2002</inceptionYear>

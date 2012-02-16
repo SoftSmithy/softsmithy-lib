@@ -11,7 +11,7 @@
     <artifactId>softsmithy-devlib-all</artifactId>
     <version>0.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>SoftSmithy Development Utility Library - Multi Module Project</name>
+    <name>SoftSmithy Development Utility Library - All</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
