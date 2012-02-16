@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.softsmithy.lib</groupId>
-        <artifactId>lib-parent</artifactId>
+        <artifactId>softsmithy-lib-parent</artifactId>
         <version>0.1.1-SNAPSHOT</version>
         <relativePath>../lib-parent</relativePath>
     </parent>
-    <artifactId>lib-samples</artifactId>
+    <artifactId>softsmithy-lib-samples</artifactId>
     <packaging>jar</packaging>
     <version>0.1.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Samples</name>
@@ -87,7 +87,7 @@
     <dependencies>
         <dependency>
             <groupId>org.softsmithy.lib</groupId>
-            <artifactId>lib-core</artifactId>
+            <artifactId>softsmithy-lib-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
