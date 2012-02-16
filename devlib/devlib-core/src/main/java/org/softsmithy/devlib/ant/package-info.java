@@ -12,4 +12,4 @@
  * Contributor(s): .
  */
 
-package org.softsmithy.lib.dev.ant;
+package org.softsmithy.devlib.ant;

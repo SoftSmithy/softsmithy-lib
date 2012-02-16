@@ -18,7 +18,7 @@
  * Created on 30. Oktober 2002, 16:31
  */
 
-package org.softsmithy.lib.dev.ant;
+package org.softsmithy.devlib.ant;
 
 import java.io.*;
 import java.util.*;
