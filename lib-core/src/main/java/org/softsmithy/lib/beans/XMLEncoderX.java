@@ -119,7 +119,7 @@ public class XMLEncoderX extends XMLEncoder {
      */
     @Override
     protected Expression instantiate(Object oldInstance, Encoder out) {
-      Class cls = oldInstance.getClass();
+      Class<?> cls = oldInstance.getClass();
       Field[] fields = cls.getFields();
       for(int i = 0; i < fields.length; i++) {
         Field field = fields[i];

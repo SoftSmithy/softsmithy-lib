@@ -158,6 +158,7 @@ public class WholeNumberFormatter extends AbstractXNumberFormatter {
     setMinimum(minimumBigIntegerValue);
   }
   
+  @Override
   protected Number stringToNumber(String text) throws NumberFormatException {
     return new BigInteger(text);
   }
