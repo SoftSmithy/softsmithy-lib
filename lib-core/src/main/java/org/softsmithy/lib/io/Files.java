@@ -17,14 +17,15 @@ import java.io.*;
 import java.util.*;
 
 /**
- * A utility class for Files. <br>
- * Note: The API may change in a future version!
- *<br><br>
- * @author    Florian Brunner
+ * A utility class for Files. <br> Note: The API may change in a future version! <br><br>
+ *
+ * @author Florian Brunner
  * @see java.io.File
  */
 public class Files {
 
+    private Files() {
+    }
     /**
      * A file extension. May be removed in a future version.
      */
@@ -53,8 +54,8 @@ public class Files {
     /**
      * Gets the extension of a file
      *
-     * @param f  the file whose extension should be fetched
-     * @return   the extension of the specified file
+     * @param f the file whose extension should be fetched
+     * @return the extension of the specified file
      */
     public static String getExtension(File f) {
         String ext = "";
@@ -70,8 +71,8 @@ public class Files {
     /**
      * Gets the first name of a file (from start to the first point).
      *
-     * @param f  the file whose first name should be fetched
-     * @return   the first name of the specified file
+     * @param f the file whose first name should be fetched
+     * @return the first name of the specified file
      */
     public static String getFirstName(File f) {
         String firstName = "";
@@ -85,10 +86,10 @@ public class Files {
     }
 
     /**
-     *  Gets the name of a file (from start to the last point).
+     * Gets the name of a file (from start to the last point).
      *
-     * @param f  the file whose name should be fetched
-     * @return   the name of the specified file
+     * @param f the file whose name should be fetched
+     * @return the name of the specified file
      *
      * Should this method be renamed?
      */
@@ -104,26 +105,25 @@ public class Files {
     }
 
     /**
-     * Reads the lines from a text file.<br>
-     * <br>
-     * Return type may change to List&lt;String&gt; in future!?
+     * Reads the lines from a text file.<br> <br> Return type may change to List&lt;String&gt; in future!?
+     *
      * @param file the text file
      * @return the lines read from a text file
-     * @throws java.io.FileNotFoundException 
-     * @throws java.io.IOException 
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.IOException
      */
     public static String[] readLines(File file) throws FileNotFoundException, IOException {
-        FileReader reader = new FileReader(file);
-        String[] lines = Streams.readLines(reader);
-        reader.close(); // is this ok?
-        return lines;
+        try (FileReader reader = new FileReader(file)) {
+            return Streams.readLines(reader);
+        }
     }
 
     /**
      * Deletes (optionally recursivly) the specified file or directory.
+     *
      * @param file the file or directory to be deleted
-     * @param recursivly If true, deletes the directory recursivly. If false or if file is
-     * not a directory, only the specified file gets deleted.
+     * @param recursivly If true, deletes the directory recursivly. If false or if file is not a directory, only the
+     * specified file gets deleted.
      * @return true, if all files/ directories could be deleted, else false.
      */
     public static boolean delete(File file, boolean recursivly) {
@@ -138,17 +138,16 @@ public class Files {
     }
 
     /**
-     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br>
-     * <br>
-     * This will be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br>
-     * <br>
-     * Note: return type might change to List&lt;String&gt; with java v1.5
+     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br> <br> This will
+     * be always true: <br>
+     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br> Note: return type might
+     * change to List&lt;String&gt; with java v1.5
+     *
      * @param path the path
      * @return the path names. If the path is absolute the root is NOT inclueded!
      */
     public static String[] getPathNames(File path) {
-        List<String> pathList = new ArrayList<String>();
+        List<String> pathList = new ArrayList<>();
         File currentPath = path;
         addPathName(currentPath, pathList);
         while (currentPath.getParentFile() != null) {
@@ -161,17 +160,17 @@ public class Files {
 
     /**
      * Gets a file from path names.
-     * 
+     *
      * @param paths the path names
      * @return the file representing the specified path
      */
     public static File getFile(String... paths) {
-            return getFile(null, paths);
+        return getFile(null, paths);
     }
 
     /**
      * Gets a file from path names.
-     * 
+     *
      * @param paths the path names
      * @return the file representing the specified path
      */
@@ -184,14 +183,11 @@ public class Files {
     }
 
     /**
-     * Get the root of an absolute file or directory.<br>
-     * <br>
-     * This will be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br>
-     * <br>
+     * Get the root of an absolute file or directory.<br> <br> This will be always true: <br>
+     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br>
+     *
      * @param file a file or directory
-     * @return the root of the specified file or directory 
-     *         or null if it is not absolute
+     * @return the root of the specified file or directory or null if it is not absolute
      */
     public static File getRoot(File file) {
         if (file.isAbsolute()) {

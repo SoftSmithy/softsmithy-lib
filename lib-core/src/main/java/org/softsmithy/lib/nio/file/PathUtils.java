@@ -21,6 +21,9 @@ import java.nio.file.Path;
  */
 public class PathUtils {
 
+    private PathUtils() {
+    }
+
     public static Path resolve(Path path1, Path path2) {
         if (path1.getFileSystem().equals(path2.getFileSystem())) {
             return path1.resolve(path2);
