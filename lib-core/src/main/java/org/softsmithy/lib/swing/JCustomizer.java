@@ -67,7 +67,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     /**
      * The customizer listeners.
      */
-  private final Set<CustomizerListener> listeners = new HashSet<CustomizerListener>();
+  private final Set<CustomizerListener> listeners = new HashSet<>();
     /**
      * The layout constraints.
      */
@@ -99,7 +99,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
     setComponent(component);
     setStateManager(new StateManager(this));
     setRequestFocusEnabled(true);
-    setCustomizableProperties(new LinkedHashSet<String>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
+    setCustomizableProperties(new LinkedHashSet<>(Arrays.asList(new String[] {"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
     //setStyle(getNoneStyle());
     
     
