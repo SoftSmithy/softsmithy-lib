@@ -4,10 +4,11 @@
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>1.2</version>
+        <version>2.0-SNAPSHOT</version>
+        <relativePath></relativePath>
     </parent>
     <groupId>org.softsmithy.lib</groupId>
-    <artifactId>lib-parent</artifactId>
+    <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
     <version>0.1.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Parent POM</name>
@@ -35,7 +36,7 @@
         <scm.parent.connection>scm:hg:http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden</scm.parent.connection>
         <scm.parent.developerConnection>scm:hg:ssh://${username}@softsmithy.hg.sourceforge.net/hgroot/softsmithy/lib/main-golden</scm.parent.developerConnection>
         <scm.parent.url>http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/file</scm.parent.url>
-        <finalName>softsmithy-${project.artifactId}-v${project.version}</finalName>
+        <finalName>${project.artifactId}-v${project.version}</finalName>
         <assembly.outputFileNameMapping>softsmithy-${module.artifactId}-v${module.version}${dashClassifier?}.${module.extension}</assembly.outputFileNameMapping>
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
@@ -43,6 +44,7 @@
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.8.2</dependency.junit.version>
         <dependency.javax-persistence.version>1.0</dependency.javax-persistence.version>
+        <dependency.osgi.version>1.4.0</dependency.osgi.version>
 
     </properties>
 
@@ -56,14 +58,19 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>2.1</version>
-                    <configuration>
-                        <mavenExecutorId>forked-path</mavenExecutorId>
-                        <useReleaseProfile>false</useReleaseProfile>
-                        <arguments>-Psonatype-oss-release</arguments>
-                    </configuration>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.3.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>taglist-maven-plugin</artifactId>
+                    <version>2.4</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -79,6 +86,11 @@
                 <groupId>javax.persistence</groupId>
                 <artifactId>persistence-api</artifactId>
                 <version>${dependency.javax-persistence.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${dependency.osgi.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
