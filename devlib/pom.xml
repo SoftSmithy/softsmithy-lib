@@ -3,12 +3,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.softsmithy.lib</groupId>
-        <artifactId>lib-parent</artifactId>
+        <artifactId>softsmithy-lib-parent</artifactId>
         <version>0.1.1-SNAPSHOT</version>
         <relativePath>../lib-parent</relativePath>
     </parent>
     <groupId>org.softsmithy.devlib</groupId>
-    <artifactId>devlib-all</artifactId>
+    <artifactId>softsmithy-devlib-all</artifactId>
     <version>0.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SoftSmithy Development Utility Library - Multi Module Project</name>
