@@ -31,9 +31,9 @@ import org.softsmithy.lib.lang.reflect.*;
  */
 public final class BeanIntrospector {
   
-  private static final Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> properties = new HashMap<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>>();
-  private static final Map eventSets = new HashMap();
-  private static final Map methods = new HashMap();
+  private static final Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> properties = new HashMap<>();
+//  private static final Map eventSets = new HashMap();
+//  private static final Map methods = new HashMap();
   private static final Object[] EMPTY_OBJECT_ARRAY = new Object[]{};
   
   /** Creates a new instance of BeanIntrospector */
