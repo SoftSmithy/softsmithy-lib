@@ -46,7 +46,7 @@ public class MatchersTest {
         System.out.println("wrap");
         // given
         List<String> strings = getTestStringsList();
-        ObjectMatcher<String> matcher = new ObjectMatcher<String>(String.class);
+        ObjectMatcher<String> matcher = new ObjectMatcher<>(String.class);
         // when
         List<MatchableObject<String>> wrappedStrings = Matchers.wrap(strings,
                 matcher);
@@ -61,26 +61,24 @@ public class MatchersTest {
     private List<MatchableObject<String>> getTestWrappedStringsList(
             Matcher<String> matcher)
             throws MatchingException {
-        List<MatchableObject<String>> wrappedStrings =
-                new ArrayList<MatchableObject<String>>();
-        wrappedStrings.add(new MatchableObject<String>("test1", matcher));
-        wrappedStrings.add(new MatchableObject<String>("test2", matcher));
-        wrappedStrings.add(new MatchableObject<String>("test3", matcher));
+        List<MatchableObject<String>> wrappedStrings = new ArrayList<>();
+        wrappedStrings.add(new MatchableObject<>("test1", matcher));
+        wrappedStrings.add(new MatchableObject<>("test2", matcher));
+        wrappedStrings.add(new MatchableObject<>("test3", matcher));
         return wrappedStrings;
     }
 
     private Set<String> getTestStringsSet() {
-        return new HashSet<String>(Arrays.asList("test1", "test2", "test3"));
+        return new HashSet<>(Arrays.asList("test1", "test2", "test3"));
     }
 
     private Set<MatchableObject<String>> getTestWrappedStringsSet(
             Matcher<String> matcher)
             throws MatchingException {
-        Set<MatchableObject<String>> wrappedStrings =
-                new HashSet<MatchableObject<String>>();
-        wrappedStrings.add(new MatchableObject<String>("test1", matcher));
-        wrappedStrings.add(new MatchableObject<String>("test2", matcher));
-        wrappedStrings.add(new MatchableObject<String>("test3", matcher));
+        Set<MatchableObject<String>> wrappedStrings = new HashSet<>();
+        wrappedStrings.add(new MatchableObject<>("test1", matcher));
+        wrappedStrings.add(new MatchableObject<>("test2", matcher));
+        wrappedStrings.add(new MatchableObject<>("test3", matcher));
         assertEquals(3, wrappedStrings.size());
         return wrappedStrings;
     }
@@ -92,7 +90,7 @@ public class MatchersTest {
     public void testUnwrap_List() throws MatchingException {
         System.out.println("unwrap");
         // given
-        ObjectMatcher<String> matcher = new ObjectMatcher<String>(String.class);
+        ObjectMatcher<String> matcher = new ObjectMatcher<>(String.class);
         List<MatchableObject<String>> wrappedStrings = getTestWrappedStringsList(
                 matcher);
 
@@ -111,7 +109,7 @@ public class MatchersTest {
         System.out.println("wrap");
         // given
         Set<String> strings = getTestStringsSet();
-        ObjectMatcher<String> matcher = new ObjectMatcher<String>(String.class);
+        ObjectMatcher<String> matcher = new ObjectMatcher<>(String.class);
         // when
         Set<MatchableObject<String>> wrappedStrings = Matchers.wrap(strings,
                 matcher);
@@ -126,7 +124,7 @@ public class MatchersTest {
     public void testUnwrap_Set() throws MatchingException {
         System.out.println("unwrap");
         // given
-        ObjectMatcher<String> matcher = new ObjectMatcher<String>(String.class);
+        ObjectMatcher<String> matcher = new ObjectMatcher<>(String.class);
         Set<MatchableObject<String>> wrappedStrings = getTestWrappedStringsSet(
                 matcher);
 

@@ -11,7 +11,6 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.util;
 
 import org.junit.After;
@@ -24,7 +23,6 @@ import static org.junit.Assert.*;
  * @author puce
  */
 public class MatchableObjectTest {
-
 
     @Before
     public void setUp() {
@@ -41,9 +39,9 @@ public class MatchableObjectTest {
     public void testHashCode() throws MatchingException {
         System.out.println("hashCode");
         // given
-        MatchableObject<String> object1 = new MatchableObject<String>("test", new ObjectMatcher<String>(
+        MatchableObject<String> object1 = new MatchableObject<>("test", new ObjectMatcher<>(
                 String.class));
-        MatchableObject<String> object2 = new MatchableObject<String>("test", new ObjectMatcher<String>(
+        MatchableObject<String> object2 = new MatchableObject<>("test", new ObjectMatcher<>(
                 String.class));
 
         // when
@@ -60,16 +58,12 @@ public class MatchableObjectTest {
     public void testEquals() throws MatchingException {
         System.out.println("equals");
         // given
-        MatchableObject<String> object1 = new MatchableObject<String>("test1", new ObjectMatcher<String>(
-                String.class));
-        MatchableObject<String> object2 = new MatchableObject<String>("test1", new ObjectMatcher<String>(
-                String.class));
-        MatchableObject<String> object3 = new MatchableObject<String>("test1", new ObjectMatcher<String>(
-                String.class));
-        MatchableObject<String> object4 = new MatchableObject<String>("test2", new ObjectMatcher<String>(
-                String.class));
-        MatchableObject<String> object5 = new MatchableObject<String>("test1", new ComparatorMatcher<String>(
-                String.class, String.CASE_INSENSITIVE_ORDER));
+        MatchableObject<String> object1 = new MatchableObject<>("test1", new ObjectMatcher<>(String.class));
+        MatchableObject<String> object2 = new MatchableObject<>("test1", new ObjectMatcher<>(String.class));
+        MatchableObject<String> object3 = new MatchableObject<>("test1", new ObjectMatcher<>(String.class));
+        MatchableObject<String> object4 = new MatchableObject<>("test2", new ObjectMatcher<>(String.class));
+        MatchableObject<String> object5 = new MatchableObject<>("test1", new ComparatorMatcher<>(String.class,
+                String.CASE_INSENSITIVE_ORDER));
 
         // when
         assertEquals(object1, object2);
@@ -95,5 +89,4 @@ public class MatchableObjectTest {
         assertFalse(object4.equals(object1));
         assertFalse(object5.equals(object1));
     }
-
 }

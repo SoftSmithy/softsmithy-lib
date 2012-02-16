@@ -46,6 +46,7 @@ public class ListsTest extends TestCase {
     protected void setUp() throws Exception {
         testClassComparator = new Comparator<TestClass>() {
 
+            @Override
             public int compare(TestClass testObj1, TestClass testObj2) {
                 int prop1Comparison = testObj1.getProp1().compareTo(testObj2.
                         getProp1());
@@ -85,7 +86,7 @@ public class ListsTest extends TestCase {
 
 
         assertTrue(Lists.equals(listA, listB,
-                new ComparatorMatcher<TestClass>(TestClass.class,
+                new ComparatorMatcher<>(TestClass.class,
                 testClassComparator)));
 
     }
@@ -108,9 +109,9 @@ public class ListsTest extends TestCase {
     public void testGetFirst() {
         System.out.println("getFirst");
 
-        List<String> arrayList = new ArrayList<String>();
+        List<String> arrayList = new ArrayList<>();
         fillStringList(arrayList);
-        List<String> linkedList = new LinkedList<String>();
+        List<String> linkedList = new LinkedList<>();
         fillStringList(linkedList);
 
         assertEquals(ITEM_1, Lists.getFirst(arrayList));
@@ -120,9 +121,9 @@ public class ListsTest extends TestCase {
     public void testGetLast() {
         System.out.println("getLast");
 
-        List<String> arrayList = new ArrayList<String>();
+        List<String> arrayList = new ArrayList<>();
         fillStringList(arrayList);
-        List<String> linkedList = new LinkedList<String>();
+        List<String> linkedList = new LinkedList<>();
         fillStringList(linkedList);
 
         assertEquals(ITEM_3, Lists.getLast(arrayList));
