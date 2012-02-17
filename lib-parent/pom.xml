@@ -42,7 +42,7 @@
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
         
     <!-- Dependency Versions Defaults -->
-        <dependency.junit.version>4.8.2</dependency.junit.version>
+        <dependency.junit.version>4.10</dependency.junit.version>
         <dependency.javax-persistence.version>1.0</dependency.javax-persistence.version>
         <dependency.osgi.version>1.4.0</dependency.osgi.version>
 
