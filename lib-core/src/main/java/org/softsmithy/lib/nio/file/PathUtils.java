@@ -16,7 +16,8 @@ package org.softsmithy.lib.nio.file;
 import java.nio.file.Path;
 
 /**
- *
+ * A utility class for {@link Path}s.
+ * 
  * @author puce
  */
 public class PathUtils {
@@ -24,6 +25,19 @@ public class PathUtils {
     private PathUtils() {
     }
 
+    /**
+     * Resolves paths, even if their file system are different.
+     * 
+     * If the file system is the same, {@link Path#resolve(java.nio.file.Path)} is used.
+     * 
+     * If {@code path2} is {@link Path#isAbsolute() absolute}, {@code path2} is returned.
+     * 
+     * Else the resolved path gets calculated.
+     * 
+     * @param path1
+     * @param path2
+     * @return the resolved path
+     */
     public static Path resolve(Path path1, Path path2) {
         if (path1.getFileSystem().equals(path2.getFileSystem())) {
             return path1.resolve(path2);

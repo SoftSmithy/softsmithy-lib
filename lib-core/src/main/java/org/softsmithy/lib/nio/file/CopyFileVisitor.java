@@ -16,13 +16,22 @@ package org.softsmithy.lib.nio.file;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 /**
+ * A {@link FileVisitor} which copies the source {@link Path} to the target {@link Path}.
  *
+ * If the source is a directory, it content gets copied recursively.
+ *
+ * The source and the target don't have to be on the same file system and thus this class can be used to e.g. extract a
+ * directory from a jar/ zip file.
+ *
+ * @see Files#walkFileTree(java.nio.file.Path, java.nio.file.FileVisitor)
+ * @see #copy(java.nio.file.Path, java.nio.file.Path)
  * @author puce
  */
 public class CopyFileVisitor extends SimpleFileVisitor<Path> {
@@ -60,6 +69,19 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
+    /**
+     * Copies the source to the target.
+     * 
+     * If the source is a directory, its content gets copied recursively.
+     *
+     * The source and the target don't have to be on the same file system and thus this method can be used to e.g.
+     * extract a directory from a jar/ zip file.
+     *
+     * @param source
+     * @param target
+     * @return
+     * @throws IOException
+     */
     public static Path copy(Path source, Path target) throws IOException {
         return Files.walkFileTree(source, new CopyFileVisitor(source, target));
     }
