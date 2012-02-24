@@ -35,7 +35,7 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
     }
 
     @Override
-    public Integer parse(String text) throws ParseException {
+    public Integer parseString(String text) throws ParseException {
         try {
             return parseNumber(text).intValue();
         } catch (Exception e) {

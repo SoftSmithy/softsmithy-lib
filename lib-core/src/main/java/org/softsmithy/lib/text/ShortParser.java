@@ -31,7 +31,7 @@ public class ShortParser extends AbstractNumberParser<Short> {
     }
 
     @Override
-    public Short parse(String text) throws ParseException {
+    public Short parseString(String text) throws ParseException {
         try {
             return parseNumber(text).shortValue();
         } catch (Exception e) {

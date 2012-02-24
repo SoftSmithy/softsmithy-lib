@@ -21,5 +21,5 @@ import java.text.ParseException;
  */
 public interface Parser<T> {
 
-    T parse(String text) throws ParseException;
+    T parse(CharSequence text) throws ParseException;
 }

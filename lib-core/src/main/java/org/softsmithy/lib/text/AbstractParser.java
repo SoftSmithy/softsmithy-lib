@@ -13,22 +13,18 @@
  */
 package org.softsmithy.lib.text;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
  *
  * @author puce
  */
-public abstract class AbstractNumberParser<T extends Number> extends AbstractParser<T> {
+public abstract class AbstractParser<T> implements Parser<T> {
 
-    private final NumberFormat numberFormat;
-
-    public AbstractNumberParser(NumberFormat numberFormat) {
-        this.numberFormat = numberFormat;
+    @Override
+    public T parse(CharSequence text) throws ParseException {
+        return parseString(text.toString());
     }
 
-    protected Number parseNumber(String text) throws ParseException {
-        return numberFormat.parse(text);
-    }
+    protected abstract T parseString(String text) throws ParseException;
 }
