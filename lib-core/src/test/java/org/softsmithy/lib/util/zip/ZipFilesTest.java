@@ -23,7 +23,6 @@ package org.softsmithy.lib.util.zip;
 
 
 import java.io.File;
-import java.util.zip.ZipFile;
 import junit.framework.TestCase;
 
 /**

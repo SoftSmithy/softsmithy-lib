@@ -15,9 +15,9 @@ package org.softsmithy.lib.util;
 
 import java.util.Comparator;
 import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

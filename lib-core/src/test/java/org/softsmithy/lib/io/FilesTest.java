@@ -20,9 +20,9 @@
  */
 package org.softsmithy.lib.io;
 
-import junit.framework.*;
 import java.io.*;
 import java.util.*;
+import junit.framework.*;
 
 /**
  *

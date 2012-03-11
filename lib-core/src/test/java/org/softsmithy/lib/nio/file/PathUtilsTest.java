@@ -13,27 +13,17 @@
  */
 package org.softsmithy.lib.nio.file;
 
-import com.sun.jndi.toolkit.url.Uri;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
-import java.util.HashMap;
-import java.util.jar.JarFile;
-import java.util.jar.JarOutputStream;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  *
@@ -66,8 +56,8 @@ public class PathUtilsTest {
     @Test
     public void testResolve() throws IOException {
         System.out.println("resolve");
-        Path testJarPath = JarFiles.createEmptyTempJarFile("test", ".jar");
-        try (FileSystem jarFS = JarFiles.newJarFileSystem(testJarPath)) {
+        Path testJarPath = JarFilesTestUtils.createEmptyTempJarFile("test", ".jar");
+        try (FileSystem jarFS = JarFilesTestUtils.newJarFileSystem(testJarPath)) {
             Path rootPath = jarFS.getRootDirectories().iterator().next();
             Path firstPath = rootPath.resolve("first");
             Path secondPath = firstPath.resolve("second");

@@ -22,7 +22,6 @@
 package org.softsmithy.lib.lang.reflect;
 
 import junit.framework.*;
-import java.util.*;
 
 /**
  *

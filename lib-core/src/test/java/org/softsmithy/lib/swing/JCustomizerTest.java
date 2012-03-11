@@ -21,17 +21,15 @@
 
 package org.softsmithy.lib.swing;
 
-import org.softsmithy.lib.swing.border.HandleBorder.*;
-import java.awt.event.*;
-import junit.framework.*;
-import org.softsmithy.lib.swing.customizer.StateManager.*;
-import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.*;
-import org.softsmithy.lib.swing.JCustomizerTest.*;
 import java.awt.*;
+import junit.framework.*;
 import junit.textui.*;
 import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
-import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
 import org.softsmithy.lib.awt.layout.TableLayout;
+import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest;
+import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.BoundStateTest;
+import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.ResizeStateTest;
+import org.softsmithy.lib.swing.JCustomizerTest.StateManagerTest.StateTest;
 
 /**
  *

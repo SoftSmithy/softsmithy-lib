@@ -15,9 +15,9 @@ package org.softsmithy.lib.text;
 
 import java.text.NumberFormat;
 import org.junit.After;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

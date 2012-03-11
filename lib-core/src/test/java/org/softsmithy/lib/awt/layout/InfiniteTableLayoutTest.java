@@ -21,7 +21,6 @@
 
 package org.softsmithy.lib.awt.layout;
 
-import java.awt.*;
 import junit.framework.*;
 import junit.textui.*;
 import org.softsmithy.lib.swing.*;

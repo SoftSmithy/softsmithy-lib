@@ -58,7 +58,9 @@ import org.softsmithy.lib.text.Localizable;
  * Copyright:    Copyright (c) 2002
  *
  * @author Florian Brunner
+ * @deprecated 
  */
+@Deprecated
 public class TypesafeEnum implements Localizable {
 
     private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();

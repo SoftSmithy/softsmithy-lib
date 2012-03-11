@@ -23,7 +23,9 @@ package org.softsmithy.lib.util;
 /**
  *
  * @author  puce
+ * @deprecated 
  */
+@Deprecated
 public class BrowserCommandProvider{
 
   /**
