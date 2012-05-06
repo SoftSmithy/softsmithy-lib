@@ -43,7 +43,7 @@
         
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.10</dependency.junit.version>
-        <dependency.javax-persistence.version>1.0</dependency.javax-persistence.version>
+        <dependency.javax-persistence.version>2.0.3</dependency.javax-persistence.version>
         <dependency.osgi.version>1.4.0</dependency.osgi.version>
 
     </properties>
@@ -114,8 +114,8 @@
                 <version>${dependency.junit.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>persistence-api</artifactId>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>javax.persistence</artifactId>
                 <version>${dependency.javax-persistence.version}</version>
             </dependency>
             <dependency>
