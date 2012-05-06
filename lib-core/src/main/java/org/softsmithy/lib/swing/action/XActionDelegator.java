@@ -37,6 +37,7 @@ class XActionDelegator extends AbstractXAction {
    *
    * @param evt  an ActionEvent object
    */
+    @Override
   public void actionPerformed(ActionEvent evt) {
     if (listeners != null) {
       Object[] listenerList = listeners.getListenerList();

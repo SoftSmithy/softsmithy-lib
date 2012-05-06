@@ -25,7 +25,9 @@ import java.util.*;
 /**
  * Not used anymore: ResourceBundle caches itself (see source). This was missunderstood before.
  * @author  puce
+ * @deprecated 
  */
+@Deprecated
 class ResourceBundleCache {
   
   private final String baseName;

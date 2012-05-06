@@ -54,7 +54,7 @@ public class CustomizerActionFactory {
     try{
       action = new ReflectiveCustomizerAction(this, saf.toString());
       saf.configureXAction(action, locale);
-      action.setNeededCustomizableProperties(new HashSet<String>(Arrays.asList(neededCustomizableProperties)));
+      action.setNeededCustomizableProperties(new HashSet<>(Arrays.asList(neededCustomizableProperties)));
     } catch(NoSuchMethodException ex){
       ex.printStackTrace(); // should not happen here // TODO: exception handling
     }
@@ -64,7 +64,7 @@ public class CustomizerActionFactory {
   private CustomizerAction createDefaultCustomizerAction(StandardActionFactory saf, String[] neededCustomizableProperties, Locale locale){
     CustomizerAction action = new DefaultCustomizerAction();
     saf.configureXAction(action, locale);
-    action.setNeededCustomizableProperties(new HashSet<String>(Arrays.asList(neededCustomizableProperties)));
+    action.setNeededCustomizableProperties(new HashSet<>(Arrays.asList(neededCustomizableProperties)));
     return action;
   }
   
@@ -113,7 +113,7 @@ public class CustomizerActionFactory {
   }
   
   private void alignHorizontal(HorizontalAlignment ha, int position){
-    Set<JCustomizer> customizers = new HashSet<JCustomizer>(Arrays.asList(selectionManager.getSelectedCustomizers()));
+    Set<JCustomizer> customizers = new HashSet<>(Arrays.asList(selectionManager.getSelectedCustomizers()));
     customizers.remove(selectionManager.getActiveCustomizer());
     if (customizers.size() > 0){
       ha.alignCustomizers(customizers, position,

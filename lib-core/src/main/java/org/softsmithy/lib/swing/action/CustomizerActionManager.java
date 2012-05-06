@@ -38,7 +38,7 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class CustomizerActionManager implements CustomizerSelectionListener {
   
-  private final Set<CustomizerAction> actions = new HashSet<CustomizerAction>();
+  private final Set<CustomizerAction> actions = new HashSet<>();
   
   /** Creates a new instance of CustomizerActionManager */
   public CustomizerActionManager() {
