@@ -30,7 +30,7 @@ public class Classes {
   private static final Map<Class<?>, Class<?>> WRAPPER_CLASSES;
   
   static{
-    Map<Class<?>, Class<?>> wrappers = new HashMap<Class<?>, Class<?>>();
+    Map<Class<?>, Class<?>> wrappers = new HashMap<>();
     wrappers.put(Boolean.TYPE, Boolean.class);
     wrappers.put(Character.TYPE, Character.class);
     wrappers.put(Byte.TYPE, Byte.class);
