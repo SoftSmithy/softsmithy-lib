@@ -19,10 +19,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -30,17 +28,6 @@ import org.junit.Test;
  * @author puce
  */
 public class PathUtilsTest {
-
-    public PathUtilsTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() {
@@ -82,12 +69,12 @@ public class PathUtilsTest {
             // path1: Jar file system, path2: absolute path in default file system
             assertEquals(targetDirPath, PathUtils.resolve(bPath, targetDirPath));
 
-            
+
             // path1: default file system, path2: relative path in default file system
             assertEquals(targetDirPath.resolve(Paths.get("first", "second", "b.txt")), PathUtils.resolve(targetDirPath,
                     Paths.get("first", "second", "b.txt")));
 
-            
+
             // path1: default file system, path2: absolute path in default file system
             Path targetDir2Path = Files.createTempDirectory("targetDir2");
             targetDir2Path.toFile().deleteOnExit();

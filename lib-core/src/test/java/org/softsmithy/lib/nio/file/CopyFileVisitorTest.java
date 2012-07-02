@@ -17,10 +17,8 @@ import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -29,17 +27,6 @@ import org.junit.Test;
  */
 public class CopyFileVisitorTest {
 
-    public CopyFileVisitorTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() {
     }
@@ -47,8 +34,6 @@ public class CopyFileVisitorTest {
     @After
     public void tearDown() {
     }
-
-
 
     /**
      * Test of copy method, of class CopyFileVisitor.
@@ -69,11 +54,11 @@ public class CopyFileVisitorTest {
             Files.createFile(bPath);
             Path cPath = thirdPath.resolve("c.txt");
             Files.createFile(cPath);
-            
-            
+
+
             Path targetDirPath = Files.createTempDirectory("targetDir");
             targetDirPath.toFile().deleteOnExit();
-            
+
             CopyFileVisitor.copy(secondPath, targetDirPath);
             Path targetThirdPath = targetDirPath.resolve("third");
             assertTrue(Files.exists(targetThirdPath));

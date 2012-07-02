@@ -13,10 +13,15 @@
  */
 package org.softsmithy.lib.nio.file;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.HashMap;
 
 /**
  *
@@ -26,24 +31,48 @@ import java.nio.file.Paths;
 public class JarFiles {
 
     /**
-     * Length of the jar URI prefix "jar:file:"
+     * The jar URI prefix "jar:"
      */
-    private static int FULL_JAR_URI_PREFIX_LENGTH = 9;
+    private static String FULL_JAR_URI_PREFIX = "jar:";
+    /**
+     * Length of the jar URI prefix "jar:"
+     */
+    private static int FULL_JAR_URI_PREFIX_LENGTH = 4;
 
     private JarFiles() {
     }
 
+    // TODO: useful enough to keep it?
     public static Path getJarPath(Class<?> type) throws URISyntaxException {
-        return Paths.get(getJarURI(type).toString().substring(FULL_JAR_URI_PREFIX_LENGTH));
+        return Paths.get(getJarURI(type));
     }
 
     public static URI getJarURI(Class<?> type) throws URISyntaxException {
-        return getJarURI(type.getResource("/" + type.getName().replace(".", "/") + ".class").toURI());
+        return getJarURI(type.getResource(getRoot() + type.getName().replace(".", "/") + ".class").toURI());
     }
 
+    // TODO: in OSGi there might be different roots.
+    private static String getRoot() {
+        return "/";
+    }
+
+    /**
+     * Extracts the jar URI part from a jar resource URI ({@code jar:<jarURIPart>!/{entry}})
+     *
+     * @param jarResourceURI
+     * @return
+     */
     public static URI getJarURI(URI jarResourceURI) {
         String jarResourceURIString = jarResourceURI.toString();
         int endOfJarPathIndex = jarResourceURIString.indexOf("!/");
-        return URI.create(jarResourceURIString.substring(0, endOfJarPathIndex));
+        String jarURIString = endOfJarPathIndex >= 0 ? jarResourceURIString.substring(0, endOfJarPathIndex) : jarResourceURIString;
+        if (jarURIString.startsWith(FULL_JAR_URI_PREFIX)) {
+            jarURIString = jarURIString.substring(FULL_JAR_URI_PREFIX_LENGTH);
+        }
+        return URI.create(jarURIString);
+    }
+
+    public static FileSystem newJarFileSystem(URI jarURI) throws IOException {
+        return FileSystems.newFileSystem(URI.create("jar:" + jarURI), Collections.<String, Object>emptyMap());
     }
 }
