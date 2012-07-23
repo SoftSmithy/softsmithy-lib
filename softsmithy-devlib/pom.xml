@@ -29,7 +29,7 @@
     </properties>
 
     <modules>
-        <module>devlib-core</module>
+        <module>softsmithy-devlib-core</module>
     </modules>
 
     <build>
