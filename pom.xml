@@ -28,7 +28,7 @@
     </properties>
 
     <modules>
-        <module>lib-parent</module>
+        <module>softsmithy-lib-parent</module>
         <module>softsmithy-lib-core</module>
         <module>softsmithy-lib-persistence</module>
         <module>softsmithy-lib-samples</module>
