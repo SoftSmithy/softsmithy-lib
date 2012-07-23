@@ -31,7 +31,7 @@
         <module>lib-parent</module>
         <module>lib-core</module>
         <module>softsmithy-lib-persistence</module>
-        <module>lib-samples</module>
+        <module>softsmithy-lib-samples</module>
         <module>devlib</module>
     </modules>
 
