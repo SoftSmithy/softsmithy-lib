@@ -5,11 +5,12 @@
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
         <version>0.1.1-SNAPSHOT</version>
-        <relativePath>lib-parent</relativePath>
+        <relativePath>softsmithy-lib-parent</relativePath>
     </parent>
+    
     <artifactId>softsmithy-lib-all</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    
     <name>SoftSmithy Utility Library - All</name>
     <url>http://www.softsmithy.org</url>
     <description>A Java utility library.</description>

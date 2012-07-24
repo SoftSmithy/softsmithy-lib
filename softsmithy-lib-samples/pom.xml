@@ -5,11 +5,11 @@
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
         <version>0.1.1-SNAPSHOT</version>
-        <relativePath>../lib-parent</relativePath>
+        <relativePath>../softsmithy-lib-parent</relativePath>
     </parent>
+
     <artifactId>softsmithy-lib-samples</artifactId>
-    <packaging>jar</packaging>
-    <version>0.1.1-SNAPSHOT</version>
+
     <name>SoftSmithy Utility Library - Samples</name>
     <url>http://www.softsmithy.org</url>
     <description>Samples for the SoftSmithy Utility Library.</description>
@@ -26,6 +26,11 @@
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
     </properties>
+    
+    <!-- Not inherited!?? -->
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
     
     <build>
         <plugins>

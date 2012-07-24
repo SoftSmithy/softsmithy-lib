@@ -55,7 +55,6 @@
     </prerequisites>
 
     <build>
-        <finalName>${finalName}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -89,7 +88,7 @@
                                     <detectLinks>true</detectLinks>
                                     <links>
                                     <!-- javadoc link for javax.persistence -->
-                                        <link>http://java.sun.com/javaee/6/docs/api</link>
+                                        <link>http://docs.oracle.com/javaee/6/api/</link>
                                     </links>
                                 </configuration>
                             </plugin>
