@@ -1,6 +1,15 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+	    - Project migration: Java SE 6 -> Java SE 7
+	    - Project migration: OSGi metadata added
+	    - Project migration: Maven 2.2.1 -> Maven 3.0.4
+	    - Project migration: artifactId prefix added: "softsmithy-"
+	    - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
+            - JUnit upgrade: version 4.10
+            - NetBeans IDE upgrade: 7.1.1
+
+v0.1 (Changeset: 677685802ce2):
 	    - Project migration: Ant -> Maven
             - Project migration: Subversion -> Mercurial
             - License upgraded: SPL -> CDDL

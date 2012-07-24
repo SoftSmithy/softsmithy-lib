@@ -1,12 +1,13 @@
 Changes:
+
 v${project.version} (Changeset: ${changeSet}):
-	    - Project migration: Java SE 6 -> Java SE 7
-	    - Project migration: OSGi metadata added
-	    - Project migration: Maven 2.2.1 -> Maven 3.0.4
-	    - Project migration: artifactId prefix added: "softsmithy-"
-	    - Project migration: softsmithy-lib-persistence project added
-	    - Project migration: org.softsmithy.lib.persistence: moved from softsmithy-lib-core -> softsmithy-lib-persistence
-	    - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
+            - Project migration: Java SE 6 -> Java SE 7
+            - Project migration: OSGi metadata added
+            - Project migration: Maven 2.2.1 -> Maven 3.0.4
+            - Project migration: artifactId prefix added: "softsmithy-"
+            - Project migration: softsmithy-lib-persistence project added
+            - Project migration: org.softsmithy.lib.persistence: moved from softsmithy-lib-core -> softsmithy-lib-persistence
+            - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
             - org.softsmithy.lib.nio.file.CopyFileVisitor added
             - org.softsmithy.lib.nio.file.PathUtils added
             - org.softsmithy.lib.nio.file.JarFiles added

@@ -1,7 +1,7 @@
 Contains:
 
-softsmithy-devlib-core-v${project.version}.jar              - The SoftSmithy Development Utility Library
-softsmithy-devlib-core-v${project.version}-sources.jar      - The source code
+softsmithy-devlib-core-${project.version}.jar              - The SoftSmithy Development Utility Library
+softsmithy-devlib-core-${project.version}-sources.jar      - The SoftSmithy Development Utility Library source code
 docs-directory                                          - Contains the Javadoc
 
 While the SoftSmithy Utility Library (lib) is a general utility library,
@@ -16,7 +16,7 @@ puce@users.sourceforge.net
 
 Note: This library has the following dependencies:
 - JPA (tested with EclipseLink 2.0)
-- JUnit 4.5
+- JUnit 4.10
 - SoftSmithy Utility Library v${project.version}
 
 Have a look at CHANGES.txt for notes about changes.
@@ -38,9 +38,9 @@ http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
 hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
-jdk 1.6.0_22
-Maven 2.2.1
-NetBeans IDE 6.9.1
+jdk 1.7.0_03
+Maven 3.0.4
+NetBeans IDE 7.1.1
 EclipseLink 2.0
-JUnit 4.5
+JUnit 4.10
 SoftSmithy Utility Library v${project.version}

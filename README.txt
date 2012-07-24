@@ -1,14 +1,16 @@
 Contains:
 
-softsmithy-lib-core-v${project.version}.jar             - The SoftSmithy Utility Library
-softsmithy-lib-core-v${project.version}-sources.jar     - The source code
-docs-directory                                      - Contains the Javadoc, a tutorial and samples
+softsmithy-lib-core-${project.version}.jar                    - The SoftSmithy Utility Library - Core
+softsmithy-lib-core-${project.version}-sources.jar            - The SoftSmithy Utility Library - Core source code
+softsmithy-lib-persistence-${project.version}.jar             - The SoftSmithy Utility Library - Persistence
+softsmithy-lib-persistence-${project.version}-sources.jar     - The SoftSmithy Utility Library - Persistence source code
+docs-directory                                            - Contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
 puce@users.sourceforge.net
 
-Note: This library has the following dependencies:
+Note: softsmithy-lib-persistence-${project.version}.jar has the following dependencies:
 - JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
 
 

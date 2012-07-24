@@ -29,7 +29,6 @@
             </sources>
             <binaries>
                 <unpack>false</unpack>
-                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -49,7 +48,6 @@
             <binaries>
                 <attachmentClassifier>sources</attachmentClassifier>
                 <unpack>false</unpack>
-                <outputFileNameMapping>${assembly.outputFileNameMapping}</outputFileNameMapping>
             </binaries>
         </moduleSet>
     </moduleSets>
