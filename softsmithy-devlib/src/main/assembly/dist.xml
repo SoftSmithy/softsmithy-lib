@@ -11,7 +11,7 @@
         <moduleSet>
       <!-- Now, select which projects to include in this module-set. -->
             <includes>
-                <include>${project.groupId}:devlib-core</include>
+                <include>${project.groupId}:softsmithy-devlib-core</include>
             </includes>
             <sources>
                 <includeModuleDirectory>false</includeModuleDirectory>
@@ -34,7 +34,7 @@
         </moduleSet>
         <moduleSet>
             <includes>
-                <include>${project.groupId}:devlib-core</include>
+                <include>${project.groupId}:softsmithy-devlib-core</include>
             </includes>
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
@@ -44,7 +44,7 @@
         </moduleSet>
         <moduleSet>
             <includes>
-                <include>${project.groupId}:devlib-core</include>
+                <include>${project.groupId}:softsmithy-devlib-core</include>
             </includes>
             <binaries>
                 <attachmentClassifier>sources</attachmentClassifier>
