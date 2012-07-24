@@ -29,7 +29,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.TYPE)
-/*package-default*/ @interface ServiceProvider {
+public @interface ServiceProvider {
 
     Class<?> serviceClass();
 
