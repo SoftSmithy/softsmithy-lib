@@ -40,7 +40,7 @@
         <assembly.outputFileNameMapping>softsmithy-${module.artifactId}-v${module.version}${dashClassifier?}.${module.extension}</assembly.outputFileNameMapping>
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
-        <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- Used by Javadoc plugin -->
+        <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- Used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
         
     <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.10</dependency.junit.version>
