@@ -39,11 +39,21 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
     private final Path source;
     private final Path target;
 
+    /**
+     * Creates a new instance of this class.
+     *
+     * @see #copy(java.nio.file.Path, java.nio.file.Path)
+     * @param source the source
+     * @param target the target
+     */
     public CopyFileVisitor(Path source, Path target) {
         this.source = source;
         this.target = target;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
             throws IOException {
@@ -60,6 +70,9 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Path targetFile = PathUtils.resolve(target, source.relativize(file));
@@ -71,7 +84,7 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
 
     /**
      * Copies the source to the target.
-     * 
+     *
      * If the source is a directory, its content gets copied recursively.
      *
      * The source and the target don't have to be on the same file system and thus this method can be used to e.g.

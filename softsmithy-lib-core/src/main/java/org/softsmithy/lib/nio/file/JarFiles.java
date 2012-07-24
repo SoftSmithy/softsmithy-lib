@@ -21,7 +21,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.HashMap;
 
 /**
  *
@@ -42,11 +41,25 @@ public class JarFiles {
     private JarFiles() {
     }
 
+    /**
+     * Gets the {@link Path} of the JAR for the specified type.
+     *
+     * @param type a type included in the JAR
+     * @return the {@link Path} of the JAR for the specified type
+     * @throws URISyntaxException
+     */
     // TODO: useful enough to keep it?
     public static Path getJarPath(Class<?> type) throws URISyntaxException {
         return Paths.get(getJarURI(type));
     }
 
+    /**
+     * Gets the {@link URI} of the JAR for the specified type.
+     *
+     * @param type a type included in the JAR
+     * @return the {@link URI} of the JAR for the specified type
+     * @throws URISyntaxException
+     */
     public static URI getJarURI(Class<?> type) throws URISyntaxException {
         return getJarURI(type.getResource(getRoot() + type.getName().replace(".", "/") + ".class").toURI());
     }
@@ -57,10 +70,10 @@ public class JarFiles {
     }
 
     /**
-     * Extracts the jar URI part from a jar resource URI ({@code jar:<jarURIPart>!/{entry}})
+     * Extracts the jar URI part from a jar resource URI ({@code jar:<jarURIPart>!/{entry}}).
      *
-     * @param jarResourceURI
-     * @return
+     * @param jarResourceURI a jar resource URI
+     * @return the jar URI
      */
     public static URI getJarURI(URI jarResourceURI) {
         String jarResourceURIString = jarResourceURI.toString();
@@ -72,6 +85,13 @@ public class JarFiles {
         return URI.create(jarURIString);
     }
 
+    /**
+     * Creates a new JAR {@link FileSystem} for the specified JAR {@link URI}.
+     *
+     * @param jarURI the JAR {@link URI}
+     * @return a new JAR {@link FileSystem} for the specified JAR {@link URI}
+     * @throws IOException
+     */
     public static FileSystem newJarFileSystem(URI jarURI) throws IOException {
         return FileSystems.newFileSystem(URI.create("jar:" + jarURI), Collections.<String, Object>emptyMap());
     }
