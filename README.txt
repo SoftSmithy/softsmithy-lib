@@ -55,6 +55,6 @@ http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
 hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
-jdk 1.6.0_22
-Maven 2.2.1
-NetBeans IDE 6.9.1
+jdk 1.7.0_03
+Maven 3.0.4
+NetBeans IDE 7.1.1

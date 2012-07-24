@@ -1,6 +1,38 @@
 Changes:
-
 v${project.version} (Changeset: ${changeSet}):
+	    - Project migration: Java SE 6 -> Java SE 7
+	    - Project migration: OSGi metadata added
+	    - Project migration: Maven 2.2.1 -> Maven 3.0.4
+	    - Project migration: artifactId prefix added: "softsmithy-"
+	    - Project migration: softsmithy-lib-persistence project added
+	    - Project migration: org.softsmithy.lib.persistence: moved from softsmithy-lib-core -> softsmithy-lib-persistence
+	    - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
+            - org.softsmithy.lib.nio.file.CopyFileVisitor added
+            - org.softsmithy.lib.nio.file.PathUtils added
+            - org.softsmithy.lib.nio.file.JarFiles added
+            - org.softsmithy.lib.util.Comparables.isInRange(T, T, T) added
+            - org.softsmithy.lib.util.Comparables.isInRange(T, T, T, Comparator<? super T>) added
+            - org.softsmithy.lib.util.ServiceProvider added + annotation processor registered
+            - org.softsmithy.lib.text.Parser framework added
+            - org.softsmithy.lib.text.AbstractParser added
+            - org.softsmithy.lib.text.AbstractNumberParser added
+            - org.softsmithy.lib.text.IntegerParser added
+            - org.softsmithy.lib.text.ShortParser added
+            - org.softsmithy.lib.text.ResourceBundleLocalizer added
+            - org.softsmithy.lib.text.Formatter framework added
+            - org.softsmithy.lib.text.AbstractFormatter added
+            - org.softsmithy.lib.text.FormatException added
+            - org.softsmithy.lib.text.FormatFormatter added
+            - renamed package to automatically exclude it from OSGi export: 
+              org.softsmithy.lib.test -> org.softsmithy.lib.internal
+            - removed warnings
+            - Javadocs added
+            - unit tests added
+            - small fixes
+            - JUnit upgrade: version 4.10
+            - NetBeans IDE upgrade: 7.1.1
+
+v0.1 (Changeset: 677685802ce2):
 	    - Project migration: Ant -> Maven
             - Project migration: Subversion -> Mercurial
             - License upgraded: SPL -> CDDL
