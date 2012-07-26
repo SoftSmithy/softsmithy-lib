@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+          COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+ 
+  The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. A copy of the License is available at
+  http://www.opensource.org/licenses/cddl1.txt
+ 
+  The Original Text is SoftSmithy Utility Library Tutorial. The Initial Author of the
+  Original Text is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ 
+  Contributor(s): .
+-->
+<html>
+    <head>
+        <title>SoftSmithy Utility Library Tutorial - NIO File</title>
+        <link type="text/css" rel="stylesheet" href="../Styles/SyntaxHighlighter.css"></link>
+    </head>
+
+    <body>
+        <script src="http://java.com/js/deployJava.js"></script>
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="../index.html">
+                        <img src="../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../index.html">
+                        <img src="../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </p>
+    <h1>NIO File</h1>
+
+
+    The <em>SoftSmithy Utility Library</em> provides various utility classes for the NIO File API introduced in 
+    Java SE 7.
+
+    <h2>CopyFileVisitor</h2>
+    <h3>Copy files</h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/CopyFilesSample.java">CopyFilesSample.java</a>
+    that copies some files to a target directory.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void copyFiles(Path srcPath, Path targetDirPath) throws IOException {
+        // Adds the src directory name to the target directory. You can omit this if you just want to copy the contents.
+        Path finalTargetPath = targetDirPath.resolve(srcPath.getFileName());
+        Files.createDirectories(finalTargetPath);
+
+        CopyFileVisitor.copy(srcPath, finalTargetPath);
+    }</textarea>
+        </pre></blockquote>
+    <pre>
+            cd docs/samples/dist
+            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample src/main/data/first output
+    </pre>   
+    <h3>Extract resources from a JAR</h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/ExtractJarResourceSample.java">ExtractJarResourceSample.java</a>
+    that extracts a resource from the JAR containing the ExtractJarResourceSample.class file to a target directory.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void extractResource(String resourcePathString, Path targetDirPath) throws IOException, URISyntaxException {
+        URI jarURI = JarFiles.getJarURI(ExtractJarResourceSample.class);
+        try (FileSystem jarFS = JarFiles.newJarFileSystem(jarURI)) {
+            Path resourcePath = jarFS.getPath(resourcePathString);
+
+            CopyFileVisitor.copy(resourcePath, targetDirPath);
+        }
+    }</textarea>
+        </pre></blockquote>
+
+    <pre>
+            cd docs/samples/dist
+            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.ExtractJarResourceSample output
+    </pre>
+
+    <h3>Add resources to a ZIP file</h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/AddZipResourceSample.java">AddZipResourceSample.java</a>
+    that adds a src directory to a ZIP file.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void addResource(Path zipPath, Path targetDirPath, Path srcPath, String targetInZipPathString) throws IOException {
+        Path targetZipPath = copyZipFile(zipPath, targetDirPath);
+
+        try (FileSystem jarFS = JarFiles.newJarFileSystem(targetZipPath.toUri())) {
+            Path targetInZipPath = jarFS.getPath(targetInZipPathString);
+
+            // Adds the src directory name to the zip. You can omit this if you just want to copy the contents.
+            Path finalTargetInZipPath = PathUtils.resolve(targetInZipPath, srcPath.getFileName());
+            Files.createDirectories(finalTargetInZipPath);
+
+            CopyFileVisitor.copy(srcPath, finalTargetInZipPath);
+        }
+    }</textarea>
+        </pre></blockquote>
+    <pre>
+            cd docs/samples/dist
+            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample src/main/data/sample-data.zip output src/main/data/another /first
+    </pre>    
+    <h2>PathUtils</h2>
+    <h2>JarFiles</h2>
+    <table bgcolor="aqua" width="100%">
+        <tr>
+            <td>
+                <a href="../index.html">
+                    <img src="../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                </a>
+                <a href="../index.html">
+                    <img src="../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                </a>
+            </td>
+        </tr>
+    </table>
+</p>
+<!-- the following code should be place at the bottom of the page -->  
+<script language="javascript" src="../Scripts/shCore.js"></script>  
+<script language="javascript" src="../Scripts/shBrushJava.js"></script>   
+<script language="javascript">  
+    dp.SyntaxHighlighter.HighlightAll('code');  
+</script>
+</body>
+</html>
