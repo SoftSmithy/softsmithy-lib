@@ -57,7 +57,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
+                        <id>copy-resources-lib</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
@@ -67,6 +67,22 @@
                             <resources>
                                 <resource>
                                     <directory>src/main/lib</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-data</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dist.directory}/data</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/data</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
