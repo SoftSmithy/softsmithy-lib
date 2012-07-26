@@ -29,6 +29,10 @@ v${project.version} (Changeset: ${changeSet}):
             - removed warnings
             - Javadocs added
             - unit tests added
+            - samples: CopyFilesSample added
+            - samples: AddZipResourceSample added
+            - samples: ExtractJarResourceSample added
+            - tutorial: new trail added: NIO File
             - small fixes
             - JUnit upgrade: version 4.10
             - NetBeans IDE upgrade: 7.1.1
