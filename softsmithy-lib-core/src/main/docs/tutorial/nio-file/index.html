@@ -76,7 +76,7 @@
     To run this sample, use:
     <pre>
         cd docs/samples/dist
-        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample src/main/data/first output
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample data/first output
     </pre>   
     <h3><a name="ExtractJarResourceSample">Extract resources from a JAR</a></h3>
     Below is the code from 
@@ -96,7 +96,7 @@
 
     Oracle's Java SE 7 Runtime comes with a 
     <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/io/fsp/zipfilesystemprovider.html">FileSystemProvider implementation for JAR and ZIP files</a>.
-    This FileSystemProvider allows you to work with JAR and ZIP files similar to the way you can work with the local file system.<br/>
+    This FileSystemProvider allows you to work with JAR and ZIP files in a similar way as with the local file system.<br/>
     <br/>
     The <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/JarFiles.html">JarFiles</a> utility class 
     provides some utility methods to work with JAR/ ZIP files. <br/>
@@ -140,7 +140,7 @@
     To run this sample, use:
     <pre>
         cd docs/samples/dist
-        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample src/main/data/sample-data.zip output src/main/data/another /first
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample data/sample-data.zip output data/another /first
     </pre>    
     <h3><a name="GetInstallationDirSample">Get the installation directory</a></h3>
     If you unpack the <a href="http://sourceforge.net/projects/softsmithy/files/softsmithy/v${project.version}">SoftSmithy Utility Library distribution archive</a>, you can find the JAR containing the samples at the
