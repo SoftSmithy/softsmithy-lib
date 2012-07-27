@@ -1,6 +1,8 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+
+v0.2 (Changeset: d198b7dfd05b):
             - Project migration: Java SE 6 -> Java SE 7
             - Project migration: OSGi metadata added
             - Project migration: Maven 2.2.1 -> Maven 3.0.4
