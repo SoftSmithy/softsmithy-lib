@@ -23,13 +23,14 @@ import org.softsmithy.lib.nio.file.CopyFileVisitor;
 import org.softsmithy.lib.nio.file.JarFiles;
 
 /**
+ * Extracts a resource from the JAR containing this class file to a target directory.
  *
  * @author puce
  */
 public class ExtractJarResourceSample {
 
     /**
-     * java
+     * Extracts a resource from the JAR containing this class file to a target directory.
      *
      * @param args srcJarPath targetDirPath resourcePathString
      * @throws Exception

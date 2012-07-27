@@ -21,13 +21,14 @@ import java.nio.file.Paths;
 import org.softsmithy.lib.nio.file.JarFiles;
 
 /**
+ * Gets the &lt;install-dir&gt;. <br/> <br/> The jar is expected at: &lt;install-dir&gt/docs/samples/dist/
  *
  * @author puce
  */
 public class GetInstallationDirSample {
 
     /**
-     * java
+     * Gets the &lt;install-dir&gt;. <br/> <br/> The jar is expected at: &lt;install-dir&gt/docs/samples/dist/
      *
      * @param args
      * @throws Exception
@@ -41,7 +42,7 @@ public class GetInstallationDirSample {
         URI jarURI = JarFiles.getJarURI(GetInstallationDirSample.class);
         Path jarPath = Paths.get(jarURI);
         Path installDirPath = jarPath.getParent().getParent().getParent().getParent();
-        
+
         System.out.println(installDirPath);
     }
 }

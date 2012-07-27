@@ -20,13 +20,14 @@ import java.nio.file.Paths;
 import org.softsmithy.lib.nio.file.CopyFileVisitor;
 
 /**
+ * This sample uses the {@link CopyFileVisitor} to recursively copy a source directory to a target directory.
  *
  * @author puce
  */
 public class CopyFilesSample {
 
     /**
-     * java
+     * This sample uses the {@link CopyFileVisitor} to recursively copy a source directory to a target directory.
      *
      * @param args srcPath targetDirPath
      * @throws Exception

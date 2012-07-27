@@ -23,13 +23,14 @@ import org.softsmithy.lib.nio.file.JarFiles;
 import org.softsmithy.lib.nio.file.PathUtils;
 
 /**
+ * Adds a source directory to a ZIP file.
  *
  * @author puce
  */
 public class AddZipResourceSample {
 
     /**
-     * java
+     * Adds a source directory to a ZIP file.
      *
      * @param args zipPath targetDirPath srcPath targetInZipPath
      * @throws Exception
