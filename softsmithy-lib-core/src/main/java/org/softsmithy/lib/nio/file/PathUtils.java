@@ -34,8 +34,8 @@ public class PathUtils {
      * 
      * Else the resolved path gets calculated.
      * 
-     * @param path1
-     * @param path2
+     * @param path1 the given path
+     * @param path2 the path to resolve against the given path
      * @return the resolved path
      */
     public static Path resolve(Path path1, Path path2) {

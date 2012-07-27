@@ -23,7 +23,8 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 /**
- *
+ * A utility class for JAR files.
+ * 
  * @author puce
  */
 //TODO: package ok? or better: org.softsmithy.lib.util.jar ?
@@ -42,13 +43,14 @@ public class JarFiles {
     }
 
     /**
-     * Gets the {@link Path} of the JAR for the specified type.
+     * Gets the {@link Path} of the JAR for the specified type. <br/>
+     * <br/>
+     * TODO: useful enough to keep it?
      *
      * @param type a type included in the JAR
      * @return the {@link Path} of the JAR for the specified type
      * @throws URISyntaxException
      */
-    // TODO: useful enough to keep it?
     public static Path getJarPath(Class<?> type) throws URISyntaxException {
         return Paths.get(getJarURI(type));
     }
@@ -61,7 +63,17 @@ public class JarFiles {
      * @throws URISyntaxException
      */
     public static URI getJarURI(Class<?> type) throws URISyntaxException {
-        return getJarURI(type.getResource(getRoot() + type.getName().replace(".", "/") + ".class").toURI());
+        return getJarURI(getAResource(type));
+    }
+
+    private static URI getAResource(Class<?> type) throws URISyntaxException {
+        // TODO: the foolowing code doesn't make sure the /META-INF directory is in the same JAR as the provided class!?
+//        URL metaInf = type.getResource("/META-INF");
+//        if (metaInf != null) {
+//            return metaInf.toURI();
+//        } else { // TODO: needed or does every JAR have a META-INF directory?
+        return type.getResource(getRoot() + type.getName().replace(".", "/") + ".class").toURI();
+//        }
     }
 
     // TODO: in OSGi there might be different roots.
@@ -70,7 +82,9 @@ public class JarFiles {
     }
 
     /**
-     * Extracts the jar URI part from a jar resource URI ({@code jar:<jarURIPart>!/{entry}}).
+     * Extracts the jar URI part from a jar resource URI. <br/>
+     * <br/>
+     * A jar resource URI has the following form: ({@code jar:<jarURIPart>!/{entry}}).
      *
      * @param jarResourceURI a jar resource URI
      * @return the jar URI
