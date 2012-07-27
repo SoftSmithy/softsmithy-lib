@@ -37,10 +37,10 @@
     <h1>NIO File</h1>
 
 
-    The <em>SoftSmithy Utility Library</em> provides various utility classes for the NIO File API introduced in 
-    Java SE 7.
+    The <em>SoftSmithy Utility Library</em> provides 
+    <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/package-summary.html">various utility classes</a> 
+    for the <a href="${javadoc.url}/java/nio/file/package-summary.html">NIO File API</a> introduced in Java SE 7.
 
-    <h2>CopyFileVisitor</h2>
     <h3>Copy files</h3>
     Below is the code from 
     <a href="../../samples/src/main/java/samples/nio/file/CopyFilesSample.java">CopyFilesSample.java</a>
@@ -55,9 +55,18 @@
         CopyFileVisitor.copy(srcPath, finalTargetPath);
     }</textarea>
         </pre></blockquote>
+
+    This sample uses the <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html">CopyFileVisitor</a> 
+    to recursively copy a source directory to a target directory. The CopyFileVisitor implements the 
+    <a href="${javadoc.url}/java/nio/file/FileVisitor.html">FileVisitor</a> interface and thus can be use with one of the
+    <a href="${javadoc.url}/java/nio/file/Files.html#walkFileTree(java.nio.file.Path, java.nio.file.FileVisitor)">Files.walkFileTree</a> methods.
+    For convenience there is the static <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html#copy(java.nio.file.Path, java.nio.file.Path)">CopyFileVisitor.copy</a> 
+    method.
+
+    To run this sample, use:
     <pre>
-            cd docs/samples/dist
-            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample src/main/data/first output
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample src/main/data/first output
     </pre>   
     <h3>Extract resources from a JAR</h3>
     Below is the code from 
@@ -75,9 +84,18 @@
     }</textarea>
         </pre></blockquote>
 
+    Oracle's Java SE 7 Runtime comes with a 
+    <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/io/fsp/zipfilesystemprovider.html">FileSystemProvider implementation for JAR and ZIP files</a>.
+    This FileSystemProvider allows you to work with JAR and ZIP files similar to the way you can work with the local file system.<br/>
+    <br/>
+    <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/JarFiles.html">JarFiles</a> provides some utility methods to work with JAR/ ZIP files.
+    With the help of <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html">CopyFileVisitor</a>
+    you can easily recursively extract/ add directories from/ to JAR or ZIP files.
+    <br/>
+    To run this sample, use:
     <pre>
-            cd docs/samples/dist
-            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.ExtractJarResourceSample output
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.ExtractJarResourceSample output
     </pre>
 
     <h3>Add resources to a ZIP file</h3>
@@ -100,12 +118,39 @@
         }
     }</textarea>
         </pre></blockquote>
+
+    To run this sample, use:
     <pre>
-            cd docs/samples/dist
-            java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample src/main/data/sample-data.zip output src/main/data/another /first
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample src/main/data/sample-data.zip output src/main/data/another /first
     </pre>    
-    <h2>PathUtils</h2>
-    <h2>JarFiles</h2>
+    <h3>Get installation directory</h3>
+    If you unpack the SoftSmithy Utility Library distribution archive, you can find the JAR containing the samples at the
+    following location:
+    <pre>
+        &lt;install-dir&gt;/docs/samples/dist/softsmithy-lib-samples-${project.version}.jar
+        &lt;install-dir&gt;/docs/samples/dist/lib/&lt;other jars&gt; 
+    </pre>
+
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/GetInstallationDirSample.java">GetInstallationDirSample.java</a>
+    that to get the &lt;install-dir&gt;.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void printInstallDirPath() throws IOException, URISyntaxException {
+        URI jarURI = JarFiles.getJarURI(GetInstallationDirSample.class);
+        Path jarPath = Paths.get(jarURI);
+        Path installDirPath = jarPath.getParent().getParent().getParent().getParent();
+        
+        System.out.println(installDirPath);
+    }</textarea>
+        </pre></blockquote>
+
+    To run this sample, use:
+    <pre>
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.GetInstallationDirSample
+    </pre>    
     <table bgcolor="aqua" width="100%">
         <tr>
             <td>
