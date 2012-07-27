@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for the <a href="${javadoc.url}/java/nio/file/package-summary.html">NIO File API</a> introduced in
+ * Utility classes for the <a href="http://docs.oracle.com/javase/7/docs/api/java/nio/file/package-summary.html">NIO File API</a> introduced in
  * Java SE 7.
  */
 package org.softsmithy.lib.nio.file;

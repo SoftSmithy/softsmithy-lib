@@ -84,7 +84,8 @@ public class JarFiles {
     /**
      * Extracts the jar URI part from a jar resource URI. <br/>
      * <br/>
-     * A jar resource URI has the following form: ({@code jar:<jarURIPart>!/{entry}}).
+     * A jar resource URI has the following form: <br/>
+     * {@code jar:<jarURIPart>!/<resource entry>}.
      *
      * @param jarResourceURI a jar resource URI
      * @return the jar URI
