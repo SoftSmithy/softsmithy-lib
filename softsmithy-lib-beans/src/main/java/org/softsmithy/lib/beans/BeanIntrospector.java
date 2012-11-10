@@ -62,11 +62,11 @@ public final class BeanIntrospector {
     return descriptors;
   }
   
-  public static boolean isPropertyReadable(String propertyName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
+  public static boolean isPropertyReadable(String propertyName, Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
     return getPropertyDescriptor(propertyName, beanClass, rb).getReadMethod() != null;
   }
   
-  public static boolean isPropertyWriteable(String propertyName, Class beanClass, ResourceBundle rb) throws IntrospectionException{
+  public static boolean isPropertyWriteable(String propertyName, Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
     return getPropertyDescriptor(propertyName, beanClass, rb).getWriteMethod() != null;
   }
   
@@ -79,8 +79,8 @@ public final class BeanIntrospector {
   }
   
   public static boolean supportsPropertyChangeListeners(Class<?> beanClass){
-    boolean supportsPropertyChangeListeners = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{PropertyChangeListener.class})
-    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
+    boolean supportsPropertyChangeListeners = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class<?>[]{PropertyChangeListener.class})
+    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class<?>[]{PropertyChangeListener.class});
 //    if (supportsPropertyChangeListeners){
 //      try { // ensure that no IllegalAccessException will be thrown (is this code right?)
 //        supportsPropertyChangeListeners = getAddPropertyChangeListenerMethod(beanClass).isAccessible()
@@ -93,8 +93,8 @@ public final class BeanIntrospector {
   }
   
   public static boolean supportsPropertyChangeListenersByPropertyName(Class<?> beanClass){
-    boolean supportsPropertyChangeListenersByPropertyName = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class})
-    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+    boolean supportsPropertyChangeListenersByPropertyName = Classes.containsMethod(beanClass, "addPropertyChangeListener", new Class<?>[]{String.class, PropertyChangeListener.class})
+    && Classes.containsMethod(beanClass, "removePropertyChangeListener", new Class<?>[]{String.class, PropertyChangeListener.class});
 //    if (supportsPropertyChangeListenersByPropertyName){
 //      try { // ensure that no IllegalAccessException will be thrown (is this code right?)
 //        supportsPropertyChangeListenersByPropertyName = getAddPropertyChangeListenerByPropertyNameMethod(beanClass).isAccessible()
@@ -107,19 +107,19 @@ public final class BeanIntrospector {
   }
   
   private static Method getAddPropertyChangeListenerMethod(Class<?> beanClass) throws NoSuchMethodException{
-    return beanClass.getMethod("addPropertyChangeListener", new Class[]{PropertyChangeListener.class});
+    return beanClass.getMethod("addPropertyChangeListener", new Class<?>[]{PropertyChangeListener.class});
   }
   
   private static Method getAddPropertyChangeListenerByPropertyNameMethod(Class<?> beanClass) throws NoSuchMethodException{
-    return beanClass.getMethod("addPropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+    return beanClass.getMethod("addPropertyChangeListener", new Class<?>[]{String.class, PropertyChangeListener.class});
   }
   
   private static Method getRemovePropertyChangeListenerMethod(Class<?> beanClass) throws NoSuchMethodException{
-    return beanClass.getMethod("removePropertyChangeListener", new Class[]{PropertyChangeListener.class});
+    return beanClass.getMethod("removePropertyChangeListener", new Class<?>[]{PropertyChangeListener.class});
   }
   
   private static Method getRemovePropertyChangeListenerByPropertyNameMethod(Class<?> beanClass) throws NoSuchMethodException{
-    return beanClass.getMethod("removePropertyChangeListener", new Class[]{String.class, PropertyChangeListener.class});
+    return beanClass.getMethod("removePropertyChangeListener", new Class<?>[]{String.class, PropertyChangeListener.class});
   }
   
   public static void addPropertyChangeListener(Object bean, PropertyChangeListener listener) throws NoSuchMethodException, IllegalAccessException{

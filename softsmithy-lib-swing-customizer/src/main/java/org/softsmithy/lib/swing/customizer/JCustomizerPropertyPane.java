@@ -54,7 +54,7 @@ class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListe
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setDefaultCellEditor(Class aClass, TableCellEditor editor) {
+    public void setDefaultCellEditor(Class<?> aClass, TableCellEditor editor) {
         table.setDefaultEditor(aClass, editor);
     }
 

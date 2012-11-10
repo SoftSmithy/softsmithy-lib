@@ -29,6 +29,7 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
+@Deprecated
 public class JTypesafeEnumComboBox extends JComboBox {
   
   private boolean inited = false;

@@ -90,7 +90,7 @@ public class XMLEncoderX extends XMLEncoder {
    *
    */
   @Override
-  public PersistenceDelegate getPersistenceDelegate(Class type) {
+  public PersistenceDelegate getPersistenceDelegate(Class<?> type) {
     PersistenceDelegate retValue;
     if (type != null && TypesafeEnum.class.isAssignableFrom(type)){
       retValue = super.getPersistenceDelegate(TypesafeEnum.class);

@@ -75,7 +75,7 @@ public class XDefaultPersistenceDelegate extends DefaultPersistenceDelegate {
       }
       if (constructorArgs[i] == null){
         try{
-          constructorArgs[i] = type.getMethod("get"+capitalize(name), new Class[0]).invoke(oldInstance, new Object[0]);
+          constructorArgs[i] = type.getMethod("get"+capitalize(name), new Class<?>[0]).invoke(oldInstance, new Object[0]);
         } catch (Exception e) {
           // handleError(e, "Warning: Failed to get " + name + " property for " + oldInstance.getClass() + " constructor");
           out.getExceptionListener().exceptionThrown(e);

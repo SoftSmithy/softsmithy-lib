@@ -110,8 +110,8 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
         pane.removeFocusListener(this);
         panes.remove(pane);
         boolean same = false;
-        for (Iterator i = panes.iterator(); i.hasNext();) {
-            if (((JCustomizerPane) i.next()).getSelectionManager().equals(pane.getSelectionManager())) {
+        for (Iterator<JCustomizerPane> i = panes.iterator(); i.hasNext();) {
+            if (i.next().getSelectionManager().equals(pane.getSelectionManager())) {
                 same = true;
                 break;
             }

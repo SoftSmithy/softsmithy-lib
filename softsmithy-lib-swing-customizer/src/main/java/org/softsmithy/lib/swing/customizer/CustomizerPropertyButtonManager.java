@@ -44,7 +44,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
     private final Set<AbstractButton> textAlignLeftButtons = new HashSet<>();
     private final Set<AbstractButton> textAlignCenterButtons = new HashSet<>();
     private final Set<AbstractButton> textAlignRightButtons = new HashSet<>();
-    private final Set<PropertyChangeListener> listeners = new HashSet<>();
+    private final Set<CustomizerPropertyChangeListener> listeners = new HashSet<>();
     private CustomizerPropertyChangeListener textBold = null;
     private CustomizerPropertyChangeListener textItalic = null;
     private CustomizerPropertyChangeListener textAlignLeft = null;
@@ -85,9 +85,9 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         }
     }
 
-    private void setSelection(Set buttons, boolean selected) {
-        for (Iterator i = buttons.iterator(); i.hasNext();) {
-            ((AbstractButton) i.next()).setSelected(selected);
+    private void setSelection(Set<AbstractButton> buttons, boolean selected) {
+        for (AbstractButton button : buttons) {
+            button.setSelected(selected);
         }
     }
 
@@ -110,9 +110,8 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
 
     private void addListeners() {
         if (activeCustomizer != null) {
-            for (Iterator i = listeners.iterator(); i.hasNext();) {
-                CustomizerPropertyChangeListener cl = (CustomizerPropertyChangeListener) i.next();
-                activeCustomizer.addPropertyChangeListener(cl.getPropertyName(), cl);
+            for (CustomizerPropertyChangeListener listener : listeners) {
+                activeCustomizer.addPropertyChangeListener(listener.getPropertyName(), listener);
             }
         }
     }
@@ -232,7 +231,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         }
     }
 
-    private PropertyChangeListener getTextBoldPropertyChangeListener() {
+    private CustomizerPropertyChangeListener getTextBoldPropertyChangeListener() {
         if (textBold == null) {
             try {
                 textBold = new CustomizerPropertyChangeListener(this, "textBold", "font");
@@ -243,7 +242,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         return textBold;
     }
 
-    private PropertyChangeListener getTextItalicPropertyChangeListener() {
+    private CustomizerPropertyChangeListener getTextItalicPropertyChangeListener() {
         if (textItalic == null) {
             try {
                 textItalic = new CustomizerPropertyChangeListener(this, "textItalic", "font");
@@ -254,7 +253,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         return textItalic;
     }
 
-    private PropertyChangeListener getTextAlignLeftPropertyChangeListener() {
+    private CustomizerPropertyChangeListener getTextAlignLeftPropertyChangeListener() {
         if (textAlignLeft == null) {
             try {
                 textAlignLeft = new CustomizerPropertyChangeListener(this, "textAlignLeft", "horizontalAlignment");
@@ -265,7 +264,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         return textAlignLeft;
     }
 
-    private PropertyChangeListener getTextAlignCenterPropertyChangeListener() {
+    private CustomizerPropertyChangeListener getTextAlignCenterPropertyChangeListener() {
         if (textAlignCenter == null) {
             try {
                 textAlignCenter = new CustomizerPropertyChangeListener(this, "textAlignCenter", "horizontalAlignment");
@@ -276,7 +275,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         return textAlignCenter;
     }
 
-    private PropertyChangeListener getTextAlignRightPropertyChangeListener() {
+    private CustomizerPropertyChangeListener getTextAlignRightPropertyChangeListener() {
         if (textAlignRight == null) {
             try {
                 textAlignRight = new CustomizerPropertyChangeListener(this, "textAlignRight", "horizontalAlignment");

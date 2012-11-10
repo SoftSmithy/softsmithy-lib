@@ -47,12 +47,12 @@ public class JFontChooser extends JPanel {
         initComponents();
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         String envfonts[] = ge.getAvailableFontFamilyNames(getLocale());
-        Vector<String> fontNames = new Vector<String>();
+        Vector<String> fontNames = new Vector<>();
         for (int i = 1; i < envfonts.length; i++) { // TODO: i=1???
             fontNames.addElement(envfonts[i]);
         }
         fontsBox.setModel(new DefaultComboBoxModel(fontNames));
-        Vector<Integer> sizes = new Vector<Integer>();
+        Vector<Integer> sizes = new Vector<>();
         for (int i = 6; i <= 16; i++) {
             sizes.add(i);
         }

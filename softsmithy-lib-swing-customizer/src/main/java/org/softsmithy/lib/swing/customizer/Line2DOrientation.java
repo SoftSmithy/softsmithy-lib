@@ -59,5 +59,5 @@ public abstract class Line2DOrientation extends TypesafeEnum {
         }
     };
     private static final Line2DOrientation[] PRIVATE_VALUES = {HORIZONTAL, VERTICAL};
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
+    public static final List<Line2DOrientation> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
 }
