@@ -59,12 +59,12 @@ public class Classes {
    *                                      interface; false otherwise
    * @extension IllegalArgumentException  if the parameter anInterface is not an interface
    */
-  public static boolean implementsInterface(Class aClass, Class anInterface) {
+  public static boolean implementsInterface(Class<?> aClass, Class<?> anInterface) {
     if (!anInterface.isInterface()) {
       throw new IllegalArgumentException(anInterface.getName() + " is not an interface!");
     }
     boolean impl = false;
-    Class current = aClass;
+    Class<?> current = aClass;
     while ((current != null) && (!impl)) {
       impl = Arrays.asList(current.getInterfaces()).contains(anInterface);
       current = current.getSuperclass();
@@ -80,9 +80,9 @@ public class Classes {
    * @return                              true if subclass extends (directly or
    *                                      indirectly) the superclass; false otherwise
    */
-  public static boolean extendsClass(Class subclass, Class superclass) {
+  public static boolean extendsClass(Class<?> subclass, Class<?> superclass) {
     boolean ext = false;
-    for (Class current = subclass.getSuperclass(); (current != null) && (!ext); current = current.getSuperclass()) {
+    for (Class<?> current = subclass.getSuperclass(); (current != null) && (!ext); current = current.getSuperclass()) {
       ext = current.equals(superclass);
       
     }
@@ -90,7 +90,7 @@ public class Classes {
   }
   
   public static Class<?> getTopMostCommonClass(Class<?> a, Class<?> b){
-    Class baseClass;
+    Class<?> baseClass;
     if (a == null || b == null){
       baseClass = null;
     } else if (a.equals(b)){
@@ -106,7 +106,7 @@ public class Classes {
   }
   
   public static Class<?> getTopMostCommonClass(Class<?>[] classes){
-    Class topMostCommonClass = null;
+    Class<?> topMostCommonClass = null;
     if (classes.length > 0){
       topMostCommonClass = classes[0];
       for (int i=1; i<classes.length; i++){
@@ -116,16 +116,16 @@ public class Classes {
     return topMostCommonClass;
   }
   
-  public static Class[] getClasses(Object[] objects){
-    Class[] classes = new Class[objects.length];
+  public static Class<?>[] getClasses(Object[] objects){
+    Class<?>[] classes = new Class<?>[objects.length];
     for (int i=0; i<objects.length; i++){
       classes[i] = objects[i].getClass();
     }
     return classes;
   }
   
-  public static Class[] getClasses(Collection objects){
-    Class[] classes = new Class[objects.size()];
+  public static Class<?>[] getClasses(Collection<?> objects){
+    Class<?>[] classes = new Class<?>[objects.size()];
     Iterator iterator = objects.iterator();
     for (int i=0; i<classes.length; i++){
       classes[i] = iterator.next().getClass();
@@ -133,7 +133,8 @@ public class Classes {
     return classes;
   }
   
-  public static String createWrapper(Class aClass, String packageName){
+  @Deprecated
+  public static String createWrapper(Class<?> aClass, String packageName){
     String[] names = aClass.getName().split("\\.");
     String className = names[names.length-1];
     String wrappedObj = Introspector.decapitalize(className);
@@ -163,8 +164,8 @@ public class Classes {
       String[] methodNames = methods[i].getName().split("\\.");
       String methodName = methodNames[methodNames.length-1];
       wrapper.append(methodName).append("(");
-      Class[] parameterTypes = methods[i].getParameterTypes();
-      List<String> args = new ArrayList<String>();
+      Class<?>[] parameterTypes = methods[i].getParameterTypes();
+      List<String> args = new ArrayList<>();
       for (int j=0; j<parameterTypes.length; j++){
         wrapper.append(parameterTypes[j].getName()).append(" ");
         String[] typeNames = parameterTypes[j].getName().split("\\.");
@@ -192,6 +193,7 @@ public class Classes {
     return wrapper.toString();
   }
   
+  @Deprecated
   public static String createAdapter(Class anInterface){
     if (!anInterface.isInterface()) {
       throw new IllegalArgumentException(anInterface.getName() + " is not an interface!");
@@ -205,7 +207,7 @@ public class Classes {
     return adapter;
   }
   
-  public static Class getWrapperClass(Class primitiveClass) {
+  public static Class<?> getWrapperClass(Class<?> primitiveClass) {
     if (! primitiveClass.isPrimitive()){
       throw new IllegalArgumentException("primitiveClass must be a primitive class!");
     }
