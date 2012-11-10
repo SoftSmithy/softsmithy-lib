@@ -20,7 +20,7 @@
 
 package samples;
 
-import samples.swing.customizer.*;
+
 
 /**
  *

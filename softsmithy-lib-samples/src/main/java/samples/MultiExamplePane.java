@@ -34,15 +34,21 @@
 
 package samples;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.net.*;
-import javax.swing.*;
-import org.softsmithy.lib.awt.*;
-import org.softsmithy.lib.awt.layout.*;
-import org.softsmithy.lib.swing.*;
-import org.softsmithy.lib.swing.customizer.*;
-import org.softsmithy.lib.swing.icon.*;
+
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import org.softsmithy.lib.awt.Star;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
+import org.softsmithy.lib.swing.customizer.JLine2DCustomizer;
+import org.softsmithy.lib.swing.customizer.JXIconCustomizer;
+import org.softsmithy.lib.swing.customizer.Line2DOrientation;
+import org.softsmithy.lib.swing.icon.ShapeIcon;
+import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 
 
@@ -129,7 +135,7 @@ public class MultiExamplePane extends JPanel {
     private void initComponents() {
 
         jScrollPane = new javax.swing.JScrollPane();
-        pane = new org.softsmithy.lib.swing.JCustomizerPane();
+        pane = new org.softsmithy.lib.swing.customizer.JCustomizerPane();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -143,7 +149,7 @@ public class MultiExamplePane extends JPanel {
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane;
-    private org.softsmithy.lib.swing.JCustomizerPane pane;
+    private org.softsmithy.lib.swing.customizer.JCustomizerPane pane;
     // End of variables declaration//GEN-END:variables
   
 }

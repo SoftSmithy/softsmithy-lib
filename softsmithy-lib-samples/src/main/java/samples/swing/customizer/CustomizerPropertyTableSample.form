@@ -41,7 +41,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="org.softsmithy.lib.swing.JCustomizerPropertyTable" name="customizerPropertyTable">
+            <Component class="org.softsmithy.lib.swing.customizer.JCustomizerPropertyTable" name="customizerPropertyTable">
             </Component>
           </SubComponents>
         </Container>
@@ -54,7 +54,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Container class="org.softsmithy.lib.swing.JCustomizerPane" name="customizerPane">
+            <Container class="org.softsmithy.lib.swing.customizer.JCustomizerPane" name="customizerPane">
             </Container>
           </SubComponents>
         </Container>

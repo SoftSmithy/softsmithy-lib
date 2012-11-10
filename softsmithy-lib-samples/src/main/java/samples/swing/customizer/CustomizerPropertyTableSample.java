@@ -21,10 +21,9 @@
 package samples.swing.customizer;
 
 import javax.swing.JLabel;
-import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
-import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
-import org.softsmithy.lib.swing.JCustomizer;
-import org.softsmithy.lib.swing.JCustomizerPane;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 /**
  *
@@ -55,9 +54,9 @@ public class CustomizerPropertyTableSample extends javax.swing.JFrame {
     private void initComponents() {
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        customizerPropertyTable = new org.softsmithy.lib.swing.JCustomizerPropertyTable();
+        customizerPropertyTable = new org.softsmithy.lib.swing.customizer.JCustomizerPropertyTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        customizerPane = new org.softsmithy.lib.swing.JCustomizerPane();
+        customizerPane = new org.softsmithy.lib.swing.customizer.JCustomizerPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A Customizer Property Table Sample");
@@ -88,8 +87,8 @@ public class CustomizerPropertyTableSample extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.softsmithy.lib.swing.JCustomizerPane customizerPane;
-    private org.softsmithy.lib.swing.JCustomizerPropertyTable customizerPropertyTable;
+    private org.softsmithy.lib.swing.customizer.JCustomizerPane customizerPane;
+    private org.softsmithy.lib.swing.customizer.JCustomizerPropertyTable customizerPropertyTable;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;

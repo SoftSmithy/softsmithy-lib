@@ -112,9 +112,19 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.swinglabs</groupId>
-            <artifactId>swing-layout</artifactId>
-            <version>1.0.3</version>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-awt</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-swing</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-swing-customizer</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -19,13 +19,13 @@ import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
-import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
-import org.softsmithy.lib.swing.JCustomizer;
-import org.softsmithy.lib.swing.JCustomizerPane;
-import org.softsmithy.lib.swing.JLabelCustomizer;
-import org.softsmithy.lib.swing.JTabbedCustomizerBar;
-import org.softsmithy.lib.swing.JTableCustomizerBar;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.JCustomizerPane;
+import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
+import org.softsmithy.lib.swing.customizer.JTabbedCustomizerBar;
+import org.softsmithy.lib.swing.customizer.JTableCustomizerBar;
+import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 
 public class CustomizerBarSample extends javax.swing.JFrame {
@@ -47,16 +47,20 @@ public class CustomizerBarSample extends javax.swing.JFrame {
         TableModel fixedLabelModel = new AbstractTableModel() {
             private String[] labels = new String[]{"first fixed label", 
             "second fixed label", "third fixed label"};
+            @Override
             public int getColumnCount() {
                 return 1;
             }
+            @Override
             public int getRowCount() {
                 return labels.length;
             }
+            @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
                 return labels[rowIndex];
             }
             
+            @Override
             public String getColumnName(int index){
                 return "Fixed Labels";
             }
@@ -64,6 +68,7 @@ public class CustomizerBarSample extends javax.swing.JFrame {
         
         // Create a table based CustomizerBar
         JTableCustomizerBar fixedLabelsCB = new JTableCustomizerBar(fixedLabelModel) {
+            @Override
             public void consumeSelection(JCustomizerPane pane, Point point) {
                 // Create a simple customizer, which displays the selected text
                 JCustomizer customizer = new JCustomizer(new JLabel((String) getTableModel().getValueAt(getSelection(),0)));
@@ -87,6 +92,7 @@ public class CustomizerBarSample extends javax.swing.JFrame {
         
         // Create a table based CustomizerBar
         JTableCustomizerBar customLabelsCB = new JTableCustomizerBar(customLabelModel) {
+            @Override
             public void consumeSelection(JCustomizerPane pane, Point point) {
                 // Create a JLabelCustomizer, which displays the selected text. 
                 // Double-click this customizer to change its text!
@@ -141,6 +147,7 @@ public class CustomizerBarSample extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new CustomizerBarSample().setVisible(true);
             }

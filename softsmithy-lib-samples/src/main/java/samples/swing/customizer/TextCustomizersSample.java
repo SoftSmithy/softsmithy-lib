@@ -23,11 +23,11 @@ package samples.swing.customizer;
 import java.awt.Color;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
-import org.softsmithy.lib.awt.layout.AbsoluteTableConstraints;
-import org.softsmithy.lib.awt.layout.InfiniteTableLayout;
-import org.softsmithy.lib.swing.JButtonCustomizer;
-import org.softsmithy.lib.swing.JHtmlCustomizer;
-import org.softsmithy.lib.swing.JLabelCustomizer;
+import org.softsmithy.lib.swing.customizer.JButtonCustomizer;
+import org.softsmithy.lib.swing.customizer.JHtmlCustomizer;
+import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
+import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
+import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 /**
  *
@@ -86,7 +86,7 @@ public class TextCustomizersSample extends javax.swing.JFrame {
 
         contentPane = new javax.swing.JPanel();
         contentScrollPane = new javax.swing.JScrollPane();
-        customizerPane = new org.softsmithy.lib.swing.JCustomizerPane();
+        customizerPane = new org.softsmithy.lib.swing.customizer.JCustomizerPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("A Text Customizers Sample");
@@ -116,7 +116,7 @@ public class TextCustomizersSample extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPane;
     private javax.swing.JScrollPane contentScrollPane;
-    private org.softsmithy.lib.swing.JCustomizerPane customizerPane;
+    private org.softsmithy.lib.swing.customizer.JCustomizerPane customizerPane;
     // End of variables declaration//GEN-END:variables
     
 }

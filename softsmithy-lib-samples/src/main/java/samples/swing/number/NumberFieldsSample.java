@@ -2,7 +2,6 @@ package samples.swing.number;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Locale;
 import org.softsmithy.lib.swing.text.DoubleFormatter;
 import org.softsmithy.lib.swing.text.DoubleFormatterFactory;
 import org.softsmithy.lib.swing.text.FloatFormatter;
