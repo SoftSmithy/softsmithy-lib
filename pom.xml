@@ -38,7 +38,7 @@
         <module>softsmithy-lib-persistence</module>
         <module>softsmithy-lib-samples</module>
         <module>softsmithy-devlib</module>
-    </modules>
+  </modules>
 
     <build>
         <plugins>
