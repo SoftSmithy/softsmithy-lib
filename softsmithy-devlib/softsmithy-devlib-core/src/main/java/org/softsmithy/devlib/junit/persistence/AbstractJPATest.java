@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-package org.softsmithy.devlib.junit;
+package org.softsmithy.devlib.junit.persistence;
 
 import org.softsmithy.devlib.persistence.DbInitializer;
 import javax.persistence.EntityManager;
