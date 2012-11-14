@@ -27,12 +27,14 @@ import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
+import org.softsmithy.lib.util.PositionableAdapter;
 import org.softsmithy.lib.util.ServiceProvider;
 
 /**
@@ -42,7 +44,7 @@ import org.softsmithy.lib.util.ServiceProvider;
 @SupportedAnnotationTypes("org.softsmithy.lib.util.ServiceProvider")
 public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
 
-    private final Map<String, List<ServiceProviderDescription>> serviceProviders = new HashMap<>();
+    private final Map<String, List<PositionableAdapter<Name>>> serviceProviders = new HashMap<>();
     private final Map<String, List<Element>> elements = new HashMap<>();
 
     @Override
@@ -62,15 +64,14 @@ public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
                         serviceClassName = serviceClassTypeMirror.toString();
                     }
                     if (!serviceProviders.containsKey(serviceClassName)) {
-                        serviceProviders.put(serviceClassName, new ArrayList<ServiceProviderDescription>());
+                        serviceProviders.put(serviceClassName, new ArrayList<PositionableAdapter<Name>>());
                     }
                     if (!elements.containsKey(serviceClassName)) {
                         elements.put(serviceClassName, new ArrayList<Element>());
                     }
-                    ServiceProviderDescription serviceProviderDescription = new ServiceProviderDescription();
-                    serviceProviderDescription.setServiceProviderName(typeElement.getQualifiedName());
-                    serviceProviderDescription.setPosition(serviceProviderAnnotation.position());
-                    serviceProviders.get(serviceClassName).add(serviceProviderDescription);
+                    PositionableAdapter<Name> serviceProvider = new PositionableAdapter<>(typeElement.getQualifiedName(),
+                            serviceProviderAnnotation.position());
+                    serviceProviders.get(serviceClassName).add(serviceProvider);
                     elements.get(serviceClassName).add(element);
                 }
             }
@@ -85,7 +86,7 @@ public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
     private void writeApplicationFile() {
         Filer filer = processingEnv.getFiler();
         Messager messager = processingEnv.getMessager();
-        for (Map.Entry<String, List<ServiceProviderDescription>> serviceProviderEntry : serviceProviders.entrySet()) {
+        for (Map.Entry<String, List<PositionableAdapter<Name>>> serviceProviderEntry : serviceProviders.entrySet()) {
             List<Element> serviceProviderElements = elements.get(serviceProviderEntry.getKey());
             try {
                 FileObject serviceProviderFileObject = filer.createResource(StandardLocation.SOURCE_OUTPUT, "",
@@ -93,8 +94,8 @@ public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
                         serviceProviderElements.toArray(new Element[serviceProviderElements.size()]));
                 Collections.sort(serviceProviderEntry.getValue());
                 try (Writer writer = serviceProviderFileObject.openWriter()) {
-                    for (ServiceProviderDescription serviceProviderDescription : serviceProviderEntry.getValue()) {
-                        writer.append(serviceProviderDescription.getServiceProviderName());
+                    for (PositionableAdapter<Name> serviceProviderDescription : serviceProviderEntry.getValue()) {
+                        writer.append(serviceProviderDescription.getAdapted());
                         writer.append("\n");
                     }
                 }
