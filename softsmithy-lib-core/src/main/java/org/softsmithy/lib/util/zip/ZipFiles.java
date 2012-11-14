@@ -38,7 +38,7 @@ import org.softsmithy.lib.util.Strings;
 
 /**
  * A utility class for zip files.
- * @author brunner
+ * @author puce
  */
 public class ZipFiles {
     
