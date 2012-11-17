@@ -25,6 +25,7 @@ import java.awt.Point;
  * @see AbsoluteLayout
  * @version 1.01, Aug 19, 1998
  */
+@Deprecated
 class AbsoluteConstraints{
   
   /** The X position of the component */
