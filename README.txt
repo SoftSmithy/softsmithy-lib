@@ -1,10 +1,18 @@
 Contains:
 
-softsmithy-lib-core-${project.version}.jar                    - The SoftSmithy Utility Library - Core
-softsmithy-lib-core-${project.version}-sources.jar            - The SoftSmithy Utility Library - Core source code
-softsmithy-lib-persistence-${project.version}.jar             - The SoftSmithy Utility Library - Persistence
-softsmithy-lib-persistence-${project.version}-sources.jar     - The SoftSmithy Utility Library - Persistence source code
-docs-directory                                            - Contains the Javadoc, a tutorial and samples
+softsmithy-lib-awt-${project.version}.jar                        - The SoftSmithy Utility Library - AWT
+softsmithy-lib-awt-${project.version}-sources.jar                - The SoftSmithy Utility Library - AWT source code
+softsmithy-lib-beans-${project.version}.jar                      - The SoftSmithy Utility Library - Beans
+softsmithy-lib-beans-${project.version}-sources.jar              - The SoftSmithy Utility Library - Beans source code
+softsmithy-lib-core-${project.version}.jar                       - The SoftSmithy Utility Library - Core
+softsmithy-lib-core-${project.version}-sources.jar               - The SoftSmithy Utility Library - Core source code
+softsmithy-lib-persistence-${project.version}.jar                - The SoftSmithy Utility Library - Persistence
+softsmithy-lib-persistence-${project.version}-sources.jar        - The SoftSmithy Utility Library - Persistence source code
+softsmithy-lib-swing-${project.version}.jar                      - The SoftSmithy Utility Library - Swing
+softsmithy-lib-swing-${project.version}-sources.jar              - The SoftSmithy Utility Library - Swing source code
+softsmithy-lib-swing-customizer-${project.version}.jar           - The SoftSmithy Utility Library - Swing Customizer
+softsmithy-lib-swing-customizer-${project.version}-sources.jar   - The SoftSmithy Utility Library - Swing Customizer source code
+docs-directory                                                   - Contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
@@ -57,6 +65,6 @@ http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
 hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
-jdk 1.7.0_03
+jdk 1.7.0_09
 Maven 3.0.4
-NetBeans IDE 7.1.1
+NetBeans IDE 7.2
