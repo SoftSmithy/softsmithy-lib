@@ -61,7 +61,7 @@
             </li>
         </ul>
         <br/>
-        The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        The <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XAction.html">
         XAction</a> interface overcomes these shortcomings by defining static 
         final fields for all these icons and providing setter and getter methods
         with the right type for each field it defines.<br/>
@@ -74,7 +74,7 @@
         interface, it can be used everywhere an ordinary Action can be used!
         <br/>
        
-        The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/AbstractXAction.html">
+        The <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/AbstractXAction.html">
         AbstractXAction</a> class implements the XAction interface by extending 
         the AbstractAction and implementing all new methods of XAction. The
         actionPerfomed method remains abstract.
@@ -96,8 +96,8 @@
             </textarea>
         </pre></blockquote>
         <h2><a name="reflective">Reflective Actions</a></h2>
-        <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>
-        is a trampoline class that implements the <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>
+        is a trampoline class that implements the <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XAction.html">
         XAction</a> interface and delegates the actionPerformed method to a reflectivly called action method. That method must
         be public and take an ActionEvent object as its single parameter.<br>
         <p>
@@ -156,17 +156,17 @@
         Reflective actions are heavily used and supported throughout the whole 
         <em>Extended Action Framework</em>.
         <h2><a name="utility">The XActions Utility Class</a></h2>
-        <p>The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XActions.html">XActions</a> 
+        <p>The <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XActions.html">XActions</a> 
         class is a utility class providing convenience methods, which are described in this section.</p>
         <h3>The Button Configuration Methods</h3>
-        <p>Let's first have a look at the <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XActions.html#configureButton(javax.swing.AbstractButton,%20org.softsmithy.lib.swing.action.XAction,%20org.softsmithy.lib.swing.action.IconType,%20boolean,%20boolean)">
+        <p>Let's first have a look at the <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XActions.html#configureButton(javax.swing.AbstractButton,%20org.softsmithy.lib.swing.action.XAction,%20org.softsmithy.lib.swing.action.IconType,%20boolean,%20boolean)">
         configureButton</a> method:
         <blockquote><pre>
         public static void configureButton(AbstractButton button, XAction action, IconType iconType, boolean showText, boolean coolStyle)
         </pre></blockquote>
         This method configures an <a href="${javadoc.url}/javax/swing/AbstractButton.html">
         AbstractButton</a> with an 
-        <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XAction.html">
         XAction</a>.
         It can be specified, which icon type should be use (small icons, 
         large icons or no icons), if the text should be displayed and if the 
@@ -220,7 +220,7 @@
                 <li>This sample shows 1 menu and 2 toolbars all configured by the same XAction objects.</li>
             </ol>
             Note: This sample uses the 
-            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
+            <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
             class, which will be discussed later in the section 
             <a href="#factories">The Standard Action Factories</a>.
             <p>
@@ -413,7 +413,7 @@
                 public static XAction createXAction(String name, Object target, ResourceBundle rb) throws NoSuchMethodException
             </pre></blockquote>
             This method will create a 
-            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>.
+            <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>.
             (See the <a href="#reflective">Reflective Actions</a> section to 
             learn more about reflective actions.)
             The object 'target' is expected to have a method:
@@ -424,7 +424,7 @@
         <h2><a name="factories">The Standard Action Factories</a></h2>
         <p>
             The <em>Standard Action Factories</em> provide utility methods to create
-            and configure <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+            and configure <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/XAction.html">
             XAction</a>s for standard actions. However they do not provide any 
             functionality for the actions since that is application specific.
         </p>
@@ -432,7 +432,7 @@
             All <em>Standard Action Factory</em> classes are typesafe enums, 
             which provide one action factory instance for each supported 
             standard action. They all derive from the base class
-            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/StandardActionFactory.html">
+            <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/StandardActionFactory.html">
             StandardActionFactory</a>. The StandardActionFactory provides two
             methods:
             <blockquote><pre>
@@ -511,7 +511,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">Development Toolbar Button Graphics</a>
@@ -519,7 +519,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">General Toolbar Button Graphics</a>
@@ -527,7 +527,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">Media Toolbar Button Graphics</a>
@@ -535,7 +535,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">Navigation Toolbar Button Graphics</a>
@@ -543,7 +543,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">Table Toolbar Button Graphics</a>
@@ -551,7 +551,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a>
+                    <a href="../../../api/softsmithy-lib-swing/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a>
                 </td>
                 <td>
                     <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">Text Toolbar Button Graphics</a>

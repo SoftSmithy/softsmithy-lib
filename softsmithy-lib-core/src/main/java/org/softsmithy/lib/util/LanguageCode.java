@@ -25,11 +25,14 @@ package org.softsmithy.lib.util;
  * @author  puce
  */
 
-class LanguageCode extends TypesafeEnum{
+enum LanguageCode{
+    GERMAN("de");
+    private final String language;
   
   /** Creates a new instance of LanguageCode */
-  public LanguageCode(String language) {
-    super(language);
+  private LanguageCode(String language) {
+        this.language = language;
+
   }
   
 //  public String toString(Locale inLocale){
