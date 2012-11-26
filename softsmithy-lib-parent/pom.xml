@@ -10,7 +10,7 @@
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.3</version>
+    <version>0.3.1-SNAPSHOT</version>
     <name>SoftSmithy Utility Library - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
