@@ -16,11 +16,15 @@ package org.softsmithy.lib.util;
 import java.util.Comparator;
 
 /**
+ * {@link Comparator} for {@link Positionable}s.
  *
  * @author puce
  */
 public class PositionableComparator implements Comparator<Positionable> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compare(Positionable o1, Positionable o2) {
         if (o1.getPosition() < o2.getPosition()) {

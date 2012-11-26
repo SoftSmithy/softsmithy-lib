@@ -13,12 +13,13 @@
  */
 package org.softsmithy.lib.util;
 
+import java.util.Objects;
+
 /**
  *
  * @author puce
  */
-public class PositionableAdapter<T> implements Positionable, Comparable<Positionable> {
-
+public class PositionableAdapter<T> implements Positionable {
 
     private final T adapted;
     private final int position;
@@ -36,16 +37,4 @@ public class PositionableAdapter<T> implements Positionable, Comparable<Position
     public int getPosition() {
         return position;
     }
-
-    @Override
-    public int compareTo(Positionable o) {
-         if (position < o.getPosition()) {
-            return -1;
-        } else if (position > o.getPosition()) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
 }

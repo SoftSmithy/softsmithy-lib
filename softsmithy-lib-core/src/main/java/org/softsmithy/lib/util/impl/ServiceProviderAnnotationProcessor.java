@@ -35,6 +35,7 @@ import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import org.softsmithy.lib.util.PositionableAdapter;
+import org.softsmithy.lib.util.PositionableComparator;
 import org.softsmithy.lib.util.ServiceProvider;
 
 /**
@@ -92,7 +93,7 @@ public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
                 FileObject serviceProviderFileObject = filer.createResource(StandardLocation.SOURCE_OUTPUT, "",
                         "META-INF/services/" + serviceProviderEntry.getKey(),
                         serviceProviderElements.toArray(new Element[serviceProviderElements.size()]));
-                Collections.sort(serviceProviderEntry.getValue());
+                Collections.sort(serviceProviderEntry.getValue(), new PositionableComparator());
                 try (Writer writer = serviceProviderFileObject.openWriter()) {
                     for (PositionableAdapter<Name> serviceProviderDescription : serviceProviderEntry.getValue()) {
                         writer.append(serviceProviderDescription.getAdapted());

@@ -14,10 +14,16 @@
 package org.softsmithy.lib.util;
 
 /**
+ * A Positionable can be positioned among other Positionables.
  *
  * @author puce
  */
 public interface Positionable {
 
+    /**
+     * Get the preferred position.
+     *
+     * @return the preferred position
+     */
     int getPosition();
 }

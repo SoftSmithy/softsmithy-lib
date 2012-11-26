@@ -47,5 +47,24 @@ public class PositionableComparatorTest {
         public int getPosition() {
             return position;
         }
+
+        @Override
+        public int hashCode() {
+            int hash = 3;
+            hash = 13 * hash + this.position;
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof TestPositionable)) {
+                return false;
+            }
+            final TestPositionable other = (TestPositionable) obj;
+            return this.position == other.position;
+        }
     }
 }

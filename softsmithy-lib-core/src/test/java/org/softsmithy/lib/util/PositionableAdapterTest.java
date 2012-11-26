@@ -14,9 +14,7 @@
 package org.softsmithy.lib.util;
 
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.softsmithy.lib.Tests;
 
 /**
  *
@@ -24,40 +22,19 @@ import org.softsmithy.lib.Tests;
  */
 public class PositionableAdapterTest {
 
-    public PositionableAdapterTest() {
-    }
-
-    @Ignore
     @Test
     public void testGetAdapted() {
         System.out.println("getAdapted");
-        PositionableAdapter instance = null;
-        Object expResult = null;
-        Object result = instance.getAdapted();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String adapted = "test";
+        PositionableAdapter<String> adapter = new PositionableAdapter<>(adapted, 42);
+        assertEquals(adapted, adapter.getAdapted());
     }
 
-    @Ignore
     @Test
     public void testGetPosition() {
         System.out.println("getPosition");
-        PositionableAdapter instance = null;
-        int expResult = 0;
-        int result = instance.getPosition();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testCompareTo() {
-        System.out.println("compareTo");
-        Tests.testComparatorConsistentWithEquals(
-                new PositionableAdapter<>("test1", 5),
-                new PositionableAdapter<>("test2", 3),
-                new PositionableAdapter<>("test3", 5),
-                new PositionableAdapter<>("test4", 7));
+        int position = 42;
+        PositionableAdapter<String> adapter = new PositionableAdapter<>("test", position);
+        assertEquals(position, adapter.getPosition());
     }
 }
