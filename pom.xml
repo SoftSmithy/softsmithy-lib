@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.3</version>
+        <version>0.3.1-SNAPSHOT</version>
         <relativePath>softsmithy-lib-parent</relativePath>
     </parent>
     
