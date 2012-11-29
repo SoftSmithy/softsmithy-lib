@@ -13,7 +13,11 @@
   <resources>
     <j2se href="http://java.sun.com/products/autodl/j2se" version="${java.min.version}+"/>
     <jar href="softsmithy-lib-samples-${project.version}.jar" main="true"/>
+    <jar href="lib/softsmithy-lib-awt-${project.version}.jar"/>
+    <jar href="lib/softsmithy-lib-beans-${project.version}.jar"/>
     <jar href="lib/softsmithy-lib-core-${project.version}.jar"/>
+    <jar href="lib/softsmithy-lib-swing-${project.version}.jar"/>
+    <jar href="lib/softsmithy-lib-swing-customizer-${project.version}.jar"/>
   </resources>
 
   <application-desc main-class="samples.swing.customizer.SimpleSingleCustomizerSample"/>
