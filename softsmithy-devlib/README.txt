@@ -38,9 +38,9 @@ http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
 hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
 
 Used:
-jdk 1.7.0_03
+jdk 1.7.0_09
 Maven 3.0.4
-NetBeans IDE 7.1.1
+NetBeans IDE 7.2
 EclipseLink 2.0
 JUnit 4.10
 SoftSmithy Utility Library v${project.version}

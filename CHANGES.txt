@@ -1,6 +1,8 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+
+v0.3 (Changeset: ecfc90e95ad5):
             - Project migration: Bundle split: softsmithy-lib-awt project added
             - Project migration: Bundle split: softsmithy-lib-beans project added
             - Project migration: Bundle split: softsmithy-lib-swing project added
@@ -9,9 +11,7 @@ v${project.version} (Changeset: ${changeSet}):
               All Swing Customizer classes are now in the package or subpackages of
               org.softsmithy.lib.swing.customizer.*
             - Positionable Framework added
-            - AbstractJPATest: moved package: org.softsmithy.devlib.junit -> org.softsmithy.devlib.junit.persistence 
             - Small fixes and clean-ups
-            - JUnit upgrade: version 4.10
             - Tutorial fixes
             - NetBeans IDE upgrade: 7.2
 
