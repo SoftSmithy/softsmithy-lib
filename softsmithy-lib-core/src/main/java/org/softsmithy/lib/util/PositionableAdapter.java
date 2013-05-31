@@ -13,8 +13,6 @@
  */
 package org.softsmithy.lib.util;
 
-import java.util.Objects;
-
 /**
  *
  * @author puce
@@ -36,5 +34,11 @@ public class PositionableAdapter<T> implements Positionable {
     @Override
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return PositionableAdapter.class.getSimpleName()
+                + "[position=" + position + ", adapted=" + adapted + "]";
     }
 }

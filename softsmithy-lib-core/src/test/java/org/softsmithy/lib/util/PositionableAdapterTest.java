@@ -37,4 +37,12 @@ public class PositionableAdapterTest {
         PositionableAdapter<String> adapter = new PositionableAdapter<>("test", position);
         assertEquals(position, adapter.getPosition());
     }
+
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        PositionableAdapter<String> adapter = new PositionableAdapter<>("test", 42);
+        // No exception should be thrown
+        System.out.println("Adapter: " + adapter);
+    }
 }
