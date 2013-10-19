@@ -26,6 +26,7 @@
         <scm.connection>${scm.parent.connection}</scm.connection>
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
+        <!--<java.min.version>1.8</java.min.version>-->
     </properties>
 
     <modules>
@@ -36,9 +37,10 @@
         <module>softsmithy-lib-swing</module>
         <module>softsmithy-lib-swing-customizer</module>
         <module>softsmithy-lib-persistence</module>
+        <module>softsmithy-lib-time</module>
         <module>softsmithy-lib-samples</module>
         <module>softsmithy-devlib</module>
-  </modules>
+    </modules>
 
     <build>
         <plugins>
@@ -46,6 +48,26 @@
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <toolchains>
+                        <jdk>
+                            <version>1.8</version>
+                            <vendor>oracle</vendor>
+                        </jdk>
+                    </toolchains>
                 </configuration>
             </plugin>
         </plugins>
