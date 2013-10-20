@@ -14,6 +14,9 @@
 
 package org.softsmithy.lib.lang.reflect;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
 /**
  * InvocationTargetRuntimeException is an unchecked exception that wraps
  * an exception thrown by an invoked method or constructor.

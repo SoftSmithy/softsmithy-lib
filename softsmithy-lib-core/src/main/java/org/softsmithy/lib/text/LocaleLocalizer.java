@@ -23,8 +23,8 @@ import java.util.Locale;
 
 /**
  * This class specifies, which display String should be used with Locales 
- * (see strategy pattern).<br/>
- * <br/>
+ * (see strategy pattern).<br>
+ * <br>
  * Note: Is this really a ennum? Better way??
  * @author puce
  */

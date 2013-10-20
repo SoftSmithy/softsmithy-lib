@@ -20,10 +20,12 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import java.awt.geom.*;
-import org.softsmithy.lib.swing.customizer.*;
-import org.softsmithy.lib.swing.icon.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Line2D;
+import org.softsmithy.lib.swing.icon.ShapeIcon;
+import org.softsmithy.lib.swing.icon.XIcon;
 
 
 /**
@@ -60,8 +62,8 @@ public class JLine2DCustomizer extends JXIconCustomizer {
     revalidate(); // seems to be necessary in some cases
   }
   
-  /** Setter for property imageSrc.
-   * @param imageSrc New value of property imageSrc.
+  /** Setter for property icon.
+   * @param icon New value of property icon.
    *
    *
    */

@@ -214,8 +214,8 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   //  }
   
   /**
-     * Relatively reshapes this customizer. </br>
-     * This will ask the parent to relayout its components. </br>
+     * Relatively reshapes this customizer. <br>
+     * This will ask the parent to relayout its components. <br>
      * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
      * @param dx delta x
      * @param dy delta y
@@ -228,7 +228,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
     /**
-     * Relatively reshapes this customizer without firing an event. </br>
+     * Relatively reshapes this customizer without firing an event. <br>
      * This will ask the parent to relayout its components.
      * @param dx delta x
      * @param dy delta y
@@ -248,8 +248,8 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-     * Relatively changes the bounds of this customizer. </br>
-     * This will NOT ask the parent to relayout its components. </br>
+     * Relatively changes the bounds of this customizer. <br>
+     * This will NOT ask the parent to relayout its components. <br>
      * Fires a CustomizerEvent (relative coordinates) but no PropertyChangeEvents (absolute coordinates)!
      * @param dx delta x
      * @param dy delta y
@@ -262,8 +262,8 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
     /**
-     * Relatively changes the bounds of this customizer without firing an event. </br>
-     * This will NOT ask the parent to relayout its components. </br>
+     * Relatively changes the bounds of this customizer without firing an event. <br>
+     * This will NOT ask the parent to relayout its components. <br>
      * @param dx delta x
      * @param dy delta y
      * @param dwidth delta width
@@ -405,7 +405,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
     /**
-     * Applys a border to this customizer. </br>
+     * Applys a border to this customizer. <br>
      * Usually you will use this method rather than setBorder.
      * @param border a border
      */
@@ -427,7 +427,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-     * Sets the x coordinate. </br>
+     * Sets the x coordinate. <br>
      * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
      * @param x the x coordinate
      */
@@ -438,7 +438,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-     * Sets the y coordinate. </br>
+     * Sets the y coordinate. <br>
      * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
      * @param y the y coordinate
      */
@@ -449,7 +449,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-     * Sets the width. </br>
+     * Sets the width. <br>
      * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
      * @param width the width
      */
@@ -460,7 +460,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
   /**
-     * Sets the height. </br>
+     * Sets the height. <br>
      * Fires a PropertyChangeEvent (absolute coordinates) but no CustomizerEvent (relative coordinates)!
      * @param height the height
      */
@@ -516,7 +516,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
   }
   
     /**
-     * Gets the parent JCustomizerPane. </br>
+     * Gets the parent JCustomizerPane. <br>
      * Note: If the parent is not an instance of JCustomizerPane a ClassCastException
      * will be thrown!
      * @return the parent JCustomizerPane

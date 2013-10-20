@@ -23,10 +23,10 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 /**
- * A {@link FileVisitor} which copies the source {@link Path} to the target {@link Path}. <br/>
- * <br/>
- * If the source is a directory, it content gets copied recursively. <br/>
- * <br/>
+ * A {@link FileVisitor} which copies the source {@link Path} to the target {@link Path}. <br>
+ * <br>
+ * If the source is a directory, it content gets copied recursively. <br>
+ * <br>
  * The source and the target don't have to be on the same file system and thus this class can be used to e.g. extract a
  * directory from a jar/ zip file.
  *
@@ -83,10 +83,10 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
     }
 
     /**
-     * Copies the source to the target. <br/>
-     * <br/>
-     * If the source is a directory, its content gets copied recursively. <br/>
-     * <br/>
+     * Copies the source to the target. <br>
+     * <br>
+     * If the source is a directory, its content gets copied recursively. <br>
+     * <br>
      * The source and the target don't have to be on the same file system and thus this method can be used to e.g.
      * extract a directory from a jar/ zip file.
      *

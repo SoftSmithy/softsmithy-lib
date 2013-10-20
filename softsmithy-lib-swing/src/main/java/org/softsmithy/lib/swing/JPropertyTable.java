@@ -19,9 +19,15 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.swing.table.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import javax.swing.DefaultCellEditor;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
+import org.softsmithy.lib.swing.table.PropertyTableModel;
 
 /**
  *
@@ -29,8 +35,8 @@ import org.softsmithy.lib.swing.table.*;
  */
 public class JPropertyTable extends JCellTable {
 
-    private final Map<String, TableCellRenderer> propertyRenderers = new HashMap<String, TableCellRenderer>();
-    private final Map<String, TableCellEditor> propertyEditors = new HashMap<String, TableCellEditor>();
+    private final Map<String, TableCellRenderer> propertyRenderers = new HashMap<>();
+    private final Map<String, TableCellEditor> propertyEditors = new HashMap<>();
 
     /** Creates a new instance of PropertyTable */
     public JPropertyTable() {
@@ -69,7 +75,7 @@ public class JPropertyTable extends JCellTable {
     }
 
     /** Sets the locale of this component.  This is a bound property.
-     * @param l the locale to become this component's locale
+     * @param locale the locale to become this component's locale
      * @see #getLocale
      * @since JDK1.1
      *
@@ -122,7 +128,7 @@ public class JPropertyTable extends JCellTable {
      */
     @Override
     public TableCellEditor getCellEditor(int row, int column) {
-        TableCellEditor editor = null;
+        TableCellEditor editor;
         switch (column) {
             case 0:
                 editor = super.getCellEditor(row, column);
@@ -165,7 +171,7 @@ public class JPropertyTable extends JCellTable {
      */
     @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
-        TableCellRenderer renderer = null;
+        TableCellRenderer renderer;
         switch (column) {
             case 0:
                 renderer = super.getCellRenderer(row, column);

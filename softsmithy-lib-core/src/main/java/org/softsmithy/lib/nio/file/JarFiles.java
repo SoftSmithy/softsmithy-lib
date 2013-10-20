@@ -43,8 +43,8 @@ public class JarFiles {
     }
 
     /**
-     * Gets the {@link Path} of the JAR for the specified type. <br/>
-     * <br/>
+     * Gets the {@link Path} of the JAR for the specified type. <br>
+     * <br>
      * TODO: useful enough to keep it?
      *
      * @param type a type included in the JAR
@@ -82,9 +82,9 @@ public class JarFiles {
     }
 
     /**
-     * Extracts the jar URI part from a jar resource URI. <br/>
-     * <br/>
-     * A jar resource URI has the following form: <br/>
+     * Extracts the jar URI part from a jar resource URI. <br>
+     * <br>
+     * A jar resource URI has the following form: <br>
      * {@code jar:<jarURIPart>!/<resource entry>}.
      *
      * @param jarResourceURI a jar resource URI

@@ -37,7 +37,7 @@ public class Streams {
      * 
      * Is this good?
      * Does not close (any?) stream!
-     * Return type may change to List<String> in future!?
+     * Return type may change to {@code List<String>} in future!?
      * @param input the input stream
      * @throws java.io.IOException 
      * @return the lines read from the input stream
@@ -51,7 +51,7 @@ public class Streams {
      * 
      * Is this good?
      * Does not close (any?) stream!
-     * Return type may change to List<String> in future!?
+     * Return type may change to {@code List<String>} in future!?
      * @param reader the reader
      * @throws java.io.IOException 
      * @return the lines read from the reader

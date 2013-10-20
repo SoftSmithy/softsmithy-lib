@@ -21,6 +21,7 @@
 package org.softsmithy.lib.swing.table;
 
 import java.util.*;
+import javax.swing.JLabel;
 import javax.swing.table.*;
 import org.softsmithy.lib.util.*;
 
@@ -44,7 +45,7 @@ public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
    *
    * @param value  the string value for this cell; if value is
    * 		<code>null</code> it sets the text value to an empty string
-   * @see JLabel#setText
+   * @see JLabel#setText(java.lang.String)
    *
    *
    */

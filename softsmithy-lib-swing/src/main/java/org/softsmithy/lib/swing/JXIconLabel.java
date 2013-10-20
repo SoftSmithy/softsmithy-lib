@@ -98,7 +98,7 @@ public class JXIconLabel extends JXLabel {
   }
   
   /** Setter for property xIcon.
-   * @param xIcon New value of property xIcon.
+   * @param icon New value of property xIcon.
    *
    */
   public void setXIcon(XIcon icon){

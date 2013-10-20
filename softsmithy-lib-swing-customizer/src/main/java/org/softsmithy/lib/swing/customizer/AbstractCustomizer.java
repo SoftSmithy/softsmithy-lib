@@ -49,7 +49,7 @@ public abstract class AbstractCustomizer extends JStyledPanel {
     }
     
     /**
-     * Sets the supported visually customizable bound properties.</br>
+     * Sets the supported visually customizable bound properties.<br>
      * This property is used by different other classes to find which properties
      * to listen for. A set of bound property names is expected.
      * @param customizableProperties the supported visually customizable bound properties

@@ -26,7 +26,7 @@ import javax.swing.Icon;
 
 /**
  * An abstraction to share common implementations between various kinds of 
- * cell renderers (eg. cell renderers for lists, tables, trees). <br/>
+ * cell renderers (eg. cell renderers for lists, tables, trees). <br>
  * @author puce
  * 
  * @see XDefaultListCellRenderer
@@ -34,7 +34,7 @@ import javax.swing.Icon;
  */
 public interface CellRenderer<T> {
     /**
-     * Gets the display value.<br/>
+     * Gets the display value.<br>
      * @param value the source value
      * @param inLocale the Locale used for localization
      * @return the display value

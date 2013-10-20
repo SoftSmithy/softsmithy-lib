@@ -190,7 +190,7 @@ public class JXTextField extends JTextField implements Styleable {
 
     /** Sets the font for this component.
      *
-     * @param the desired <code>Font</code> for this component
+     * @param font the desired <code>Font</code> for this component
      * @see java.awt.Component#getFont
      *
      * @beaninfo

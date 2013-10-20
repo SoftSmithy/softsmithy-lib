@@ -78,7 +78,7 @@ public class XActions {
     /**
      * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
      * <br>
-     * <table border="1">
+     * <table border="1" summary="XAction property keys">
      *      <tr>
      *           <th>Key</th>
      *           <th>Value</th>
@@ -273,8 +273,8 @@ public class XActions {
     }
     
     /**
-     * Creates a configured button.</br>
-     * </br>
+     * Creates a configured button.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the
@@ -294,8 +294,8 @@ public class XActions {
     }
     
     /**
-     * Creates a configured toggle button.</br>
-     * </br>
+     * Creates a configured toggle button.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the
@@ -316,8 +316,8 @@ public class XActions {
     }
     
     /**
-     * Creates a configured toggle button.</br>
-     * </br>
+     * Creates a configured toggle button.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the
@@ -417,8 +417,8 @@ public class XActions {
     }
     
     /**
-     * Configures a button from a XAction.</br>
-     * </br>
+     * Configures a button from a XAction.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the
@@ -440,8 +440,8 @@ public class XActions {
     
     
     /**
-     * Configures a button from a XAction.</br>
-     * </br>
+     * Configures a button from a XAction.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the
@@ -462,8 +462,8 @@ public class XActions {
     }
     
     /**
-     * Configures a button from a XAction.</br>
-     * </br>
+     * Configures a button from a XAction.<br>
+     * <br>
      * If cool style is set to true, then the border of the button will be drawn
      * only if the mouse pointer is over the button.
      * Note: Since Java 1.4 you can create a similar effect by setting the

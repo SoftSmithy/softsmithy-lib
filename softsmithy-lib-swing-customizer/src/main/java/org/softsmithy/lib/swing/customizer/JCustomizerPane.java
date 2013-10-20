@@ -107,8 +107,8 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
         return this.showingLayoutHelp;
     }
 
-    /** Setter for property showingConstraints.
-     * @param showingConstraints New value of property showingConstraints.
+    /** Setter for property showingLayoutHelp.
+     * @param showingLayoutHelp New value of property showingLayoutHelp.
      */
     public void setShowingLayoutHelp(boolean showingLayoutHelp) {
         this.showingLayoutHelp = showingLayoutHelp;

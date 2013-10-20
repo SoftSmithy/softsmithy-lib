@@ -40,11 +40,11 @@ public class ByteCellEditor extends FormattedCellEditor {
         return (JByteField) getFormattedTextField();
     }
 
-    /** Returns the value contained in the editor.
-     * @return the value contained in the editor
-     *
-     *
-     */
+//    /** Returns the value contained in the editor.
+//     * @return the value contained in the editor
+//     *
+//     *
+//     */
 //  public Object getCellEditorValue() {
 //    System.out.println(super.getCellEditorValue().getClass());
 //    System.out.println(super.getCellEditorValue());

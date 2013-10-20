@@ -20,6 +20,7 @@
 package org.softsmithy.lib.swing.style;
 
 import java.util.*;
+import javax.swing.JLabel;
 import javax.swing.table.*;
 
 /**
@@ -41,7 +42,7 @@ public class StyleRenderer extends DefaultTableCellRenderer {
      *
      * @param value  the string value for this cell; if value is
      * 		<code>null</code> it sets the text value to an empty string
-     * @see JLabel#setText
+     * @see JLabel#setText(java.lang.String) 
      *
      *
      */

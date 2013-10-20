@@ -77,6 +77,7 @@ public class FontCellEditor extends AbstractCellEditor implements
      * @return the value contained in the editor
      *
      */
+    @Override
     public Object getCellEditorValue() {
         return font;
     }
@@ -106,6 +107,7 @@ public class FontCellEditor extends AbstractCellEditor implements
      * @return	the component for editing
      *
      */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
         setFont((Font) value);
@@ -124,16 +126,18 @@ public class FontCellEditor extends AbstractCellEditor implements
 
     }
 
-    /** Getter for property color.
-     * @return Value of property color.
+    /** 
+     * Gets the selected font.
+     * @return the selected font
      *
      */
     public Font getFont() {
         return font;
     }
 
-    /** Setter for property color.
-     * @param color New value of property color.
+    /** 
+     * Sets the selected font.
+     * @param font the selected font
      *
      */
     public void setFont(Font font) {

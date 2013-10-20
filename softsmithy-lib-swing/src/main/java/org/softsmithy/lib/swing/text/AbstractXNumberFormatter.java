@@ -266,8 +266,8 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         return (Number) getMaximum();
     }
     
-    /** Setter for property maximumBigDecimalValue.
-     * @param maximumBigDecimalValue New value of property maximumBigDecimalValue.
+    /** Setter for property maximumNumberValue.
+     * @param maximumValue New value of property maximumNumberValue.
      *
      */
     public void setMaximumNumberValue(Number maximumValue) {
@@ -285,8 +285,8 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         return (Number) getMinimum();
     }
     
-    /** Setter for property minimumBigDecimalValue.
-     * @param minimumBigDecimalValue New value of property minimumBigDecimalValue.
+    /** Setter for property minimumNumberValue.
+     * @param minimumValue New value of property minimumNumberValue.
      *
      */
     public void setMinimumNumberValue(Number minimumValue) {

@@ -129,7 +129,7 @@ public class JCellTable extends JXTable {
    * Sets the data model for this table to <code>cellTableModel</code> and registers
    * with it for listener notifications from the new data model.
    *
-   * @param   dataModel        the new data source for this table
+   * @param   cellTableModel        the new data source for this table
    * @exception IllegalArgumentException      if <code>cellTableModel</code> is <code>null</code>
    * @see     #getCellTableModel
    */

@@ -19,7 +19,7 @@ package org.softsmithy.lib.awt.event;
 import java.awt.event.*;
 
 /**
- * Wrapps an ActionListener. </br>
+ * Wrapps an ActionListener. <br>
  * E.g. can be used as a base class for decorators.
  */
 public class ActionListenerWrapper implements ActionListener{

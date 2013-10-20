@@ -237,11 +237,11 @@ public class PropertyTableModel extends AbstractTableModel implements
         return columnName;
     }
 
-    /** This method gets called when a bound property is changed.
-     * @param evt A PropertyChangeEvent object describing the event source
-     *   	and the property that has changed.
-     *
-     */
+//    /** This method gets called when a bound property is changed.
+//     * @param evt A PropertyChangeEvent object describing the event source
+//     *   	and the property that has changed.
+//     *
+//     */
     //  public void propertyChange(PropertyChangeEvent evt) {
     //    System.out.println("in");
     //    int index = customizers.indexOf(evt.getPropertyName());
@@ -270,12 +270,12 @@ public class PropertyTableModel extends AbstractTableModel implements
         //System.out.print(cellClass+": ");
         return cellClass;
     }
-
-    /** This method gets called when a bound property is changed.
-     * @param evt A PropertyChangeEvent object describing the event source
-     *   	and the property that has changed.
-     *
-     */
+//
+//    /** This method gets called when a bound property is changed.
+//     * @param evt A PropertyChangeEvent object describing the event source
+//     *   	and the property that has changed.
+//     *
+//     */
     //  public void propertyChange(PropertyChangeEvent evt) {
     //    //    System.out.println(evt.getPropertyName() + " changed");
     //    this.fireTableCellUpdated(propertyNames.indexOf(evt.getPropertyName()), 1);

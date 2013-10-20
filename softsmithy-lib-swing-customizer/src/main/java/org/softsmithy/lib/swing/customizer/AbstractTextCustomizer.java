@@ -126,7 +126,7 @@ public abstract class AbstractTextCustomizer extends JCustomizer {
     public abstract HorizontalAlignment getHorizontalAlignment();
 
     /**
-     * Sets the horizontal alignment of the text. <br/>
+     * Sets the horizontal alignment of the text. <br>
      *
      * This methods calls the setHoizontalAlignmentOnly and fires a property changed event if the value changed.
      *

@@ -21,14 +21,14 @@ import java.nio.file.Paths;
 import org.softsmithy.lib.nio.file.JarFiles;
 
 /**
- * Gets the &lt;install-dir&gt;. <br/> <br/> The jar is expected at: &lt;install-dir&gt/docs/samples/dist/
+ * Gets the &lt;install-dir&gt;. <br> <br> The jar is expected at: &lt;install-dir&gt;/docs/samples/dist/
  *
  * @author puce
  */
 public class GetInstallationDirSample {
 
     /**
-     * Gets the &lt;install-dir&gt;. <br/> <br/> The jar is expected at: &lt;install-dir&gt/docs/samples/dist/
+     * Gets the &lt;install-dir&gt;. <br> <br> The jar is expected at: &lt;install-dir&gt;/docs/samples/dist/
      *
      * @param args
      * @throws Exception

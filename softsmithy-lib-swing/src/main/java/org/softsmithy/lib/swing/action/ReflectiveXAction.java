@@ -44,7 +44,7 @@ import java.lang.reflect.*;
  * Chapter 6.2.3, p. 73</a> of the Java Series Book <a
  * href="http://java.sun.com/docs/books/performance/"> Java Platform Performance
  * Strategies and Tactics</a> by Steve Wilson and Jeff Kesselman.<br>
- * </p> Note: This class might change package in a future version!<br>
+ * <p> Note: This class might change package in a future version!<br>
  * Note: This class might throw different Exceptions in a future version!<br>
  *
  *

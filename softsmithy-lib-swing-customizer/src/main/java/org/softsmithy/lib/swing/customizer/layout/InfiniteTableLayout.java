@@ -19,7 +19,6 @@
  */
 package org.softsmithy.lib.swing.customizer.layout;
 
-import org.softsmithy.lib.swing.customizer.layout.TableConstraints;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -36,11 +35,9 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import org.softsmithy.lib.awt.*;
-import org.softsmithy.lib.swing.customizer.layout.AbstractTableLayout.*;
-import org.softsmithy.lib.math.*;
-import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.awt.AWTUtilities;
+import org.softsmithy.lib.math.BigIntegers;
+import org.softsmithy.lib.swing.customizer.layout.AbstractTableLayout.AbstractAxis;
 
 /**
  *
@@ -50,18 +47,18 @@ public class InfiniteTableLayout extends AbstractTableLayout {
 
     /** Holds value of property constraints. */
     private Map<Component, TableConstraints> constraints =
-            new HashMap<Component, TableConstraints>();
+            new HashMap<>();
     private final InfiniteAxis columns;
     private final InfiniteAxis rows;
     private Dimension occupiedDimension = new Dimension(0, 0);
     private final Container parent;
     private final Map<Component, Integer> compHeights =
-            new HashMap<Component, Integer>();
-    private final SortedSet<Component> sortedCompHeights = new TreeSet<Component>(
+            new HashMap<>();
+    private final SortedSet<Component> sortedCompHeights = new TreeSet<>(
             new CompHeightsComparator());
     private final Map<Component, Integer> compWidths =
-            new HashMap<Component, Integer>();
-    private final SortedSet<Component> sortedCompWidths = new TreeSet<Component>(
+            new HashMap<>();
+    private final SortedSet<Component> sortedCompWidths = new TreeSet<>(
             new CompWidthsComparator());
 
     /** Creates a new instance of UnlimitedTableLayout */
@@ -177,9 +174,6 @@ public class InfiniteTableLayout extends AbstractTableLayout {
         return getTableConstraints(comp);
     }
 
-    /** Setter for property constraints.
-     * @param constraints New value of property constraints.
-     */
     @Override
     public void setTableConstraints(Component comp, TableConstraints tc) {
         //    if (!(constr instanceof TableConstraints)){
@@ -296,7 +290,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     }
 
     private Map<Component, Rectangle> getAbsoluteBounds() {
-        Map<Component, Rectangle> bounds = new HashMap<Component, Rectangle>();
+        Map<Component, Rectangle> bounds = new HashMap<>();
         Component[] components = getComponents(parent);
         for (int i = 0; i < components.length; i++) {
             bounds.put(components[i], getTableConstraints(components[i]).
@@ -306,7 +300,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
     }
 
     private Map<Component, Rectangle> getRelativeBounds() {
-        Map<Component, Rectangle> bounds = new HashMap<Component, Rectangle>();
+        Map<Component, Rectangle> bounds = new HashMap<>();
         Component[] components = getComponents(parent);
         for (int i = 0; i < components.length; i++) {
             bounds.put(components[i], getTableConstraints(components[i]).
@@ -513,8 +507,8 @@ public class InfiniteTableLayout extends AbstractTableLayout {
         private int defaultSize;
         /** Holds value of property sizes. */
         private SortedMap<Integer, Integer> sizes =
-                new TreeMap<Integer, Integer>();
-        private List<Integer> offsets = new ArrayList<Integer>();
+                new TreeMap<>();
+        private List<Integer> offsets = new ArrayList<>();
 
         public InfiniteAxis(int defaultSize) {
             this.defaultSize = defaultSize;
@@ -567,7 +561,7 @@ public class InfiniteTableLayout extends AbstractTableLayout {
             if (sizes.containsKey(i)) {
                 sizes.remove(i);
             }
-            for (Iterator<Integer> it = new TreeMap<Integer, Integer>(sizes.
+            for (Iterator<Integer> it = new TreeMap<>(sizes.
                     tailMap(i)).keySet().iterator(); it.hasNext();) { // TODO: for each loop
                 Integer j = it.next();
                 sizes.put(j - 1, sizes.get(j));
@@ -578,8 +572,8 @@ public class InfiniteTableLayout extends AbstractTableLayout {
 
         public void insert(int index) {
             Integer i = index;
-            SortedMap<Integer, Integer> map = new TreeMap<Integer, Integer>();
-            for (Iterator<Integer> it = new TreeMap<Integer, Integer>(sizes.
+            SortedMap<Integer, Integer> map = new TreeMap<>();
+            for (Iterator<Integer> it = new TreeMap<>(sizes.
                     tailMap(i)).keySet().iterator(); it.hasNext();) {
                 Integer j = it.next();
                 map.put(j + 1, sizes.get(j));

@@ -168,8 +168,8 @@ public class Localizables {
      * @param localizer gets the localized display strings of the objects
      * @param objects the objects to sort
      */
-    public static <T> void sort(Localizer<? super T> localizer, T... array) {
-        sort(localizer, Locale.getDefault(), array);
+    public static <T> void sort(Localizer<? super T> localizer, T... objects) {
+        sort(localizer, Locale.getDefault(), objects);
     }
 
     /**

@@ -171,7 +171,7 @@ public class JMultiSplitPane extends JStyledPanel {
     }
 
     /** Setter for property orientation.
-     * @param orientation New value of property orientation.
+     * @param splitOrientation New value of property orientation.
      *
      */
     public void setSplitOrientation(SplitOrientation splitOrientation) {

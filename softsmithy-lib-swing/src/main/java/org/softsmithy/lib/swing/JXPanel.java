@@ -20,8 +20,12 @@
 
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.plaf.ComponentUI;
 
 /**
  *

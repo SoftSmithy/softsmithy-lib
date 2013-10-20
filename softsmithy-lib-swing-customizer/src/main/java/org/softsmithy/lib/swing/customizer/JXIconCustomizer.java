@@ -72,8 +72,8 @@ public class JXIconCustomizer extends JCustomizer { // should it be renamed to I
   
   
   
-  /** Setter for property fComponent.
-   * @param fComponent New value of property fComponent.
+  /** Setter for property component.
+   * @param component New value of property component.
    *
    */
   @Override

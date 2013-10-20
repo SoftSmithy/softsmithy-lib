@@ -43,8 +43,8 @@ public class XDefaultListCellRenderer extends DefaultListCellRenderer {
   }
   
     /**
-     * Configures this ListCellRenderer from the JList. <br/>
-     * <br/>
+     * Configures this ListCellRenderer from the JList. <br>
+     * <br>
      * By default sets the Locale of this renderer to the Locale of the 
      * JList.
      * @param list the parent JList
@@ -54,8 +54,8 @@ public class XDefaultListCellRenderer extends DefaultListCellRenderer {
   }
   
     /**
-     * Delegates the generation of the display value to the CellRenderer.<br/>
-     * <br/>
+     * Delegates the generation of the display value to the CellRenderer.<br>
+     * <br>
      * Note: Should this method be private instead of protected?
      * @param value the source value
      * @return the display value
