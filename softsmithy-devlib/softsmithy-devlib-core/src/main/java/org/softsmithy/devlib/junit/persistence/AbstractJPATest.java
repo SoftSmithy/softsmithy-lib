@@ -11,16 +11,15 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.devlib.junit.persistence;
 
-import org.softsmithy.devlib.persistence.DbInitializer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.softsmithy.devlib.persistence.DbInitializer;
 import org.softsmithy.lib.persistence.ResourceLocalTransactionController;
 
 /**
@@ -63,7 +62,9 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
     }
 
     protected void tearDownAfterClearDb() {
-        transactionController.close();
+        if (transactionController != null) {
+            transactionController.close();
+        }
     }
 
     protected abstract String getPersistenceUnitName();
@@ -75,7 +76,9 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
     }
 
     protected void clearDb() throws Exception {
-        dbInitializer.clearDb();
+        if (dbInitializer != null) {
+            dbInitializer.clearDb();
+        }
     }
 
     /**
