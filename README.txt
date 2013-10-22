@@ -12,6 +12,8 @@ softsmithy-lib-swing-${project.version}.jar                      - The SoftSmith
 softsmithy-lib-swing-${project.version}-sources.jar              - The SoftSmithy Utility Library - Swing source code
 softsmithy-lib-swing-customizer-${project.version}.jar           - The SoftSmithy Utility Library - Swing Customizer
 softsmithy-lib-swing-customizer-${project.version}-sources.jar   - The SoftSmithy Utility Library - Swing Customizer source code
+softsmithy-lib-time-${project.version}.jar                       - The SoftSmithy Utility Library - Date and Time
+softsmithy-lib-time-${project.version}-sources.jar               - The SoftSmithy Utility Library - Date and Time source code
 docs-directory                                                   - Contains the Javadoc, a tutorial and samples
 
 Note: This is a pre-alpha version and the API is still subject to change! If you
@@ -59,12 +61,11 @@ You can find a copy of this license in docs/LGPL.txt shipped with this distribut
 --------------------------------------------------------------------------------
 
 The newest version can be obtained via Mercurial:
-https://sourceforge.net/scm/?type=hg&group_id=64833
-http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
+http://sourceforge.net/p/softsmithy/softsmithy-lib
 
-hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
+hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
 
 Used:
-jdk 1.7.0_09
+Oracle JDK ${java.version}
 Maven 3.0.4
 NetBeans IDE 7.2

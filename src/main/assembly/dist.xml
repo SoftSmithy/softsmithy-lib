@@ -116,6 +116,32 @@
         </moduleSet>
         <moduleSet>
             <includes>
+                <include>${project.groupId}:softsmithy-lib-time</include>
+            </includes>
+            <binaries>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-time</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>javadoc</attachmentClassifier>
+                <outputDirectory>docs/api/softsmithy-lib-time</outputDirectory>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-time</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>sources</attachmentClassifier>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
                 <include>${project.groupId}:softsmithy-lib-awt</include>
             </includes>
             <binaries>
