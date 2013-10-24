@@ -41,9 +41,9 @@
     <properties>
         
         <!-- Dev Environment Defaults -->
-        <scm.parent.connection>scm:hg:http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden</scm.parent.connection>
-        <scm.parent.developerConnection>scm:hg:ssh://${username}@softsmithy.hg.sourceforge.net/hgroot/softsmithy/lib/main-golden</scm.parent.developerConnection>
-        <scm.parent.url>http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/file</scm.parent.url>
+        <scm.parent.connection>scm:hg:http://hg.code.sf.net/p/softsmithy/softsmithy-lib</scm.parent.connection>
+        <scm.parent.developerConnection>scm:hg:ssh://${username}@hg.code.sf.net/p/softsmithy/softsmithy-lib</scm.parent.developerConnection>
+        <scm.parent.url>http://sourceforge.net/p/softsmithy/softsmithy-lib</scm.parent.url>
         <distributionManagement.parent.url>scp://${username}@shell.sourceforge.net/home/project-web/softsmithy/htdocs/lib/${project.version}/docs/site</distributionManagement.parent.url>
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
@@ -93,7 +93,7 @@
                                         <!-- javadoc link for javax.persistence -->
                                         <link>http://docs.oracle.com/javaee/6/api/</link>
                                     </links>
-<!--                                    <groups>
+                                    <!--                                    <groups>
                                         <group>
                                             <title>${project.name}</title>
                                             <packages>org.softsmithy.*</packages>
