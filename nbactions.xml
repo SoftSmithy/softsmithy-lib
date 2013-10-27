@@ -11,4 +11,22 @@
                 <activatedProfile>sonatype-oss-release</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-site</actionName>
+            <displayName>site</displayName>
+            <goals>
+                <goal>site:site</goal>
+                <goal>site:stage</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-site-deploy</actionName>
+            <displayName>site-deploy</displayName>
+            <goals>
+                <goal>site-deploy -Dusername=puce</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>sonatype-oss-release</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>
