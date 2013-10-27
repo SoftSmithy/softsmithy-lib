@@ -23,7 +23,8 @@
             <actionName>CUSTOM-site-deploy</actionName>
             <displayName>site-deploy</displayName>
             <goals>
-                <goal>site-deploy -Dusername=puce</goal>
+                <goal>site-deploy</goal>
+                <goal>-Dusername=puce</goal>
             </goals>
             <activatedProfiles>
                 <activatedProfile>sonatype-oss-release</activatedProfile>
