@@ -1,10 +1,15 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+
+v0.4 (Changeset: 76d100d0c560):
+            - Project migration: SourceForge.net migrated to the new Allura based platform
+              The SCM and some other links changed.
             - softsmithy-lib-time project added with utility classes for the new Date & Time API (Java SE 8)
               Code moved from Drombler Commons
             - org.softsmithy.lib.util.ResourceLoader added
             - Small fixes and clean-ups
+
 v0.3 (Changeset: ecfc90e95ad5):
             - Project migration: Bundle split: softsmithy-lib-awt project added
             - Project migration: Bundle split: softsmithy-lib-beans project added

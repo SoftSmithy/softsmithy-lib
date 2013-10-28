@@ -32,13 +32,12 @@ or at http://www.opensource.org/licenses/cddl1.txt .
 
 
 The newest version can be obtained via Mercurial:
-https://sourceforge.net/scm/?type=hg&group_id=64833
-http://softsmithy.hg.sourceforge.net/hgweb/softsmithy/lib/main-golden/
+http://sourceforge.net/p/softsmithy/softsmithy-lib
 
-hg clone http://softsmithy.hg.sourceforge.net:8000/hgroot/softsmithy/lib/main-golden
+hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
 
 Used:
-jdk 1.7.0_09
+Oracle JDK ${java.version}
 Maven 3.0.4
 NetBeans IDE 7.2
 EclipseLink 2.0

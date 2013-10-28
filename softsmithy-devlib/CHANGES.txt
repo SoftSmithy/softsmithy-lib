@@ -2,6 +2,10 @@ Changes:
 
 v${project.version} (Changeset: ${changeSet}):
 
+v0.4 (Changeset: 76d100d0c560):
+            - Project migration: SourceForge.net migrated to the new Allura based platform
+              The SCM and some other links changed.
+
 v0.3 (Changeset: ecfc90e95ad5):
             - AbstractJPATest: moved package: org.softsmithy.devlib.junit -> org.softsmithy.devlib.junit.persistence 
             - NetBeans IDE upgrade: 7.2
