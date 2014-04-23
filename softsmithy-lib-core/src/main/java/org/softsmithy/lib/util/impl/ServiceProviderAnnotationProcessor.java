@@ -26,6 +26,8 @@ import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeElement;
@@ -43,6 +45,7 @@ import org.softsmithy.lib.util.ServiceProvider;
  * @author puce
  */
 @SupportedAnnotationTypes("org.softsmithy.lib.util.ServiceProvider")
+@SupportedSourceVersion(SourceVersion.RELEASE_7)
 public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
 
     private final Map<String, List<PositionableAdapter<Name>>> serviceProviders = new HashMap<>();
