@@ -15,8 +15,8 @@ package org.softsmithy.lib.text;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class IntegerParser extends AbstractNumberParser<Integer> {
 
-    private static final Logger LOGGER = Logger.getLogger(IntegerParser.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(IntegerParser.class);
 
     public IntegerParser() {
         this(NumberFormat.getIntegerInstance());
@@ -39,7 +39,7 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
         try {
             return parseNumber(text).intValue();
         } catch (Exception e) {
-            LOGGER.log(Level.FINE, "First number conversion failed: {0}", text);
+            LOG.debug("First number conversion failed: {0}", text);
             try {
                 return Integer.parseInt(text);
             } catch (NumberFormatException nfe) {

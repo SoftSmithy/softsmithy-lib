@@ -15,8 +15,8 @@ package org.softsmithy.lib.text;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class ShortParser extends AbstractNumberParser<Short> {
 
-    private static final Logger LOGGER = Logger.getLogger(ShortParser.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(ShortParser.class);
 
     public ShortParser(NumberFormat numberFormat) {
         super(numberFormat);
@@ -35,7 +35,7 @@ public class ShortParser extends AbstractNumberParser<Short> {
         try {
             return parseNumber(text).shortValue();
         } catch (Exception e) {
-            LOGGER.log(Level.FINE, "First number conversion failed: {0}", text);
+            LOG.debug("First number conversion failed: {0}", text);
             try {
                 return Short.parseShort(text);
             } catch (NumberFormatException nfe) {
