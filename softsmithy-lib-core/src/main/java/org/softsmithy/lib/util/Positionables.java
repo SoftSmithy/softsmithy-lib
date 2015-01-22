@@ -13,32 +13,18 @@
  */
 package org.softsmithy.lib.util;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author puce
  */
-public class Positionables {
+public final class Positionables {
 
     private Positionables() {
     }
 
     public static <T extends Positionable> int getInsertionPoint(List<? extends T> sortedList, T key) {
-        PositionableComparator comparator = new PositionableComparator();
-        int index = Collections.binarySearch(sortedList, key, comparator);
-        if (index < 0) {
-            index = -index - 1;
-        } else {
-            for (T item : sortedList.subList(index, sortedList.size())) {
-                if (Comparables.isEqual(item, key, comparator)) {
-                    index++;
-                } else {
-                    break;
-                }
-            }
-        }
-        return index;
+        return Lists.getInsertionPoint(sortedList, key, new PositionableComparator());
     }
 }

@@ -32,15 +32,22 @@ import java.util.List;
  *
  * @author puce
  */
-public class Lists {
+public final class Lists {
 
-    /** Creates a new instance of Lists */
+    /**
+     * Creates a new instance of Lists
+     */
     private Lists() {
     }
 
     /**
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
+     * @param <T>
+     * @param listA
+     * @param listB
+     * @param matcher
+     * @return
      */
     public static <T> boolean equals(List<? extends T> listA,
             List<? extends T> listB, Matcher<? super T> matcher) {
@@ -59,13 +66,18 @@ public class Lists {
     /**
      * Useful for generated classes, which don't override the equals method (e.g. some JAXB class generators)
      *
+     * @param <T>
+     * @param listA
+     * @param listB
+     * @param comparator
+     * @return
      */
     public static <T> boolean equalsIgnoreOrder(List<? extends T> listA,
             List<? extends T> listB, Comparator<? super T> comparator) {
         if (listA.size() != listB.size()) {
             return false;
         }
-        List<T> sortedList = new ArrayList<T>(listB); // make a copy, so the orignial list doesn't get modified
+        List<T> sortedList = new ArrayList<>(listB); // make a copy, so the orignial list doesn't get modified
         Collections.sort(sortedList, comparator);
         for (T a : listA) {
             int index = Collections.binarySearch(sortedList, a, comparator);
@@ -79,6 +91,7 @@ public class Lists {
 
     /**
      * Gets the first element of the specified list.
+     *
      * @param <E> the type of the elements of the list
      * @param list the list
      * @return the first element
@@ -89,11 +102,44 @@ public class Lists {
 
     /**
      * Gets the last element of the specified list.
+     *
      * @param <E> the type of the elements of the list
      * @param list the list
      * @return the last element
      */
     public static <E> E getLast(List<E> list) {
         return list.get(list.size() - 1);
+    }
+
+    public static <T extends Comparable<? super T>> int getInsertionPoint(List<? extends T> sortedList, T key) {
+        int index = Collections.binarySearch(sortedList, key);
+        if (index < 0) {
+            index = -index - 1;
+        } else {
+            for (T item : sortedList.subList(index, sortedList.size())) {
+                if (Comparables.isEqual(item, key)) {
+                    index++;
+                } else {
+                    break;
+                }
+            }
+        }
+        return index;
+    }
+
+    public static <T> int getInsertionPoint(List<? extends T> sortedList, T key, Comparator<? super T> comparator) {
+        int index = Collections.binarySearch(sortedList, key, comparator);
+        if (index < 0) {
+            index = -index - 1;
+        } else {
+            for (T item : sortedList.subList(index, sortedList.size())) {
+                if (Comparables.isEqual(item, key, comparator)) {
+                    index++;
+                } else {
+                    break;
+                }
+            }
+        }
+        return index;
     }
 }
