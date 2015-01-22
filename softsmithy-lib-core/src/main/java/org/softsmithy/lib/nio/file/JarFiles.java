@@ -24,20 +24,20 @@ import java.util.Collections;
 
 /**
  * A utility class for JAR files.
- * 
+ *
  * @author puce
  */
 //TODO: package ok? or better: org.softsmithy.lib.util.jar ?
-public class JarFiles {
+public final class JarFiles {
 
     /**
      * The jar URI prefix "jar:"
      */
-    private static String FULL_JAR_URI_PREFIX = "jar:";
+    private static final String FULL_JAR_URI_PREFIX = "jar:";
     /**
      * Length of the jar URI prefix "jar:"
      */
-    private static int FULL_JAR_URI_PREFIX_LENGTH = 4;
+    private static final int FULL_JAR_URI_PREFIX_LENGTH = 4;
 
     private JarFiles() {
     }
@@ -84,8 +84,7 @@ public class JarFiles {
     /**
      * Extracts the jar URI part from a jar resource URI. <br>
      * <br>
-     * A jar resource URI has the following form: <br>
-     * {@code jar:<jarURIPart>!/<resource entry>}.
+     * A jar resource URI has the following form: <br> {@code jar:<jarURIPart>!/<resource entry>}.
      *
      * @param jarResourceURI a jar resource URI
      * @return the jar URI
@@ -93,7 +92,8 @@ public class JarFiles {
     public static URI getJarURI(URI jarResourceURI) {
         String jarResourceURIString = jarResourceURI.toString();
         int endOfJarPathIndex = jarResourceURIString.indexOf("!/");
-        String jarURIString = endOfJarPathIndex >= 0 ? jarResourceURIString.substring(0, endOfJarPathIndex) : jarResourceURIString;
+        String jarURIString = endOfJarPathIndex >= 0 ? jarResourceURIString.substring(0, endOfJarPathIndex)
+                : jarResourceURIString;
         if (jarURIString.startsWith(FULL_JAR_URI_PREFIX)) {
             jarURIString = jarURIString.substring(FULL_JAR_URI_PREFIX_LENGTH);
         }
@@ -108,6 +108,6 @@ public class JarFiles {
      * @throws IOException
      */
     public static FileSystem newJarFileSystem(URI jarURI) throws IOException {
-        return FileSystems.newFileSystem(URI.create("jar:" + jarURI), Collections.<String, Object>emptyMap());
+        return FileSystems.newFileSystem(URI.create(FULL_JAR_URI_PREFIX + jarURI), Collections.<String, Object>emptyMap());
     }
 }
