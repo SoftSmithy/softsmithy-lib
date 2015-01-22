@@ -24,7 +24,7 @@ import java.util.Locale;
  *
  * @author puce
  */
-public class DayOfWeekUtils {
+public final class DayOfWeekUtils {
 
     private DayOfWeekUtils() {
     }
