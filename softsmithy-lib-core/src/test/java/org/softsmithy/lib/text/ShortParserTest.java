@@ -19,7 +19,7 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,6 +33,7 @@ public class ShortParserTest {
     private ShortParser shortParser;
     
     public ShortParserTest() {
+        // TODO: does this still work with SLF4J?
         Logger logger = Logger.getLogger(ShortParser.class.getPackage().getName());
         logger.setLevel(Level.ALL);
         ConsoleHandler consoleHandler = new ConsoleHandler();

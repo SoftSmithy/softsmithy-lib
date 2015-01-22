@@ -39,7 +39,7 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
         try {
             return parseNumber(text).intValue();
         } catch (Exception e) {
-            LOG.debug("First number conversion failed: {0}", text);
+            LOG.debug("First number conversion failed: {}", text);
             try {
                 return Integer.parseInt(text);
             } catch (NumberFormatException nfe) {

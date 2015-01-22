@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.persistence;
 
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -25,13 +26,13 @@ import javax.persistence.RollbackException;
  */
 public class ResourceLocalTransactionController {
 
-    private static Logger logger = Logger.getLogger(ResourceLocalTransactionController.class.
-            getPackage().getName());
+    private static final Logger LOG = LoggerFactory.getLogger(ResourceLocalTransactionController.class);
+
     private final EntityManagerFactory entityManagerFactory;
     private final EntityManager entityManager;
 
     public ResourceLocalTransactionController(String persistenceUnitName) {
-                //                    Map<String, String> configOverrides = new HashMap<String, String>();
+        //                    Map<String, String> configOverrides = new HashMap<String, String>();
         //            configOverrides.put("javax.persistence.transaction",
         //                    PersistenceUnitTransactionType.RESOURCE_LOCAL.name());
         //            configOverrides.put(TopLinkProperties.JDBC_DRIVER,
@@ -51,13 +52,12 @@ public class ResourceLocalTransactionController {
             commit();
         } finally {
             entityManager.getTransaction().begin();
-            logger.info("Transaction started: Active: " + entityManager.
-                    getTransaction().isActive());
+            LOG.info("Transaction started: Active: {}", entityManager.getTransaction().isActive());
         }
     }
 
-    private void commit(){
-         try {
+    private void commit() {
+        try {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().commit();
             }
@@ -71,12 +71,12 @@ public class ResourceLocalTransactionController {
         }
     }
 
-     /**
+    /**
      * TODO: good to commit on close?
      */
     public void close() {
         try {
-           commit();
+            commit();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
