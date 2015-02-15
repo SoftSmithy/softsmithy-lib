@@ -20,10 +20,19 @@
 
 package org.softsmithy.lib.beans;
 
-import java.beans.*;
-import java.lang.reflect.*;
-import java.util.*;
-import org.softsmithy.lib.lang.reflect.*;
+import java.beans.FeatureDescriptor;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import org.softsmithy.lib.lang.reflect.Classes;
+import org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException;
 
 /**
  *
@@ -46,7 +55,7 @@ public final class BeanIntrospector {
       descriptor = new PropertyDescriptor(propertyName, beanClass);
       setPropertyDescriptor(descriptor, beanClass, rb);
     }
-    return descriptor;
+      return descriptor;
   }
   
   public static PropertyDescriptor[] getPropertyDescriptors(Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
