@@ -20,31 +20,25 @@
  */
 package org.softsmithy.lib.lang.reflect;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.AbstractSet;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import org.junit.Test;
 
 /**
  *
  * @author puce
  */
-public class ClassesTest extends TestCase {
+public class ClassesTest {
 
-    public ClassesTest(java.lang.String testName) {
-        super(testName);
-    }
-
-    public static void main(java.lang.String[] args) {
-        junit.textui.TestRunner.run(suite());
-    }
-
-    public static Test suite() {
-        TestSuite suite = new TestSuite(ClassesTest.class);
-
-        return suite;
-    }
-
-  // Did this work before in JBuilder?
+    // Did this work before in JBuilder?
   /*public void testInterfaceImplementsInterface() {
      boolean impl = Classes.implementsInterface(java.util.SortedSet.class,
      java.util.Collection.class);
@@ -55,6 +49,7 @@ public class ClassesTest extends TestCase {
      java.util.Collection.class);
      assertTrue(impl);
      }*/
+    @Test
     public void testImplementsInterfaceIllegalArgumentException() {
         try {
             boolean impl = Classes.implementsInterface(java.util.TreeSet.class,
@@ -69,6 +64,7 @@ public class ClassesTest extends TestCase {
         assertTrue(true);
     }
 
+    @Test
     public void testImplementsInterfaceNullPointerException() {
         try {
             boolean impl = Classes.implementsInterface(java.util.TreeSet.class,
@@ -83,6 +79,7 @@ public class ClassesTest extends TestCase {
         assertTrue(true);
     }
 
+    @Test
     public void testNullImplementsInterface() {
         boolean impl = Classes.implementsInterface(null,
                 java.util.Collection.class);
@@ -92,6 +89,7 @@ public class ClassesTest extends TestCase {
     /**
      * Test of implementsInterface method, of class puce.lang.reflect.Classes.
      */
+    @Test
     public void testImplementsInterface() {
         boolean impl = Classes.implementsInterface(java.util.TreeSet.class,
                 java.util.Collection.class);
@@ -101,12 +99,22 @@ public class ClassesTest extends TestCase {
     /**
      * Test of extendsClass method, of class puce.lang.reflect.Classes.
      */
+    @Test
     public void testExtendsClass() {
         boolean impl = Classes.implementsInterface(java.util.SortedSet.class,
                 java.util.Collection.class);
     }
 
-  // Add test methods here, they have to start with 'test' name.
+    @Test
+    public void testGetTypes() {
+        assertEquals(new HashSet<Class<?>>(Arrays.asList(Object.class)), Classes.getTypes(new Object()));
+        assertEquals(new HashSet<>(Arrays.asList(
+                HashSet.class, AbstractSet.class, AbstractCollection.class, Object.class, Set.class, Collection.class,
+                Iterable.class, Cloneable.class, Serializable.class)),
+                Classes.getTypes(new HashSet<>()));
+
+    }
+    // Add test methods here, they have to start with 'test' name.
     // for example:
     // public void testHello() {}
 
