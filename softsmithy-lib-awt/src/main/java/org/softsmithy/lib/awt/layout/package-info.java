@@ -11,5 +11,4 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.awt.layout;

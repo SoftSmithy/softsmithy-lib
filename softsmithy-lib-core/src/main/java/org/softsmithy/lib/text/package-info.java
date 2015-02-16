@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for classes in the {@link java.text} package.
+ * Utility classes and extensions for the {@link java.text} package.
  */
 package org.softsmithy.lib.text;

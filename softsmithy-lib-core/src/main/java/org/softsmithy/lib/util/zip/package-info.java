@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for classes in the {@link java.util.zip} package.
+ * Utility classes and extensions for the {@link java.util.zip} package.
  */
 package org.softsmithy.lib.util.zip;

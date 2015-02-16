@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for classes in the {@link java.math} package.
+ * Utility classes and extensions for the {@link java.math} package.
  */
 package org.softsmithy.lib.math;

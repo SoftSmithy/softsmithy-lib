@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link javax.swing.text} package.
+ */
 package org.softsmithy.lib.swing.text;

@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link java.beans} package.
+ */
 package org.softsmithy.lib.beans;

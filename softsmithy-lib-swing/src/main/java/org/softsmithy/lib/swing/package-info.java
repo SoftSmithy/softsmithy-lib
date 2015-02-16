@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link javax.swing} package.
+ */
 package org.softsmithy.lib.swing;

@@ -13,6 +13,6 @@
  */
 
 /**
- * Utility classes for classes in the {@link java.time} package.
+ * Utility classes and extensions for the {@link java.time} package.
  */
 package org.softsmithy.lib.time;

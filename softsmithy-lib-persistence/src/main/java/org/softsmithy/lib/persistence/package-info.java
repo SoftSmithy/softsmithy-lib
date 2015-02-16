@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link javax.persistence} package.
+ */
 package org.softsmithy.lib.persistence;

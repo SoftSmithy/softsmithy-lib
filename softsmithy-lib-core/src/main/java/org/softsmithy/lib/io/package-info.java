@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for classes in the {@link java.io} package.
+ * Utility classes and extensions for the {@link java.io} package.
  */
 package org.softsmithy.lib.io;

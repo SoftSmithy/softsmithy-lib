@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link java.awt} package.
+ */
 package org.softsmithy.lib.awt;

@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes for classes in the {@link java.time.format} package.
+ * Utility classes and extensions for the {@link java.time.format} package.
  */
 package org.softsmithy.lib.time.format;

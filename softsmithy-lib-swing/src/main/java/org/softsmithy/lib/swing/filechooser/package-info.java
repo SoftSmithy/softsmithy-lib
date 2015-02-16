@@ -11,5 +11,7 @@
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for the {@link javax.swing.filechooser} package.
+ */
 package org.softsmithy.lib.swing.filechooser;
