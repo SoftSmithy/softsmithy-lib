@@ -129,6 +129,12 @@ public final class Classes {
         return classes;
     }
 
+    /**
+     * Gets all types (class, super classes, interfaces and super interfaces) of the provided object.
+     *
+     * @param obj the object
+     * @return all types (class, super classes, interfaces and super interfaces) of the provided object
+     */
     public static Set<Class<?>> getTypes(Object obj) {
         Set<Class<?>> types = new HashSet<>();
         for (Class<?> type = obj.getClass(); type != null; type = type.getSuperclass()) {
