@@ -1,6 +1,12 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+            - org.softsmithy.lib.io.IORuntimeException added
+            - org.softsmithy.lib.beans.PropertyChangeUtils added
+            - org.softsmithy.lib.lang.reflect.Classes.getTypes(Object) added
+            - Moved code: org.softsmithy.lib.util.Positionables -> org.softsmithy.lib.util.Lists
+            - Added dependency: SLF4J
+            - Small fixes and clean-ups
 
 v0.4 (Changeset: 76d100d0c560):
             - Project migration: SourceForge.net migrated to the new Allura based platform

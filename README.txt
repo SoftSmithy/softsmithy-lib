@@ -20,7 +20,10 @@ Note: This is a pre-alpha version and the API is still subject to change! If you
 have any questions or comments feel free to contact me: 
 puce@users.sourceforge.net
 
-Note: softsmithy-lib-persistence-${project.version}.jar has the following dependencies:
+Note: 
+The libraries have the following dependency: SLF4J ${dependency.slf4j.version}
+
+softsmithy-lib-persistence-${project.version}.jar has the following dependencies:
 - JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
 
 
@@ -68,4 +71,4 @@ hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
 Used:
 Oracle JDK ${java.version}
 Maven 3.0.4
-NetBeans IDE 7.2
+NetBeans IDE 8.0.2
