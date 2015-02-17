@@ -19,10 +19,15 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JTextField;
 import javax.swing.text.Document;
-import org.softsmithy.lib.swing.style.*;
+import org.softsmithy.lib.swing.style.NoneStyle;
+import org.softsmithy.lib.swing.style.ParentStyle;
+import org.softsmithy.lib.swing.style.Style;
+import org.softsmithy.lib.swing.style.Styleable;
+import org.softsmithy.lib.swing.style.Styles;
 
 /**
  *
@@ -119,14 +124,12 @@ public class JXTextField extends JTextField implements Styleable {
      *
      * @param bg the desired background <code>Color</code>
      * @see java.awt.Component#getBackground
-     *
-     * @beaninfo
-     *    preferred: true
-     *        bound: true
-     *    attribute: visualUpdate true
-     *  description: The background color of the component.
-     *
      */
+//         * @beaninfo
+//     *    preferred: true
+//     *        bound: true
+//     *    attribute: visualUpdate true
+//     *  description: The background color of the component.
     @Override
     public void setBackground(Color bg) {
         Styles.setBackground(this, bg, inited);
@@ -142,11 +145,9 @@ public class JXTextField extends JTextField implements Styleable {
      * not have a foreground color, the foreground color of its parent
      * is returned
      * @see #setForeground
-     * @since JDK1.0
-     * @beaninfo
-     *       bound: true
-     *
      */
+//         * @beaninfo
+//     *       bound: true
     @Override
     public Color getForeground() {
         return Styles.getForeground(this, inited);
@@ -157,14 +158,12 @@ public class JXTextField extends JTextField implements Styleable {
      *
      * @param fg  the desired foreground <code>Color</code>
      * @see java.awt.Component#getForeground
-     *
-     * @beaninfo
-     *    preferred: true
-     *        bound: true
-     *    attribute: visualUpdate true
-     *  description: The foreground color of the component.
-     *
      */
+//         * @beaninfo
+//     *    preferred: true
+//     *        bound: true
+//     *    attribute: visualUpdate true
+//     *  description: The foreground color of the component.
     @Override
     public void setForeground(Color fg) {
         Styles.setForeground(this, fg, inited);
@@ -192,14 +191,12 @@ public class JXTextField extends JTextField implements Styleable {
      *
      * @param font the desired <code>Font</code> for this component
      * @see java.awt.Component#getFont
-     *
-     * @beaninfo
-     *    preferred: true
-     *        bound: true
-     *    attribute: visualUpdate true
-     *  description: The font for the component.
-     *
      */
+//         * @beaninfo
+//     *    preferred: true
+//     *        bound: true
+//     *    attribute: visualUpdate true
+//     *  description: The font for the component.
     @Override
     public void setFont(Font font) {
         Styles.setFont(this, font, inited);
@@ -242,12 +239,12 @@ public class JXTextField extends JTextField implements Styleable {
      *
      * @param isOpaque  true if this component should be opaque
      * @see #isOpaque
-     * @beaninfo
-     *        bound: true
-     *       expert: true
-     *  description: The component's opacity
      *
      */
+//         * @beaninfo
+//     *        bound: true
+//     *       expert: true
+//     *  description: The component's opacity
     @Override
     public void setOpaque(boolean isOpaque) {
         Styles.setOpaque(this, isOpaque, inited);

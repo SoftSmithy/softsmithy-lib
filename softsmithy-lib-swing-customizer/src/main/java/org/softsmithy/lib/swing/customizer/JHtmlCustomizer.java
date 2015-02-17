@@ -20,14 +20,21 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.text.*;
-import javax.swing.text.html.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.JComponent;
+import javax.swing.JEditorPane;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.TextAction;
+import javax.swing.text.html.HTMLDocument;
 import org.softsmithy.lib.swing.HorizontalAlignment;
-import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
 
 /**
  * A basic HTML text customizer using JEditorPane to display and edit the HTML
@@ -286,7 +293,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
         configureHtmlText();
     }
     
-    /** Sets the background color of this component.
+    /* Sets the background color of this component.
      * <p>
      * The background color affects each component differently and the
      * parts of the component that are affected by the background color
@@ -296,11 +303,10 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * 		if this parameter is <code>null</code>, then this
      * 		component will inherit the background color of its parent
      * @see #getBackground
-     * @since JDK1.0
-     * @beaninfo
-     *       bound: true
      *
      */
+//         * @beaninfo
+//     *       bound: true
     //  public void setBackground(Color c) {
     //    super.setBackground(c);
     //    if (inited){

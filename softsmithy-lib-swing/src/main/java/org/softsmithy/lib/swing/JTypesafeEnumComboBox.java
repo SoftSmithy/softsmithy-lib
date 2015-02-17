@@ -21,9 +21,11 @@
 
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-import javax.swing.*;
-import org.softsmithy.lib.util.*;
+import java.util.Locale;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.ListCellRenderer;
+import org.softsmithy.lib.util.TypesafeEnum;
 
 /**
  *
@@ -62,12 +64,10 @@ public class JTypesafeEnumComboBox extends JComboBox {
    *
    * @param aModel the <code>ComboBoxModel</code> that provides the
    * 	displayed list of items
-   *
-   * @beaninfo
-   *        bound: true
-   *  description: Model that the combo box uses to get data to display.
-   *
    */
+//     * @beaninfo
+//   *        bound: true
+//   *  description: Model that the combo box uses to get data to display.
   @Override
   public void setModel(ComboBoxModel aModel) {
     if (! (aModel instanceof TypesafeEnumComboBoxModel)){
@@ -117,12 +117,11 @@ public class JTypesafeEnumComboBox extends JComboBox {
    * @param aRenderer  the <code>ListCellRenderer</code> that
    * 			displays the selected item
    * @see #setEditor
-   * @beaninfo
-   *      bound: true
-   *     expert: true
-   *  description: The renderer that paints the item selected in the list.
-   *
    */
+//     * @beaninfo
+//   *      bound: true
+//   *     expert: true
+//   *  description: The renderer that paints the item selected in the list.
   @Override
   public void setRenderer(ListCellRenderer aRenderer) {
     if (inited && ! (aRenderer instanceof TypesafeEnumListCellRenderer)){

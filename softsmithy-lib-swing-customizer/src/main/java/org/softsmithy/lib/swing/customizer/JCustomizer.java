@@ -20,16 +20,25 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import org.softsmithy.lib.swing.customizer.state.StateManager;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import org.softsmithy.lib.swing.customizer.*;
-import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.swing.customizer.state.StateManager;
 import org.softsmithy.lib.swing.internal.TableLayout;
 import org.softsmithy.lib.swing.internal.TableLayoutConstraints;
 
@@ -388,11 +397,11 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    * @param text  the string to display; if the text is <code>null</code>,
    *              the tool tip is turned off for this component
    * @see #TOOL_TIP_TEXT_KEY
-   * @beaninfo
-   *   preferred: true
-   * description: The text to display in a tool tip.
    *
    */
+//     * @beaninfo
+//   *   preferred: true
+//   * description: The text to display in a tool tip.
   @Override
   public void setToolTipText(String text) {
     super.setToolTipText(text);

@@ -14,9 +14,22 @@
 package org.softsmithy.lib.swing.action;
 
 import java.net.URL;
-
-import java.util.*;
-import javax.swing.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import javax.swing.AbstractButton;
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JToggleButton;
 
 /**
  * A utility class for XActions (revised version). Not yet a public class.
@@ -390,8 +403,8 @@ class XActions2 {
      * A typesafe enum class
      *
      * @author    Florian Brunner
-     * @created   March 7, 2002
      */
+//         * @created   March 7, 2002
     private static class IconType {
 
         private final String fName;
@@ -438,8 +451,8 @@ class XActions2 {
      * Description of the Class
      *
      * @author    puce
-     * @created   March 7, 2002
      */
+//         * @created   March 7, 2002
     private static class XActionButton extends JButton {
 
         private AbstractXActionButton fAbstractButton;
