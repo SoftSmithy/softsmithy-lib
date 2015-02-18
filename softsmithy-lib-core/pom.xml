@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.5-SNAPSHOT</version>
+        <version>0.5</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
     
@@ -34,7 +34,7 @@ Contributor(s): .
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <url>${scm.url}</url>
-        <tag>HEAD</tag>
+        <tag>softsmithy-lib-all-0.5</tag>
     </scm>
 
     <properties>
