@@ -23,7 +23,7 @@ Contributor(s): .
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.6-SNAPSHOT</version>
+    <version>0.5</version>
     <name>SoftSmithy Utility Library - Parent POM</name>
     <url>http://www.softsmithy.org</url>
     <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
@@ -33,7 +33,7 @@ Contributor(s): .
         <connection>${scm.parent.connection}</connection>
         <developerConnection>${scm.parent.developerConnection}</developerConnection>
         <url>${scm.parent.url}</url>
-        <tag>HEAD</tag>
+        <tag>softsmithy-lib-all-0.5</tag>
     </scm>
 
     <licenses>
