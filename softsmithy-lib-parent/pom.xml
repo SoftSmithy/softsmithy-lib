@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>2.5-SNAPSHOT</version>
+        <version>2.6-SNAPSHOT</version>
         <relativePath />
     </parent>
     <groupId>org.softsmithy.lib</groupId>
@@ -64,7 +64,6 @@ Contributor(s): .
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
         <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
         <javadoc.url>http://docs.oracle.com/javase/7/docs/api</javadoc.url> <!-- used by tutorials -->
-        <release.plugin.arguments>-Psonatype-oss-release -Dusername=${username} -Dhttps.protocols=TLSv1.2</release.plugin.arguments>
         
         <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.10</dependency.junit.version>
