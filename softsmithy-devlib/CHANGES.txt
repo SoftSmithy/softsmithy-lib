@@ -2,6 +2,9 @@ Changes:
 
 v${project.version} (Changeset: ${changeSet}):
 
+v0.5 (Changeset: 0cb0ccaa7bbe):
+            - Small fixes and clean-ups
+
 v0.4 (Changeset: 76d100d0c560):
             - Project migration: SourceForge.net migrated to the new Allura based platform
               The SCM and some other links changed.

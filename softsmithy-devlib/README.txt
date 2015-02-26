@@ -15,8 +15,8 @@ have any questions or comments feel free to contact me:
 puce@users.sourceforge.net
 
 Note: This library has the following dependencies:
-- JPA (tested with EclipseLink 2.0)
-- JUnit 4.10
+- JPA 2.0
+- JUnit ${dependency.junit.version}
 - SoftSmithy Utility Library v${project.version}
 
 Have a look at CHANGES.txt for notes about changes.
@@ -38,8 +38,8 @@ hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
 
 Used:
 Oracle JDK ${java.version}
-Maven 3.0.4
-NetBeans IDE 7.2
-EclipseLink 2.0
-JUnit 4.10
+Maven 3.0.5
+NetBeans IDE 8.0.2
+JPA 2.0
+JUnit ${dependency.junit.version}
 SoftSmithy Utility Library v${project.version}

@@ -70,5 +70,5 @@ hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
 
 Used:
 Oracle JDK ${java.version}
-Maven 3.0.4
+Maven 3.0.5
 NetBeans IDE 8.0.2

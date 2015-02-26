@@ -1,6 +1,8 @@
 Changes:
 
 v${project.version} (Changeset: ${changeSet}):
+
+v0.5 (Changeset: 0cb0ccaa7bbe):
             - org.softsmithy.lib.io.IORuntimeException added
             - org.softsmithy.lib.beans.PropertyChangeUtils added
             - org.softsmithy.lib.lang.reflect.Classes.getTypes(Object) added
