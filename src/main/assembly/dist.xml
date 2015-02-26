@@ -9,7 +9,7 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <moduleSets>
         <moduleSet>
-      <!-- Now, select which projects to include in this module-set. -->
+        <!-- Now, select which projects to include in this module-set. -->
             <includes>
                 <include>${project.groupId}:softsmithy-lib-core</include>
             </includes>
@@ -51,6 +51,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-core</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -77,6 +78,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-persistence</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -103,6 +105,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-beans</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -129,6 +132,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-time</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -155,6 +159,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-awt</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -181,6 +186,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-swing</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
@@ -207,6 +213,7 @@
             <binaries>
                 <attachmentClassifier>javadoc</attachmentClassifier>
                 <outputDirectory>docs/api/softsmithy-lib-swing-customizer</outputDirectory>
+                <includeDependencies>false</includeDependencies>
             </binaries>
         </moduleSet>
         <moduleSet>
