@@ -1,0 +1,329 @@
+Changes:
+
+v${project.version} (Changeset: ${changeSet}):
+
+v0.5 (Changeset: 0cb0ccaa7bbe):
+            - org.softsmithy.lib.io.IORuntimeException added
+            - org.softsmithy.lib.beans.PropertyChangeUtils added
+            - org.softsmithy.lib.lang.reflect.Classes.getTypes(Object) added
+            - Moved code: org.softsmithy.lib.util.Positionables -> org.softsmithy.lib.util.Lists
+            - Added dependency: SLF4J
+            - Small fixes and clean-ups
+
+v0.4 (Changeset: 76d100d0c560):
+            - Project migration: SourceForge.net migrated to the new Allura based platform
+              The SCM and some other links changed.
+            - softsmithy-lib-time project added with utility classes for the new Date & Time API (Java SE 8)
+              Code moved from Drombler Commons
+            - org.softsmithy.lib.util.ResourceLoader added
+            - Small fixes and clean-ups
+
+v0.3 (Changeset: ecfc90e95ad5):
+            - Project migration: Bundle split: softsmithy-lib-awt project added
+            - Project migration: Bundle split: softsmithy-lib-beans project added
+            - Project migration: Bundle split: softsmithy-lib-swing project added
+            - Project migration: Bundle split: softsmithy-lib-swing-customizer project added
+            - Several Swing Customizer classes were moved to different packages. 
+              All Swing Customizer classes are now in the package or subpackages of
+              org.softsmithy.lib.swing.customizer.*
+            - Positionable Framework added
+            - Small fixes and clean-ups
+            - Tutorial fixes
+            - NetBeans IDE upgrade: 7.2
+
+v0.2 (Changeset: d198b7dfd05b):
+            - Project migration: Java SE 6 -> Java SE 7
+            - Project migration: OSGi metadata added
+            - Project migration: Maven 2.2.1 -> Maven 3.0.4
+            - Project migration: artifactId prefix added: "softsmithy-"
+            - Project migration: softsmithy-lib-persistence project added
+            - Project migration: org.softsmithy.lib.persistence: moved from softsmithy-lib-core -> softsmithy-lib-persistence
+            - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
+            - org.softsmithy.lib.nio.file.CopyFileVisitor added
+            - org.softsmithy.lib.nio.file.PathUtils added
+            - org.softsmithy.lib.nio.file.JarFiles added
+            - org.softsmithy.lib.util.Comparables.isInRange(T, T, T) added
+            - org.softsmithy.lib.util.Comparables.isInRange(T, T, T, Comparator<? super T>) added
+            - org.softsmithy.lib.util.ServiceProvider added + annotation processor registered
+            - org.softsmithy.lib.text.Parser framework added
+            - org.softsmithy.lib.text.AbstractParser added
+            - org.softsmithy.lib.text.AbstractNumberParser added
+            - org.softsmithy.lib.text.IntegerParser added
+            - org.softsmithy.lib.text.ShortParser added
+            - org.softsmithy.lib.text.ResourceBundleLocalizer added
+            - org.softsmithy.lib.text.Formatter framework added
+            - org.softsmithy.lib.text.AbstractFormatter added
+            - org.softsmithy.lib.text.FormatException added
+            - org.softsmithy.lib.text.FormatFormatter added
+            - renamed package to automatically exclude it from OSGi export: 
+              org.softsmithy.lib.test -> org.softsmithy.lib.internal
+            - removed warnings
+            - Javadocs added
+            - unit tests added
+            - samples: CopyFilesSample added
+            - samples: AddZipResourceSample added
+            - samples: ExtractJarResourceSample added
+            - tutorial: new trail added: NIO File
+            - small fixes
+            - JUnit upgrade: version 4.10
+            - NetBeans IDE upgrade: 7.1.1
+
+v0.1 (Changeset: 677685802ce2):
+	    - Project migration: Ant -> Maven
+            - Project migration: Subversion -> Mercurial
+            - License upgraded: SPL -> CDDL
+            - Project versioning aligned with Maven versioning, starting with v0.1
+            - Project layout restructured
+            - org.softsmithy.lib.text.Localizables.LocalizableCollationKey -> org.softsmithy.lib.text.GenericCollationKey
+            - org.softsmithy.lib.text.LocalizedCollator added
+            - org.softsmithy.lib.util.EqulatiyVerifier framework replaced with -> org.softsmithy.lib.util.Matcher framework
+            - org.softsmithy.lib.swing.table.TableRowHeaderController framework added
+            - org.softsmithy.lib.swing.table.AbstractRowHeaderTableModel added
+            - org.softsmithy.lib.swing.table.DefaultTableRowHeaderController added
+            - org.softsmithy.lib.swing.table.JRowHeaderTable added
+            - org.softsmithy.lib.swing.table.JRowNumberHeaderTable added
+            - org.softsmithy.lib.swing.table.RowHeaderTableModel added
+            - org.softsmithy.lib.io.Streams.copy(Reader, Writer) added
+            - org.softsmithy.lib.util.Lists.getFirst(List) added
+            - org.softsmithy.lib.util.Lists.getLast(List) added
+            - generified classes
+            - removed warnings
+            - Javadocs added
+            - TableRowHeaderController samples added
+            - small fixes
+            - changed to NetBeans 6.9.1
+
+v20100524:  - org.softsmithy.lib.io.Files: new utility methods
+(Rev.: 470) - org.softsmithy.lib.util.zip.ZipFiles: bug fix
+            - org.softsmithy.lib.persistence.AbstractEntity class added
+            - org.softsmithy.lib.persistence.ExtendedBaseDAO class added
+            - org.softsmithy.lib.persistence.GenericDAO class added
+            - org.softsmithy.lib.persistence.ResourceLocalTransactionController class added
+            - org.softsmithy.lib.swing.LocaleCellRenderer: supports LocaleLocalizer
+            - org.softsmithy.lib.swing.CellRenderer: icon support added
+            - org.softsmithy.lib.swing.XDefaultListCellRenderer: icon support added
+            - org.softsmithy.lib.swing.JFileRootComboBox class added
+            - org.softsmithy.lib.swing.JFileRootList class added
+            - org.softsmithy.lib.swing.filechooser.FileRootComboBoxModel class added
+            - org.softsmithy.lib.swing.filechooser.FileRootCellRenderer class added
+            - org.softsmithy.lib.text.LocaleLocalizer class added
+            - org.softsmithy.lib.text.Localizable class added
+            - org.softsmithy.lib.text.Localizables class added
+            - org.softsmithy.lib.text.Localizer class added
+            - org.softsmithy.lib.util.Locales: new utility method
+            - org.softsmithy.lib.util.Locales: many methods moved to org.softsmithy.lib.text.Localizables
+            - org.softsmithy.lib.util.CountryCode class added
+            - new dependency added: JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
+            - generified classes
+            - removed warnings
+            - Javadocs added
+            - Project setting changed
+            - LocaleSelectionSample
+            - FileRootSelectionSample
+            - changed to JDK 1.6 -> please report regressions if you find any!
+            - changed to NetBeans 6.8
+
+v20070520:  - JButtonCustomizer completed
+(Rev.: 337) - a text customizers sample added
+            - text customizers tutorial section completed
+            - org.softsmithy.lib.util.Strings: cut added
+            - org.softsmithy.lib.io.Files: getPathNames added
+            - org.softsmithy.lib.util.zip.ZipFiles: createEntryName added
+            - org.softsmithy.lib.util.Lists class added
+            - org.softsmithy.lib.util.EqualityVerifier interface added
+            - org.softsmithy.lib.util.ComparatorEqualityVerifier class added
+            - org.softsmithy.lib.util.ObjectEqualityVerifier class added
+            - org.softsmithy.lib.swing.customizer.AbstractTextCustomizer: 
+              String constructor removed
+            - small sample updates
+            - small documentation updates
+            - Javadocs added
+
+v20070304:  - org.softsmithy.lib.io.Files: delete recursivly added
+(Rev.: 307) - org.softsmithy.lib.io.Streams: copy streams added
+            - org.softsmithy.lib.util.zip.ZipFiles class added 
+              (extract zip files)
+            - Javadoc updates
+            - Sample and tutorial trail about the number fields added
+            - Syntax highlighting in the tutorial added
+              (syntax Highlighter shipped with the tutorial is covered 
+               by the LGPL)
+            - small tutorial updates
+
+v20061029:  - ShapeIcon respects aspect ratio
+            - org.softsmithy.lib.swing.JListBox added
+            - org.softsmithy.lib.swing.icon.XIcons added
+            - StandardActions.properties some media information added
+            - All jlfgr icons referenced in StandardActions.properties
+            - org.softsmithy.lib.math.Doubles added
+            - org.softsmithy.lib.math.Floats added
+            - Bug 1581780 fixed
+            - commented out system outputs
+            - Javadocs added
+            - First trails of a tutorial & samples added
+            - a copy of the Sun Public License added (SPL.txt)
+            - README.txt changed
+            - New Ant targets added to the build.xml (e.g. "dist")
+            - NetBeans Ant Projectfiles v5.0
+            - Dist structure changed a bit
+            - properties-files moved: i18n -> src (only one jar)
+            - src.zip added
+            - some minor changes
+
+v20040727:  -Extended Icon Framework added which supports zooming strategies
+             for icons. Image and shape icons supported.
+             org.softsmithy.lib.swing.JXIconLabel and the 
+             org.softsmithy.lib.swing.icon package
+             ShapeIcon, XIcon and XImageIcon moved from org.softsmithy.lib.swing 
+             to org.softsmithy.lib.swing.icon
+            -org.softsmithy.lib.swing.JIconCustomizer, 
+             org.softsmithy.lib.swing.JImageCustomizer and
+             org.softsmithy.lib.swing.JShapeCustomizer replaced by
+             org.softsmithy.lib.swing.JXIconCustomizer and the 
+             Extended Icon Framework
+            -improved support for the Java look and feel Graphics Repository:
+             org.softsmithy.lib.swing.action.GeneralActionFactory
+             org.softsmithy.lib.swing.action.DevelopmentActionFactory
+             org.softsmithy.lib.swing.action.NavigationActionFactory
+             org.softsmithy.lib.swing.action.MediaActionFactory
+             org.softsmithy.lib.swing.action.StandardActionFactory
+             org.softsmithy.lib.swing.action.TextActionFactory
+             org.softsmithy.lib.swing.action.TableActionFactory
+             Note: the ResourceBundles are updated but not yet complete!
+            -AbstractXAction, ActionWrapper, CustomizerActionFactory, 
+             CustomizerActionManager, CustomizerItemListenerProvider, IconType, 
+             ReflectiveXAction, XAction, XActionDelegator, XActionWrapper 
+             and XActions moved from org.softsmithy.lib.swing to 
+             org.softsmithy.lib.swing.action
+            -removed methods from org.softsmithy.lib.swing.action.XActions which 
+             are now covered by the Java look and feel Graphics Repository
+             support factories.
+            -org.softsmithy.lib.swing.action.XActions now supports mnemonic keys
+            -"x", "y", "width" and "height" added to the customizable properties
+             of org.softsmithy.lib.swing.JCustomizer by default to allow 
+             SelectionManager to listen for them
+            -org.softsmithy.lib.awt.image.ScalingAlgorithm added
+            -org.softsmithy.lib.io.Streams added
+            -org.softsmithy.lib.swing.JTextCustomizer moved to 
+             org.softsmithy.lib.swing.customizer.AbstractTextCustomizer
+            -"showingConstraints" property renamed to "showingLayoutHelp" in
+             org.softsmithy.lib.swing.JCustomizerPane
+            -updated some Javadocs
+            -org.softsmithy.lib.swing.action.CustomizerAction,
+             org.softsmithy.lib.swing.action.DefaultCustomizerAction,
+             org.softsmithy.lib.swing.action.DefaultXAction and
+             org.softsmithy.lib.swing.action.ReflectiveCustomizerAction added
+            -some minor changes
+v20031023:  -number fields based on JFormattedTextField for int, long, short, 
+             byte, double, float, BigInteger and BigDecimal added
+            -TableCellEditors and CellRenderers based on these number 
+             fields added
+            -org.softsmithy.lib.swing.JXTable configured to use these new number
+             editors and renderers by default
+            -in org.softsmithy.lib.swing.JCustomizerPropertyTable the default 
+             editors for the properties x and y have been set to an integer 
+             editor with bounds (0, 10000), for width and height to an integer
+             editor with bounds (1, 10000) and for thickness to a localized
+             float editor with bounds (1, 10000)
+            -utility class org.softsmithy.lib.util.Comparables added
+            -utility classes BigIntegers and BigDecimals in package
+             org.softsmithy.lib.math added
+            -the way how changes to "x", "y", "width", "height", "background", 
+             "foreground" and "font" in org.softmithy.lib.swing.JCustomizer 
+             are handled and propagated has been fixed
+            -some minor changes
+v20030909:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fixes
+            -style specific classes moved from 
+             org.softsmithy.lib.swing.customizer -> 
+             org.softsmithy.lib.swing.style
+            -org.softsmithy.lib.swing.JXScrollPane with 
+             org.softsmithy.lib.swing.JXViewport added with support for view 
+             glassing
+            -org.softsmithy.lib.swing.JXLabel added with support for shapes
+            -org.softsmithy.lib.swing.ColorCellEditor has now 
+             an alpha value attribute
+            -org.softsmithy.lib.swing.HorizontalAlignment bug fixes
+            -several minor changes
+v20030630:  -org.softsmithy.lib.awt.layout.InfiniteTableLayout bug fix with 
+             preferredSize 
+            -org.softsmithy.lib.beans.XDefaultPersistenceDelegate work around
+             for a bug in java.beans.DefaultPersistenceDelegate when used eg. 
+             with unsigned applets
+            -org.softsmithy.lib.beans.XMLEncoderX uses 
+             org.softsmithy.lib.beans.XDefaultPersistenceDelegate for Color and
+             Font
+            -org.softsmithy.lib.swing.JMultiSplitPane now supports 
+             org.softsmithy.lib.swing.event.DividerLocationListener
+            -some minor changes
+v20030616:  -i18n updates
+            -some bugs in org.softsmithy.lib.swing.JHtmlCustomizer removed
+            -org.softsmithy.lib.swing.JXTextField, 
+             org.softsmithy.lib.swing.table.PanelTableCellRenderer and 
+             org.softsmithy.lib.swing.table.TextFieldTableCellRenderer added
+            -some minor changes
+v20030523:  -org.softsmithy.lib.swing.JHtmlCustomizer bug fixes for foreground
+             and font
+            -org.softsmithy.lib.swing.HorizontalAlignment supports conversions 
+             to javax.swing.text.StyleConstants
+            -org.softsmithy.lib.swing.XActions now sets a transparent icon if 
+             icon is null
+            -org.softsmithy.lib.swing.JXPanel added which has a backgroundPaint
+             property
+v20030514:  -org.softsmithy.lib.beans.BeanIntrospector now supports 
+             PropertyChangeListeners
+            -org.softsmithy.lib.swing.JCustomizer + 
+             org.softsmithy.lib.swing.customizer.StateManager +
+             org.softsmithy.lib.swing.customizer.State
+             support now the border color property
+            -org.softsmithy.lib.swing.JCustomizerPane supports now properties
+             for its border colors, the default border colors of its customizers
+             and the color of the layout help. Additionally it now takes control
+             over the activation border itself instead of the 
+             org.softsmithy.lib.swing.customizer.ActivationManager
+            -org.softsmithy.lib.swing.customizer.StyleProvider now works on the
+             interface org.softsmithy.lib.swing.style.Styleable
+            -org.softsmithy.lib.swing.customizer.StateAdapter ->
+             org.softsmithy.lib.swing.customizer.AbstractState
+            -org.softsmithy.lib.swing.JMultiSplitPane +
+             org.softsmithy.lib.swing.JStyledPanel +  
+             org.softsmithy.lib.swing.JXSplitPane support the style property 
+            -org.softsmithy.lib.swing.JPropertyTable now supports editors and
+             renderers per property
+            -org.softsmithy.lib.swing.table.PropertyTableModel supports 
+             PropertyChangeListeners
+            -org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException
+             added
+            -some minor changes
+v20030410:  -org.softsmithy.lib.beans.XMLEncoderX now supports 
+             CustomStyleProvider
+            -org.softsmithy.lib.swing.CustomizerActionFactory now has a first 
+             simple implementation for alignRight and alignBottom 
+            -org.softsmithy.lib.swing.JXTree added
+v20030319:  -org.softsmithy.lib.swing.JPropertyTable added
+            -org.softsmithy.lib.swing.JCustomizerPropertyTable added
+            -org.softsmithy.lib.swing.JCustomizerPropertyPane removed
+            -org.softsmithy.lib.swing.customizer.CustomizerPropertyTable removed
+            -org.softsmithy.lib.util.ResourceBundleCache removed
+            -redraw problem after resizing a JCustomizer solved
+            -java.util.Locale support classes:
+              -org.softsmithy.lib.util.Locales (added)
+              -org.softsmithy.lib.beans.XMLEncoderX
+              -org.softsmithy.lib.swing.JXTable
+            -several convenience constructors for JCustomizer and its subclasses
+            -version naming convention changed: ddmmyyyy -> yyyymmdd 
+             (better for sorting)
+v04032003:  -Fixed some bugs with setting styles
+            -Added a property table model for arbitrary beans 
+             (org.softsmithy.lib.swing.table.PropertyTableModel)
+            -org.softsmithy.lib.swing.customizer.SelectionManager listens now 
+             for PropertyChangeEvents on the active customizer and updates the 
+             others
+v17022003:  -Styles (+ support) added 
+             (org.softsmithy.lib.swing.customizer.Style)
+            -org.softsmithy.lib.beans.XMLEncoder -> 
+             org.softsmithy.lib.beans.XMLEncoderX to avoid name clashes with
+             java.beans
+            -org.softsmithy.lib.beans.XMLEncoderX supports the new marker 
+             interface org.softsmithy.lib.util.Singleton
+            -org.softsmithy.lib.io.CompundFileFilter -> 
+             org.softsmithy.lib.io.CompoundFileFilter (typo)

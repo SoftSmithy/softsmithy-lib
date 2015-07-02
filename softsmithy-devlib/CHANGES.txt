@@ -1,0 +1,35 @@
+Changes:
+
+v${project.version} (Changeset: ${changeSet}):
+
+v0.5 (Changeset: 0cb0ccaa7bbe):
+            - Small fixes and clean-ups
+
+v0.4 (Changeset: 76d100d0c560):
+            - Project migration: SourceForge.net migrated to the new Allura based platform
+              The SCM and some other links changed.
+
+v0.3 (Changeset: ecfc90e95ad5):
+            - AbstractJPATest: moved package: org.softsmithy.devlib.junit -> org.softsmithy.devlib.junit.persistence 
+            - NetBeans IDE upgrade: 7.2
+
+v0.2 (Changeset: d198b7dfd05b):
+	    - Project migration: Java SE 6 -> Java SE 7
+	    - Project migration: OSGi metadata added
+	    - Project migration: Maven 2.2.1 -> Maven 3.0.4
+	    - Project migration: artifactId prefix added: "softsmithy-"
+	    - Project migration: SoftSmithy Parent 1.2 -> SoftSmithy Parent 2.1
+            - JUnit upgrade: version 4.10
+            - NetBeans IDE upgrade: 7.1.1
+
+v0.1 (Changeset: 677685802ce2):
+	    - Project migration: Ant -> Maven
+            - Project migration: Subversion -> Mercurial
+            - License upgraded: SPL -> CDDL
+            - Project versioning aligned with Maven versioning, starting with v0.1
+            - Project versioning aligned with org.softsmithy.lib project version
+            - org.softsmithy.devlib.junit.Tests added
+
+v20100524:  - API refactorings/ clean-ups after initial release
+(Rev.: 470) - New dependency to SoftSmithy Utility Library
+

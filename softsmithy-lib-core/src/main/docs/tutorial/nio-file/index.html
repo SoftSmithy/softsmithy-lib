@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+          COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+ 
+  The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. A copy of the License is available at
+  http://www.opensource.org/licenses/cddl1.txt
+ 
+  The Original Text is SoftSmithy Utility Library Tutorial. The Initial Author of the
+  Original Text is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ 
+  Contributor(s): .
+-->
+<html>
+    <head>
+        <title>SoftSmithy Utility Library Tutorial - NIO File</title>
+        <link type="text/css" rel="stylesheet" href="../Styles/SyntaxHighlighter.css"></link>
+    </head>
+
+    <body>
+        <script src="http://java.com/js/deployJava.js"></script>
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="../index.html">
+                        <img src="../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../index.html">
+                        <img src="../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </p>
+    <h1>NIO File</h1>
+
+
+    The <em>SoftSmithy Utility Library</em> provides 
+    <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/package-summary.html">various utility classes</a> 
+    for the <a href="${javadoc.url}/java/nio/file/package-summary.html">NIO File API</a> introduced in Java SE 7. <br/>
+    <br/>
+    The <a href="http://sourceforge.net/projects/softsmithy/files/softsmithy/v${project.version}">SoftSmithy Utility Library distribution archive</a>
+    contains all SoftSmithy Utility Library jars, Javadoc, tutorial and samples.<br/>
+    <br/>
+    This trail contains the following samples:
+    <ul>
+        <li><a href="#CopyFilesSample">Copy files</a></li>
+        <li><a href="#ExtractJarResourceSample">Extract resources from a JAR</a></li>
+        <li><a href="#AddZipResourceSample">Add resources to a ZIP file</a></li>
+        <li><a href="#GetInstallationDirSample">Get the installation directory</a></li>
+    </ul>
+    <h3><a name="CopyFilesSample">Copy files</a></h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/CopyFilesSample.java">CopyFilesSample.java</a>
+    that copies some files to a target directory.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void copyFiles(Path srcPath, Path targetDirPath) throws IOException {
+        // Adds the src directory name to the target directory. You can omit this if you just want to copy the contents.
+        Path finalTargetPath = targetDirPath.resolve(srcPath.getFileName());
+        Files.createDirectories(finalTargetPath);
+
+        CopyFileVisitor.copy(srcPath, finalTargetPath);
+    }</textarea>
+        </pre></blockquote>
+
+    This sample uses the <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html">CopyFileVisitor</a> 
+    to recursively copy a source directory to a target directory. The CopyFileVisitor implements the 
+    <a href="${javadoc.url}/java/nio/file/FileVisitor.html">FileVisitor</a> interface and thus can be use with one of the
+    <a href="${javadoc.url}/java/nio/file/Files.html#walkFileTree(java.nio.file.Path, java.nio.file.FileVisitor)">Files.walkFileTree</a> methods.
+    For convenience there is the static <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html#copy(java.nio.file.Path, java.nio.file.Path)">CopyFileVisitor.copy</a> 
+    method. <br/>
+    <br/>
+    To run this sample, use:
+    <pre>
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.CopyFilesSample data/first output
+    </pre>   
+    <h3><a name="ExtractJarResourceSample">Extract resources from a JAR</a></h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/ExtractJarResourceSample.java">ExtractJarResourceSample.java</a>
+    that extracts a resource from the JAR containing the ExtractJarResourceSample.class file to a target directory.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void extractResource(String resourcePathString, Path targetDirPath) throws IOException, URISyntaxException {
+        URI jarURI = JarFiles.getJarURI(ExtractJarResourceSample.class);
+        try (FileSystem jarFS = JarFiles.newJarFileSystem(jarURI)) {
+            Path resourcePath = jarFS.getPath(resourcePathString);
+
+            CopyFileVisitor.copy(resourcePath, targetDirPath);
+        }
+    }</textarea>
+        </pre></blockquote>
+
+    Oracle's Java SE 7 Runtime comes with a 
+    <a href="http://docs.oracle.com/javase/7/docs/technotes/guides/io/fsp/zipfilesystemprovider.html">FileSystemProvider implementation for JAR and ZIP files</a>.
+    This FileSystemProvider allows you to work with JAR and ZIP files in a similar way as with the local file system.<br/>
+    <br/>
+    The <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/JarFiles.html">JarFiles</a> utility class 
+    provides some utility methods to work with JAR/ ZIP files. <br/>
+    <br/>
+    With the help of <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/CopyFileVisitor.html">CopyFileVisitor</a>
+    you can easily recursively extract/ add directories from/ to JAR or ZIP files, as CopyFileVisitor works across 
+    file systems. <br/>
+    <br/>
+    To run this sample, use:
+    <pre>
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.ExtractJarResourceSample output
+    </pre>
+
+    <h3><a name="AddZipResourceSample">Add resources to a ZIP file</a></h3>
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/AddZipResourceSample.java">AddZipResourceSample.java</a>
+    that adds a source directory to a ZIP file.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void addResource(Path zipPath, Path targetDirPath, Path srcPath, String targetInZipPathString) throws IOException {
+        Path targetZipPath = copyZipFile(zipPath, targetDirPath);
+
+        try (FileSystem jarFS = JarFiles.newJarFileSystem(targetZipPath.toUri())) {
+            Path targetInZipPath = jarFS.getPath(targetInZipPathString);
+
+            // Adds the src directory name to the zip. You can omit this if you just want to copy the contents.
+            Path finalTargetInZipPath = PathUtils.resolve(targetInZipPath, srcPath.getFileName());
+            Files.createDirectories(finalTargetInZipPath);
+
+            CopyFileVisitor.copy(srcPath, finalTargetInZipPath);
+        }
+    }</textarea>
+        </pre></blockquote>
+    This sample is similar to <a href="#ExtractJarResourceSample">Extract resources from a JAR</a>, but adds resources
+    to a ZIP file instead of extracting resources from a JAR. <br/>
+    <br/>
+    In addition, the <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/PathUtils.html">PathUtils</a>
+    utility class is used to resolve paths across file systems. <br/>
+    <br/>
+    To run this sample, use:
+    <pre>
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.AddZipResourceSample data/sample-data.zip output data/another /first
+    </pre>    
+    <h3><a name="GetInstallationDirSample">Get the installation directory</a></h3>
+    If you unpack the <a href="http://sourceforge.net/projects/softsmithy/files/softsmithy/v${project.version}">SoftSmithy Utility Library distribution archive</a>, you can find the JAR containing the samples at the
+    following location:
+    <pre>
+        &lt;install-dir&gt;/docs/samples/dist/softsmithy-lib-samples-${project.version}.jar
+        &lt;install-dir&gt;/docs/samples/dist/lib/&lt;other jars&gt; 
+    </pre>
+
+    Below is the code from 
+    <a href="../../samples/src/main/java/samples/nio/file/GetInstallationDirSample.java">GetInstallationDirSample.java</a>
+    that gets the &lt;install-dir&gt;.
+    <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    public void printInstallDirPath() throws IOException, URISyntaxException {
+        URI jarURI = JarFiles.getJarURI(GetInstallationDirSample.class);
+        Path jarPath = Paths.get(jarURI);
+        Path installDirPath = jarPath.getParent().getParent().getParent().getParent();
+        
+        System.out.println(installDirPath);
+    }</textarea>
+        </pre></blockquote>
+
+    In this sample, <a href="../../api/softsmithy-lib-core/org/softsmithy/lib/nio/file/JarFiles.html#getJarURI(java.lang.Class)">JarFiles.getJarURI</a> 
+    is used to get the installation directory. <br/>
+    <br/>
+    To run this sample, use:
+    <pre>
+        cd docs/samples/dist
+        java -cp softsmithy-lib-samples-${project.version}.jar:lib/softsmithy-lib-core-${project.version}.jar samples.nio.file.GetInstallationDirSample
+    </pre>    
+    <table bgcolor="aqua" width="100%">
+        <tr>
+            <td>
+                <a href="../index.html">
+                    <img src="../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                </a>
+                <a href="../index.html">
+                    <img src="../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                </a>
+            </td>
+        </tr>
+    </table>
+</p>
+<!-- the following code should be place at the bottom of the page -->  
+<script language="javascript" src="../Scripts/shCore.js"></script>  
+<script language="javascript" src="../Scripts/shBrushJava.js"></script>   
+<script language="javascript">  
+    dp.SyntaxHighlighter.HighlightAll('code');  
+</script>
+</body>
+</html>

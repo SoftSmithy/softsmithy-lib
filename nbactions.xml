@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-dist</actionName>
+            <displayName>dist</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>sonatype-oss-release</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-site</actionName>
+            <displayName>site</displayName>
+            <goals>
+                <goal>site:site</goal>
+                <goal>site:stage</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-site-deploy</actionName>
+            <displayName>site-deploy</displayName>
+            <goals>
+                <goal>site-deploy</goal>
+                <goal>-Dusername=puce</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>sonatype-oss-release</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
