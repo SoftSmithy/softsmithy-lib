@@ -1,0 +1,12 @@
+org.softsmithy.devlib.junit
+org.softsmithy.lib
+org.softsmithy.lib.io
+org.softsmithy.lib.lang.reflect
+org.softsmithy.lib.nio.file
+org.softsmithy.lib.swing.customizer
+org.softsmithy.lib.swing.customizer.layout
+org.softsmithy.lib.swing.icon
+org.softsmithy.lib.text
+org.softsmithy.lib.time
+org.softsmithy.lib.util
+org.softsmithy.lib.util.zip

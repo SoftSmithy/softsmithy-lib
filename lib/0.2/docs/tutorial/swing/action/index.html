@@ -1,0 +1,758 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+          COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+ 
+  The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. A copy of the License is available at
+  http://www.opensource.org/licenses/cddl1.txt
+ 
+  The Original Text is SoftSmithy Utility Library Tutorial. The Initial Author of the
+  Original Text is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ 
+  Contributor(s): .
+-->
+<html>
+    <head>
+        <title>SoftSmithy Utility Library Tutorial - The Extended Action Framework</title>
+        <link type="text/css" rel="stylesheet" href="../../Styles/SyntaxHighlighter.css"></link>
+    </head>
+    <body>
+        <script src="http://java.com/js/deployJava.js"></script>
+        <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="../index.html">
+                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../../index.html">
+                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </p>
+        <h1>The Extended Action Framework</h1>
+        <em>The Extended Action Framework</em> extends the Action framework provided 
+        by Swing. It mainly provides convenience methods and fields.
+        <ul>
+            <li><a href="#xAction">The XAction Interface</a></li>
+            <li><a href="#reflective">Reflective Actions</a></li>
+            <li><a href="#utility">The XActions Utility Class</a></li>
+            <li><a href="#factories">The Standard Action Factories</a></li>
+        </ul>
+        <h2><a name="xAction">The XAction Interface</a></h2>
+        The <a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/Action.html">
+        Action</a> interface provided by Swing defines some static final fields,
+        which can be used as keys for its getValue and putValue methods. 
+        Unfortunalty this interface has some shortcomings: <br/>
+        <ul>
+            <li>
+                Although you can set all values used by AbstractButton's and JMenuItem's 
+                configurePropertiesFromAction method by using the putValue method, 
+                you have first to figure out, of which type the values have to be, since
+                the putValue method just takes an Object. 
+            </li>
+            <li>
+                It only defines a key for a small icon. Large icons as well as small 
+                and large disabled, pressed, rollover, rollover selected and selected
+                icons aren't supported.
+            </li>
+        </ul>
+        <br/>
+        The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        XAction</a> interface overcomes these shortcomings by defining static 
+        final fields for all these icons and providing setter and getter methods
+        with the right type for each field it defines.<br/>
+        <b>Note</b>: The getter method might throw a ClassCastException if the putValue
+        method has been called directly with a wrong type. The safest way is to
+        use the convenience methods to set the values.
+        <br/><br/>
+        This extended Action interface builds the base of the rest of the
+        <em>Extended Action Framework</em> and since it extends the Action
+        interface, it can be used everywhere an ordinary Action can be used!
+        <br/>
+       
+        The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/AbstractXAction.html">
+        AbstractXAction</a> class implements the XAction interface by extending 
+        the AbstractAction and implementing all new methods of XAction. The
+        actionPerfomed method remains abstract.
+        
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+        XAction saveAction = new AbstractXAction() {
+            public void actionPerformed(ActionEvent e) {
+                // save things
+            }
+        };
+        
+        saveAction.setName("Save");
+        saveAction.setSmallIcon(new ImageIcon(getClass().getResource("/toolbarButtonGraphics/general/Save16.gif")));
+        saveAction.setLargeIcon(new ImageIcon(getClass().getResource("/toolbarButtonGraphics/general/Save24.gif")));
+        saveAction.setShortDescription("Save");
+        saveAction.setAccelerator(KeyStroke.getKeyStroke("control S"));
+        saveAction.setMnemonicKey('S');
+            </textarea>
+        </pre></blockquote>
+        <h2><a name="reflective">Reflective Actions</a></h2>
+        <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>
+        is a trampoline class that implements the <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        XAction</a> interface and delegates the actionPerformed method to a reflectivly called action method. That method must
+        be public and take an ActionEvent object as its single parameter.<br>
+        <p>
+ 
+            Normally there are two standard ways to implement the ActionListener interface:
+            The first is to let a class implement the ActionListener interface and then add an
+            object of this class to the addActionListener methods of the components
+            firing ActionEvents. You then have to check the source in the
+            actionPerformed method. You end up with a big ugly, unmaintainable and
+            unstable if-then-else- statement. The second approach is to define a class for
+            every such component. You end up with tons of small classes all
+            increasing the memory footprint (typically 3K per class). 
+        </p>
+        <p>
+            Now this approach using reflection lets you define a method for each such component avoiding the
+            mentioned drawbacks and has the following advantages:
+            <ul>
+                <li>No other classes implementing ActionListener are used.</li>
+                <li>The code is very clear.</li>
+            </ul> 
+            The new drawbacks are however:
+            <ul>
+                <li>Reflectivly calling method does not identify typos during
+                compile-time.</li>
+                <li> Calling a method refectivly is slower (but it's unlikely the user
+                notices it).</li>
+            </ul>
+            More to read about reflective actions and trampolines: <a
+            href="http://java.sun.com/docs/books/performance/1st_edition/html/JPClassLoading.fm.html#11197">
+            Chapter 6.2.3, p. 73</a> of the Java Series Book <a
+            href="http://java.sun.com/docs/books/performance/"> Java Platform Performance
+            Strategies and Tactics</a> by Steve Wilson and Jeff Kesselman.<br/>
+        </p> 
+        <p>
+            Although there are no compile time errors if the specified method doesn't
+            exist, you don't have to wait for the method to be called to get
+            an Exception. The constructor will already throw a NoSuchMethodException in 
+            that case. 
+        </p>
+        
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+        try {
+            Action myAction = new ReflectiveXAction(this, "myActionMethod");
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        ...
+        
+        
+        public void myActionMethod(ActionEvent e){
+            // do something
+        }
+            </textarea>
+        </pre></blockquote>
+        Reflective actions are heavily used and supported throughout the whole 
+        <em>Extended Action Framework</em>.
+        <h2><a name="utility">The XActions Utility Class</a></h2>
+        <p>The <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XActions.html">XActions</a> 
+        class is a utility class providing convenience methods, which are described in this section.</p>
+        <h3>The Button Configuration Methods</h3>
+        <p>Let's first have a look at the <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XActions.html#configureButton(javax.swing.AbstractButton,%20org.softsmithy.lib.swing.action.XAction,%20org.softsmithy.lib.swing.action.IconType,%20boolean,%20boolean)">
+        configureButton</a> method:
+        <blockquote><pre>
+        public static void configureButton(AbstractButton button, XAction action, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        This method configures an <a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/AbstractButton.html">
+        AbstractButton</a> with an 
+        <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+        XAction</a>.
+        It can be specified, which icon type should be use (small icons, 
+        large icons or no icons), if the text should be displayed and if the 
+        buttons should have a cool style. If cool style is set to true, then the
+        border of the button will be drawn only if the mouse pointer is over the
+        button. Note: Since Java 1.4 you can create a similar effect by setting 
+        the rollover property of the toolbar to true. However look and feels may
+        ignore this property and the Java Look and Feel does so.
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+   private void addMenuItems(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JMenuItem item = new JMenuItem();
+            XActions.configureButton(item, xActions[i], IconType.SMALL_ICON, true, false);
+            menu.add(item);
+        }
+    }
+    
+    private void addToolbarStandardButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = new JButton();
+            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, false);
+            toolBarStandard.add(button);
+        }
+    }
+    
+    private void addToolbarCoolButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = new JButton();
+            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, true);
+            toolBarCool.add(button);
+        }
+    }
+            </textarea>
+         </pre></blockquote>
+        <p><center>
+       <img src="ConfigureButtonsSample.jpg" width="500" height="300" alt="Configure Buttons Sample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li>
+                    <script>
+                        var url = "ConfigureButtonsSample.jnlp";
+                        deployJava.createWebStartLaunchButton(url, '1.7');
+                    </script> using
+                    <a href="http://java.sun.com/javase/downloads/index.jsp">Java Web Start</a>.
+                </li>
+                <li>This sample shows 1 menu and 2 toolbars all configured by the same XAction objects.</li>
+            </ol>
+            Note: This sample uses the 
+            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
+            class, which will be discussed later in the section 
+            <a href="#factories">The Standard Action Factories</a>.
+            <p>
+            Source code: 
+            <a href="../../../samples/src/main/java/samples/swing/action/ConfigureButtonsSample.java">ConfigureButtonsSample.java</a>
+            </p>
+            <hr/>
+        </blockquote>
+        Like this you can first specify all information in one XAction object and then
+        specify which data should be displayed using this same XAction object.
+        </p>
+        <p>
+        The configureButton method is  twice overloaded:
+        <blockquote><pre>
+            public static void configureButton(AbstractButton button, XAction action, ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle)
+            
+            public static void configureButton(AbstractButton button, XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        The first variant additionally adds the button to a 
+        <a href="http://docs.oracle.com/javase/7/docs/api/javax/swing/ButtonGroup.html">ButtonGroup</a>.
+        The second variant registers an
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/awt/event/ItemListener.html">ItemListener</a>
+        to the button.
+        </p>
+        <h3>The Button Creation Methods</h3>
+        <p>
+        Instead of first creating a button and then configuring it using one of the
+        methods discussed above, the XAcions class also provides convenience methods
+        to create such configured buttons directly:
+        <blockquote><pre>
+            public static JButton createButton(XAction action, IconType iconType, boolean showText, boolean coolStyle)
+  
+            public static JCheckBox createCheckBox(XAction action, ItemListener listener, IconType iconType, boolean showText)
+  
+            public static JCheckBoxMenuItem createCheckBoxMenuItem(XAction action, ItemListener listener, IconType iconType, boolean showText)
+  
+            public static JMenuItem createMenuItem(XAction action, IconType iconType, boolean showText)
+  
+            public static JRadioButton createRadioButton(XAction action, ButtonGroup group, IconType iconType, boolean showText)
+  
+            public static JRadioButtonMenuItem createRadioButtonMenuItem(XAction action, ButtonGroup group, IconType iconType, boolean showText)
+  
+            public static JToggleButton createToggleButton(XAction action, ButtonGroup group, IconType iconType, boolean showText, boolean coolStyle)
+  
+            public static JToggleButton createToggleButton(XAction action, ItemListener listener, IconType iconType, boolean showText, boolean coolStyle)
+        </pre></blockquote>
+        With these methods the previous sample could be rewritten like this:
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    private void addMenuItems(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
+            menu.add(item);
+        }
+    }
+    
+    private void addToolbarStandardButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, false);
+            toolBarStandard.add(button);
+        }
+    }
+    
+    private void addToolbarCoolButtons(XAction[] xActions ) {
+        for (int i=0; i < xActions.length; i++){
+            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, true);
+            toolBarCool.add(button);
+        }
+    }
+            </textarea>
+        </pre></blockquote>
+        The modified source code: 
+        <a href="../../../samples/src/main/java/samples/swing/action/CreateButtonsSample.java">CreateButtonsSample.java</a>
+        <br/>
+        Now that we have looked at how to configure and create buttons using
+        XAction objects, let's see how we can configure and create these 
+        XAction objects using a 
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html">ResourceBundle</a>.
+        </p>
+        <h3>The XAction Configuration Method</h3>
+        <p>
+            The XActions class provides the following utility method to 
+            configure a XAction object from a
+            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ResourceBundle.html">ResourceBundle</a>:
+            <blockquote><pre>
+                public static void configureXAction(XAction action, String name, ResourceBundle rb)
+            </pre></blockquote>
+            This method is looking for the following keys: <br>
+            <br>
+            <blockquote>
+            <table border="1">
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.name</td>
+                    <td>The Name to be Displayed</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.shortDescription</td>
+                    <td>Tool Tip</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.acceleratorKey</td>
+                    <td>Shortcut</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.mnemonicKey</td>
+                    <td>Mnemonic</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeDisabledIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeDisabledSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largePressedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeRolloverIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeRolloverSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.largeSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallDisabledIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallDisabledSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallPressedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallRolloverIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallRolloverSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+                <tr>
+                    <td>&lt;name&gt;.smallSelectedIcon</td>
+                    <td>File Name</td>
+                </tr>
+            </table>
+            </blockquote>
+            <br>
+            E.g. <br>
+            <blockquote><pre>
+            myAction.name = MyAction
+            myAction.shortDescription = My Action
+            myAction.acceleratorKey = Control M
+            myAction.mnemonicKey = A
+            myAction.largeIcon = /myGraphics/MyAction24.gif
+            myAction.smallIcon = /myGraphics/MyAction16.gif
+            </pre></blockquote>
+            If a key is not specified it in the ResourceBundle it will be 
+            ignored!
+        </p>
+        <h3>The XAction Creation Method</h3>
+        <p>
+            Instead of first creating a XAction object and then configuring it 
+            using configureXAction method discussed above, the XAcions class 
+            also provides a convenience method to create such a configured 
+            XAction object directly:
+            <blockquote><pre>
+                public static XAction createXAction(String name, Object target, ResourceBundle rb) throws NoSuchMethodException
+            </pre></blockquote>
+            This method will create a 
+            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/ReflectiveXAction.html">ReflectiveXAction</a>.
+            (See the <a href="#reflective">Reflective Actions</a> section to 
+            learn more about reflective actions.)
+            The object 'target' is expected to have a method:
+            <blockquote><pre>
+                public void &lt;name&gt;(ActionEvent e)
+            </pre></blockquote>
+        </p>
+        <h2><a name="factories">The Standard Action Factories</a></h2>
+        <p>
+            The <em>Standard Action Factories</em> provide utility methods to create
+            and configure <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/XAction.html">
+            XAction</a>s for standard actions. However they do not provide any 
+            functionality for the actions since that is application specific.
+        </p>
+        <p>
+            All <em>Standard Action Factory</em> classes are typesafe enums, 
+            which provide one action factory instance for each supported 
+            standard action. They all derive from the base class
+            <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/StandardActionFactory.html">
+            StandardActionFactory</a>. The StandardActionFactory provides two
+            methods:
+            <blockquote><pre>
+                public XAction createXAction(Object target, Locale locale) throws NoSuchMethodException
+                public void configureXAction(XAction action, Locale locale)
+            </pre></blockquote>
+            Note: The createXAction-method expects that the object 'target' has
+            a method:
+            <blockquote><pre>
+                public void &lt;name&gt;(ActionEvent e)
+            </pre></blockquote>
+            where &lt;name&gt; is equal to the output of the toString()-method
+            of the action factory.
+        </p>
+        <p>
+            E.g. to create the standard action "save" you could use:
+            <blockquote><pre>
+                <textarea name="code" class="java" cols="60" rows="10">
+                try {
+                    XAction saveAction = GeneralActionFactory.SAVE.createXAction(this, Locale.ENGLISH);
+                } catch (NoSuchMethodException ex) {
+                    ex.printStackTrace();
+                }
+                
+                ...
+        
+                public void save(ActionEvent e){
+                    // do save
+                }
+                </textarea>
+            </pre></blockquote>
+            or:
+            <blockquote><pre>
+                <textarea name="code" class="java" cols="60" rows="10">
+                XAction saveAction = new AbstractXAction() {
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        // do save
+                    }
+                };
+                GeneralActionFactory.SAVE.configureXAction(saveAction, Locale.ENGLISH);
+                </textarea>
+            </pre></blockquote>
+        </p>
+        <p>
+            The data in the resource bundles that backup the 
+            <em>Standard Action Factories</em> is based on the following
+            sources:
+            <ul>
+                <li><a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">The Java Look and Feel Graphics Repository</a></li>
+                <li>
+                    <a href="http://java.sun.com/products/jlf/ed2/guidelines.html">The Java Look and Feel Design Guidelines, Second Edition</a><br/>
+                    Especially on the follwing sections:
+                    <ul>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A.html">A: Keyboard Shortcuts, Mnemonics, and Other Keyboard Operations</a></li>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.A2.html">Common Mnemonics</a></li>
+                        <li><a href="http://java.sun.com/products/jlf/ed2/book/Appendix.C.html">C: Localization Word Lists</a></li>
+                    </ul>
+                </li>
+            </ul>
+            Currently the following locales are supported:
+            <ul>
+                <li>english (en)</li>
+                <li>german  (de)</li>
+            </ul>
+            Note: The data in the resource bundles is not complete yet!
+        </p>
+        <p>
+        There is one <em>Standard Action Factory</em> class for each part of the
+        <a href="http://java.sun.com/developer/techDocs/hi/repository/index.html">
+        Java Look and Feel Graphics Repository</a>:
+        <blockquote>
+        <table border="1">
+            <tr>
+                <th>Action Factory</th>
+                <th>Button Graphics</th>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/DevelopmentActionFactory.html">DevelopmentActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Development.html">Development Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/GeneralActionFactory.html">GeneralActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html">General Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/MediaActionFactory.html">MediaActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html">Media Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/NavigationActionFactory.html">NavigationActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html">Navigation Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/TableActionFactory.html">TableActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html">Table Toolbar Button Graphics</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../../../api/softsmithy-lib-core/org/softsmithy/lib/swing/action/TextActionFactory.html">TextActionFactory</a>
+                </td>
+                <td>
+                    <a href="http://java.sun.com/developer/techDocs/hi/repository/TBG_Text.html">Text Toolbar Button Graphics</a>
+                </td>
+            </tr>
+        </table>
+        </blockquote>
+        </p>
+        <p>
+        The follwing sample provides an overview over what data is already available.
+        </p>
+        <p><center>
+            <img src="StandardActionFactoriesSample.jpg" width="870" height="500" alt="Standard Action Factories Sample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li>
+                    <script>
+                        var url = "StandardActionFactoriesSample.jnlp";
+                        deployJava.createWebStartLaunchButton(url, '1.7');
+                    </script> using
+                    <a href="http://java.sun.com/javase/downloads/index.jsp">Java Web Start</a>.
+                </li>
+                <li>This sample shows 1 menu and 1 toolbar for each <em>Standard Action Factory</em> class.<br/>
+                    (Except the GeneralActionFactory class for which there are 2 toolbars.)
+                </li>
+            </ol>
+            <p>
+            Source code: 
+            <a href="../../../samples/src/main/java/samples/swing/action/StandardActionFactoriesSample.java">StandardActionFactoriesSample.java</a>
+            </p>
+            <hr/>
+        </blockquote>
+        <p>
+        From the source code:
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+    private XAction[] createActions(StandardActionFactory[] factories) {
+        XAction[] xActions = new XAction[factories.length];
+        for (int i=0; i < factories.length; i++){
+            StandardActionFactory factory = factories[i];
+            XAction xAction = new AbstractXAction(){
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showMessageDialog(StandardActionFactoriesSample.this,
+                            "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);
+                }
+            };
+            factory.configureXAction(xAction, Locale.getDefault());
+            xActions[i] = xAction;
+        }
+        return xActions;
+    }
+    
+    
+    private XAction[] createDevelopmentActions() {
+        DevelopmentActionFactory[] factories = {
+            DevelopmentActionFactory.APPLET,
+            DevelopmentActionFactory.APPLICATION,
+            DevelopmentActionFactory.APPLICATION_DEPLOY,
+            DevelopmentActionFactory.BEAN,
+            DevelopmentActionFactory.BEAN_ADD,
+            DevelopmentActionFactory.ENTERPRISE_JAVA_BEAN,
+            DevelopmentActionFactory.ENTERPRISE_JAVA_BEAN_JAR,
+            DevelopmentActionFactory.HOST,
+            DevelopmentActionFactory.J2EE_APPLICATION,
+            DevelopmentActionFactory.J2EE_APPLICATION_CLIENT,
+            DevelopmentActionFactory.J2EE_APPLICATION_CLIENT_ADD,
+            DevelopmentActionFactory.J2EE_SERVER,
+            DevelopmentActionFactory.JAR,
+            DevelopmentActionFactory.JAR_ADD,
+            DevelopmentActionFactory.SERVER,
+            DevelopmentActionFactory.WAR,
+            DevelopmentActionFactory.WAR_ADD,
+            DevelopmentActionFactory.WEB_COMPONENT,
+            DevelopmentActionFactory.WEB_COMPONENT_ADD};
+        return createActions(factories);
+    }
+    
+    private XAction[] createGeneralActions() {
+        GeneralActionFactory[] factories = {
+            GeneralActionFactory.ABOUT,
+            GeneralActionFactory.ADD,
+            GeneralActionFactory.ALIGN_BOTTOM,
+            GeneralActionFactory.ALIGN_CENTER,
+            GeneralActionFactory.ALIGN_JUSTIFY_HORIZONTAL,
+            GeneralActionFactory.ALIGN_JUSTIFY_VERTICAL,
+            GeneralActionFactory.ALIGN_LEFT,
+            GeneralActionFactory.ALIGN_RIGHT,
+            GeneralActionFactory.ALIGN_TOP,
+            GeneralActionFactory.BOOKMARKS,
+            GeneralActionFactory.COMPOSE_MAIL,
+            GeneralActionFactory.CONTEXTUAL_HELP,
+            GeneralActionFactory.COPY,
+            GeneralActionFactory.CUT,
+            GeneralActionFactory.DELETE,
+            GeneralActionFactory.EDIT,
+            GeneralActionFactory.EXPORT,
+            GeneralActionFactory.FIND,
+            GeneralActionFactory.FIND_AGAIN,
+            GeneralActionFactory.HELP,
+            GeneralActionFactory.HISTORY,
+            GeneralActionFactory.IMPORT,
+            GeneralActionFactory.INFORMATION,
+            GeneralActionFactory.NEW,
+            GeneralActionFactory.OPEN,
+            GeneralActionFactory.PAGE_SETUP,
+            GeneralActionFactory.PASTE,
+            GeneralActionFactory.PREFERENCES,
+            GeneralActionFactory.PRINT,
+            GeneralActionFactory.PRINT_PREVIEW,
+            GeneralActionFactory.PROPERTIES,
+            GeneralActionFactory.REDO,
+            GeneralActionFactory.REFRESH,
+            GeneralActionFactory.REMOVE,
+            GeneralActionFactory.REPLACE,
+            GeneralActionFactory.SAVE,
+            GeneralActionFactory.SAVE_ALL,
+            GeneralActionFactory.SAVE_AS,
+            GeneralActionFactory.SEARCH,
+            GeneralActionFactory.SEND_MAIL,
+            GeneralActionFactory.STOP,
+            GeneralActionFactory.TIP_OF_THE_DAY,
+            GeneralActionFactory.UNDO,
+            GeneralActionFactory.ZOOM,
+            GeneralActionFactory.ZOOM_IN,
+            GeneralActionFactory.ZOOM_OUT};
+        return createActions(factories);
+    }
+    
+    private XAction[] createMediaActions() {
+        MediaActionFactory[] factories = {
+            MediaActionFactory.FAST_FORWARD,
+            MediaActionFactory.MOVIE,
+            MediaActionFactory.PAUSE,
+            MediaActionFactory.PLAY,
+            MediaActionFactory.REWIND,
+            MediaActionFactory.STEP_BACK,
+            MediaActionFactory.STEP_FORWARD,
+            MediaActionFactory.STOP,
+            MediaActionFactory.VOLUME};
+        return createActions(factories);
+    }
+    
+    private XAction[] createNavigationActions() {
+         NavigationActionFactory[] factories = {
+             NavigationActionFactory.BACK,
+             NavigationActionFactory.DOWN,
+             NavigationActionFactory.FORWARD,
+             NavigationActionFactory.HOME,
+             NavigationActionFactory.UP};
+        return createActions(factories);
+    }
+    
+    private XAction[] createTableActions() {
+        TableActionFactory[] factories = {
+            TableActionFactory.COLUMN_DELETE,
+            TableActionFactory.COLUMN_INSERT_AFTER,
+            TableActionFactory.COLUMN_INSERT_BEFORE,
+            TableActionFactory.ROW_DELETE,
+            TableActionFactory.ROW_INSERT_AFTER,
+            TableActionFactory.ROW_INSERT_BEFORE};
+        return createActions(factories);
+    }
+
+    private XAction[] createTextActions() {
+        TextActionFactory[] factories = {
+            TextActionFactory.ALIGN_CENTER,
+            TextActionFactory.ALIGN_JUSTIFY,
+            TextActionFactory.ALIGN_LEFT,
+            TextActionFactory.ALIGN_RIGHT,
+            TextActionFactory.BOLD,
+            TextActionFactory.ITALIC,
+            TextActionFactory.NORMAL,
+            TextActionFactory.UNDERLINE};
+       return createActions(factories);
+    }
+    </textarea>
+         </pre></blockquote>
+        </p>
+        <p>
+            <table bgcolor="aqua" width="100%">
+                <tr>
+                    <td>
+                        <a href="../index.html">
+                            <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                        <a href="../../index.html">
+                            <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </p>
+        <!-- the following code should be place at the bottom of the page -->  
+        <script language="javascript" src="../../Scripts/shCore.js"></script>  
+        <script language="javascript" src="../../Scripts/shBrushJava.js"></script>   
+        <script language="javascript">  
+            dp.SyntaxHighlighter.HighlightAll('code');  
+        </script>  
+    </body>
+</html>

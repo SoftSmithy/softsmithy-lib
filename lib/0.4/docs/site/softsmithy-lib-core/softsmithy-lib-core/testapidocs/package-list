@@ -1,0 +1,7 @@
+org.softsmithy.lib
+org.softsmithy.lib.io
+org.softsmithy.lib.lang.reflect
+org.softsmithy.lib.nio.file
+org.softsmithy.lib.text
+org.softsmithy.lib.util
+org.softsmithy.lib.util.zip
