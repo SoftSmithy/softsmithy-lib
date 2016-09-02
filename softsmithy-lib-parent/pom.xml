@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>2.6-SNAPSHOT</version>
+        <version>2.7</version>
         <relativePath />
     </parent>
     <groupId>org.softsmithy.lib</groupId>
