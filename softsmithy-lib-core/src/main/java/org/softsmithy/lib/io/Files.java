@@ -15,6 +15,7 @@ package org.softsmithy.lib.io;
 
 import java.io.*;
 import java.util.*;
+import org.softsmithy.lib.nio.file.PathUtils;
 
 /**
  * A utility class for Files. <br> Note: The API may change in a future version! <br><br>
@@ -54,18 +55,11 @@ public class Files {
     /**
      * Gets the extension of a file
      *
-     * @param f the file whose extension should be fetched
+     * @param file the file whose extension should be fetched
      * @return the extension of the specified file
      */
-    public static String getExtension(File f) {
-        String ext = "";
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-
-        if (i > 0 && i < s.length() - 1) {
-            ext = s.substring(i + 1).toLowerCase();
-        }
-        return ext;
+    public static String getExtension(File file) {
+        return PathUtils.getExtension(file.toPath());
     }
 
     /**
