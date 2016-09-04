@@ -16,9 +16,11 @@ package org.softsmithy.lib.util;
 /**
  *
  * @author puce
- * @param <T> the type of the unique key
+ * @param <E>
  */
-public interface UniqueKeyProvider<T> {
+public interface SetChangeListener<E> {
 
-    T getUniqueKey();
+    void elementAdded(SetChangeEvent<E> event);
+
+    void elementRemoved(SetChangeEvent<E> event);
 }
