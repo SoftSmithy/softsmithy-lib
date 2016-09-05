@@ -28,7 +28,7 @@ Contributor(s): .
     <description>A JPA utility library.</description>
     <inceptionYear>2010</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>${url.parent}</url>
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
@@ -36,6 +36,13 @@ Contributor(s): .
         <url>${scm.url}</url>
         <tag>HEAD</tag>
     </scm>
+    
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>${distributionManagement.parent.url}/${project.artifactId}/</url>
+        </site>
+    </distributionManagement>
 
     <properties>
         <scm.connection>${scm.parent.connection}</scm.connection>
