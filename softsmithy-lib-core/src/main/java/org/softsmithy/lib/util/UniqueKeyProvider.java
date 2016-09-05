@@ -14,11 +14,18 @@
 package org.softsmithy.lib.util;
 
 /**
+ * A provider for a unique key. Once a non-null unique key is returned, the key must not change!
  *
  * @author puce
  * @param <T> the type of the unique key
  */
+@FunctionalInterface
 public interface UniqueKeyProvider<T> {
 
+    /**
+     * Gets a unique key. Once a non-null unique key is returned, the key must not change!
+     *
+     * @return a unique key
+     */
     T getUniqueKey();
 }
