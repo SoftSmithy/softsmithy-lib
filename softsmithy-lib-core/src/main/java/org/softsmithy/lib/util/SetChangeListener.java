@@ -13,12 +13,14 @@
  */
 package org.softsmithy.lib.util;
 
+import java.util.EventListener;
+
 /**
  *
  * @author puce
  * @param <E>
  */
-public interface SetChangeListener<E> {
+public interface SetChangeListener<E> extends EventListener {
 
     void elementAdded(SetChangeEvent<E> event);
 
