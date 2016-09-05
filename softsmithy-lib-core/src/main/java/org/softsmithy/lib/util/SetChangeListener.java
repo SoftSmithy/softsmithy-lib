@@ -13,14 +13,28 @@
  */
 package org.softsmithy.lib.util;
 
+import java.util.EventListener;
+import java.util.Set;
+
 /**
+ * A listener for observable {@link Set}s.
  *
  * @author puce
- * @param <E>
+ * @param <E> the type of the elements of the set
  */
-public interface SetChangeListener<E> {
+public interface SetChangeListener<E> extends EventListener {
 
+    /**
+     * This method gets called when an element was added to the observed set.
+     *
+     * @param event the change event
+     */
     void elementAdded(SetChangeEvent<E> event);
 
+    /**
+     * This method gets called when an element was removed from the observed set.
+     *
+     * @param event the change event
+     */
     void elementRemoved(SetChangeEvent<E> event);
 }

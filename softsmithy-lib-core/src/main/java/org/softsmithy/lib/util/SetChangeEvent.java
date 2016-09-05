@@ -17,9 +17,11 @@ import java.util.EventObject;
 import java.util.Set;
 
 /**
+ * The set change event.
  *
+ * @see SetChangeListener
  * @author puce
- * @param <E>
+ * @param <E> the type of the elements of the set.
  */
 public class SetChangeEvent<E> extends EventObject {
 
@@ -29,25 +31,30 @@ public class SetChangeEvent<E> extends EventObject {
     private final E element;
 
     /**
+     * Creates a new instance of this class.
      *
-     * @param source
-     * @param element
+     * @param source the source set
+     * @param element the element, which was added or removed
      */
-    public SetChangeEvent(Set< E> source, E element) {
+    public SetChangeEvent(Set<E> source, E element) {
         super(source);
         this.sourceSet = source;
         this.element = element;
     }
 
     /**
-     * @return the sourceSet
+     * Gets the source set.
+     *
+     * @return the source set
      */
-    public Set<? extends E> getSourceSet() {
+    public Set<E> getSourceSet() {
         return sourceSet;
     }
 
     /**
-     * @return the element
+     * Gets the element, which was added or removed.
+     *
+     * @return the element,which was added or removed
      */
     public E getElement() {
         return element;
