@@ -29,19 +29,27 @@ Contributor(s): .
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>${url.parent}</url>
+    <url>http://www.softsmithy.org/softsmithy-lib/devlib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <url>${scm.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>${distributionManagement.parent.url}/</url>
+        </site>
+    </distributionManagement>
+    
     <properties>
         <scm.connection>${scm.parent.connection}</scm.connection>
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
+        <distributionManagement.base.url>github:http://softsmithy.github.io/softsmithy-lib/devlib/${project.version}</distributionManagement.base.url>
     </properties>
 
     <modules>

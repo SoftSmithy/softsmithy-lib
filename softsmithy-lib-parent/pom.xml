@@ -17,15 +17,18 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>2.7</version>
+        <version>3.0</version>
         <relativePath />
     </parent>
+    
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
     <version>0.6-SNAPSHOT</version>
+    
     <name>SoftSmithy Utility Library - Parent POM</name>
-    <url>http://www.softsmithy.org</url>
+    <!-- required for Javadoc (apidocs) linking -->
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
     <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
     <inceptionYear>2002</inceptionYear>
 
@@ -47,23 +50,28 @@ Contributor(s): .
 
     <distributionManagement>
         <site>
-            <id>softsmithy.sourceforge.net</id>
+            <id>github</id>
             <name>SoftSmithy Utility Library</name>
             <url>${distributionManagement.parent.url}/${project.artifactId}/</url>
         </site>
     </distributionManagement>
+    
     <properties>
         
         <!-- Dev Environment Defaults -->
-        <netbeans.hint.jdkPlatform>JDK_1.7</netbeans.hint.jdkPlatform>
-        <scm.parent.connection>scm:hg:http://hg.code.sf.net/p/softsmithy/softsmithy-lib</scm.parent.connection>
-        <scm.parent.developerConnection>scm:hg:ssh://${username}@hg.code.sf.net/p/softsmithy/softsmithy-lib</scm.parent.developerConnection>
-        <scm.parent.url>http://sourceforge.net/p/softsmithy/softsmithy-lib</scm.parent.url>
-        <distributionManagement.parent.url>scp://${username}@shell.sourceforge.net/home/project-web/softsmithy/htdocs/lib/${project.version}/docs/site</distributionManagement.parent.url>
+        <scm.parent.connection>scm:git:https://github.com/SoftSmithy/softsmithy-lib.git</scm.parent.connection>
+        <scm.parent.developerConnection>scm:git:git@github.com:SoftSmithy/softsmithy-lib.git</scm.parent.developerConnection>
+        <scm.parent.url>https://github.com/SoftSmithy/softsmithy-lib</scm.parent.url>
+        <!-- URL to use with the standard site plugin with the git wagon -->
+        <distributionManagement.base.url>github:http://softsmithy.github.io/softsmithy-lib/lib/${project.version}</distributionManagement.base.url>
+        <distributionManagement.parent.url>${distributionManagement.base.url}/docs/site</distributionManagement.parent.url>
+        <!-- URL to use with the GitHub site plugin -->
+        <!--<distributionManagement.parent.url>${project.version}/docs/site</distributionManagement.parent.url>-->
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
         <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
-        <javadoc.url>http://docs.oracle.com/javase/7/docs/api</javadoc.url> <!-- used by tutorials -->
+        <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin.*:*.samples.*</excludePackageNamesAggregate>
+        <javadoc.url>http://docs.oracle.com/javase/8/docs/api</javadoc.url> <!-- used by tutorials -->
         
         <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.10</dependency.junit.version>
@@ -87,7 +95,7 @@ Contributor(s): .
                         <detectLinks>true</detectLinks>
                         <links>
                             <!-- javadoc link for javax.persistence -->
-                            <link>http://docs.oracle.com/javaee/6/api/</link>
+                            <link>http://docs.oracle.com/javaee/7/api/</link>
                         </links>
                     </configuration>
                 </plugin>
@@ -165,7 +173,7 @@ Contributor(s): .
                             <report>aggregate</report>
                         </reports>
                         <configuration>
-                            <excludePackageNames>${excludePackageNames}:*.maven.plugin.*:*.samples.*</excludePackageNames>
+                            <excludePackageNames>${excludePackageNamesAggregate}</excludePackageNames>
                         </configuration>
                     </reportSet>
                 </reportSets>
@@ -173,7 +181,7 @@ Contributor(s): .
                     <detectLinks>true</detectLinks>
                     <links>
                         <!-- javadoc link for javax.persistence -->
-                        <link>http://docs.oracle.com/javaee/6/api/</link>
+                        <link>http://docs.oracle.com/javaee/7/api/</link>
                     </links>
                 </configuration>
             </plugin>
