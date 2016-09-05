@@ -36,7 +36,7 @@ public class SetChangeEvent<E> extends EventObject {
      * @param source the source set
      * @param element the element, which was added or removed
      */
-    public SetChangeEvent(Set< E> source, E element) {
+    public SetChangeEvent(Set<E> source, E element) {
         super(source);
         this.sourceSet = source;
         this.element = element;
@@ -47,7 +47,7 @@ public class SetChangeEvent<E> extends EventObject {
      *
      * @return the source set
      */
-    public Set<? extends E> getSourceSet() {
+    public Set<E> getSourceSet() {
         return sourceSet;
     }
 
