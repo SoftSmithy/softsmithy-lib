@@ -61,6 +61,7 @@ Contributor(s): .
         <module>softsmithy-lib-time</module>
         <module>softsmithy-lib-samples</module>
         <module>softsmithy-devlib</module>
+        <module>softsmithy-lib-docs</module>
     </modules>
 
     <build>
