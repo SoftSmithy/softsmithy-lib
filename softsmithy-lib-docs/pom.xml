@@ -82,7 +82,7 @@ Contributor(s): .
     
     <reporting>
         <!-- set to documentation files -->
-        <outputDirectory>${project.build.directory}/docs</outputDirectory>
+        <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
     </reporting>
     
     <profiles>
@@ -96,24 +96,6 @@ Contributor(s): .
             </activation>
             <build>
                 <plugins>
-                    <!--                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>pre-site</phase>
-                                <goals>
-                                    <goal>unpack-dependencies</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${project.build.directory}/softsmithy-sources</outputDirectory>
-                                    <excludeTransitive>true</excludeTransitive>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>-->
-
                     <plugin>
                         <artifactId>maven-resources-plugin</artifactId>
                         <executions>
@@ -124,10 +106,10 @@ Contributor(s): .
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/generated-docs/docs/tutorial</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
                                     <resources>          
                                         <resource>
-                                            <directory>src/main/images/tutorial</directory>
+                                            <directory>src/main/images/gh-pages</directory>
                                             <filtering>false</filtering>
                                         </resource>
                                     </resources>              
@@ -140,10 +122,10 @@ Contributor(s): .
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/generated-docs/docs</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
                                     <resources>          
                                         <resource>
-                                            <directory>src/main/docs</directory>
+                                            <directory>src/main/html/gh-pages</directory>
                                             <filtering>true</filtering>
                                         </resource>
                                     </resources>              
@@ -156,7 +138,7 @@ Contributor(s): .
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/generated-docs/docs/samples</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/gh-pages/docs/samples</outputDirectory>
                                     <nonFilteredFileExtensions>
                                         <nonFilteredFileExtension>jar</nonFilteredFileExtension>
                                     </nonFilteredFileExtensions>
@@ -179,7 +161,7 @@ Contributor(s): .
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/generated-docs/docs/samples/dist</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/gh-pages/docs/samples/dist</outputDirectory>
                                     <resources>          
                                         <resource>
                                             <directory>../softsmithy-lib-samples/target/dist</directory>
@@ -190,27 +172,8 @@ Contributor(s): .
                             </execution>
                         </executions>
                     </plugin>
-                    <plugin>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctor-maven-plugin</artifactId>
-                        <configuration>
-                            <attributes>
-                                <drombler-fx-version>${project.version}</drombler-fx-version>
-                                <drombler-acp-version>${drombler-acp.version}</drombler-acp-version>
-                                <drombler-commons-version>${drombler-commons.version}</drombler-commons-version>
-                            </attributes>
-                        </configuration>
-                    </plugin>
                 </plugins>
             </build>
-            <dependencies>
-                <dependency>
-                    <groupId>${project.groupId}</groupId>
-                    <artifactId>softsmithy-lib-samples</artifactId>
-                    <version>${project.version}</version>
-                    <classifier>sources</classifier>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
     

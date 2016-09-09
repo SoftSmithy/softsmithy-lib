@@ -1,6 +1,0 @@
-= SoftSmithy Utility Library
-:description: A Java utility library.
-:keywords: Java, utility
-
- * link:docs[Documentation]
- * link:docs/site/modules.html[Maven Coordinates & Download Links]
