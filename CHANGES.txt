@@ -63,7 +63,7 @@ v0.2 (Changeset: d198b7dfd05b):
             - samples: CopyFilesSample added
             - samples: AddZipResourceSample added
             - samples: ExtractJarResourceSample added
-            - tutorial: new trail added: NIO File
+            - tutorial: new trail added: NIO.2 File
             - small fixes
             - JUnit upgrade: version 4.10
             - NetBeans IDE upgrade: 7.1.1
