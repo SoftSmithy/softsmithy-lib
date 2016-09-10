@@ -73,9 +73,12 @@ Contributor(s): .
         <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin.*:*.samples.*</excludePackageNamesAggregate>
         <javadoc.url>http://docs.oracle.com/javase/8/docs/api</javadoc.url> <!-- used by tutorials -->
         
+        <!--TODO: remove when available in softsmithy-parent-->
+        <!--<plugin.resources.version>3.0.1</plugin.resources.version>-->
+
         <!-- Dependency Versions Defaults -->
         <dependency.junit.version>4.10</dependency.junit.version>
-        <dependency.javax-persistence.version>2.0.3</dependency.javax-persistence.version>
+        <dependency.java-ee.version>7.0</dependency.java-ee.version>
         <!--<dependency.osgi.version>1.4.0</dependency.osgi.version>-->
         <dependency.slf4j.version>1.7.6</dependency.slf4j.version>
     </properties>
@@ -131,9 +134,9 @@ Contributor(s): .
                 <version>${dependency.junit.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
-                <version>${dependency.javax-persistence.version}</version>
+                <groupId>javax</groupId>
+                <artifactId>javaee-api</artifactId>
+                <version>${dependency.java-ee.version}</version>
             </dependency>
             <!--            <dependency>
                 <groupId>org.apache.felix</groupId>
