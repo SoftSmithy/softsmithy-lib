@@ -1,0 +1,28 @@
+-classpath
+'/home/puce/.m2/repository/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar:/home/puce/.m2/repository/javax/javaee-api/7.0/javaee-api-7.0.jar:/home/puce/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/puce/.m2/repository/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-persistence/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2010&#x2013;2016 <a href="http://www.softsmithy.org">SoftSmithy</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-persistence/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SoftSmithy Utility Library - Persistence 0.6 API'
+-link
+'http://docs.oracle.com/javaee/7/api'
+-link
+'http://www.slf4j.org/apidocs'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-persistence/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'SoftSmithy Utility Library - Persistence 0.6 API'
