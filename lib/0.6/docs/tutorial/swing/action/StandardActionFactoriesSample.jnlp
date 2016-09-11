@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc.//DTD JNLP 1.5//EN" "http://www.netbeans.org/jnlp/DTD/jnlp.dtd">
+<jnlp codebase="http://www.softsmithy.org/softsmithy-lib/lib/0.6/docs/samples/dist" href="../../tutorial/swing/action/StandardActionFactoriesSample.jnlp">
+  <information>
+    <title>Standard Action Factories Sample</title>
+    <vendor>SoftSmithy</vendor>
+    <homepage href="../tutorial/swing/action/index.html"/>
+    <description>Standard Action Factories Sample</description>
+    <icon href="../../../logo.jpg"/>
+    <offline-allowed/>
+    <shortcut online="true"/>
+  </information>
+  <resources>
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.8+"/>
+    <jar href="softsmithy-lib-samples-0.6.jar" main="true"/>
+    <jar href="lib/softsmithy-lib-awt-0.6.jar"/>
+    <jar href="lib/softsmithy-lib-beans-0.6.jar"/>
+    <jar href="lib/softsmithy-lib-core-0.6.jar"/>
+    <jar href="lib/softsmithy-lib-swing-0.6.jar"/>
+    <jar href="lib/jlfgr-1_0.jar"/>
+  </resources>
+  <application-desc main-class="samples.swing.action.StandardActionFactoriesSample"/>
+</jnlp>
