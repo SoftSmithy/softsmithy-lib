@@ -1,0 +1,26 @@
+-classpath
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-parent/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-core/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-beans/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-awt/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-swing/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-swing-customizer/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-persistence/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-time/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-samples/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-devlib/softsmithy-devlib-core/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-devlib/target/classes:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-docs/target/classes:/home/puce/.m2/repository/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar:/home/puce/.m2/repository/javax/javaee-api/7.0/javaee-api-7.0.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-awt/0.6/softsmithy-lib-awt-0.6.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-swing-customizer/0.6/softsmithy-lib-swing-customizer-0.6.jar:/home/puce/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar:/home/puce/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-core/0.6/softsmithy-lib-core-0.6.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-beans/0.6/softsmithy-lib-beans-0.6.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-persistence/0.6/softsmithy-lib-persistence-0.6.jar:/home/puce/.m2/repository/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar:/home/puce/.m2/repository/junit/junit/4.10/junit-4.10.jar:/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-swing/0.6/softsmithy-lib-swing-0.6.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-core/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-beans/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-awt/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-swing/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-swing-customizer/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-persistence/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-time/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-samples/src/main/java:/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-devlib/softsmithy-devlib-core/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2002&#x2013;2016 <a href="http://www.softsmithy.org">SoftSmithy</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SoftSmithy Utility Library - All 0.6 API'
+-link
+'http://docs.oracle.com/javaee/7/api'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'SoftSmithy Utility Library - All 0.6 API'
