@@ -1,0 +1,28 @@
+-classpath
+'/home/puce/.m2/repository/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-core/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2002&#x2013;2016 <a href="http://www.softsmithy.org">SoftSmithy</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-core/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SoftSmithy Utility Library - Core 0.6 API'
+-link
+'http://docs.oracle.com/javaee/7/api'
+-link
+'http://www.slf4j.org/apidocs'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-core/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'SoftSmithy Utility Library - Core 0.6 API'
