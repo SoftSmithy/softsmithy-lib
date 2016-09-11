@@ -1,0 +1,26 @@
+-classpath
+'/home/puce/.m2/repository/org/softsmithy/lib/softsmithy-lib-core/0.6/softsmithy-lib-core-0.6.jar:/home/puce/.m2/repository/org/slf4j/slf4j-api/1.7.6/slf4j-api-1.7.6.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-awt/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2012&#x2013;2016 <a href="http://www.softsmithy.org">SoftSmithy</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-awt/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'SoftSmithy Utility Library - AWT 0.6 API'
+-link
+'http://docs.oracle.com/javaee/7/api'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-awt/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'SoftSmithy Utility Library - AWT 0.6 API'
