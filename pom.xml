@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.6-SNAPSHOT</version>
+        <version>0.6</version>
         <relativePath>softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
     
@@ -28,20 +28,26 @@ Contributor(s): .
     <description>A Java utility library.</description>
     <inceptionYear>2002</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>${url.parent}</url>
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <url>${scm.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>${distributionManagement.parent.url}/</url>
+        </site>
+    </distributionManagement>
 
     <properties>
         <scm.connection>${scm.parent.connection}</scm.connection>
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
-        <!--<java.min.version>1.8</java.min.version>-->
     </properties>
 
     <modules>
@@ -55,6 +61,7 @@ Contributor(s): .
         <module>softsmithy-lib-time</module>
         <module>softsmithy-lib-samples</module>
         <module>softsmithy-devlib</module>
+        <module>softsmithy-lib-docs</module>
     </modules>
 
     <build>
@@ -65,26 +72,6 @@ Contributor(s): .
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-toolchains-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>toolchain</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <toolchains>
-                        <jdk>
-                            <version>1.8</version>
-                            <vendor>oracle</vendor>
-                        </jdk>
-                    </toolchains>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -93,10 +80,6 @@ Contributor(s): .
             <id>sonatype-oss-release</id>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>buildnumber-maven-plugin</artifactId>
-                    </plugin>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
                         <executions>

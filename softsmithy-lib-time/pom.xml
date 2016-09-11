@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.6-SNAPSHOT</version>
+        <version>0.6</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
 
@@ -25,26 +25,29 @@ Contributor(s): .
     <packaging>bundle</packaging>
 
     <name>SoftSmithy Utility Library - Date and Time</name>
-    <description>A utility library for the new Date and Time API (JSR-310). This library requires Java SE 8.</description>
+    <description>A utility library for the new Date and Time API.</description>
     <inceptionYear>2013</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>${url.parent}</url>
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
         <developerConnection>${scm.developerConnection}</developerConnection>
         <url>${scm.url}</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>${distributionManagement.parent.url}/${project.artifactId}/</url>
+        </site>
+    </distributionManagement>
+    
     <properties>
         <scm.connection>${scm.parent.connection}</scm.connection>
         <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
         <scm.url>${scm.parent.url}</scm.url>
-        <java.min.version>1.8</java.min.version>
-        <!--<javafx.version>8.0</javafx.version>-->
-        <!--<jdk8Home>/usr/lib/jvm/java-8-oracle</jdk8Home>-->
-        <netbeans.hint.jdkPlatform>@@DEFAU:T@@</netbeans.hint.jdkPlatform>
     </properties>
     
     
@@ -55,50 +58,11 @@ Contributor(s): .
     
     
     <build>
-<!--        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            
-                        </configuration>
-                    </plugin>
-            </plugins>
-        </pluginManagement>-->
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-toolchains-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>toolchain</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <toolchains>
-                        <jdk>
-                            <version>${java.min.version}</version>
-                            <vendor>oracle</vendor>
-                        </jdk>
-                    </toolchains>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
         </plugins>    
     </build>

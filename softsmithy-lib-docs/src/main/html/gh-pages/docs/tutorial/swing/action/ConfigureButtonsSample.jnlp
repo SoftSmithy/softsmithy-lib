@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc.//DTD JNLP 1.5//EN" "http://www.netbeans.org/jnlp/DTD/jnlp.dtd">
-<jnlp codebase="http://www.softsmithy.org/lib/${project.version}/docs/samples/dist" href="../../tutorial/swing/number/NumberFieldsSample.jnlp">
+<jnlp codebase="http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/samples/dist" href="../../tutorial/swing/action/ConfigureButtonsSample.jnlp">
   <information>
-    <title>Number Fields Sample</title>
+    <title>Configure Buttons Sample</title>
     <vendor>SoftSmithy</vendor>
-    <homepage href="../tutorial/swing/number/index.html"/>
-    <description>Number Fields Sample</description>
+    <homepage href="../tutorial/swing/action/index.html"/>
+    <description>Configure Buttons Sample</description>
     <icon href="../../../logo.jpg"/>
+    <offline-allowed/>
     <shortcut online="true"/>
   </information>
   <resources>
@@ -16,6 +17,7 @@
     <jar href="lib/softsmithy-lib-beans-${project.version}.jar"/>
     <jar href="lib/softsmithy-lib-core-${project.version}.jar"/>
     <jar href="lib/softsmithy-lib-swing-${project.version}.jar"/>
+    <jar href="lib/jlfgr-1_0.jar"/>
   </resources>
-  <application-desc main-class="samples.swing.number.NumberFieldsSample"/>
+  <application-desc main-class="samples.swing.action.ConfigureButtonsSample"/>
 </jnlp>

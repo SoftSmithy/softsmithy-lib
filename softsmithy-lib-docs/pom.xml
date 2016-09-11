@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+        COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+
+The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+Version 1.0 (the "License"); you may not use this file except in
+compliance with the License. A copy of the License is available at
+http://www.opensource.org/licenses/cddl1.txt
+
+The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+
+Contributor(s): .
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.softsmithy.lib</groupId>
+        <artifactId>softsmithy-lib-parent</artifactId>
+        <version>0.6</version>
+        <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>softsmithy-lib-docs</artifactId>
+    <packaging>bundle</packaging>
+
+    <name>SoftSmithy Utility Library - Docs</name>
+    <description>This project provides the SoftSmithy Utility Library Documentation.</description>
+    <inceptionYear>2016</inceptionYear>
+    <!-- required for Javadoc (apidocs) linking -->
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    
+    <scm>
+        <connection>${scm.connection}</connection>
+        <developerConnection>${scm.developerConnection}</developerConnection>
+        <url>${scm.url}</url>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>${distributionManagement.base.url}</url>
+        </site>
+    </distributionManagement>
+    
+    <properties>
+        <scm.connection>${scm.parent.connection}</scm.connection>
+        <scm.developerConnection>${scm.parent.developerConnection}</scm.developerConnection>
+        <scm.url>${scm.parent.url}</scm.url>
+    </properties>
+    
+    <!-- Not inherited!?? -->
+    <prerequisites>
+        <maven>${maven.version}</maven>
+    </prerequisites>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                    <!-- Deploy documentation files -->
+                    <skipDeploy>false</skipDeploy>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <reporting>
+        <!-- set to documentation files -->
+        <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
+    </reporting>
+    
+    <profiles>
+        <profile>
+            <id>release-profile</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-images</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
+                                    <resources>          
+                                        <resource>
+                                            <directory>src/main/images/gh-pages</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                    </resources>              
+                                </configuration>            
+                            </execution>
+                            <execution>
+                                <id>copy-docs</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/gh-pages</outputDirectory>
+                                    <resources>          
+                                        <resource>
+                                            <directory>src/main/html/gh-pages</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>              
+                                </configuration>            
+                            </execution>
+                            <execution>
+                                <id>copy-samples-sources</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/gh-pages/docs/samples</outputDirectory>
+                                    <nonFilteredFileExtensions>
+                                        <nonFilteredFileExtension>jar</nonFilteredFileExtension>
+                                    </nonFilteredFileExtensions>
+                                    <resources>          
+                                        <resource>
+                                            <directory>../softsmithy-lib-samples</directory>
+                                            <filtering>true</filtering>
+                                            <excludes>
+                                                <exclude>**/*.log</exclude>
+                                                <exclude>**/target/**</exclude>
+                                            </excludes>
+                                        </resource>
+                                    </resources>              
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-samples-dist</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/gh-pages/docs/samples/dist</outputDirectory>
+                                    <resources>          
+                                        <resource>
+                                            <directory>../softsmithy-lib-samples/target/dist</directory>
+                                            <filtering>false</filtering>
+                                        </resource>
+                                    </resources>              
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+
+
+    
+    
+</project>

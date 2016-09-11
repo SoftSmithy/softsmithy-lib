@@ -45,7 +45,7 @@ import org.softsmithy.lib.util.ServiceProvider;
  * @author puce
  */
 @SupportedAnnotationTypes("org.softsmithy.lib.util.ServiceProvider")
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
 
     private final Map<String, List<PositionableAdapter<Name>>> serviceProviders = new HashMap<>();
@@ -68,10 +68,10 @@ public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
                         serviceClassName = serviceClassTypeMirror.toString();
                     }
                     if (!serviceProviders.containsKey(serviceClassName)) {
-                        serviceProviders.put(serviceClassName, new ArrayList<PositionableAdapter<Name>>());
+                        serviceProviders.put(serviceClassName, new ArrayList<>());
                     }
                     if (!elements.containsKey(serviceClassName)) {
-                        elements.put(serviceClassName, new ArrayList<Element>());
+                        elements.put(serviceClassName, new ArrayList<>());
                     }
                     PositionableAdapter<Name> serviceProvider = new PositionableAdapter<>(typeElement.getQualifiedName(),
                             serviceProviderAnnotation.position());
