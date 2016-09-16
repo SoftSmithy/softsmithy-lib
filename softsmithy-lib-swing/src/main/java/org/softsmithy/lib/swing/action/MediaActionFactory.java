@@ -12,31 +12,38 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * MediaActionFactory.java
  *
  * Created on 22. Juni 2004, 16:40
  */
-
 package org.softsmithy.lib.swing.action;
 
 /**
  * http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html
- * @author  puce
+ *
+ * @author puce
  */
-public class MediaActionFactory extends StandardActionFactory{
-  
-  /** Creates a new instance of MediaActionFactory */
-  private MediaActionFactory(String name) {
-    super(name);
-  }
-  public static final MediaActionFactory FAST_FORWARD = new MediaActionFactory("mediaFastForward");
-  public static final MediaActionFactory MOVIE = new MediaActionFactory("mediaMovie");
-  public static final MediaActionFactory PAUSE = new MediaActionFactory("mediaPause");
-  public static final MediaActionFactory PLAY = new MediaActionFactory("mediaPlay");
-  public static final MediaActionFactory REWIND = new MediaActionFactory("mediaRewind");
-  public static final MediaActionFactory STEP_BACK = new MediaActionFactory("mediaStepBack");
-  public static final MediaActionFactory STEP_FORWARD = new MediaActionFactory("mediaStepForward");
-  public static final MediaActionFactory STOP = new MediaActionFactory("mediaStop");
-  public static final MediaActionFactory VOLUME = new MediaActionFactory("mediaVolume");
+public enum MediaActionFactory implements StandardActionFactory {
+
+    FAST_FORWARD("mediaFastForward"),
+    MOVIE("mediaMovie"),
+    PAUSE("mediaPause"),
+    PLAY("mediaPlay"),
+    REWIND("mediaRewind"),
+    STEP_BACK("mediaStepBack"),
+    STEP_FORWARD("mediaStepForward"),
+    STOP("mediaStop"),
+    VOLUME("mediaVolume");
+
+    private final String name;
+
+    MediaActionFactory(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
