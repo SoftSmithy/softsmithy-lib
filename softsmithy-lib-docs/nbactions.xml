@@ -10,4 +10,12 @@
                 <activatedProfile>release-profile</activatedProfile>
             </activatedProfiles>
         </action>
+        <action>
+            <actionName>CUSTOM-site-deploy</actionName>
+            <displayName>site-deploy</displayName>
+            <goals>
+                <goal>site-deploy</goal>
+                <goal>-DperformRelease=true</goal>
+            </goals>
+        </action>
     </actions>
