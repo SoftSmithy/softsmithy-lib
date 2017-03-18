@@ -11,8 +11,7 @@ import java.text.CollationKey;
  *
  * TODO: good name?
  */
-public class GenericCollationKey<T> implements
-        Comparable<GenericCollationKey<T>> {
+public class GenericCollationKey<T> implements Comparable<GenericCollationKey<T>> {
 
     private final T source;
     /** Holds value of property collationKey. */

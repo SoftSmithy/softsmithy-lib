@@ -21,8 +21,8 @@ package org.softsmithy.lib.text;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 
@@ -45,47 +45,36 @@ public class Localizables {
         return getDisplayStrings(Locale.getDefault(), localizables);
     }
 
-    private static List<String> getDisplayStrings(Locale inLocale,
-            Localizable... localizables) {
-        return getDisplayStrings(new LocalizableLocalizer(), inLocale,
-                localizables);
+    private static List<String> getDisplayStrings(Locale inLocale, Localizable... localizables) {
+        return getDisplayStrings(new LocalizableLocalizer(), inLocale, localizables);
     }
 
-    private static <T> List<String> getDisplayStrings(
-            Localizer<? super T> localizer, T... objects) {
+    private static <T> List<String> getDisplayStrings(Localizer<? super T> localizer, T... objects) {
         return getDisplayStrings(localizer, Locale.getDefault(), objects);
     }
 
-    private static <T> List<String> getDisplayStrings(
-            Localizer<? super T> localizer, Locale inLocale,
-            T... objects) {
-        List<String> displayStrings = new ArrayList<String>(objects.length);
+    private static <T> List<String> getDisplayStrings(Localizer<? super T> localizer, Locale inLocale, T... objects) {
+        List<String> displayStrings = new ArrayList<>(objects.length);
         for (T object : objects) {
             displayStrings.add(localizer.getDisplayString(object, inLocale));
         }
         return displayStrings;
     }
 
-    private static List<String> getDisplayStrings(
-            List<? extends Localizable> localizables) {
+    private static List<String> getDisplayStrings(List<? extends Localizable> localizables) {
         return getDisplayStrings(Locale.getDefault(), localizables);
     }
 
-    private static List<String> getDisplayStrings(Locale inLocale,
-            List<? extends Localizable> localizables) {
-        return getDisplayStrings(new LocalizableLocalizer(), inLocale,
-                localizables);
+    private static List<String> getDisplayStrings(Locale inLocale, List<? extends Localizable> localizables) {
+        return getDisplayStrings(new LocalizableLocalizer(), inLocale, localizables);
     }
 
-    private static <T> List<String> getDisplayStrings(
-            Localizer<? super T> localizer, List<T> objects) {
+    private static <T> List<String> getDisplayStrings(Localizer<? super T> localizer, List<T> objects) {
         return getDisplayStrings(localizer, Locale.getDefault(), objects);
     }
 
-    private static <T> List<String> getDisplayStrings(
-            Localizer<? super T> localizer, Locale inLocale,
-            List<T> objects) {
-        List<String> displayStrings = new ArrayList<String>(objects.size());
+    private static <T> List<String> getDisplayStrings(Localizer<? super T> localizer, Locale inLocale, List<T> objects) {
+        List<String> displayStrings = new ArrayList<>(objects.size());
         for (T object : objects) {
             displayStrings.add(localizer.getDisplayString(object, inLocale));
         }
@@ -135,8 +124,7 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param objects the objects to sort
      */
-    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale,
-            T... objects) {
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, T... objects) {
         sort(localizer, new LocalizedCollator(inLocale), objects);
     }
 
@@ -149,10 +137,8 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param objects the objects to sort
      */
-    public static <T> void sort(Localizer<? super T> localizer,
-            LocalizedCollator collator, T... objects) {
-        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(objects,
-                localizer, collator);
+    public static <T> void sort(Localizer<? super T> localizer, LocalizedCollator collator, T... objects) {
+        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(objects, localizer, collator);
         Collections.sort(keys);
         int i = 0;
         for (GenericCollationKey<T> key : keys) {
@@ -179,8 +165,7 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param localizables the localizables to sort
      */
-    public static void sort(Locale inLocale,
-            List<? extends Localizable> localizables) {
+    public static void sort(Locale inLocale, List<? extends Localizable> localizables) {
         sort(new LocalizableLocalizer(), inLocale, localizables);
     }
 
@@ -192,8 +177,7 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param localizables the localizables to sort
      */
-    public static void sort(LocalizedCollator collator,
-            List<? extends Localizable> localizables) {
+    public static void sort(LocalizedCollator collator, List<? extends Localizable> localizables) {
         sort(new LocalizableLocalizer(), collator, localizables);
     }
 
@@ -216,8 +200,7 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param list the objects to sort
      */
-    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale,
-            List<T> list) {
+    public static <T> void sort(Localizer<? super T> localizer, Locale inLocale, List<T> list) {
         sort(localizer, new LocalizedCollator(inLocale), list);
     }
 
@@ -230,10 +213,8 @@ public class Localizables {
      * locale-sensitive order for this locale
      * @param list the objects to sort
      */
-    public static <T> void sort(Localizer<? super T> localizer,
-            LocalizedCollator collator, List<T> list) {
-        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(list,
-                localizer, collator);
+    public static <T> void sort(Localizer<? super T> localizer, LocalizedCollator collator, List<T> list) {
+        List<GenericCollationKey<T>> keys = getLocalizableCollationKeys(list, localizer, collator);
         Collections.sort(keys);
         ListIterator<T> listIterator = list.listIterator();
         for (GenericCollationKey<T> key : keys) {
@@ -250,27 +231,21 @@ public class Localizables {
      * @param list the objects to sort
      * @see Locale#getDefault()
      */
-    public static <T> void sort(Localizer<? super T> localizer,
-            List<T> list) {
+    public static <T> void sort(Localizer<? super T> localizer, List<T> list) {
         sort(localizer, Locale.getDefault(), list);
     }
 
-    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(
-            T[] array, Localizer<? super T> localizer,
-            LocalizedCollator collator) {
-        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(
-                array.length);
+    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(T[] array, Localizer<? super T> localizer, LocalizedCollator collator) {
+        List<GenericCollationKey<T>> keys = new ArrayList<>(array.length);
         for (T element : array) {
             keys.add(collator.getCollationKey(element, localizer));
         }
         return keys;
     }
 
-    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(
-            Collection<T> collection, Localizer<? super T> localizer,
+    private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(Collection<T> collection, Localizer<? super T> localizer,
             LocalizedCollator collator) {
-        List<GenericCollationKey<T>> keys = new ArrayList<GenericCollationKey<T>>(collection.
-                size());
+        List<GenericCollationKey<T>> keys = new ArrayList<>(collection.size());
         for (T element : collection) {
             keys.add(collator.getCollationKey(element, localizer));
         }

@@ -14,6 +14,7 @@
 package org.softsmithy.lib.nio.file;
 
 import java.io.IOException;
+import java.nio.file.CopyOption;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -38,17 +39,20 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
 
     private final Path source;
     private final Path target;
+    private final CopyOption[] options;
 
     /**
      * Creates a new instance of this class.
      *
-     * @see #copy(java.nio.file.Path, java.nio.file.Path)
      * @param source the source
      * @param target the target
+     * @param options copy options
+     * @see #copy(java.nio.file.Path, java.nio.file.Path)
      */
-    public CopyFileVisitor(Path source, Path target) {
+    public CopyFileVisitor(Path source, Path target, CopyOption... options) {
         this.source = source;
         this.target = target;
+        this.options = options;
     }
 
     /**
@@ -60,7 +64,7 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
         Path targetDir = PathUtils.resolve(target, source.relativize(dir));
         try {
             if (!Files.exists(targetDir)) {
-                Files.copy(dir, targetDir);
+                Files.copy(dir, targetDir, options);
             }
         } catch (FileAlreadyExistsException e) {
             if (!Files.isDirectory(targetDir)) {
@@ -77,7 +81,7 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Path targetFile = PathUtils.resolve(target, source.relativize(file));
         if (!Files.exists(targetFile)) {
-            Files.copy(file, targetFile);
+            Files.copy(file, targetFile, options);
         }
         return FileVisitResult.CONTINUE;
     }
@@ -92,10 +96,11 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
      *
      * @param source the source
      * @param target the target
+     * @param options the copy options
      * @return the source
      * @throws IOException
      */
-    public static Path copy(Path source, Path target) throws IOException {
-        return Files.walkFileTree(source, new CopyFileVisitor(source, target));
+    public static Path copy(Path source, Path target, CopyOption... options) throws IOException {
+        return Files.walkFileTree(source, new CopyFileVisitor(source, target, options));
     }
 }
