@@ -32,7 +32,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  * directory from a jar/ zip file.
  *
  * @see Files#walkFileTree(java.nio.file.Path, java.nio.file.FileVisitor)
- * @see #copy(java.nio.file.Path, java.nio.file.Path)
+ * @see #copy(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...)
  * @author puce
  */
 public class CopyFileVisitor extends SimpleFileVisitor<Path> {
@@ -47,7 +47,7 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
      * @param source the source
      * @param target the target
      * @param options copy options
-     * @see #copy(java.nio.file.Path, java.nio.file.Path)
+     * @see #copy(java.nio.file.Path, java.nio.file.Path, java.nio.file.CopyOption...)
      */
     public CopyFileVisitor(Path source, Path target, CopyOption... options) {
         this.source = source;
@@ -98,7 +98,7 @@ public class CopyFileVisitor extends SimpleFileVisitor<Path> {
      * @param target the target
      * @param options the copy options
      * @return the source
-     * @throws IOException
+     * @throws IOException if an I/O error is thrown
      */
     public static Path copy(Path source, Path target, CopyOption... options) throws IOException {
         return Files.walkFileTree(source, new CopyFileVisitor(source, target, options));
