@@ -11,6 +11,7 @@ import java.beans.PropertyChangeListener;
  *
  * @author puce
  */
+// TODO: would a type parameter be useful?
 public interface Bean {
     /**
      * Registers a {@link PropertyChangeListener} for the specified property.
