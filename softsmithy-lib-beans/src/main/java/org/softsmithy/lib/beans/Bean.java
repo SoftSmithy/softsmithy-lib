@@ -1,0 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package org.softsmithy.lib.beans;
+
+import java.beans.PropertyChangeListener;
+
+/**
+ *
+ * @author puce
+ */
+public interface Bean {
+    /**
+     * Registers a {@link PropertyChangeListener} for the specified property.
+     *
+     * @param propertyName the property to observe
+     * @param listener the PropertyChangeListener to register
+     */
+    void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
+
+    /**
+     * Unegisters a {@link PropertyChangeListener} for the specified property.
+     *
+     * @param propertyName the property to stop to observe
+     * @param listener the PropertyChangeListener to unregister
+     */
+    void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
+}
