@@ -8,6 +8,7 @@ package org.softsmithy.lib.beans;
 import java.beans.PropertyChangeListener;
 
 /**
+ * This interface specifies common methods of a JavaBean such as support for bound properties.
  *
  * @author puce
  */
