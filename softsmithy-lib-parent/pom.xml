@@ -17,14 +17,14 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>3.0</version>
+        <version>3.2</version>
         <relativePath />
     </parent>
     
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.6</version>
+    <version>0.7</version>
     
     <name>SoftSmithy Utility Library - Parent POM</name>
     <!-- required for Javadoc (apidocs) linking -->

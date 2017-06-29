@@ -64,11 +64,8 @@ public class LocalizedCollator {
      * @param source the source
      * @return the collation key for the given source
      */
-    public <T extends Localizable> GenericCollationKey<T> getCollationKey(
-            T source) {
-        return new GenericCollationKey<T>(source,
-                getCollator().getCollationKey(source.getDisplayString(
-                getLocale())));
+    public <T extends Localizable> GenericCollationKey<T> getCollationKey(T source) {
+        return new GenericCollationKey<>(source, getCollator().getCollationKey(source.getDisplayString(getLocale())));
     }
 
     /**
@@ -79,10 +76,7 @@ public class LocalizedCollator {
      * @param localizer the localizer
      * @return the collation key for the given source
      */
-    public <T> GenericCollationKey<T> getCollationKey(T source,
-            Localizer<? super T> localizer) {
-        return new GenericCollationKey<T>(source,
-                getCollator().getCollationKey(localizer.getDisplayString(source,
-                getLocale())));
+    public <T> GenericCollationKey<T> getCollationKey(T source, Localizer<? super T> localizer) {
+        return new GenericCollationKey<>(source, getCollator().getCollationKey(localizer.getDisplayString(source, getLocale())));
     }
 }
