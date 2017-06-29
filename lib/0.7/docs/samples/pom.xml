@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+        COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+
+The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+Version 1.0 (the "License"); you may not use this file except in
+compliance with the License. A copy of the License is available at
+http://www.opensource.org/licenses/cddl1.txt
+
+The Original Code is SoftSmithy Utility Library. The Initial Developer of the
+Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+
+Contributor(s): .
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.softsmithy.lib</groupId>
+        <artifactId>softsmithy-lib-parent</artifactId>
+        <version>0.7</version>
+        <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>softsmithy-lib-samples</artifactId>
+
+    <name>SoftSmithy Utility Library - Samples</name>
+    <description>Samples for the SoftSmithy Utility Library.</description>
+    <inceptionYear>2002</inceptionYear>
+    <!-- required for Javadoc (apidocs) linking -->
+    <url>http://www.softsmithy.org/softsmithy-lib/lib/0.7/docs/site</url>
+
+    <scm>
+        <connection>scm:git:https://github.com/SoftSmithy/softsmithy-lib.git</connection>
+        <developerConnection>scm:git:git@github.com:SoftSmithy/softsmithy-lib.git</developerConnection>
+        <url>https://github.com/SoftSmithy/softsmithy-lib</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>github</id>
+            <url>github:http://softsmithy.github.io/softsmithy-lib/lib/0.7/docs/site/softsmithy-lib-docs/</url>
+        </site>
+    </distributionManagement>
+    
+    <properties>
+        <scm.connection>scm:git:https://github.com/SoftSmithy/softsmithy-lib.git</scm.connection>
+        <scm.developerConnection>scm:git:git@github.com:SoftSmithy/softsmithy-lib.git</scm.developerConnection>
+        <scm.url>https://github.com/SoftSmithy/softsmithy-lib</scm.url>
+    </properties>
+    
+    <!-- Not inherited!?? -->
+    <prerequisites>
+        <maven>3.3.9</maven>
+    </prerequisites>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-docs/target/dist/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources-lib</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-docs/target/dist/lib</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/lib</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-resources-data</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-docs/target/dist/data</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/data</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>/fastdata/Programming/Java/softsmithy/softsmithy-lib/softsmithy-lib.git/softsmithy-lib-docs/target/dist</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-core</artifactId>
+            <version>0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-awt</artifactId>
+            <version>0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-swing</artifactId>
+            <version>0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.softsmithy.lib</groupId>
+            <artifactId>softsmithy-lib-swing-customizer</artifactId>
+            <version>0.7</version>
+        </dependency>
+    </dependencies>
+</project>
