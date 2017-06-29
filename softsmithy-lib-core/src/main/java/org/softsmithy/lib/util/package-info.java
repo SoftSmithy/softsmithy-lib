@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Utility classes and extensions for the {@link java.lang.reflect} package.
+ * Utility classes and extensions for the {@link java.util} package.
  */
 package org.softsmithy.lib.util;
