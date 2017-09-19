@@ -53,6 +53,7 @@ Contributor(s): .
     <modules>
         <module>softsmithy-lib-parent</module>
         <module>softsmithy-lib-core</module>
+        <module>softsmithy-lib-compiler</module>
         <module>softsmithy-lib-beans</module>
         <module>softsmithy-lib-awt</module>
         <module>softsmithy-lib-swing</module>
