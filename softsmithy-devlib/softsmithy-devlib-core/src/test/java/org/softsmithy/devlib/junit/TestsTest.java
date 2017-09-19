@@ -11,11 +11,9 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.devlib.junit;
 
-import org.junit.After;
-import org.junit.Before;
+import java.util.Comparator;
 import org.junit.Test;
 
 /**
@@ -24,30 +22,19 @@ import org.junit.Test;
  */
 public class TestsTest {
 
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of testHashCode method, of class Tests.
      */
     @Test
     public void testTestHashCode() {
-        System.out.println("testHashCode");
-
         // given
         String s1 = "test1";
         String s2 = new String("test1");
         String s3 = new String("test1");
         String unequal1 = new String("test2");
         String unequal2 = new String("test3");
-        
-        // when
 
+        // when
         // then
         Tests.testHashCode(s1, s2);
     }
@@ -57,8 +44,6 @@ public class TestsTest {
      */
     @Test
     public void testTestEquals() {
-        System.out.println("testEquals");
-
         // given
         String s1 = "test1";
         String s2 = new String("test1");
@@ -67,8 +52,46 @@ public class TestsTest {
         String unequal2 = new String("test3");
 
         // when
-
         // then
         Tests.testEquals(s1, s2, s3, unequal1, unequal2);
+    }
+
+    @Test
+    public void validInput_testComparableConsistentWithEquals_noException() {
+        // given
+        String o = "test2";
+        String smaller = new String("test1");
+        String equal = new String("test2");
+        String greater = new String("test3");
+
+        // when
+        // then
+        Tests.testComparableConsistentWithEquals(o, smaller, equal, greater);
+    }
+
+    @Test
+    public void nullValueSupported_testComparatorConsistentWithEquals_noException() {
+        // given
+        String o = "test2";
+        String smaller = new String("test1");
+        String equal = new String("test2");
+        String greater = new String("test3");
+
+        // when
+        // then
+        Tests.testComparatorConsistentWithEquals(Comparator.nullsFirst(Comparator.naturalOrder()), o, smaller, equal, greater, true);
+    }
+
+    @Test
+    public void nullValueNotSupported_testComparatorConsistentWithEquals_noException() {
+        // given
+        String o = "test2";
+        String smaller = new String("test1");
+        String equal = new String("test2");
+        String greater = new String("test3");
+
+        // when
+        // then
+        Tests.testComparatorConsistentWithEquals(String::compareToIgnoreCase, o, smaller, equal, greater, false);
     }
 }
