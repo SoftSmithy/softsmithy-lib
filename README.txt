@@ -4,6 +4,8 @@ softsmithy-lib-awt-${project.version}.jar                        - The SoftSmith
 softsmithy-lib-awt-${project.version}-sources.jar                - The SoftSmithy Utility Library - AWT source code
 softsmithy-lib-beans-${project.version}.jar                      - The SoftSmithy Utility Library - Beans
 softsmithy-lib-beans-${project.version}-sources.jar              - The SoftSmithy Utility Library - Beans source code
+softsmithy-lib-compiler-${project.version}.jar                   - The SoftSmithy Utility Library - Compiler
+softsmithy-lib-compiler-${project.version}-sources.jar           - The SoftSmithy Utility Library - Compiler source code
 softsmithy-lib-core-${project.version}.jar                       - The SoftSmithy Utility Library - Core
 softsmithy-lib-core-${project.version}-sources.jar               - The SoftSmithy Utility Library - Core source code
 softsmithy-lib-persistence-${project.version}.jar                - The SoftSmithy Utility Library - Persistence

@@ -22,17 +22,18 @@ import org.softsmithy.lib.Tests;
  */
 public class PositionableComparatorTest {
 
-    private PositionableComparator comparator = new PositionableComparator();
+    private final PositionableComparator testee = new PositionableComparator();
 
     @Test
     public void testCompare() {
         System.out.println("compare");
 
-        Tests.testComparatorConsistentWithEquals(comparator,
+        Tests.testComparatorConsistentWithEquals(testee,
                 new TestPositionable(5),
                 new TestPositionable(3),
                 new TestPositionable(5),
-                new TestPositionable(7));
+                new TestPositionable(7),
+                false);
     }
 
     private static class TestPositionable implements Positionable {

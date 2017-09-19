@@ -13,6 +13,7 @@
  */
 package org.softsmithy.lib;
 
+import static java.lang.Integer.signum;
 import java.util.Comparator;
 import static org.junit.Assert.*;
 
@@ -22,25 +23,34 @@ import static org.junit.Assert.*;
  */
 public class Tests {
 
-    public static <T> void testComparatorConsistentWithEquals(Comparator<? super T> comparator, T o, T smaller, T equal, T greater) {
-        testComparator(comparator, o, smaller, equal, greater);
+    public static <T> void testComparatorConsistentWithEquals(Comparator<? super T> comparator, T o, T smaller, T equal, T greater, boolean nullValueSupported) {
+        testComparator(comparator, o, smaller, equal, greater, nullValueSupported);
         testConsistencyWithEquals(comparator, o, smaller, equal, greater);
     }
 
-    public static <T> void testComparator(Comparator<? super T> comparator, T o, T smaller, T equal, T greater) {
-
+    public static <T> void testComparator(Comparator<? super T> comparator, T o, T smaller, T equal, T greater, boolean nullValueSupported) {
         assertAsymmetry(comparator, o, smaller, greater);
         assertSymmetry(comparator, o, equal);
         assertSignum(comparator, o, smaller, equal, greater);
         assertTransitivity(comparator, o, smaller, greater);
 
         assertEquals(0, comparator.compare(o, o));
+
+        assertNullValue(comparator, o, nullValueSupported);
+    }
+
+    private static <T> void assertNullValue(Comparator<? super T> comparator, T o, boolean nullValueSupported) {
+        try {
+            comparator.compare(o, null);
+            assertTrue("No NullPointerException but null value not supported!", nullValueSupported);
+        } catch (NullPointerException ex) {
+            assertFalse("NullPointerException thrown but null value supported!!", nullValueSupported);
+        }
     }
 
     private static <T> void assertAsymmetry(Comparator<? super T> comparator, T o, T smaller, T greater) {
         assertTrue(comparator.compare(o, smaller) > 0);
         assertTrue(comparator.compare(smaller, o) < 0);
-
 
         assertTrue(comparator.compare(o, greater) < 0);
         assertTrue(comparator.compare(greater, o) > 0);
@@ -58,7 +68,7 @@ public class Tests {
     }
 
     private static <T> void assertSignum(Comparator<? super T> comparator, T o1, T o2) {
-        assertEquals(Math.signum(comparator.compare(o1, o2)), -1 * Math.signum(comparator.compare(o2, o1)), 0);
+        assertEquals(signum(comparator.compare(o1, o2)), -signum(comparator.compare(o2, o1)));
     }
 
     private static <T> void assertTransitivity(Comparator<? super T> comparator, T o, T smaller, T greater) {
@@ -76,19 +86,11 @@ public class Tests {
         assertEquals(o.equals(greater), comparator.compare(o, greater) == 0);
     }
 
-    public static <T extends Comparable<? super T>> void testComparatorConsistentWithEquals(T o, T smaller, T equal, T greater) {
-        testComparatorConsistentWithEquals(new ComparableComparator<T>(), o, smaller, equal, greater);
+    public static <T extends Comparable<? super T>> void testComparableConsistentWithEquals(T o, T smaller, T equal, T greater) {
+        testComparatorConsistentWithEquals(Comparator.naturalOrder(), o, smaller, equal, greater, false);
     }
 
-    public static <T extends Comparable<? super T>> void testComparator(T o, T smaller, T equal, T greater) {
-        testComparator(new ComparableComparator<T>(), o, smaller, equal, greater);
-    }
-
-    private static class ComparableComparator<T extends Comparable<? super T>> implements Comparator<T> {
-
-        @Override
-        public int compare(T o1, T o2) {
-            return o1.compareTo(o2);
-        }
+    public static <T extends Comparable<? super T>> void testComparable(T o, T smaller, T equal, T greater) {
+        testComparator(Comparator.naturalOrder(), o, smaller, equal, greater, false);
     }
 }
