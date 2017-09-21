@@ -30,9 +30,6 @@ public class TestsTest {
         // given
         String s1 = "test1";
         String s2 = new String("test1");
-        String s3 = new String("test1");
-        String unequal1 = new String("test2");
-        String unequal2 = new String("test3");
 
         // when
         // then
@@ -93,5 +90,15 @@ public class TestsTest {
         // when
         // then
         Tests.testComparatorConsistentWithEquals(String::compareToIgnoreCase, o, smaller, equal, greater, false);
+    }
+
+    @Test
+    public void validInput_testOrder_noException() {
+        String s1 = new String("test1");
+        String s2 = new String("test2");
+        String s3 = new String("test3");
+        String s4 = new String("test4");
+
+        Tests.testOrder(s1, s2, s3, s4);
     }
 }
