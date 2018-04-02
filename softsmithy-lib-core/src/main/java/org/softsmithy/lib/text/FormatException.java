@@ -19,6 +19,8 @@ package org.softsmithy.lib.text;
  */
 public class FormatException extends Exception {
 
+    private static final long serialVersionUID = -4043623270852222462L;
+
     public FormatException() {
     }
 

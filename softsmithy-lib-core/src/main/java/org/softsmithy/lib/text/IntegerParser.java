@@ -38,13 +38,14 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
     public Integer parseString(String text) throws ParseException {
         try {
             return parseNumber(text).intValue();
-        } catch (Exception e) {
+        } catch (ParseException | RuntimeException e) {
             LOG.debug("First number conversion failed: {}", text);
             try {
                 return Integer.parseInt(text);
             } catch (NumberFormatException nfe) {
                 ParseException pe = new ParseException(text, -1);
                 pe.initCause(nfe);
+                pe.addSuppressed(e);
                 throw pe;
             }
         }
