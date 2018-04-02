@@ -11,31 +11,37 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.text;
 
 import javax.swing.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
-public class AbstractXNumberFormatterFactory extends JFormattedTextField.AbstractFormatterFactory {
-  
-  private final AbstractXNumberFormatter formatter;
-  
-  /** Creates a new instance of WholeNumberFormatterFactory */
-  public AbstractXNumberFormatterFactory(AbstractXNumberFormatter formatter) {
-     this.formatter = formatter;
-  }
-  
-  public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-    return getAbstractXNumberFormatter();
-  }
-  
-  public AbstractXNumberFormatter getAbstractXNumberFormatter(){
-    return formatter;
-  }
-  
+public class AbstractXNumberFormatterFactory<T extends AbstractXNumberFormatter> extends JFormattedTextField.AbstractFormatterFactory {
+
+    private final T numberFormatter;
+
+    /**
+     * Creates a new instance of WholeNumberFormatterFactory
+     */
+    public AbstractXNumberFormatterFactory(T numberFormatter) {
+        this.numberFormatter = numberFormatter;
+    }
+
+    @Override
+    public T getFormatter(JFormattedTextField tf) {
+        return getNumberFormatter();
+    }
+
+    @Deprecated
+    public T getAbstractXNumberFormatter() {
+        return numberFormatter;
+    }
+
+    public T getNumberFormatter() {
+        return numberFormatter;
+    }
 
 }

@@ -20,7 +20,7 @@ import java.util.*;
  *
  * @author  puce
  */
-public class IntegerFormatterFactory extends WholeNumberFormatterFactory {
+public class IntegerFormatterFactory extends WholeNumberFormatterFactory<IntegerFormatter> {
   
   
   /** Creates a new instance of WholeNumberFormatterFactory */
@@ -32,8 +32,9 @@ public class IntegerFormatterFactory extends WholeNumberFormatterFactory {
     super(formatter, locale);
   }
   
+  @Deprecated
   public IntegerFormatter getIntegerFormatter(){
-    return (IntegerFormatter) getWholeNumberFormatter();
+    return getNumberFormatter();
   }
   
 

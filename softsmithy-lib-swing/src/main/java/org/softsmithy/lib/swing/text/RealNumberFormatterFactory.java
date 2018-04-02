@@ -14,28 +14,21 @@
 
 package org.softsmithy.lib.swing.text;
 
-import javax.swing.*;
-
 /**
  *
  * @author  puce
  */
-public class RealNumberFormatterFactory extends AbstractXNumberFormatterFactory {
+public class RealNumberFormatterFactory<T extends RealNumberFormatter> extends AbstractXNumberFormatterFactory<T> {
   
   
   /** Creates a new instance of WholeNumberFormatterFactory */
-  public RealNumberFormatterFactory(RealNumberFormatter formatter) {
+  public RealNumberFormatterFactory(T formatter) {
     super(formatter);
   }
   
-  @Override
-  public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-    return getRealNumberFormatter();
+  @Deprecated
+  public T getRealNumberFormatter(){
+    return getNumberFormatter();
   }
   
-  public RealNumberFormatter getRealNumberFormatter(){
-    return (RealNumberFormatter) getAbstractXNumberFormatter();
-  }
-  
-
 }

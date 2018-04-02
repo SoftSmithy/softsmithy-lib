@@ -20,23 +20,24 @@ import java.util.*;
  *
  * @author  puce
  */
-public class WholeNumberFormatterFactory extends AbstractXNumberFormatterFactory {
+public class WholeNumberFormatterFactory<T extends WholeNumberFormatter> extends AbstractXNumberFormatterFactory<T> {
   
   /** Holds value of property locale. */
   private Locale locale;
   
   /** Creates a new instance of WholeNumberFormatterFactory */
-  public WholeNumberFormatterFactory(WholeNumberFormatter formatter) {
+  public WholeNumberFormatterFactory(T formatter) {
     this(formatter, Locale.getDefault());
   }
   
-  public WholeNumberFormatterFactory(WholeNumberFormatter formatter, Locale locale) {
+  public WholeNumberFormatterFactory(T formatter, Locale locale) {
     super(formatter);
     setLocale(locale);
   }
   
-  public WholeNumberFormatter getWholeNumberFormatter(){
-    return (WholeNumberFormatter) getAbstractXNumberFormatter();
+  @Deprecated
+  public T getWholeNumberFormatter(){
+    return getNumberFormatter();
   }
   
   /** Getter for property locale.
@@ -53,7 +54,7 @@ public class WholeNumberFormatterFactory extends AbstractXNumberFormatterFactory
    */
   public void setLocale(Locale locale) {
     this.locale = locale;
-    getWholeNumberFormatter().setLocale(locale);
+    getNumberFormatter().setLocale(locale);
   }
   
   

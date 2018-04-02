@@ -20,20 +20,21 @@ import java.util.*;
  *
  * @author  puce
  */
-public class LocalizedDoubleFormatterFactory extends LocalizedRealNumberFormatterFactory {
+public class LocalizedDoubleFormatterFactory extends LocalizedRealNumberFormatterFactory<LocalizedDoubleFormatter> {
   
   
   /** Creates a new instance of WholeNumberFormatterFactory */
-  public LocalizedDoubleFormatterFactory(LocalizedRealNumberFormatter formatter) {
+  public LocalizedDoubleFormatterFactory(LocalizedDoubleFormatter formatter) {
     super(formatter);
   }
   
-  public LocalizedDoubleFormatterFactory(LocalizedRealNumberFormatter formatter, Locale locale) {
+  public LocalizedDoubleFormatterFactory(LocalizedDoubleFormatter formatter, Locale locale) {
     super(formatter, locale);
   }
   
+  @Deprecated
   public LocalizedDoubleFormatter getLocalizedDoubleFormatter(){
-    return (LocalizedDoubleFormatter) getLocalizedRealNumberFormatter();
+    return getNumberFormatter();
   }
 
 }

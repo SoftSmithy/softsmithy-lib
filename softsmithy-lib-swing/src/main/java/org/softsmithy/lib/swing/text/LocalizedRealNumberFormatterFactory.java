@@ -20,17 +20,17 @@ import java.util.*;
  *
  * @author  puce
  */
-public class LocalizedRealNumberFormatterFactory extends RealNumberFormatterFactory {
+public class LocalizedRealNumberFormatterFactory<T extends LocalizedRealNumberFormatter> extends RealNumberFormatterFactory<T> {
   
   /** Holds value of property locale. */
   private Locale locale;
   
   /** Creates a new instance of WholeNumberFormatterFactory */
-  public LocalizedRealNumberFormatterFactory(LocalizedRealNumberFormatter formatter) {
+  public LocalizedRealNumberFormatterFactory(T formatter) {
     this(formatter, Locale.getDefault());
   }
   
-  public LocalizedRealNumberFormatterFactory(LocalizedRealNumberFormatter formatter, Locale locale) {
+  public LocalizedRealNumberFormatterFactory(T formatter, Locale locale) {
     super(formatter);
     setLocale(locale);
   }
@@ -49,11 +49,12 @@ public class LocalizedRealNumberFormatterFactory extends RealNumberFormatterFact
    */
   public void setLocale(Locale locale) {
     this.locale = locale;
-    getLocalizedRealNumberFormatter().setLocale(locale);
+    getNumberFormatter().setLocale(locale);
   }
   
-  public LocalizedRealNumberFormatter getLocalizedRealNumberFormatter(){
-    return (LocalizedRealNumberFormatter) getRealNumberFormatter();
+  @Deprecated
+  public T getLocalizedRealNumberFormatter(){
+    return getNumberFormatter();
   }
 
 }

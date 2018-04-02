@@ -20,7 +20,7 @@ import java.util.*;
  *
  * @author  puce
  */
-public class ByteFormatterFactory extends WholeNumberFormatterFactory {
+public class ByteFormatterFactory extends WholeNumberFormatterFactory<ByteFormatter> {
   
   
   /** Creates a new instance of WholeNumberFormatterFactory */
@@ -32,8 +32,9 @@ public class ByteFormatterFactory extends WholeNumberFormatterFactory {
     super(formatter, locale);
   }
   
+  @Deprecated
   public ByteFormatter getByteFormatter(){
-    return (ByteFormatter) getWholeNumberFormatter();
+    return getNumberFormatter();
   }
   
 

@@ -18,7 +18,7 @@ package org.softsmithy.lib.swing.text;
  *
  * @author  puce
  */
-public class DoubleFormatterFactory extends RealNumberFormatterFactory {
+public class DoubleFormatterFactory extends RealNumberFormatterFactory<DoubleFormatter> {
   
   
   /** Creates a new instance of WholeNumberFormatterFactory */
@@ -26,9 +26,9 @@ public class DoubleFormatterFactory extends RealNumberFormatterFactory {
     super(formatter);
   }
   
-  
+  @Deprecated
   public DoubleFormatter getDoubleFormatter(){
-    return (DoubleFormatter) getRealNumberFormatter();
+    return getNumberFormatter();
   }
   
 
