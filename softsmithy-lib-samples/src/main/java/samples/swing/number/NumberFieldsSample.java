@@ -21,10 +21,10 @@ public class NumberFieldsSample extends javax.swing.JFrame {
     /** Creates new form NumberFieldsSample */
     public NumberFieldsSample() {
         initComponents();
-        jRealNumberField1.setNumberFormatterFactory(new NumberFormatterFactory<>(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
-        jFloatField1.setNumberFormatterFactory(new NumberFormatterFactory<>(new FloatFormatter(NumberFormat.getPercentInstance())));
+        jRealNumberField1.setNumberFormatterFactory(new NumberFormatterFactory<>(RealNumberFormatter.class, new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
+        jFloatField1.setNumberFormatterFactory(new NumberFormatterFactory<>(FloatFormatter.class, new FloatFormatter(NumberFormat.getPercentInstance())));
         DecimalFormat format = new DecimalFormat("#,##0.00000");
-        jDoubleField1.setNumberFormatterFactory(new NumberFormatterFactory<>(new DoubleFormatter(format)));
+        jDoubleField1.setNumberFormatterFactory(new NumberFormatterFactory<>(DoubleFormatter.class, new DoubleFormatter(format)));
         setSize(400, 300);
     }
     

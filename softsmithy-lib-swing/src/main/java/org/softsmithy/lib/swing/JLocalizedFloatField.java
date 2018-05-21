@@ -117,7 +117,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @param locale the locale
      */
     public JLocalizedFloatField(float value, float minValue, float maxValue, Locale locale){
-        super(new LocalizedFloatFormatter());
+        super(new NumberFormatterFactory<>(LocalizedFloatFormatter.class, new LocalizedFloatFormatter()));
         setMinimumFloatValue(minValue);
         setMaximumFloatValue(maxValue);
         setFloatValue(value);

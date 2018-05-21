@@ -95,7 +95,7 @@ public class JRealNumberField extends AbstractNumberField<BigDecimal, RealNumber
      * @param factory the number formatter factory
      */
     public JRealNumberField(NumberFormatterFactory<BigDecimal, RealNumberFormatter> factory) {
-        super(BigDecimal.class, RealNumberFormatter.class, factory);
+        super(BigDecimal.class, factory);
         init(BigDecimal.valueOf(0), null, null);
     }
 

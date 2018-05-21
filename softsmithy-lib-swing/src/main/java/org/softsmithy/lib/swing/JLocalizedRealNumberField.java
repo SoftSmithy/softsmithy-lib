@@ -101,7 +101,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * @param locale the locale
      */
     public JLocalizedRealNumberField(BigDecimal value, BigDecimal minValue, BigDecimal maxValue, Locale locale){
-        this(new LocalizedRealNumberFormatter());
+        this(new NumberFormatterFactory<>(LocalizedRealNumberFormatter.class, new LocalizedRealNumberFormatter()));
         setMinimumNumberValue(minValue);
         setMaximumNumberValue(maxValue);
         setNumberValue(value);

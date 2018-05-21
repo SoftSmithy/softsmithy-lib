@@ -116,7 +116,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @param locale the locale
      */
     public JLocalizedDoubleField(double value, double minValue, double maxValue, Locale locale){
-        super(new LocalizedDoubleFormatter());
+        super(new NumberFormatterFactory<>(LocalizedDoubleFormatter.class, new LocalizedDoubleFormatter()));
         setMinimumDoubleValue(minValue);
         setMaximumDoubleValue(maxValue);
         setDoubleValue(value);
