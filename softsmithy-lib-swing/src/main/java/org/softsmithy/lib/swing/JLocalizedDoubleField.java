@@ -116,7 +116,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @param locale the locale
      */
     public JLocalizedDoubleField(double value, double minValue, double maxValue, Locale locale){
-        super(new LocalizedDoubleFormatterFactory(new LocalizedDoubleFormatter()));
+        super(new LocalizedDoubleFormatter());
         setMinimumDoubleValue(minValue);
         setMaximumDoubleValue(maxValue);
         setDoubleValue(value);
@@ -128,7 +128,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @return the value.
      */
     public double getDoubleValue(){
-        return getBigDecimalValue().doubleValue();
+        return getNumberValue().doubleValue();
     }
     
     /**
@@ -136,7 +136,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @param i the value
      */
     public void setDoubleValue(double i){
-        setBigDecimalValue(new BigDecimal(i));
+        setNumberValue(new BigDecimal(i));
     }
     
     /**
@@ -144,7 +144,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @return the minimum value
      */
     public double getMinimumDoubleValue(){
-        return getMinimumBigDecimalValue().doubleValue();
+        return getMinimumNumberValue().doubleValue();
     }
     
     /**
@@ -152,7 +152,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @param minDoubleValue the minimum value
      */
     public void setMinimumDoubleValue(double minDoubleValue){
-        setMinimumBigDecimalValue(new BigDecimal(minDoubleValue));
+        setMinimumNumberValue(new BigDecimal(minDoubleValue));
     }
     
     /**
@@ -160,7 +160,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @return the maximum value
      */
     public double getMaximumDoubleValue(){
-        return getMaximumBigDecimalValue().doubleValue();
+        return getMaximumNumberValue().doubleValue();
     }
     
     /**
@@ -168,7 +168,7 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      * @param maxDoubleValue the maximum value
      */
     public void setMaximumDoubleValue(double maxDoubleValue){
-        setMaximumBigDecimalValue(new BigDecimal(maxDoubleValue));
+        setMaximumNumberValue(new BigDecimal(maxDoubleValue));
     }
     
     /**
@@ -193,45 +193,6 @@ public class JLocalizedDoubleField extends JLocalizedRealNumberField {
      */
     public LocalizedDoubleFormatter getLocalizedDoubleFormatter(){
         return (LocalizedDoubleFormatter) getLocalizedRealNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public LocalizedDoubleFormatterFactory getLocalizedDoubleFormatterFactory(){
-        return (LocalizedDoubleFormatterFactory) getLocalizedRealNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setLocalizedDoubleFormatterFactory(LocalizedDoubleFormatterFactory factory){
-        setLocalizedRealNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of LocalizedDoubleFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof LocalizedDoubleFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of LocalizedDoubleFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
     }
     
 }

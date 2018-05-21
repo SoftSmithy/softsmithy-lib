@@ -109,7 +109,7 @@ public class JLongField extends JWholeNumberField {
      * @param locale the locale
      */
     public JLongField(long value, long minValue, long maxValue, Locale locale){
-        super(new LongFormatterFactory(new LongFormatter()));
+        super(new NumberFormatterFactory<>(LongFormatter.class, new LongFormatter()));
         setMinimumLongValue(minValue);
         setMaximumLongValue(maxValue);
         setLongValue(value);
@@ -121,7 +121,7 @@ public class JLongField extends JWholeNumberField {
      * @return the value.
      */
     public long getLongValue(){
-        return getBigIntegerValue().longValue();
+        return getNumberValue().longValue();
     }
     
     /**
@@ -129,7 +129,7 @@ public class JLongField extends JWholeNumberField {
      * @param i the value
      */
     public void setLongValue(long i){
-        setBigIntegerValue(BigInteger.valueOf(i));
+        setNumberValue(BigInteger.valueOf(i));
     }
     
     /**
@@ -137,7 +137,7 @@ public class JLongField extends JWholeNumberField {
      * @return the minimum value
      */
     public long getMinimumLongValue(){
-        return getMinimumBigIntegerValue().longValue();
+        return getMinimumNumberValue().longValue();
     }
     
     /**
@@ -145,7 +145,7 @@ public class JLongField extends JWholeNumberField {
      * @param minLongValue the minimum value
      */
     public void setMinimumLongValue(long minLongValue){
-        setMinimumBigIntegerValue(BigInteger.valueOf(minLongValue));
+        setMinimumNumberValue(BigInteger.valueOf(minLongValue));
     }
     
     /**
@@ -153,7 +153,7 @@ public class JLongField extends JWholeNumberField {
      * @return the maximum value
      */
     public long getMaximumLongValue(){
-        return getMaximumBigIntegerValue().longValue();
+        return getMaximumNumberValue().longValue();
     }
     
     /**
@@ -161,7 +161,7 @@ public class JLongField extends JWholeNumberField {
      * @param maxLongValue the maximum value
      */
     public void setMaximumLongValue(long maxLongValue){
-        setMaximumBigIntegerValue(BigInteger.valueOf(maxLongValue));
+        setMaximumNumberValue(BigInteger.valueOf(maxLongValue));
     }
     
     /**
@@ -184,46 +184,7 @@ public class JLongField extends JWholeNumberField {
      * @return the number formatter
      */
     public LongFormatter getLongFormatter(){
-        return (LongFormatter) getWholeNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public LongFormatterFactory getLongFormatterFactory(){
-        return (LongFormatterFactory) getWholeNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setLongFormatterFactory(LongFormatterFactory factory){
-        setWholeNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of LongFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof LongFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of LongFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
+        return (LongFormatter) getAbstractXNumberFormatter();
     }
     
 }

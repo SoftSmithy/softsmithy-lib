@@ -117,7 +117,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @param locale the locale
      */
     public JLocalizedFloatField(float value, float minValue, float maxValue, Locale locale){
-        super(new LocalizedFloatFormatterFactory(new LocalizedFloatFormatter()));
+        super(new LocalizedFloatFormatter());
         setMinimumFloatValue(minValue);
         setMaximumFloatValue(maxValue);
         setFloatValue(value);
@@ -129,7 +129,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @return the value.
      */
     public float getFloatValue(){
-        return getBigDecimalValue().floatValue();
+        return getNumberValue().floatValue();
     }
     
     /**
@@ -137,7 +137,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @param i the value
      */
     public void setFloatValue(float i){
-        setBigDecimalValue(new BigDecimal(i));
+        setNumberValue(new BigDecimal(i));
     }
     
     /**
@@ -145,7 +145,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @return the minimum value
      */
     public float getMinimumFloatValue(){
-        return getMinimumBigDecimalValue().floatValue();
+        return getMinimumNumberValue().floatValue();
     }
     
     /**
@@ -153,7 +153,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @param minFloatValue the minimum value
      */
     public void setMinimumFloatValue(float minFloatValue){
-        setMinimumBigDecimalValue(new BigDecimal(minFloatValue));
+        setMinimumNumberValue(new BigDecimal(minFloatValue));
     }
     
     /**
@@ -161,7 +161,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @return the maximum value
      */
     public float getMaximumFloatValue(){
-        return getMaximumBigDecimalValue().floatValue();
+        return getMaximumNumberValue().floatValue();
     }
     
     /**
@@ -169,7 +169,7 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      * @param maxFloatValue the maximum value
      */
     public void setMaximumFloatValue(float maxFloatValue){
-        setMaximumBigDecimalValue(new BigDecimal(maxFloatValue));
+        setMaximumNumberValue(new BigDecimal(maxFloatValue));
     }
     
     /**
@@ -193,45 +193,6 @@ public class JLocalizedFloatField extends JLocalizedRealNumberField {
      */
     public LocalizedFloatFormatter getLocalizedFloatFormatter(){
         return (LocalizedFloatFormatter) getLocalizedRealNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public LocalizedFloatFormatterFactory getLocalizedFloatFormatterFactory(){
-        return (LocalizedFloatFormatterFactory) getLocalizedRealNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setLocalizedFloatFormatterFactory(LocalizedFloatFormatterFactory factory){
-        setLocalizedRealNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of LocalizedFloatFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof LocalizedFloatFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of LocalizedFloatFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
     }
     
 }

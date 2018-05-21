@@ -22,7 +22,7 @@ package org.softsmithy.lib.swing;
 
 import java.math.*;
 import java.text.*;
-import javax.swing.JFormattedTextField.*;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import org.softsmithy.lib.math.Floats;
 import org.softsmithy.lib.swing.text.*;
 
@@ -68,7 +68,7 @@ public class JFloatField extends JRealNumberField {
      * @param format the number format
      */
     public JFloatField(NumberFormat format){
-        this(new FloatFormatterFactory(new FloatFormatter(format)));
+        this(new FloatFormatter(format));
     }
     
     /**
@@ -87,7 +87,7 @@ public class JFloatField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public JFloatField(NumberFormat format, float minValue, float maxValue){
-        this(new FloatFormatterFactory(new FloatFormatter(format)));
+        this(new FloatFormatter(format));
         init(DEFAULT_VALUE, minValue, maxValue);
     }
     
@@ -98,7 +98,7 @@ public class JFloatField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public JFloatField(float value, float minValue, float maxValue){
-        this(new FloatFormatterFactory(new FloatFormatter()));
+        this(new FloatFormatter());
         init(value, minValue, maxValue);
     }
     
@@ -106,8 +106,8 @@ public class JFloatField extends JRealNumberField {
      * Creates a new instance of this class.
      * @param factory the number formatter factory
      */
-    public JFloatField(FloatFormatterFactory factory){
-        super(factory);
+    private JFloatField(FloatFormatter formatter){
+        super(new NumberFormatterFactory<>(FloatFormatter.class, formatter));
         init(DEFAULT_VALUE, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
     }
     
@@ -128,7 +128,7 @@ public class JFloatField extends JRealNumberField {
      * @return the value.
      */
     public float getFloatValue(){
-        return getBigDecimalValue().floatValue();
+        return getNumberValue().floatValue();
     }
     
     /**
@@ -136,7 +136,7 @@ public class JFloatField extends JRealNumberField {
      * @param value the value
      */
     public void setFloatValue(float value){
-        setBigDecimalValue(new BigDecimal(value));
+        setNumberValue(new BigDecimal(value));
     }
     
     /**
@@ -144,7 +144,7 @@ public class JFloatField extends JRealNumberField {
      * @return the minimum value
      */
     public float getMinimumFloatValue(){
-        return getMinimumBigDecimalValue().floatValue();
+        return getMinimumNumberValue().floatValue();
     }
     
     /**
@@ -152,7 +152,7 @@ public class JFloatField extends JRealNumberField {
      * @param minValue the minimum value
      */
     public void setMinimumFloatValue(float minValue){
-        setMinimumBigDecimalValue(new BigDecimal(minValue));
+        setMinimumNumberValue(new BigDecimal(minValue));
     }
     
     /**
@@ -160,7 +160,7 @@ public class JFloatField extends JRealNumberField {
      * @return the maximum value
      */
     public float getMaximumFloatValue(){
-        return getMaximumBigDecimalValue().floatValue();
+        return getMaximumNumberValue().floatValue();
     }
     
     /**
@@ -168,7 +168,7 @@ public class JFloatField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public void setMaximumFloatValue(float maxValue){
-        setMaximumBigDecimalValue(new BigDecimal(maxValue));
+        setMaximumNumberValue(new BigDecimal(maxValue));
     }
     
     /**
@@ -191,48 +191,7 @@ public class JFloatField extends JRealNumberField {
      * @return the number formatter
      */
     public FloatFormatter getFloatFormatter(){
-        return (FloatFormatter) getRealNumberFormatter();
+        return (FloatFormatter) getAbstractXNumberFormatter();
     }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public FloatFormatterFactory getFloatFormatterFactory(){
-        return (FloatFormatterFactory) getRealNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setFloatFormatterFactory(FloatFormatterFactory factory){
-        setRealNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of FloatFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(AbstractFormatterFactory aff) {
-        if (! (aff instanceof FloatFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of FloatFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
-    }
-    
-    
     
 }

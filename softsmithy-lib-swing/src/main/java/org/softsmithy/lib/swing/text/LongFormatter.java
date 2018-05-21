@@ -50,19 +50,19 @@ public class LongFormatter extends WholeNumberFormatter {
   }
   
   public long getMinimumLongValue(){
-    return getMinimumBigIntegerValue().longValue();
+    return getMinimumNumberValue().longValue();
   }
   
   public void setMinimumLongValue(long minLongValue){
-    setMinimumBigIntegerValue(BigInteger.valueOf(minLongValue));
+    setMinimumNumberValue(BigInteger.valueOf(minLongValue));
   }
   
   public long getMaximumLongValue(){
-    return getMaximumBigIntegerValue().longValue();
+    return getMaximumNumberValue().longValue();
   }
   
   public void setMaximumLongValue(long maxLongValue){
-    setMaximumBigIntegerValue(BigInteger.valueOf(maxLongValue));
+    setMaximumNumberValue(BigInteger.valueOf(maxLongValue));
   }
   
 }

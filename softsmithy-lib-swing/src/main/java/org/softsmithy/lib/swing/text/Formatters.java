@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * Formatters.java
  *
  * Created on 25. September 2003, 19:24
@@ -34,6 +34,13 @@ public class Formatters {
     private Formatters() {
     }
 
+    /**
+     * TODO: still used?
+     *
+     * @param formatter
+     * @param value
+     * @return
+     */
     public static Comparable valueToRange(InternationalFormatter formatter, Comparable value) {
         return Comparables.toRange(value, formatter.getMinimum(), formatter.getMaximum());
     }

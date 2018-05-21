@@ -54,11 +54,11 @@ public class BigIntegerCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getWholeNumberField().setBigIntegerValue((BigInteger) value);
+        getWholeNumberField().setNumberValue((BigInteger) value);
     }
 
     @Override
     protected Object getValue() {
-        return getWholeNumberField().getBigIntegerValue();
+        return getWholeNumberField().getNumberValue();
     }
 }

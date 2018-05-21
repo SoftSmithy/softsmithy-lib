@@ -54,11 +54,11 @@ public class LocalizedBigDecimalCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getLocalizedRealNumberField().setBigDecimalValue((BigDecimal) value);
+        getLocalizedRealNumberField().setNumberValue((BigDecimal) value);
     }
 
     @Override
     protected Object getValue() {
-        return getLocalizedRealNumberField().getBigDecimalValue();
+        return getLocalizedRealNumberField().getNumberValue();
     }
 }

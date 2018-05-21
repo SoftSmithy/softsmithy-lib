@@ -17,7 +17,7 @@ package org.softsmithy.lib.swing;
 
 import java.math.*;
 import java.text.*;
-import javax.swing.JFormattedTextField.*;
+import javax.swing.JFormattedTextField.AbstractFormatter;
 import org.softsmithy.lib.math.Doubles;
 import org.softsmithy.lib.swing.text.*;
 
@@ -63,7 +63,7 @@ public class JDoubleField extends JRealNumberField {
      * @param format the number format
      */
     public JDoubleField(NumberFormat format){
-        this(new DoubleFormatterFactory(new DoubleFormatter(format)));
+        this(new DoubleFormatter(format));
     }
     
     /**
@@ -82,7 +82,7 @@ public class JDoubleField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public JDoubleField(NumberFormat format, double minValue, double maxValue){
-        this(new DoubleFormatterFactory(new DoubleFormatter(format)));
+        this(new DoubleFormatter(format));
         init(DEFAULT_VALUE, minValue, maxValue);
     }
     
@@ -93,7 +93,7 @@ public class JDoubleField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public JDoubleField(double value, double minValue, double maxValue){
-        this(new DoubleFormatterFactory(new DoubleFormatter()));
+        this(new DoubleFormatter());
         init(value, minValue, maxValue);
     }
     
@@ -101,8 +101,8 @@ public class JDoubleField extends JRealNumberField {
      * Creates a new instance of this class.
      * @param factory the number formatter factory
      */
-    public JDoubleField(DoubleFormatterFactory factory){
-        super(factory);
+    private JDoubleField(DoubleFormatter formatter){
+        super(new NumberFormatterFactory<>(DoubleFormatter.class, formatter));
         init(DEFAULT_VALUE, DEFAULT_MIN_VALUE, DEFAULT_MAX_VALUE);
     }
     
@@ -123,7 +123,7 @@ public class JDoubleField extends JRealNumberField {
      * @return the value.
      */
     public double getDoubleValue(){
-        return getBigDecimalValue().doubleValue();
+        return getNumberValue().doubleValue();
     }
     
     /**
@@ -131,7 +131,7 @@ public class JDoubleField extends JRealNumberField {
      * @param value the value
      */
     public void setDoubleValue(double value){
-        setBigDecimalValue(new BigDecimal(value));
+        setNumberValue(new BigDecimal(value));
     }
     
     /**
@@ -139,7 +139,7 @@ public class JDoubleField extends JRealNumberField {
      * @return the minimum value
      */
     public double getMinimumDoubleValue(){
-        return getMinimumBigDecimalValue().doubleValue();
+        return getMinimumNumberValue().doubleValue();
     }
     
     /**
@@ -147,7 +147,7 @@ public class JDoubleField extends JRealNumberField {
      * @param minValue the minimum value
      */
     public void setMinimumDoubleValue(double minValue){
-        setMinimumBigDecimalValue(new BigDecimal(minValue));
+        setMinimumNumberValue(new BigDecimal(minValue));
     }
     
     /**
@@ -155,7 +155,7 @@ public class JDoubleField extends JRealNumberField {
      * @return the maximum value
      */
     public double getMaximumDoubleValue(){
-        return getMaximumBigDecimalValue().doubleValue();
+        return getMaximumNumberValue().doubleValue();
     }
     
     /**
@@ -163,7 +163,7 @@ public class JDoubleField extends JRealNumberField {
      * @param maxValue the maximum value
      */
     public void setMaximumDoubleValue(double maxValue){
-        setMaximumBigDecimalValue(new BigDecimal(maxValue));
+        setMaximumNumberValue(new BigDecimal(maxValue));
     }
     
     /**
@@ -186,46 +186,7 @@ public class JDoubleField extends JRealNumberField {
      * @return the number formatter
      */
     public DoubleFormatter getDoubleFormatter(){
-        return (DoubleFormatter) getRealNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public DoubleFormatterFactory getDoubleFormatterFactory(){
-        return (DoubleFormatterFactory) getRealNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setDoubleFormatterFactory(DoubleFormatterFactory factory){
-        setRealNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of DoubleFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(AbstractFormatterFactory aff) {
-        if (! (aff instanceof DoubleFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of DoubleFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
+        return (DoubleFormatter) getAbstractXNumberFormatter();
     }
     
 }

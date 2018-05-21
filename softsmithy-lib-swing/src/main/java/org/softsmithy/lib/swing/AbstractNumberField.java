@@ -11,79 +11,86 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing;
 
 import java.util.*;
 import javax.swing.*;
-import javax.swing.JFormattedTextField.*;
+import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.JFormattedTextField.AbstractFormatterFactory;
 import org.softsmithy.lib.swing.text.*;
-
 
 /**
  * The base class of the number fields.
- * @author  puce
+ *
+ * @author puce
  */
-public abstract class AbstractNumberField extends JFormattedTextField {
-    
-    
+public abstract class AbstractNumberField<N extends Number & Comparable<N>, T extends AbstractXNumberFormatter<N>> extends JFormattedTextField {
+
+    private final Class<N> numberType;
+
+
     /**
      * Creates a new instance of this class.
+     *
      * @param value the value
      * @param factory the number formatter factory
      */
-    public AbstractNumberField(Number value, AbstractXNumberFormatterFactory factory){
-        this(value, null, null, factory);
+    public AbstractNumberField(Class<N> numberType,  N value, NumberFormatterFactory<N, T> factory) {
+        this(numberType, value, null, null, factory);
     }
-    
-    
+
     /**
      * Creates a new instance of this class.
+     *
      * @param minValue the minimum value
      * @param maxValue the maximum value
      * @param factory the number formatter factory
      */
-    public AbstractNumberField(Number minValue, Number maxValue, AbstractXNumberFormatterFactory factory){
-        this(null, minValue, maxValue, factory);
+    public AbstractNumberField(Class<N> numberType, N minValue, N maxValue, NumberFormatterFactory<N, T> factory) {
+        this(numberType, null, minValue, maxValue, factory);
     }
-    
+
     /**
      * Creates a new instance of this class.
+     *
      * @param value the value
      * @param minValue the minimum value
      * @param maxValue the maximum value
      * @param factory the number formatter factory
      */
-    public AbstractNumberField(Number value, Number minValue, Number maxValue, AbstractXNumberFormatterFactory factory){
-        this(factory);
+    public AbstractNumberField(Class<N> numberType, N value, N minValue, N maxValue, NumberFormatterFactory<N, T> factory) {
+        this(numberType, factory);
         setMinimumNumberValue(minValue);
         setMaximumNumberValue(maxValue);
         setNumberValue(value);
     }
-    
+
     /**
      * Creates a new instance of this class.
+     *
      * @param factory the number formatter factory
      */
-    public AbstractNumberField(AbstractXNumberFormatterFactory factory){
+    public AbstractNumberField(Class<N> numberType, NumberFormatterFactory<N, T> factory) {
         super(factory);
+        this.numberType = numberType;
         setHorizontalAlignment(JTextField.TRAILING); // is this right???
         setNumberValue(null);
         reinit(); // TODO: Not good! Shouldn't call a protected method here.
     }
-    
+
     /**
-     * Reinits this component.
-     * By default it does nothing but may be overriden by subclasses.
-     * It gets called by the constructors,
+     * Reinits this component. 
+     * By default it does nothing but may be overriden by subclasses. 
+     * It gets called by the constructors, 
      * the setLocale and the setFormatterFactory methods.
      */
-    protected void reinit(){
+    protected void reinit() {
     }
-    
+
     /**
-     * Sets the locale of this component.
+     * Sets the locale of this component. 
      * Calls the reinit method.
+     *
      * @param locale the locale
      */
     @Override
@@ -91,34 +98,37 @@ public abstract class AbstractNumberField extends JFormattedTextField {
         super.setLocale(locale);
         reinit();
     }
-    
+
     /**
      * Gets the value as a Number.
+     *
      * @return the value as a Number
      */
-    public Number getNumberValue(){
-        return (Number) getValue();
+    public N getNumberValue() {
+        return numberType.cast(getValue());
     }
-    
+
     /**
      * Sets the number value.
+     *
      * @param value the number value
      */
-    public void setNumberValue(Number value){
+    public void setNumberValue(N value) {
         setValue(value);
     }
-    
+
     /**
-     * Sets the value.
+     * Sets the value. 
      * Must be an instance of Number.
+     *
      * @param value the number value
      */
     @Override
     public void setValue(Object value) {
         // use Number to recognize if the value is out of range if the range is
         // (Integer.MIN_VALUE, Integer.MAX_VALUE)
-        if (value != null && ! (value instanceof Number)){
-            throw new IllegalArgumentException("value must be an instance of Number");
+        if (value != null && !numberType.isInstance(value)) {
+            throw new IllegalArgumentException("value must be an instance of number type");
         }
         //    if (value instanceof Integer){
         //      value = Number.valueOf(((Integer) value).intValue());
@@ -126,119 +136,127 @@ public abstract class AbstractNumberField extends JFormattedTextField {
         //    if (((Number) value).compareTo(getIntegerFormatter().getMinimum()) < 0){
         //      value = getIntegerFormatter().getMinimum();
         //    }
-        if (value != null){
-            value = getAbstractXNumberFormatter().valueToRange((Number) value);
+        if (value != null) {
+            value = getAbstractXNumberFormatter().valueToRange(numberType.cast(value));
         }
         super.setValue(value);
     }
-    
+
     //  public Object getValue(){
     //    if (super.getValue() != null){
     //    System.out.println(super.getValue().getClass());
     //    }
     //    return super.getValue() != null ? new Integer(((Number) super.getValue()).intValue()) : null;
     //  }
-    
     /**
      * Gets the minimum number value.
+     *
      * @return the minimum number value
      */
-    public Number getMinimumNumberValue(){
+    public N getMinimumNumberValue() {
         return getAbstractXNumberFormatter().getMinimumNumberValue();
     }
-    
+
     /**
-     * Sets the minimum number value.
-     * If the value is smaller than the minimum value, it is set to the minimum value
+     * Sets the minimum number value. 
+     * If the value is smaller than the minimum value, it is set to the minimum value 
      * instead.
+     *
      * @param minValue the minimum number value
      */
-    public void setMinimumNumberValue(Number minValue){
+    public void setMinimumNumberValue(N minValue) {
         getAbstractXNumberFormatter().setMinimumNumberValue(minValue);
         setValue(getValue());
     }
-    
+
     /**
      * Gets the maximum number value.
+     *
      * @return the maximum number value
      */
-    public Number getMaximumNumberValue(){
+    public N getMaximumNumberValue() {
         return getAbstractXNumberFormatter().getMaximumNumberValue();
     }
-    
+
     /**
-     * Sets the maximum number value.
-     * If the value is greater than the maximum value, it is set to the maximum value
+     * Sets the maximum number value. 
+     * If the value is greater than the maximum value, it is set to the maximum value 
      * instead.
+     *
      * @param maxValue the maximum number value
      */
-    public void setMaximumNumberValue(Number maxValue){
+    public void setMaximumNumberValue(N maxValue) {
         getAbstractXNumberFormatter().setMaximumNumberValue(maxValue);
         setValue(getValue());
     }
-    
+
     /**
-     * Sets the formatter.
-     * Must be an instance of AbstractXNumberFormatter.
-     * You should not normally invoke this. See the documentation of the base class for
+     * Sets the formatter. 
+     * Must be an instance of AbstractXNumberFormatter. 
+     * You should not normally invoke this. See the documentation of the base class for 
      * more information.
+     *
      * @param formatter the number formatter
      */
     @Override
     protected void setFormatter(AbstractFormatter formatter) {
-        if (! (formatter instanceof AbstractXNumberFormatter)){
-            throw new IllegalArgumentException("formatter must be an instance of AbstractXNumberFormatter!");
+        if (!getNumberFormatterFactory().getFormatterType().isInstance(formatter)) {
+            throw new IllegalArgumentException("formatter must be an instance of formatter type " +getNumberFormatterFactory().getFormatterType() +"!");
         }
         super.setFormatter(formatter);
     }
-    
+
     /**
      * Gets the number formatter.
+     *
      * @return the number formatter
      */
-    public AbstractXNumberFormatter getAbstractXNumberFormatter(){
-        return (AbstractXNumberFormatter) getFormatter();
+    public T getAbstractXNumberFormatter() {
+        return getNumberFormatterFactory().getFormatterType().cast(getFormatter());
     }
-    
+
     /**
      * Gets the number formatter factory.
+     *
      * @return the number formatter factory
      */
-    public AbstractXNumberFormatterFactory getAbstractXNumberFormatterFactory(){
-        return (AbstractXNumberFormatterFactory) getFormatterFactory();
+    public NumberFormatterFactory<N, T> getNumberFormatterFactory() {
+        return (NumberFormatterFactory<N, T>) getFormatterFactory();
     }
-    
+
     /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
+     * Sets the number formatter factory. 
+     * Calls the reinit method. 
+     * Ensures the value stays in the range defined by the minimum and maximum value of 
+     * the number formatter, which can be obtained by this formatter factory, by either 
+     * setting it to the maximum value if it is greater than the maximum value or to 
      * the minimum value if it is smaller than the minimum value.
+     *
      * @param factory the number formatter factory
      */
-    public void setAbstractXNumberFormatterFactory(AbstractXNumberFormatterFactory factory){
+    public void setNumberFormatterFactory(NumberFormatterFactory<N, T> factory) {
         setFormatterFactory(factory);
     }
-    
+
     /**
-     * Sets the formatter factory.
-     * Must be an instance of AbstractXNumberFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
+     * Sets the formatter factory. 
+     * Must be an instance of AbstractXNumberFormatterFactory. 
+     * Calls the reinit method. 
+     * Ensures the value stays in the range defined by the minimum and maximum value of 
+     * the number formatter, which can be obtained by this formatter factory, by either 
+     * setting it to the maximum value if it is greater than the maximum value or to 
      * the minimum value if it is smaller than the minimum value.
+     *
      * @param aff the number formatter factory
      */
     @Override
     public void setFormatterFactory(AbstractFormatterFactory aff) {
-        if (! (aff instanceof AbstractXNumberFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of AbstractXNumberFormatterFactory!");
+        if (!(aff instanceof NumberFormatterFactory)) {
+            throw new IllegalArgumentException("aff must be an instance of NumberFormatterFactory!");
         }
         super.setFormatterFactory(aff);
         reinit();
         setValue(getValue());
     }
-    
+
 }
