@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.7-SNAPSHOT</version>
+        <version>0.10-SNAPSHOT</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
 
@@ -71,11 +71,18 @@ Contributor(s): .
             </plugin>
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                    <!-- Deploy documentation files -->
-                    <skipDeploy>false</skipDeploy>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-site</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

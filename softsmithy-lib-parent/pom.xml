@@ -24,7 +24,7 @@ Contributor(s): .
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
-    <version>0.7-SNAPSHOT</version>
+    <version>0.10-SNAPSHOT</version>
     
     <name>SoftSmithy Utility Library - Parent POM</name>
     <!-- required for Javadoc (apidocs) linking -->
@@ -77,7 +77,7 @@ Contributor(s): .
         <!--<plugin.resources.version>3.0.1</plugin.resources.version>-->
 
         <!-- Dependency Versions Defaults -->
-        <dependency.junit.version>4.10</dependency.junit.version>
+        <dependency.junit.version>4.12</dependency.junit.version>
         <dependency.java-ee.version>7.0</dependency.java-ee.version>
         <!--<dependency.osgi.version>1.4.0</dependency.osgi.version>-->
         <dependency.slf4j.version>1.7.6</dependency.slf4j.version>

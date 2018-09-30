@@ -7,11 +7,24 @@
  * http://www.opensource.org/licenses/cddl1.txt
  *
  * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
- * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ * Original Code is Florian Brunner (GitHub user: puce77). All Rights Reserved.
  *
  * Contributor(s): .
  */
-/**
- * Utility classes and extensions for the {@link java.util} package.
- */
 package org.softsmithy.lib.util;
+
+import java.util.EventObject;
+
+/**
+ *
+ * @author puce
+ */
+public class CloseEvent extends EventObject {
+
+    private static final long serialVersionUID = 4350767329150470528L;
+
+    public CloseEvent(Object source) {
+        super(source);
+    }
+
+}
