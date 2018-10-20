@@ -27,7 +27,7 @@ Contributor(s): .
     <description>Samples for the SoftSmithy Utility Library.</description>
     <inceptionYear>2002</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>

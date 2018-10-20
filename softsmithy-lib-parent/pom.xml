@@ -28,7 +28,7 @@ Contributor(s): .
     
     <name>SoftSmithy Utility Library - Parent POM</name>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
     <description>The parent POM of the SoftSmithy Utility Library project. This SoftSmithy Utility Library Parent POM should be the parent (either directly or indirectly) of every SoftSmithy Utility Library project unless there is a good reason to do otherwise (in which case the reason should be documented).</description>
     <inceptionYear>2002</inceptionYear>
 
@@ -99,6 +99,7 @@ Contributor(s): .
                         <links>
                             <!-- javadoc link for javax.persistence -->
                             <link>http://docs.oracle.com/javaee/7/api/</link>
+                            <link>https://junit.org/junit4/javadoc/latest</link>
                         </links>
                     </configuration>
                 </plugin>
@@ -185,6 +186,7 @@ Contributor(s): .
                     <links>
                         <!-- javadoc link for javax.persistence -->
                         <link>http://docs.oracle.com/javaee/7/api/</link>
+                        <link>https://junit.org/junit4/javadoc/latest</link>
                     </links>
                 </configuration>
             </plugin>

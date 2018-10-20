@@ -28,7 +28,7 @@ Contributor(s): .
     <description>A Swing utility library.</description>
     <inceptionYear>2012</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>

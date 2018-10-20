@@ -30,7 +30,7 @@ Contributor(s): .
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/devlib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/devlib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
