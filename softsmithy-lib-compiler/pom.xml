@@ -15,7 +15,7 @@
     <description>A Java annotation compiler utility library.</description>
     <inceptionYear>2017</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
     
     <scm>
         <connection>${scm.connection}</connection>
