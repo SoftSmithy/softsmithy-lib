@@ -44,7 +44,7 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
     /**
      * Utility field used by bound properties.
      */
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Creates a new instance of ActivationManager

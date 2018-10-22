@@ -62,10 +62,12 @@ public abstract class JTreeCustomizerBar extends JPanel implements CustomizerBar
     }// </editor-fold>//GEN-END:initComponents
   
   
+  @Override
   public boolean hasSelection() {
     return ! tree.isSelectionEmpty();
   }
   
+  @Override
   public void clearSelection() {
     tree.clearSelection();
   }

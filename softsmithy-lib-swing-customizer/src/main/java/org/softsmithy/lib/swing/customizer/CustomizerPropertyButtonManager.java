@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * CustomizerActionFactory.java
  *
  * Created on 6. November 2002, 12:17
@@ -20,10 +20,10 @@
 package org.softsmithy.lib.swing.customizer;
 
 import java.awt.Font;
+import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import javax.swing.AbstractButton;
 import org.softsmithy.lib.beans.BeanIntrospector;
@@ -86,9 +86,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
     }
 
     private void setSelection(Set<AbstractButton> buttons, boolean selected) {
-        for (AbstractButton button : buttons) {
-            button.setSelected(selected);
-        }
+        buttons.forEach(button -> button.setSelected(selected));
     }
 
     @Override
@@ -101,18 +99,13 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
 
     private void removeListeners() {
         if (activeCustomizer != null) {
-            for (Iterator i = listeners.iterator(); i.hasNext();) {
-                CustomizerPropertyChangeListener cl = (CustomizerPropertyChangeListener) i.next();
-                activeCustomizer.removePropertyChangeListener(cl.getPropertyName(), cl);
-            }
+            listeners.forEach(listener -> activeCustomizer.removePropertyChangeListener(listener.getPropertyName(), listener));
         }
     }
 
     private void addListeners() {
         if (activeCustomizer != null) {
-            for (CustomizerPropertyChangeListener listener : listeners) {
-                activeCustomizer.addPropertyChangeListener(listener.getPropertyName(), listener);
-            }
+            listeners.forEach(listener -> activeCustomizer.addPropertyChangeListener(listener.getPropertyName(), listener));
         }
     }
 
@@ -133,12 +126,14 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
                             new Object[]{})).orient(activeCustomizer.getComponentOrientation());
                     if (ha.equals(HorizontalAlignment.LEFT)) {
                         setSelection(textAlignLeftButtons, true);
-                    } else if (ha.equals(HorizontalAlignment.CENTER)) {
-                        setSelection(textAlignCenterButtons, true);
                     } else {
-                        setSelection(textAlignRightButtons, true);
+                        if (ha.equals(HorizontalAlignment.CENTER)) {
+                            setSelection(textAlignCenterButtons, true);
+                        } else {
+                            setSelection(textAlignRightButtons, true);
+                        }
                     }
-                } catch (Exception ex1) {
+                } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex1) {
                     ex1.printStackTrace();
                     setDefaultHorizontalAlignmentSelection();
                 }
@@ -291,7 +286,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
         /**
          * Holds value of property property.
          */
-        private String propertyName;
+        private final String propertyName;
 
         public CustomizerPropertyChangeListener(Object target, String methodName, String propertyName) throws NoSuchMethodException {
             super(target, methodName);

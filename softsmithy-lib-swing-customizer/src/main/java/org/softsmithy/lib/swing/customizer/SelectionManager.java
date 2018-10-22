@@ -24,8 +24,10 @@ package org.softsmithy.lib.swing.customizer;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -49,7 +51,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
     private final List<JCustomizer> selectedList = new ArrayList<>();
     private final Set<JCustomizer> selectedSet = new LinkedHashSet<>();
     private JCustomizer activeCustomizer = null;
-    private Set<CustomizerSelectionListener> listeners = new HashSet<>();
+    private final Set<CustomizerSelectionListener> listeners = new HashSet<>();
     /**
      * Holds value of property fireingSelectionChanged.
      */
@@ -275,11 +277,10 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         resetFactors();
         if (getActiveCustomizer() != null) {
             getActiveCustomizer().addCustomizerListener(this);
-            for (Iterator<String> i = this.commonCustomizableProperties.iterator(); i.hasNext();) {
-                String property = i.next();
+            this.commonCustomizableProperties.forEach(property -> {
                 //System.out.println("Property Change Listener added for: " + property);
                 getActiveCustomizer().addPropertyChangeListener(property, this);
-            }
+            });
         }
     }
 
@@ -297,7 +298,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
             try {
                 BeanIntrospector.setPropertyValue(evt.getPropertyName(), evt.getNewValue(), customizer, null);
                 customizer.repaint();
-            } catch (Exception ex) {
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
                 ex.printStackTrace();
             }
         }
