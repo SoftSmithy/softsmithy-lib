@@ -40,7 +40,7 @@ import org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException;
  */
 public final class BeanIntrospector {
   
-  private static final Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> properties = new HashMap<>();
+  private static final Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> PROPERTIES = new HashMap<>();
 //  private static final Map eventSets = new HashMap();
 //  private static final Map methods = new HashMap();
   private static final Object[] EMPTY_OBJECT_ARRAY = new Object[]{};
@@ -50,7 +50,7 @@ public final class BeanIntrospector {
   }
  
   public static PropertyDescriptor getPropertyDescriptor(String propertyName, Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
-    PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, propertyName, beanClass, rb);
+    PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(PROPERTIES, propertyName, beanClass, rb);
     if (descriptor == null){
       descriptor = new PropertyDescriptor(propertyName, beanClass);
       setPropertyDescriptor(descriptor, beanClass, rb);
@@ -61,7 +61,7 @@ public final class BeanIntrospector {
   public static PropertyDescriptor[] getPropertyDescriptors(Class<?> beanClass, ResourceBundle rb) throws IntrospectionException{
     PropertyDescriptor[] descriptors = Introspector.getBeanInfo(beanClass).getPropertyDescriptors();
     for (int i=0; i<descriptors.length; i++){
-      PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(properties, descriptors[i].getName(), beanClass, rb);
+      PropertyDescriptor descriptor = (PropertyDescriptor) getDescriptor(PROPERTIES, descriptors[i].getName(), beanClass, rb);
       if (descriptor == null){
         setPropertyDescriptor(descriptors[i], beanClass, rb);
       } else {
@@ -240,11 +240,11 @@ public final class BeanIntrospector {
   
   private static void putDescriptor(Map<Class<?>, Map<String, Map<ResourceBundle, FeatureDescriptor>>> descriptors, FeatureDescriptor descriptor, Class<?> beanClass, ResourceBundle rb) {
     if (! descriptors.containsKey(beanClass)){
-      descriptors.put(beanClass, new HashMap<String, Map<ResourceBundle, FeatureDescriptor>>());
+      descriptors.put(beanClass, new HashMap<>());
     }
     Map<String, Map<ResourceBundle, FeatureDescriptor>> featureNameMap = descriptors.get(beanClass);
     if (! featureNameMap.containsKey(descriptor.getName())){
-      featureNameMap.put(descriptor.getName(), new HashMap<ResourceBundle, FeatureDescriptor>());
+      featureNameMap.put(descriptor.getName(), new HashMap<>());
     }
     Map<ResourceBundle, FeatureDescriptor> rbMap = featureNameMap.get(descriptor.getName());
     rbMap.put(rb, descriptor);
@@ -263,17 +263,17 @@ public final class BeanIntrospector {
         // ignore it
       }
       try{
-        descriptor.setExpert(Boolean.valueOf(rb.getString(descriptor.getName()+".expert")).booleanValue());
+        descriptor.setExpert(Boolean.valueOf(rb.getString(descriptor.getName()+".expert")));
       } catch(MissingResourceException ex){
         // ignore it
       }
       try{
-        descriptor.setHidden(Boolean.valueOf(rb.getString(descriptor.getName()+".hidden")).booleanValue());
+        descriptor.setHidden(Boolean.valueOf(rb.getString(descriptor.getName()+".hidden")));
       } catch(MissingResourceException ex){
         // ignore it
       }
       try{
-        descriptor.setPreferred(Boolean.valueOf(rb.getString(descriptor.getName()+".preferred")).booleanValue());
+        descriptor.setPreferred(Boolean.valueOf(rb.getString(descriptor.getName()+".preferred")));
       } catch(MissingResourceException ex){
         // ignore it
       }
@@ -282,19 +282,19 @@ public final class BeanIntrospector {
   
   private static void setPropertyDescriptor(PropertyDescriptor descriptor, Class<?> beanClass, ResourceBundle rb){
     localizePropertyDescriptor(descriptor, rb);
-    putDescriptor(properties, descriptor, beanClass, rb);
+    putDescriptor(PROPERTIES, descriptor, beanClass, rb);
   }
   
   private static void localizePropertyDescriptor(PropertyDescriptor descriptor, ResourceBundle rb){
     if (rb != null){
       localizeDescriptor(descriptor, rb);
       try{
-        descriptor.setBound(Boolean.valueOf(rb.getString(descriptor.getName()+".bound")).booleanValue());
+        descriptor.setBound(Boolean.valueOf(rb.getString(descriptor.getName()+".bound")));
       } catch(MissingResourceException ex){
         // ignore it
       }
       try{
-        descriptor.setConstrained(Boolean.valueOf(rb.getString(descriptor.getName()+".constrained")).booleanValue());
+        descriptor.setConstrained(Boolean.valueOf(rb.getString(descriptor.getName()+".constrained")));
       } catch(MissingResourceException ex){
         // ignore it
       }
