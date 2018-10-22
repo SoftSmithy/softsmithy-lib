@@ -27,7 +27,7 @@ public class ActionListenerWrapper implements ActionListener{
     /**
      * The wrapped ActionListener.
      */
-    private ActionListener actionListener;
+    private final ActionListener actionListener;
     
     /**
      * Creates a new instance of this class.
@@ -41,6 +41,7 @@ public class ActionListenerWrapper implements ActionListener{
      * Delegates this method to the wrapped ActionListener.
      * @param actionEvent an ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent actionEvent){
         actionListener.actionPerformed(actionEvent);
     }

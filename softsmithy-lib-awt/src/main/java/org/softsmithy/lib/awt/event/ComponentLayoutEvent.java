@@ -28,6 +28,8 @@ import java.util.*;
  * @author puce
  */
 public class ComponentLayoutEvent extends EventObject {
+
+    private static final long serialVersionUID = -100771375072319767L;
     
     /**
      * The new bounds of the component.
@@ -37,7 +39,7 @@ public class ComponentLayoutEvent extends EventObject {
     /**
      * The component which has been layed out.
      */
-    private Component component;
+    private final Component component;
     
     /**
      * Creates a new instance of this class.
