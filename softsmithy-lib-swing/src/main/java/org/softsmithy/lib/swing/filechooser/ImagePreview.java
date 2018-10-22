@@ -73,6 +73,7 @@ public class ImagePreview extends JComponent
    *
    * @param e  a PropertyChangeEvent object
    */
+  @Override
   public void propertyChange(PropertyChangeEvent e) {
     String prop = e.getPropertyName();
     if (prop.equals(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY)) {

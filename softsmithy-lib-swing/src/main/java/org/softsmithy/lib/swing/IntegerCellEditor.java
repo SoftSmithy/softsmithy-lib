@@ -53,11 +53,11 @@ public class IntegerCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getIntegerField().setIntValue(((Integer) value).intValue());
+        getIntegerField().setIntValue(((Integer) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Integer(getIntegerField().getIntValue());
+        return getIntegerField().getIntValue();
     }
 }

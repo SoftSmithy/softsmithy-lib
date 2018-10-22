@@ -14,30 +14,31 @@ import org.softsmithy.lib.swing.action.*;
 /**
  * JListBox provides a scrollable list with two buttons to change the order of
  * the elements.
+ * @param <E> the type of the elements of the list
  * @author  puce
  */
-public class JListBox extends JPanel {
+public class JListBox<E> extends JPanel {
   
   private XAction upAction = new DefaultXAction();
   private XAction downAction = new DefaultXAction();
-  private final JList list;
-  private final DefaultListModel listModel = new DefaultListModel();
+  private final JList<E> list;
+  private final DefaultListModel<E> listModel = new DefaultListModel<>();
   private final ListSelectionListener lsl = new ListEndSelectionListener();
   
   /** Creates a new instance of this class. */
   public JListBox() {
-    this(Collections.EMPTY_LIST);
+    this(Collections.emptyList());
   }
   
   /**
    * Creates a new instance of this class.
    * @param collection 
    */
-  public JListBox(Collection collection){
-    for (Iterator i=collection.iterator(); i.hasNext();){
+  public JListBox(Collection<? extends E> collection){
+    for (Iterator<? extends E> i=collection.iterator(); i.hasNext();){
       listModel.addElement(i.next());
     }
-    this.list = new JList(listModel);
+    this.list = new JList<>(listModel);
     list.addListSelectionListener(lsl);
     initComponents();
     try{
@@ -62,7 +63,7 @@ public class JListBox extends JPanel {
       int[] oldIndices = list.getSelectedIndices();
       int[] newIndices = new int[oldIndices.length];
       for (int i=0; i<oldIndices.length; i++){        
-        Object obj = listModel.remove(oldIndices[i]);
+        E obj = listModel.remove(oldIndices[i]);
         newIndices[i] = oldIndices[i] - 1;
         listModel.add(newIndices[i], obj);
       }
@@ -81,7 +82,7 @@ public class JListBox extends JPanel {
       int[] newIndices = new int[oldIndices.length];
       for (int i=oldIndices.length-1; i>=0; i--){
         newIndices[i] = oldIndices[i] + 1;
-        Object obj = listModel.remove(oldIndices[i]);
+        E obj = listModel.remove(oldIndices[i]);
         listModel.add(newIndices[i], obj);
       }
       list.setSelectedIndices(newIndices);
@@ -94,7 +95,7 @@ public class JListBox extends JPanel {
    * Gets the list model of this component.
    * @return the list model of this component
    */
-  public ListModel getListModel(){
+  public ListModel<E> getListModel(){
     return list.getModel();
   }
   
@@ -155,24 +156,24 @@ public class JListBox extends JPanel {
   
   private class ListEndSelectionListener implements ListSelectionListener{
     
+    @Override
     public void valueChanged(ListSelectionEvent e) {
       if (! e.getValueIsAdjusting()){
-        JList list = (JList)e.getSource();
+        JList<?> list = (JList<?>)e.getSource();
         upAction.setEnabled(selectedButNotFirst(list));
         downAction.setEnabled(selectedButNotLast(list));
       }
       
     }
     
-    private boolean selectedButNotFirst(JList list){
+    private boolean selectedButNotFirst(JList<?> list){
       return list.getMinSelectionIndex() > 0; // not -1 and not 0
     }
     
-    private boolean selectedButNotLast(JList list){
+    private boolean selectedButNotLast(JList<?> list){
       return (! list.isSelectionEmpty()) && list.getMaxSelectionIndex() < listModel.getSize() - 1;
       
     }
-    
     
   }
 }
