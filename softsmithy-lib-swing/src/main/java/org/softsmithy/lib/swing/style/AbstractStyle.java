@@ -30,13 +30,16 @@ public abstract class AbstractStyle implements Style {
   public AbstractStyle() {
   }
   
+  @Override
   public boolean isNull() {
     return false;
   }
   
+  @Override
   public void startListening() {
   }
   
+  @Override
   public void stopListening() {
   }
 }

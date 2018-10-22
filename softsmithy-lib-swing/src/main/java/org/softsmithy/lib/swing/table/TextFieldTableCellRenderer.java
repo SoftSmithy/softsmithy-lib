@@ -18,7 +18,7 @@ import org.softsmithy.lib.swing.*;
 
 public class TextFieldTableCellRenderer extends PanelTableCellRenderer {
 
-    private JXTextField textfield = new JXTextField("");
+    private final JXTextField textfield = new JXTextField("");
 
     public TextFieldTableCellRenderer() {
         textfield.setEditable(false);

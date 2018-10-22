@@ -59,7 +59,7 @@ public class PropertyTableModel extends AbstractTableModel implements
                 }
             }
         }
-        init(new ArrayList<String>(propertyMap.values()), bean);
+        init(new ArrayList<>(propertyMap.values()), bean);
     }
 
     public PropertyTableModel(List<String> readableProperties, Object bean,
@@ -77,17 +77,14 @@ public class PropertyTableModel extends AbstractTableModel implements
         this.propertyNames = Collections.unmodifiableList(readableProperties);
         this.bean = bean;
         if (bean != null) {
-            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(bean.
-                    getClass())) {
+            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(bean.getClass())) {
                 try {
                     for (Iterator i = readableProperties.iterator(); i.hasNext();) {
                         BeanIntrospector.addPropertyChangeListener(bean, (String) i.
                                 next(), beanPropertyListener);
                     }
-                } catch (NoSuchMethodException ex1) { // should not happen here
+                } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
                     ex1.printStackTrace();
-                } catch (IllegalAccessException ex2) { // should not happen here
-                    ex2.printStackTrace();
                 }
             } else {
                 if (BeanIntrospector.supportsPropertyChangeListeners(bean.
@@ -154,8 +151,7 @@ public class PropertyTableModel extends AbstractTableModel implements
                     value = getPropertyDescriptor(rowIndex).getDisplayName();
                     break;
                 case 1:
-                    value = BeanIntrospector.getPropertyValue(getPropertyName(
-                            rowIndex), bean, propertiesRB);
+                    value = BeanIntrospector.getPropertyValue(getPropertyName(rowIndex), bean, propertiesRB);
                     break;
             }
         } catch (Exception e) {
@@ -339,10 +335,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                         BeanIntrospector.removePropertyChangeListener(getBean(), (String) i.
                                 next(), beanPropertyListener);
                     }
-                } catch (NoSuchMethodException ex1) { // should not happen here
+                } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
                     ex1.printStackTrace();
-                } catch (IllegalAccessException ex2) { // should not happen here
-                    ex2.printStackTrace();
                 }
             } else {
                 if (BeanIntrospector.supportsPropertyChangeListeners(getBean().
@@ -350,10 +344,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                     try {
                         BeanIntrospector.removePropertyChangeListener(getBean(),
                                 beanPropertyListener);
-                    } catch (NoSuchMethodException ex1) { // should not happen here
+                    } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
                         ex1.printStackTrace();
-                    } catch (IllegalAccessException ex2) { // should not happen here
-                        ex2.printStackTrace();
                     }
                 }
             }
