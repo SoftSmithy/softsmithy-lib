@@ -23,9 +23,8 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.beans.*;
 import java.util.*;
-import javax.swing.*;
-import org.softsmithy.lib.swing.multisplit.*;
 import org.softsmithy.lib.swing.event.*;
+import org.softsmithy.lib.swing.multisplit.*;
 
 /**
  *
@@ -33,9 +32,9 @@ import org.softsmithy.lib.swing.event.*;
  */
 public class JMultiSplitPane extends JStyledPanel {
 
-    private final List<JXSplitPane> splitPanes = new ArrayList<JXSplitPane>();
-    private final Map<JXSplitPane, FireLocationChangedListener> fireLocationChangedListeners = new HashMap<JXSplitPane, FireLocationChangedListener>();
-    private final List<DividerLocationListener> dividerLocationListeners = new ArrayList<DividerLocationListener>();
+    private final List<JXSplitPane> splitPanes = new ArrayList<>();
+    private final Map<JXSplitPane, FireLocationChangedListener> fireLocationChangedListeners = new HashMap<>();
+    private final List<DividerLocationListener> dividerLocationListeners = new ArrayList<>();
     /** Holds value of property orientation. */
     private SplitOrientation splitOrientation;
 
@@ -238,7 +237,7 @@ public class JMultiSplitPane extends JStyledPanel {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
-            fireLocationChanged(new DividerLocationEvent(JMultiSplitPane.this, getIndex(), ((Integer) evt.getNewValue()).intValue()));
+            fireLocationChanged(new DividerLocationEvent(JMultiSplitPane.this, getIndex(), ((Integer) evt.getNewValue())));
         }
 
         /** Setter for property index.

@@ -53,11 +53,11 @@ public class LocalizedDoubleCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getLocalizedDoubleField().setDoubleValue(((Double) value).doubleValue());
+        getLocalizedDoubleField().setDoubleValue(((Double) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Double(getLocalizedDoubleField().getDoubleValue());
+        return getLocalizedDoubleField().getDoubleValue();
     }
 }
