@@ -20,6 +20,8 @@ package org.softsmithy.lib.util;
  */
 public class ResourceFileNotFoundException extends RuntimeException {
 
+    private static final long serialVersionUID = -7205771392436334018L;
+
     private final String absoluteResourcePath;
 
     public ResourceFileNotFoundException(String absoluteResourcePath) {

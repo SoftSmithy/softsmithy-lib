@@ -57,7 +57,7 @@ public class Streams {
      * @return the lines read from the reader
      */
     public static String[] readLines(Reader reader) throws IOException {
-        List<String> lines = new ArrayList<String>();
+        List<String> lines = new ArrayList<>();
         String line;
         BufferedReader breader = new BufferedReader(reader);
         while ((line = breader.readLine()) != null) {

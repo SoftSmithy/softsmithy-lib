@@ -28,46 +28,37 @@ public class Matchers {
     private Matchers() {
     }
 
-    public static <T> List<MatchableObject<T>> wrap(List<T> list,
-            Matcher<T> matcher) throws MatchingException {
-        List<MatchableObject<T>> matchableObjects =
-                new ArrayList<MatchableObject<T>>();
+    public static <T> List<MatchableObject<T>> wrap(List<T> list, Matcher<T> matcher) throws MatchingException {
+        List<MatchableObject<T>> matchableObjects = new ArrayList<>();
         wrap(list, matchableObjects, matcher);
         return matchableObjects;
     }
 
     public static <T> List<T> unwrap(List<MatchableObject<T>> list) {
-        List<T> objects = new ArrayList<T>();
+        List<T> objects = new ArrayList<>();
         unwrap(list, objects);
         return objects;
     }
 
-    public static <T> Set<MatchableObject<T>> wrap(Set<T> list,
-            Matcher<T> matcher) throws MatchingException {
-        Set<MatchableObject<T>> matchableObjects =
-                new LinkedHashSet<MatchableObject<T>>();
+    public static <T> Set<MatchableObject<T>> wrap(Set<T> list, Matcher<T> matcher) throws MatchingException {
+        Set<MatchableObject<T>> matchableObjects = new LinkedHashSet<>();
         wrap(list, matchableObjects, matcher);
         return matchableObjects;
     }
 
     public static <T> Set<T> unwrap(Set<MatchableObject<T>> list) {
-        Set<T> objects = new LinkedHashSet<T>();
+        Set<T> objects = new LinkedHashSet<>();
         unwrap(list, objects);
         return objects;
     }
 
-    public static <T> void wrap(Collection<T> inputCollection,
-            Collection<MatchableObject<T>> outputCollection,
-            Matcher<T> matcher) throws MatchingException {
+    public static <T> void wrap(Collection<T> inputCollection, Collection<MatchableObject<T>> outputCollection, Matcher<T> matcher) throws MatchingException {
         for (T t : inputCollection) {
-            outputCollection.add(new MatchableObject<T>(t, matcher));
+            outputCollection.add(new MatchableObject<>(t, matcher));
         }
     }
 
-    public static <T> void unwrap(Collection<MatchableObject<T>> inputCollection,
-            Collection<T> outputCollection) {
-        for (MatchableObject<T> matchableObject : inputCollection) {
-            outputCollection.add(matchableObject.getObject());
-        }
+    public static <T> void unwrap(Collection<MatchableObject<T>> inputCollection, Collection<T> outputCollection) {
+        inputCollection.forEach(matchableObject -> outputCollection.add(matchableObject.getObject()));
     }
 }

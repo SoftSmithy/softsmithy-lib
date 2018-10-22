@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * A utility class for {@link Localizable}s.
@@ -74,11 +75,9 @@ public class Localizables {
     }
 
     private static <T> List<String> getDisplayStrings(Localizer<? super T> localizer, Locale inLocale, List<T> objects) {
-        List<String> displayStrings = new ArrayList<>(objects.size());
-        for (T object : objects) {
-            displayStrings.add(localizer.getDisplayString(object, inLocale));
-        }
-        return displayStrings;
+        return objects.stream()
+                .map(object -> localizer.getDisplayString(object, inLocale))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -245,11 +244,9 @@ public class Localizables {
 
     private static <T> List<GenericCollationKey<T>> getLocalizableCollationKeys(Collection<T> collection, Localizer<? super T> localizer,
             LocalizedCollator collator) {
-        List<GenericCollationKey<T>> keys = new ArrayList<>(collection.size());
-        for (T element : collection) {
-            keys.add(collator.getCollationKey(element, localizer));
-        }
-        return keys;
+        return collection.stream()
+                .map(element -> collator.getCollationKey(element, localizer))
+                .collect(Collectors.toList());
     }
 
     private static class LocalizableLocalizer implements Localizer<Localizable> {

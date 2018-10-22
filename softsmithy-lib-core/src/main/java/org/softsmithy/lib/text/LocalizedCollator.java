@@ -70,7 +70,7 @@ public class LocalizedCollator {
 
     /**
      * Gets the collation key for the given source using the specified {@link Localizer}.
-     * @see #getCollationKey(org.softsmithy.lib.text.Localizable)
+     * @see #getCollationKey(org.softsmithy.lib.text.Localizable) 
      * @param <T> the type of the source
      * @param source the source
      * @param localizer the localizer

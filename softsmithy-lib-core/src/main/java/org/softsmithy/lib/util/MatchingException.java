@@ -20,6 +20,8 @@ package org.softsmithy.lib.util;
  */
 public class MatchingException extends Exception {
 
+    private static final long serialVersionUID = -2702104688949697826L;
+
     public MatchingException(Throwable cause) {
         super(cause);
     }

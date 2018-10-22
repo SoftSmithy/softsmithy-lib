@@ -63,7 +63,7 @@ import org.softsmithy.lib.text.Localizable;
 @Deprecated
 public class TypesafeEnum implements Localizable {
 
-    private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();
+    private static final Map<String, ResourceBundleCache> CACHES = new HashMap<>();
     private final String fName;
     private boolean initialized = false;
 
@@ -93,11 +93,11 @@ public class TypesafeEnum implements Localizable {
         ResourceBundle rb = null;
         String baseName = getResourceBundleBaseName();
         if (baseName != null) {
-            if (!caches.containsKey(baseName)) {
+            if (!CACHES.containsKey(baseName)) {
                 ResourceBundleCache cache = new ResourceBundleCache(baseName);
-                caches.put(baseName, cache);
+                CACHES.put(baseName, cache);
             }
-            rb = caches.get(baseName).getBundle(locale);
+            rb = CACHES.get(baseName).getBundle(locale);
         }
         return rb;
     }
