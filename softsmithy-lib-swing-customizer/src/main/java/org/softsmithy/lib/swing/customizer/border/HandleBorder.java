@@ -206,17 +206,17 @@ public class HandleBorder extends AbstractBorder {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(fLineColor);
 
-        for (int i = 0; i < fHandles.length; i++) {
-            fHandles[i].paint(c, g2, w, h);
+        for (Handle fHandle : fHandles) {
+            fHandle.paint(c, g2, w, h);
         }
         /* g.fill(upperLeft); // upper left
-         g.fillRect(w-thick,0,thick,thick); // upper right
-         g.fillRect(0,h-thick,thick,thick); // lower left
-         g.fillRect(w-thick,h-thick,thick,thick); // lower right
-         g.fillRect(w/2-thick/2,0,thick,thick); // mid top
-         g.fillRect(0,h/2-thick/2,thick,thick); // mid left
-         g.fillRect(w/2-thick/2,h-thick,thick,thick); // mid bottom
-         g.fillRect(w-thick,h/2-thick/2,thick,thick); // mid right*/
+        g.fillRect(w-thick,0,thick,thick); // upper right
+        g.fillRect(0,h-thick,thick,thick); // lower left
+        g.fillRect(w-thick,h-thick,thick,thick); // lower right
+        g.fillRect(w/2-thick/2,0,thick,thick); // mid top
+        g.fillRect(0,h/2-thick/2,thick,thick); // mid left
+        g.fillRect(w/2-thick/2,h-thick,thick,thick); // mid bottom
+        g.fillRect(w-thick,h/2-thick/2,thick,thick); // mid right*/
     }
 
     public Handle getNHandle() {
@@ -253,9 +253,9 @@ public class HandleBorder extends AbstractBorder {
 
     public Handle getHandleAt(Point p) {
         Handle handle = null;
-        for (int i = 0; i < fHandles.length; i++) {
-            if (fHandles[i].contains(p)) {
-                handle = fHandles[i];
+        for (Handle fHandle : fHandles) {
+            if (fHandle.contains(p)) {
+                handle = fHandle;
                 break;
             }
         }

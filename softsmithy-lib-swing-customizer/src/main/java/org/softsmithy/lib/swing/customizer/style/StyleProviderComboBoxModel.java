@@ -29,11 +29,11 @@ import org.softsmithy.lib.swing.style.StyleProvider;
  *
  * @author  puce
  */
-public class StyleProviderComboBoxModel extends DefaultComboBoxModel {
+public class StyleProviderComboBoxModel extends DefaultComboBoxModel<StyleProvider> {
   
   /** Creates a new instance of StyleProviderComboBoxModel */
   public StyleProviderComboBoxModel() {
-    super(new Vector<StyleProvider>(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
+    super(new Vector<>(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
   }
 
   

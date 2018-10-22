@@ -181,8 +181,8 @@ public abstract class AbstractTableLayout implements TableLayout {
     public void layoutContainer(Container parent) {
         ensureValidity(parent);
         Component[] components = getComponents(parent);
-        for (int i = 0; i < components.length; i++) {
-            layoutComponent(parent, components[i]);
+        for (Component component : components) {
+            layoutComponent(parent, component);
         }
     }
 
