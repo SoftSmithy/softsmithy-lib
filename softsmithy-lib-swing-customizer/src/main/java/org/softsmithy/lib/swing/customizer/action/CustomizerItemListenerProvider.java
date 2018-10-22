@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * CustomizerActionFactory.java
  *
  * Created on 6. November 2002, 12:17
@@ -33,7 +33,7 @@ import org.softsmithy.lib.swing.customizer.SelectionManager;
 public class CustomizerItemListenerProvider {
 
 //    private final static Class<?>[] PARAMETER_TYPES = new Class<?>[]{ItemEvent.class};
-    private SelectionManager selectionManager;
+    private final SelectionManager selectionManager;
     private ItemListener textBold = null;
     private ItemListener textItalic = null;
 
@@ -112,18 +112,18 @@ public class CustomizerItemListenerProvider {
             if (selectionManager.getActiveCustomizer() != null) {
                 Font font = selectionManager.getActiveCustomizer().getFont();
                 int style = font.getStyle();
-                property = new Integer(style);
+                property = style;
             }
             return property;
         }
 
         @Override
         protected void setProperty(Object value) {
-            int style = ((Integer) value).intValue();
+            int style = ((Integer) value);
             JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-            for (int i = 0; i < customizers.length; i++) {
-                Font font = customizers[i].getFont();
-                customizers[i].setFont(font.deriveFont(style));
+            for (JCustomizer customizer : customizers) {
+                Font font = customizer.getFont();
+                customizer.setFont(font.deriveFont(style));
             }
         }
 
@@ -134,7 +134,7 @@ public class CustomizerItemListenerProvider {
                 Font font = selectionManager.getActiveCustomizer().getFont();
                 style = calculateFontStyle(e, font);
             }
-            return new Integer(style);
+            return style;
         }
 
         protected abstract int calculateFontStyle(ItemEvent e, Font font);
@@ -145,7 +145,7 @@ public class CustomizerItemListenerProvider {
         /**
          * Holds value of property property.
          */
-        private String propertyName;
+        private final String propertyName;
 
         public CustomizerItemListener(String propertyName) {
             this.propertyName = propertyName;
@@ -162,8 +162,7 @@ public class CustomizerItemListenerProvider {
         }
 
         /**
-         * Invoked when an item has been selected or deselected by the user. Springs to the method specified in the
-         * constructor.
+         * Invoked when an item has been selected or deselected by the user. Springs to the method specified in the constructor.
          *
          * @param e an ActionEvent object
          *
