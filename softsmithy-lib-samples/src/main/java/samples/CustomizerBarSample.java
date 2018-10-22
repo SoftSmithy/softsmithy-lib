@@ -29,7 +29,7 @@ import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 
 public class CustomizerBarSample extends javax.swing.JFrame {
-    
+
     /** Creates new form SimpleSingleCustomizerSample */
     public CustomizerBarSample() {
         initComponents();
@@ -44,8 +44,8 @@ public class CustomizerBarSample extends javax.swing.JFrame {
         JTabbedCustomizerBar tabbedCB = new JTabbedCustomizerBar();
         
         // Create a non-editable TableModel
-        TableModel fixedLabelModel = new AbstractTableModel() {
-            private String[] labels = new String[]{"first fixed label", 
+        TableModel fixedLabelModel = new AbstractTableModel() {            
+            private final String[] labels = new String[]{"first fixed label", 
             "second fixed label", "third fixed label"};
             @Override
             public int getColumnCount() {
@@ -146,11 +146,8 @@ public class CustomizerBarSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CustomizerBarSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CustomizerBarSample().setVisible(true);
         });
     }
     

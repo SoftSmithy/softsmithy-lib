@@ -93,12 +93,8 @@ public class RowNumberHeaderSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new RowNumberHeaderSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RowNumberHeaderSample().setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
