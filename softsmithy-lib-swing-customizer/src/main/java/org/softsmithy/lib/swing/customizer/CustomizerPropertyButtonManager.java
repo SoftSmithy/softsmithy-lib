@@ -126,12 +126,10 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
                             new Object[]{})).orient(activeCustomizer.getComponentOrientation());
                     if (ha.equals(HorizontalAlignment.LEFT)) {
                         setSelection(textAlignLeftButtons, true);
+                    } else if (ha.equals(HorizontalAlignment.CENTER)) {
+                        setSelection(textAlignCenterButtons, true);
                     } else {
-                        if (ha.equals(HorizontalAlignment.CENTER)) {
-                            setSelection(textAlignCenterButtons, true);
-                        } else {
-                            setSelection(textAlignRightButtons, true);
-                        }
+                        setSelection(textAlignRightButtons, true);
                     }
                 } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex1) {
                     ex1.printStackTrace();

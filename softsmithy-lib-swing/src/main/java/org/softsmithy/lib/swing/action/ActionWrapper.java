@@ -27,7 +27,7 @@ public class ActionWrapper extends ActionListenerWrapper implements Action {
     }
 
     @Override
-    public Object getValue(java.lang.String string) {
+    public Object getValue(String string) {
         return action.getValue(string);
     }
 
@@ -42,7 +42,7 @@ public class ActionWrapper extends ActionListenerWrapper implements Action {
     }
 
     @Override
-    public void putValue(java.lang.String string, java.lang.Object object) {
+    public void putValue(String string, Object object) {
         action.putValue(string, object);
     }
 

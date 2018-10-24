@@ -25,7 +25,7 @@ public class XActionWrapper extends ActionWrapper implements XAction {
     }
 
     @Override
-    public java.lang.String getName() {
+    public String getName() {
         return XAction.getName();
     }
 
