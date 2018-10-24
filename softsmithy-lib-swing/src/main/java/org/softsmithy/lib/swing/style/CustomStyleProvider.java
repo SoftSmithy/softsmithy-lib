@@ -28,7 +28,7 @@ import java.util.*;
  */
 public class CustomStyleProvider implements StyleProvider {
   
-  private CustomStyle style;
+  private final CustomStyle style;
   
   /** Creates a new instance of CustomStyleProvider */
   public CustomStyleProvider(CustomStyle style) {
@@ -76,6 +76,7 @@ public class CustomStyleProvider implements StyleProvider {
     return getStyle().getName();
   }
   
+  @Override
   public String toString(Locale locale) {
     return getStyle().getName(locale);
   }

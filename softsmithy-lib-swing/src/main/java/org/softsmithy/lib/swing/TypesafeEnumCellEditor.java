@@ -21,6 +21,7 @@ import javax.swing.*;
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumCellEditor extends DefaultCellEditor {
 
     /** Holds value of property locale. */

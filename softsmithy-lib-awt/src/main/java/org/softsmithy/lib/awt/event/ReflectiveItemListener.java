@@ -90,6 +90,7 @@ public class ReflectiveItemListener implements ItemListener {
      * Springs to the method specified in the constructor.
      * @param e an ItemEvent object
      */
+    @Override
     public void itemStateChanged(ItemEvent e) {
         try {
             fMethod.invoke(fTarget, new Object[]{e});

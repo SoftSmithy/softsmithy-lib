@@ -90,21 +90,21 @@ class TableLayoutConstraints implements TableLayoutConstants {
     try {
       // Get the first column (assume component is in only one column)
       token = st.nextToken();
-      col1 = new Integer(token).intValue();
+      col1 = Integer.parseInt(token);
       col2 = col1;
       
       // Get the first row (assume component is in only one row)
       token = st.nextToken();
-      row1 = new Integer(token).intValue();
+      row1 = Integer.parseInt(token);
       row2 = row1;
       
       // Get the second column
       token = st.nextToken();
-      col2 = new Integer(token).intValue();
+      col2 = Integer.parseInt(token);
       
       // Get the second row
       token = st.nextToken();
-      row2 = new Integer(token).intValue();
+      row2 = Integer.parseInt(token);
     }
     catch (NoSuchElementException error) {}
     catch (NumberFormatException error) {
@@ -187,7 +187,7 @@ class TableLayoutConstraints implements TableLayoutConstants {
   
   @Override
   public String toString() {
-    StringBuffer buffer = new StringBuffer();
+    StringBuilder buffer = new StringBuilder();
     
     buffer.append(row1);
     buffer.append(", ");

@@ -30,6 +30,7 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
   
   /** Holds value of property locale. */

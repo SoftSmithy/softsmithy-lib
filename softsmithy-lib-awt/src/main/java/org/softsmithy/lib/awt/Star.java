@@ -94,6 +94,7 @@ public class Star implements Shape {
      * @return a Rectangle that defines the bounds of this Star.
      * @see #getBounds2D()
      */
+    @Override
     public Rectangle getBounds() {
         return fPolygon.getBounds();
     }
@@ -104,6 +105,7 @@ public class Star implements Shape {
      * @return   a Rectangle2D that precisely bounds the Shape.
      * @see      #getBounds()
      */
+    @Override
     public Rectangle2D getBounds2D() {
         return fPolygon.getBounds2D();
     }
@@ -119,6 +121,7 @@ public class Star implements Shape {
      *      otherwise.
      */
     
+    @Override
     public boolean contains(double x, double y) {
         return fPolygon.contains(x, y);
     }
@@ -132,6 +135,7 @@ public class Star implements Shape {
      * @see      #contains(double x, double y)
      */
     
+    @Override
     public boolean contains(Point2D p) {
         return fPolygon.contains(p);
     }
@@ -151,6 +155,7 @@ public class Star implements Shape {
      * @see      java.awt.geom.Area
      */
     
+    @Override
     public boolean intersects(double x, double y, double w, double h) {
         return fPolygon.intersects(x, y, w, h);
     }
@@ -165,6 +170,7 @@ public class Star implements Shape {
      *      Rectangle2D intersect each other; false otherwise.
      * @see      #intersects(double, double, double, double)
      */
+    @Override
     public boolean intersects(Rectangle2D r) {
         return fPolygon.intersects(r);
     }
@@ -183,6 +189,7 @@ public class Star implements Shape {
      * @see                  java.awt.geom.Area
      * @see                  #intersects(double,   double, double, double)
      */
+    @Override
     public boolean contains(double x, double y, double w, double h) {
         return fPolygon.contains(x, y, w, h);
     }
@@ -197,6 +204,7 @@ public class Star implements Shape {
      *      false otherwise.
      * @see      #contains(double, double, double, double)
      */
+    @Override
     public boolean contains(Rectangle2D r) {
         return fPolygon.contains(r);
     }
@@ -214,6 +222,7 @@ public class Star implements Shape {
      * @return    a PathIterator object that provides access to the geometry of
      *      this Star.
      */
+    @Override
     public PathIterator getPathIterator(AffineTransform at) {
         return fPolygon.getPathIterator(at);
     }
@@ -236,6 +245,7 @@ public class Star implements Shape {
      * @return          a PathIterator object that provides access to the Shape
      *      object's geometry.
      */
+    @Override
     public PathIterator getPathIterator(AffineTransform at, double flatness) {
         return fPolygon.getPathIterator(at, flatness);
     }

@@ -53,11 +53,11 @@ public class ShortCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getShortField().setShortValue(((Short) value).shortValue());
+        getShortField().setShortValue(((Short) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Short(getShortField().getShortValue());
+        return getShortField().getShortValue();
     }
 }

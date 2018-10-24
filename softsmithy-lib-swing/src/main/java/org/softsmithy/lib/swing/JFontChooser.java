@@ -80,7 +80,7 @@ public class JFontChooser extends JPanel {
         }
         setSelectedFont(font);
         fontsBox.setSelectedItem(font.getFamily(getLocale()));
-        sizesBox.setSelectedItem(new Integer(font.getSize()));
+        sizesBox.setSelectedItem(font.getSize());
         stylesBox.setSelectedItem(FontStyle.getFontStyle(font.getStyle()));
     }
 

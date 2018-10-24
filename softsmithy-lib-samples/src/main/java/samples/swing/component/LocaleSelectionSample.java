@@ -82,11 +82,8 @@ public class LocaleSelectionSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LocaleSelectionSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LocaleSelectionSample().setVisible(true);
         });
     }
     

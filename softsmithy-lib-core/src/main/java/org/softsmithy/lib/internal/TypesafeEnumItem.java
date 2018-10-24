@@ -22,11 +22,11 @@ public class TypesafeEnumItem {
     /**
      * Holds value of property fontStyle.
      */
-    private TypesafeEnum typesafeEnum;
+    private final TypesafeEnum typesafeEnum;
     /**
      * Holds value of property locale.
      */
-    private Locale locale;
+    private final Locale locale;
 
     public TypesafeEnumItem(TypesafeEnum typesafeEnum, Locale locale) {
         this.typesafeEnum = typesafeEnum;

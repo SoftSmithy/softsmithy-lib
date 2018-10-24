@@ -25,13 +25,14 @@ import java.util.Locale;
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.ListCellRenderer;
+import org.softsmithy.lib.swing.style.StyleProvider;
 import org.softsmithy.lib.swing.style.StyleProviderListCellRenderer;
 
 /**
  *
  * @author  puce
  */
-public class StyleProviderComboBox extends JComboBox {
+public class StyleProviderComboBox extends JComboBox<StyleProvider> {
   
   private boolean inited = false;
   

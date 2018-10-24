@@ -24,6 +24,7 @@ package org.softsmithy.lib.swing;
  *
  * @author  puce
  */
+@Deprecated
 public class JXApplet extends javax.swing.JApplet {
   
   private String documentBaseDir = null;

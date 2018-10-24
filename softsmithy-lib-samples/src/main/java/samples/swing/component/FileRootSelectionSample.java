@@ -80,11 +80,8 @@ private void fileRootListValueChanged(javax.swing.event.ListSelectionEvent evt) 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FileRootSelectionSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FileRootSelectionSample().setVisible(true);
         });
     }
     

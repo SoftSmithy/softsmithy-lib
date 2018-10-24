@@ -232,9 +232,9 @@ public class JCustomizerPane extends AbstractCustomizer implements MouseListener
     public JCustomizer[] getIntersectedCustomizers(Rectangle2D rectangle) {
         List<JCustomizer> customizers = new ArrayList<>();
         JCustomizer[] allCustomizers = getCustomizers();
-        for (int i = 0; i < allCustomizers.length; i++) {
-            if (allCustomizers[i].getBounds().intersects(rectangle)) {
-                customizers.add(allCustomizers[i]);
+        for (JCustomizer customizer : allCustomizers) {
+            if (customizer.getBounds().intersects(rectangle)) {
+                customizers.add(customizer);
             }
         }
         return customizers.toArray(new JCustomizer[customizers.size()]);

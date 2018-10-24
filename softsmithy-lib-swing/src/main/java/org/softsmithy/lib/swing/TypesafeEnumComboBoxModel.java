@@ -28,6 +28,7 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
   
   /** Holds value of property locale. */

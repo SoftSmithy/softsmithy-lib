@@ -577,8 +577,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     private void resetSelectedBorder() {
         getSelectedState().resetBorder(getCurrentSelectedBorderColor().getColor());
         getMoveState().resetBorder(getCurrentSelectedBorderColor().getColor());
-        for (int i = 0; i < resizeStates.length; i++) {
-            resizeStates[i].setBorder(getMoveState().getBorder());
+        for (ResizeState resizeState : resizeStates) {
+            resizeState.setBorder(getMoveState().getBorder());
         }
     }
 
@@ -1104,8 +1104,8 @@ public class StateManager implements FocusListener, MouseInputListener {
 
     private class DefaultNormalBorderColor extends AbstractDefaultBorderColor {
 
-        private HierarchyListener parentListener = new ParentListener();
-        private PropertyChangeListener defaultNormalCustomizerBorderColorListener = new DefaultNormalCustomizerBorderColorListener();
+        private final HierarchyListener parentListener = new ParentListener();
+        private final PropertyChangeListener defaultNormalCustomizerBorderColorListener = new DefaultNormalCustomizerBorderColorListener();
 
         @Override
         public Color getColor() {
@@ -1176,8 +1176,8 @@ public class StateManager implements FocusListener, MouseInputListener {
 
     private class DefaultSelectedBorderColor extends AbstractDefaultBorderColor {
 
-        private HierarchyListener parentListener = new ParentListener();
-        private PropertyChangeListener defaultSelectedCustomizerBorderColorListener = new DefaultSelectedCustomizerBorderColorListener();
+        private final HierarchyListener parentListener = new ParentListener();
+        private final PropertyChangeListener defaultSelectedCustomizerBorderColorListener = new DefaultSelectedCustomizerBorderColorListener();
 
         @Override
         public Color getColor() {

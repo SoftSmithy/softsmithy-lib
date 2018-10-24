@@ -28,7 +28,7 @@ import org.softsmithy.lib.swing.style.*;
  */
 public class CustomizerEnvironment {
   
-  private static final CustomizerEnvironment customizerEnvironment = new CustomizerEnvironment();
+  private static final CustomizerEnvironment LOCAL_CUSTOMIZER_ENVIRONMENT = new CustomizerEnvironment();
   
   private List<StyleProvider> styleProviders = Collections.unmodifiableList(Arrays.asList(new StyleProvider[]{NoneStyleProvider.INSTANCE, ParentStyleProvider.INSTANCE}));
   
@@ -45,6 +45,6 @@ public class CustomizerEnvironment {
   }
   
   public static CustomizerEnvironment getLocalCustomizerEnvironment(){
-    return customizerEnvironment;
+    return LOCAL_CUSTOMIZER_ENVIRONMENT;
   }
 }

@@ -57,10 +57,12 @@ public abstract class JTableCustomizerBar extends JPanel implements CustomizerBa
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
     public void clearSelection() {
         table.clearSelection();
     }
 
+    @Override
     public boolean hasSelection() {
         return table.getSelectedRowCount() > 0;
     }

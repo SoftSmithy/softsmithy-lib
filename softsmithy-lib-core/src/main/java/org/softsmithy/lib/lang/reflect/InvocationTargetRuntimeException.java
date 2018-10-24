@@ -26,6 +26,8 @@ import java.lang.reflect.Method;
  */
 public class InvocationTargetRuntimeException extends RuntimeException {
 
+    private static final long serialVersionUID = 5699874422023008268L;
+
 
      /**
      * This field holds the target if the 

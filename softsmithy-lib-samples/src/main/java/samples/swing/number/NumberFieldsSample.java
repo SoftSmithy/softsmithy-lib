@@ -207,10 +207,8 @@ public class NumberFieldsSample extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         // Locale.setDefault(Locale.US); // throws java.security.AccessControlException when executed via Java WebStart
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NumberFieldsSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NumberFieldsSample().setVisible(true);
         });
     }
     

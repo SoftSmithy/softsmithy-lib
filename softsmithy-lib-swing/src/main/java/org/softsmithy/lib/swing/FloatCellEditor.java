@@ -61,11 +61,11 @@ public class FloatCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getFloatField().setFloatValue(((Float) value).floatValue());
+        getFloatField().setFloatValue(((Float) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Float(getFloatField().getFloatValue());
+        return getFloatField().getFloatValue();
     }
 }

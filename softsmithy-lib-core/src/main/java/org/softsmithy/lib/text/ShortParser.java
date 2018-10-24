@@ -34,7 +34,7 @@ public class ShortParser extends AbstractNumberParser<Short> {
     public Short parseString(String text) throws ParseException {
         try {
             return parseNumber(text).shortValue();
-        } catch (Exception e) {
+        } catch (ParseException | RuntimeException e) {
             LOG.debug("First number conversion failed: {}", text);
             try {
                 return Short.parseShort(text);

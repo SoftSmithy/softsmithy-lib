@@ -19,6 +19,8 @@ package org.softsmithy.lib.io;
  */
 public class IORuntimeException extends RuntimeException {
 
+    private static final long serialVersionUID = -7220063338920236161L;
+
     /**
      * Creates a new instance of <code>IORuntimeException</code> without detail message.
      */

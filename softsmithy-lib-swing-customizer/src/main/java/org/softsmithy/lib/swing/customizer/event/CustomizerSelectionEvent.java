@@ -31,6 +31,8 @@ import org.softsmithy.lib.swing.customizer.JCustomizer;
  */
 public class CustomizerSelectionEvent extends EventObject {
 
+    private static final long serialVersionUID = -9195333618803870350L;
+
     /**
      * Holds value of property selectedCustomizers.
      */
@@ -39,7 +41,7 @@ public class CustomizerSelectionEvent extends EventObject {
      * Holds value of property activeCustomizer.
      */
     private final JCustomizer activeCustomizer;
-    private Set<String> commonCustomizableProperties;
+    private final Set<String> commonCustomizableProperties;
 
     /**
      * Creates a new instance of CustomizerSelectionEvent

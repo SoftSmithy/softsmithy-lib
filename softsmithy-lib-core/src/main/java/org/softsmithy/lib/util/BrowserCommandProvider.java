@@ -31,7 +31,7 @@ public class BrowserCommandProvider{
   /**
    * Holds value of property browserCommand.
    */
-  private String browserCommand;
+  private final String browserCommand;
   
   public BrowserCommandProvider(String browserCommand){
     this.browserCommand = browserCommand;

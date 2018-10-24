@@ -12,49 +12,60 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * DividerLocationEvent.java
  *
  * Created on 23. Juni 2003, 11:04
  */
-
 package org.softsmithy.lib.swing.event;
 
 import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class DividerLocationEvent extends EventObject {
-  
-  /** Holds value of property index. */
-  private int index;
-  
-  /** Holds value of property location. */
-  private int location;
-  
-  /** Creates a new instance of DividerLocationEvent */
-  public DividerLocationEvent(Object source, int index, int location) {
-    super(source);
-    this.index = index;
-    this.location = location;
-  }
-  
-  /** Getter for property index.
-   * @return Value of property index.
-   *
-   */
-  public int getIndex() {
-    return this.index;
-  }
-  
-  /** Getter for property location.
-   * @return Value of property location.
-   *
-   */
-  public int getLocation() {
-    return this.location;
-  }
-  
+
+    private static final long serialVersionUID = -4842324704453637180L;
+
+    /**
+     * Holds value of property index.
+     */
+    private final int index;
+
+    /**
+     * Holds value of property location.
+     */
+    private final int location;
+
+    /**
+     * Creates a new instance of DividerLocationEvent
+     */
+    public DividerLocationEvent(Object source, int index, int location) {
+        super(source);
+        this.index = index;
+        this.location = location;
+    }
+
+    /**
+     * Getter for property index.
+     *
+     * @return Value of property index.
+     *
+     */
+    public int getIndex() {
+        return this.index;
+    }
+
+    /**
+     * Getter for property location.
+     *
+     * @return Value of property location.
+     *
+     */
+    public int getLocation() {
+        return this.location;
+    }
+
 }

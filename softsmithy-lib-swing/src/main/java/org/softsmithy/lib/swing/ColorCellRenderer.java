@@ -68,6 +68,7 @@ public class ColorCellRenderer extends JPanel implements TableCellRenderer {
         add(textLabel);
     }
 
+    @Override
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) {
         setColor((Color) color);
         if (isBordered) {

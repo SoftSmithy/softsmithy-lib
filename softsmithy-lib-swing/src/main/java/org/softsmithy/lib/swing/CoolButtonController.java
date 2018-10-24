@@ -28,7 +28,7 @@ import javax.swing.*;
  */
 public class CoolButtonController extends MouseAdapter implements ItemListener {
 
-    private AbstractButton button;
+    private final AbstractButton button;
     private boolean mouseIsOver = false;
 
     /** Creates a new instance of CoolButtonController */
@@ -65,6 +65,7 @@ public class CoolButtonController extends MouseAdapter implements ItemListener {
      * that need to occur when an item is selected (or deselected).
      *
      */
+    @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.DESELECTED) {
             if (!mouseIsOver && button.isBorderPainted()) {

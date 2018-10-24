@@ -53,11 +53,11 @@ public class ByteCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getByteField().setByteValue(((Byte) value).byteValue());
+        getByteField().setByteValue(((Byte) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Byte(getByteField().getByteValue());
+        return getByteField().getByteValue();
     }
 }

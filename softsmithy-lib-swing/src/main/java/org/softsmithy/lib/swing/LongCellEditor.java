@@ -53,11 +53,11 @@ public class LongCellEditor extends FormattedCellEditor {
     //  }
     @Override
     protected void setValue(Object value) {
-        getLongField().setLongValue(((Long) value).longValue());
+        getLongField().setLongValue(((Long) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Long(getLongField().getLongValue());
+        return getLongField().getLongValue();
     }
 }
