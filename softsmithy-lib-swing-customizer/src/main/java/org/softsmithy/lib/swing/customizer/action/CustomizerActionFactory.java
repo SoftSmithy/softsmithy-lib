@@ -28,6 +28,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
 import org.softsmithy.lib.swing.HorizontalAlignment;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;
@@ -43,6 +45,8 @@ import org.softsmithy.lib.swing.customizer.SelectionManager;
  * @author puce
  */
 public class CustomizerActionFactory {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CustomizerActionFactory.class);
 
     private final SelectionManager selectionManager;
 
@@ -66,7 +70,7 @@ public class CustomizerActionFactory {
             saf.configureXAction(action, locale);
             action.setNeededCustomizableProperties(new HashSet<>(Arrays.asList(neededCustomizableProperties)));
         } catch (NoSuchMethodException ex) {
-            ex.printStackTrace(); // should not happen here // TODO: exception handling
+            LOG.error(ex.getMessage(), ex); // should not happen here // TODO: other exception handling?
         }
         return action;
     }
@@ -183,8 +187,8 @@ public class CustomizerActionFactory {
         for (JCustomizer customizer : customizers) {
             try {
                 BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.LEFT, customizer, null);
-            }catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex1) {
-                ex1.printStackTrace();
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }
@@ -195,8 +199,8 @@ public class CustomizerActionFactory {
         for (JCustomizer customizer : customizers) {
             try {
                 BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.CENTER, customizer, null);
-            }catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex1) {
-                ex1.printStackTrace();
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }
@@ -207,8 +211,8 @@ public class CustomizerActionFactory {
         for (JCustomizer customizer : customizers) {
             try {
                 BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.RIGHT, customizer, null);
-            }catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex1) {
-                ex1.printStackTrace();
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }

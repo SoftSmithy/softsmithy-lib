@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.swing.action.*;
 /**
  * JListBox provides a scrollable list with two buttons to change the order of
@@ -18,7 +20,9 @@ import org.softsmithy.lib.swing.action.*;
  * @author  puce
  */
 public class JListBox<E> extends JPanel {
-  
+    
+  private static final Logger LOG = LoggerFactory.getLogger(JListBox.class);
+
   private XAction upAction = new DefaultXAction();
   private XAction downAction = new DefaultXAction();
   private final JList<E> list;
@@ -45,7 +49,7 @@ public class JListBox<E> extends JPanel {
       upAction = NavigationActionFactory.UP.createXAction(this, getLocale());
       downAction = NavigationActionFactory.DOWN.createXAction(this, getLocale());
     } catch (NoSuchMethodException ex){ // should not happen here
-      ex.printStackTrace();
+      LOG.error(ex.getMessage(), ex);
     }
     XActions.configureButton(upButton, upAction, IconType.SMALL_ICON, false, false);
     XActions.configureButton(downButton, downAction, IconType.SMALL_ICON, false, false);

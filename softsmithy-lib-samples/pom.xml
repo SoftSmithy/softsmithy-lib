@@ -166,5 +166,21 @@ Contributor(s): .
             <artifactId>softsmithy-lib-swing-customizer</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-jdk14</artifactId>
+        </dependency>
+        <!--        <dependency>
+            TODO: get this to work
+            <groupId>jlfgr</groupId>
+            <artifactId>jlfgr</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/lib/jlfgr-1_0.jar</systemPath>
+        </dependency>-->
     </dependencies>
 </project>

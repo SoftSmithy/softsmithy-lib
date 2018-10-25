@@ -15,6 +15,8 @@ package org.softsmithy.lib.beans;
 
 import java.beans.*;
 import java.lang.reflect.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A trampoline class that reflectivly calls an action method. The method must take an ActionEvent object as its single
@@ -38,6 +40,8 @@ import java.lang.reflect.*;
  * @author Florian Brunner
  */
 public class ReflectivePropertyChangeListener implements PropertyChangeListener {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ReflectivePropertyChangeListener.class);
 
     private final static Class<?>[] PARAMETER_TYPES = new Class<?>[]{PropertyChangeEvent.class};
     private final Object fTarget;
@@ -73,11 +77,11 @@ public class ReflectivePropertyChangeListener implements PropertyChangeListener 
             fMethod.invoke(fTarget, new Object[]{e});
         } catch (InvocationTargetException ex1) {
             // should I throw an unchecked exception?
-            ex1.printStackTrace();
+            LOG.error(ex1.getMessage(), ex1);
         } catch (IllegalAccessException ex2) {
             // should I throw an unchecked exception?
             // cannot happen here!?
-            ex2.printStackTrace();
+            LOG.error(ex2.getMessage(), ex2);
         }
     }
 }

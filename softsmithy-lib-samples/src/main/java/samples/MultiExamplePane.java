@@ -40,15 +40,17 @@ import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.awt.Star;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
 import org.softsmithy.lib.swing.customizer.JLine2DCustomizer;
 import org.softsmithy.lib.swing.customizer.JXIconCustomizer;
 import org.softsmithy.lib.swing.customizer.Line2DOrientation;
-import org.softsmithy.lib.swing.icon.ShapeIcon;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+import org.softsmithy.lib.swing.icon.ShapeIcon;
 
 
 
@@ -58,6 +60,8 @@ import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
  */
 public class MultiExamplePane extends JPanel {
   
+  private static final Logger LOG = LoggerFactory.getLogger(MultiExamplePane.class);
+
   /** Creates new form Example1 */
   public MultiExamplePane() {
     // create a pane that supports customizers and "snap-to-grid" feature
@@ -117,12 +121,12 @@ public class MultiExamplePane extends JPanel {
     lineCustomizer2.setThickness(20);
     lineCustomizer2.setColor(Color.ORANGE);
     pane.addCustomizer(lineCustomizer2, new AbsoluteTableConstraints(400,  200, 50, 150, lineCustomizer2, itl));
-    try{
-      //      JXIconCustomizer logoCustomizer = new JXIconCustomizer(getImage(new URL(getDocumentBaseDir() + "logo.jpg")));
-      //      pane.addCustomizer(logoCustomizer, new AbsoluteTableConstraints(150, 150, 200, 170, logoCustomizer, itl));
-    } catch(Exception ex){
-      ex.printStackTrace();
-    }
+//    try{
+//            JXIconCustomizer logoCustomizer = new JXIconCustomizer(getImage(new URL(getDocumentBaseDir() + "logo.jpg")));
+//            pane.addCustomizer(logoCustomizer, new AbsoluteTableConstraints(150, 150, 200, 170, logoCustomizer, itl));
+//    } catch(RuntimeException ex){
+//      LOG.error(ex.getMessage(), ex);
+//    }
     validate();
   }
   

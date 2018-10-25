@@ -20,16 +20,20 @@
 package org.softsmithy.lib.swing.table;
 
 import java.beans.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import javax.swing.table.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.*;
 
 /**
  *
  * @author  puce
  */
-public class PropertyTableModel extends AbstractTableModel implements
-        CellTableModel {
+public class PropertyTableModel extends AbstractTableModel implements CellTableModel {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PropertyTableModel.class);
 
     private List<String> propertyNames;
     private Object bean;
@@ -41,20 +45,16 @@ public class PropertyTableModel extends AbstractTableModel implements
             new BeanPropertyListener();
 
     /** Creates a new instance of AbstractCustomizerPropertyTableModel */
-    public PropertyTableModel(Object bean, String propertiesRBBaseName,
-            Locale locale) throws IntrospectionException {
+    public PropertyTableModel(Object bean, String propertiesRBBaseName, Locale locale) throws IntrospectionException {
         init(propertiesRBBaseName, locale);
         Map<String, String> propertyMap = new TreeMap<String, String>();
         if (bean != null) {
-            PropertyDescriptor[] descriptors = BeanIntrospector.
-                    getPropertyDescriptors(bean.getClass(), propertiesRB);
-            for (int i = 0; i < descriptors.length; i++) {
-                if (BeanIntrospector.isPropertyReadable(descriptors[i].getName(), bean.
-                        getClass(), propertiesRB)) {
-                    if (!descriptors[i].isHidden()) {
-                        String key = descriptors[i].getDisplayName() != null ? descriptors[i].
-                                getDisplayName() : descriptors[i].getName();
-                        propertyMap.put(key, descriptors[i].getName());
+            PropertyDescriptor[] descriptors = BeanIntrospector.getPropertyDescriptors(bean.getClass(), propertiesRB);
+            for (PropertyDescriptor descriptor : descriptors) {
+                if (BeanIntrospector.isPropertyReadable(descriptor.getName(), bean.getClass(), propertiesRB)) {
+                    if (!descriptor.isHidden()) {
+                        String key = descriptor.getDisplayName() != null ? descriptor.getDisplayName() : descriptor.getName();
+                        propertyMap.put(key, descriptor.getName());
                     }
                 }
             }
@@ -84,7 +84,7 @@ public class PropertyTableModel extends AbstractTableModel implements
                                 next(), beanPropertyListener);
                     }
                 } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
-                    ex1.printStackTrace();
+                    LOG.error(ex1.getMessage(), ex1);
                 }
             } else {
                 if (BeanIntrospector.supportsPropertyChangeListeners(bean.
@@ -92,10 +92,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                     try {
                         BeanIntrospector.addPropertyChangeListener(bean,
                                 beanPropertyListener);
-                    } catch (NoSuchMethodException ex1) { // should not happen here
-                        ex1.printStackTrace();
-                    } catch (IllegalAccessException ex2) { // should not happen here
-                        ex2.printStackTrace();
+                    } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
+                        LOG.error(ex1.getMessage(), ex1);
                     }
                 }
             }
@@ -154,8 +152,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                     value = BeanIntrospector.getPropertyValue(getPropertyName(rowIndex), bean, propertiesRB);
                     break;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IntrospectionException | IllegalAccessException| InvocationTargetException | RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
             //value = "";
         }
         //System.out.print(value);
@@ -173,17 +171,14 @@ public class PropertyTableModel extends AbstractTableModel implements
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue,
-                    bean, propertiesRB);
-        } catch (Exception ex2) {
-            ex2.printStackTrace();
+            BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue, bean, propertiesRB);
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
     }
 
-    private PropertyDescriptor getPropertyDescriptor(int index) throws
-            IntrospectionException {
-        return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.
-                getClass(), propertiesRB);
+    private PropertyDescriptor getPropertyDescriptor(int index) throws IntrospectionException {
+        return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.getClass(), propertiesRB);
     }
 
     /**  Returns false.  This is the default implementation for all cells.
@@ -201,7 +196,7 @@ public class PropertyTableModel extends AbstractTableModel implements
                     isPropertyWriteable(getPropertyName(rowIndex),
                     bean.getClass(), propertiesRB);
         } catch (IntrospectionException ex) {
-            ex.printStackTrace();
+            LOG.error(ex.getMessage(), ex);
         }
         return isCellEditable;
     }
@@ -228,7 +223,7 @@ public class PropertyTableModel extends AbstractTableModel implements
                 default:
                     columnName = super.getColumnName(column); // should not happen
             }
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
         }
         return columnName;
     }
@@ -276,7 +271,8 @@ public class PropertyTableModel extends AbstractTableModel implements
     //    //    System.out.println(evt.getPropertyName() + " changed");
     //    this.fireTableCellUpdated(propertyNames.indexOf(evt.getPropertyName()), 1);
     //  }
-    public List getPropertyNames() {
+    
+    public List<String> getPropertyNames() {
         return this.propertyNames;
     }
 
@@ -301,8 +297,7 @@ public class PropertyTableModel extends AbstractTableModel implements
         this.columnNamesRB = ResourceBundle.getBundle(
                 "org.softsmithy.lib.swing.table.PropertyTableModel", locale);
         if (getPropertiesRBBaseName() != null) {
-            this.propertiesRB = ResourceBundle.getBundle(
-                    getPropertiesRBBaseName(), locale);
+            this.propertiesRB = ResourceBundle.getBundle(getPropertiesRBBaseName(), locale);
         }
         fireTableStructureChanged();
     }
@@ -316,8 +311,7 @@ public class PropertyTableModel extends AbstractTableModel implements
         if (propertiesRBBaseName == null) {
             this.propertiesRB = null;
         } else {
-            this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName,
-                    locale);
+            this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName, locale);
         }
         fireTableDataChanged();
     }
@@ -328,24 +322,21 @@ public class PropertyTableModel extends AbstractTableModel implements
 
     private void stopPropertyChangeListening() {
         if (getBean() != null) {
-            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(getBean().
-                    getClass())) {
+            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(getBean().getClass())) {
                 try {
-                    for (Iterator i = getPropertyNames().iterator(); i.hasNext();) {
-                        BeanIntrospector.removePropertyChangeListener(getBean(), (String) i.
-                                next(), beanPropertyListener);
+                    for (String propertyName : getPropertyNames()) {
+                        BeanIntrospector.removePropertyChangeListener(getBean(), propertyName, beanPropertyListener);
                     }
                 } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
-                    ex1.printStackTrace();
+                    LOG.error(ex1.getMessage(), ex1);
                 }
             } else {
-                if (BeanIntrospector.supportsPropertyChangeListeners(getBean().
-                        getClass())) {
+                if (BeanIntrospector.supportsPropertyChangeListeners(getBean().getClass())) {
                     try {
                         BeanIntrospector.removePropertyChangeListener(getBean(),
                                 beanPropertyListener);
                     } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
-                        ex1.printStackTrace();
+                        LOG.error(ex1.getMessage(), ex1);
                     }
                 }
             }

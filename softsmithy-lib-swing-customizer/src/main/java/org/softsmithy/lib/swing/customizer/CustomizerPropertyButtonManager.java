@@ -26,6 +26,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.AbstractButton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
 import org.softsmithy.lib.beans.ReflectivePropertyChangeListener;
 import org.softsmithy.lib.swing.HorizontalAlignment;
@@ -37,6 +39,8 @@ import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
  * @author puce
  */
 public class CustomizerPropertyButtonManager implements CustomizerSelectionListener {
+
+    private static final Logger LOG = LoggerFactory.getLogger(CustomizerPropertyButtonManager.class);
 
     private JCustomizer activeCustomizer = null;
     private final Set<AbstractButton> textBoldButtons = new HashSet<>();
@@ -131,8 +135,8 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
                     } else {
                         setSelection(textAlignRightButtons, true);
                     }
-                } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex1) {
-                    ex1.printStackTrace();
+                } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
+                    LOG.error(ex.getMessage(), ex);
                     setDefaultHorizontalAlignmentSelection();
                 }
             } else {
@@ -229,7 +233,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
             try {
                 textBold = new CustomizerPropertyChangeListener(this, "textBold", "font");
             } catch (NoSuchMethodException ex) {
-                ex.printStackTrace(); // should not happen here
+                LOG.error(ex.getMessage(), ex); // should not happen here
             }
         }
         return textBold;
@@ -240,7 +244,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
             try {
                 textItalic = new CustomizerPropertyChangeListener(this, "textItalic", "font");
             } catch (NoSuchMethodException ex) {
-                ex.printStackTrace(); // should not happen here
+                LOG.error(ex.getMessage(), ex); // should not happen here
             }
         }
         return textItalic;
@@ -251,7 +255,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
             try {
                 textAlignLeft = new CustomizerPropertyChangeListener(this, "textAlignLeft", "horizontalAlignment");
             } catch (NoSuchMethodException ex) {
-                ex.printStackTrace(); // should not happen here
+                LOG.error(ex.getMessage(), ex); // should not happen here
             }
         }
         return textAlignLeft;
@@ -262,7 +266,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
             try {
                 textAlignCenter = new CustomizerPropertyChangeListener(this, "textAlignCenter", "horizontalAlignment");
             } catch (NoSuchMethodException ex) {
-                ex.printStackTrace(); // should not happen here
+                LOG.error(ex.getMessage(), ex); // should not happen here
             }
         }
         return textAlignCenter;
@@ -273,7 +277,7 @@ public class CustomizerPropertyButtonManager implements CustomizerSelectionListe
             try {
                 textAlignRight = new CustomizerPropertyChangeListener(this, "textAlignRight", "horizontalAlignment");
             } catch (NoSuchMethodException ex) {
-                ex.printStackTrace(); // should not happen here
+                LOG.error(ex.getMessage(), ex); // should not happen here
             }
         }
         return textAlignRight;
