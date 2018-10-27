@@ -27,7 +27,7 @@ import javax.swing.JFileChooser;
 /**
  * A utility class for Files. <br>
  * Adapted from:
- * http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/index.html#FileChooserDemo2
+ * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/#FileChooserDemo2
  * <br>
  * Note: The API may change in a future version!
  *

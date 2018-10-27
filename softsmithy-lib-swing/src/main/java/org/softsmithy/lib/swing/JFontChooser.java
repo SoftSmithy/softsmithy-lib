@@ -32,7 +32,7 @@ import org.softsmithy.lib.swing.chooser.*;
 import org.softsmithy.lib.util.*;
 
 /**
- * http://java.sun.com/docs/books/tutorial/2d/textandfonts/example-1dot2/FontSelection.java
+ * https://docs.oracle.com/javase/tutorial/2d/text/examples/FontSelector.java
  * @author  puce
  */
 public class JFontChooser extends JPanel {
