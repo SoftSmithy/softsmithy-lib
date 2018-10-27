@@ -22,6 +22,8 @@ package org.softsmithy.lib.swing;
 
 import java.util.*;
 import javax.swing.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.util.*;
 
 /**
@@ -31,6 +33,8 @@ import org.softsmithy.lib.util.*;
 @Deprecated
 public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
   
+  private static final Logger LOG = LoggerFactory.getLogger(TypesafeEnumComboBoxModel.class);
+
   /** Holds value of property locale. */
   //private Locale locale = Locale.getDefault();
   
@@ -55,8 +59,8 @@ public class TypesafeEnumComboBoxModel extends DefaultComboBoxModel{
     List enums = Collections.EMPTY_LIST;
     try{
       enums = (List) typesafeEnumClass.getField("VALUES").get(null);
-    } catch(Exception ex){
-      ex.printStackTrace();
+    } catch(IllegalAccessException | NoSuchFieldException | RuntimeException ex){
+      LOG.error(ex.getMessage(), ex);
     }
     for (Iterator i=enums.iterator(); i.hasNext();){
       this.addElement(i.next());

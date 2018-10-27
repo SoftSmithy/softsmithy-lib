@@ -35,6 +35,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
 import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
@@ -46,6 +48,7 @@ import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
  * @author puce
  */
 public class SelectionManager implements PropertyChangeListener, CustomizerListener {
+    private static final Logger LOG = LoggerFactory.getLogger(SelectionManager.class);
 
 //  private static final Set RECTANGLE_PROPERTIES = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[] {"x", "y", "width", "height"})));
     private final List<JCustomizer> selectedList = new ArrayList<>();
@@ -299,7 +302,7 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
                 BeanIntrospector.setPropertyValue(evt.getPropertyName(), evt.getNewValue(), customizer, null);
                 customizer.repaint();
             } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
-                ex.printStackTrace();
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }

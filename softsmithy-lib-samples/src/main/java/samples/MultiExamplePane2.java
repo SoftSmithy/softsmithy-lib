@@ -39,6 +39,8 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.awt.Star;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
@@ -53,6 +55,8 @@ import org.softsmithy.lib.swing.icon.XImageIcon;
  * @author puce
  */
 public class MultiExamplePane2 extends JPanel {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MultiExamplePane2.class);
 
     /**
      * Creates new form Example1
@@ -99,8 +103,8 @@ public class MultiExamplePane2 extends JPanel {
             logoCustomizer.setCustomizableProperties(new LinkedHashSet<>(Arrays.asList(
                     new String[]{"x", "y", "width", "height"}))); // to allow SelectionManager to listen for these properties
             pane.addCustomizer(logoCustomizer, new AbsoluteTableConstraints(350, 250, 197, 167, logoCustomizer, itl));
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
         validate();
     }

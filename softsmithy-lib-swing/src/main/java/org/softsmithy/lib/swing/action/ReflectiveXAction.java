@@ -14,9 +14,10 @@
 
 package org.softsmithy.lib.swing.action;
 
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A trampoline class that reflectivly calls an action method. The method must
@@ -53,6 +54,7 @@ import java.lang.reflect.*;
 
 public class ReflectiveXAction extends AbstractXAction {
 
+  private static final Logger LOG = LoggerFactory.getLogger(ReflectiveXAction.class);
   private final static Class[] PARAMETER_TYPES = new Class[]{ActionEvent.class};
 
   private final Object fTarget;
@@ -83,16 +85,17 @@ public class ReflectiveXAction extends AbstractXAction {
    *
    * @param e  an ActionEvent object
    */
+  @Override
   public void actionPerformed(ActionEvent e) {
     try {
       fMethod.invoke(fTarget, new Object[]{e});
     } catch (InvocationTargetException ex1) {
       // should I throw an unchecked exception?
-      ex1.printStackTrace();
+      LOG.error(ex1.getMessage(), ex1);
     } catch (IllegalAccessException ex2) {
       // should I throw an unchecked exception?
       // cannot happen here!?
-      ex2.printStackTrace();
+      LOG.error(ex2.getMessage(), ex2);
     }
   }
 

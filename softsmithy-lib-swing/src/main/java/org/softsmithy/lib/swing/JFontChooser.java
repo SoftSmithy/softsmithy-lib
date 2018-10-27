@@ -25,6 +25,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.swing.action.*;
 import org.softsmithy.lib.swing.chooser.*;
 import org.softsmithy.lib.util.*;
@@ -35,6 +37,7 @@ import org.softsmithy.lib.util.*;
  */
 public class JFontChooser extends JPanel {
 
+    private static final Logger LOG = LoggerFactory.getLogger(JFontChooser.class);
     private ResourceBundle rb = ResourceBundle.getBundle("org.softsmithy.lib.swing.JFontChooser", getLocale());
     private FontChooserDialog chooserDialog = null;
 
@@ -450,8 +453,8 @@ public class JFontChooser extends JPanel {
                 JButton cancelButton = XActions.createButton(XActions.createXAction("cancel", this, rb), IconType.NO_ICON, true, false);
                 JButton resetButton = XActions.createButton(XActions.createXAction("reset", this, rb), IconType.NO_ICON, true, false);
                 setButtons(new JButton[]{okButton, cancelButton, resetButton}, okButton);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+            } catch (NoSuchMethodException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
 
