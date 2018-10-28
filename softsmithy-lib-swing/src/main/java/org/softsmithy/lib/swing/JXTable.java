@@ -134,7 +134,7 @@ public class JXTable extends JTable {
      * with the following code:
      * <p>
      * <pre>((Vector)rowData.elementAt(1)).elementAt(5);</pre>
-     * <p>
+     * </p>
      * @param rowData           the data for the new table
      * @param columnNames       names of each column
      */
@@ -150,9 +150,10 @@ public class JXTable extends JTable {
      * column 5 can be obtained with the following code:
      * <p>
      * <pre> rowData[1][5]; </pre>
+     * </p>
      * <p>
      * All rows must be of the same length as <code>columnNames</code>.
-     * <p>
+     * </p>
      * @param rowData           the data for the new table
      * @param columnNames       names of each column
      */
@@ -183,8 +184,7 @@ public class JXTable extends JTable {
         setDefaultRenderer(BigDecimal.class, new XDefaultTableCellRenderer(
                 new LocalizedRealNumberCellRenderer()));
         //setDefaultRenderer(HorizontalAlignment.class, new HorizontalAlignmentRenderer(getLocale()));
-        setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(
-                getLocale()));
+        setDefaultRenderer(TypesafeEnum.class, new TypesafeEnumRenderer(                getLocale()));
 
         setDefaultEditor(Color.class, new ColorCellEditor());
         setDefaultEditor(Font.class, new FontCellEditor());
@@ -227,8 +227,7 @@ public class JXTable extends JTable {
     public TableCellEditor getDefaultEditor(Class columnClass) {
         TableCellEditor editor = super.getDefaultEditor(columnClass);
         if (editor == null && columnClass != null && columnClass.isPrimitive()) {
-            editor =
-                    super.getDefaultEditor(Classes.getWrapperClass(columnClass));
+            editor =                    super.getDefaultEditor(Classes.getWrapperClass(columnClass));
         }
         return editor;
     }
@@ -252,8 +251,7 @@ public class JXTable extends JTable {
     public TableCellRenderer getDefaultRenderer(Class columnClass) {
         TableCellRenderer renderer = super.getDefaultRenderer(columnClass);
         if (renderer == null && columnClass != null && columnClass.isPrimitive()) {
-            renderer = super.getDefaultRenderer(Classes.getWrapperClass(
-                    columnClass));
+            renderer = super.getDefaultRenderer(Classes.getWrapperClass(                    columnClass));
         }
         return renderer;
     }

@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * IntegerCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -23,11 +23,15 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class ShortCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of IntegerCellEditor */
+    /**
+     * Creates a new instance of ShortCellEditor
+     *
+     * @param locale the locale
+     */
     public ShortCellEditor(Locale locale) {
         super(new JShortField(locale));
     }

@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * LocalizedDoubleCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -23,11 +23,14 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LocalizedDoubleCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of LocalizedDoubleCellEditor */
+    /**
+     * Creates a new instance of LocalizedDoubleCellEditor
+     * @param locale the locale
+     */
     public LocalizedDoubleCellEditor(Locale locale) {
         super(new JLocalizedDoubleField(locale));
     }
