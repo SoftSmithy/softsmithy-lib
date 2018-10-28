@@ -23,6 +23,8 @@ import java.util.*;
 import org.softsmithy.lib.util.*;
 
 /**
+ * A base class for standard action factories.
+ * 
  * <ul>
  *      <li><a href="https://www.oracle.com/technetwork/java/index-138612.html">Java look and feel Graphics Repository</a></li>
  *      <li><a href="https://www.oracle.com/technetwork/java/jlf-135985.html">Java Look and Feel Design Guidelines</a>
@@ -43,6 +45,8 @@ public abstract class StandardActionFactory extends TypesafeEnum {
 
     /**
      * Creates a new instance of StandardActionFactory
+     *
+     * @param name the enum constant name
      */
     protected StandardActionFactory(String name) {
         super(name);
@@ -54,6 +58,7 @@ public abstract class StandardActionFactory extends TypesafeEnum {
      * @param target this object is expected to implement the method <code>public void &lt;action name/ toString()&gt;(ActionEvent e)</code>
      * @param locale the locale
      * @return a configured XAction
+     * @throws NoSuchMethodException if the method cannot be found
      */
     public XAction createXAction(Object target, Locale locale) throws NoSuchMethodException {
         return XActions.createXAction(toString(), target, ResourceBundle.getBundle(RB_BASE_NAME, locale));

@@ -132,9 +132,8 @@ public class JXTable extends JTable {
      * should contain the values for that row. In other words,
      * the value of the cell at row 1, column 5 can be obtained
      * with the following code:
-     * <p>
-     * <pre>((Vector)rowData.elementAt(1)).elementAt(5);</pre>
-     * </p>
+     * {@code ((Vector)rowData.elementAt(1)).elementAt(5);}
+     * 
      * @param rowData           the data for the new table
      * @param columnNames       names of each column
      */
@@ -148,12 +147,11 @@ public class JXTable extends JTable {
      * <code>rowData</code>, with column names, <code>columnNames</code>.
      * <code>rowData</code> is an array of rows, so the value of the cell at row 1,
      * column 5 can be obtained with the following code:
-     * <p>
-     * <pre> rowData[1][5]; </pre>
-     * </p>
+     * {@code  rowData[1][5];}
      * <p>
      * All rows must be of the same length as <code>columnNames</code>.
      * </p>
+     * 
      * @param rowData           the data for the new table
      * @param columnNames       names of each column
      */

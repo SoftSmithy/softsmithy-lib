@@ -11,30 +11,30 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.text;
 
 import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class ByteFormatterFactory extends WholeNumberFormatterFactory {
-  
-  
-  /** Creates a new instance of WholeNumberFormatterFactory */
-  public ByteFormatterFactory(ByteFormatter formatter) {
-    this(formatter, Locale.getDefault());
-  }
-  
-  public ByteFormatterFactory(ByteFormatter formatter, Locale locale) {
-    super(formatter, locale);
-  }
-  
-  public ByteFormatter getByteFormatter(){
-    return (ByteFormatter) getWholeNumberFormatter();
-  }
-  
+
+    /**
+     * Creates a new instance of WholeNumberFormatterFactory
+     * @param formatter the formatter
+     */
+    public ByteFormatterFactory(ByteFormatter formatter) {
+        this(formatter, Locale.getDefault());
+    }
+
+    public ByteFormatterFactory(ByteFormatter formatter, Locale locale) {
+        super(formatter, locale);
+    }
+
+    public ByteFormatter getByteFormatter() {
+        return (ByteFormatter) getWholeNumberFormatter();
+    }
 
 }
