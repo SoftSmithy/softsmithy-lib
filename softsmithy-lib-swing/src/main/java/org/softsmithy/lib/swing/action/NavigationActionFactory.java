@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- * http://java.sun.com/developer/techDocs/hi/repository/TBG_Navigation.html
+ * <a href="https://www.oracle.com/technetwork/java/tbg-navigation-138651.html">Navigation Toolbar Button Graphics: Java look and feel Graphics Repository</a>
  * @author  puce
  */
 public class NavigationActionFactory extends StandardActionFactory{

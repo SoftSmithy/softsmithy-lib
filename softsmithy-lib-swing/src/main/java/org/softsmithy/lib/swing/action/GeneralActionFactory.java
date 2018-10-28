@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- * http://java.sun.com/developer/techDocs/hi/repository/TBG_General.html
+ * <a href="https://www.oracle.com/technetwork/java/tbg-general-141722.html">General Toolbar Button Graphics: Java look and feel Graphics Repository</<>
  * @author  puce
  */
 public class GeneralActionFactory extends StandardActionFactory{
