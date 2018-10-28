@@ -18,6 +18,8 @@
     <jar href="lib/softsmithy-lib-core-0.10-SNAPSHOT.jar"/>
     <jar href="lib/softsmithy-lib-swing-0.10-SNAPSHOT.jar"/>
     <jar href="lib/jlfgr-1_0.jar"/>
+    <jar href="lib/slf4j-api-1.7.6.jar"/>
+    <jar href="lib/slf4j-jdk14-1.7.6.jar"/>
   </resources>
   <application-desc main-class="samples.swing.action.ConfigureButtonsSample"/>
 </jnlp>
