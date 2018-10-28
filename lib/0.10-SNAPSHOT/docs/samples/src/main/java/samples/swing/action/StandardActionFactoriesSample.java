@@ -145,24 +145,22 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
     public static void main(String args[]) {
         //Locale.setDefault(Locale.ENGLISH); // throws java.security.AccessControlException when executed via Java WebStart
         JComponent.setDefaultLocale(Locale.getDefault());
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StandardActionFactoriesSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new StandardActionFactoriesSample().setVisible(true);
         });
         
     }
     
     private void addMenuItems(XAction[] xActions, JMenu menu) {
-        for (int i=0; i < xActions.length; i++){
-            JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
+        for (XAction xAction : xActions) {
+            JMenuItem item = XActions.createMenuItem(xAction, IconType.SMALL_ICON, true);
             menu.add(item);
         }
     }
     
     private void addToolbarButtons(XAction[] xActions, JToolBar toolBar) {
-        for (int i=0; i < xActions.length; i++){
-            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, true);
+        for (XAction xAction : xActions) {
+            JButton button = XActions.createButton(xAction, IconType.LARGE_ICON, false, true);
             toolBar.add(button);
         }
     }
@@ -174,6 +172,7 @@ public class StandardActionFactoriesSample extends javax.swing.JFrame {
         for (int i=0; i<factories.length; i++){
             StandardActionFactory factory = factories[i];
             XAction xAction = new AbstractXAction(){
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(StandardActionFactoriesSample.this,
                             "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);

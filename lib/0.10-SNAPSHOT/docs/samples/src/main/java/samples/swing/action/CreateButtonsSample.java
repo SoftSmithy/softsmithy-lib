@@ -82,31 +82,29 @@ public class CreateButtonsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateButtonsSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CreateButtonsSample().setVisible(true);
         });
         
     }
     
     private void addMenuItems(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
-            JMenuItem item = XActions.createMenuItem(xActions[i], IconType.SMALL_ICON, true);
+        for (XAction xAction : xActions) {
+            JMenuItem item = XActions.createMenuItem(xAction, IconType.SMALL_ICON, true);
             menu.add(item);
         }
     }
     
     private void addToolbarStandardButtons(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
-            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, false);
+        for (XAction xAction : xActions) {
+            JButton button = XActions.createButton(xAction, IconType.LARGE_ICON, false, false);
             toolBarStandard.add(button);
         }
     }
     
     private void addToolbarCoolButtons(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
-            JButton button = XActions.createButton(xActions[i], IconType.LARGE_ICON, false, true);
+        for (XAction xAction : xActions) {
+            JButton button = XActions.createButton(xAction, IconType.LARGE_ICON, false, true);
             toolBarCool.add(button);
         }
     }
@@ -118,6 +116,7 @@ public class CreateButtonsSample extends javax.swing.JFrame {
         for (int i=0; i<factories.length; i++){
             GeneralActionFactory factory = factories[i];
             XAction xAction = new AbstractXAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(CreateButtonsSample.this,
                             "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);
