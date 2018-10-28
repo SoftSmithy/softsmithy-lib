@@ -12,65 +12,63 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * HorizontalAlignmentCellRenderer.java
  *
  * Created on 7. Oktober 2002, 22:32
  */
-
 package org.softsmithy.lib.swing.table;
 
 import java.util.*;
-import javax.swing.JLabel;
 import javax.swing.table.*;
 import org.softsmithy.lib.util.*;
 
-
 /**
  *
- * @author  puce
+ * @author puce
  */
 @Deprecated
-public class TypesafeEnumRenderer extends DefaultTableCellRenderer{
-  
-  /** Holds value of property locale. */
-  private Locale locale;
-  
-  /** Creates a new instance of HorizontalAlignmentCellRenderer */
-  public TypesafeEnumRenderer(Locale locale) {
-    this.locale = locale;
-  }
+public class TypesafeEnumRenderer extends DefaultTableCellRenderer {
 
-  /** Sets the <code>String</code> object for the cell being rendered to
-   * <code>value</code>.
-   *
-   * @param value  the string value for this cell; if value is
-   * 		<code>null</code> it sets the text value to an empty string
-   * @see JLabel#setText(java.lang.String)
-   *
-   *
-   */
-  @Override
-  protected void setValue(Object value) {
-    super.setValue(((TypesafeEnum) value).getDisplayString(getLocale()));
-  }  
-  
-  /** Getter for property locale.
-   * @return Value of property locale.
-   *
-   */
-  @Override
-  public Locale getLocale() {
-    return this.locale;
-  }
-  
-  /** Setter for property locale.
-   * @param locale New value of property locale.
-   *
-   */
-  @Override
-  public void setLocale(Locale locale) {
-    this.locale = locale;
-  }
-  
+    /**
+     * Holds value of property locale.
+     */
+    private Locale locale;
+
+    /**
+     * Creates a new instance of HorizontalAlignmentCellRenderer
+     *
+     * @param locale the locale
+     */
+    public TypesafeEnumRenderer(Locale locale) {
+        this.locale = locale;
+    }
+
+    /**
+     * {@inheritDoc }
+     *
+     */
+    @Override
+    protected void setValue(Object value) {
+        super.setValue(((TypesafeEnum) value).getDisplayString(getLocale()));
+    }
+
+    /**
+     * {@inheritDoc }
+     *
+     */
+    @Override
+    public Locale getLocale() {
+        return this.locale;
+    }
+
+    /**
+     * {@inheritDoc }
+     *
+     */
+    @Override
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
 }

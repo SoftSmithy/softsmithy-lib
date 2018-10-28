@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * LeadingCellRenderer.java
  *
  * Created on 11. September 2003, 19:51
@@ -23,23 +23,30 @@ import javax.swing.Icon;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public abstract class AbstractCellRenderer<T> implements CellRenderer<T> {
 
-    /** Holds value of property horizontalAlignment. */
+    /**
+     * Holds value of property horizontalAlignment.
+     */
     private final HorizontalAlignment horizontalAlignment;
 
     public AbstractCellRenderer() {
         this(HorizontalAlignment.LEADING);
     }
 
-    /** Creates a new instance of LeadingCellRenderer */
+    /**
+     * Creates a new instance of LeadingCellRenderer
+     * @param horizontalAlignment the horizontal alignment
+     */
     public AbstractCellRenderer(HorizontalAlignment horizontalAlignment) {
         this.horizontalAlignment = horizontalAlignment;
     }
 
-    /** Getter for property horizontalAlignment.
+    /**
+     * Getter for property horizontalAlignment.
+     *
      * @return Value of property horizontalAlignment.
      *
      */

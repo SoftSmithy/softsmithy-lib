@@ -244,6 +244,8 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     
     /**
      * The minimum value for the minimum value.
+     * 
+     * @param minimumMinimumValue the minimum value for the minimum value
      */
     protected void setMinimumMinimumValue(Number minimumMinimumValue) {
         if (minimumMinimumValue != null && ! (minimumMinimumValue instanceof Comparable)){

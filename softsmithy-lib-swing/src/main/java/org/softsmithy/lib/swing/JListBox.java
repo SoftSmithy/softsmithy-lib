@@ -36,11 +36,11 @@ public class JListBox<E> extends JPanel {
   
   /**
    * Creates a new instance of this class.
-   * @param collection 
+   * @param elements the elements
    */
-  public JListBox(Collection<? extends E> collection){
-    for (Iterator<? extends E> i=collection.iterator(); i.hasNext();){
-      listModel.addElement(i.next());
+  public JListBox(Collection<? extends E> elements){
+    for (E element: elements){
+      listModel.addElement(element);
     }
     this.list = new JList<>(listModel);
     list.addListSelectionListener(lsl);

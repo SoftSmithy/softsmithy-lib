@@ -53,6 +53,8 @@ public class JXApplet extends javax.swing.JApplet {
    *
    * Note: Needed due to the bug <a href="http://developer.java.sun.com/developer/bugParade/bugs/4710854.html">
    * 4710854</a>
+   * 
+   *  @return the document base dir
    */
   public String getDocumentBaseDir(){
     if (documentBaseDir == null){

@@ -92,7 +92,7 @@ public class JStyledPanel extends JPanel implements Styleable {
     /**
      * Gets the parent style.
      *
-     * @return
+     * @return the parent style
      */
     @Override
     public Style getParentStyle() {

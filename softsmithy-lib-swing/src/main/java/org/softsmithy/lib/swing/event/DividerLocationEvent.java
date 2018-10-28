@@ -40,7 +40,11 @@ public class DividerLocationEvent extends EventObject {
     private final int location;
 
     /**
-     * Creates a new instance of DividerLocationEvent
+     * Creates a new instance of DividerLocationEvent.
+     *
+     * @param source the event source
+     * @param index the index
+     * @param location the location
      */
     public DividerLocationEvent(Object source, int index, int location) {
         super(source);

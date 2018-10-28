@@ -11,25 +11,24 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.text;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class FloatFormatterFactory extends RealNumberFormatterFactory {
-  
-  
-  /** Creates a new instance of WholeNumberFormatterFactory */
-  public FloatFormatterFactory(FloatFormatter formatter) {
-    super(formatter);
-  }
-  
-  
-  public FloatFormatter getFloatFormatter(){
-    return (FloatFormatter) getRealNumberFormatter();
-  }
-  
+
+    /**
+     * Creates a new instance of WholeNumberFormatterFactory
+     * @param formatter the formatter
+     */
+    public FloatFormatterFactory(FloatFormatter formatter) {
+        super(formatter);
+    }
+
+    public FloatFormatter getFloatFormatter() {
+        return (FloatFormatter) getRealNumberFormatter();
+    }
 
 }

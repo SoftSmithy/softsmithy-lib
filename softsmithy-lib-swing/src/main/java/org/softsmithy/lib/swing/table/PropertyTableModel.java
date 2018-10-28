@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * AbstractCustomizerPropertyTableModel.java
  *
  * Created on 6. Februar 2003, 19:24
@@ -29,7 +29,7 @@ import org.softsmithy.lib.beans.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class PropertyTableModel extends AbstractTableModel implements CellTableModel {
 
@@ -41,13 +41,19 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
     private ResourceBundle propertiesRB;
     private ResourceBundle columnNamesRB;
     private Locale locale;
-    private final BeanPropertyListener beanPropertyListener =
-            new BeanPropertyListener();
+    private final BeanPropertyListener beanPropertyListener = new BeanPropertyListener();
 
-    /** Creates a new instance of AbstractCustomizerPropertyTableModel */
+    /**
+     * Creates a new instance of PropertyTableModel
+     *
+     * @param bean the bean to display
+     * @param propertiesRBBaseName the base name of the properties resource bundle
+     * @param locale the locale
+     * @throws IntrospectionException if an introspection error occurs
+     */
     public PropertyTableModel(Object bean, String propertiesRBBaseName, Locale locale) throws IntrospectionException {
         init(propertiesRBBaseName, locale);
-        Map<String, String> propertyMap = new TreeMap<String, String>();
+        Map<String, String> propertyMap = new TreeMap<>();
         if (bean != null) {
             PropertyDescriptor[] descriptors = BeanIntrospector.getPropertyDescriptors(bean.getClass(), propertiesRB);
             for (PropertyDescriptor descriptor : descriptors) {
@@ -105,9 +111,8 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         //    }
     }
 
-    /** Returns the number of columns in the model. A
-     * <code>JTable</code> uses this method to determine how many columns it
-     * should create and display by default.
+    /**
+     * Returns the number of columns in the model. A <code>JTable</code> uses this method to determine how many columns it should create and display by default.
      *
      * @return the number of columns in the model
      * @see #getRowCount
@@ -118,10 +123,9 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         return 2;
     }
 
-    /** Returns the number of rows in the model. A
-     * <code>JTable</code> uses this method to determine how many rows it
-     * should display.  This method should be quick, as it
-     * is called frequently during rendering.
+    /**
+     * Returns the number of rows in the model. A <code>JTable</code> uses this method to determine how many rows it should display. This method should be quick, as it is called frequently during
+     * rendering.
      *
      * @return the number of rows in the model
      * @see #getColumnCount
@@ -132,11 +136,11 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         return propertyNames.size();
     }
 
-    /** Returns the value for the cell at <code>columnIndex</code> and
-     * <code>rowIndex</code>.
+    /**
+     * Returns the value for the cell at <code>columnIndex</code> and <code>rowIndex</code>.
      *
      * @param	rowIndex	the row whose value is to be queried
-     * @param	columnIndex 	the column whose value is to be queried
+     * @param	columnIndex the column whose value is to be queried
      * @return	the value Object at the specified cell
      *
      */
@@ -152,7 +156,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
                     value = BeanIntrospector.getPropertyValue(getPropertyName(rowIndex), bean, propertiesRB);
                     break;
             }
-        } catch (IntrospectionException | IllegalAccessException| InvocationTargetException | RuntimeException ex) {
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
             LOG.error(ex.getMessage(), ex);
             //value = "";
         }
@@ -160,12 +164,12 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         return value;
     }
 
-    /**  This empty implementation is provided so users don't have to implement
-     *  this method if their data model is not editable.
+    /**
+     * This empty implementation is provided so users don't have to implement this method if their data model is not editable.
      *
-     *  @param  aValue   value to assign to cell
-     *  @param  rowIndex   row of cell
-     *  @param  columnIndex  column of cell
+     * @param aValue value to assign to cell
+     * @param rowIndex row of cell
+     * @param columnIndex column of cell
      *
      */
     @Override
@@ -181,33 +185,23 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.getClass(), propertiesRB);
     }
 
-    /**  Returns false.  This is the default implementation for all cells.
-     *
-     *  @param  rowIndex  the row being queried
-     *  @param  columnIndex the column being queried
-     *  @return false
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         boolean isCellEditable = false;
         try {
-            isCellEditable = columnIndex == 1 && BeanIntrospector.
-                    isPropertyWriteable(getPropertyName(rowIndex),
-                    bean.getClass(), propertiesRB);
+            isCellEditable = (columnIndex == 1)
+                    && BeanIntrospector.isPropertyWriteable(getPropertyName(rowIndex), bean.getClass(), propertiesRB);
         } catch (IntrospectionException ex) {
             LOG.error(ex.getMessage(), ex);
         }
         return isCellEditable;
     }
 
-    /**  Returns a default name for the column using spreadsheet conventions:
-     *  A, B, C, ... Z, AA, AB, etc.  If <code>column</code> cannot be found,
-     *  returns an empty string.
-     *
-     * @param column  the column being queried
-     * @return a string containing the default name of <code>column</code>
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public String getColumnName(int column) {
@@ -224,6 +218,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
                     columnName = super.getColumnName(column); // should not happen
             }
         } catch (RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
         return columnName;
     }
@@ -271,7 +266,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
     //    //    System.out.println(evt.getPropertyName() + " changed");
     //    this.fireTableCellUpdated(propertyNames.indexOf(evt.getPropertyName()), 1);
     //  }
-    
+
     public List<String> getPropertyNames() {
         return this.propertyNames;
     }
@@ -288,7 +283,9 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
         return locale;
     }
 
-    /** Setter for property locale.
+    /**
+     * Setter for property locale.
+     *
      * @param locale New value of property locale.
      *
      */
@@ -333,8 +330,7 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
             } else {
                 if (BeanIntrospector.supportsPropertyChangeListeners(getBean().getClass())) {
                     try {
-                        BeanIntrospector.removePropertyChangeListener(getBean(),
-                                beanPropertyListener);
+                        BeanIntrospector.removePropertyChangeListener(getBean(), beanPropertyListener);
                     } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
                         LOG.error(ex1.getMessage(), ex1);
                     }
@@ -345,9 +341,10 @@ public class PropertyTableModel extends AbstractTableModel implements CellTableM
 
     private class BeanPropertyListener implements PropertyChangeListener {
 
-        /** This method gets called when a bound property is changed.
-         * @param evt A PropertyChangeEvent object describing the event source
-         *   	and the property that has changed.
+        /**
+         * This method gets called when a bound property is changed.
+         *
+         * @param evt A PropertyChangeEvent object describing the event source and the property that has changed.
          *
          */
         @Override
