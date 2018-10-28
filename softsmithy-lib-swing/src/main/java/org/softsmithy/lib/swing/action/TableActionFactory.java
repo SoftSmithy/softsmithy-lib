@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- * http://java.sun.com/developer/techDocs/hi/repository/TBG_Table.html
+ * <a href="https://www.oracle.com/technetwork/java/tbg-table-141372.html">Table Toolbar Button Graphics: Java look and feel Graphics Repository</a>
  * @author  puce
  */
 public class TableActionFactory extends StandardActionFactory{

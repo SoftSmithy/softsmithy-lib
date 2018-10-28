@@ -22,7 +22,7 @@ import org.softsmithy.lib.io.Files;
 /**
  * Some image file views. <br>
  * Adapted from:
- * http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/index.html#FileChooserDemo2
+ * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/#FileChooserDemo2
  * <br>
  *
  * @author    Florian Brunner

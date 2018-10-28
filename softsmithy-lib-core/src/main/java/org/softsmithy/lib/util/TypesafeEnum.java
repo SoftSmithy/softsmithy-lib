@@ -27,7 +27,7 @@ import org.softsmithy.lib.text.Localizable;
  * package-private (if extensible only inside the package) constructors
  * to implement the typesafe enum pattern.<br>
  * More to read about the typesafe enum pattern: Item 21 (chapter 5, p.104) of
- * the Java Series Book <a href="http://developer.java.sun.com/developer/Books/effectivejava/index.html">
+ * the Java Series Book <a href="https://www.oracle.com/technetwork/java/effectivejava-136174.html">
  * Effective Java Programming Language Guide</a> by Joshua Bloch.<br>
  * Serialization note: Subclasses implementing Serializable should deserialize to
  * the rigth static field as the deserialized version of an object of this class would

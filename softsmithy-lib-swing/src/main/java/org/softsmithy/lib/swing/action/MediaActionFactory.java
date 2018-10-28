@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.action;
 
 /**
- * http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html
+ * <a href="https://www.oracle.com/technetwork/java/tbg-media-137102.html">Media Toolbar Button Graphics: Java look and feel Graphics Repository</a>
  * @author  puce
  */
 public class MediaActionFactory extends StandardActionFactory{

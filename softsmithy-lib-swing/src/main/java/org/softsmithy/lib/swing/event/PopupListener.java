@@ -18,7 +18,7 @@ import javax.swing.*;
 
 /**
  * A MouseListener that listens for popup events. Adapted from <a
- * href="http://java.sun.com/docs/books/tutorial/uiswing/components/menu.html#popup">
+ * href="https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html#popup">
  * Bringing Up a Popup Menu</a>
  *
  * @author Florian Brunner

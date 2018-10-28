@@ -390,7 +390,7 @@ public class JCustomizer extends AbstractCustomizer {//implements CustomizerMode
    * Registers the text to display in a tool tip.
    * The text displays when the cursor lingers over the component.
    * <p>
-   * See <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tooltip.html">How to Use Tool Tips</a>
+   * See <a href="https://docs.oracle.com/javase/tutorial/uiswing/components/tooltip.html">How to Use Tool Tips</a>
    * in <em>The Java Tutorial</em>
    * for further documentation.
    *
