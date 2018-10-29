@@ -1,8 +1,8 @@
-# The SoftSmithy Development Utility Library
+## The SoftSmithy Development Utility Library
 
 The SoftSmithy Development Utility Library provides utility classes and frameworks, which are useful at development time.
 
-## Documentation
+### Documentation
     
 * [v0.10-SNAPSHOT](0.10-SNAPSHOT/docs/site)
 * [v0.9](0.9/docs/site)
