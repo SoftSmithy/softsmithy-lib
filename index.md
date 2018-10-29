@@ -1,17 +1,5 @@
-A Java utility library
+### The SoftSmithy Utility Library
+The [SoftSmithy Utility Library](lib) is the core of this project. It provides many different general utility classes and frameworks. 
 
-## Documentation
-    
-* v0.10-SNAPSHOT
-* v0.9
-* v0.8
-* v0.7
-* [v0.6](0.6)
-* v0.5
-* v0.4
-* v0.3
-* v0.2
-
-Authors and Contributors
-
-* Florian Brunner (@puce77)
+### The SoftSmithy Development Utility Library
+The [SoftSmithy Development Utility Library](devlib) provides utility classes and frameworks, which are useful at development time.
