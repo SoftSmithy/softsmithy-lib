@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Deprecated.
+ * Utility classes and extensions for JUnit tests.
  */
-package org.softsmithy.lib.awt.layout;
+package org.softsmithy.devlib.junit;
