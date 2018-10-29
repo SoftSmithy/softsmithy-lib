@@ -1,4 +1,7 @@
+# The SoftSmithy Utility Library
 A Java utility library
+
+The SoftSmithy Utility Library is the core of this project. It provides many different general utility classes and frameworks.
 
 ## Documentation
     
