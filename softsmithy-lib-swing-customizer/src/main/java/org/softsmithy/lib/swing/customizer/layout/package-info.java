@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Deprecated.
+ * Custom Layouts for the SoftSmithy Swing Customizer Framework.
  */
-package org.softsmithy.lib.awt.layout;
+package org.softsmithy.lib.swing.customizer.layout;

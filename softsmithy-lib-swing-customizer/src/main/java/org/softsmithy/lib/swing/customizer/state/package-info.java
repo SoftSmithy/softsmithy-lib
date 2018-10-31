@@ -12,6 +12,6 @@
  * Contributor(s): .
  */
 /**
- * Deprecated.
+ * State support classes for the SoftSmithy Swing Customizer Framework.
  */
-package org.softsmithy.lib.awt.layout;
+package org.softsmithy.lib.swing.customizer.state;
