@@ -65,6 +65,33 @@
         </moduleSet>
         <moduleSet>
             <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
+            </includes>
+            <binaries>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>javadoc</attachmentClassifier>
+                <outputDirectory>docs/api/softsmithy-lib-compiler</outputDirectory>
+                <includeDependencies>false</includeDependencies>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>sources</attachmentClassifier>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
                 <include>${project.groupId}:softsmithy-lib-persistence</include>
             </includes>
             <binaries>
