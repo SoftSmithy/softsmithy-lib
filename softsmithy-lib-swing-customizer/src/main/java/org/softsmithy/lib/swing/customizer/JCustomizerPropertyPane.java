@@ -32,7 +32,7 @@ import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
  */
 class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListener {
 
-    private JCustomizerPropertyTable table;
+    private final JCustomizerPropertyTable table;
 //    private static final String PROPERTIES_BUNDLE_BASE_NAME = "org.softsmithy.lib.swing.customizer.Properties";
 
     /**

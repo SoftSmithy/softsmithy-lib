@@ -36,7 +36,7 @@ public class XDefaultTableCellRenderer extends DefaultTableCellRenderer {
     /**
      * Holds value of property cellRenderer.
      */
-    private CellRenderer cellRenderer;
+    private final CellRenderer cellRenderer;
 
     /**
      * Creates a new instance of XDefaultTableCellRenderer

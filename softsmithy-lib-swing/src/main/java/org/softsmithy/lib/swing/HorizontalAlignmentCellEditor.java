@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * HorizontalAlignmentCellEditor.java
  *
  * Created on 7. Oktober 2002, 22:14
@@ -24,18 +24,23 @@ import javax.swing.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
 
-    /** Holds value of property locale. */
+    /**
+     * Holds value of property locale.
+     */
     private Locale locale;
 
-    /** Creates a new instance of HorizontalAlignmentCellEditor */
+    /**
+     * Creates a new instance of HorizontalAlignmentCellEditor
+     * @param locale the locale
+     */
     public HorizontalAlignmentCellEditor(Locale locale) {
         super(new JComboBox());
         JComboBox comboBox = (JComboBox) this.getComponent();
-        Vector<HorizontalAlignmentItem> horizontalAlignments = new Vector<HorizontalAlignmentItem>();
+        Vector<HorizontalAlignmentItem> horizontalAlignments = new Vector<>();
         for (HorizontalAlignment horizontalAlignment : HorizontalAlignment.VALUES) {
             horizontalAlignments.add(new HorizontalAlignmentItem(horizontalAlignment));
         }
@@ -43,17 +48,17 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
         setLocale(locale);
     }
 
-    /** Forwards the message from the <code>CellEditor</code> to
-     * the <code>delegate</code>.
-     * @see EditorDelegate#getCellEditorValue
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public Object getCellEditorValue() {
         return ((HorizontalAlignmentItem) super.getCellEditorValue()).getHorizontalAlignment();
     }
 
-    /** Getter for property locale.
+    /**
+     * Getter for property locale.
+     *
      * @return Value of property locale.
      *
      */
@@ -61,7 +66,9 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
         return this.locale;
     }
 
-    /** Setter for property locale.
+    /**
+     * Setter for property locale.
+     *
      * @param locale New value of property locale.
      *
      */
@@ -71,8 +78,10 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
 
     private class HorizontalAlignmentItem {
 
-        /** Holds value of property fontStyle. */
-        private HorizontalAlignment horizontalAlignment;
+        /**
+         * Holds value of property fontStyle.
+         */
+        private final HorizontalAlignment horizontalAlignment;
 
         public HorizontalAlignmentItem(HorizontalAlignment horizontalAlignment) {
             this.horizontalAlignment = horizontalAlignment;
@@ -82,26 +91,8 @@ public class HorizontalAlignmentCellEditor extends DefaultCellEditor {
             return this.horizontalAlignment;
         }
 
-        /** Returns a string representation of the object. In general, the
-         * <code>toString</code> method returns a string that
-         * "textually represents" this object. The result should
-         * be a concise but informative representation that is easy for a
-         * person to read.
-         * It is recommended that all subclasses override this method.
-         * <p>
-         * The <code>toString</code> method for class <code>Object</code>
-         * returns a string consisting of the name of the class of which the
-         * object is an instance, the at-sign character `<code>@</code>', and
-         * the unsigned hexadecimal representation of the hash code of the
-         * object. In other words, this method returns a string equal to the
-         * value of:
-         * <blockquote>
-         * <pre>
-         * getClass().getName() + '@' + Integer.toHexString(hashCode())
-         * </pre></blockquote>
-         *
-         * @return  a string representation of the object.
-         *
+        /**
+         * {@inheritDoc }
          */
         @Override
         public String toString() {

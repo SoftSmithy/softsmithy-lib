@@ -13,6 +13,7 @@
  */
 package org.softsmithy.lib.text;
 
+import java.io.IOException;
 import java.text.Format;
 
 /**
@@ -31,7 +32,7 @@ public class FormatFormatter<T> extends AbstractFormatter<T> {
     public void format(T t, Appendable appendable) throws FormatException {
         try {
             appendable.append(format.format(t));
-        } catch (Exception ex) {
+        } catch (IOException | RuntimeException ex) {
             throw new FormatException(ex);
         }
     }

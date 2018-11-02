@@ -19,7 +19,7 @@ import javax.swing.border.*;
 import javax.swing.table.*;
 
 /**
- * From: http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/TableRenderDemo.java
+ * From: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TableRenderDemoProject/src/components/TableRenderDemo.java
  */
 public class ColorCellRenderer extends JPanel implements TableCellRenderer {
 
@@ -68,6 +68,7 @@ public class ColorCellRenderer extends JPanel implements TableCellRenderer {
         add(textLabel);
     }
 
+    @Override
     public Component getTableCellRendererComponent(JTable table, Object color, boolean isSelected, boolean hasFocus, int row, int column) {
         setColor((Color) color);
         if (isBordered) {

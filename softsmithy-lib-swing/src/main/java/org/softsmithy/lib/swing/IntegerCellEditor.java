@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * IntegerCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -23,11 +23,14 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class IntegerCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of IntegerCellEditor */
+    /**
+     * Creates a new instance of IntegerCellEditor
+     * @param locale the locale
+     */
     public IntegerCellEditor(Locale locale) {
         super(new JIntegerField(locale));
     }
@@ -53,11 +56,11 @@ public class IntegerCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getIntegerField().setIntValue(((Integer) value).intValue());
+        getIntegerField().setIntValue(((Integer) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Integer(getIntegerField().getIntValue());
+        return getIntegerField().getIntValue();
     }
 }

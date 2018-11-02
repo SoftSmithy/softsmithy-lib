@@ -36,6 +36,7 @@ public class NoneStyle implements Style {
 
     /**
      * Creates a new instance of AbstractNoneStyle
+     * @param styleable the styleable
      */
     public NoneStyle(Styleable styleable) {
         this.styleable = styleable;

@@ -11,7 +11,6 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.multisplit;
 
 import java.awt.*;
@@ -19,37 +18,49 @@ import javax.swing.*;
 import org.softsmithy.lib.util.*;
 
 public abstract class SplitOrientation extends TypesafeEnum {
-  
-  private SplitOrientation(String name){
-    super(name);
-  }
-  
-  public abstract int getSplitPaneConstant();
-  public abstract int getPreferredSize(Component component);
-  public abstract int getSize(Component component);
-  
-  public static final SplitOrientation HORIZONTAL = new SplitOrientation("horizontal"){
-    public int getSplitPaneConstant(){
-      return JSplitPane.HORIZONTAL_SPLIT;
+
+    private SplitOrientation(String name) {
+        super(name);
     }
-    public int getPreferredSize(Component component){
-      return component.getPreferredSize().width;
-    }
-    public int getSize(Component component){
-      return component.getWidth();
-    }
-  };
-  
-  public static final SplitOrientation VERTICAL = new SplitOrientation("vertical"){
-    public int getSplitPaneConstant(){
-      return JSplitPane.VERTICAL_SPLIT;
-    }
-    public int getPreferredSize(Component component){
-      return component.getPreferredSize().height;
-    }
-    public int getSize(Component component){
-      return component.getHeight();
-    }
-  };
-  
+
+    public abstract int getSplitPaneConstant();
+
+    public abstract int getPreferredSize(Component component);
+
+    public abstract int getSize(Component component);
+
+    public static final SplitOrientation HORIZONTAL = new SplitOrientation("horizontal") {
+        @Override
+        public int getSplitPaneConstant() {
+            return JSplitPane.HORIZONTAL_SPLIT;
+        }
+
+        @Override
+        public int getPreferredSize(Component component) {
+            return component.getPreferredSize().width;
+        }
+
+        @Override
+        public int getSize(Component component) {
+            return component.getWidth();
+        }
+    };
+
+    public static final SplitOrientation VERTICAL = new SplitOrientation("vertical") {
+        @Override
+        public int getSplitPaneConstant() {
+            return JSplitPane.VERTICAL_SPLIT;
+        }
+
+        @Override
+        public int getPreferredSize(Component component) {
+            return component.getPreferredSize().height;
+        }
+
+        @Override
+        public int getSize(Component component) {
+            return component.getHeight();
+        }
+    };
+
 }

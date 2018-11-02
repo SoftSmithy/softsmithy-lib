@@ -11,31 +11,31 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.text;
 
 import javax.swing.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class RealNumberFormatterFactory extends AbstractXNumberFormatterFactory {
-  
-  
-  /** Creates a new instance of WholeNumberFormatterFactory */
-  public RealNumberFormatterFactory(RealNumberFormatter formatter) {
-    super(formatter);
-  }
-  
-  @Override
-  public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-    return getRealNumberFormatter();
-  }
-  
-  public RealNumberFormatter getRealNumberFormatter(){
-    return (RealNumberFormatter) getAbstractXNumberFormatter();
-  }
-  
+
+    /**
+     * Creates a new instance of WholeNumberFormatterFactory
+     * @param formatter the formatter
+     */
+    public RealNumberFormatterFactory(RealNumberFormatter formatter) {
+        super(formatter);
+    }
+
+    @Override
+    public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+        return getRealNumberFormatter();
+    }
+
+    public RealNumberFormatter getRealNumberFormatter() {
+        return (RealNumberFormatter) getAbstractXNumberFormatter();
+    }
 
 }

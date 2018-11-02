@@ -10,41 +10,46 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.swing.action.*;
 /**
  * JListBox provides a scrollable list with two buttons to change the order of
  * the elements.
+ * @param <E> the type of the elements of the list
  * @author  puce
  */
-public class JListBox extends JPanel {
-  
+public class JListBox<E> extends JPanel {
+    
+  private static final Logger LOG = LoggerFactory.getLogger(JListBox.class);
+
   private XAction upAction = new DefaultXAction();
   private XAction downAction = new DefaultXAction();
-  private final JList list;
-  private final DefaultListModel listModel = new DefaultListModel();
+  private final JList<E> list;
+  private final DefaultListModel<E> listModel = new DefaultListModel<>();
   private final ListSelectionListener lsl = new ListEndSelectionListener();
   
   /** Creates a new instance of this class. */
   public JListBox() {
-    this(Collections.EMPTY_LIST);
+    this(Collections.emptyList());
   }
   
   /**
    * Creates a new instance of this class.
-   * @param collection 
+   * @param elements the elements
    */
-  public JListBox(Collection collection){
-    for (Iterator i=collection.iterator(); i.hasNext();){
-      listModel.addElement(i.next());
+  public JListBox(Collection<? extends E> elements){
+    for (E element: elements){
+      listModel.addElement(element);
     }
-    this.list = new JList(listModel);
+    this.list = new JList<>(listModel);
     list.addListSelectionListener(lsl);
     initComponents();
     try{
       upAction = NavigationActionFactory.UP.createXAction(this, getLocale());
       downAction = NavigationActionFactory.DOWN.createXAction(this, getLocale());
     } catch (NoSuchMethodException ex){ // should not happen here
-      ex.printStackTrace();
+      LOG.error(ex.getMessage(), ex);
     }
     XActions.configureButton(upButton, upAction, IconType.SMALL_ICON, false, false);
     XActions.configureButton(downButton, downAction, IconType.SMALL_ICON, false, false);
@@ -62,7 +67,7 @@ public class JListBox extends JPanel {
       int[] oldIndices = list.getSelectedIndices();
       int[] newIndices = new int[oldIndices.length];
       for (int i=0; i<oldIndices.length; i++){        
-        Object obj = listModel.remove(oldIndices[i]);
+        E obj = listModel.remove(oldIndices[i]);
         newIndices[i] = oldIndices[i] - 1;
         listModel.add(newIndices[i], obj);
       }
@@ -81,7 +86,7 @@ public class JListBox extends JPanel {
       int[] newIndices = new int[oldIndices.length];
       for (int i=oldIndices.length-1; i>=0; i--){
         newIndices[i] = oldIndices[i] + 1;
-        Object obj = listModel.remove(oldIndices[i]);
+        E obj = listModel.remove(oldIndices[i]);
         listModel.add(newIndices[i], obj);
       }
       list.setSelectedIndices(newIndices);
@@ -94,7 +99,7 @@ public class JListBox extends JPanel {
    * Gets the list model of this component.
    * @return the list model of this component
    */
-  public ListModel getListModel(){
+  public ListModel<E> getListModel(){
     return list.getModel();
   }
   
@@ -155,24 +160,24 @@ public class JListBox extends JPanel {
   
   private class ListEndSelectionListener implements ListSelectionListener{
     
+    @Override
     public void valueChanged(ListSelectionEvent e) {
       if (! e.getValueIsAdjusting()){
-        JList list = (JList)e.getSource();
+        JList<?> list = (JList<?>)e.getSource();
         upAction.setEnabled(selectedButNotFirst(list));
         downAction.setEnabled(selectedButNotLast(list));
       }
       
     }
     
-    private boolean selectedButNotFirst(JList list){
+    private boolean selectedButNotFirst(JList<?> list){
       return list.getMinSelectionIndex() > 0; // not -1 and not 0
     }
     
-    private boolean selectedButNotLast(JList list){
+    private boolean selectedButNotLast(JList<?> list){
       return (! list.isSelectionEmpty()) && list.getMaxSelectionIndex() < listModel.getSize() - 1;
       
     }
-    
     
   }
 }

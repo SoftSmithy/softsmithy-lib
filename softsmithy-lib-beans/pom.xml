@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.9</version>
+        <version>1.0</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
 
@@ -28,7 +28,7 @@ Contributor(s): .
     <description>A JavaBeans utility library.</description>
     <inceptionYear>2012</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
@@ -64,6 +64,17 @@ Contributor(s): .
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>org.softsmithy.lib.beans</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>    
     </build>
     
@@ -73,6 +84,10 @@ Contributor(s): .
             <groupId>org.softsmithy.lib</groupId>
             <artifactId>softsmithy-lib-core</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

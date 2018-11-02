@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * LocalizedFloatCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -23,11 +23,14 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LocalizedFloatCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of LocalizedFloatCellEditor */
+    /**
+     * Creates a new instance of LocalizedFloatCellEditor
+     * @param locale the locale
+     */
     public LocalizedFloatCellEditor(Locale locale) {
         super(new JLocalizedFloatField(locale));
     }
@@ -53,11 +56,11 @@ public class LocalizedFloatCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getLocalizedFloatField().setFloatValue(((Float) value).floatValue());
+        getLocalizedFloatField().setFloatValue(((Float) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Float(getLocalizedFloatField().getFloatValue());
+        return getLocalizedFloatField().getFloatValue();
     }
 }

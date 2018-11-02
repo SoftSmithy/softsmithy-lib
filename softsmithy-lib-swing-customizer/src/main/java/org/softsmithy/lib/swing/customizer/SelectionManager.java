@@ -24,8 +24,10 @@ package org.softsmithy.lib.swing.customizer;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -33,6 +35,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
 import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
@@ -44,12 +48,13 @@ import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
  * @author puce
  */
 public class SelectionManager implements PropertyChangeListener, CustomizerListener {
+    private static final Logger LOG = LoggerFactory.getLogger(SelectionManager.class);
 
 //  private static final Set RECTANGLE_PROPERTIES = Collections.unmodifiableSet(new HashSet(Arrays.asList(new String[] {"x", "y", "width", "height"})));
     private final List<JCustomizer> selectedList = new ArrayList<>();
     private final Set<JCustomizer> selectedSet = new LinkedHashSet<>();
     private JCustomizer activeCustomizer = null;
-    private Set<CustomizerSelectionListener> listeners = new HashSet<>();
+    private final Set<CustomizerSelectionListener> listeners = new HashSet<>();
     /**
      * Holds value of property fireingSelectionChanged.
      */
@@ -275,11 +280,10 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
         resetFactors();
         if (getActiveCustomizer() != null) {
             getActiveCustomizer().addCustomizerListener(this);
-            for (Iterator<String> i = this.commonCustomizableProperties.iterator(); i.hasNext();) {
-                String property = i.next();
+            this.commonCustomizableProperties.forEach(property -> {
                 //System.out.println("Property Change Listener added for: " + property);
                 getActiveCustomizer().addPropertyChangeListener(property, this);
-            }
+            });
         }
     }
 
@@ -297,8 +301,8 @@ public class SelectionManager implements PropertyChangeListener, CustomizerListe
             try {
                 BeanIntrospector.setPropertyValue(evt.getPropertyName(), evt.getNewValue(), customizer, null);
                 customizer.repaint();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }

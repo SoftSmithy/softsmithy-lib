@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * HorizontalAlignmentCellRenderer.java
  *
  * Created on 7. Oktober 2002, 22:32
@@ -37,21 +37,18 @@ public class HorizontalAlignmentRenderer extends DefaultTableCellRenderer {
 
     /**
      * Creates a new instance of HorizontalAlignmentCellRenderer
+     *
+     * @param locale the locale
      */
     public HorizontalAlignmentRenderer(Locale locale) {
         this.locale = locale;
     }
 
     /**
-     * Sets the
-     * <code>String</code> object for the cell being rendered to
-     * <code>value</code>.
+     * Sets the <code>String</code> object for the cell being rendered to <code>value</code>.
      *
-     * @param value the string value for this cell; if value is <code>null</code> it sets the text value to an empty
-     * string
+     * @param value the string value for this cell; if value is <code>null</code> it sets the text value to an empty string
      * @see JLabel#setText
-     *
-     *
      */
     @Override
     protected void setValue(Object value) {

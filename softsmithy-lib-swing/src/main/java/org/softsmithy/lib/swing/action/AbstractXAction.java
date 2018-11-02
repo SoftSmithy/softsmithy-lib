@@ -38,6 +38,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the accelerator
    */
+  @Override
   public KeyStroke getAccelerator() {
     return (KeyStroke) getValue(Action.ACCELERATOR_KEY);
   }
@@ -47,6 +48,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param keyStroke    The new accelerator value
    */
+  @Override
   public void setAccelerator(KeyStroke keyStroke) {
     putValue(Action.ACCELERATOR_KEY, keyStroke);
   }
@@ -56,6 +58,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the action command
    */
+  @Override
   public String getActionCommand() {
     return (String) getValue(Action.ACTION_COMMAND_KEY);
   }
@@ -65,6 +68,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param actionCommand  the action command
    */
+  @Override
   public void setActionCommand(String actionCommand) {
     putValue(Action.ACTION_COMMAND_KEY, actionCommand);
   }
@@ -74,6 +78,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large disabled icon
    */
+  @Override
   public Icon getLargeDisabledIcon() {
     return (Icon) getValue(XAction.LARGE_DISABLED_ICON);
   }
@@ -83,6 +88,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large disabled icon
    */
+  @Override
   public void setLargeDisabledIcon(Icon icon) {
     putValue(XAction.LARGE_DISABLED_ICON, icon);
   }
@@ -92,6 +98,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large disabled selected icon
    */
+  @Override
   public Icon getLargeDisabledSelectedIcon() {
     return (Icon) getValue(XAction.LARGE_DISABLED_SELECTED_ICON);
   }
@@ -101,6 +108,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large disabled selected icon
    */
+  @Override
   public void setLargeDisabledSelectedIcon(Icon icon) {
     putValue(XAction.LARGE_DISABLED_SELECTED_ICON, icon);
   }
@@ -110,6 +118,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large icon
    */
+  @Override
   public Icon getLargeIcon() {
     return (Icon) getValue(XAction.LARGE_ICON);
   }
@@ -119,6 +128,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large icon
    */
+  @Override
   public void setLargeIcon(Icon icon) {
     putValue(XAction.LARGE_ICON, icon);
   }
@@ -128,6 +138,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large pressed icon value
    */
+  @Override
   public Icon getLargePressedIcon() {
     return (Icon) getValue(XAction.LARGE_PRESSED_ICON);
   }
@@ -137,6 +148,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large pressed icon
    */
+  @Override
   public void setLargePressedIcon(Icon icon) {
     putValue(XAction.LARGE_PRESSED_ICON, icon);
   }
@@ -146,6 +158,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large rollover icon
    */
+  @Override
   public Icon getLargeRolloverIcon() {
     return (Icon) getValue(XAction.LARGE_ROLLOVER_ICON);
   }
@@ -155,6 +168,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large rollover icon
    */
+  @Override
   public void setLargeRolloverIcon(Icon icon) {
     putValue(XAction.LARGE_ROLLOVER_ICON, icon);
   }
@@ -164,6 +178,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large rollover selected icon
    */
+  @Override
   public Icon getLargeRolloverSelectedIcon() {
     return (Icon) getValue(XAction.LARGE_ROLLOVER_SELECTED_ICON);
   }
@@ -173,6 +188,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large rollover selected icon
    */
+  @Override
   public void setLargeRolloverSelectedIcon(Icon icon) {
     putValue(XAction.LARGE_ROLLOVER_SELECTED_ICON, icon);
   }
@@ -182,6 +198,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the large selected icon
    */
+  @Override
   public Icon getLargeSelectedIcon() {
     return (Icon) getValue(XAction.LARGE_SELECTED_ICON);
   }
@@ -191,6 +208,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the large selected icon
    */
+  @Override
   public void setLargeSelectedIcon(Icon icon) {
     putValue(XAction.LARGE_SELECTED_ICON, icon);
   }
@@ -200,6 +218,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the long description
    */
+  @Override
   public String getLongDescription() {
     return (String) getValue(Action.LONG_DESCRIPTION);
   }
@@ -209,6 +228,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param longDescription  the long description
    */
+  @Override
   public void setLongDescription(String longDescription) {
     putValue(Action.LONG_DESCRIPTION, longDescription);
   }
@@ -218,8 +238,9 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the menmonic key as an int value defined by KeyEvent
    */
+  @Override
   public int getMnemonicKey() {
-    return ((Integer) getValue(Action.MNEMONIC_KEY)).intValue();
+    return (Integer) getValue(Action.MNEMONIC_KEY);
   }
 
   /**
@@ -227,8 +248,9 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param mnemonicKey  The new mnemonicKey value
    */
+  @Override
   public void setMnemonicKey(int mnemonicKey) {
-    putValue(Action.MNEMONIC_KEY, new Integer(mnemonicKey));
+    putValue(Action.MNEMONIC_KEY, mnemonicKey);
   }
 
   /**
@@ -236,6 +258,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the name
    */
+  @Override
   public String getName() {
     return (String) getValue(Action.NAME);
   }
@@ -245,6 +268,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param name  the name
    */
+  @Override
   public void setName(String name) {
     putValue(Action.NAME, name);
   }
@@ -254,6 +278,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the short description
    */
+  @Override
   public String getShortDescription() {
     return (String) getValue(Action.SHORT_DESCRIPTION);
   }
@@ -263,6 +288,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param shortDescription  the short description
    */
+  @Override
   public void setShortDescription(String shortDescription) {
     putValue(Action.SHORT_DESCRIPTION, shortDescription);
   }
@@ -272,6 +298,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small disabled icon
    */
+  @Override
   public Icon getSmallDisabledIcon() {
     return (Icon) getValue(XAction.SMALL_DISABLED_ICON);
   }
@@ -281,6 +308,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small disabled icon
    */
+  @Override
   public void setSmallDisabledIcon(Icon icon) {
     putValue(XAction.SMALL_DISABLED_ICON, icon);
   }
@@ -290,6 +318,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small disabled selected icon
    */
+  @Override
   public Icon getSmallDisabledSelectedIcon() {
     return (Icon) getValue(XAction.SMALL_DISABLED_SELECTED_ICON);
   }
@@ -299,6 +328,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small disabled selected icon
    */
+  @Override
   public void setSmallDisabledSelectedIcon(Icon icon) {
     putValue(XAction.SMALL_DISABLED_SELECTED_ICON, icon);
   }
@@ -308,6 +338,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small icon
    */
+  @Override
   public Icon getSmallIcon() {
     return (Icon) getValue(Action.SMALL_ICON);
   }
@@ -317,6 +348,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small icon
    */
+  @Override
   public void setSmallIcon(Icon icon) {
     putValue(Action.SMALL_ICON, icon);
   }
@@ -326,6 +358,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small pressed icon
    */
+  @Override
   public Icon getSmallPressedIcon() {
     return (Icon) getValue(XAction.SMALL_PRESSED_ICON);
   }
@@ -335,6 +368,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small pressed icon
    */
+  @Override
   public void setSmallPressedIcon(Icon icon) {
     putValue(XAction.SMALL_PRESSED_ICON, icon);
   }
@@ -344,6 +378,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small rollover icon
    */
+  @Override
   public Icon getSmallRolloverIcon() {
     return (Icon) getValue(XAction.SMALL_ROLLOVER_ICON);
   }
@@ -353,6 +388,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small rollover icon
    */
+  @Override
   public void setSmallRolloverIcon(Icon icon) {
     putValue(XAction.SMALL_ROLLOVER_ICON, icon);
   }
@@ -362,6 +398,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small rollover selected icon
    */
+  @Override
   public Icon getSmallRolloverSelectedIcon() {
     return (Icon) getValue(XAction.SMALL_ROLLOVER_SELECTED_ICON);
   }
@@ -371,6 +408,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small rollover selected icon
    */
+  @Override
   public void setSmallRolloverSelectedIcon(Icon icon) {
     putValue(XAction.SMALL_ROLLOVER_SELECTED_ICON, icon);
   }
@@ -380,6 +418,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @return   the small selected icon
    */
+  @Override
   public Icon getSmallSelectedIcon() {
     return (Icon) getValue(XAction.SMALL_SELECTED_ICON);
   }
@@ -389,6 +428,7 @@ public abstract class AbstractXAction extends AbstractAction implements XAction 
    *
    * @param icon  the small selected icon
    */
+  @Override
   public void setSmallSelectedIcon(Icon icon) {
     putValue(XAction.SMALL_SELECTED_ICON, icon);
   }

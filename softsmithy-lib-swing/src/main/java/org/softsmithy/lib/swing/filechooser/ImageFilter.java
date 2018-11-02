@@ -15,13 +15,13 @@
 package org.softsmithy.lib.swing.filechooser;
 
 import java.io.File;
-import org.softsmithy.lib.io.Files;
 import javax.swing.filechooser.*;
+import org.softsmithy.lib.io.Files;
 
 /**
  * Accept all directories and all gif, jpg, or tiff files. <br>
  * Adapted from:
- * http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/index.html#FileChooserDemo2
+ * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/#FileChooserDemo2
  * <br>
  *
  * @author    Florian Brunner
@@ -34,6 +34,7 @@ public class ImageFilter extends FileFilter {
    * @param f  the given file
    * @return   true is accepted; false otherwise
    */
+  @Override
   public boolean accept(File f) {
     if (f.isDirectory()) {
       return true;
@@ -41,15 +42,11 @@ public class ImageFilter extends FileFilter {
 
     String extension = Files.getExtension(f);
     if (extension != null) {
-      if (extension.equalsIgnoreCase(Files.TIFF) ||
-          extension.equalsIgnoreCase(Files.TIF) ||
-          extension.equalsIgnoreCase(Files.JPEG) ||
-          extension.equalsIgnoreCase(Files.JPG) ||
-          extension.equalsIgnoreCase(Files.GIF)) {
-        return true;
-      } else {
-        return false;
-      }
+        return extension.equalsIgnoreCase(Files.TIFF) ||
+                extension.equalsIgnoreCase(Files.TIF) ||
+                extension.equalsIgnoreCase(Files.JPEG) ||
+                extension.equalsIgnoreCase(Files.JPG) ||
+                extension.equalsIgnoreCase(Files.GIF);
     }
 
     return false;
@@ -60,6 +57,7 @@ public class ImageFilter extends FileFilter {
    *
    * @return   the description of this filter
    */
+  @Override
   public String getDescription() {
     return "Just Images";
   }

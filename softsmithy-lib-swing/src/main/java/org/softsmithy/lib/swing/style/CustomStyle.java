@@ -53,6 +53,7 @@ public class CustomStyle extends AbstractStyle{
    * @return Value of property foreground.
    *
    */
+  @Override
   public Color getForeground() {
     return this.foreground;
   }
@@ -69,6 +70,7 @@ public class CustomStyle extends AbstractStyle{
    * @return Value of property background.
    *
    */
+  @Override
   public Color getBackground() {
     return this.background;
   }
@@ -85,6 +87,7 @@ public class CustomStyle extends AbstractStyle{
    * @return Value of property opaque.
    *
    */
+  @Override
   public boolean isOpaque() {
     return this.opaque;
   }
@@ -101,6 +104,7 @@ public class CustomStyle extends AbstractStyle{
    * @return Value of property font.
    *
    */
+  @Override
   public Font getFont() {
     return this.font;
   }
@@ -125,10 +129,12 @@ public class CustomStyle extends AbstractStyle{
     this.name = name;
   }
   
+  @Override
   public String getName(Locale locale) {
     return getName();
   }
   
+  @Override
   public StyleProvider getStyleProvider() {
     return styleProvider;
   }

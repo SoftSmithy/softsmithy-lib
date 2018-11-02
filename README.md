@@ -1,4 +1,2 @@
-softsmithy-lib
-==============
-
+# SoftSmithy Utility Library
 A Java utility library.

@@ -20,7 +20,6 @@
 package org.softsmithy.lib.swing;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 import org.softsmithy.lib.swing.chooser.*;
@@ -50,19 +49,16 @@ public class FontCellEditor extends AbstractCellEditor implements
                 return dim;
             }
         };
-        button.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                fontChooser.selectFont(getFont());
-                Option option = fontChooser.showDialog(editor.getParent());
-                if (option.equals(Option.APPROVE)) {
-                    setFont(fontChooser.getSelectedFont());
-                    stopCellEditing();
-                    //System.out.println("Stop");
-                } else {
-                    cancelCellEditing();
-                    //System.out.println("Cancel");
-                }
+        button.addActionListener(event -> {
+            fontChooser.selectFont(getFont());
+            Option option = fontChooser.showDialog(editor.getParent());
+            if (option.equals(Option.APPROVE)) {
+                setFont(fontChooser.getSelectedFont());
+                stopCellEditing();
+                //System.out.println("Stop");
+            } else {
+                cancelCellEditing();
+                //System.out.println("Cancel");
             }
         });
         //button.setPreferredSize(button.getMinimumSize());

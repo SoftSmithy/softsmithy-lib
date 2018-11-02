@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * LocalizedRealNumberCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -24,11 +24,14 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LocalizedBigDecimalCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of LocalizedRealNumberCellEditor */
+    /**
+     * Creates a new instance of LocalizedRealNumberCellEditor
+     * @param locale the locale
+     */
     public LocalizedBigDecimalCellEditor(Locale locale) {
         super(new JLocalizedRealNumberField(locale));
     }

@@ -17,22 +17,21 @@ package org.softsmithy.lib.swing.filechooser;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.*;
-
 import org.softsmithy.lib.io.Files;
 
 /**
  * Some image file views. <br>
  * Adapted from:
- * http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/index.html#FileChooserDemo2
+ * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/#FileChooserDemo2
  * <br>
  *
  * @author    Florian Brunner
  */
 
 public class ImageFileView extends FileView {
-  private ImageIcon jpgIcon = new ImageIcon("images/jpgIcon.gif");
-  private ImageIcon gifIcon = new ImageIcon("images/gifIcon.gif");
-  private ImageIcon tiffIcon = new ImageIcon("images/tiffIcon.gif");
+  private final ImageIcon jpgIcon = new ImageIcon("images/jpgIcon.gif");
+  private final ImageIcon gifIcon = new ImageIcon("images/gifIcon.gif");
+  private final ImageIcon tiffIcon = new ImageIcon("images/tiffIcon.gif");
   
   /**
    * The name of the file. Normally this would be simply f.getName()

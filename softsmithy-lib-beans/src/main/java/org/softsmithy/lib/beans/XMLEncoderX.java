@@ -178,7 +178,7 @@ public class XMLEncoderX extends XMLEncoder {
         if (isReallySingleton(instance, oldInstance)){
           return new Expression(instance, "get", new Object[]{null});
         }
-      } catch(Exception ex){
+      } catch(IllegalAccessException | NoSuchFieldException | RuntimeException ex){
       }
       return super.instantiate(oldInstance, out);
     }

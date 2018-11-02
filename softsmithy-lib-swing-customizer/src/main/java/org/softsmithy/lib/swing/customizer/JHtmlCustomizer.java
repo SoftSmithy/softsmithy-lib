@@ -71,7 +71,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
     /**
      * The attribute set.
      */
-    private MutableAttributeSet attributeSet = new SimpleAttributeSet();
+    private final MutableAttributeSet attributeSet = new SimpleAttributeSet();
     
     /**
      * True, if this customizer is initialized, else false.
@@ -161,6 +161,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * fire any events!
      * @param alignment the horizontal alignment of the text
      */
+    @Override
     protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
         horizontalAlignment = alignment;
         if (inited){
@@ -173,6 +174,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * Gets the horizontal alignment of the text.
      * @return the horizontal alignment of the text
      */
+    @Override
     public HorizontalAlignment getHorizontalAlignment() {
         return horizontalAlignment;
     }
@@ -197,7 +199,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * @return the HTML text
      */
     private String createHtmlText(){
-        StringBuffer htmlText = new StringBuffer(HTML_START);
+        StringBuilder htmlText = new StringBuilder(HTML_START);
         //    htmlText.append(horizontalAlignment.getHtmlConstant()).append("'>");
         //    htmlText.append("<font face='").append(getFont().getFamily()).append("' "); // or better getFont().getName()???
         //    htmlText.append("size='").append(getFont().getSize()).append("' ");
@@ -333,6 +335,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
          *
          * @param e the action event
          */
+        @Override
         public void actionPerformed(ActionEvent e) {
             JTextComponent target = getTextComponent(e);
             if (target != null) {

@@ -11,29 +11,30 @@
  *
  * Contributor(s): .
  */
-
 package org.softsmithy.lib.swing.text;
 
 import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LocalizedFloatFormatterFactory extends LocalizedRealNumberFormatterFactory {
-  
-  
-  /** Creates a new instance of WholeNumberFormatterFactory */
-  public LocalizedFloatFormatterFactory(LocalizedRealNumberFormatter formatter) {
-    super(formatter);
-  }
-  
-  public LocalizedFloatFormatterFactory(LocalizedRealNumberFormatter formatter, Locale locale) {
-    super(formatter, locale);
-  }
-  
-  public LocalizedFloatFormatter getLocalizedFloatFormatter(){
-    return (LocalizedFloatFormatter) getLocalizedRealNumberFormatter();
-  }
+
+    /**
+     * Creates a new instance of WholeNumberFormatterFactory
+     * @param formatter the formatter
+     */
+    public LocalizedFloatFormatterFactory(LocalizedRealNumberFormatter formatter) {
+        super(formatter);
+    }
+
+    public LocalizedFloatFormatterFactory(LocalizedRealNumberFormatter formatter, Locale locale) {
+        super(formatter, locale);
+    }
+
+    public LocalizedFloatFormatter getLocalizedFloatFormatter() {
+        return (LocalizedFloatFormatter) getLocalizedRealNumberFormatter();
+    }
 
 }

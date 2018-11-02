@@ -29,10 +29,10 @@ import java.io.*;
 public abstract class CompoundFileFilter implements FileFilter {
   
   /** Holds value of property firstFilter. */
-  private FileFilter firstFilter;
+  private final FileFilter firstFilter;
   
   /** Holds value of property secondFilter. */
-  private FileFilter secondFilter;
+  private final FileFilter secondFilter;
   
   /** Creates a new instance of CompundFileFilter */
   public CompoundFileFilter(FileFilter first, FileFilter second) {

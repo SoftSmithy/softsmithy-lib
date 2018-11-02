@@ -82,34 +82,32 @@ public class ConfigureButtonsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConfigureButtonsSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ConfigureButtonsSample().setVisible(true);
         });
         
     }
     
     private void addMenuItems(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
+        for (XAction xAction : xActions) {
             JMenuItem item = new JMenuItem();
-            XActions.configureButton(item, xActions[i], IconType.SMALL_ICON, true, false);
+            XActions.configureButton(item, xAction, IconType.SMALL_ICON, true, false);
             menu.add(item);
         }
     }
     
     private void addToolbarStandardButtons(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
+        for (XAction xAction : xActions) {
             JButton button = new JButton();
-            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, false);
+            XActions.configureButton(button, xAction, IconType.LARGE_ICON, false, false);
             toolBarStandard.add(button);
         }
     }
     
     private void addToolbarCoolButtons(XAction[] xActions ) {
-        for (int i=0; i < xActions.length; i++){
+        for (XAction xAction : xActions) {
             JButton button = new JButton();
-            XActions.configureButton(button, xActions[i], IconType.LARGE_ICON, false, true);
+            XActions.configureButton(button, xAction, IconType.LARGE_ICON, false, true);
             toolBarCool.add(button);
         }
     }
@@ -121,6 +119,7 @@ public class ConfigureButtonsSample extends javax.swing.JFrame {
         for (int i=0; i<factories.length; i++){
             GeneralActionFactory factory = factories[i];
             XAction xAction = new AbstractXAction() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     JOptionPane.showMessageDialog(ConfigureButtonsSample.this,
                             "Action performed: " + getName(), "Action Performed!", JOptionPane.INFORMATION_MESSAGE);

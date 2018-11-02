@@ -78,6 +78,7 @@ public class RealNumberFormatter extends AbstractXNumberFormatter {
   }
   
   
+  @Override
   protected Number stringToNumber(String text) throws NumberFormatException{
     return new BigDecimal(text);
   }

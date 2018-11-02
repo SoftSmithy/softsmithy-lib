@@ -17,7 +17,6 @@ package org.softsmithy.lib.swing.customizer.layout;
 
 
 
-import org.softsmithy.lib.swing.customizer.layout.AbstractTableConstraints;
 import java.awt.*;
 
 
@@ -116,22 +115,27 @@ public class RelativeTableConstraints extends AbstractTableConstraints{
     return this.rowSpan;
   }
   
+  @Override
   public int getHeight() {
     return getTableLayout().height(getRow(), getRowSpan());
   }
   
+  @Override
   public int getWidth() {
     return getTableLayout().width(getColumn(), getColSpan());
   }
   
+  @Override
   public int getX() {
     return getTableLayout().xLocation(getColumn());
   }
   
+  @Override
   public int getY() {
     return getTableLayout().yLocation(getRow());
   }
   
+  @Override
   protected void setAbsoluteBoundsOnly(Rectangle bounds) {
     //    if (!(cl instanceof TableLayout)){
     //      throw new IllegalArgumentException("cl must be a Tablelayout!");
@@ -195,14 +199,17 @@ public class RelativeTableConstraints extends AbstractTableConstraints{
     this.rowSpan = rowSpan >= 1 ? rowSpan : 1;
   }
   
+  @Override
   public Rectangle getAbsoluteBounds() {
     return new Rectangle(getX(), getY(), getWidth(), getHeight());
   }
   
+  @Override
   public Rectangle getRelativeBounds() {
     return new Rectangle(column, row, colSpan,  rowSpan);
   }
   
+  @Override
   protected void setRelativeBoundsOnly(Rectangle bounds) {
     setColumnOnly(bounds.x);
     setRowOnly(bounds.y);

@@ -141,13 +141,13 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
             valueText = valueText.replaceAll("\\" + ((DecimalFormat) getNumberFormat()).getDecimalFormatSymbols().getDecimalSeparator(), ".");
             value = valueToRange(stringToNumber(valueText));
             //System.out.println("First number conversion worked!");
-        } catch(Exception ex){ //try this, but only long and double precision supported (important for BigInteger and BigDecimal)!
+        } catch(RuntimeException ex){ //try this, but only long and double precision supported (important for BigInteger and BigDecimal)!
             //System.out.println("First number conversion failed!");
             try{
                 value = valueToRange(stringToNumber(getNumberFormat() != null ? getNumberFormat().parse(text).toString() : text));
                 value = (Number) super.stringToValue(getNumberFormat() != null ? getNumberFormat().format(value.toString()) : value.toString()); // needed?
                 //System.out.println("Second number conversion worked!");
-            } catch (Exception nfe){
+            } catch (ParseException | RuntimeException ex2){
                 //System.out.println("Second number conversion failed!");
                 //nfe.printStackTrace();
                 value = (Number) super.stringToValue(text); // will throw a ParseException
@@ -244,6 +244,8 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     
     /**
      * The minimum value for the minimum value.
+     * 
+     * @param minimumMinimumValue the minimum value for the minimum value
      */
     protected void setMinimumMinimumValue(Number minimumMinimumValue) {
         if (minimumMinimumValue != null && ! (minimumMinimumValue instanceof Comparable)){

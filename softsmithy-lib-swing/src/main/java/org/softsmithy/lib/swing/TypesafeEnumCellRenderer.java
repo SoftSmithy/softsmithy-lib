@@ -26,6 +26,7 @@ import org.softsmithy.lib.util.*;
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumCellRenderer extends AbstractCellRenderer<TypesafeEnum> {
 
     /** Creates a new instance of TypesafeEnumCellRenderer */

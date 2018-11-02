@@ -29,7 +29,7 @@ import java.io.*;
 public class ExtensionFileFilter implements FileFilter {
   
   /** Holds value of property extension. */
-  private String extension;
+  private final String extension;
   
   /** Creates a new instance of PropertiesFileNameFilter */
   public ExtensionFileFilter(String extension) {
@@ -45,6 +45,7 @@ public class ExtensionFileFilter implements FileFilter {
    *          should be included
    *
    */
+  @Override
   public boolean accept(File pathname) {
     return pathname.isFile() && Files.getExtension(pathname).equals(getExtension());
   }

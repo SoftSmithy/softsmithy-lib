@@ -37,7 +37,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
   /** Holds value of property orientation. */
   private Line2DOrientation orientation;
   
-  private Line2DIcon lineIcon = new Line2DIcon();
+  private final Line2DIcon lineIcon = new Line2DIcon();
   
   /** Creates a new instance of JLine2DCustomizer */
   public JLine2DCustomizer() {

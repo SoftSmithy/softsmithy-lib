@@ -41,6 +41,7 @@ public class ORFileFilter extends CompoundFileFilter {
    *          should be included
    *
    */
+  @Override
   public boolean accept(File pathname) {
     return getFirstFilter().accept(pathname) || getSecondFilter().accept(pathname);
   }

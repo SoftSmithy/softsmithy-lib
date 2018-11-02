@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * IntegerCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
@@ -23,11 +23,16 @@ import java.util.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class ByteCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of IntegerCellEditor */
+    /**
+     * Creates a new instance of IntegerCellEditor
+     *
+     * @param locale the locale
+     *
+     */
     public ByteCellEditor(Locale locale) {
         super(new JByteField(locale));
     }
@@ -53,11 +58,11 @@ public class ByteCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getByteField().setByteValue(((Byte) value).byteValue());
+        getByteField().setByteValue(((Byte) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Byte(getByteField().getByteValue());
+        return getByteField().getByteValue();
     }
 }

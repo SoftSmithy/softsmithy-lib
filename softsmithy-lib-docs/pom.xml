@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.9</version>
+        <version>1.0</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
 
@@ -28,7 +28,7 @@ Contributor(s): .
     <description>This project provides the SoftSmithy Utility Library Documentation.</description>
     <inceptionYear>2016</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
     
     <scm>
         <connection>${scm.connection}</connection>
@@ -62,6 +62,17 @@ Contributor(s): .
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>org.softsmithy.lib.docs</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>

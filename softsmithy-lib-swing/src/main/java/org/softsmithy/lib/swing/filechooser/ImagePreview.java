@@ -27,7 +27,7 @@ import javax.swing.JFileChooser;
 /**
  * A utility class for Files. <br>
  * Adapted from:
- * http://java.sun.com/docs/books/tutorial/uiswing/components/example-swing/index.html#FileChooserDemo2
+ * https://docs.oracle.com/javase/tutorial/uiswing/examples/components/#FileChooserDemo2
  * <br>
  * Note: The API may change in a future version!
  *
@@ -73,6 +73,7 @@ public class ImagePreview extends JComponent
    *
    * @param e  a PropertyChangeEvent object
    */
+  @Override
   public void propertyChange(PropertyChangeEvent e) {
     String prop = e.getPropertyName();
     if (prop.equals(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY)) {

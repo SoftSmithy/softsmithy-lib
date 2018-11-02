@@ -31,7 +31,7 @@ import java.util.*;
 class ResourceBundleCache {
   
   private final String baseName;
-  private final Map<Locale, ResourceBundle> resourceBundles = new HashMap<Locale, ResourceBundle>();
+  private final Map<Locale, ResourceBundle> resourceBundles = new HashMap<>();
   
   /** Creates a new instance of ResourceBundleManager */
   public ResourceBundleCache(String baseName) {

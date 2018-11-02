@@ -22,8 +22,7 @@ public class MatchableObject<T> {
     private final T object;
     private final Matcher<T> matcher;
 
-    public MatchableObject(T object, Matcher<T> matcher) throws
-            MatchingException {
+    public MatchableObject(T object, Matcher<T> matcher) throws MatchingException {
         this.object = object;
         this.matcher = matcher;
         matcher.verify(object);
