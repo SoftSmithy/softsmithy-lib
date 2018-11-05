@@ -1,0 +1,10 @@
+org.softsmithy.lib.swing
+org.softsmithy.lib.swing.action
+org.softsmithy.lib.swing.chooser
+org.softsmithy.lib.swing.event
+org.softsmithy.lib.swing.filechooser
+org.softsmithy.lib.swing.icon
+org.softsmithy.lib.swing.multisplit
+org.softsmithy.lib.swing.style
+org.softsmithy.lib.swing.table
+org.softsmithy.lib.swing.text
