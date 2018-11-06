@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
     
@@ -65,21 +65,16 @@ Contributor(s): .
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
     
     <profiles>
         <profile>
-            <id>sonatype-oss-release</id>
+            <id>release-profile</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>

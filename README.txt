@@ -18,10 +18,6 @@ softsmithy-lib-time-${project.version}.jar                       - The SoftSmith
 softsmithy-lib-time-${project.version}-sources.jar               - The SoftSmithy Utility Library - Date and Time source code
 docs-directory                                                   - Contains the Javadoc, a tutorial and samples
 
-Note: This is a pre-alpha version and the API is still subject to change! If you
-have any questions or comments feel free to contact me: 
-puce@users.sourceforge.net
-
 Note: 
 The libraries have the following dependency: SLF4J ${dependency.slf4j.version}
 
@@ -65,12 +61,12 @@ the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111
 You can find a copy of this license in docs/LGPL.txt shipped with this distribution.
 --------------------------------------------------------------------------------
 
-The newest version can be obtained via Mercurial:
-http://sourceforge.net/p/softsmithy/softsmithy-lib
+The newest version can be obtained via Git:
+https://github.com/SoftSmithy/softsmithy-lib
 
-hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
+git clone https://github.com/SoftSmithy/softsmithy-lib.git
 
 Used:
 Oracle JDK ${java.version}
-Maven 3.0.5
-NetBeans IDE 8.0.2
+Maven 3.3.9
+NetBeans IDE 8.2
