@@ -1,6 +1,10 @@
 # SoftSmithy Utility Library
 A Java utility library.
 
+Documentation: https://www.softsmithy.org/softsmithy-lib
+
+## Maven Dependency Management
+
 ```xml
     <dependencyManagement>
         <dependencies>
