@@ -17,7 +17,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy</groupId>
         <artifactId>softsmithy-parent</artifactId>
-        <version>3.6-SNAPSHOT</version>
+        <version>3.6</version>
         <relativePath />
     </parent>
     
