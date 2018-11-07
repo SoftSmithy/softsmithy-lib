@@ -10,10 +10,6 @@ development, deployment, set up etc.
 You typically won't want/ need this library on the classpath of your application
 (runtime).
 
-Note: This is a pre-alpha version and the API is still subject to change! If you
-have any questions or comments feel free to contact me: 
-puce@users.sourceforge.net
-
 Note: This library has the following dependencies:
 - JPA 2.0
 - JUnit ${dependency.junit.version}
@@ -31,15 +27,15 @@ or at http://www.opensource.org/licenses/cddl1.txt .
 
 
 
-The newest version can be obtained via Mercurial:
-http://sourceforge.net/p/softsmithy/softsmithy-lib
+The newest version can be obtained via Git:
+https://github.com/SoftSmithy/softsmithy-lib
 
-hg clone http://hg.code.sf.net/p/softsmithy/softsmithy-lib softsmithy-lib
+git clone https://github.com/SoftSmithy/softsmithy-lib.git
 
 Used:
 Oracle JDK ${java.version}
-Maven 3.0.5
-NetBeans IDE 8.0.2
+Maven 3.3.9
+NetBeans IDE 8.2
 JPA 2.0
 JUnit ${dependency.junit.version}
 SoftSmithy Utility Library v${project.version}
