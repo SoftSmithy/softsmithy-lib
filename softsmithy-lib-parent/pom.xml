@@ -24,7 +24,7 @@ Contributor(s): .
     <groupId>org.softsmithy.lib</groupId>
     <artifactId>softsmithy-lib-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.1.1</version>
     
     <name>SoftSmithy Utility Library - Parent POM</name>
     <!-- required for Javadoc (apidocs) linking -->
