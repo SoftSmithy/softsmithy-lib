@@ -12,7 +12,7 @@ Documentation: https://www.softsmithy.org/softsmithy-lib
             <dependency>
                 <groupId>org.softsmithy.lib</groupId>
                 <artifactId>softsmithy-lib</artifactId>
-                <version>1.1</version> <!-- replace with the current version -->
+                <version>1.1.1</version> <!-- replace with the current version -->
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
