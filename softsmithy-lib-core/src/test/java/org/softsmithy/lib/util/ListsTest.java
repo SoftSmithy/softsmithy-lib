@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * ListsTest.java
  * JUnit based test
  *
@@ -26,24 +26,23 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import junit.framework.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author puce
  */
-public class ListsTest extends TestCase {
+public class ListsTest {
 
     public static final String ITEM_1 = "item1";
     public static final String ITEM_3 = "item3";
     private Comparator<TestClass> testClassComparator;
 
-    public ListsTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() throws Exception {
         testClassComparator = new Comparator<TestClass>() {
 
             @Override
@@ -58,11 +57,6 @@ public class ListsTest extends TestCase {
             }
         };
 
-
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
     }
 
     private List<TestClass> createList() {
@@ -78,22 +72,23 @@ public class ListsTest extends TestCase {
     /**
      * Test of equals method, of class org.softsmithy.lib.util.Lists.
      */
+    @Test
     public void testEquals() {
         System.out.println("equals");
 
         List<TestClass> listA = createList();
         List<TestClass> listB = createList();
 
-
         assertTrue(Lists.equals(listA, listB,
                 new ComparatorMatcher<>(TestClass.class,
-                testClassComparator)));
+                        testClassComparator)));
 
     }
 
     /**
      * Test of equalsIgnoreOrder method, of class org.softsmithy.lib.util.Lists.
      */
+    @Test
     public void testEqualsIgnoreOrder() {
         System.out.println("equalsIgnoreOrder");
 
@@ -101,11 +96,11 @@ public class ListsTest extends TestCase {
         List<TestClass> listB = createList();
         Collections.reverse(listB);
 
-
         assertTrue(Lists.equalsIgnoreOrder(listA, listB, testClassComparator));
 
     }
 
+    @Test
     public void testGetFirst() {
         System.out.println("getFirst");
 
@@ -118,6 +113,7 @@ public class ListsTest extends TestCase {
         assertEquals(ITEM_1, Lists.getFirst(linkedList));
     }
 
+    @Test
     public void testGetLast() {
         System.out.println("getLast");
 
@@ -155,6 +151,7 @@ public class ListsTest extends TestCase {
 
         /**
          * Getter for property prop1.
+         *
          * @return Value of property prop1.
          */
         public String getProp1() {
@@ -163,6 +160,7 @@ public class ListsTest extends TestCase {
 
         /**
          * Getter for property prop2.
+         *
          * @return Value of property prop2.
          */
         public String getProp2() {

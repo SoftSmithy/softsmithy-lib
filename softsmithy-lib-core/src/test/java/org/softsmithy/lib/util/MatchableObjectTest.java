@@ -13,10 +13,11 @@
  */
 package org.softsmithy.lib.util;
 
-import org.junit.After;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+
+
 
 /**
  *
@@ -24,13 +25,7 @@ import org.junit.Test;
  */
 public class MatchableObjectTest {
 
-    @Before
-    public void setUp() {
-    }
 
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of hashCode method, of class MatchableObject.

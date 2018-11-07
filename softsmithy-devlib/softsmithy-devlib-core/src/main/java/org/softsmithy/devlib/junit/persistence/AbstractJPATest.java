@@ -15,10 +15,8 @@ package org.softsmithy.devlib.junit.persistence;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.softsmithy.devlib.persistence.DbInitializer;
 import org.softsmithy.lib.persistence.ResourceLocalTransactionController;
 
@@ -31,18 +29,7 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
     private ResourceLocalTransactionController transactionController;
     private T dbInitializer;
 
-    public AbstractJPATest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         setUpBeforeInitDb();
         initDb();
@@ -55,7 +42,7 @@ public abstract class AbstractJPATest<T extends DbInitializer> {
         dbInitializer = createNewDbInitializer();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         clearDb();
         tearDownAfterClearDb();
