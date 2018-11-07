@@ -23,29 +23,19 @@ package org.softsmithy.lib.util.zip;
 
 
 import java.io.File;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author brunner
  */
-public class ZipFilesTest extends TestCase {
-    
-    public ZipFilesTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-    }
+public class ZipFilesTest  {
 
     /**
      * Test of extract method, of class org.softsmithy.lib.util.zip.ZipFiles.
      */
+//    @Test
 //    public void testExtract() throws Exception {
 //        System.out.println("extract");
 //
@@ -64,6 +54,7 @@ public class ZipFilesTest extends TestCase {
     /**
      * Test of createEntryName method, of class org.softsmithy.lib.util.zip.ZipFiles.
      */
+    @Test
     public void testCreateEntryName() {
         System.out.println("createEntryName");
         

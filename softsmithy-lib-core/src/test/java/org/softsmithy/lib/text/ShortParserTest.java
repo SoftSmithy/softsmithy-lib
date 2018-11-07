@@ -18,10 +18,9 @@ import java.text.ParseException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -41,15 +40,12 @@ public class ShortParserTest {
         logger.addHandler(consoleHandler);
     }
     
-    @Before
+    @BeforeEach
     public void setUp() {
         numberFormat = NumberFormat.getInstance();
         shortParser = new ShortParser(numberFormat);
     }
     
-    @After
-    public void tearDown() {
-    }
     
     @Test
     public void testParse() throws ParseException{

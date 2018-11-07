@@ -16,36 +16,24 @@ package org.softsmithy.lib.text;
 
 import java.text.Collator;
 import java.util.Locale;
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.util.CountryCode;
 
 /**
  *
  * @author puce
  */
-public class LocalizedCollatorTest extends TestCase {
+public class LocalizedCollatorTest {
 
     private static final Locale LOCALE = Locale.GERMAN;
     private static final CountryCode TEST_COUNTRY_CODE = CountryCode.FRANCE;
     private static final Locale TEST_LOCALE = Locale.FRENCH;
 
-    public LocalizedCollatorTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     /**
      * Test of getLocale method, of class LocalizedCollator.
      */
+    @Test
     public void testGetLocale() {
         System.out.println("getLocale");
         LocalizedCollator instance = new LocalizedCollator(LOCALE);
@@ -57,6 +45,7 @@ public class LocalizedCollatorTest extends TestCase {
     /**
      * Test of getCollator method, of class LocalizedCollator.
      */
+    @Test
     public void testGetCollator() {
         System.out.println("getCollator");
         LocalizedCollator instance = new LocalizedCollator(LOCALE);
@@ -68,6 +57,7 @@ public class LocalizedCollatorTest extends TestCase {
     /**
      * Test of getCollationKey method, of class LocalizedCollator.
      */
+    @Test
     public void testGetCollationKey_GenericType() {
         System.out.println("getCollationKey");
         CountryCode source = TEST_COUNTRY_CODE;
@@ -80,6 +70,7 @@ public class LocalizedCollatorTest extends TestCase {
     /**
      * Test of getCollationKey method, of class LocalizedCollator.
      */
+    @Test
     public void testGetCollationKey_GenericType_Localizer() {
         System.out.println("getCollationKey");
         Locale source = TEST_LOCALE;
