@@ -48,6 +48,11 @@ Contributor(s): .
         </license>
     </licenses>
 
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/SoftSmithy/softsmithy-lib/issues</url>
+    </issueManagement>
+    
     <distributionManagement>
         <site>
             <id>github</id>
