@@ -14,6 +14,7 @@
 package org.softsmithy.lib.persistence;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -31,13 +32,16 @@ import javax.persistence.MappedSuperclass;
  * @author puce
  */
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable{
+public abstract class AbstractEntity implements Serializable {
+
+    public static final String PRIMARY_GENERATOR = "PRIMARY_GENERATOR";
 
     /**
      * The technical id of this entity (surrogate PK).
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = PRIMARY_GENERATOR)
+    @Column(name = "ID")
     private Long id;
 
     /**
