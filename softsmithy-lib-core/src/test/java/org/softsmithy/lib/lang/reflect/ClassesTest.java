@@ -27,10 +27,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -107,15 +107,12 @@ public class ClassesTest {
 
     @Test
     public void testGetTypes() {
-        assertEquals(new HashSet<Class<?>>(Arrays.asList(Object.class)), Classes.getTypes(new Object()));
+        assertEquals(new HashSet<>(Arrays.asList(Object.class)), Classes.getTypes(new Object()));
         assertEquals(new HashSet<>(Arrays.asList(
                 HashSet.class, AbstractSet.class, AbstractCollection.class, Object.class, Set.class, Collection.class,
                 Iterable.class, Cloneable.class, Serializable.class)),
                 Classes.getTypes(new HashSet<>()));
 
     }
-    // Add test methods here, they have to start with 'test' name.
-    // for example:
-    // public void testHello() {}
 
 }

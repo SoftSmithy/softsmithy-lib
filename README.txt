@@ -22,7 +22,7 @@ Note:
 The libraries have the following dependency: SLF4J ${dependency.slf4j.version}
 
 softsmithy-lib-persistence-${project.version}.jar has the following dependencies:
-- JPA (just the org.softsmithy.lib.persistence package; tested with EclipseLink 2.0)
+- JPA (just the org.softsmithy.lib.persistence package)
 
 
 Have a look at CHANGES.txt for notes about changes.
@@ -32,7 +32,7 @@ the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0 (the "License
 except in compliance with the License.
 (This License has been apporved by OSI.)
 You can find a copy of this license in LICENSE.txt shipped with this distribution
-or at http://www.opensource.org/licenses/cddl1.txt .
+or at https://www.opensource.org/licenses/cddl1.txt .
 
 --------------------------------------------------------------------------------
 The following files from the "Code Syntax Highlighter" used in the tutorial:
@@ -68,5 +68,5 @@ git clone https://github.com/SoftSmithy/softsmithy-lib.git
 
 Used:
 Oracle JDK ${java.version}
-Maven 3.3.9
-NetBeans IDE 8.2
+Maven 3.6.0
+Apache NetBeans IDE 10.0

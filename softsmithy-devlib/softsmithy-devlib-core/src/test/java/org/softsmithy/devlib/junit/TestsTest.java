@@ -14,7 +14,7 @@
 package org.softsmithy.devlib.junit;
 
 import java.util.Comparator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  *

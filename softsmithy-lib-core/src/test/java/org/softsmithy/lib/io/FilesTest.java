@@ -22,29 +22,22 @@ package org.softsmithy.lib.io;
 
 import java.io.*;
 import java.util.*;
-import junit.framework.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author brunner
  */
-public class FilesTest extends TestCase {
+public class FilesTest{
 
-    public FilesTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-    }
 
     /**
      * Test of delete method, of class org.softsmithy.lib.io.Files.
      */
+    @Test
     public void testDelete() throws IOException {
         System.out.println("delete");
 
@@ -72,6 +65,7 @@ public class FilesTest extends TestCase {
     /**
      * Test of getPathNames method, of class org.softsmithy.lib.io.Files.
      */
+    @Test
     public void testGetPathNames() {
         System.out.println("getPathNames");
 
@@ -91,6 +85,7 @@ public class FilesTest extends TestCase {
 
     }
 
+    @Test
     public void testGetRoot() {
         File expectedRoot = File.listRoots()[0];
 
