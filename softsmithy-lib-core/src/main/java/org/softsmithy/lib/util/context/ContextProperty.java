@@ -28,7 +28,7 @@ package org.softsmithy.lib.util.context;
 public class ContextProperty<T> {
 
     private final String name;
-    private final Class<T> propertyType;
+    private final Class<T> type;
 
     /**
      * Creates a new instance of this class.
@@ -38,7 +38,7 @@ public class ContextProperty<T> {
      */
     public ContextProperty(String name, Class<T> type) {
         this.name = name;
-        this.propertyType = type;
+        this.type = type;
     }
 
     /**
@@ -48,7 +48,7 @@ public class ContextProperty<T> {
      * @return the property value
      */
     public T getValue(ContextPropertyReader reader) {
-        return propertyType.cast(reader.readPropertyValue(name));
+        return type.cast(reader.readPropertyValue(name));
     }
 
     /**
@@ -68,5 +68,23 @@ public class ContextProperty<T> {
      */
     public void removeProperty(ContextPropertyRemover remover) {
         remover.removeProperty(name);
+    }
+
+    /**
+     * Gets the property name
+     *
+     * @return the property name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Gets the property type.
+     *
+     * @return the property type
+     */
+    public Class<T> getType() {
+        return type;
     }
 }
