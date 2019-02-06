@@ -19,9 +19,9 @@ import java.util.Map;
 /**
  * A {@link ThreadLocal} which manages generic properties.
  */
-public class ThreadLocalPropertyStorage extends InheritableThreadLocal<Map<String, Object>> {
+public class ThreadLocalStorage extends InheritableThreadLocal<Map<String, Object>> {
 
-    private static final ThreadLocalPropertyStorage INSTANCE = new ThreadLocalPropertyStorage();
+    private static final ThreadLocalStorage INSTANCE = new ThreadLocalStorage();
 
     /**
      * Gets a property value.

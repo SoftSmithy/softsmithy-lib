@@ -19,9 +19,8 @@ package org.softsmithy.lib.util.context;
  * Usage:
  * <pre>
  * Map&lt;String, Object&gt; someMap = ...;
- * ThreadLocalPropertyStorage storage = ...;
  * T propertyValue = contextProperty.getValue(someMap::get);
- * contextProperty.setValue(storage::setPropertyValue, propertyValue);
+ * contextProperty.setValue(ThreadLocalStorage::setPropertyValue, propertyValue);
  * </pre>
  *
  * @param <T> the property type
