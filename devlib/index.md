@@ -4,7 +4,8 @@ The SoftSmithy Development Utility Library provides utility classes and framewor
 
 ### Documentation
     
-* [v2.0-SNAPSHOT](2.0-SNAPSHOT/docs/site)
+* [v2.1-SNAPSHOT](2.1-SNAPSHOT/docs/site)
+* [v2.0](2.0/docs/site)
 * [v1.1.1](1.1.1/docs/site)
 * [v1.0](1.0/docs/site)
 * [v0.9](0.9/docs/site)
