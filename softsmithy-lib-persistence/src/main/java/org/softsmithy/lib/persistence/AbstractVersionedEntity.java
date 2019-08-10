@@ -13,6 +13,7 @@
  */
 package org.softsmithy.lib.persistence;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
@@ -22,7 +23,7 @@ import javax.persistence.Version;
  * @author puce
  */
 @MappedSuperclass
-public class AbstractVersionedEntity extends AbstractEntity{
+public abstract class AbstractVersionedEntity implements Serializable {
     
     @Version
     @Column(name = "ENTITY_VERSION")
