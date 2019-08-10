@@ -37,14 +37,10 @@ public final class ModelElementUtils {
      * Given:
      * <p>
      * {@code @Foo(barClasses={Bar1.class, Bar2.class})}
-     * </p>
      * <p>
      * returns:
-     * </p>
      * <p>
      * ["package1.Bar1", "package2.Bar2"]
-     * </p>
-     * </p>
      *
      * @param annotationMirrors the list of annotationMirrors including an annotationMirror for the annotation in question
      * @param annotationClass the annotation class
