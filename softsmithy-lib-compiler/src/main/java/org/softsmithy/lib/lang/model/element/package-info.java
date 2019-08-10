@@ -11,28 +11,7 @@
  *
  * Contributor(s): .
  */
-package org.softsmithy.lib.lang.model.type;
-
-import java.util.function.Supplier;
-import javax.lang.model.type.MirroredTypeException;
-import javax.lang.model.type.TypeMirror;
-
 /**
- *
- * @author puce
+ * Utility classes and extensions for the {@link javax.lang.model.element} package.
  */
-public final class ModelTypeUtils {
-
-    private ModelTypeUtils() {
-    }
-
-    public static TypeMirror getTypeMirror(Supplier<Class<?>> supplier) {
-        TypeMirror typeMirror = null;
-        try {
-            supplier.get();
-        } catch (MirroredTypeException mte) {
-            typeMirror = mte.getTypeMirror();
-        }
-        return typeMirror;
-    }
-}
+package org.softsmithy.lib.lang.model.element;
