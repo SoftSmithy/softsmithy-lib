@@ -253,4 +253,8 @@ public final class Classes {
         return containsMethod;
     }
 
+    public static <T> Class<T> cast(Class<?> type) {
+        return (Class<T>) type;
+    }
+
 }
