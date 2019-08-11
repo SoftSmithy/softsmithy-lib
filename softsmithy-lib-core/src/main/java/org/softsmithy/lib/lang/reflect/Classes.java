@@ -253,6 +253,13 @@ public final class Classes {
         return containsMethod;
     }
 
+    /**
+     * Casts a wildcard class object to its generic type.
+     *
+     * @param <T> the type of the class object
+     * @param type the wildcard class object
+     * @return the generic class type
+     */
     public static <T> Class<T> cast(Class<?> type) {
         return (Class<T>) type;
     }
