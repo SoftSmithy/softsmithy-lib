@@ -18,6 +18,7 @@ import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 
 /**
+ * A utility class for Java model types.
  *
  * @author puce
  */

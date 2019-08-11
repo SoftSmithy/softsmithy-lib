@@ -22,6 +22,7 @@ import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.type.TypeMirror;
 
 /**
+ * A utility class for Java model elements.
  *
  * @author puce
  */
