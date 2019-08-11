@@ -74,9 +74,9 @@ Contributor(s): .
         <!--<distributionManagement.parent.url>${project.version}/docs/site</distributionManagement.parent.url>-->
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
-        <excludePackageNames>*.internal.*:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
-        <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin.*:*.samples.*</excludePackageNamesAggregate>
-        <javadoc.url>http://docs.oracle.com/javase/8/docs/api</javadoc.url> <!-- used by tutorials -->
+        <excludePackageNames>*.internal:*.internal.*:*.impl:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
+        <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin:*.maven.plugin.*:*.samples:*.samples.*</excludePackageNamesAggregate>
+        <javadoc.url>https://docs.oracle.com/javase/8/docs/api</javadoc.url> <!-- used by tutorials -->
         
         <!--TODO: remove when available in softsmithy-parent-->
         <!--<plugin.resources.version>3.0.1</plugin.resources.version>-->
@@ -103,7 +103,7 @@ Contributor(s): .
                         <detectLinks>true</detectLinks>
                         <links>
                             <!-- javadoc link for javax.persistence -->
-                            <link>http://docs.oracle.com/javaee/7/api/</link>
+                            <link>https://docs.oracle.com/javaee/7/api/</link>
                             <link>https://junit.org/junit5/docs/current/api</link> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
                         </links>
                     </configuration>
@@ -197,7 +197,7 @@ Contributor(s): .
                     <detectLinks>true</detectLinks>
                     <links>
                         <!-- javadoc link for javax.persistence -->
-                        <link>http://docs.oracle.com/javaee/7/api/</link>
+                        <link>https://docs.oracle.com/javaee/7/api/</link>
                         <link>https://junit.org/junit5/docs/current/api</link> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
                     </links>
                 </configuration>
