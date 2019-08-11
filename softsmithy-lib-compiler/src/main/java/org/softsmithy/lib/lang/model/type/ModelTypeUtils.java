@@ -18,6 +18,7 @@ import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 
 /**
+ * A utility class for Java model types.
  *
  * @author puce
  */
@@ -26,6 +27,12 @@ public final class ModelTypeUtils {
     private ModelTypeUtils() {
     }
 
+    /**
+     * Gets the type mirror for the supplied class object.
+     *
+     * @param supplier the class object supplier.
+     * @return the type mirror for the supplied class object
+     */
     public static TypeMirror getTypeMirror(Supplier<Class<?>> supplier) {
         TypeMirror typeMirror = null;
         try {
