@@ -22,7 +22,6 @@ Contributor(s): .
     </parent>
 
     <artifactId>softsmithy-lib-docs</artifactId>
-    <packaging>bundle</packaging>
 
     <name>SoftSmithy Utility Library - Docs</name>
     <description>This project provides the SoftSmithy Utility Library Documentation.</description>
@@ -58,11 +57,6 @@ Contributor(s): .
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -194,9 +188,5 @@ Contributor(s): .
             </build>
         </profile>
     </profiles>
-    
-
-
-    
     
 </project>
