@@ -39,6 +39,10 @@ public final class ModelElementUtils {
      * <p>
      * {@code @Foo(barClasses={Bar1.class, Bar2.class})}
      * <p>
+     * then:
+     * <p>
+     * {@code getClassNamesOfClassArrayAnnotationValue(annotationMirrors, Foo.class, "barClasses")}
+     * <p>
      * returns:
      * <p>
      * ["package1.Bar1", "package2.Bar2"]
