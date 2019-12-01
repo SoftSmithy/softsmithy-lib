@@ -75,7 +75,7 @@ Contributor(s): .
         <dist.directory>${project.build.directory}/dist</dist.directory>
         <java.compiler.compilerArgument>-Xlint:all,-serial</java.compiler.compilerArgument>
         <excludePackageNames>*.internal:*.internal.*:*.impl:*.impl.*</excludePackageNames> <!-- used by Javadoc plugin --><!-- TODO: get this from OSGi meta data-->
-        <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin:*.maven.plugin.*:*.samples:*.samples.*</excludePackageNamesAggregate>
+        <excludePackageNamesAggregate>${excludePackageNames}:*.maven.plugin:*.maven.plugin.*:*.samples:*.samples.*:samples:samples.*</excludePackageNamesAggregate>
         <javadoc.url>https://docs.oracle.com/javase/8/docs/api</javadoc.url> <!-- used by tutorials -->
         
         <!--TODO: remove when available in softsmithy-parent-->
