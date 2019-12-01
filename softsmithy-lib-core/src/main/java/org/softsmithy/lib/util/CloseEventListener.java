@@ -16,10 +16,16 @@ package org.softsmithy.lib.util;
 import java.util.EventListener;
 
 /**
+ * A {@link CloseEvent} listener.
  *
  * @author puce
  */
 public interface CloseEventListener extends EventListener {
 
+    /**
+     * Callback method for {@link CloseEvent}s.
+     *
+     * @param evt the {@link CloseEvent}
+     */
     void onClose(CloseEvent evt);
 }
