@@ -11,21 +11,7 @@
  *
  * Contributor(s): .
  */
-package org.softsmithy.lib.persistence;
-
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
-
 /**
- * A mapped abstract base entity with support for optimistic locking.
- * @author puce
+ * The Context Property Framework.
  */
-@MappedSuperclass
-public abstract class AbstractVersionedEntity implements Serializable {
-    
-    @Version
-    @Column(name = "ENTITY_VERSION")
-    private Long version;
-}
+package org.softsmithy.lib.util.context;

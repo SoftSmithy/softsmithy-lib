@@ -16,6 +16,7 @@ package org.softsmithy.lib.util;
 import java.util.EventObject;
 
 /**
+ * A close event.
  *
  * @author puce
  */
@@ -23,6 +24,11 @@ public class CloseEvent extends EventObject {
 
     private static final long serialVersionUID = 4350767329150470528L;
 
+    /**
+     * Create a new instance of this class.
+     *
+     * @param source the source of this event
+     */
     public CloseEvent(Object source) {
         super(source);
     }

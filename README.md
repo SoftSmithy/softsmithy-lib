@@ -12,7 +12,7 @@ Documentation: https://www.softsmithy.org/softsmithy-lib
             <dependency>
                 <groupId>org.softsmithy.lib</groupId>
                 <artifactId>softsmithy-lib</artifactId>
-                <version>1.1.1</version> <!-- replace with the current version -->
+                <version>2.0</version> <!-- replace with the current version -->
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -20,3 +20,11 @@ Documentation: https://www.softsmithy.org/softsmithy-lib
         </dependencies>
     </dependencyManagement>
 ```
+
+## Build the project from sources
+```bash
+mvn clean install
+```
+Please note that the develop branch (SNAPSHOT version) of the project might depend on SNAPSHOT versions of other projects.
+
+If you don't want to build the dependent projects as well, please make sure to define a proxy in your [Maven Repository Manager](https://maven.apache.org/repository-management.html) to the following Maven Repository: https://oss.sonatype.org/content/repositories/snapshots/ and include it in your [single group](https://help.sonatype.com/repomanager3/formats/maven-repositories#MavenRepositories-ConfiguringApacheMaven).

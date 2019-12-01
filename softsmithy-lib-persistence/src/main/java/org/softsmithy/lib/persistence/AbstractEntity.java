@@ -29,9 +29,11 @@ import javax.persistence.MappedSuperclass;
  * <li>implements Serializable</li>
  * </ul>
  *
+ * @deprecated this class does not work with multiple generators
  * @author puce
  */
 @MappedSuperclass
+@Deprecated
 public abstract class AbstractEntity implements Serializable {
 
     public static final String PRIMARY_GENERATOR = "PRIMARY_GENERATOR";
