@@ -2,7 +2,7 @@ The SoftSmithy Utility Library is the core of this project. It provides many dif
 
 ## Documentation
     
-* [v2.1](2.1)
+* [v2.1.1](2.1.1)
 * [v2.0](2.0)
 * [v1.1.1](1.1.1)
 * [v1.0](1.0)
