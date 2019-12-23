@@ -18,7 +18,7 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>2.2-SNAPSHOT</version>
+        <version>3.0-SNAPSHOT</version>
         <relativePath>../../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
     
