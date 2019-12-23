@@ -88,19 +88,22 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * @param max the maximum number value
      */
     @Override
-    public void setMaximum(Comparable max) {
-        if (max != null && ! (max instanceof Number)){
+    public void setMaximum(Comparable<?> max) {
+        if (max != null && !(max instanceof Number)) {
             throw new IllegalArgumentException("max must be an instance of Number or null");
         }
-        if (max != null && getMinimum() != null && Comparables.isLess(max, getMinimum())){
+        setMaximumNumber((Number & Comparable<? super Number>) max);
+    }
+
+    private <T extends Number & Comparable<? super T>> void setMaximumNumber(T max) {
+        if (max != null && getMinimum() != null && Comparables.isLess(max, (T) getMinimum())) {
             throw new IllegalArgumentException("max mustn't be smaller than minimum!");
         }
         //    if (max.compareTo(MAX_MAX_VALUE) > 0){
         //      throw new IllegalArgumentException("max mustn't be bigger than MAX_MAX_VALUE!");
         //    }
-        super.setMaximum((Comparable) maximumToRange((Number) max));
+        super.setMaximum((T) maximumToRange(max));
     }
-    
     /**
      * Sets the minimum value.
      * It must be an instance of Number or null.
@@ -110,18 +113,23 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * @param minimum the minimum number value
      */
     @Override
-    public void setMinimum(Comparable minimum) {
+    public void setMinimum(Comparable<?> minimum) {
         if (minimum != null && ! (minimum instanceof Number)){
             throw new IllegalArgumentException("minimum must be an instance of Number or null");
         }
-        if (minimum != null && getMaximum() != null && Comparables.isGreater(minimum, getMaximum())){
+        setMinimumNumber((Number & Comparable<? super Number>) minimum);
+    }
+
+    private <T extends Number & Comparable<? super T>> void setMinimumNumber(T minimum) {
+        if (minimum != null && getMaximum() != null && Comparables.isGreater(minimum, (T) getMaximum())) {
             throw new IllegalArgumentException("minimum mustn't be bigger than max!");
         }
         //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
         //      throw new IllegalArgumentException("minimum mustn't be smaller than the minimum minimum value!");
         //    }
-        super.setMinimum((Comparable) minimumToRange((Number) minimum));
+        super.setMinimum((T) minimumToRange(minimum));
     }
+
     
     /**
      * Returns the <code>Number</code> representation of the
@@ -173,34 +181,28 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         return (Number) Formatters.valueToRange(this, (Comparable) value);
     }
     
-    private Number minimumToRange(Number min){
-        if (min != null && ! (min instanceof Comparable)){
-            throw new IllegalArgumentException("min must be an instance of Comparable");
-        }
-        Comparable inRangeValue = (Comparable) min;
+    private <T extends Number & Comparable<? super T>> T minimumToRange(T min) {
+        T inRangeValue = min;
         if (getMinimumMinimumValue() != null){
             if (inRangeValue == null){
-                inRangeValue = (Comparable) getMinimumMinimumValue();
+                inRangeValue = (T) getMinimumMinimumValue();
             } else {
-                inRangeValue = Comparables.toRange(inRangeValue, (Comparable) getMinimumMinimumValue(), (Comparable) getMaximumMaximumValue());
+                inRangeValue = Comparables.toRange(inRangeValue, (T) getMinimumMinimumValue(), (T) getMaximumMaximumValue());
             }
         }
-        return (Number) inRangeValue;
+        return inRangeValue;
     }
     
-    private Number maximumToRange(Number max){
-        if (max != null && ! (max instanceof Comparable)){
-            throw new IllegalArgumentException("max must be an instance of Comparable");
-        }
-        Comparable inRangeValue = (Comparable) max;
+    private <T extends Number & Comparable<? super T>> T maximumToRange(T max) {
+        T inRangeValue = max;
         if (getMaximumMaximumValue() != null){
             if (inRangeValue == null){
-                inRangeValue = (Comparable) getMaximumMaximumValue();
+                inRangeValue = (T) getMaximumMaximumValue();
             } else {
-                inRangeValue = Comparables.toRange(inRangeValue, (Comparable) getMinimumMinimumValue(), (Comparable) getMaximumMaximumValue());
+                inRangeValue = Comparables.toRange(inRangeValue, (T) getMinimumMinimumValue(), (T) getMaximumMaximumValue());
             }
         }
-        return (Number) inRangeValue;
+        return inRangeValue;
     }
     
     /** Getter for property maximumMaximumValue.
