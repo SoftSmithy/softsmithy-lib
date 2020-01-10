@@ -12,38 +12,41 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * ANDFileFilter.java
  *
  * Created on 30. Oktober 2002, 23:23
  */
-
 package org.softsmithy.lib.io;
 
 import java.io.*;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class ORFileFilter extends CompoundFileFilter {
-  
-  /** Creates a new instance of ANDFileFilter */
-  public ORFileFilter(FileFilter first, FileFilter second) {
-    super(first, second);
-  }
-  
-  /** Tests whether or not the specified abstract pathname should be
-   * included in a pathname list.
-   *
-   * @param  pathname  The abstract pathname to be tested
-   * @return  <code>true</code> if and only if <code>pathname</code>
-   *          should be included
-   *
-   */
-  @Override
-  public boolean accept(File pathname) {
-    return getFirstFilter().accept(pathname) || getSecondFilter().accept(pathname);
-  }
-  
+
+    /**
+     * Creates a new instance of ANDFileFilter.
+     *
+     * @param first the first file filter
+     * @param second the second file filter
+     */
+    public ORFileFilter(FileFilter first, FileFilter second) {
+        super(first, second);
+    }
+
+    /**
+     * Tests whether or not the specified abstract pathname should be included in a pathname list.
+     *
+     * @param pathname The abstract pathname to be tested
+     * @return  <code>true</code> if and only if <code>pathname</code> should be included
+     *
+     */
+    @Override
+    public boolean accept(File pathname) {
+        return getFirstFilter().accept(pathname) || getSecondFilter().accept(pathname);
+    }
+
 }
