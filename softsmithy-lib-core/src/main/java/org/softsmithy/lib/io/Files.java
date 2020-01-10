@@ -116,8 +116,7 @@ public class Files {
      * Deletes (optionally recursivly) the specified file or directory.
      *
      * @param file the file or directory to be deleted
-     * @param recursivly If true, deletes the directory recursivly. If false or if file is not a directory, only the
-     * specified file gets deleted.
+     * @param recursivly If true, deletes the directory recursivly. If false or if file is not a directory, only the specified file gets deleted.
      * @return true, if all files/ directories could be deleted, else false.
      */
     public static boolean delete(File file, boolean recursivly) {
@@ -132,10 +131,8 @@ public class Files {
     }
 
     /**
-     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br> <br> This will
-     * be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br> Note: return type might
-     * change to List&lt;String&gt; with java v1.5
+     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br> <br> This will be always true: <br>
+     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br> Note: return type might change to List&lt;String&gt; with java v1.5
      *
      * @param path the path
      * @return the path names. If the path is absolute the root is NOT inclueded!
@@ -165,6 +162,7 @@ public class Files {
     /**
      * Gets a file from path names.
      *
+     * @param parent the parent path
      * @param paths the path names
      * @return the file representing the specified path
      */
@@ -177,8 +175,7 @@ public class Files {
     }
 
     /**
-     * Get the root of an absolute file or directory.<br> <br> This will be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br>
+     * Get the root of an absolute file or directory.<br> <br> This will be always true: <br> {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br>
      *
      * @param file a file or directory
      * @return the root of the specified file or directory or null if it is not absolute
