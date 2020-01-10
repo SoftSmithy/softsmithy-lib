@@ -116,11 +116,6 @@ Contributor(s): .
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <outputDirectory>${dist.directory}</outputDirectory>
-                    <archive>
-                        <manifestEntries>
-                            <Automatic-Module-Name>org.softsmithy.lib.samples</Automatic-Module-Name>
-                        </manifestEntries>
-                    </archive>
                 </configuration>
             </plugin>
             <plugin>

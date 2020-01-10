@@ -27,7 +27,7 @@ import org.softsmithy.lib.util.Comparables;
  *
  * @author puce
  */
-public class YearUtils {
+public final class YearUtils {
 
     private YearUtils() {
     }
