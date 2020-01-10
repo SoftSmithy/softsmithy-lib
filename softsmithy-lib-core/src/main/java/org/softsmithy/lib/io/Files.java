@@ -104,7 +104,7 @@ public class Files {
      * @param file the text file
      * @return the lines read from a text file
      * @throws java.io.FileNotFoundException
-     * @throws java.io.IOException
+     * @throws java.io.IOException if an IO error occurs
      */
     public static String[] readLines(File file) throws FileNotFoundException, IOException {
         try (FileReader reader = new FileReader(file)) {
