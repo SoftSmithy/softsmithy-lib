@@ -102,7 +102,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         //    if (max.compareTo(MAX_MAX_VALUE) > 0){
         //      throw new IllegalArgumentException("max mustn't be bigger than MAX_MAX_VALUE!");
         //    }
-        super.setMaximum((T) maximumToRange(max));
+        super.setMaximum(maximumToRange(max));
     }
     /**
      * Sets the minimum value.
@@ -127,7 +127,7 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
         //      throw new IllegalArgumentException("minimum mustn't be smaller than the minimum minimum value!");
         //    }
-        super.setMinimum((T) minimumToRange(minimum));
+        super.setMinimum(minimumToRange(minimum));
     }
 
     

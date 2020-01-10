@@ -13,17 +13,13 @@
  */
 package org.softsmithy.lib.lang.reflect;
 
-import java.beans.Introspector;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -159,78 +155,6 @@ public final class Classes {
             classes[i] = iterator.next().getClass();
         }
         return classes;
-    }
-
-    @Deprecated
-    public static String createWrapper(Class<?> aClass, String packageName) {
-        String[] names = aClass.getName().split("\\.");
-        String className = names[names.length - 1];
-        String wrappedObj = Introspector.decapitalize(className);
-        StringBuilder wrapper = new StringBuilder("package ").append(packageName).append(";\n\n");
-        //    if (! aClass.getPackage().getName().equals(packageName)){
-        //      wrapper.append("import ").append(aClass.getPackage().getName()).append(";\n\n");
-        //    }
-        wrapper.append("public class ").append(className).append("Wrapper ");
-        wrapper.append(aClass.isInterface() ? "implements " : "extends ");
-        wrapper.append(aClass.getName()).append("{\n\n");
-        wrapper.append("private ").append(aClass.getName()).append(" ").append(wrappedObj).append(";\n\n");
-        wrapper.append("public ").append(className).append("Wrapper(");
-        wrapper.append(aClass.getName()).append(" ").append(wrappedObj).append("){\n");
-        wrapper.append("this.").append(wrappedObj).append(" = ").append(wrappedObj).append(";\n}\n\n");
-        for (Method method : aClass.getMethods()) {
-            int modifiers = method.getModifiers();
-            if (Modifier.isPublic(modifiers)) {
-                wrapper.append("public ");
-            } else if (Modifier.isProtected(modifiers)) {
-                wrapper.append("protected ");
-            }
-            if (Modifier.isStatic(modifiers)) {
-                wrapper.append("static ");
-            }
-            wrapper.append(method.getReturnType().getName()).append(" ");
-            String[] methodNames = method.getName().split("\\.");
-            String methodName = methodNames[methodNames.length - 1];
-            wrapper.append(methodName).append("(");
-            Class<?>[] parameterTypes = method.getParameterTypes();
-            List<String> args = new ArrayList<>();
-            for (int j = 0; j < parameterTypes.length; j++) {
-                wrapper.append(parameterTypes[j].getName()).append(" ");
-                String[] typeNames = parameterTypes[j].getName().split("\\.");
-                String argName = Introspector.decapitalize(typeNames[typeNames.length - 1]);
-                args.add(argName);
-                wrapper.append(argName);
-                if (j < parameterTypes.length - 1) {
-                    wrapper.append(", ");
-                }
-            }
-            wrapper.append("){\n");
-            if (!method.getReturnType().equals(Void.TYPE)) {
-                wrapper.append("return ");
-            }
-            wrapper.append(wrappedObj).append(".").append(methodName).append("(");
-            for (Iterator<String> j = args.iterator(); j.hasNext();) {
-                wrapper.append(j.next());
-                if (j.hasNext()) {
-                    wrapper.append(", ");
-                }
-            }
-            wrapper.append(");\n}\n\n");
-        }
-        wrapper.append("}");
-        return wrapper.toString();
-    }
-
-    @Deprecated
-    public static String createAdapter(Class anInterface) {
-        if (!anInterface.isInterface()) {
-            throw new IllegalArgumentException(anInterface.getName() + " is not an interface!");
-        }
-        StringBuilder adapter = new StringBuilder("public class ").append(anInterface.getName()).
-                append("Adapter implements ").append(anInterface.getName()).append("{+\n\n");
-        for (Method method : anInterface.getMethods()) {
-            adapter.append(method).append("{}\n\n");
-        }
-        return adapter.toString();
     }
 
     public static Class<?> getWrapperClass(Class<?> primitiveClass) {

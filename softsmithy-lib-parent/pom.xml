@@ -82,10 +82,10 @@ Contributor(s): .
         <!--<plugin.resources.version>3.0.1</plugin.resources.version>-->
 
         <!-- Dependency Versions Defaults -->
-        <dependency.junit.version>5.3.1</dependency.junit.version>
-        <dependency.java-ee.version>8.0</dependency.java-ee.version>
+        <dependency.junit.version>5.5.2</dependency.junit.version>
+        <dependency.jakarta-persistence-api.version>2.2.3</dependency.jakarta-persistence-api.version>
         <!--<dependency.osgi.version>1.4.0</dependency.osgi.version>-->
-        <dependency.slf4j.version>1.7.6</dependency.slf4j.version>
+        <dependency.slf4j.version>1.7.30</dependency.slf4j.version>
     </properties>
 
     <!-- Not inherited!?? -->
@@ -143,13 +143,13 @@ Contributor(s): .
             </dependency>
             <dependency>
                 <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-library</artifactId>
-                <version>1.3</version>
+                <artifactId>hamcrest</artifactId>
+                <version>2.2</version>
             </dependency>
             <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>${dependency.java-ee.version}</version>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>${dependency.jakarta-persistence-api.version}</version>
             </dependency>
             <!--            <dependency>
                 <groupId>org.apache.felix</groupId>

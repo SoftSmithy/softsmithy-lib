@@ -45,7 +45,7 @@ import org.softsmithy.lib.util.ServiceProvider;
  * @author puce
  */
 @SupportedAnnotationTypes("org.softsmithy.lib.util.ServiceProvider")
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
 public class ServiceProviderAnnotationProcessor extends AbstractProcessor {
 
     private final Map<String, List<PositionableAdapter<Name>>> serviceProviders = new HashMap<>();
