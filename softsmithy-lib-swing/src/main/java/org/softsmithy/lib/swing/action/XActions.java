@@ -92,7 +92,8 @@ public class XActions {
     /**
      * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
      * <br>
-     * <table border="1" summary="XAction property keys">
+     * <table border="1">
+     * <caption>XAction property keys</caption>
      *      <tr>
      *           <th>Key</th>
      *           <th>Value</th>
