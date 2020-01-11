@@ -31,8 +31,7 @@ import javax.swing.table.*;
  * The standard class for rendering (displaying) individual cells in a
  * <code>JTable</code>. <p>
  *
- * <strong><a name="override">Implementation Note:</a></strong> This class inherits from
- * <code>JLabel</code>, a standard component class. However
+ * <strong><a id="override">Implementation Note:</a></strong> This class inherits from * <code>JLabel</code>, a standard component class. However
  * <code>JTable</code> employs a unique mechanism for rendering its cells and therefore requires some slightly modified
  * behavior from its cell renderer. The table class defines a single cell renderer and uses it as a as a rubber-stamp
  * for rendering all cells in the table; it renders the first cell, changes the contents of that cell renderer, shifts
