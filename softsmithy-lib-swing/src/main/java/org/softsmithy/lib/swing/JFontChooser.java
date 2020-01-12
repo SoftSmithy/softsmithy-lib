@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.swing.action.*;
 import org.softsmithy.lib.swing.chooser.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
 
 /**
  * https://docs.oracle.com/javase/tutorial/2d/text/examples/FontSelector.java

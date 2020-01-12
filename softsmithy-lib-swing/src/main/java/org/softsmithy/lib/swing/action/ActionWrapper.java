@@ -15,7 +15,7 @@ package org.softsmithy.lib.swing.action;
 
 import java.beans.*;
 import javax.swing.*;
-import org.softsmithy.lib.awt.event.*;
+import org.softsmithy.lib.awt.event.ActionListenerWrapper;
 
 public class ActionWrapper extends ActionListenerWrapper implements Action {
 
