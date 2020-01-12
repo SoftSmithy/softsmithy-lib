@@ -22,10 +22,8 @@ module org.softsmithy.lib.swing.customizer {
     exports org.softsmithy.lib.swing.customizer.style;
     exports org.softsmithy.lib.swing.customizer.table;
 
-    requires org.softsmithy.lib.core;
     requires org.softsmithy.lib.beans;
-    requires org.softsmithy.lib.awt;
-    requires org.softsmithy.lib.swing;
+    requires transitive org.softsmithy.lib.swing;
     requires org.slf4j;
 
 }
