@@ -102,9 +102,8 @@ Contributor(s): .
                     <configuration>
                         <detectLinks>true</detectLinks>
                         <links>
-                            <!-- javadoc link for javax.persistence -->
-                            <link>https://docs.oracle.com/javaee/7/api/</link>
-                            <link>https://junit.org/junit5/docs/current/api</link> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
+                            <link>https://jakarta.ee/specifications/persistence/2.2/apidocs/</link>
+                            <!-- <link>https://junit.org/junit5/docs/current/api</link> --> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
                         </links>
                     </configuration>
                 </plugin>
@@ -196,9 +195,8 @@ Contributor(s): .
                 <configuration>
                     <detectLinks>true</detectLinks>
                     <links>
-                        <!-- javadoc link for javax.persistence -->
-                        <link>https://docs.oracle.com/javaee/7/api/</link>
-                        <link>https://junit.org/junit5/docs/current/api</link> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
+                        <link>https://jakarta.ee/specifications/persistence/2.2/apidocs/</link>
+                        <!--<link>https://junit.org/junit5/docs/current/api</link>--> <!-- TODO [puce77, 7.11.2018]: does it work? Required? -->
                     </links>
                 </configuration>
             </plugin>
