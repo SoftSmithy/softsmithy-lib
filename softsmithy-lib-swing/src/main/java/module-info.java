@@ -27,8 +27,8 @@ module org.softsmithy.lib.swing {
     exports org.softsmithy.lib.swing.internal to org.softsmithy.lib.swing.customizer;
     
     requires transitive java.desktop;
-    requires org.softsmithy.lib.core;
+    requires transitive org.softsmithy.lib.core;
     requires org.softsmithy.lib.beans;
-    requires org.softsmithy.lib.awt;
+    requires transitive org.softsmithy.lib.awt;
     requires org.slf4j;
 }

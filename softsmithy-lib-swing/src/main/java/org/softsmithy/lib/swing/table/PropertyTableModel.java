@@ -25,7 +25,7 @@ import java.util.*;
 import javax.swing.table.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softsmithy.lib.beans.*;
+import org.softsmithy.lib.beans.BeanIntrospector;
 
 /**
  *
