@@ -1,0 +1,4 @@
+module:org.softsmithy.lib.awt
+org.softsmithy.lib.awt
+org.softsmithy.lib.awt.event
+org.softsmithy.lib.awt.image
