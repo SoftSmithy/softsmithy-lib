@@ -13,3 +13,6 @@
 /softsmithy-lib-docs/target/
 /softsmithy-lib-compiler/target/
 /softsmithy-lib-core/nbproject/
+/softsmithy-devlib/softsmithy-devlib-junit/target/
+/softsmithy-devlib/softsmithy-devlib-persistence/target/
+/softsmithy-devlib/softsmithy-devlib-junit-persistence/target/

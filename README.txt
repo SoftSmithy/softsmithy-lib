@@ -42,7 +42,7 @@ docs/tutorial/Styles/SyntaxHighlighter.css
 
 origniate from:
 
-http://www.dreamprojections.com/syntaxhighlighter/
+https://www.dreamprojections.com/syntaxhighlighter/
 Copyright (C) 2004 Alex Gorbatchev.
 
 and are covered by the following license:
@@ -67,6 +67,6 @@ https://github.com/SoftSmithy/softsmithy-lib
 git clone https://github.com/SoftSmithy/softsmithy-lib.git
 
 Used:
-Oracle JDK ${java.version}
-Maven 3.6.0
-Apache NetBeans IDE 10.0
+OpenJDK ${java.version}
+Maven 3.6.3
+Apache NetBeans IDE 11.2

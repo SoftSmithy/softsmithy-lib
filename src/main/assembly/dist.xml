@@ -9,37 +9,9 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <moduleSets>
         <moduleSet>
-        <!-- Now, select which projects to include in this module-set. -->
             <includes>
                 <include>${project.groupId}:softsmithy-lib-core</include>
             </includes>
-            <sources>
-                <includeModuleDirectory>false</includeModuleDirectory>
-                <excludes>
-                    <exclude>**</exclude>
-                </excludes>
-                <fileSets>
-                    <fileSet>
-                        <directory>${project.basedir}/src/main/docs</directory>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <excludes>
-                            <exclude>**/*.gif</exclude>
-                            <exclude>**/*.jpg</exclude>
-                        </excludes>
-                        <filtered>true</filtered>
-                        <outputDirectory>docs</outputDirectory>
-                    </fileSet>
-                    <fileSet>
-                        <directory>${project.basedir}/src/main/docs</directory>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <includes>
-                            <include>**/*.gif</include>
-                            <include>**/*.jpg</include>
-                        </includes>
-                        <outputDirectory>docs</outputDirectory>
-                    </fileSet>
-                </fileSets>
-            </sources>
             <binaries>
                 <unpack>false</unpack>
             </binaries>
