@@ -62,7 +62,17 @@ Contributor(s): .
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>softsmithy-devlib-core</artifactId>
+                <artifactId>softsmithy-devlib-junit</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-devlib-junit-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-devlib-persistence</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
