@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+          COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Notice
+ 
+  The contents of this file are subject to the COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL)
+  Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. A copy of the License is available at
+  http://www.opensource.org/licenses/cddl1.txt
+ 
+  The Original Text is SoftSmithy Utility Library Tutorial. The Initial Author of the
+  Original Text is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ 
+  Contributor(s): .
+-->
+<html>
+    <head>
+        <title>SoftSmithy Utility Library Tutorial - Number Fields (based on JFormattedTextField)</title>
+        <link type="text/css" rel="stylesheet" href="../../Styles/SyntaxHighlighter.css"></link>
+    </head>
+    
+    <body>
+         <script src="http://java.com/js/deployJava.js"></script>
+         <p>
+        <table bgcolor="aqua" width="100%">
+            <tr>
+                <td>
+                    <a href="../index.html">
+                        <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                    <a href="../../index.html">
+                        <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </p>
+        <h1>Number Fields (based on JFormattedTextField)</h1>
+        The <em>SoftSmithy Utility Library</em> provides various number fields
+        based on the 
+        <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/JFormattedTextField.html">JFormattedTextField</a>.
+        These number fields can be devided in two categories:
+        <ul>
+            <li><a href="#whole">the whole-number fields</a></li>
+            <li><a href="#real">the real number fields</a></li>
+        </ul>
+        The whole-number fields as well as the real number fields support
+        properties for the maximum and the minimum values allowed to be either
+        set programmatically or entered by the user. If the value of the number
+        field would be greater than the maximum value, it is set to the maximum
+        value instead. If the value of the number field would be smaller than
+        the minimum value, it is set to the minimum value instead. The maximum
+        value for the maximum value and the minimum value for the minimum value
+        are field specific and can be null if there are no maximum maximum or
+        minimum minimum values.
+        
+        <p><center><img src="NumberFieldsSample.jpg" width="400" height="300" alt="A snapshot of the NumberFieldsSample"/>
+        </center></p>
+        <br/>
+        <blockquote>
+            <hr/>
+            <strong>Try this:</strong>
+            <ol>
+                <li>
+                    <script>
+                    var url = "NumberFieldsSample.jnlp";
+                    deployJava.createWebStartLaunchButton(url, '11');
+                    </script> using
+                    <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">Java Web Start</a>.</li>
+                <li>Type into the fields. Only values of the accordant type are accepted.</li>
+            </ol>
+            <hr/>
+        </blockquote>
+        Below is the code from 
+        <a href="../../../samples/src/main/java/samples/swing/number/NumberFieldsSample.java">NumberFieldsSample.java</a>
+        that sets up the non-localized real number fields:
+        <blockquote><pre>
+            <textarea name="code" class="java" cols="60" rows="10">
+        jRealNumberField1.setRealNumberFormatterFactory(new RealNumberFormatterFactory(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
+        jFloatField1.setFloatFormatterFactory(new FloatFormatterFactory(new FloatFormatter(NumberFormat.getPercentInstance())));
+        DecimalFormat format = new DecimalFormat("#,##0.00000");
+        jDoubleField1.setDoubleFormatterFactory(new DoubleFormatterFactory(new DoubleFormatter(format)));
+            </textarea>
+        </pre></blockquote>
+        
+        <h2><a name="whole">The Whole-Number Fields</a></h2>
+        <p>
+            The base class of the whole-number fields is the
+            <a href="../../../site/apidocs/org/softsmithy/lib/swing/JWholeNumberField.html">JWholeNumberField</a>,
+            which is backed up by the 
+            <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigInteger.html">BigInteger</a> class.
+            Thus this field can be used for arbitrary big whole-numbers.
+        </p>
+        <p>
+            For each whole-number primitive type there is a number field based
+            on JWholeNumberField:
+            <ul>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JByteField.html">JByteField</a></li>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JShortField.html">JShortField</a></li>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JIntegerField.html">JIntegerField</a></li>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JLongField.html">JLongField</a></li>
+            </ul>
+        </p>
+        <h2><a name="real">The Real Number Fields</a></h2>
+        <p>
+            The base class of the real number fields is the
+            <a href="../../../site/apidocs/org/softsmithy/lib/swing/JRealNumberField.html">JRealNumberField</a>,
+            which is backed up by the 
+            <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html">BigDecimal</a> class.
+            Thus this field can be used for arbitrary big real numbers.
+        </p>
+        <p>
+            For each real number primitive type there is a number field based
+            on JRealNumberField:
+            <ul>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JFloatField.html">JFloatField</a></li>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JDoubleField.html">JDoubleField</a></li>
+            </ul>
+        </p>
+        <h3><a name="real">The Localized Real Number Fields</a></h3>
+        <p>
+            The base class of the localized real number fields is the
+            <a href="../../../site/apidocs/org/softsmithy/lib/swing/JLocalizedRealNumberField.html">JLocalizedRealNumberField</a>,
+            which is backed up by the 
+            <a href="https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html">BigDecimal</a> class.
+            Thus this field can be used for arbitrary big real numbers.
+        </p>
+        <p>
+            For each real number primitive type there is a number field based
+            on JLocalizedRealNumberField:
+            <ul>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JLocalizedFloatField.html">JLocalizedFloatField</a></li>
+                <li> <a href="../../../site/apidocs/org/softsmithy/lib/swing/JLocalizedDoubleField.html">JLocalizedDoubleField</a></li>
+            </ul>
+        </p>
+        <p>
+            <table bgcolor="aqua" width="100%">
+                <tr>
+                    <td>
+                        <a href="../index.html">
+                            <img src="../../Back24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                        <a href="../../index.html">
+                            <img src="../../Home24.gif" width="24" height="24" alt="Back" border="0" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </p>
+        <!-- the following code should be place at the bottom of the page -->  
+        <script language="javascript" src="../../Scripts/shCore.js"></script>  
+        <script language="javascript" src="../../Scripts/shBrushJava.js"></script>   
+        <script language="javascript">  
+            dp.SyntaxHighlighter.HighlightAll('code');  
+        </script>
+    </body>
+</html>
