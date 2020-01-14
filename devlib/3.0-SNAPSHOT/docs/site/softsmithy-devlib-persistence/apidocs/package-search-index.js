@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"m":"org.softsmithy.devlib.persistence","l":"org.softsmithy.devlib.persistence"}]
