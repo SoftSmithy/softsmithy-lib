@@ -12,8 +12,9 @@
  * Contributor(s): .
  */
 
-module org.softsmithy.devlib.core {
-    requires org.softsmithy.lib.persistence;
+module org.softsmithy.devlib.junit {
+    exports org.softsmithy.devlib.junit;
+
     requires transitive org.junit.jupiter.api;
     requires org.hamcrest;
 }

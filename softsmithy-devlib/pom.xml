@@ -53,7 +53,9 @@ Contributor(s): .
     </properties>
 
     <modules>
-        <module>softsmithy-devlib-core</module>
+        <module>softsmithy-devlib-junit</module>
+        <module>softsmithy-devlib-persistence</module>
+        <module>softsmithy-devlib-junit-persistence</module>
     </modules>
 
     <dependencyManagement>

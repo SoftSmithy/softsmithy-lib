@@ -23,10 +23,10 @@ Contributor(s): .
     </parent>
     
     <groupId>org.softsmithy.devlib</groupId>
-    <artifactId>softsmithy-devlib-core</artifactId>
+    <artifactId>softsmithy-devlib-junit</artifactId>
     <packaging>bundle</packaging>
 
-    <name>SoftSmithy Development Utility Library - Core</name>
+    <name>SoftSmithy Development Utility Library - JUnit</name>
     <description>A Java development utility library.</description>
     <inceptionYear>2010</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
@@ -70,11 +70,6 @@ Contributor(s): .
     
     <dependencies>
         <dependency>
-            <groupId>org.softsmithy.lib</groupId>
-            <artifactId>softsmithy-lib-persistence</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
         </dependency>
@@ -86,11 +81,6 @@ Contributor(s): .
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
    
