@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"org.softsmithy.devlib.junit.persistence","l":"AbstractJPATest"},{"l":"All Classes","url":"allclasses-index.html"}]
