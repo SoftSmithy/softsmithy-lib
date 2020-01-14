@@ -1,0 +1,6 @@
+module:org.softsmithy.devlib.junit
+org.softsmithy.devlib.junit
+module:org.softsmithy.devlib.junit.persistence
+org.softsmithy.devlib.junit.persistence
+module:org.softsmithy.devlib.persistence
+org.softsmithy.devlib.persistence
