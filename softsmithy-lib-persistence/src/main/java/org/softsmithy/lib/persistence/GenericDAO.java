@@ -21,6 +21,8 @@ import javax.persistence.EntityManager;
 /**
  *
  * @author puce
+ * @param <T> the entity bean type
+ * @param <ID> the id type
  */
 public abstract class GenericDAO<T, ID extends Serializable> {
 
