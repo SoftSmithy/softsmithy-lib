@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * The SoftSmithy Swing Customizer Framework.
+ */
 module org.softsmithy.lib.swing.customizer {
     exports org.softsmithy.lib.swing.customizer;
     exports org.softsmithy.lib.swing.customizer.action;

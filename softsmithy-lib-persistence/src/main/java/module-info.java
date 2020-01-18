@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A JPA utility library.
+ */
 module org.softsmithy.lib.persistence {
     exports org.softsmithy.lib.persistence;
     

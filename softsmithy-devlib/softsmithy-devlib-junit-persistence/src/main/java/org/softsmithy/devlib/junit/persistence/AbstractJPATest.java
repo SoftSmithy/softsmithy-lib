@@ -21,8 +21,10 @@ import org.softsmithy.devlib.persistence.DbInitializer;
 import org.softsmithy.lib.persistence.ResourceLocalTransactionController;
 
 /**
+ * A base class for JPA tests.
  *
  * @author puce
+ * @param <T> the {@link DbInitializer} type
  */
 public abstract class AbstractJPATest<T extends DbInitializer> {
 
