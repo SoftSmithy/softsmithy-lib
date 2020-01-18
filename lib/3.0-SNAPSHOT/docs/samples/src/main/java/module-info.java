@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * Samples for the SoftSmithy Utility Library.
+ */
 module org.softsmithy.lib.samples {
     requires org.softsmithy.lib.core;
     requires org.softsmithy.lib.awt;
