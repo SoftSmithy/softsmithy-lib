@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A Swing utility library.
+ */
 module org.softsmithy.lib.swing {
     exports org.softsmithy.lib.swing;
     exports org.softsmithy.lib.swing.action;

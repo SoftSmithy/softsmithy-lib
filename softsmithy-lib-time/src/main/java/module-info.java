@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A utility library for the new Date and Time API.
+ */
 module org.softsmithy.lib.time {
     exports org.softsmithy.lib.time;
     exports org.softsmithy.lib.time.format;

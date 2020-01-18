@@ -12,9 +12,10 @@
  * Contributor(s): .
  */
 
-import javax.annotation.processing.Processor;
-import org.softsmithy.lib.util.impl.ServiceProviderAnnotationProcessor;
 
+/**
+ * A Java utility library.
+ */
 module org.softsmithy.lib.core {
     exports org.softsmithy.lib.io;
     exports org.softsmithy.lib.lang.reflect;
@@ -26,8 +27,5 @@ module org.softsmithy.lib.core {
     exports org.softsmithy.lib.util.context;
     exports org.softsmithy.lib.util.zip;
 
-    provides Processor with ServiceProviderAnnotationProcessor;
-
-    requires java.compiler;
     requires org.slf4j;
 }

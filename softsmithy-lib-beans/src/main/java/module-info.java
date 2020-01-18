@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A JavaBeans utility library.
+ */
 module org.softsmithy.lib.beans {
     exports org.softsmithy.lib.beans;
     

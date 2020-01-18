@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A JUnit 5 utility library for testing JPA classes.
+ */
 module org.softsmithy.devlib.junit.persistence {
     exports org.softsmithy.devlib.junit.persistence;
 

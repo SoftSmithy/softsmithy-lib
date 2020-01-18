@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A Java annotation compiler utility library.
+ */
 module org.softsmithy.lib.compiler {
     exports org.softsmithy.lib.lang.model.type;
 

@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * An AWT utility library.
+ */
 module org.softsmithy.lib.awt {
     exports org.softsmithy.lib.awt;
     exports org.softsmithy.lib.awt.event;

@@ -27,7 +27,7 @@ Contributor(s): .
     <packaging>bundle</packaging>
 
     <name>SoftSmithy Development Utility Library - JUnit</name>
-    <description>A Java development utility library.</description>
+    <description>A JUnit 5 utility library.</description>
     <inceptionYear>2010</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
     <url>https://www.softsmithy.org/softsmithy-lib/devlib/${project.version}/docs/site</url>

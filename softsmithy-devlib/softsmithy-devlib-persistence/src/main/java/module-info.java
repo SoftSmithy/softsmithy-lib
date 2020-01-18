@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A JPA utility library for testing.
+ */
 module org.softsmithy.devlib.persistence {
     exports org.softsmithy.devlib.persistence;
 

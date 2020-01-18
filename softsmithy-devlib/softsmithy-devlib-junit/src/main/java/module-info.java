@@ -12,6 +12,9 @@
  * Contributor(s): .
  */
 
+/**
+ * A JUnit 5 utility library.
+ */
 module org.softsmithy.devlib.junit {
     exports org.softsmithy.devlib.junit;
 
