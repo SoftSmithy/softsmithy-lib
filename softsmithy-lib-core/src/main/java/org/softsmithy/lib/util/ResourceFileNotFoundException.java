@@ -20,36 +20,49 @@ package org.softsmithy.lib.util;
  */
 public class ResourceFileNotFoundException extends RuntimeException {
 
-    private static final long serialVersionUID = -7205771392436334018L;
+    private static final long serialVersionUID = -7205771392436334019L;
 
-    private final String absoluteResourcePath;
+    private final Module module;
+    private final String moduleResourcePath;
 
-    public ResourceFileNotFoundException(String absoluteResourcePath) {
-        super("Resource not found: " + absoluteResourcePath);
-        this.absoluteResourcePath = absoluteResourcePath;
+    public ResourceFileNotFoundException(Module module, String moduleResourcePath) {
+        super("Resource not found: " + moduleResourcePath + " in " + module);
+        this.module = module;
+        this.moduleResourcePath = moduleResourcePath;
     }
 
-    public ResourceFileNotFoundException(String absoluteResourcePath, String message) {
+    public ResourceFileNotFoundException(Module module, String moduleResourcePath, String message) {
         super(message);
-        this.absoluteResourcePath = absoluteResourcePath;
+        this.module = module;
+        this.moduleResourcePath = moduleResourcePath;
     }
 
-    public ResourceFileNotFoundException(String absoluteResourcePath, Throwable cause) {
+    public ResourceFileNotFoundException(Module module, String moduleResourcePath, Throwable cause) {
         super(cause);
-        this.absoluteResourcePath = absoluteResourcePath;
+        this.module = module;
+        this.moduleResourcePath = moduleResourcePath;
     }
 
-    public ResourceFileNotFoundException(String absoluteResourcePath, String message, Throwable cause) {
+    public ResourceFileNotFoundException(Module module, String moduleResourcePath, String message, Throwable cause) {
         super(message, cause);
-        this.absoluteResourcePath = absoluteResourcePath;
+        this.module = module;
+        this.moduleResourcePath = moduleResourcePath;
     }
 
     /**
-     * Gets the absolute path to the resource, which couldn't be found.
+     * Gets the module path to the resource, which couldn't be found.
      *
-     * @return the absoluteResourcePath the absolute path to the resource, which couldn't be found
+     * @return the moduleResourcePath the module path to the resource, which couldn't be found
      */
-    public String getAbsoluteResourcePath() {
-        return absoluteResourcePath;
+    public String getModuleResourcePath() {
+        return moduleResourcePath;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Module getModule() {
+        return module;
     }
 }
