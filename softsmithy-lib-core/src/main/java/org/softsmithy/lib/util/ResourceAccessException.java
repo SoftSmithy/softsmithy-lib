@@ -14,6 +14,7 @@
 package org.softsmithy.lib.util;
 
 /**
+ * Signals that a resource could not be accessed.
  *
  * @version 3.0
  * @author puce
@@ -22,27 +23,88 @@ public class ResourceAccessException extends RuntimeException {
 
     private static final long serialVersionUID = -1L;
 
+    private final String moduleResourcePath;
+    private final Module owningModule;
+    private final Class<?> accessingClass;
+
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param moduleResourcePath the module resource path
+     * @param owningModule the owning module of the resource
+     * @param accessingClass the class accessing the resource
+     */
     public ResourceAccessException(String moduleResourcePath, Module owningModule, Class<?> accessingClass) {
-        super(accessingClass + " (in " + accessingClass.getModule() + ") cannot access file " + moduleResourcePath + " (in " + owningModule + ") because "
-                + owningModule + " does not open " + Resources.getPackageName(moduleResourcePath) + " to " + accessingClass.getModule()
-        );
+        super(formatMessage(moduleResourcePath, owningModule, accessingClass));
+        this.moduleResourcePath = moduleResourcePath;
+        this.owningModule = owningModule;
+        this.accessingClass = accessingClass;
     }
 
-    public ResourceAccessException(String message) {
+    private static String formatMessage(
+            String moduleResourcePath, Module owningModule, Class<?> accessingClass) {
+        return String.format("%3$s (in %4$s) cannot access file %1$s (in %2$s) because %2$s does not open %5$s to %4$s",
+                moduleResourcePath, owningModule, accessingClass,
+                accessingClass.getModule(),
+                Resources.getPackageName(moduleResourcePath));
+
+    }
+
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param moduleResourcePath the module resource path
+     * @param owningModule the owning module of the resource
+     * @param accessingClass the class accessing the resource
+     * @param message the message
+     */
+    public ResourceAccessException(String moduleResourcePath, Module owningModule, Class<?> accessingClass, String message) {
         super(message);
+        this.moduleResourcePath = moduleResourcePath;
+        this.owningModule = owningModule;
+        this.accessingClass = accessingClass;
     }
 
-    public ResourceAccessException(String message, Throwable cause) {
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param moduleResourcePath the module resource path
+     * @param owningModule the owning module of the resource
+     * @param accessingClass the class accessing the resource
+     * @param message the message
+     * @param cause the cause
+     */
+    public ResourceAccessException(String moduleResourcePath, Module owningModule, Class<?> accessingClass, String message, Throwable cause) {
         super(message, cause);
+        this.moduleResourcePath = moduleResourcePath;
+        this.owningModule = owningModule;
+        this.accessingClass = accessingClass;
     }
 
-    public ResourceAccessException(Throwable cause) {
-        super(cause);
+    /**
+     * Gets the module resource path which could not be accessed.
+     *
+     * @return the module resource path
+     */
+    public String getModuleResourcePath() {
+        return moduleResourcePath;
     }
 
-    public ResourceAccessException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    /**
+     * Gets the owning module of the resource;
+     *
+     * @return the owning module of the resource
+     */
+    public Module getOwningModule() {
+        return owningModule;
     }
 
-
+    /**
+     * Gets the class accessing the resource.
+     *
+     * @return the class accessing the resource
+     */
+    public Class<?> getAccessingClass() {
+        return accessingClass;
+    }
 }
