@@ -3,6 +3,12 @@ A Java utility library.
 
 Documentation: https://www.softsmithy.org/softsmithy-lib
 
+| Major Version | Comments |
+| ------------- | ------- |
+| v3 | <ul><li>Java SE 11</li></ul> |
+| v2 | <ul><li>Java SE 8</li><li>JUnit 5</li></ul> |
+| v1 | <ul><li>Java SE 8</li><li>JUnit 4</li></ul> |
+
 ## Maven Dependency Management
 
 ```xml
