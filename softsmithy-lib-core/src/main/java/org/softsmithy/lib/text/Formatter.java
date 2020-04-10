@@ -21,5 +21,5 @@ public interface Formatter<T> {
 
     String format(T t) throws FormatException;
 
-    void format(T t, Appendable appendable) throws FormatException;
+    Appendable format(T t, Appendable appendable) throws FormatException;
 }

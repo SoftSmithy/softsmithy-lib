@@ -15,8 +15,9 @@ package org.softsmithy.lib.time.format;
 
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
+import java.time.temporal.TemporalQuery;
 import org.softsmithy.lib.text.AbstractParser;
 import org.softsmithy.lib.text.Parser;
 
@@ -25,37 +26,35 @@ import org.softsmithy.lib.text.Parser;
  *
  * @author puce
  */
-public class TemporalAccessorParser extends AbstractParser<TemporalAccessor> {
+public class TemporalAccessorParser<R> extends AbstractParser<R> {
 
     private final DateTimeFormatter dateTimeFormatter;
-
-    /**
-     * Creates a new instance of this class. Uses
-     * {@link DateTimeFormatter#ofLocalizedDate(java.time.format.FormatStyle)} and
-     * {@link FormatStyle#FULL} by default.
-     *
-     * @see DateTimeFormatter#ofLocalizedDate(java.time.format.FormatStyle)
-     * @see FormatStyle#FULL
-     */
-    public TemporalAccessorParser() {
-        this(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
-    }
+    private final TemporalQuery<R> query;
 
     /**
      * Creates a new instance of this class.
      *
      * @param dateTimeFormatter a {@link DateTimeFormatter}
+     * @param query the query
      *
      */
-    public TemporalAccessorParser(DateTimeFormatter dateTimeFormatter) {
+    public TemporalAccessorParser(DateTimeFormatter dateTimeFormatter, TemporalQuery<R> query) {
         this.dateTimeFormatter = dateTimeFormatter;
+        this.query = query;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public TemporalAccessor parseString(String text) throws ParseException {
-        return dateTimeFormatter.parse(text);
+    public R parseString(String text) throws ParseException {
+        try {
+            return dateTimeFormatter.parse(text)
+                    .query(query);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException(ex.getMessage(), ex.getErrorIndex());
+        } catch (RuntimeException ex) {
+            throw new ParseException(ex.getMessage(), 0);
+        }
     }
 }

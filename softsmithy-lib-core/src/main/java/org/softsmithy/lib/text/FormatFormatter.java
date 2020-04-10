@@ -29,9 +29,9 @@ public class FormatFormatter<T> extends AbstractFormatter<T> {
     }
 
     @Override
-    public void format(T t, Appendable appendable) throws FormatException {
+    public Appendable format(T t, Appendable appendable) throws FormatException {
         try {
-            appendable.append(format.format(t));
+            return appendable.append(format.format(t));
         } catch (IOException | RuntimeException ex) {
             throw new FormatException(ex);
         }

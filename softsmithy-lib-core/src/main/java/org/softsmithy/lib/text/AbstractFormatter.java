@@ -22,7 +22,7 @@ public abstract class AbstractFormatter<T> implements Formatter<T> {
     @Override
     public String format(T t) throws FormatException {
         StringBuilder sb = new StringBuilder();
-        format(t, sb);
-        return sb.toString();
+        return format(t, sb)
+                .toString();
     }
 }
