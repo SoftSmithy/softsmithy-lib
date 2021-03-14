@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.time.format;
 
+import org.softsmithy.lib.text.FormatException;
+import org.softsmithy.lib.text.Formatter;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.TemporalAccessor;
-import org.softsmithy.lib.text.FormatException;
-import org.softsmithy.lib.text.Formatter;
 
 /**
  * A {@link Formatter} for {@link TemporalAccessor}.
@@ -57,7 +58,7 @@ public class TemporalAccessorFormatter implements Formatter<TemporalAccessor> {
         try {
             return dateTimeFormatter.format(temporalAccessor);
         } catch (RuntimeException ex) {
-            throw new FormatException(ex);
+            throw new FormatException(ex.getMessage(), ex);
         }
     }
 
@@ -70,7 +71,7 @@ public class TemporalAccessorFormatter implements Formatter<TemporalAccessor> {
             dateTimeFormatter.formatTo(temporalAccessor, appendable);
             return appendable;
         } catch (RuntimeException ex) {
-            throw new FormatException(ex);
+            throw new FormatException(ex.getMessage(), ex);
         }
     }
 }

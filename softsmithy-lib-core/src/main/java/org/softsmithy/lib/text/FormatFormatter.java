@@ -17,23 +17,33 @@ import java.io.IOException;
 import java.text.Format;
 
 /**
+ * Formats an object by using the specified {@link Format} (adaptor).
  *
+ * @param <T> the object type to format
  * @author puce
  */
 public class FormatFormatter<T> extends AbstractFormatter<T> {
 
     private final Format format;
 
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param format the {@link Format} to use
+     */
     public FormatFormatter(Format format) {
         this.format = format;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appendable format(T t, Appendable appendable) throws FormatException {
         try {
             return appendable.append(format.format(t));
         } catch (IOException | RuntimeException ex) {
-            throw new FormatException(ex);
+            throw new FormatException(ex.getMessage(), ex);
         }
     }
 }
