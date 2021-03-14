@@ -14,9 +14,10 @@
 
 package org.softsmithy.lib.swing.filechooser;
 
-import java.io.File;
-import javax.swing.filechooser.*;
 import org.softsmithy.lib.io.Files;
+
+import javax.swing.filechooser.FileFilter;
+import java.io.File;
 
 /**
  * Accept all directories and all gif, jpg, or tiff files. <br>

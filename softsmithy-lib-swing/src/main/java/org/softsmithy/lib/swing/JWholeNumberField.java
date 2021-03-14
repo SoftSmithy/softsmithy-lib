@@ -22,14 +22,13 @@ package org.softsmithy.lib.swing;
 
 import java.math.*;
 import java.util.*;
-import javax.swing.*;
 import org.softsmithy.lib.swing.text.*;
 
 /**
  * A number field for arbitrary big whole numbers.
  * @author puce
  */
-public class JWholeNumberField extends AbstractNumberField {
+public class JWholeNumberField extends AbstractNumberField<BigInteger, WholeNumberFormatter> {
     
     
     /**
@@ -101,10 +100,10 @@ public class JWholeNumberField extends AbstractNumberField {
      * @param locale the locale
      */
     public JWholeNumberField(BigInteger value, BigInteger minValue, BigInteger maxValue, Locale locale){
-        this(new WholeNumberFormatterFactory(new WholeNumberFormatter()));
-        setMinimumBigIntegerValue(minValue);
-        setMaximumBigIntegerValue(maxValue);
-        setBigIntegerValue(value);
+        this(new NumberFormatterFactory<>(WholeNumberFormatter.class, new WholeNumberFormatter()));
+        setMinimumNumberValue(minValue);
+        setMaximumNumberValue(maxValue);
+        setNumberValue(value);
         setLocale(locale);
     }
     
@@ -112,9 +111,9 @@ public class JWholeNumberField extends AbstractNumberField {
      * Creates a new instance of this class.
      * @param factory the number formatter factory
      */
-    public JWholeNumberField(WholeNumberFormatterFactory factory){
-        super(factory);
-        setBigIntegerValue(BigInteger.ZERO);
+    protected JWholeNumberField(NumberFormatterFactory<BigInteger, WholeNumberFormatter> factory){
+        super(BigInteger.class, factory);
+        setNumberValue(BigInteger.ZERO);
     }
     
     /**
@@ -124,7 +123,7 @@ public class JWholeNumberField extends AbstractNumberField {
      */
     @Override
     protected void reinit(){
-        getWholeNumberFormatterFactory().setLocale(getLocale());
+        getNumberFormatterFactory().getNumberFormatter().setLocale(getLocale());
     }
     
     
@@ -132,32 +131,20 @@ public class JWholeNumberField extends AbstractNumberField {
      * Gets the value.
      * @return the value
      */
+    @Deprecated
     public BigInteger getBigIntegerValue(){
-        return (BigInteger) getNumberValue();
+        return getNumberValue();
     }
     
     /**
      * Sets the value.
      * @param value the value
      */
+    @Deprecated
     public void setBigIntegerValue(BigInteger value){
         setNumberValue(value);
     }
     
-    /**
-     * Sets the value.
-     * Must be an instance of BigInteger or null.
-     * @param value the value
-     */
-    @Override
-    public void setValue(Object value) {
-        // use BigInteger to recognize if the value is out of range if the range is
-        // (Integer.MIN_VALUE, Integer.MAX_VALUE)
-        if (value != null && ! (value instanceof BigInteger)){
-            throw new IllegalArgumentException("value must be an instance of BigInteger");
-        }
-        super.setValue(value);
-    }
     
     //  public Object getValue(){
     //    if (super.getValue() != null){
@@ -170,14 +157,16 @@ public class JWholeNumberField extends AbstractNumberField {
      * Gets the minimum value.
      * @return the minimum value
      */
+    @Deprecated
     public BigInteger getMinimumBigIntegerValue(){
-        return (BigInteger) getMinimumNumberValue();
+        return getMinimumNumberValue();
     }
     
     /**
      * Sets the minimum value.
      * @param minValue the minimum value
      */
+    @Deprecated
     public void setMinimumBigIntegerValue(BigInteger minValue){
         setMinimumNumberValue(minValue);
     }
@@ -187,104 +176,28 @@ public class JWholeNumberField extends AbstractNumberField {
      * Gets the maximum value.
      * @return the maximum value
      */
+    @Deprecated
     public BigInteger getMaximumBigIntegerValue(){
-        return (BigInteger) getMaximumNumberValue();
+        return getMaximumNumberValue();
     }
     
     /**
      * Sets the maximum value.
      * @param maxValue the maximum value
      */
+    @Deprecated
     public void setMaximumBigIntegerValue(BigInteger maxValue){
         setMaximumNumberValue(maxValue);
     }
-    
-    /**
-     * Sets the formatter.
-     * Must be an instance of WholeNumberFormatter.
-     * You should not normally invoke this. See the documentation of the base class for
-     * more information.
-     * @param formatter the number formatter
-     */
-    @Override
-    protected void setFormatter(JFormattedTextField.AbstractFormatter formatter) {
-        if (! (formatter instanceof WholeNumberFormatter)){
-            throw new IllegalArgumentException("formatter must be an instance of WholeNumberFormatter!");
-        }
-        super.setFormatter(formatter);
-    }
+   
     
     /**
      * Gets the number formatter.
      * @return the number formatter
      */
+    @Deprecated
     public WholeNumberFormatter getWholeNumberFormatter(){
-        return (WholeNumberFormatter) getAbstractXNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public WholeNumberFormatterFactory getWholeNumberFormatterFactory(){
-        return (WholeNumberFormatterFactory) getAbstractXNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setWholeNumberFormatterFactory(WholeNumberFormatterFactory factory){
-        setAbstractXNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of WholeNumberFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof WholeNumberFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of WholeNumberFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
-    }
-    
-    /**
-     * Sets the maximum value.
-     * Must be null or an instance of BigInteger!
-     * @param maxValue the maximum value (BigInteger)
-     */
-    @Override
-    public void setMaximumNumberValue(Number maxValue) {
-        if (maxValue != null && ! (maxValue instanceof BigInteger)){
-            throw new IllegalArgumentException("maxValue must be an instance of BigInteger");
-        }
-        super.setMaximumNumberValue(maxValue);
-    }
-    
-    /**
-     * Sets the minimum value.
-     * Must be null or an instance of BigInteger!
-     * @param minValue the minimum value (BigInteger)
-     */
-    @Override
-    public void setMinimumNumberValue(Number minValue) {
-        if (minValue != null && ! (minValue instanceof BigInteger)){
-            throw new IllegalArgumentException("minValue must be an instance of BigInteger");
-        }
-        super.setMinimumNumberValue(minValue);
+        return getAbstractXNumberFormatter();
     }
     
 }

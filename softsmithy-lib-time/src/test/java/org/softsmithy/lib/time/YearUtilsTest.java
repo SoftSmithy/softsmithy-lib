@@ -14,6 +14,8 @@
  */
 package org.softsmithy.lib.time;
 
+import org.junit.jupiter.api.Test;
+
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
@@ -22,9 +24,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.Test;
 
 /**
  *

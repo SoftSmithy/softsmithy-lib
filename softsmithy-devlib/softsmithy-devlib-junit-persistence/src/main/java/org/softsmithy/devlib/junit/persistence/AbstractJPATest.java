@@ -13,12 +13,13 @@
  */
 package org.softsmithy.devlib.junit.persistence;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.softsmithy.devlib.persistence.DbInitializer;
 import org.softsmithy.lib.persistence.ResourceLocalTransactionController;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 /**
  * A base class for JPA tests.

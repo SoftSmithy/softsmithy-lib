@@ -19,11 +19,15 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-import javax.swing.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *

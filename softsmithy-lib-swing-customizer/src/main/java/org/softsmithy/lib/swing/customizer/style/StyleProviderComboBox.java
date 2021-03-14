@@ -21,12 +21,11 @@
 
 package org.softsmithy.lib.swing.customizer.style;
 
-import java.util.Locale;
-import javax.swing.ComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.ListCellRenderer;
 import org.softsmithy.lib.swing.style.StyleProvider;
 import org.softsmithy.lib.swing.style.StyleProviderListCellRenderer;
+
+import javax.swing.*;
+import java.util.Locale;
 
 /**
  *

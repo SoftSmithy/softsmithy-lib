@@ -6,13 +6,20 @@
 
 package org.softsmithy.lib.swing;
 
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.event.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softsmithy.lib.swing.action.*;
+import org.softsmithy.lib.swing.action.DefaultXAction;
+import org.softsmithy.lib.swing.action.IconType;
+import org.softsmithy.lib.swing.action.NavigationActionFactory;
+import org.softsmithy.lib.swing.action.XAction;
+import org.softsmithy.lib.swing.action.XActions;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.util.Collection;
+import java.util.Collections;
 /**
  * JListBox provides a scrollable list with two buttons to change the order of
  * the elements.

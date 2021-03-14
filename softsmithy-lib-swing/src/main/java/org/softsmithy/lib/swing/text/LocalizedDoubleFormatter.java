@@ -54,19 +54,19 @@ public class LocalizedDoubleFormatter extends LocalizedRealNumberFormatter {
   
   
   public double getMinimumDoubleValue(){
-    return getMinimumBigDecimalValue().doubleValue();
+    return getMinimumNumberValue().doubleValue();
   }
   
   public void setMinimumDoubleValue(double minDoubleValue){
-    setMinimumBigDecimalValue(new BigDecimal(minDoubleValue));
+    setMinimumNumberValue(new BigDecimal(minDoubleValue));
   }
   
   public double getMaximumDoubleValue(){
-    return getMaximumBigDecimalValue().doubleValue();
+    return getMaximumNumberValue().doubleValue();
   }
   
   public void setMaximumDoubleValue(double maxDoubleValue){
-    setMaximumBigDecimalValue(new BigDecimal(maxDoubleValue));
+    setMaximumNumberValue(new BigDecimal(maxDoubleValue));
   }
   
 }

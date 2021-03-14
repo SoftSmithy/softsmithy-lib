@@ -14,15 +14,13 @@
 
 package samples.swing.component;
 
-import java.util.Locale;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 import org.softsmithy.lib.swing.LocaleCellRenderer;
 import org.softsmithy.lib.swing.XDefaultListCellRenderer;
 import org.softsmithy.lib.text.LocaleLocalizer;
 import org.softsmithy.lib.text.Localizables;
+
+import javax.swing.*;
+import java.util.Locale;
 
 
 /**

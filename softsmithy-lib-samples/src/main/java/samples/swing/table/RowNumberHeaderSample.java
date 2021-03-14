@@ -19,10 +19,11 @@
  */
 package samples.swing.table;
 
-import javax.swing.ListSelectionModel;
-import javax.swing.table.AbstractTableModel;
 import org.softsmithy.lib.swing.table.DefaultTableRowHeaderController;
 import org.softsmithy.lib.swing.table.JRowNumberHeaderTable;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 
 /**
  *

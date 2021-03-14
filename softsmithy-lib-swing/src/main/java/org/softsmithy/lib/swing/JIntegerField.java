@@ -113,7 +113,7 @@ public class JIntegerField extends JWholeNumberField {
      * @param locale the locale
      */
     public JIntegerField(int value, int minValue, int maxValue, Locale locale){
-        super(new IntegerFormatterFactory(new IntegerFormatter()));
+        super(new NumberFormatterFactory<>(IntegerFormatter.class, new IntegerFormatter()));
         setMinimumIntValue(minValue);
         setMaximumIntValue(maxValue);
         setIntValue(value);
@@ -126,7 +126,7 @@ public class JIntegerField extends JWholeNumberField {
      * @return the value
      */
     public int getIntValue(){
-        return getBigIntegerValue().intValue();
+        return getNumberValue().intValue();
     }
     
     /**
@@ -134,7 +134,7 @@ public class JIntegerField extends JWholeNumberField {
      * @param i the value
      */
     public void setIntValue(int i){
-        setBigIntegerValue(BigInteger.valueOf(i));
+        setNumberValue(BigInteger.valueOf(i));
     }
     
     /**
@@ -142,7 +142,7 @@ public class JIntegerField extends JWholeNumberField {
      * @return the minimum value.
      */
     public int getMinimumIntValue(){
-        return getMinimumBigIntegerValue().intValue();
+        return getMinimumNumberValue().intValue();
     }
     
     /**
@@ -150,7 +150,7 @@ public class JIntegerField extends JWholeNumberField {
      * @param minIntValue the minimum value
      */
     public void setMinimumIntValue(int minIntValue){
-        setMinimumBigIntegerValue(BigInteger.valueOf(minIntValue));
+        setMinimumNumberValue(BigInteger.valueOf(minIntValue));
     }
     
     /**
@@ -158,7 +158,7 @@ public class JIntegerField extends JWholeNumberField {
      * @return the maximum value
      */
     public int getMaximumIntValue(){
-        return getMaximumBigIntegerValue().intValue();
+        return getMaximumNumberValue().intValue();
     }
     
     /**
@@ -166,7 +166,7 @@ public class JIntegerField extends JWholeNumberField {
      * @param maxIntValue the maximum value
      */
     public void setMaximumIntValue(int maxIntValue){
-        setMaximumBigIntegerValue(BigInteger.valueOf(maxIntValue));
+        setMaximumNumberValue(BigInteger.valueOf(maxIntValue));
     }
     
     /**
@@ -189,46 +189,8 @@ public class JIntegerField extends JWholeNumberField {
      * @return the number formatter
      */
     public IntegerFormatter getIntegerFormatter(){
-        return (IntegerFormatter) getWholeNumberFormatter();
+        return (IntegerFormatter) getAbstractXNumberFormatter();
     }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public IntegerFormatterFactory getIntegerFormatterFactory(){
-        return (IntegerFormatterFactory) getWholeNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setIntegerFormatterFactory(IntegerFormatterFactory factory){
-        setWholeNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of IntegerFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof IntegerFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of IntegerFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
-    }
+
     
 }

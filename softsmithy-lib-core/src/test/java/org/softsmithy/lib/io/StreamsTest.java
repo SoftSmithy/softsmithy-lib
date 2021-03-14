@@ -22,6 +22,9 @@
 package org.softsmithy.lib.io;
 
 
+import org.junit.jupiter.api.Test;
+import org.softsmithy.lib.util.Strings;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -31,10 +34,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
-import org.softsmithy.lib.util.Strings;
 
 /**
  *

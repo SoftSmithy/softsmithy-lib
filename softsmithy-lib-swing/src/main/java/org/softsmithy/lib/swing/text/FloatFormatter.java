@@ -59,19 +59,19 @@ public class FloatFormatter extends RealNumberFormatter {
   }
   
   public float getMinimumFloatValue(){
-    return getMinimumBigDecimalValue().floatValue();
+    return getMinimumNumberValue().floatValue();
   }
   
   public void setMinimumFloatValue(float minFloatValue){
-    setMinimumBigDecimalValue(new BigDecimal(minFloatValue));
+    setMinimumNumberValue(new BigDecimal(minFloatValue));
   }
   
   public float getMaximumFloatValue(){
-    return getMaximumBigDecimalValue().floatValue();
+    return getMaximumNumberValue().floatValue();
   }
   
   public void setMaximumFloatValue(float maxFloatValue){
-    setMaximumBigDecimalValue(new BigDecimal(maxFloatValue));
+    setMaximumNumberValue(new BigDecimal(maxFloatValue));
   }
   
 }

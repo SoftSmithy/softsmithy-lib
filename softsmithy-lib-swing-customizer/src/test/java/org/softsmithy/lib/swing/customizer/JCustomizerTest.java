@@ -20,12 +20,14 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Rectangle;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.TableLayout;
+
+import java.awt.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *

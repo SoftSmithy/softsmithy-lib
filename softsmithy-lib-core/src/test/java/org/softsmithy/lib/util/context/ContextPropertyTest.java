@@ -13,14 +13,16 @@
  */
 package org.softsmithy.lib.util.context;
 
+import org.junit.jupiter.api.Test;
+import org.softsmithy.lib.util.concurrent.ThreadLocalStorage;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.Test;
-import org.softsmithy.lib.util.concurrent.ThreadLocalStorage;
 
 
 public class ContextPropertyTest {

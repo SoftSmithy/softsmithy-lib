@@ -19,8 +19,8 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.math.*;
-import java.util.*;
+import java.math.BigDecimal;
+import java.util.Locale;
 
 /**
  *
@@ -57,11 +57,11 @@ public class LocalizedBigDecimalCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getLocalizedRealNumberField().setBigDecimalValue((BigDecimal) value);
+        getLocalizedRealNumberField().setNumberValue((BigDecimal) value);
     }
 
     @Override
     protected Object getValue() {
-        return getLocalizedRealNumberField().getBigDecimalValue();
+        return getLocalizedRealNumberField().getNumberValue();
     }
 }

@@ -19,14 +19,14 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JPanel;
 import org.softsmithy.lib.swing.style.NoneStyle;
 import org.softsmithy.lib.swing.style.ParentStyle;
 import org.softsmithy.lib.swing.style.Style;
 import org.softsmithy.lib.swing.style.Styleable;
 import org.softsmithy.lib.swing.style.Styles;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A styleable panel.

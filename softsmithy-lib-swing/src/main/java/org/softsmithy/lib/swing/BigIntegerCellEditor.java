@@ -19,8 +19,8 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.math.*;
-import java.util.*;
+import java.math.BigInteger;
+import java.util.Locale;
 
 /**
  *
@@ -58,11 +58,11 @@ public class BigIntegerCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getWholeNumberField().setBigIntegerValue((BigInteger) value);
+        getWholeNumberField().setNumberValue((BigInteger) value);
     }
 
     @Override
     protected Object getValue() {
-        return getWholeNumberField().getBigIntegerValue();
+        return getWholeNumberField().getNumberValue();
     }
 }

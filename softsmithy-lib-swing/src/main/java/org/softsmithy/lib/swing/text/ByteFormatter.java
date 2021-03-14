@@ -50,19 +50,19 @@ public class ByteFormatter extends WholeNumberFormatter {
   }
   
   public byte getMinimumByteValue(){
-    return getMinimumBigIntegerValue().byteValue();
+    return getMinimumNumberValue().byteValue();
   }
   
   public void setMinimumByteValue(byte minByteValue){
-    setMinimumBigIntegerValue(BigInteger.valueOf(minByteValue));
+    setMinimumNumberValue(BigInteger.valueOf(minByteValue));
   }
   
   public byte getMaximumByteValue(){
-    return getMaximumBigIntegerValue().byteValue();
+    return getMaximumNumberValue().byteValue();
   }
   
   public void setMaximumByteValue(byte maxByteValue){
-    setMaximumBigIntegerValue(BigInteger.valueOf(maxByteValue));
+    setMaximumNumberValue(BigInteger.valueOf(maxByteValue));
   }
   
 }

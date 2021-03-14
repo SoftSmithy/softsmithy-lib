@@ -19,8 +19,9 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.util.Locale;
 
 /**
  *

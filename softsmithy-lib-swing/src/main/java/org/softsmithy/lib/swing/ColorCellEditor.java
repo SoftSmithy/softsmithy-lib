@@ -19,9 +19,9 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
 
 /**
  *

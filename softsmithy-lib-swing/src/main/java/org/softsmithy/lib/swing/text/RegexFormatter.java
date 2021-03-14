@@ -14,9 +14,11 @@
 
 package org.softsmithy.lib.swing.text;
 
-import java.text.*;
-import java.util.regex.*;
-import javax.swing.text.*;
+import javax.swing.text.DefaultFormatter;
+import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * A regular expression based implementation of <code>AbstractFormatter</code>.

@@ -14,10 +14,12 @@
 
 package org.softsmithy.lib.swing.action;
 
-import java.awt.event.ActionEvent;
-import java.lang.reflect.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.event.ActionEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * A trampoline class that reflectivly calls an action method. The method must

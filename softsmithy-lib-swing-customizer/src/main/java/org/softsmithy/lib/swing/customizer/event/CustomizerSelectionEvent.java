@@ -19,11 +19,12 @@
  */
 package org.softsmithy.lib.swing.customizer.event;
 
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+
 import java.util.Collections;
 import java.util.EventObject;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import org.softsmithy.lib.swing.customizer.JCustomizer;
 
 /**
  *

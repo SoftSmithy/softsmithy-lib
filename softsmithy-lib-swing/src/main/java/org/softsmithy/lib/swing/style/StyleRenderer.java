@@ -19,8 +19,8 @@
  */
 package org.softsmithy.lib.swing.style;
 
-import java.util.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Locale;
 
 /**
  *

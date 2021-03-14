@@ -13,8 +13,9 @@
  */
 package org.softsmithy.lib.swing.event;
 
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * A MouseListener that listens for popup events. Adapted from <a

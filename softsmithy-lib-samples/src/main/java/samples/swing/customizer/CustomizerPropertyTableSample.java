@@ -20,10 +20,11 @@
 
 package samples.swing.customizer;
 
-import javax.swing.JLabel;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+
+import javax.swing.*;
 
 /**
  *

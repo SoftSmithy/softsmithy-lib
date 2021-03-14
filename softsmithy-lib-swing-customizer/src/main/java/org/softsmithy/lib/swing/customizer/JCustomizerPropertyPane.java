@@ -19,12 +19,12 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.table.TableCellEditor;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
+import javax.swing.*;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
 
 /**
  *

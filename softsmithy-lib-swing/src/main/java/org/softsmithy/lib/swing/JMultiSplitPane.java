@@ -19,12 +19,17 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.beans.*;
-import java.util.*;
-import org.softsmithy.lib.swing.event.*;
-import org.softsmithy.lib.swing.multisplit.*;
+import org.softsmithy.lib.swing.event.DividerLocationEvent;
+import org.softsmithy.lib.swing.event.DividerLocationListener;
+import org.softsmithy.lib.swing.multisplit.SplitOrientation;
+
+import java.awt.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *

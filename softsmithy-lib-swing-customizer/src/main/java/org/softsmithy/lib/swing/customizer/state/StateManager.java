@@ -13,10 +13,15 @@
  */
 package org.softsmithy.lib.swing.customizer.state;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.Rectangle;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.JCustomizerPane;
+import org.softsmithy.lib.swing.customizer.border.HandleBorder;
+import org.softsmithy.lib.swing.customizer.border.HandleBorder.Handle;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -25,13 +30,6 @@ import java.awt.event.HierarchyListener;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.event.MouseInputListener;
-import org.softsmithy.lib.swing.customizer.JCustomizer;
-import org.softsmithy.lib.swing.customizer.JCustomizerPane;
-import org.softsmithy.lib.swing.customizer.border.HandleBorder;
-import org.softsmithy.lib.swing.customizer.border.HandleBorder.Handle;
 
 /*
  * Is this the right place? Should it be nested or in puce.swing?

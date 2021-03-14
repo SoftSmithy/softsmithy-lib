@@ -101,10 +101,10 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * @param locale the locale
      */
     public JLocalizedRealNumberField(BigDecimal value, BigDecimal minValue, BigDecimal maxValue, Locale locale){
-        this(new LocalizedRealNumberFormatterFactory(new LocalizedRealNumberFormatter()));
-        setMinimumBigDecimalValue(minValue);
-        setMaximumBigDecimalValue(maxValue);
-        setBigDecimalValue(value);
+        this(new NumberFormatterFactory<>(LocalizedRealNumberFormatter.class, new LocalizedRealNumberFormatter()));
+        setMinimumNumberValue(minValue);
+        setMaximumNumberValue(maxValue);
+        setNumberValue(value);
         setLocale(locale);
     }
     
@@ -112,7 +112,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * Creates a new instance of this class.
      * @param factory the number formatter factory
      */
-    public JLocalizedRealNumberField(LocalizedRealNumberFormatterFactory factory){
+    protected JLocalizedRealNumberField(NumberFormatterFactory<BigDecimal, RealNumberFormatter> factory){
         super(factory);
     }
     
@@ -123,7 +123,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      */
     @Override
     protected void reinit(){
-        getLocalizedRealNumberFormatterFactory().setLocale(getLocale());
+        getLocalizedRealNumberFormatter().setLocale(getLocale());
     }
     
     /**
@@ -146,46 +146,7 @@ public class JLocalizedRealNumberField extends JRealNumberField {
      * @return the number formatter
      */
     public LocalizedRealNumberFormatter getLocalizedRealNumberFormatter(){
-        return (LocalizedRealNumberFormatter) getRealNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public LocalizedRealNumberFormatterFactory getLocalizedRealNumberFormatterFactory(){
-        return (LocalizedRealNumberFormatterFactory) getRealNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setLocalizedRealNumberFormatterFactory(LocalizedRealNumberFormatterFactory factory){
-        setRealNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of LocalizedRealNumberFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof LocalizedRealNumberFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of LocalizedRealNumberFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
+        return (LocalizedRealNumberFormatter) getAbstractXNumberFormatter();
     }
     
 }

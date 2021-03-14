@@ -19,10 +19,11 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.util.Locale;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableCellRenderer;
 import org.softsmithy.lib.swing.HorizontalAlignment;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Locale;
 
 /**
  *

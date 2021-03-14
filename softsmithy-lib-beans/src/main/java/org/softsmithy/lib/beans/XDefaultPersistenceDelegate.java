@@ -19,8 +19,12 @@
  */
 package org.softsmithy.lib.beans;
 
-import java.beans.*;
-import java.lang.reflect.*;
+import java.beans.DefaultPersistenceDelegate;
+import java.beans.Encoder;
+import java.beans.Expression;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
 
 /**
  *

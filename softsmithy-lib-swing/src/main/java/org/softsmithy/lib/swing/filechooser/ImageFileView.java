@@ -14,10 +14,11 @@
 
 package org.softsmithy.lib.swing.filechooser;
 
-import java.io.File;
-import javax.swing.*;
-import javax.swing.filechooser.*;
 import org.softsmithy.lib.io.Files;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileView;
+import java.io.File;
 
 /**
  * Some image file views. <br>

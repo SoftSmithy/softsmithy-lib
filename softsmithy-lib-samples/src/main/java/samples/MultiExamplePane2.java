@@ -33,12 +33,6 @@
  */
 package samples;
 
-import java.awt.Color;
-import java.awt.geom.Ellipse2D;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.awt.Star;
@@ -49,6 +43,12 @@ import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 import org.softsmithy.lib.swing.icon.ShapeIcon;
 import org.softsmithy.lib.swing.icon.XImageIcon;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 /**
  *

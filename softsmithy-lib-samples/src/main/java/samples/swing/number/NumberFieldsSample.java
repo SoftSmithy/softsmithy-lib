@@ -1,13 +1,12 @@
 package samples.swing.number;
 
+import org.softsmithy.lib.swing.text.DoubleFormatter;
+import org.softsmithy.lib.swing.text.FloatFormatter;
+import org.softsmithy.lib.swing.text.NumberFormatterFactory;
+import org.softsmithy.lib.swing.text.RealNumberFormatter;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import org.softsmithy.lib.swing.text.DoubleFormatter;
-import org.softsmithy.lib.swing.text.DoubleFormatterFactory;
-import org.softsmithy.lib.swing.text.FloatFormatter;
-import org.softsmithy.lib.swing.text.FloatFormatterFactory;
-import org.softsmithy.lib.swing.text.RealNumberFormatter;
-import org.softsmithy.lib.swing.text.RealNumberFormatterFactory;
 /*
  * NumberFieldsSample.java
  *
@@ -23,10 +22,10 @@ public class NumberFieldsSample extends javax.swing.JFrame {
     /** Creates new form NumberFieldsSample */
     public NumberFieldsSample() {
         initComponents();
-        jRealNumberField1.setRealNumberFormatterFactory(new RealNumberFormatterFactory(new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
-        jFloatField1.setFloatFormatterFactory(new FloatFormatterFactory(new FloatFormatter(NumberFormat.getPercentInstance())));
+        jRealNumberField1.setNumberFormatterFactory(new NumberFormatterFactory<>(RealNumberFormatter.class, new RealNumberFormatter(NumberFormat.getCurrencyInstance())));
+        jFloatField1.setNumberFormatterFactory(new NumberFormatterFactory<>(FloatFormatter.class, new FloatFormatter(NumberFormat.getPercentInstance())));
         DecimalFormat format = new DecimalFormat("#,##0.00000");
-        jDoubleField1.setDoubleFormatterFactory(new DoubleFormatterFactory(new DoubleFormatter(format)));
+        jDoubleField1.setNumberFormatterFactory(new NumberFormatterFactory<>(DoubleFormatter.class, new DoubleFormatter(format)));
         setSize(400, 300);
     }
     

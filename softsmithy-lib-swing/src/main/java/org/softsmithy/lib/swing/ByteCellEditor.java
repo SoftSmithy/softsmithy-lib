@@ -19,7 +19,7 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
+import java.util.Locale;
 
 /**
  *

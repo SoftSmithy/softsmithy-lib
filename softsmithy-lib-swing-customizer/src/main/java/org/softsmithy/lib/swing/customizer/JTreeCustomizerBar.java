@@ -20,10 +20,13 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.tree.*;
 import org.softsmithy.lib.swing.JXTree;
+
+import javax.swing.*;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreeSelectionModel;
+import java.awt.*;
 
 /**
  *

@@ -19,13 +19,14 @@
  */
 package samples.swing.table;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import org.softsmithy.lib.swing.table.AbstractRowHeaderTableModel;
 import org.softsmithy.lib.swing.table.DefaultTableRowHeaderController;
 import org.softsmithy.lib.swing.table.JRowHeaderTable;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *

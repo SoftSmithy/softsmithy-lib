@@ -21,9 +21,15 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Container;
-import java.awt.Point;
-import java.awt.Rectangle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.softsmithy.lib.beans.BeanIntrospector;
+import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
+import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
+import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
+import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
+import java.awt.*;
 import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -35,13 +41,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.softsmithy.lib.beans.BeanIntrospector;
-import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
-import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
-import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
-import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
 
 /**
  *

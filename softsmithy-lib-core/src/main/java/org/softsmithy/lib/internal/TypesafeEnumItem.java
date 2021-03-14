@@ -13,8 +13,9 @@
  */
 package org.softsmithy.lib.internal;
 
-import java.util.Locale;
 import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.util.Locale;
 
 @Deprecated
 public class TypesafeEnumItem {

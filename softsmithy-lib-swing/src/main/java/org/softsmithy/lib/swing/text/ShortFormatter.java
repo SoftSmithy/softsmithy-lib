@@ -50,19 +50,19 @@ public class ShortFormatter extends WholeNumberFormatter {
   }
   
   public short getMinimumShortValue(){
-    return getMinimumBigIntegerValue().shortValue();
+    return getMinimumNumberValue().shortValue();
   }
   
   public void setMinimumShortValue(short minShortValue){
-    setMinimumBigIntegerValue(BigInteger.valueOf(minShortValue));
+    setMinimumNumberValue(BigInteger.valueOf(minShortValue));
   }
   
   public short getMaximumShortValue(){
-    return getMaximumBigIntegerValue().shortValue();
+    return getMaximumNumberValue().shortValue();
   }
   
   public void setMaximumShortValue(short maxShortValue){
-    setMaximumBigIntegerValue(BigInteger.valueOf(maxShortValue));
+    setMaximumNumberValue(BigInteger.valueOf(maxShortValue));
   }
   
 }

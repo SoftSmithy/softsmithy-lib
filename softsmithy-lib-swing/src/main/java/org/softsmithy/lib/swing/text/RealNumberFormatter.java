@@ -17,152 +17,128 @@
  *
  * Created on 9. September 2003, 19:18
  */
-
 package org.softsmithy.lib.swing.text;
 
-import java.math.*;
-import java.text.*;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
+ * use BigDecimal to recognize values out of range if the range is (Integer.MIN_VALUE, Integer.MAX_VALUE)
  *
- * @author  puce
+ * @author puce
  */
-public class RealNumberFormatter extends AbstractXNumberFormatter {
-  
-  
-  /** Creates a new instance of IntegerFormatter */
-  public RealNumberFormatter() {
-    init();
-  }
-  
-  public RealNumberFormatter(NumberFormat format){
-    super(format);
-    init();
-  }
-  
-  public RealNumberFormatter(BigDecimal minIntValue, BigDecimal maxIntValue){
-    super(minIntValue, maxIntValue);
-    init();
-  }
-  public RealNumberFormatter(NumberFormat format, BigDecimal minIntValue, BigDecimal maxIntValue){
-    super(format, minIntValue, maxIntValue);
-    init();
-  }
-  
-  private void init(){
-    // use BigDecimal to recognize values out
-    // of range if the range is (Integer.MIN_VALUE, Integer.MAX_VALUE)
-    super.setValueClass(BigDecimal.class);
-  }
-  
-  
-  @Override
-  public void setMaximum(Comparable max) {
-    if (max != null && ! (max instanceof BigDecimal)){
-      throw new IllegalArgumentException("max must be an instance of BigDecimal or null");
+public class RealNumberFormatter extends AbstractXNumberFormatter<BigDecimal> {
+
+    /**
+     * Creates a new instance of RealNumberFormatter
+     */
+    public RealNumberFormatter() {
+        super(BigDecimal.class);
     }
-    super.setMaximum(max);
-  }
-  
-  @Override
-  public void setMinimum(Comparable minimum) {
-    if (minimum != null && ! (minimum instanceof BigDecimal)){
-      throw new IllegalArgumentException("minimum must be an instance of BigDecimal or null");
+
+    public RealNumberFormatter(NumberFormat format) {
+        super(BigDecimal.class, format);
     }
-    super.setMinimum(minimum);
-  }
-  
-  @Override
-  public void setValueClass(Class valueClass) {
-    throw new UnsupportedOperationException("This operation is not supported!"); // always use BigDecimal!
-  }
-  
-  
-  @Override
-  protected Number stringToNumber(String text) throws NumberFormatException{
-    return new BigDecimal(text);
-  }
-  
-  
-  
-  /** Getter for property maximumMaximumValue.
-   * @return Value of property maximumMaximumValue.
-   *
-   */
-  protected BigDecimal getMaximumMaximumBigDecimalValue() {
-    return (BigDecimal) getMaximumMaximumValue();
-  }
-  
-  /** Setter for property maximumMaximumValue.
-   * @param maximumMaximumValue New value of property maximumMaximumValue.
-   *
-   */
-  protected void setMaximumMaximumBigDecimalValue(BigDecimal maximumMaximumValue) {
-    setMaximumMaximumValue(maximumMaximumValue);
-  }
-  
-  /** Getter for property minimumMinimumValue.
-   * @return Value of property minimumMinimumValue.
-   *
-   */
-  protected BigDecimal getMinimumMinimumBigDecimalValue() {
-    return (BigDecimal) getMinimumMinimumValue();
-  }
-  
-  /** Setter for property minimumMinimumValue.
-   * @param minimumMinimumValue New value of property minimumMinimumValue.
-   *
-   */
-  protected void setMinimumMinimumBigDecimalValue(BigDecimal minimumMinimumValue) {
-    setMinimumMinimumValue(minimumMinimumValue);
-  }
-  
-  /** Getter for property maximumBigDecimalValue.
-   * @return Value of property maximumBigDecimalValue.
-   *
-   */
-  public BigDecimal getMaximumBigDecimalValue() {
-    return (BigDecimal) getMaximum();
-  }
-  
-  /** Setter for property maximumBigDecimalValue.
-   * @param maximumBigDecimalValue New value of property maximumBigDecimalValue.
-   *
-   */
-  public void setMaximumBigDecimalValue(BigDecimal maximumBigDecimalValue) {
-    setMaximum(maximumBigDecimalValue);
-  }
-  
-  /** Getter for property minimumBigDecimalValue.
-   * @return Value of property minimumBigDecimalValue.
-   *
-   */
-  public BigDecimal getMinimumBigDecimalValue() {
-    return (BigDecimal) getMinimum();
-  }
-  
-  /** Setter for property minimumBigDecimalValue.
-   * @param minimumBigDecimalValue New value of property minimumBigDecimalValue.
-   *
-   */
-  public void setMinimumBigDecimalValue(BigDecimal minimumBigDecimalValue) {
-    setMinimum(minimumBigDecimalValue);
-  }
-  
-  @Override
-  protected void setMaximumMaximumValue(Number maximumMaximumValue) {
-    if (maximumMaximumValue != null && ! (maximumMaximumValue instanceof BigDecimal)){
-      throw new IllegalArgumentException("maximumMaximumValue must be an instance of BigDecimal or null");
+
+    public RealNumberFormatter(BigDecimal minIntValue, BigDecimal maxIntValue) {
+        super(BigDecimal.class, minIntValue, maxIntValue);
     }
-    super.setMaximumMaximumValue(maximumMaximumValue);
-  }
-  
-  @Override
-  protected void setMinimumMinimumValue(Number minimumMinimumValue) {
-    if (minimumMinimumValue != null && ! (minimumMinimumValue instanceof BigDecimal)){
-      throw new IllegalArgumentException("minimumMinimumValue must be an instance of BigDecimal or null");
+
+    public RealNumberFormatter(NumberFormat format, BigDecimal minIntValue, BigDecimal maxIntValue) {
+        super(BigDecimal.class, format, minIntValue, maxIntValue);
     }
-    super.setMinimumMinimumValue(minimumMinimumValue);
-  }
-  
+
+
+    protected BigDecimal stringToNumber(String text) throws NumberFormatException {
+        return new BigDecimal(text);
+    }
+
+    /**
+     * Getter for property maximumMaximumValue.
+     *
+     * @return Value of property maximumMaximumValue.
+     *
+     */
+    @Deprecated
+    protected BigDecimal getMaximumMaximumBigDecimalValue() {
+        return getMaximumMaximumValue();
+    }
+
+    /**
+     * Setter for property maximumMaximumValue.
+     *
+     * @param maximumMaximumValue New value of property maximumMaximumValue.
+     *
+     */
+    @Deprecated
+    protected void setMaximumMaximumBigDecimalValue(BigDecimal maximumMaximumValue) {
+        setMaximumMaximumValue(maximumMaximumValue);
+    }
+
+    /**
+     * Getter for property minimumMinimumValue.
+     *
+     * @return Value of property minimumMinimumValue.
+     *
+     */
+    @Deprecated
+    protected BigDecimal getMinimumMinimumBigDecimalValue() {
+        return getMinimumMinimumValue();
+    }
+
+    /**
+     * Setter for property minimumMinimumValue.
+     *
+     * @param minimumMinimumValue New value of property minimumMinimumValue.
+     *
+     */
+    @Deprecated
+    protected void setMinimumMinimumBigDecimalValue(BigDecimal minimumMinimumValue) {
+        setMinimumMinimumValue(minimumMinimumValue);
+    }
+
+    /**
+     * Getter for property maximumBigDecimalValue.
+     *
+     * @return Value of property maximumBigDecimalValue.
+     *
+     */
+    @Deprecated
+    public BigDecimal getMaximumBigDecimalValue() {
+        return getMaximumNumberValue();
+    }
+
+    /**
+     * Setter for property maximumBigDecimalValue.
+     *
+     * @param maximumBigDecimalValue New value of property maximumBigDecimalValue.
+     *
+     */
+    @Deprecated
+    public void setMaximumBigDecimalValue(BigDecimal maximumBigDecimalValue) {
+        setMaximumNumberValue(maximumBigDecimalValue);
+    }
+
+    /**
+     * Getter for property minimumBigDecimalValue.
+     *
+     * @return Value of property minimumBigDecimalValue.
+     *
+     */
+    @Deprecated
+    public BigDecimal getMinimumBigDecimalValue() {
+        return getMinimumNumberValue();
+    }
+
+    /**
+     * Setter for property minimumBigDecimalValue.
+     *
+     * @param minimumBigDecimalValue New value of property minimumBigDecimalValue.
+     *
+     */
+    @Deprecated
+    public void setMinimumBigDecimalValue(BigDecimal minimumBigDecimalValue) {
+        setMinimumNumberValue(minimumBigDecimalValue);
+    }
+
 }

@@ -19,8 +19,8 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *

@@ -19,7 +19,7 @@
  */
 package org.softsmithy.lib.swing;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 /**
  *

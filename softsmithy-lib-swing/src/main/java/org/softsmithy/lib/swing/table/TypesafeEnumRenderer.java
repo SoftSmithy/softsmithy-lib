@@ -19,9 +19,10 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.util.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Locale;
 
 /**
  *

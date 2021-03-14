@@ -5,8 +5,6 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.swing.action.DefaultXAction;
@@ -14,6 +12,9 @@ import org.softsmithy.lib.swing.action.IconType;
 import org.softsmithy.lib.swing.action.NavigationActionFactory;
 import org.softsmithy.lib.swing.action.XAction;
 import org.softsmithy.lib.swing.action.XActions;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 
 /**
  *

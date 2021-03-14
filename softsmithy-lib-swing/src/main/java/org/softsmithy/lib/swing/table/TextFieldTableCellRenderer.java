@@ -13,8 +13,9 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import javax.swing.JLabel;
-import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.JXTextField;
+
+import javax.swing.*;
 
 public class TextFieldTableCellRenderer extends PanelTableCellRenderer {
 

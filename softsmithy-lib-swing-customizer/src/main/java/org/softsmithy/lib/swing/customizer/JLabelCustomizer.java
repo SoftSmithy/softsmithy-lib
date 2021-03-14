@@ -20,9 +20,10 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import javax.swing.*;
 import org.softsmithy.lib.swing.HorizontalAlignment;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A customizer to customize the text of a JLabel.

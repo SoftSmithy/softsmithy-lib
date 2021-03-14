@@ -4,13 +4,15 @@
  */
 package org.softsmithy.lib.nio.file;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 
 /**
  *

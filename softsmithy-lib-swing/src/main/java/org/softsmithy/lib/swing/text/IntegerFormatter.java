@@ -56,19 +56,19 @@ public class IntegerFormatter extends WholeNumberFormatter {
   }
   
   public int getMinimumIntValue(){
-    return getMinimumBigIntegerValue().intValue();
+    return getMinimumNumberValue().intValue();
   }
   
   public void setMinimumIntValue(int minIntValue){
-    setMinimumBigIntegerValue(BigInteger.valueOf(minIntValue));
+    setMinimumNumberValue(BigInteger.valueOf(minIntValue));
   }
   
   public int getMaximumIntValue(){
-    return getMaximumBigIntegerValue().intValue();
+    return getMaximumNumberValue().intValue();
   }
   
   public void setMaximumIntValue(int maxIntValue){
-    setMaximumBigIntegerValue(BigInteger.valueOf(maxIntValue));
+    setMaximumNumberValue(BigInteger.valueOf(maxIntValue));
   }
   
 }

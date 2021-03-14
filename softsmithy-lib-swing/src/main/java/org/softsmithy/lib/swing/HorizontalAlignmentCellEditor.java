@@ -19,8 +19,9 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
 import javax.swing.*;
+import java.util.Locale;
+import java.util.Vector;
 
 /**
  *

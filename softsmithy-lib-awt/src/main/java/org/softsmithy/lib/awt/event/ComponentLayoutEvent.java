@@ -21,7 +21,7 @@
 package org.softsmithy.lib.awt.event;
 
 import java.awt.*;
-import java.util.*;
+import java.util.EventObject;
 
 /**
  * An event which indicates that a component has been layed out.

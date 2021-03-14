@@ -13,16 +13,15 @@
  */
 package org.softsmithy.devlib.junit;
 
-import static java.lang.Integer.signum;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+
+import static java.lang.Integer.signum;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**

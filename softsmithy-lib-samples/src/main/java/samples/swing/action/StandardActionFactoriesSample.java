@@ -20,16 +20,6 @@
 
 package samples.swing.action;
 
-import java.awt.event.ActionEvent;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JToolBar;
 import org.softsmithy.lib.swing.action.AbstractXAction;
 import org.softsmithy.lib.swing.action.DevelopmentActionFactory;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;
@@ -41,6 +31,12 @@ import org.softsmithy.lib.swing.action.TableActionFactory;
 import org.softsmithy.lib.swing.action.TextActionFactory;
 import org.softsmithy.lib.swing.action.XAction;
 import org.softsmithy.lib.swing.action.XActions;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 /**
  *

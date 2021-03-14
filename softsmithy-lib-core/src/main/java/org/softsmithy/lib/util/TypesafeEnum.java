@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.util;
 
+import org.softsmithy.lib.text.Localizable;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import org.softsmithy.lib.text.Localizable;
 
 
 /**

@@ -13,9 +13,11 @@
  */
 package org.softsmithy.lib.swing.customizer.state;
 
-import java.awt.*;
-import java.awt.event.*;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
+
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseEvent;
 
 public class StateWrapper implements State {
 

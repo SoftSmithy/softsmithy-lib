@@ -108,7 +108,7 @@ public class JShortField extends JWholeNumberField {
      * @param locale the locale
      */
     public JShortField(short value, short minValue, short maxValue, Locale locale){
-        super(new ShortFormatterFactory(new ShortFormatter()));
+        super(new NumberFormatterFactory<>(ShortFormatter.class, new ShortFormatter()));
         setMinimumShortValue(minValue);
         setMaximumShortValue(maxValue);
         setShortValue(value);
@@ -121,7 +121,7 @@ public class JShortField extends JWholeNumberField {
      * @return the value.
      */
     public short getShortValue(){
-        return getBigIntegerValue().shortValue();
+        return getNumberValue().shortValue();
     }
     
     /**
@@ -129,7 +129,7 @@ public class JShortField extends JWholeNumberField {
      * @param i the value
      */
     public void setShortValue(short i){
-        setBigIntegerValue(BigInteger.valueOf(i));
+        setNumberValue(BigInteger.valueOf(i));
     }
     
     /**
@@ -137,7 +137,7 @@ public class JShortField extends JWholeNumberField {
      * @return the minimum value
      */
     public short getMinimumShortValue(){
-        return getMinimumBigIntegerValue().shortValue();
+        return getMinimumNumberValue().shortValue();
     }
     
     /**
@@ -146,7 +146,7 @@ public class JShortField extends JWholeNumberField {
      * @param minShortValue the minimum value
      */
     public void setMinimumShortValue(short minShortValue){
-        setMinimumBigIntegerValue(BigInteger.valueOf(minShortValue));
+        setMinimumNumberValue(BigInteger.valueOf(minShortValue));
     }
     
     /**
@@ -154,7 +154,7 @@ public class JShortField extends JWholeNumberField {
      * @return the maximum value
      */
     public short getMaximumShortValue(){
-        return getMaximumBigIntegerValue().shortValue();
+        return getMaximumNumberValue().shortValue();
     }
     
     
@@ -165,7 +165,7 @@ public class JShortField extends JWholeNumberField {
      * @param maxShortValue the maximum value
      */
     public void setMaximumShortValue(short maxShortValue){
-        setMaximumBigIntegerValue(BigInteger.valueOf(maxShortValue));
+        setMaximumNumberValue(BigInteger.valueOf(maxShortValue));
     }
     
     /**
@@ -188,46 +188,7 @@ public class JShortField extends JWholeNumberField {
      * @return the number formatter
      */
     public ShortFormatter getShortFormatter(){
-        return (ShortFormatter) getWholeNumberFormatter();
-    }
-    
-    /**
-     * Gets the number formatter factory.
-     * @return the number formatter factory
-     */
-    public ShortFormatterFactory getShortFormatterFactory(){
-        return (ShortFormatterFactory) getWholeNumberFormatterFactory();
-    }
-    
-    /**
-     * Sets the number formatter factory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param factory the number formatter factory
-     */
-    public void setShortFormatterFactory(ShortFormatterFactory factory){
-        setWholeNumberFormatterFactory(factory);
-    }
-    
-    /**
-     * Sets the formatter factory.
-     * Must be an instance of ShortFormatterFactory.
-     * Calls the reinit method.
-     * Ensures the value stays in the range defined by the minimum and maximum value of
-     * the number formatter, which can be obtained by this formatter factory, by either
-     * setting it to the maximum value if it is greater than the maximum value or to
-     * the minimum value if it is smaller than the minimum value.
-     * @param aff the number formatter factory
-     */
-    @Override
-    public void setFormatterFactory(JFormattedTextField.AbstractFormatterFactory aff) {
-        if (! (aff instanceof ShortFormatterFactory)){
-            throw new IllegalArgumentException("aff must be an instance of ShortFormatterFactory!");
-        }
-        super.setFormatterFactory(aff);
+        return (ShortFormatter) getAbstractXNumberFormatter();
     }
     
 }

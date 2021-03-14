@@ -20,16 +20,15 @@
 
 package samples.swing.action;
 
-import java.awt.event.ActionEvent;
-import java.util.Locale;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import org.softsmithy.lib.swing.action.AbstractXAction;
 import org.softsmithy.lib.swing.action.GeneralActionFactory;
 import org.softsmithy.lib.swing.action.IconType;
 import org.softsmithy.lib.swing.action.XAction;
 import org.softsmithy.lib.swing.action.XActions;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.util.Locale;
 
 /**
  *

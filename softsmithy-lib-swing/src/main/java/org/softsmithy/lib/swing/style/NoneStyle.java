@@ -19,8 +19,7 @@
  */
 package org.softsmithy.lib.swing.style;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Locale;
 
 /**

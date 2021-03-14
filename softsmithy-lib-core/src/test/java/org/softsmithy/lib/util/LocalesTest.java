@@ -14,6 +14,7 @@
 package org.softsmithy.lib.util;
 
 import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**

@@ -19,12 +19,13 @@
  */
 package org.softsmithy.lib.swing.customizer.action;
 
-import java.awt.Font;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.SelectionManager;
+
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Arrays;
-import org.softsmithy.lib.swing.customizer.JCustomizer;
-import org.softsmithy.lib.swing.customizer.SelectionManager;
 
 /**
  *

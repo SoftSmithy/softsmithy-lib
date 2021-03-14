@@ -14,9 +14,14 @@
 
 package org.softsmithy.lib.awt.image;
 
-import java.awt.Image;
-import java.util.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 

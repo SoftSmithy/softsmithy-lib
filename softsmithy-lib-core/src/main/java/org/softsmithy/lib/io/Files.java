@@ -13,9 +13,15 @@
  */
 package org.softsmithy.lib.io;
 
-import java.io.*;
-import java.util.*;
 import org.softsmithy.lib.nio.file.PathUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A utility class for Files. <br> Note: The API may change in a future version! <br><br>

@@ -11,86 +11,105 @@
  *
  * Contributor(s): .
  */
-
-
 package org.softsmithy.lib.swing.text;
 
-import java.text.*;
-import javax.swing.text.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.Comparables;
+
+import javax.swing.text.NumberFormatter;
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 /**
  * The base class of the number formatters.
+ *
  * @author puce
  */
-public abstract class AbstractXNumberFormatter extends NumberFormatter {
-    
-    
-    /** Holds value of property maximumMaximumValue. */
-    private Number maximumMaximumValue = null;
-    
-    /** Holds value of property minimumMinimumValue. */
-    private Number minimumMinimumValue = null;
-    
+public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>> extends NumberFormatter {
+
     /**
-     * Creates a new instance of this class.
+     * Holds value of property maximumMaximumValue.
      */
-    public AbstractXNumberFormatter() {
-        init(null, null);
-    }
-    
+    private T maximumMaximumValue = null;
+
+    /**
+     * Holds value of property minimumMinimumValue.
+     */
+    private T minimumMinimumValue = null;
+
+    private Class<T> numberType;
+
     /**
      * Creates a new instance of this class.
+     *
+     * @param numberType the number type
+     */
+    public AbstractXNumberFormatter(Class<T> numberType) {
+        init(numberType, null, null);
+    }
+
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param numberType the number type
      * @param format the number format
      */
-    public AbstractXNumberFormatter(NumberFormat format){
+    public AbstractXNumberFormatter(Class<T> numberType, NumberFormat format) {
         super(format);
-        init(null, null);
+        init(numberType, null, null);
     }
-    
+
     /**
      * Creates a new instance of this class.
+     *
+     * @param numberType the number type
      * @param minValue the minimum value
      * @param maxValue the maximum value
      */
-    public AbstractXNumberFormatter(Number minValue, Number maxValue){
-        init(minValue, maxValue);
+    public AbstractXNumberFormatter(Class<T> numberType, T minValue, T maxValue) {
+        init(numberType, minValue, maxValue);
     }
-    
+
     /**
      * Creates a new instance of this class.
+     *
+     * @param numberType the number type
      * @param format the number format
      * @param minValue the minimum value
      * @param maxValue the maximum value
      */
-    public AbstractXNumberFormatter(NumberFormat format, Number minValue, Number maxValue){
+    public AbstractXNumberFormatter(Class<T> numberType, NumberFormat format, T minValue, T maxValue) {
         super(format);
-        init(minValue, maxValue);
+        init(numberType, minValue, maxValue);
     }
-    
+
     /**
      * Initializes this formatter.
+     *
      * @param minValue the minimum value
      * @param maxValue the maximum value
      */
-    private void init(Number minValue, Number maxValue){
+    private void init(Class<T> numberType, T minValue, T maxValue) {
+        this.numberType = numberType;
+        super.setValueClass(numberType);
         setMinimumNumberValue(minValue);
         setMaximumNumberValue(maxValue);
     }
-    
-    
+
     /**
      * Sets the maximum value.
      * It must be an instance of Number or null.
      * It mustn't be smaller than the minimum value.
      * It ensures that the maximum value is in the range of the maximum
      * maximum value and the minimum minimum value.
+     *
      * @param max the maximum number value
      */
     @Override
     public void setMaximum(Comparable<?> max) {
-        if (max != null && !(max instanceof Number)) {
-            throw new IllegalArgumentException("max must be an instance of Number or null");
+        if (max != null && !numberType.isInstance(max)) {
+            throw new IllegalArgumentException("max must be an instance of number type or null");
         }
         setMaximumNumber((Number & Comparable<? super Number>) max);
     }
@@ -102,20 +121,22 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         //    if (max.compareTo(MAX_MAX_VALUE) > 0){
         //      throw new IllegalArgumentException("max mustn't be bigger than MAX_MAX_VALUE!");
         //    }
-        super.setMaximum(maximumToRange(max));
+        super.setMaximum(maximumToRange(numberType.cast(max)));
     }
+
     /**
      * Sets the minimum value.
      * It must be an instance of Number or null.
      * It mustn't be bigger than the maximum value.
      * It ensures that the minimum value is in the range of the maximum
      * maximum value and the minimum minimum value.
+     *
      * @param minimum the minimum number value
      */
     @Override
     public void setMinimum(Comparable<?> minimum) {
-        if (minimum != null && ! (minimum instanceof Number)){
-            throw new IllegalArgumentException("minimum must be an instance of Number or null");
+        if (minimum != null && !numberType.isInstance(minimum)) {
+            throw new IllegalArgumentException("minimum must be an instance of number type or null");
         }
         setMinimumNumber((Number & Comparable<? super Number>) minimum);
     }
@@ -127,13 +148,15 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
         //      throw new IllegalArgumentException("minimum mustn't be smaller than the minimum minimum value!");
         //    }
-        super.setMinimum(minimumToRange(minimum));
+        super.setMinimum(minimumToRange(numberType.cast(minimum)));
     }
 
-    
+
+
     /**
      * Returns the <code>Number</code> representation of the
      * <code>String</code> <code>text</code>.
+     *
      * @param text <code>String</code> to convert
      * @return <code>Number</code> representation of text
      * @throws ParseException if there is an error in the conversion
@@ -141,17 +164,17 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
     @Override
     public Object stringToValue(String text) throws ParseException {
         Number value = null;
-        try{
+        try {
             String valueText = text;
-            if (((DecimalFormat) getNumberFormat()).isGroupingUsed()){
+            if (((DecimalFormat) getNumberFormat()).isGroupingUsed()) {
                 valueText = valueText.replaceAll("\\" + ((DecimalFormat) getNumberFormat()).getDecimalFormatSymbols().getGroupingSeparator(), "");
             }
             valueText = valueText.replaceAll("\\" + ((DecimalFormat) getNumberFormat()).getDecimalFormatSymbols().getDecimalSeparator(), ".");
             value = valueToRange(stringToNumber(valueText));
             //System.out.println("First number conversion worked!");
-        } catch(RuntimeException ex){ //try this, but only long and double precision supported (important for BigInteger and BigDecimal)!
+        } catch (RuntimeException ex) { //try this, but only long and double precision supported (important for BigInteger and BigDecimal)!
             //System.out.println("First number conversion failed!");
-            try{
+            try {
                 value = valueToRange(stringToNumber(getNumberFormat() != null ? getNumberFormat().parse(text).toString() : text));
                 value = (Number) super.stringToValue(getNumberFormat() != null ? getNumberFormat().format(value.toString()) : value.toString()); // needed?
                 //System.out.println("Second number conversion worked!");
@@ -164,21 +187,19 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         }
         return value;
     }
-    
+
     /**
      * Returns the <code>Number</code> representation of the
      * <code>String</code> <code>text</code>.
+     *
      * @param text <code>String</code> to convert
      * @return <code>Number</code> representation of text
      * @throws java.lang.NumberFormatException if there is an error in the conversion
      */
-    protected abstract Number stringToNumber(String text) throws NumberFormatException;
-    
-    public Number valueToRange(Number value){
-        if (! (value instanceof Comparable)){
-            throw new IllegalArgumentException("value must be an instance of Comparable");
-        }
-        return (Number) Formatters.valueToRange(this, (Comparable) value);
+    protected abstract T stringToNumber(String text) throws NumberFormatException;
+
+    public T valueToRange(T value) {
+        return Comparables.toRange(value, getMinimumNumberValue(), getMaximumNumberValue());
     }
     
     private <T extends Number & Comparable<? super T>> T minimumToRange(T min) {
@@ -204,16 +225,17 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
         }
         return inRangeValue;
     }
-    
-    /** Getter for property maximumMaximumValue.
+
+    /**
+     * Getter for property maximumMaximumValue.
+     *
      * @return Value of property maximumMaximumValue.
      *
      */
-    protected Number getMaximumMaximumValue() {
+    protected T getMaximumMaximumValue() {
         return this.maximumMaximumValue;
     }
-    
-    
+
     /**
      * The maximum value for the maximum value.
      * It must be an instance of Comparable or null, if there is no maximum
@@ -221,106 +243,109 @@ public abstract class AbstractXNumberFormatter extends NumberFormatter {
      * if both are not null.
      * If the maximum or the minimum value are greater than the maximum maximum
      * value, they will be set to the maximum maximum value instead.
+     *
      * @param maximumMaximumValue the maximum value for the maximum value
      */
-    protected void setMaximumMaximumValue(Number maximumMaximumValue) {
-        if (maximumMaximumValue != null && ! (maximumMaximumValue instanceof Comparable)){
-            throw new IllegalArgumentException("maximumMaximumValue must be an instance of Comparable or null");
-        }
+    protected void setMaximumMaximumValue(T maximumMaximumValue) {
         if (maximumMaximumValue != null && getMinimumMinimumValue() != null
-                && Comparables.isLess((Comparable) maximumMaximumValue, (Comparable) getMinimumMinimumValue())){
+                && Comparables.isLess(maximumMaximumValue, getMinimumMinimumValue())) {
             throw new IllegalArgumentException("maximumMaximumValue mustn't be smaller than minimumMinimumValue!");
         }
         this.maximumMaximumValue = maximumMaximumValue;
         setMinimumNumberValue(getMinimumNumberValue());
         setMaximumNumberValue(getMaximumNumberValue());
     }
-    
-    /** Getter for property minimumMinimumValue.
+
+    /**
+     * Getter for property minimumMinimumValue.
+     *
      * @return Value of property minimumMinimumValue.
      *
      */
-    protected Number getMinimumMinimumValue() {
+    protected T getMinimumMinimumValue() {
         return this.minimumMinimumValue;
     }
-    
+
     /**
      * The minimum value for the minimum value.
-     * 
+     *
      * @param minimumMinimumValue the minimum value for the minimum value
      */
-    protected void setMinimumMinimumValue(Number minimumMinimumValue) {
-        if (minimumMinimumValue != null && ! (minimumMinimumValue instanceof Comparable)){
-            throw new IllegalArgumentException("minimumMinimumValue must be an instance of Comparable or null");
-        }
+    protected void setMinimumMinimumValue(T minimumMinimumValue) {
         if (minimumMinimumValue != null && getMaximumMaximumValue() != null
-                && Comparables.isLess((Comparable) minimumMinimumValue, (Comparable) getMaximumMaximumValue())){ // TODO: bug? IsGreater?
+                && Comparables.isLess(minimumMinimumValue, getMaximumMaximumValue())) { // TODO: bug? IsGreater?
             throw new IllegalArgumentException("minimumMinimumValue mustn't be smaller than maximumMaximumValue!"); // TODO: bug? greater?
         }
         this.minimumMinimumValue = minimumMinimumValue;
         setMaximumNumberValue(getMaximumNumberValue());
         setMinimumNumberValue(getMinimumNumberValue());
     }
-    
-    /** Getter for property maximumBigDecimalValue.
+
+    /**
+     * Getter for property maximumBigDecimalValue.
+     *
      * @return Value of property maximumBigDecimalValue.
      *
      */
-    public Number getMaximumNumberValue() {
-        return (Number) getMaximum();
+    public T getMaximumNumberValue() {
+        return numberType.cast(getMaximum());
     }
-    
-    /** Setter for property maximumNumberValue.
+
+    /**
+     * Setter for property maximumNumberValue.
+     *
      * @param maximumValue New value of property maximumNumberValue.
      *
      */
-    public void setMaximumNumberValue(Number maximumValue) {
-        if (maximumValue != null && ! (maximumValue instanceof Comparable)){
-            throw new IllegalArgumentException("maximumValue must be an instance of Comparable or null");
-        }
-        setMaximum((Comparable) maximumValue);
+    public void setMaximumNumberValue(T maximumValue) {
+        setMaximum(maximumValue);
     }
-    
-    /** Getter for property minimumBigDecimalValue.
+
+    /**
+     * Getter for property minimumBigDecimalValue.
+     *
      * @return Value of property minimumBigDecimalValue.
      *
      */
-    public Number getMinimumNumberValue() {
-        return (Number) getMinimum();
+    public T getMinimumNumberValue() {
+        return numberType.cast(getMinimum());
     }
-    
-    /** Setter for property minimumNumberValue.
+
+    /**
+     * Setter for property minimumNumberValue.
+     *
      * @param minimumValue New value of property minimumNumberValue.
      *
      */
-    public void setMinimumNumberValue(Number minimumValue) {
-        if (minimumValue != null && ! (minimumValue instanceof Comparable)){
-            throw new IllegalArgumentException("minimumValue must be an instance of Comparable or null");
-        }
-        setMinimum((Comparable) minimumValue);
+    public void setMinimumNumberValue(T minimumValue) {
+        setMinimum(minimumValue);
     }
-    
+
+//    @Override
+//    public void setValueClass(Class<?> valueClass) {
+//        if (! numberType.isAssignableFrom(valueClass)){
+//            throw new IllegalArgumentException("The number type must be assignable from valueClass");
+//        }
+//        super.setValueClass(valueClass);
+//    }
     @Override
-    public void setValueClass(Class valueClass) {
-        if (! Number.class.isAssignableFrom(valueClass)){
-            throw new IllegalArgumentException("Number class must be assignable from valueClass");
-        }
-        super.setValueClass(valueClass);
+    public void setValueClass(Class<?> valueClass) {
+        throw new UnsupportedOperationException("This operation is not supported!"); // always use numberType!
     }
-    
+
     @Override
     public void setFormat(Format format) {
-        if (format != null && ! (format instanceof NumberFormat)){
+        if (format != null && !(format instanceof NumberFormat)) {
             throw new IllegalArgumentException("format must be an instance of NumberFormat or null");
         }
         super.setFormat(format);
     }
-    
-    public NumberFormat getNumberFormat(){
+
+    public NumberFormat getNumberFormat() {
         return (NumberFormat) getFormat();
     }
-    
-    public void setNumberFormat(NumberFormat format){
+
+    public void setNumberFormat(NumberFormat format) {
         setFormat(format);
     }
 }

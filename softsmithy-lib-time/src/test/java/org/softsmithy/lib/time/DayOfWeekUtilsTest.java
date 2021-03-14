@@ -14,13 +14,15 @@
  */
 package org.softsmithy.lib.time;
 
+import org.junit.jupiter.api.Test;
+
 import java.time.DayOfWeek;
-import static java.time.DayOfWeek.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import static java.time.DayOfWeek.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
 
 /**
  *

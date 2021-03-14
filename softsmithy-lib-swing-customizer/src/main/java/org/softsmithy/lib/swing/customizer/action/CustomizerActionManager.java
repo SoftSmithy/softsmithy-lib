@@ -19,9 +19,11 @@
  */
 package org.softsmithy.lib.swing.customizer.action;
 
-import java.util.*;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The CustomizerActionManager enables and disables Actions when the current selection of customizers changes. With each action a set of properties can be specified (the set can be empty). If all

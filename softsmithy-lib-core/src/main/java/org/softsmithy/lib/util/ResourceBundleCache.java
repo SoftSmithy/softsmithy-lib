@@ -20,7 +20,10 @@
 
 package org.softsmithy.lib.util;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Not used anymore: ResourceBundle caches itself (see source). This was missunderstood before.

@@ -20,7 +20,7 @@
 
 package org.softsmithy.lib.swing.action;
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 
 /**
  * Provides an empty actionPerformed method body.

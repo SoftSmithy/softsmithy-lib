@@ -19,8 +19,8 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * This is an adapter class to use a CellRenderer as a ListCellRenderer.

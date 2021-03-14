@@ -35,11 +35,6 @@
 package samples;
 
 
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.awt.Star;
@@ -51,6 +46,10 @@ import org.softsmithy.lib.swing.customizer.Line2DOrientation;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 import org.softsmithy.lib.swing.icon.ShapeIcon;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 
 

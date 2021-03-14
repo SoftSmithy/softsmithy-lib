@@ -13,6 +13,8 @@
  */
 package org.softsmithy.lib.time;
 
+import org.softsmithy.lib.util.Comparables;
+
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
@@ -20,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
-import org.softsmithy.lib.util.Comparables;
 
 /**
  * Utility class for {@link Year}.

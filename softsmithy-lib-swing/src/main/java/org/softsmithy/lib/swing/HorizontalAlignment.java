@@ -13,15 +13,16 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.ComponentOrientation;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.*;
+import javax.swing.text.StyleConstants;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.SwingConstants;
-import javax.swing.text.StyleConstants;
-import org.softsmithy.lib.util.TypesafeEnum;
 
 public abstract class HorizontalAlignment extends TypesafeEnum {
 

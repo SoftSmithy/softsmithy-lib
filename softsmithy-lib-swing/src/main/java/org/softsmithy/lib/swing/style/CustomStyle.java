@@ -21,7 +21,7 @@
 package org.softsmithy.lib.swing.style;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Locale;
 
 /**
  *

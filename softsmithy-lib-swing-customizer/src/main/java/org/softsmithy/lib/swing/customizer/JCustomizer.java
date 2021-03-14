@@ -20,11 +20,15 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
+import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
+import org.softsmithy.lib.swing.customizer.state.StateManager;
+import org.softsmithy.lib.swing.internal.TableLayout;
+import org.softsmithy.lib.swing.internal.TableLayoutConstraints;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
@@ -32,15 +36,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import org.softsmithy.lib.swing.customizer.event.CustomizerEvent;
-import org.softsmithy.lib.swing.customizer.event.CustomizerListener;
-import org.softsmithy.lib.swing.customizer.state.StateManager;
-import org.softsmithy.lib.swing.internal.TableLayout;
-import org.softsmithy.lib.swing.internal.TableLayoutConstraints;
 
 
 

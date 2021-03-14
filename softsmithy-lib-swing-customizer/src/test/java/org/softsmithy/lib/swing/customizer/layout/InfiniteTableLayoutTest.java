@@ -20,12 +20,13 @@
  */
 package org.softsmithy.lib.swing.customizer.layout;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JCustomizerPane;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *

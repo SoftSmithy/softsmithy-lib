@@ -20,8 +20,13 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.util.*;
-import org.softsmithy.lib.swing.style.*;
+import org.softsmithy.lib.swing.style.NoneStyleProvider;
+import org.softsmithy.lib.swing.style.ParentStyleProvider;
+import org.softsmithy.lib.swing.style.StyleProvider;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 /**
  *
  * @author  puce

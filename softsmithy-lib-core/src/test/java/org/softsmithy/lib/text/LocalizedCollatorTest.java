@@ -14,11 +14,13 @@
 
 package org.softsmithy.lib.text;
 
-import java.text.Collator;
-import java.util.Locale;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.util.CountryCode;
+
+import java.text.Collator;
+import java.util.Locale;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *

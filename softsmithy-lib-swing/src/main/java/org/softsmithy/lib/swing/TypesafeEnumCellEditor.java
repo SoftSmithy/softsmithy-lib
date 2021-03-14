@@ -13,9 +13,9 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.Component;
-import java.util.*;
 import javax.swing.*;
+import java.awt.*;
+import java.util.Locale;
 
 /**
  *

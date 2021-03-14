@@ -20,12 +20,11 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Shape;
-import java.awt.geom.Line2D;
 import org.softsmithy.lib.swing.icon.ShapeIcon;
 import org.softsmithy.lib.swing.icon.XIcon;
+
+import java.awt.*;
+import java.awt.geom.Line2D;
 
 
 /**

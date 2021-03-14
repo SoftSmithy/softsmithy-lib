@@ -21,11 +21,12 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.awt.*;
-import java.io.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import java.io.Serializable;
 
 /**
  * The standard class for rendering (displaying) individual cells in a

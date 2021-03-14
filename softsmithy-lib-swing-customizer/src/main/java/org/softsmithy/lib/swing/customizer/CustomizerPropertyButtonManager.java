@@ -19,13 +19,6 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Font;
-import java.beans.IntrospectionException;
-import java.beans.PropertyChangeEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Set;
-import javax.swing.AbstractButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
@@ -33,6 +26,14 @@ import org.softsmithy.lib.beans.ReflectivePropertyChangeListener;
 import org.softsmithy.lib.swing.HorizontalAlignment;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
+import javax.swing.*;
+import java.awt.*;
+import java.beans.IntrospectionException;
+import java.beans.PropertyChangeEvent;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *

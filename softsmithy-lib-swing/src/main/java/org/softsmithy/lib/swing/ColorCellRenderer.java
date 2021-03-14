@@ -13,10 +13,10 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import javax.swing.border.Border;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
 
 /**
  * From: https://docs.oracle.com/javase/tutorial/uiswing/examples/components/TableRenderDemoProject/src/components/TableRenderDemo.java

@@ -21,8 +21,10 @@
 package org.softsmithy.lib.beans;
 
 
-import java.awt.Color;
-import java.awt.Font;
+import org.softsmithy.lib.util.Singleton;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.awt.*;
 import java.beans.DefaultPersistenceDelegate;
 import java.beans.Encoder;
 import java.beans.Expression;
@@ -32,8 +34,6 @@ import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Locale;
-import org.softsmithy.lib.util.Singleton;
-import org.softsmithy.lib.util.TypesafeEnum;
 //import org.softsmithy.lib.swing.style.*;
 
 /**

@@ -14,11 +14,10 @@
 
 package org.softsmithy.lib.swing.filechooser;
 
+import javax.swing.*;
+import javax.swing.event.ListDataListener;
 import java.io.File;
 import java.util.Arrays;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.ListDataListener;
 
 /**
  *

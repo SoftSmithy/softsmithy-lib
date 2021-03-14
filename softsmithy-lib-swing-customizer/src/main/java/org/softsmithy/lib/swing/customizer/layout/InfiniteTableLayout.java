@@ -19,11 +19,10 @@
  */
 package org.softsmithy.lib.swing.customizer.layout;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import org.softsmithy.lib.awt.AWTUtilities;
+import org.softsmithy.lib.math.BigIntegers;
+
+import java.awt.*;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -34,9 +33,6 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import org.softsmithy.lib.awt.AWTUtilities;
-import org.softsmithy.lib.math.BigIntegers;
-import org.softsmithy.lib.swing.customizer.layout.AbstractTableLayout.AbstractAxis;
 
 /**
  *

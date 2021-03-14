@@ -18,16 +18,6 @@
  */
 package org.softsmithy.lib.swing.customizer.action;
 
-import java.awt.ComponentOrientation;
-import java.awt.event.ActionEvent;
-import java.beans.IntrospectionException;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Locale;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.softsmithy.lib.beans.BeanIntrospector;
@@ -37,6 +27,17 @@ import org.softsmithy.lib.swing.action.StandardActionFactory;
 import org.softsmithy.lib.swing.action.TextActionFactory;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.SelectionManager;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * The CustomizerActionFactory provides default implementations of some actions which can be usefull when working with

@@ -19,24 +19,20 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.LayoutManager;
-import java.awt.LayoutManager2;
-import java.awt.Rectangle;
+import org.softsmithy.lib.awt.event.ComponentLayoutListener;
+import org.softsmithy.lib.swing.customizer.layout.CustomizerConstraints;
+import org.softsmithy.lib.swing.customizer.layout.CustomizerLayout;
+import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+
+import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.BorderFactory;
-import javax.swing.plaf.ComponentUI;
-import org.softsmithy.lib.awt.event.ComponentLayoutListener;
-import org.softsmithy.lib.swing.customizer.layout.CustomizerConstraints;
-import org.softsmithy.lib.swing.customizer.layout.CustomizerLayout;
-import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
 /**
  *

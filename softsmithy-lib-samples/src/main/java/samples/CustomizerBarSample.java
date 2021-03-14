@@ -14,11 +14,6 @@
 
 package samples;
 
-import java.awt.Point;
-import javax.swing.JLabel;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JCustomizerPane;
 import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
@@ -26,6 +21,12 @@ import org.softsmithy.lib.swing.customizer.JTabbedCustomizerBar;
 import org.softsmithy.lib.swing.customizer.JTableCustomizerBar;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
 
 
 public class CustomizerBarSample extends javax.swing.JFrame {

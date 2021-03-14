@@ -19,8 +19,11 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *

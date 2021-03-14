@@ -13,8 +13,9 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import javax.swing.JTable;
 import org.softsmithy.lib.swing.JXTable;
+
+import javax.swing.*;
 
 /**
  * https://tips4java.wordpress.com/2008/11/18/row-number-table/

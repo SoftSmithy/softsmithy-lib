@@ -20,6 +20,9 @@
 
 package org.softsmithy.lib.beans;
 
+import org.softsmithy.lib.lang.reflect.Classes;
+import org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException;
+
 import java.beans.FeatureDescriptor;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -31,8 +34,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import org.softsmithy.lib.lang.reflect.Classes;
-import org.softsmithy.lib.lang.reflect.InvocationTargetRuntimeException;
 
 /**
  *

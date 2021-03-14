@@ -20,7 +20,7 @@
 package org.softsmithy.lib.awt;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ImageObserver;
 
 /**
  *

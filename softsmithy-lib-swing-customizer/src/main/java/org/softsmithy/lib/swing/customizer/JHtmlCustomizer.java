@@ -20,21 +20,18 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.KeyStroke;
-import javax.swing.UIManager;
+import org.softsmithy.lib.swing.HorizontalAlignment;
+import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
+
+import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.TextAction;
 import javax.swing.text.html.HTMLDocument;
-import org.softsmithy.lib.swing.HorizontalAlignment;
-import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * A basic HTML text customizer using JEditorPane to display and edit the HTML

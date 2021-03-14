@@ -19,7 +19,8 @@
  */
 package org.softsmithy.lib.io;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileFilter;
 
 /**
  *

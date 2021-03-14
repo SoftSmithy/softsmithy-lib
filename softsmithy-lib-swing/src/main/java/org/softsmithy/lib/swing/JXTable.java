@@ -14,27 +14,22 @@
 package org.softsmithy.lib.swing;
 
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Font;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Locale;
-import java.util.Vector;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JViewport;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import org.softsmithy.lib.lang.reflect.Classes;
 import org.softsmithy.lib.swing.table.TableRowHeaderController;
 import org.softsmithy.lib.swing.table.TypesafeEnumRenderer;
 import org.softsmithy.lib.swing.table.XDefaultTableCellRenderer;
 import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.*;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Locale;
+import java.util.Vector;
 
 
 public class JXTable extends JTable {

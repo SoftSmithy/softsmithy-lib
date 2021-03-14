@@ -12,15 +12,16 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * Formatters.java
  *
  * Created on 25. September 2003, 19:24
  */
 package org.softsmithy.lib.swing.text;
 
-import javax.swing.text.InternationalFormatter;
 import org.softsmithy.lib.util.Comparables;
+
+import javax.swing.text.InternationalFormatter;
 
 /**
  *
@@ -34,6 +35,13 @@ public class Formatters {
     private Formatters() {
     }
 
+    /**
+     * TODO: still used?
+     *
+     * @param formatter
+     * @param value
+     * @return
+     */
     public static <T extends Comparable<? super T>> T valueToRange(InternationalFormatter formatter, T value) {
         return Comparables.toRange(value, (T) formatter.getMinimum(), (T) formatter.getMaximum());
     }

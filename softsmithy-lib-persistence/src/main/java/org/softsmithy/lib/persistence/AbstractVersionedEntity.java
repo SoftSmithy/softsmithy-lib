@@ -13,10 +13,10 @@
  */
 package org.softsmithy.lib.persistence;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+import java.io.Serializable;
 
 /**
  * A mapped abstract base entity with support for optimistic locking.

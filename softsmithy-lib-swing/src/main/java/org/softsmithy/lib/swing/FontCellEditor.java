@@ -19,10 +19,11 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
+import org.softsmithy.lib.swing.chooser.Option;
+
 import javax.swing.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.swing.chooser.*;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
 
 /**
  *

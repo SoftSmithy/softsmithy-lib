@@ -19,17 +19,24 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softsmithy.lib.swing.action.*;
-import org.softsmithy.lib.swing.chooser.*;
+import org.softsmithy.lib.swing.action.IconType;
+import org.softsmithy.lib.swing.action.XActions;
+import org.softsmithy.lib.swing.chooser.Option;
 import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.Vector;
 
 /**
  * https://docs.oracle.com/javase/tutorial/2d/text/examples/FontSelector.java

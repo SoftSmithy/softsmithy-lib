@@ -19,23 +19,33 @@ import javax.swing.*;
  *
  * @author puce
  */
-public class RealNumberFormatterFactory extends AbstractXNumberFormatterFactory {
+public class NumberFormatterFactory<N extends Number & Comparable<N>, T extends AbstractXNumberFormatter<N>> extends JFormattedTextField.AbstractFormatterFactory {
+
+    private final T numberFormatter;
+    private final Class<? extends T> formatterType;
 
     /**
      * Creates a new instance of WholeNumberFormatterFactory
-     * @param formatter the formatter
      */
-    public RealNumberFormatterFactory(RealNumberFormatter formatter) {
-        super(formatter);
+    public NumberFormatterFactory(Class<? extends T> formatterType, T numberFormatter) {
+        this.formatterType = formatterType;
+        this.numberFormatter = numberFormatter;
     }
 
     @Override
-    public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-        return getRealNumberFormatter();
+    public T getFormatter(JFormattedTextField tf) {
+        return getNumberFormatter();
     }
 
-    public RealNumberFormatter getRealNumberFormatter() {
-        return (RealNumberFormatter) getAbstractXNumberFormatter();
+    public T getNumberFormatter() {
+        return numberFormatter;
+    }
+
+    /**
+     * @return the formatterType
+     */
+    public Class<? extends T> getFormatterType() {
+        return formatterType;
     }
 
 }

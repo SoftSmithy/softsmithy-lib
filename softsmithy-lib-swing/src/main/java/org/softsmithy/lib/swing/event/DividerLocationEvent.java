@@ -19,7 +19,7 @@
  */
 package org.softsmithy.lib.swing.event;
 
-import java.util.*;
+import java.util.EventObject;
 
 /**
  *
