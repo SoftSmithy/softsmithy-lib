@@ -13,12 +13,14 @@
  */
 package org.softsmithy.lib.text;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 /**
+ * A {@link Parser} implementation to parse {@link Integer}s.
  *
  * @author puce
  */
@@ -26,14 +28,27 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
 
     private static final Logger LOG = LoggerFactory.getLogger(IntegerParser.class);
 
+    /**
+     * Creates a new instance of this class.
+     *
+     * @see NumberFormat#getIntegerInstance()
+     */
     public IntegerParser() {
         this(NumberFormat.getIntegerInstance());
     }
 
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param numberFormat the {@link NumberFormat} to use for parsing the texts.
+     */
     public IntegerParser(NumberFormat numberFormat) {
         super(numberFormat);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Integer parseString(String text) throws ParseException {
         try {
@@ -45,6 +60,7 @@ public class IntegerParser extends AbstractNumberParser<Integer> {
             } catch (NumberFormatException nfe) {
                 ParseException pe = new ParseException(text, -1);
                 pe.initCause(nfe);
+                pe.addSuppressed(e);
                 throw pe;
             }
         }
