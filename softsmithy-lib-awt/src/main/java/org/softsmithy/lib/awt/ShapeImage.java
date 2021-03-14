@@ -21,7 +21,7 @@
 package org.softsmithy.lib.awt;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -30,16 +30,16 @@ import java.awt.image.*;
 class ShapeImage extends ImageWrapper{
   
   /** Holds value of property shape. */
-  private Shape shape;
+  private final Shape shape;
   
   /** Holds value of property paint. */
-  private Paint paint;
+  private final Paint paint;
   
   /** Holds value of property filled. */
-  private boolean filled;
+  private final boolean filled;
   
   /** Holds value of property stroke. */
-  private Stroke stroke;
+  private final Stroke stroke;
   
   /** Creates a new instance of ShapeImage */
   public ShapeImage(Shape shape, Paint paint, boolean filled, Stroke stroke) {

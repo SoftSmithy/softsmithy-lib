@@ -13,28 +13,18 @@
  */
 package org.softsmithy.lib.util;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Comparator;
-import org.junit.After;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  *
  * @author puce
  */
 public class ComparablesTest {
-
-    public ComparablesTest() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of isGreater method, of class Comparables.

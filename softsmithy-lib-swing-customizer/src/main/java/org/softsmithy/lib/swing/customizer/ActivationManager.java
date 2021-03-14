@@ -19,6 +19,9 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
+import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
+import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyChangeListener;
@@ -26,8 +29,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
-import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
 
 /**
  *
@@ -44,7 +45,7 @@ public class ActivationManager implements FocusListener, CustomizerSelectionList
     /**
      * Utility field used by bound properties.
      */
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     /**
      * Creates a new instance of ActivationManager

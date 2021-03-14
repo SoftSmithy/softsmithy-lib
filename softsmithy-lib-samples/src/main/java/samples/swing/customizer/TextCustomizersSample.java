@@ -20,14 +20,14 @@
 
 package samples.swing.customizer;
 
-import java.awt.Color;
-import javax.swing.JCheckBox;
-import javax.swing.JRadioButton;
 import org.softsmithy.lib.swing.customizer.JButtonCustomizer;
 import org.softsmithy.lib.swing.customizer.JHtmlCustomizer;
 import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -106,10 +106,8 @@ public class TextCustomizersSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TextCustomizersSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TextCustomizersSample().setVisible(true);
         });
     }
     

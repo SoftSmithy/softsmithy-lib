@@ -14,6 +14,8 @@
  */
 package org.softsmithy.lib.time;
 
+import org.junit.jupiter.api.Test;
+
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
@@ -22,9 +24,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.softsmithy.lib.time.YearUtils;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  *
@@ -84,12 +86,12 @@ public class YearUtilsTest {
         assertEquals(new ArrayList<>(EnumSet.range(Month.FEBRUARY, Month.OCTOBER)), result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testGetMonthListException() {
         Year year = Year.of(2013);
         YearMonth minYearMonth = YearMonth.of(2013, Month.OCTOBER);
         YearMonth maxYearMonth = YearMonth.of(2013, Month.FEBRUARY);
-        YearUtils.getMonthList(year, minYearMonth, maxYearMonth);
+        assertThrows(IllegalArgumentException.class, () ->  YearUtils.getMonthList(year, minYearMonth, maxYearMonth));
     }
 
     @Test

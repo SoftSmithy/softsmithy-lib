@@ -13,18 +13,22 @@
  */
 package org.softsmithy.lib.text;
 
+import org.junit.jupiter.api.Test;
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import junit.framework.TestCase;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author puce
  */
-public class LocalizablesTest extends TestCase {
+public class LocalizablesTest {
 
     private static final String[] STRINGS_ARRAY = new String[]{
         "Ändern", "Andere", "Aber", "Baden", "Auf",
@@ -55,23 +59,10 @@ public class LocalizablesTest extends TestCase {
             asList(EXPECTED_LOCALIZED_STRINGS_ARRAY_SECONDARY);
     private static final Locale LOCALE = Locale.GERMAN;
 
-    public LocalizablesTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_Locale_LocalizableArr() {
         System.out.println("sort");
         LocalizedString[] localizables = getLocalizedTestStringArray();
@@ -83,6 +74,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_LocalizableCollator_LocalizableArr() {
         System.out.println("sort");
         LocalizedCollator collator = new LocalizedCollator(LOCALE);
@@ -101,6 +93,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_LocalizableArr() {
         System.out.println("sort");
         Locale origDefault = Locale.getDefault();
@@ -118,6 +111,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_3args_1() {
         System.out.println("sort");
         String[] strings = getTestStringArray();
@@ -130,6 +124,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_3args_2() {
         System.out.println("sort");
         LocalizedCollator collator = new LocalizedCollator(LOCALE);
@@ -148,6 +143,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_Localizer_GenericType() {
         System.out.println("sort");
         Locale origDefault = Locale.getDefault();
@@ -165,6 +161,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_Locale_List() {
         System.out.println("sort");
         List<? extends Localizable> localizables = getLocalizedTestStringList();
@@ -175,6 +172,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_LocalizableCollator_List() {
         System.out.println("sort");
         LocalizedCollator collator = new LocalizedCollator(LOCALE);
@@ -191,6 +189,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_List() {
         System.out.println("sort");
         Locale origDefault = Locale.getDefault();
@@ -208,6 +207,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_3args_3() {
         System.out.println("sort");
         List<String> strings = getTestStringList();
@@ -218,6 +218,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_3args_4() {
         System.out.println("sort");
         LocalizedCollator collator = new LocalizedCollator(LOCALE);
@@ -234,6 +235,7 @@ public class LocalizablesTest extends TestCase {
     /**
      * Test of sort method, of class Localizables.
      */
+    @Test
     public void testSort_Localizer_List() {
         System.out.println("sort");
         List<String> strings = getTestStringList();
@@ -256,7 +258,7 @@ public class LocalizablesTest extends TestCase {
     }
 
     private static List<String> getTestStringList() {
-        return new ArrayList<String>(STRINGS_LIST);
+        return new ArrayList<>(STRINGS_LIST);
     }
 
     private static LocalizedString[] getLocalizedTestStringArray() {
@@ -265,7 +267,7 @@ public class LocalizablesTest extends TestCase {
     }
 
     private static List<LocalizedString> getLocalizedTestStringList() {
-        return new ArrayList<LocalizedString>(LOCALIZED_STRINGS_LIST);
+        return new ArrayList<>(LOCALIZED_STRINGS_LIST);
     }
 
     private static class LocalizedString implements Localizable,

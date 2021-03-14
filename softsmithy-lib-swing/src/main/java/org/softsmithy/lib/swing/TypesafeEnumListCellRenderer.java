@@ -20,15 +20,17 @@
 
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
-import java.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
 import javax.swing.*;
-import org.softsmithy.lib.util.*;
+import java.awt.*;
+import java.util.Locale;
 
 /**
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumListCellRenderer extends DefaultListCellRenderer {
   
   /** Holds value of property locale. */

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.1 http://maven.apache.org/xsd/assembly-1.1.1.xsd">
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
     <id>dist</id>
     <formats>
         <format>tar.gz</format>
@@ -9,37 +9,9 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <moduleSets>
         <moduleSet>
-        <!-- Now, select which projects to include in this module-set. -->
             <includes>
                 <include>${project.groupId}:softsmithy-lib-core</include>
             </includes>
-            <sources>
-                <includeModuleDirectory>false</includeModuleDirectory>
-                <excludes>
-                    <exclude>**</exclude>
-                </excludes>
-                <fileSets>
-                    <fileSet>
-                        <directory>${project.basedir}/src/main/docs</directory>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <excludes>
-                            <exclude>**/*.gif</exclude>
-                            <exclude>**/*.jpg</exclude>
-                        </excludes>
-                        <filtered>true</filtered>
-                        <outputDirectory>docs</outputDirectory>
-                    </fileSet>
-                    <fileSet>
-                        <directory>${project.basedir}/src/main/docs</directory>
-                        <useDefaultExcludes>true</useDefaultExcludes>
-                        <includes>
-                            <include>**/*.gif</include>
-                            <include>**/*.jpg</include>
-                        </includes>
-                        <outputDirectory>docs</outputDirectory>
-                    </fileSet>
-                </fileSets>
-            </sources>
             <binaries>
                 <unpack>false</unpack>
             </binaries>
@@ -57,6 +29,33 @@
         <moduleSet>
             <includes>
                 <include>${project.groupId}:softsmithy-lib-core</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>sources</attachmentClassifier>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
+            </includes>
+            <binaries>
+                <unpack>false</unpack>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
+            </includes>
+            <binaries>
+                <attachmentClassifier>javadoc</attachmentClassifier>
+                <outputDirectory>docs/api/softsmithy-lib-compiler</outputDirectory>
+                <includeDependencies>false</includeDependencies>
+            </binaries>
+        </moduleSet>
+        <moduleSet>
+            <includes>
+                <include>${project.groupId}:softsmithy-lib-compiler</include>
             </includes>
             <binaries>
                 <attachmentClassifier>sources</attachmentClassifier>

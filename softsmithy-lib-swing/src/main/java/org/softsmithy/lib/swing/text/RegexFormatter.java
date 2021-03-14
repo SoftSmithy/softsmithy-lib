@@ -14,9 +14,11 @@
 
 package org.softsmithy.lib.swing.text;
 
-import java.text.*;
-import java.util.regex.*;
-import javax.swing.text.*;
+import javax.swing.text.DefaultFormatter;
+import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * A regular expression based implementation of <code>AbstractFormatter</code>.
@@ -37,6 +39,7 @@ public class RegexFormatter extends DefaultFormatter {
      * Creates a regular expression based <code>AbstractFormatter</code>.
      * <code>pattern</code> specifies the regular expression that will
      * be used to determine if a value is legal.
+     * @param pattern the regex pattern
      */
     public RegexFormatter(String pattern) throws PatternSyntaxException {
         this();
@@ -47,6 +50,7 @@ public class RegexFormatter extends DefaultFormatter {
      * Creates a regular expression based <code>AbstractFormatter</code>.
      * <code>pattern</code> specifies the regular expression that will
      * be used to determine if a value is legal.
+     * @param pattern the regex pattern
      */
     public RegexFormatter(Pattern pattern) {
         this();
@@ -56,6 +60,7 @@ public class RegexFormatter extends DefaultFormatter {
     /**
      * Sets the pattern that will be used to determine if a value is
      * legal.
+     * @param pattern the regex pattern
      */
     public void setPattern(Pattern pattern) {
         this.pattern = pattern;
@@ -64,6 +69,7 @@ public class RegexFormatter extends DefaultFormatter {
     /**
      * Returns the <code>Pattern</code> used to determine if a value is
      * legal.
+     * @return the regex pattern
      */
     public Pattern getPattern() {
         return pattern;
@@ -72,6 +78,7 @@ public class RegexFormatter extends DefaultFormatter {
     /**
      * Sets the <code>Matcher</code> used in the most recent test
      * if a value is legal.
+     * @param matcher the regex matcher
      */
     protected void setMatcher(Matcher matcher) {
         this.matcher = matcher;
@@ -79,6 +86,7 @@ public class RegexFormatter extends DefaultFormatter {
 
     /**
      * Returns the <code>Matcher</code> from the most test.
+     * @return the regex matcher
      */
     protected Matcher getMatcher() {
         return matcher;

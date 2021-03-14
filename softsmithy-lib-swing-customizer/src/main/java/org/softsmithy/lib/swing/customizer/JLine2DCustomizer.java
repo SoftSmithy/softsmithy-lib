@@ -20,12 +20,11 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Shape;
-import java.awt.geom.Line2D;
 import org.softsmithy.lib.swing.icon.ShapeIcon;
 import org.softsmithy.lib.swing.icon.XIcon;
+
+import java.awt.*;
+import java.awt.geom.Line2D;
 
 
 /**
@@ -37,7 +36,7 @@ public class JLine2DCustomizer extends JXIconCustomizer {
   /** Holds value of property orientation. */
   private Line2DOrientation orientation;
   
-  private Line2DIcon lineIcon = new Line2DIcon();
+  private final Line2DIcon lineIcon = new Line2DIcon();
   
   /** Creates a new instance of JLine2DCustomizer */
   public JLine2DCustomizer() {

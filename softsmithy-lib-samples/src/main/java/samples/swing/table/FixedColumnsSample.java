@@ -19,13 +19,14 @@
  */
 package samples.swing.table;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import org.softsmithy.lib.swing.table.AbstractRowHeaderTableModel;
 import org.softsmithy.lib.swing.table.DefaultTableRowHeaderController;
 import org.softsmithy.lib.swing.table.JRowHeaderTable;
+
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,7 +46,7 @@ public class FixedColumnsSample extends javax.swing.JFrame {
     }
 
     private List<BigBean> createBigBeans() {
-        List<BigBean> bigBeans = new ArrayList<BigBean>(60);
+        List<BigBean> bigBeans = new ArrayList<>(60);
         for (int i = 0; i < 60; i++) {
             BigBean bigBean = new BigBean();
             bigBean.setA("A " + (i + 1));
@@ -134,12 +135,8 @@ public class FixedColumnsSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                new FixedColumnsSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new FixedColumnsSample().setVisible(true);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -148,7 +145,7 @@ public class FixedColumnsSample extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 private static class BigBeanRowHeaderTableModel extends AbstractRowHeaderTableModel {
 
-        private List<BigBean> bigBeans;
+        private final List<BigBean> bigBeans;
         private static final String[] COLUMN_HEADERS = {"A", "B"};
 
         public BigBeanRowHeaderTableModel(List<BigBean> bigBeans) {

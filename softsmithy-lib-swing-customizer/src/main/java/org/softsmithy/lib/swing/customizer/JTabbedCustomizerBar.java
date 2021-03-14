@@ -19,9 +19,8 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.*;
 
 /**
  *
@@ -34,26 +33,26 @@ public class JTabbedCustomizerBar extends JTabbedPane implements CustomizerBar {
 
     /** Creates a new instance of CustomizerBarPane */
     public JTabbedCustomizerBar() {
-        this.addChangeListener(new ChangeListener() {
-
-            public void stateChanged(ChangeEvent e) {
-                if (oldTabPane != null) {
-                    oldTabPane.clearSelection();
-                }
-                oldTabPane = (CustomizerBar) getSelectedComponent();
+        this.addChangeListener(event -> {
+            if (oldTabPane != null) {
+                oldTabPane.clearSelection();
             }
+            oldTabPane = (CustomizerBar) getSelectedComponent();
         });
         oldTabPane = (CustomizerBar) getSelectedComponent();
     }
 
+    @Override
     public void consumeSelection(JCustomizerPane pane, Point point) {
         ((CustomizerBar) getSelectedComponent()).consumeSelection(pane, point);
     }
 
+    @Override
     public boolean hasSelection() {
         return ((CustomizerBar) getSelectedComponent()).hasSelection();
     }
 
+    @Override
     public void clearSelection() {
         ((CustomizerBar) getSelectedComponent()).clearSelection();
     }

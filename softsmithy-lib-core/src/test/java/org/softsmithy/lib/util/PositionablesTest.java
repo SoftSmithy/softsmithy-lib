@@ -13,10 +13,13 @@
  */
 package org.softsmithy.lib.util;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 import java.util.List;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  *
@@ -27,7 +30,7 @@ public class PositionablesTest {
     public PositionablesTest() {
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testGetInsertionPoint() {
         System.out.println("getInsertionPoint");

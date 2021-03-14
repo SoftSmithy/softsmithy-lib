@@ -14,13 +14,15 @@
 
 package org.softsmithy.lib.persistence;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import javax.persistence.EntityManager;
 
 /**
  *
  * @author puce
+ * @param <T> the entity bean type
+ * @param <ID> the id type
  */
 public abstract class GenericDAO<T, ID extends Serializable> {
 

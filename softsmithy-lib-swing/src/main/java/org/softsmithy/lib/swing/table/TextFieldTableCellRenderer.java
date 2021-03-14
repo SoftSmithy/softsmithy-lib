@@ -13,12 +13,13 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import javax.swing.JLabel;
-import org.softsmithy.lib.swing.*;
+import org.softsmithy.lib.swing.JXTextField;
+
+import javax.swing.*;
 
 public class TextFieldTableCellRenderer extends PanelTableCellRenderer {
 
-    private JXTextField textfield = new JXTextField("");
+    private final JXTextField textfield = new JXTextField("");
 
     public TextFieldTableCellRenderer() {
         textfield.setEditable(false);

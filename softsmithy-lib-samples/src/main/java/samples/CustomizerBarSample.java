@@ -14,11 +14,6 @@
 
 package samples;
 
-import java.awt.Point;
-import javax.swing.JLabel;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JCustomizerPane;
 import org.softsmithy.lib.swing.customizer.JLabelCustomizer;
@@ -27,9 +22,15 @@ import org.softsmithy.lib.swing.customizer.JTableCustomizerBar;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
 
+import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
+
 
 public class CustomizerBarSample extends javax.swing.JFrame {
-    
+
     /** Creates new form SimpleSingleCustomizerSample */
     public CustomizerBarSample() {
         initComponents();
@@ -44,8 +45,8 @@ public class CustomizerBarSample extends javax.swing.JFrame {
         JTabbedCustomizerBar tabbedCB = new JTabbedCustomizerBar();
         
         // Create a non-editable TableModel
-        TableModel fixedLabelModel = new AbstractTableModel() {
-            private String[] labels = new String[]{"first fixed label", 
+        TableModel fixedLabelModel = new AbstractTableModel() {            
+            private final String[] labels = new String[]{"first fixed label", 
             "second fixed label", "third fixed label"};
             @Override
             public int getColumnCount() {
@@ -146,11 +147,8 @@ public class CustomizerBarSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CustomizerBarSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CustomizerBarSample().setVisible(true);
         });
     }
     

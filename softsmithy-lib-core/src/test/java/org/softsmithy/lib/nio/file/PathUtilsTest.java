@@ -13,15 +13,15 @@
  */
 package org.softsmithy.lib.nio.file;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
@@ -29,13 +29,6 @@ import org.junit.Test;
  */
 public class PathUtilsTest {
 
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of resolve method, of class PathUtils.

@@ -19,13 +19,15 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.util.Locale;
 
 /**
  *
  * @author  puce
  */
+@Deprecated
 public class TypesafeEnumCellRenderer extends AbstractCellRenderer<TypesafeEnum> {
 
     /** Creates a new instance of TypesafeEnumCellRenderer */

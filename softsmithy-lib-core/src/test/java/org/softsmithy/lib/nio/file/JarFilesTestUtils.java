@@ -36,7 +36,7 @@ class JarFilesTestUtils {
 
     public static FileSystem newJarFileSystem(Path jarFilePath) throws IOException {
         return FileSystems.newFileSystem(URI.create("jar:" + jarFilePath.toUri().toString()),
-                new HashMap<String, Object>());
+                new HashMap<>());
     }
 
     public static Path createEmptyTempJarFile(String prefix, String suffix) throws IOException {

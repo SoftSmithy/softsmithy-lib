@@ -20,10 +20,11 @@
 
 package org.softsmithy.lib.swing;
 
-import org.softsmithy.lib.swing.internal.TableLayoutConstraints;
 import org.softsmithy.lib.swing.internal.TableLayout;
-import java.awt.*;
+import org.softsmithy.lib.swing.internal.TableLayoutConstraints;
+
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *

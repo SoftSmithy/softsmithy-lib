@@ -16,6 +16,7 @@ package org.softsmithy.lib.util;
 /**
  * An Injector injects objects into other objects.
  *
+ * @param <T> the type of the target object
  * @author puce
  */
 public interface Injector<T> {

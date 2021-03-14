@@ -22,6 +22,9 @@
 package org.softsmithy.lib.io;
 
 
+import org.junit.jupiter.api.Test;
+import org.softsmithy.lib.util.Strings;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -31,30 +34,21 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Arrays;
-import junit.framework.TestCase;
-import org.softsmithy.lib.util.Strings;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author brunner
  */
-public class StreamsTest extends TestCase {
+public class StreamsTest {
     
-    public StreamsTest(String testName) {
-        super(testName);
-    }
-
-    @Override
-    protected void setUp() throws Exception {
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-    }
 
     /**
      * Test of readLines method, of class org.softsmithy.lib.io.Streams.
      */
+    @Test
     public void testReadLines() throws Exception {
         System.out.println("readLines");
         
@@ -83,6 +77,7 @@ public class StreamsTest extends TestCase {
     /**
      * Test of copy method, of class org.softsmithy.lib.io.Streams.
      */
+    @Test
     public void testCopyStream() throws Exception {
         System.out.println("testCopyStream");
         byte[] testInBytes = {5, 8, -128, 127, 42};
@@ -98,6 +93,7 @@ public class StreamsTest extends TestCase {
      /**
      * Test of copy method, of class org.softsmithy.lib.io.Streams.
      */
+    @Test
     public void testCopyReader() throws Exception {
         System.out.println("testCopyReader");
         String testString = "This is a test string!\n And this another liner.\n And this a third.";

@@ -19,7 +19,7 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.text.*;
+import java.text.NumberFormat;
 
 /**
  *
@@ -62,11 +62,11 @@ public class DoubleCellEditor extends FormattedCellEditor {
     //  }
     @Override
     protected void setValue(Object value) {
-        getDoubleField().setDoubleValue(((Double) value).doubleValue());
+        getDoubleField().setDoubleValue(((Double) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Double(getDoubleField().getDoubleValue());
+        return getDoubleField().getDoubleValue();
     }
 }

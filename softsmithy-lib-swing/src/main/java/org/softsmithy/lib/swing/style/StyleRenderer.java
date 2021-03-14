@@ -12,57 +12,54 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * HorizontalAlignmentCellRenderer.java
  *
  * Created on 7. Oktober 2002, 22:32
  */
 package org.softsmithy.lib.swing.style;
 
-import java.util.*;
-import javax.swing.JLabel;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.util.Locale;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class StyleRenderer extends DefaultTableCellRenderer {
 
-    /** Holds value of property locale. */
+    /**
+     * Holds value of property locale.
+     */
     private Locale locale;
 
-    /** Creates a new instance of HorizontalAlignmentCellRenderer */
+    /**
+     * Creates a new instance of HorizontalAlignmentCellRenderer
+     *
+     * @param locale the locale
+     */
     public StyleRenderer(Locale locale) {
         this.locale = locale;
     }
 
-    /** Sets the <code>String</code> object for the cell being rendered to
-     * <code>value</code>.
-     *
-     * @param value  the string value for this cell; if value is
-     * 		<code>null</code> it sets the text value to an empty string
-     * @see JLabel#setText(java.lang.String) 
-     *
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     protected void setValue(Object value) {
         super.setValue(((Style) value).getName(getLocale()));
     }
 
-    /** Getter for property locale.
-     * @return Value of property locale.
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public Locale getLocale() {
         return this.locale;
     }
 
-    /** Setter for property locale.
-     * @param locale New value of property locale.
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public void setLocale(Locale locale) {

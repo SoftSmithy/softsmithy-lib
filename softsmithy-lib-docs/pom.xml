@@ -17,18 +17,17 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.10-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
         <relativePath>../softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>softsmithy-lib-docs</artifactId>
-    <packaging>bundle</packaging>
 
     <name>SoftSmithy Utility Library - Docs</name>
     <description>This project provides the SoftSmithy Utility Library Documentation.</description>
     <inceptionYear>2016</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
     
     <scm>
         <connection>${scm.connection}</connection>
@@ -59,12 +58,13 @@ Contributor(s): .
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
+                <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
@@ -183,9 +183,5 @@ Contributor(s): .
             </build>
         </profile>
     </profiles>
-    
-
-
-    
     
 </project>

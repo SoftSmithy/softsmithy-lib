@@ -12,7 +12,7 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * InfiniteTableLayoutTest.java
  * JUnit based test
  *
@@ -20,34 +20,26 @@
  */
 package org.softsmithy.lib.swing.customizer.layout;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.JCustomizerPane;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
  * @author puce
  */
-public class InfiniteTableLayoutTest extends TestCase {
+public class InfiniteTableLayoutTest {
 
     private JCustomizer customizer;
     private InfiniteTableLayout tl;
     private JCustomizerPane pane;
 
-    public InfiniteTableLayoutTest(java.lang.String testName) {
-        super(testName);
-    }
-
-    public static void main(java.lang.String[] args) {
-        TestRunner.run(suite());
-    }
-
-    @Override
-    protected void setUp() throws java.lang.Exception {
-        super.setUp();
+    @BeforeEach
+    public void setUp() throws java.lang.Exception {
         customizer = new JCustomizer();
         pane = new JCustomizerPane();
         tl = (InfiniteTableLayout) pane.getLayout();
@@ -62,6 +54,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of makeColumnDefault method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testMakeColumnDefault() {
         System.out.println("testMakeColumnDefault");
         tl.makeColumnDefault(100);
@@ -71,6 +64,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of isDefaultColumn method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testIsDefaultColumn() {
         System.out.println("testIsDefaultColumn");
         assertTrue(tl.isDefaultColumn(0));
@@ -80,6 +74,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of makeRowDefault method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testMakeRowDefault() {
         System.out.println("testMakeRowDefault");
         tl.makeRowDefault(100);
@@ -89,6 +84,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of isDefaultRow method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testIsDefaultRow() {
         System.out.println("testIsDefaultRow");
         assertTrue(tl.isDefaultRow(0));
@@ -98,6 +94,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of layoutContainer method, of class puce.swing.InfiniteTableLayout.
      */
+//  @Test
 //  public void testLayoutContainer() {
 //    System.out.println("testLayoutContainer");
 //    tl.layoutContainer(pane);
@@ -106,6 +103,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of columnIndex method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testColumnIndex() {
         System.out.println("testColumnIndex");
         assertEquals(2, tl.columnIndex(10));
@@ -117,6 +115,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of rowIndex method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testRowIndex() {
         System.out.println("testRowIndex");
         assertEquals(2, tl.rowIndex(10));
@@ -125,15 +124,10 @@ public class InfiniteTableLayoutTest extends TestCase {
         assertEquals(3, tl.rowIndex(15));
     }
 
-    public static Test suite() {
-        TestSuite suite = new TestSuite(InfiniteTableLayoutTest.class);
-
-        return suite;
-    }
-
     /**
      * Test of colSpan method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testColSpan() {
         System.out.println("testColSpan");
         assertEquals(2, tl.colSpan(5, 10));
@@ -145,6 +139,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of rowSpan method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testRowSpan() {
         System.out.println("testRowSpan");
         assertEquals(2, tl.rowSpan(5, 10));
@@ -156,6 +151,7 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of width method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testWidth() {
         System.out.println("testWidth");
         assertEquals(15, tl.width(5, 3));
@@ -164,11 +160,10 @@ public class InfiniteTableLayoutTest extends TestCase {
     /**
      * Test of height method, of class puce.swing.InfiniteTableLayout.
      */
+    @Test
     public void testHeight() {
         System.out.println("testHeight");
         assertEquals(15, tl.height(5, 3));
     }
-    // Add test methods here, they have to start with 'test' name.
-    // for example:
-    // public void testHello() {}
+
 }

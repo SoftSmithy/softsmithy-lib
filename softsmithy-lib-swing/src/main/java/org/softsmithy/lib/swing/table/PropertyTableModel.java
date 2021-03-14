@@ -12,24 +12,39 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * AbstractCustomizerPropertyTableModel.java
  *
  * Created on 6. Februar 2003, 19:24
  */
 package org.softsmithy.lib.swing.table;
 
-import java.beans.*;
-import java.util.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.beans.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.softsmithy.lib.beans.BeanIntrospector;
+
+import javax.swing.table.AbstractTableModel;
+import java.beans.IntrospectionException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
-public class PropertyTableModel extends AbstractTableModel implements
-        CellTableModel {
+public class PropertyTableModel extends AbstractTableModel implements CellTableModel {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PropertyTableModel.class);
 
     private List<String> propertyNames;
     private Object bean;
@@ -37,29 +52,31 @@ public class PropertyTableModel extends AbstractTableModel implements
     private ResourceBundle propertiesRB;
     private ResourceBundle columnNamesRB;
     private Locale locale;
-    private final BeanPropertyListener beanPropertyListener =
-            new BeanPropertyListener();
+    private final BeanPropertyListener beanPropertyListener = new BeanPropertyListener();
 
-    /** Creates a new instance of AbstractCustomizerPropertyTableModel */
-    public PropertyTableModel(Object bean, String propertiesRBBaseName,
-            Locale locale) throws IntrospectionException {
+    /**
+     * Creates a new instance of PropertyTableModel
+     *
+     * @param bean the bean to display
+     * @param propertiesRBBaseName the base name of the properties resource bundle
+     * @param locale the locale
+     * @throws IntrospectionException if an introspection error occurs
+     */
+    public PropertyTableModel(Object bean, String propertiesRBBaseName, Locale locale) throws IntrospectionException {
         init(propertiesRBBaseName, locale);
-        Map<String, String> propertyMap = new TreeMap<String, String>();
+        Map<String, String> propertyMap = new TreeMap<>();
         if (bean != null) {
-            PropertyDescriptor[] descriptors = BeanIntrospector.
-                    getPropertyDescriptors(bean.getClass(), propertiesRB);
-            for (int i = 0; i < descriptors.length; i++) {
-                if (BeanIntrospector.isPropertyReadable(descriptors[i].getName(), bean.
-                        getClass(), propertiesRB)) {
-                    if (!descriptors[i].isHidden()) {
-                        String key = descriptors[i].getDisplayName() != null ? descriptors[i].
-                                getDisplayName() : descriptors[i].getName();
-                        propertyMap.put(key, descriptors[i].getName());
+            PropertyDescriptor[] descriptors = BeanIntrospector.getPropertyDescriptors(bean.getClass(), propertiesRB);
+            for (PropertyDescriptor descriptor : descriptors) {
+                if (BeanIntrospector.isPropertyReadable(descriptor.getName(), bean.getClass(), propertiesRB)) {
+                    if (!descriptor.isHidden()) {
+                        String key = descriptor.getDisplayName() != null ? descriptor.getDisplayName() : descriptor.getName();
+                        propertyMap.put(key, descriptor.getName());
                     }
                 }
             }
         }
-        init(new ArrayList<String>(propertyMap.values()), bean);
+        init(new ArrayList<>(propertyMap.values()), bean);
     }
 
     public PropertyTableModel(List<String> readableProperties, Object bean,
@@ -77,17 +94,14 @@ public class PropertyTableModel extends AbstractTableModel implements
         this.propertyNames = Collections.unmodifiableList(readableProperties);
         this.bean = bean;
         if (bean != null) {
-            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(bean.
-                    getClass())) {
+            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(bean.getClass())) {
                 try {
                     for (Iterator i = readableProperties.iterator(); i.hasNext();) {
                         BeanIntrospector.addPropertyChangeListener(bean, (String) i.
                                 next(), beanPropertyListener);
                     }
-                } catch (NoSuchMethodException ex1) { // should not happen here
-                    ex1.printStackTrace();
-                } catch (IllegalAccessException ex2) { // should not happen here
-                    ex2.printStackTrace();
+                } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
+                    LOG.error(ex1.getMessage(), ex1);
                 }
             } else {
                 if (BeanIntrospector.supportsPropertyChangeListeners(bean.
@@ -95,10 +109,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                     try {
                         BeanIntrospector.addPropertyChangeListener(bean,
                                 beanPropertyListener);
-                    } catch (NoSuchMethodException ex1) { // should not happen here
-                        ex1.printStackTrace();
-                    } catch (IllegalAccessException ex2) { // should not happen here
-                        ex2.printStackTrace();
+                    } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
+                        LOG.error(ex1.getMessage(), ex1);
                     }
                 }
             }
@@ -110,9 +122,8 @@ public class PropertyTableModel extends AbstractTableModel implements
         //    }
     }
 
-    /** Returns the number of columns in the model. A
-     * <code>JTable</code> uses this method to determine how many columns it
-     * should create and display by default.
+    /**
+     * Returns the number of columns in the model. A <code>JTable</code> uses this method to determine how many columns it should create and display by default.
      *
      * @return the number of columns in the model
      * @see #getRowCount
@@ -123,10 +134,9 @@ public class PropertyTableModel extends AbstractTableModel implements
         return 2;
     }
 
-    /** Returns the number of rows in the model. A
-     * <code>JTable</code> uses this method to determine how many rows it
-     * should display.  This method should be quick, as it
-     * is called frequently during rendering.
+    /**
+     * Returns the number of rows in the model. A <code>JTable</code> uses this method to determine how many rows it should display. This method should be quick, as it is called frequently during
+     * rendering.
      *
      * @return the number of rows in the model
      * @see #getColumnCount
@@ -137,11 +147,11 @@ public class PropertyTableModel extends AbstractTableModel implements
         return propertyNames.size();
     }
 
-    /** Returns the value for the cell at <code>columnIndex</code> and
-     * <code>rowIndex</code>.
+    /**
+     * Returns the value for the cell at <code>columnIndex</code> and <code>rowIndex</code>.
      *
      * @param	rowIndex	the row whose value is to be queried
-     * @param	columnIndex 	the column whose value is to be queried
+     * @param	columnIndex the column whose value is to be queried
      * @return	the value Object at the specified cell
      *
      */
@@ -154,69 +164,55 @@ public class PropertyTableModel extends AbstractTableModel implements
                     value = getPropertyDescriptor(rowIndex).getDisplayName();
                     break;
                 case 1:
-                    value = BeanIntrospector.getPropertyValue(getPropertyName(
-                            rowIndex), bean, propertiesRB);
+                    value = BeanIntrospector.getPropertyValue(getPropertyName(rowIndex), bean, propertiesRB);
                     break;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
             //value = "";
         }
         //System.out.print(value);
         return value;
     }
 
-    /**  This empty implementation is provided so users don't have to implement
-     *  this method if their data model is not editable.
+    /**
+     * This empty implementation is provided so users don't have to implement this method if their data model is not editable.
      *
-     *  @param  aValue   value to assign to cell
-     *  @param  rowIndex   row of cell
-     *  @param  columnIndex  column of cell
+     * @param aValue value to assign to cell
+     * @param rowIndex row of cell
+     * @param columnIndex column of cell
      *
      */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue,
-                    bean, propertiesRB);
-        } catch (Exception ex2) {
-            ex2.printStackTrace();
+            BeanIntrospector.setPropertyValue(getPropertyName(rowIndex), aValue, bean, propertiesRB);
+        } catch (IntrospectionException | IllegalAccessException | InvocationTargetException | RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
     }
 
-    private PropertyDescriptor getPropertyDescriptor(int index) throws
-            IntrospectionException {
-        return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.
-                getClass(), propertiesRB);
+    private PropertyDescriptor getPropertyDescriptor(int index) throws IntrospectionException {
+        return BeanIntrospector.getPropertyDescriptor(getPropertyName(index), bean.getClass(), propertiesRB);
     }
 
-    /**  Returns false.  This is the default implementation for all cells.
-     *
-     *  @param  rowIndex  the row being queried
-     *  @param  columnIndex the column being queried
-     *  @return false
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         boolean isCellEditable = false;
         try {
-            isCellEditable = columnIndex == 1 && BeanIntrospector.
-                    isPropertyWriteable(getPropertyName(rowIndex),
-                    bean.getClass(), propertiesRB);
+            isCellEditable = (columnIndex == 1)
+                    && BeanIntrospector.isPropertyWriteable(getPropertyName(rowIndex), bean.getClass(), propertiesRB);
         } catch (IntrospectionException ex) {
-            ex.printStackTrace();
+            LOG.error(ex.getMessage(), ex);
         }
         return isCellEditable;
     }
 
-    /**  Returns a default name for the column using spreadsheet conventions:
-     *  A, B, C, ... Z, AA, AB, etc.  If <code>column</code> cannot be found,
-     *  returns an empty string.
-     *
-     * @param column  the column being queried
-     * @return a string containing the default name of <code>column</code>
-     *
+    /**
+     * {@inheritDoc }
      */
     @Override
     public String getColumnName(int column) {
@@ -232,7 +228,8 @@ public class PropertyTableModel extends AbstractTableModel implements
                 default:
                     columnName = super.getColumnName(column); // should not happen
             }
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
+            LOG.error(ex.getMessage(), ex);
         }
         return columnName;
     }
@@ -280,7 +277,8 @@ public class PropertyTableModel extends AbstractTableModel implements
     //    //    System.out.println(evt.getPropertyName() + " changed");
     //    this.fireTableCellUpdated(propertyNames.indexOf(evt.getPropertyName()), 1);
     //  }
-    public List getPropertyNames() {
+
+    public List<String> getPropertyNames() {
         return this.propertyNames;
     }
 
@@ -296,7 +294,9 @@ public class PropertyTableModel extends AbstractTableModel implements
         return locale;
     }
 
-    /** Setter for property locale.
+    /**
+     * Setter for property locale.
+     *
      * @param locale New value of property locale.
      *
      */
@@ -305,8 +305,7 @@ public class PropertyTableModel extends AbstractTableModel implements
         this.columnNamesRB = ResourceBundle.getBundle(
                 "org.softsmithy.lib.swing.table.PropertyTableModel", locale);
         if (getPropertiesRBBaseName() != null) {
-            this.propertiesRB = ResourceBundle.getBundle(
-                    getPropertiesRBBaseName(), locale);
+            this.propertiesRB = ResourceBundle.getBundle(getPropertiesRBBaseName(), locale);
         }
         fireTableStructureChanged();
     }
@@ -320,8 +319,7 @@ public class PropertyTableModel extends AbstractTableModel implements
         if (propertiesRBBaseName == null) {
             this.propertiesRB = null;
         } else {
-            this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName,
-                    locale);
+            this.propertiesRB = ResourceBundle.getBundle(propertiesRBBaseName, locale);
         }
         fireTableDataChanged();
     }
@@ -332,28 +330,20 @@ public class PropertyTableModel extends AbstractTableModel implements
 
     private void stopPropertyChangeListening() {
         if (getBean() != null) {
-            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(getBean().
-                    getClass())) {
+            if (BeanIntrospector.supportsPropertyChangeListenersByPropertyName(getBean().getClass())) {
                 try {
-                    for (Iterator i = getPropertyNames().iterator(); i.hasNext();) {
-                        BeanIntrospector.removePropertyChangeListener(getBean(), (String) i.
-                                next(), beanPropertyListener);
+                    for (String propertyName : getPropertyNames()) {
+                        BeanIntrospector.removePropertyChangeListener(getBean(), propertyName, beanPropertyListener);
                     }
-                } catch (NoSuchMethodException ex1) { // should not happen here
-                    ex1.printStackTrace();
-                } catch (IllegalAccessException ex2) { // should not happen here
-                    ex2.printStackTrace();
+                } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
+                    LOG.error(ex1.getMessage(), ex1);
                 }
             } else {
-                if (BeanIntrospector.supportsPropertyChangeListeners(getBean().
-                        getClass())) {
+                if (BeanIntrospector.supportsPropertyChangeListeners(getBean().getClass())) {
                     try {
-                        BeanIntrospector.removePropertyChangeListener(getBean(),
-                                beanPropertyListener);
-                    } catch (NoSuchMethodException ex1) { // should not happen here
-                        ex1.printStackTrace();
-                    } catch (IllegalAccessException ex2) { // should not happen here
-                        ex2.printStackTrace();
+                        BeanIntrospector.removePropertyChangeListener(getBean(), beanPropertyListener);
+                    } catch (NoSuchMethodException | IllegalAccessException ex1) { // should not happen here
+                        LOG.error(ex1.getMessage(), ex1);
                     }
                 }
             }
@@ -362,9 +352,10 @@ public class PropertyTableModel extends AbstractTableModel implements
 
     private class BeanPropertyListener implements PropertyChangeListener {
 
-        /** This method gets called when a bound property is changed.
-         * @param evt A PropertyChangeEvent object describing the event source
-         *   	and the property that has changed.
+        /**
+         * This method gets called when a bound property is changed.
+         *
+         * @param evt A PropertyChangeEvent object describing the event source and the property that has changed.
          *
          */
         @Override

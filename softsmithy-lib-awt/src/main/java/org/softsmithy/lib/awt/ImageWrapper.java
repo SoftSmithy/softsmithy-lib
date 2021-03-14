@@ -21,7 +21,8 @@
 package org.softsmithy.lib.awt;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 /**
  *
@@ -30,7 +31,7 @@ import java.awt.image.*;
 class ImageWrapper extends Image {
   
   /** Holds value of property image. */
-  private Image image;
+  private final Image image;
   
   /** Creates a new instance of ImageWrapper */
   public ImageWrapper(Image image) {
@@ -47,6 +48,7 @@ class ImageWrapper extends Image {
    * @see       java.awt.image.ImageObserver
    *
    */
+  @Override
   public int getWidth(ImageObserver observer) {
     return image.getWidth(observer);
   }
@@ -94,6 +96,7 @@ class ImageWrapper extends Image {
    * have only one copy of their data.
    *
    */
+  @Override
   public void flush() {
     image.flush();
   }
@@ -105,6 +108,7 @@ class ImageWrapper extends Image {
    * @see     java.awt.Component#createImage(int, int)
    *
    */
+  @Override
   public Graphics getGraphics() {
     return image.getGraphics();
   }
@@ -117,6 +121,7 @@ class ImageWrapper extends Image {
    * @see        java.awt.image.ImageProducer
    *
    */
+  @Override
   public ImageProducer getSource() {
     return image.getSource();
   }
@@ -131,6 +136,7 @@ class ImageWrapper extends Image {
    * @see       java.awt.image.ImageObserver
    *
    */
+  @Override
   public int getHeight(ImageObserver observer) {
     return image.getHeight(observer);
   }
@@ -155,6 +161,7 @@ class ImageWrapper extends Image {
    * @see         java.awt.Image#UndefinedProperty
    *
    */
+  @Override
   public Object getProperty(String name, ImageObserver observer) {
     return image.getProperty(name, observer);
   }

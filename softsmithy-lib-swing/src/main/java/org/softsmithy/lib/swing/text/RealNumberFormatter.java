@@ -12,15 +12,15 @@
  * Contributor(s): .
  */
 
- /*
+/*
  * IntegerFormatter.java
  *
  * Created on 9. September 2003, 19:18
  */
 package org.softsmithy.lib.swing.text;
 
-import java.math.*;
-import java.text.*;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 /**
  * use BigDecimal to recognize values out of range if the range is (Integer.MIN_VALUE, Integer.MAX_VALUE)

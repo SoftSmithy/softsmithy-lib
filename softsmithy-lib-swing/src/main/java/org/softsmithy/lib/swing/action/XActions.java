@@ -14,6 +14,9 @@
 
 package org.softsmithy.lib.swing.action;
 
+import org.softsmithy.lib.swing.CoolButtonController;
+
+import javax.swing.*;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.beans.Introspector;
@@ -21,21 +24,6 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import javax.swing.AbstractButton;
-import javax.swing.Action;
-import javax.swing.ButtonGroup;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JToggleButton;
-import javax.swing.KeyStroke;
-import org.softsmithy.lib.swing.CoolButtonController;
 
 
 /**
@@ -92,7 +80,8 @@ public class XActions {
     /**
      * Configures an XAction from a ResourceBundle. This method is looking for the following keys: <br>
      * <br>
-     * <table border="1" summary="XAction property keys">
+     * <table border="1">
+     * <caption>XAction property keys</caption>
      *      <tr>
      *           <th>Key</th>
      *           <th>Value</th>

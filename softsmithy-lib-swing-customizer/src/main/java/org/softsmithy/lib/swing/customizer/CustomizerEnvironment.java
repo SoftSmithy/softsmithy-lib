@@ -20,15 +20,20 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.util.*;
-import org.softsmithy.lib.swing.style.*;
+import org.softsmithy.lib.swing.style.NoneStyleProvider;
+import org.softsmithy.lib.swing.style.ParentStyleProvider;
+import org.softsmithy.lib.swing.style.StyleProvider;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 /**
  *
  * @author  puce
  */
 public class CustomizerEnvironment {
   
-  private static final CustomizerEnvironment customizerEnvironment = new CustomizerEnvironment();
+  private static final CustomizerEnvironment LOCAL_CUSTOMIZER_ENVIRONMENT = new CustomizerEnvironment();
   
   private List<StyleProvider> styleProviders = Collections.unmodifiableList(Arrays.asList(new StyleProvider[]{NoneStyleProvider.INSTANCE, ParentStyleProvider.INSTANCE}));
   
@@ -45,6 +50,6 @@ public class CustomizerEnvironment {
   }
   
   public static CustomizerEnvironment getLocalCustomizerEnvironment(){
-    return customizerEnvironment;
+    return LOCAL_CUSTOMIZER_ENVIRONMENT;
   }
 }

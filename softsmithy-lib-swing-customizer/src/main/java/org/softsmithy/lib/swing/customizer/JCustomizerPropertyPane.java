@@ -19,12 +19,12 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.table.TableCellEditor;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionEvent;
 import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
+
+import javax.swing.*;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
 
 /**
  *
@@ -32,7 +32,7 @@ import org.softsmithy.lib.swing.customizer.event.CustomizerSelectionListener;
  */
 class JCustomizerPropertyPane extends JPanel implements CustomizerSelectionListener {
 
-    private JCustomizerPropertyTable table;
+    private final JCustomizerPropertyTable table;
 //    private static final String PROPERTIES_BUNDLE_BASE_NAME = "org.softsmithy.lib.swing.customizer.Properties";
 
     /**

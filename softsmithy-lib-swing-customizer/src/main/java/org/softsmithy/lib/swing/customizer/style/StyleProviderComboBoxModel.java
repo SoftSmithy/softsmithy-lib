@@ -20,20 +20,21 @@
 
 package org.softsmithy.lib.swing.customizer.style;
 
-import java.util.*;
-import javax.swing.*;
-import org.softsmithy.lib.swing.customizer.*;
+import org.softsmithy.lib.swing.customizer.CustomizerEnvironment;
 import org.softsmithy.lib.swing.style.StyleProvider;
+
+import javax.swing.*;
+import java.util.Vector;
 
 /**
  *
  * @author  puce
  */
-public class StyleProviderComboBoxModel extends DefaultComboBoxModel {
+public class StyleProviderComboBoxModel extends DefaultComboBoxModel<StyleProvider> {
   
   /** Creates a new instance of StyleProviderComboBoxModel */
   public StyleProviderComboBoxModel() {
-    super(new Vector<StyleProvider>(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
+    super(new Vector<>(CustomizerEnvironment.getLocalCustomizerEnvironment().getAllStyleProviders()));
   }
 
   

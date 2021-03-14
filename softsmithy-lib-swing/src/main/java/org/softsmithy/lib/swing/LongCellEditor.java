@@ -12,22 +12,26 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * IntegerCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
+import java.util.Locale;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LongCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of IntegerCellEditor */
+    /**
+     * Creates a new instance of LongCellEditor
+     *
+     * @param locale the locale
+     */
     public LongCellEditor(Locale locale) {
         super(new JLongField(locale));
     }
@@ -53,11 +57,11 @@ public class LongCellEditor extends FormattedCellEditor {
     //  }
     @Override
     protected void setValue(Object value) {
-        getLongField().setLongValue(((Long) value).longValue());
+        getLongField().setLongValue(((Long) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Long(getLongField().getLongValue());
+        return getLongField().getLongValue();
     }
 }

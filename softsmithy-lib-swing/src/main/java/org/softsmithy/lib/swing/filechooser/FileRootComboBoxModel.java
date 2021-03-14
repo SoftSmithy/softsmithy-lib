@@ -14,46 +14,51 @@
 
 package org.softsmithy.lib.swing.filechooser;
 
+import javax.swing.*;
+import javax.swing.event.ListDataListener;
 import java.io.File;
 import java.util.Arrays;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.event.ListDataListener;
 
 /**
  *
  * @author puce
  */
-public class FileRootComboBoxModel implements ComboBoxModel {
+public class FileRootComboBoxModel implements ComboBoxModel<File> {
 
-    private final DefaultComboBoxModel defaultComboBoxModel;
+    private final DefaultComboBoxModel<File> defaultComboBoxModel;
 
     public FileRootComboBoxModel() {
         File[] listRoots = File.listRoots();
         Arrays.sort(listRoots);
-        defaultComboBoxModel = new DefaultComboBoxModel(listRoots);
+        defaultComboBoxModel = new DefaultComboBoxModel<>(listRoots);
     }
 
+    @Override
     public void setSelectedItem(Object anItem) {
        defaultComboBoxModel.setSelectedItem(anItem);
     }
 
+    @Override
     public File getSelectedItem() {
        return (File) defaultComboBoxModel.getSelectedItem();
     }
 
+    @Override
     public int getSize() {
         return defaultComboBoxModel.getSize();
     }
 
-    public Object getElementAt(int index) {
+    @Override
+    public File getElementAt(int index) {
         return defaultComboBoxModel.getElementAt(index);
     }
 
+    @Override
     public void addListDataListener(ListDataListener l) {
         defaultComboBoxModel.addListDataListener(l);
     }
 
+    @Override
     public void removeListDataListener(ListDataListener l) {
         defaultComboBoxModel.removeListDataListener(l);
     }

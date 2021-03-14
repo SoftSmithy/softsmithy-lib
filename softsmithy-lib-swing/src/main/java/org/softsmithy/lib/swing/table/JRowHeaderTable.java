@@ -13,10 +13,9 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import javax.swing.JTable;
 import org.softsmithy.lib.swing.JXTable;
+
+import javax.swing.*;
 
 /**
  * https://tips4java.wordpress.com/2008/11/18/row-number-table/
@@ -32,19 +31,15 @@ public class JRowHeaderTable extends JXTable {
 
         this.mainTable = mainTable;
         this.rowHeaderTableModel = rowHeaderTableModel;
-        mainTable.addPropertyChangeListener(new PropertyChangeListener() {
-
-            @Override
-            public void propertyChange(PropertyChangeEvent e) {
-                //  Keep the row table in sync with the main table
-
-                if ("selectionModel".equals(e.getPropertyName())) {
-                    setSelectionModel(mainTable.getSelectionModel());
-                }
-
-                if ("model".equals(e.getPropertyName())) {
-                    rowHeaderTableModel.setTableModel(mainTable.getModel());
-                }
+        mainTable.addPropertyChangeListener(event -> {
+            //  Keep the row table in sync with the main table
+            
+            if ("selectionModel".equals(event.getPropertyName())) {
+                setSelectionModel(mainTable.getSelectionModel());
+            }
+            
+            if ("model".equals(event.getPropertyName())) {
+                rowHeaderTableModel.setTableModel(mainTable.getModel());
             }
         });
 

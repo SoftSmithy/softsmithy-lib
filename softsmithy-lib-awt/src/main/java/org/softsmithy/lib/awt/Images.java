@@ -12,138 +12,138 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * Images.java
  *
  * Created on 12. Februar 2003, 15:32
  */
-
 package org.softsmithy.lib.awt;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ImageObserver;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 class Images {
-  
-  /** Creates a new instance of Images */
-  private Images() {
-  }
-  
+
+    /**
+     * Creates a new instance of Images
+     */
+    private Images() {
+    }
+
 //  public static Comparator getImageMaxWidthComparator(ImageObserver observer){
 //    return new ImageMaxWidthComparator(observer);
 //  }
 //  
 //  private static class ImageMaxWidthComparator extends ImageComparator{
 //  }
-  
-  public static int maxWidth(Image[] images, ImageObserver observer){
-    int maxWidth = 0;
-    if (images.length > 0){
-      maxWidth = images[0].getWidth(observer);
-      if (maxWidth != -1){
-        for (int i=1; i<images.length; i++){
-          int width = images[i].getWidth(observer);
-          if (width == -1){
-            maxWidth = width;
-            break;
-          }
-          if (width > maxWidth){
-            maxWidth = width;
-          }
+    public static int maxWidth(Image[] images, ImageObserver observer) {
+        int maxWidth = 0;
+        if (images.length > 0) {
+            maxWidth = images[0].getWidth(observer);
+            if (maxWidth != -1) {
+                for (int i = 1; i < images.length; i++) {
+                    int width = images[i].getWidth(observer);
+                    if (width == -1) {
+                        maxWidth = width;
+                        break;
+                    }
+                    if (width > maxWidth) {
+                        maxWidth = width;
+                    }
+                }
+            }
         }
-      }
+        return maxWidth;
     }
-    return maxWidth;
-  }
-  
-  public static int minWidth(Image[] images, ImageObserver observer){
-    int minWidth = 0;
-    if (images.length > 0){
-      minWidth = images[0].getWidth(observer);
-      if (minWidth != -1){
-        for (int i=1; i<images.length; i++){
-          int width = images[i].getWidth(observer);
-          if (width == -1){
-            minWidth = width;
-            break;
-          }
-          if (width < minWidth){
-            minWidth = width;
-          }
+
+    public static int minWidth(Image[] images, ImageObserver observer) {
+        int minWidth = 0;
+        if (images.length > 0) {
+            minWidth = images[0].getWidth(observer);
+            if (minWidth != -1) {
+                for (int i = 1; i < images.length; i++) {
+                    int width = images[i].getWidth(observer);
+                    if (width == -1) {
+                        minWidth = width;
+                        break;
+                    }
+                    if (width < minWidth) {
+                        minWidth = width;
+                    }
+                }
+            }
         }
-      }
+        return minWidth;
     }
-    return minWidth;
-  }
-  
-  public static int maxHeight(Image[] images, ImageObserver observer){
-    int maxHeight = 0;
-    if (images.length > 0){
-      maxHeight = images[0].getHeight(observer);
-      if (maxHeight != -1){
-        for (int i=1; i<images.length; i++){
-          int height = images[i].getHeight(observer);
-          if (height == -1){
-            maxHeight = height;
-            break;
-          }
-          if (height > maxHeight){
-            maxHeight = height;
-          }
+
+    public static int maxHeight(Image[] images, ImageObserver observer) {
+        int maxHeight = 0;
+        if (images.length > 0) {
+            maxHeight = images[0].getHeight(observer);
+            if (maxHeight != -1) {
+                for (int i = 1; i < images.length; i++) {
+                    int height = images[i].getHeight(observer);
+                    if (height == -1) {
+                        maxHeight = height;
+                        break;
+                    }
+                    if (height > maxHeight) {
+                        maxHeight = height;
+                    }
+                }
+            }
         }
-      }
+        return maxHeight;
     }
-    return maxHeight;
-  }
-  
-  public static int minHeight(Image[] images, ImageObserver observer){
-    int minHeight = 0;
-    if (images.length > 0){
-      minHeight = images[0].getHeight(observer);
-      if (minHeight != -1){
-        for (int i=1; i<images.length; i++){
-          int height = images[i].getHeight(observer);
-          if (height == -1){
-            minHeight = height;
-            break;
-          }
-          if (height < minHeight){
-            minHeight = height;
-          }
+
+    public static int minHeight(Image[] images, ImageObserver observer) {
+        int minHeight = 0;
+        if (images.length > 0) {
+            minHeight = images[0].getHeight(observer);
+            if (minHeight != -1) {
+                for (int i = 1; i < images.length; i++) {
+                    int height = images[i].getHeight(observer);
+                    if (height == -1) {
+                        minHeight = height;
+                        break;
+                    }
+                    if (height < minHeight) {
+                        minHeight = height;
+                    }
+                }
+            }
         }
-      }
+        return minHeight;
     }
-    return minHeight;
-  }
-  
-  public static int totalWidth(Image[] images, ImageObserver observer){
-    int totalWidth = 0;
-    for (int i=0; i<images.length; i++){
-      int width = images[i].getWidth(observer);
-      if (width == -1){
-        totalWidth = width;
-        break;
-      }
-      totalWidth += width;
+
+    public static int totalWidth(Image[] images, ImageObserver observer) {
+        int totalWidth = 0;
+        for (Image image : images) {
+            int width = image.getWidth(observer);
+            if (width == -1) {
+                totalWidth = width;
+                break;
+            }
+            totalWidth += width;
+        }
+        return totalWidth;
     }
-    return totalWidth;
-  }
-  
-  public static int totalHeight(Image[] images, ImageObserver observer){
-    int totalHeight = 0;
-    for (int i=0; i<images.length; i++){
-      int height = images[i].getHeight(observer);
-      if (height == -1){
-        totalHeight = height;
-        break;
-      }
-      totalHeight += height;
+
+    public static int totalHeight(Image[] images, ImageObserver observer) {
+        int totalHeight = 0;
+        for (Image image : images) {
+            int height = image.getHeight(observer);
+            if (height == -1) {
+                totalHeight = height;
+                break;
+            }
+            totalHeight += height;
+        }
+        return totalHeight;
     }
-    return totalHeight;
-  }
-  
+
 }

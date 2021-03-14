@@ -20,21 +20,18 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.KeyStroke;
-import javax.swing.UIManager;
+import org.softsmithy.lib.swing.HorizontalAlignment;
+import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
+
+import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.TextAction;
 import javax.swing.text.html.HTMLDocument;
-import org.softsmithy.lib.swing.HorizontalAlignment;
-import org.softsmithy.lib.swing.customizer.state.HiddenStateManager;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * A basic HTML text customizer using JEditorPane to display and edit the HTML
@@ -71,7 +68,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
     /**
      * The attribute set.
      */
-    private MutableAttributeSet attributeSet = new SimpleAttributeSet();
+    private final MutableAttributeSet attributeSet = new SimpleAttributeSet();
     
     /**
      * True, if this customizer is initialized, else false.
@@ -161,6 +158,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * fire any events!
      * @param alignment the horizontal alignment of the text
      */
+    @Override
     protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
         horizontalAlignment = alignment;
         if (inited){
@@ -173,6 +171,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * Gets the horizontal alignment of the text.
      * @return the horizontal alignment of the text
      */
+    @Override
     public HorizontalAlignment getHorizontalAlignment() {
         return horizontalAlignment;
     }
@@ -197,7 +196,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
      * @return the HTML text
      */
     private String createHtmlText(){
-        StringBuffer htmlText = new StringBuffer(HTML_START);
+        StringBuilder htmlText = new StringBuilder(HTML_START);
         //    htmlText.append(horizontalAlignment.getHtmlConstant()).append("'>");
         //    htmlText.append("<font face='").append(getFont().getFamily()).append("' "); // or better getFont().getName()???
         //    htmlText.append("size='").append(getFont().getSize()).append("' ");
@@ -333,6 +332,7 @@ public class JHtmlCustomizer extends AbstractTextCustomizer {
          *
          * @param e the action event
          */
+        @Override
         public void actionPerformed(ActionEvent e) {
             JTextComponent target = getTextComponent(e);
             if (target != null) {

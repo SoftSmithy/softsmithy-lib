@@ -14,27 +14,16 @@
 package org.softsmithy.lib.util;
 
 import java.util.Locale;
-import junit.framework.TestCase;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
  * @author puce
  */
-public class LocalesTest extends TestCase {
+public class LocalesTest {
 
-    public LocalesTest(String testName) {
-        super(testName);
-    }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
 
     /**
      * Test of valueOf method, of class Locales.

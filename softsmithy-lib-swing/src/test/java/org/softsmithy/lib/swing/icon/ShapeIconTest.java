@@ -12,57 +12,45 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * ShapeIconTest.java
  * JUnit based test
  *
  * Created on 20. Oktober 2004, 14:45
  */
-
 package org.softsmithy.lib.swing.icon;
 
-import java.awt.Rectangle;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
  * @author puce
  */
-public class ShapeIconTest extends TestCase {
-  
-  private ShapeIcon filledIcon;
-  private ShapeIcon borderIcon;
-  private static final int NEW_WIDTH = 20;
-  private static final int NEW_HEIGHT = 30;
-  
-  public ShapeIconTest(String testName) {
-    super(testName);
-  }
-  
-  protected void setUp() throws Exception {
-    filledIcon = new ShapeIcon(new Rectangle(10, 12));
-    filledIcon.setFilled(true);
-    borderIcon = new ShapeIcon(new Rectangle(10, 12));
-    borderIcon.setFilled(false);
-  }
-  
-  protected void tearDown() throws Exception {
-  }
-  
-  public static Test suite() {
-    
-    TestSuite suite = new TestSuite(ShapeIconTest.class);
-    
-    return suite;
-  }
-  
-  /**
-   * Test of getIconHeight method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testGetIconHeight() {
+public class ShapeIconTest {
+
+    private ShapeIcon filledIcon;
+    private ShapeIcon borderIcon;
+    private static final int NEW_WIDTH = 20;
+    private static final int NEW_HEIGHT = 30;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        filledIcon = new ShapeIcon(new Rectangle(10, 12));
+        filledIcon.setFilled(true);
+        borderIcon = new ShapeIcon(new Rectangle(10, 12));
+        borderIcon.setFilled(false);
+    }
+
+    /**
+     * Test of getIconHeight method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testGetIconHeight() {
    
     System.out.println("testGetIconHeight");
    
@@ -70,10 +58,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of getIconWidth method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testGetIconWidth() {
+    /**
+     * Test of getIconWidth method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testGetIconWidth() {
    
     System.out.println("testGetIconWidth");
    
@@ -81,10 +70,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of paintIcon method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testPaintIcon() {
+    /**
+     * Test of paintIcon method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testPaintIcon() {
    
     System.out.println("testPaintIcon");
    
@@ -92,10 +82,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of getShape method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testGetShape() {
+    /**
+     * Test of getShape method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testGetShape() {
    
     System.out.println("testGetShape");
    
@@ -103,10 +94,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of setShape method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testSetShape() {
+    /**
+     * Test of setShape method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testSetShape() {
    
     System.out.println("testSetShape");
    
@@ -114,10 +106,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of isFilled method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testIsFilled() {
+    /**
+     * Test of isFilled method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testIsFilled() {
    
     System.out.println("testIsFilled");
    
@@ -125,10 +118,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of setFilled method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testSetFilled() {
+    /**
+     * Test of setFilled method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testSetFilled() {
    
     System.out.println("testSetFilled");
    
@@ -136,10 +130,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of getStroke method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testGetStroke() {
+    /**
+     * Test of getStroke method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testGetStroke() {
    
     System.out.println("testGetStroke");
    
@@ -147,10 +142,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of setStroke method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testSetStroke() {
+    /**
+     * Test of setStroke method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testSetStroke() {
    
     System.out.println("testSetStroke");
    
@@ -158,10 +154,11 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of getTransformedInstance method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  /*public void testGetTransformedInstance() {
+    /**
+     * Test of getTransformedInstance method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    //@Test
+    /*public void testGetTransformedInstance() {
    
     System.out.println("testGetTransformedInstance");
    
@@ -169,37 +166,35 @@ public class ShapeIconTest extends TestCase {
     fail("The test case is empty.");
   }*/
   
-  /**
-   * Test of getScaledInstance method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
-   */
-  public void testGetScaledInstance() {
-    
-    System.out.println("testGetScaledInstance");
-    
-    // TODO add your test code below by replacing the default call to fail.
-    ShapeIcon newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(NEW_WIDTH, NEW_HEIGHT);
-    ShapeIcon newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(NEW_WIDTH, NEW_HEIGHT);
-    assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
-    assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
-    
-    newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(NEW_WIDTH, -1);
-    newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(NEW_WIDTH, -1);
-    assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
-    assertEquals(24, newFilledIcon.getIconHeight());
-    assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
-    assertEquals(24, newBorderIcon.getIconHeight());
-    
-    newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(-1, NEW_HEIGHT);
-    newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(-1, NEW_HEIGHT);
-    assertEquals(25, newFilledIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
-    assertEquals(25, newBorderIcon.getIconWidth());
-    assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
-  }
-  
-  // TODO add test methods here. The name must begin with 'test'. For example:
-  // public void testHello() {}
-  
+    /**
+     * Test of getScaledInstance method, of class org.softsmithy.lib.swing.icon.ShapeIcon.
+     */
+    @Test
+    public void testGetScaledInstance() {
+
+        System.out.println("testGetScaledInstance");
+
+        // TODO add your test code below by replacing the default call to fail.
+        ShapeIcon newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(NEW_WIDTH, NEW_HEIGHT);
+        ShapeIcon newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(NEW_WIDTH, NEW_HEIGHT);
+        assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
+        assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
+        assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
+        assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
+
+        newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(NEW_WIDTH, -1);
+        newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(NEW_WIDTH, -1);
+        assertEquals(NEW_WIDTH, newFilledIcon.getIconWidth());
+        assertEquals(24, newFilledIcon.getIconHeight());
+        assertEquals(NEW_WIDTH, newBorderIcon.getIconWidth());
+        assertEquals(24, newBorderIcon.getIconHeight());
+
+        newFilledIcon = (ShapeIcon) filledIcon.getScaledInstance(-1, NEW_HEIGHT);
+        newBorderIcon = (ShapeIcon) borderIcon.getScaledInstance(-1, NEW_HEIGHT);
+        assertEquals(25, newFilledIcon.getIconWidth());
+        assertEquals(NEW_HEIGHT, newFilledIcon.getIconHeight());
+        assertEquals(25, newBorderIcon.getIconWidth());
+        assertEquals(NEW_HEIGHT, newBorderIcon.getIconHeight());
+    }
+
 }

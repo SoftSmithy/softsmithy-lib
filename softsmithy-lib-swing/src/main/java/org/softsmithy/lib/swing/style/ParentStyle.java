@@ -19,8 +19,7 @@
  */
 package org.softsmithy.lib.swing.style;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.HierarchyEvent;
 import java.awt.event.HierarchyListener;
 import java.beans.PropertyChangeEvent;
@@ -33,11 +32,11 @@ import java.util.Locale;
  */
 public class ParentStyle extends AbstractStyle {
 
-    private HierarchyListener parentListener = new ParentListener();
-    private PropertyChangeListener parentBackgroundListener = new ParentBackgroundListener();
-    private PropertyChangeListener parentForegroundListener = new ParentForegroundListener();
-    private PropertyChangeListener parentFontListener = new ParentFontListener();
-    private PropertyChangeListener parentOpaqueListener = new ParentOpaqueListener();
+    private final HierarchyListener parentListener = new ParentListener();
+    private final PropertyChangeListener parentBackgroundListener = new ParentBackgroundListener();
+    private final PropertyChangeListener parentForegroundListener = new ParentForegroundListener();
+    private final PropertyChangeListener parentFontListener = new ParentFontListener();
+    private final PropertyChangeListener parentOpaqueListener = new ParentOpaqueListener();
     /**
      * Holds value of property styleable.
      */
@@ -216,7 +215,7 @@ public class ParentStyle extends AbstractStyle {
          */
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
-            getStyleable().setDefaultOpaque(((Boolean) evt.getNewValue()).booleanValue());
+            getStyleable().setDefaultOpaque(((Boolean) evt.getNewValue()));
         }
     }
 }

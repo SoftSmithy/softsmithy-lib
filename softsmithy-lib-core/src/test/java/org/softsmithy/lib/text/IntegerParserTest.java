@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.text;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.text.NumberFormat;
-import org.junit.After;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
@@ -28,17 +29,10 @@ public class IntegerParserTest {
     private NumberFormat numberFormat;
     private IntegerParser integerParser;
 
-    public IntegerParserTest() {
-    }
-
-    @Before
+    @BeforeEach
     public void setUp() {
         numberFormat = NumberFormat.getInstance();
         integerParser = new IntegerParser(numberFormat);
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

@@ -13,15 +13,16 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.ComponentOrientation;
+import org.softsmithy.lib.util.TypesafeEnum;
+
+import javax.swing.*;
+import javax.swing.text.StyleConstants;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.SwingConstants;
-import javax.swing.text.StyleConstants;
-import org.softsmithy.lib.util.TypesafeEnum;
 
 public abstract class HorizontalAlignment extends TypesafeEnum {
 
@@ -134,15 +135,15 @@ public abstract class HorizontalAlignment extends TypesafeEnum {
     }
     private static final HorizontalAlignment[] PRIVATE_VALUES = {LEFT, CENTER, RIGHT, LEADING, TRAILING};
     public static final List<HorizontalAlignment> VALUES = Collections.unmodifiableList(Arrays.asList(PRIVATE_VALUES));
-    private static final Map<Integer, HorizontalAlignment> alignments = new HashMap<>();
+    private static final Map<Integer, HorizontalAlignment> ALIGNMENTS = new HashMap<>();
 
     static {
-        for (int i = 0; i < PRIVATE_VALUES.length; i++) {
-            alignments.put(new Integer(PRIVATE_VALUES[i].getSwingConstant()), PRIVATE_VALUES[i]);
+        for (HorizontalAlignment horizontalAlignment : PRIVATE_VALUES) {
+            ALIGNMENTS.put(horizontalAlignment.getSwingConstant(), horizontalAlignment);
         }
     }
 
     public static HorizontalAlignment getHorizontalAlignment(int swingConstant) {
-        return alignments.get(new Integer(swingConstant));
+        return ALIGNMENTS.get(swingConstant);
     }
 }

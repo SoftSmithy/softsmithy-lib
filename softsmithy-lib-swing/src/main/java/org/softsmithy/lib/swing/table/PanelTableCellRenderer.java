@@ -21,18 +21,18 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.awt.*;
-import java.io.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import java.io.Serializable;
 
 /**
  * The standard class for rendering (displaying) individual cells in a
  * <code>JTable</code>. <p>
  *
- * <strong><a name="override">Implementation Note:</a></strong> This class inherits from
- * <code>JLabel</code>, a standard component class. However
+ * <strong><a id="override">Implementation Note:</a></strong> This class inherits from * <code>JLabel</code>, a standard component class. However
  * <code>JTable</code> employs a unique mechanism for rendering its cells and therefore requires some slightly modified
  * behavior from its cell renderer. The table class defines a single cell renderer and uses it as a as a rubber-stamp
  * for rendering all cells in the table; it renders the first cell, changes the contents of that cell renderer, shifts
@@ -49,7 +49,7 @@ import javax.swing.table.*;
  *
  * <strong>Warning:</strong> Serialized objects of this class will not be compatible with future Swing releases. The
  * current serialization support is appropriate for short term storage or RMI between applications running the same
- * version of Swing. As of 1.4, support for long term storage of all JavaBeans<sup><font size="-2">TM</font></sup> has
+ * version of Swing. As of 1.4, support for long term storage of all JavaBeans has
  * been added to the
  * <code>java.beans</code> package. Please see {@link java.beans.XMLEncoder}.
  *

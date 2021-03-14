@@ -13,18 +13,16 @@
  */
 package org.softsmithy.lib.swing.customizer.layout;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Rectangle;
+import org.softsmithy.lib.awt.AWTUtilities;
+import org.softsmithy.lib.awt.event.ComponentLayoutEvent;
+import org.softsmithy.lib.awt.event.ComponentLayoutListener;
+
+import java.awt.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import org.softsmithy.lib.awt.AWTUtilities;
-import org.softsmithy.lib.awt.event.ComponentLayoutEvent;
-import org.softsmithy.lib.awt.event.ComponentLayoutListener;
 
 public abstract class AbstractTableLayout implements TableLayout {
 
@@ -181,8 +179,8 @@ public abstract class AbstractTableLayout implements TableLayout {
     public void layoutContainer(Container parent) {
         ensureValidity(parent);
         Component[] components = getComponents(parent);
-        for (int i = 0; i < components.length; i++) {
-            layoutComponent(parent, components[i]);
+        for (Component component : components) {
+            layoutComponent(parent, component);
         }
     }
 

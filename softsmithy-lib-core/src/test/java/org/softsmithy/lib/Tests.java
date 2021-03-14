@@ -13,9 +13,10 @@
  */
 package org.softsmithy.lib;
 
-import static java.lang.Integer.signum;
 import java.util.Comparator;
-import static org.junit.Assert.*;
+
+import static java.lang.Integer.signum;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -42,9 +43,9 @@ public class Tests {
     private static <T> void assertNullValue(Comparator<? super T> comparator, T o, boolean nullValueSupported) {
         try {
             comparator.compare(o, null);
-            assertTrue("No NullPointerException but null value not supported!", nullValueSupported);
+            assertTrue(nullValueSupported, "No NullPointerException but null value not supported!");
         } catch (NullPointerException ex) {
-            assertFalse("NullPointerException thrown but null value supported!!", nullValueSupported);
+            assertFalse(nullValueSupported, "NullPointerException thrown but null value supported!!");
         }
     }
 

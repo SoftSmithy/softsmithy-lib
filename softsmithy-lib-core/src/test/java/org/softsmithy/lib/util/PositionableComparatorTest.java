@@ -13,7 +13,7 @@
  */
 package org.softsmithy.lib.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.softsmithy.lib.Tests;
 
 /**

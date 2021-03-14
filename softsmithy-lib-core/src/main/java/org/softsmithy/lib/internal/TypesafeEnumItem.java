@@ -13,8 +13,9 @@
  */
 package org.softsmithy.lib.internal;
 
-import java.util.Locale;
 import org.softsmithy.lib.util.TypesafeEnum;
+
+import java.util.Locale;
 
 @Deprecated
 public class TypesafeEnumItem {
@@ -22,11 +23,11 @@ public class TypesafeEnumItem {
     /**
      * Holds value of property fontStyle.
      */
-    private TypesafeEnum typesafeEnum;
+    private final TypesafeEnum typesafeEnum;
     /**
      * Holds value of property locale.
      */
-    private Locale locale;
+    private final Locale locale;
 
     public TypesafeEnumItem(TypesafeEnum typesafeEnum, Locale locale) {
         this.typesafeEnum = typesafeEnum;

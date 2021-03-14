@@ -19,8 +19,9 @@ import javax.persistence.EntityManager;
 /**
  *
  * @author puce
+ * @param <T> the entity bean type
  */
-public abstract class ExtendedBaseDAO<T extends AbstractEntity> extends GenericDAO<T, Long>  {
+public abstract class ExtendedBaseDAO<T> extends GenericDAO<T, Long> {
 
     public ExtendedBaseDAO(EntityManager entityManager) {
         super(entityManager);

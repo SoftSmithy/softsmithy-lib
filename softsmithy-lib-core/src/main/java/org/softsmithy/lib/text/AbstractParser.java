@@ -16,15 +16,27 @@ package org.softsmithy.lib.text;
 import java.text.ParseException;
 
 /**
+ * An abstract base class for {@link Parser} implementations.
  *
+ * @param <T> the object type to parse
  * @author puce
  */
 public abstract class AbstractParser<T> implements Parser<T> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public T parse(CharSequence text) throws ParseException {
         return parseString(text.toString());
     }
 
+    /**
+     * Parses the given text to an object.
+     *
+     * @param text the text to parse
+     * @return the parsed object
+     * @throws ParseException if the text could not be parsed
+     */
     protected abstract T parseString(String text) throws ParseException;
 }

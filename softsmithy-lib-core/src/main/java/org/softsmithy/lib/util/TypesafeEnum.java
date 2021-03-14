@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.util;
 
+import org.softsmithy.lib.text.Localizable;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import org.softsmithy.lib.text.Localizable;
 
 
 /**
@@ -27,7 +28,7 @@ import org.softsmithy.lib.text.Localizable;
  * package-private (if extensible only inside the package) constructors
  * to implement the typesafe enum pattern.<br>
  * More to read about the typesafe enum pattern: Item 21 (chapter 5, p.104) of
- * the Java Series Book <a href="http://developer.java.sun.com/developer/Books/effectivejava/index.html">
+ * the Java Series Book <a href="https://www.oracle.com/technetwork/java/effectivejava-136174.html">
  * Effective Java Programming Language Guide</a> by Joshua Bloch.<br>
  * Serialization note: Subclasses implementing Serializable should deserialize to
  * the rigth static field as the deserialized version of an object of this class would
@@ -63,7 +64,7 @@ import org.softsmithy.lib.text.Localizable;
 @Deprecated
 public class TypesafeEnum implements Localizable {
 
-    private static final Map<String, ResourceBundleCache> caches = new HashMap<String, ResourceBundleCache>();
+    private static final Map<String, ResourceBundleCache> CACHES = new HashMap<>();
     private final String fName;
     private boolean initialized = false;
 
@@ -93,11 +94,11 @@ public class TypesafeEnum implements Localizable {
         ResourceBundle rb = null;
         String baseName = getResourceBundleBaseName();
         if (baseName != null) {
-            if (!caches.containsKey(baseName)) {
+            if (!CACHES.containsKey(baseName)) {
                 ResourceBundleCache cache = new ResourceBundleCache(baseName);
-                caches.put(baseName, cache);
+                CACHES.put(baseName, cache);
             }
-            rb = caches.get(baseName).getBundle(locale);
+            rb = CACHES.get(baseName).getBundle(locale);
         }
         return rb;
     }

@@ -1,11 +1,12 @@
 package samples.swing.number;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import org.softsmithy.lib.swing.text.DoubleFormatter;
 import org.softsmithy.lib.swing.text.FloatFormatter;
 import org.softsmithy.lib.swing.text.NumberFormatterFactory;
 import org.softsmithy.lib.swing.text.RealNumberFormatter;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 /*
  * NumberFieldsSample.java
  *
@@ -205,10 +206,8 @@ public class NumberFieldsSample extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         // Locale.setDefault(Locale.US); // throws java.security.AccessControlException when executed via Java WebStart
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NumberFieldsSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NumberFieldsSample().setVisible(true);
         });
     }
     

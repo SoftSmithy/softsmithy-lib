@@ -19,10 +19,9 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableCellEditor;
+import java.awt.*;
 
 /**
  *
@@ -54,18 +53,15 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
                 return dim;
             }
         };
-        button.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                Color color = JColorChooser.showDialog(editor.getParent(), "Choose Color", getColor());
-                if (color != null) {
-                    setNewColor(color);
-                    stopCellEditing();
+        button.addActionListener(event -> {
+            Color color1 = JColorChooser.showDialog(editor.getParent(), "Choose Color", getColor());
+            if (color1 != null) {
+                setNewColor(color1);
+                stopCellEditing();
                 //System.out.println("Stop");
-                } else {
-                    cancelCellEditing();
+            } else {
+                cancelCellEditing();
                 //System.out.println("Cancel");
-                }
             }
         });
         //button.setPreferredSize(button.getMinimumSize());
@@ -80,6 +76,7 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
      * @return the value contained in the editor
      *
      */
+    @Override
     public Object getCellEditorValue() {
         return getColor();
     }
@@ -109,6 +106,7 @@ public class ColorCellEditor extends AbstractCellEditor implements TableCellEdit
      * @return	the component for editing
      *
      */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         setColor((Color) value);
         renderer.setColor(getColor());//(Color) value);

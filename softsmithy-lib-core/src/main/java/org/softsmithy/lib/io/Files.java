@@ -13,9 +13,15 @@
  */
 package org.softsmithy.lib.io;
 
-import java.io.*;
-import java.util.*;
 import org.softsmithy.lib.nio.file.PathUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A utility class for Files. <br> Note: The API may change in a future version! <br><br>
@@ -104,7 +110,7 @@ public class Files {
      * @param file the text file
      * @return the lines read from a text file
      * @throws java.io.FileNotFoundException
-     * @throws java.io.IOException
+     * @throws java.io.IOException if an IO error occurs
      */
     public static String[] readLines(File file) throws FileNotFoundException, IOException {
         try (FileReader reader = new FileReader(file)) {
@@ -116,8 +122,7 @@ public class Files {
      * Deletes (optionally recursivly) the specified file or directory.
      *
      * @param file the file or directory to be deleted
-     * @param recursivly If true, deletes the directory recursivly. If false or if file is not a directory, only the
-     * specified file gets deleted.
+     * @param recursivly If true, deletes the directory recursivly. If false or if file is not a directory, only the specified file gets deleted.
      * @return true, if all files/ directories could be deleted, else false.
      */
     public static boolean delete(File file, boolean recursivly) {
@@ -132,10 +137,8 @@ public class Files {
     }
 
     /**
-     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br> <br> This will
-     * be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br> Note: return type might
-     * change to List&lt;String&gt; with java v1.5
+     * Gets the path names of the specified path. If the path is absolute the root is NOT inclueded!<br> <br> This will be always true: <br>
+     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br> Note: return type might change to List&lt;String&gt; with java v1.5
      *
      * @param path the path
      * @return the path names. If the path is absolute the root is NOT inclueded!
@@ -165,6 +168,7 @@ public class Files {
     /**
      * Gets a file from path names.
      *
+     * @param parent the parent path
      * @param paths the path names
      * @return the file representing the specified path
      */
@@ -177,8 +181,7 @@ public class Files {
     }
 
     /**
-     * Get the root of an absolute file or directory.<br> <br> This will be always true: <br>
-     * {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br>
+     * Get the root of an absolute file or directory.<br> <br> This will be always true: <br> {@code path.equals(Files.getFile(Files.getRoot(path), Files.getPathNames(path))}<br> <br>
      *
      * @param file a file or directory
      * @return the root of the specified file or directory or null if it is not absolute

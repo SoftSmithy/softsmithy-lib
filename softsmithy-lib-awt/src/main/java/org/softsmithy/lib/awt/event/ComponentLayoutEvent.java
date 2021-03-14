@@ -21,13 +21,15 @@
 package org.softsmithy.lib.awt.event;
 
 import java.awt.*;
-import java.util.*;
+import java.util.EventObject;
 
 /**
  * An event which indicates that a component has been layed out.
  * @author puce
  */
 public class ComponentLayoutEvent extends EventObject {
+
+    private static final long serialVersionUID = -100771375072319767L;
     
     /**
      * The new bounds of the component.
@@ -37,7 +39,7 @@ public class ComponentLayoutEvent extends EventObject {
     /**
      * The component which has been layed out.
      */
-    private Component component;
+    private final Component component;
     
     /**
      * Creates a new instance of this class.

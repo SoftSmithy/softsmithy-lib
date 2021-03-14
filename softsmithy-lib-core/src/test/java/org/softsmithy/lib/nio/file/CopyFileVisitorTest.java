@@ -13,13 +13,13 @@
  */
 package org.softsmithy.lib.nio.file;
 
+import org.junit.jupiter.api.Test;
+
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import org.junit.After;
-import static org.junit.Assert.assertTrue;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
@@ -27,13 +27,6 @@ import org.junit.Test;
  */
 public class CopyFileVisitorTest {
 
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
      * Test of copy method, of class CopyFileVisitor.

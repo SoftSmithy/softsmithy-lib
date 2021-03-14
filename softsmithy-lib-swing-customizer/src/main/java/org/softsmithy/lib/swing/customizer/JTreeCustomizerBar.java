@@ -20,10 +20,13 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.tree.*;
 import org.softsmithy.lib.swing.JXTree;
+
+import javax.swing.*;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreeSelectionModel;
+import java.awt.*;
 
 /**
  *
@@ -62,10 +65,12 @@ public abstract class JTreeCustomizerBar extends JPanel implements CustomizerBar
     }// </editor-fold>//GEN-END:initComponents
   
   
+  @Override
   public boolean hasSelection() {
     return ! tree.isSelectionEmpty();
   }
   
+  @Override
   public void clearSelection() {
     tree.clearSelection();
   }

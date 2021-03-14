@@ -7,9 +7,11 @@
  * http://www.opensource.org/licenses/cddl1.txt
  *
  * The Original Code is SoftSmithy Utility Library. The Initial Developer of the
- * Original Code is Florian Brunner (Sourceforge.net user: puce). All Rights Reserved.
+ * Original Code is Florian Brunner (GitHub user: puce77). All Rights Reserved.
  *
  * Contributor(s): .
  */
-
+/**
+ * Utility classes and extensions for Swing multi split controls.
+ */
 package org.softsmithy.lib.swing.multisplit;

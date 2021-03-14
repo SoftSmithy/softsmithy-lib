@@ -14,15 +14,13 @@
 
 package samples.swing.component;
 
-import java.util.Locale;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 import org.softsmithy.lib.swing.LocaleCellRenderer;
 import org.softsmithy.lib.swing.XDefaultListCellRenderer;
 import org.softsmithy.lib.text.LocaleLocalizer;
 import org.softsmithy.lib.text.Localizables;
+
+import javax.swing.*;
+import java.util.Locale;
 
 
 /**
@@ -82,11 +80,8 @@ public class LocaleSelectionSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LocaleSelectionSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LocaleSelectionSample().setVisible(true);
         });
     }
     

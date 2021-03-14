@@ -1,3 +1,50 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
 /softsmithy-lib-core/target/
 /target/
 /softsmithy-lib-persistence/target/
@@ -5,10 +52,13 @@
 /softsmithy-devlib/target/
 /softsmithy-lib-time/target/
 /softsmithy-lib-beans/target/
-/softsmithy-devlib/softsmithy-devlib-core/target/
 /softsmithy-lib-awt/target/
 /softsmithy-lib-swing/target/
 /softsmithy-lib-swing-customizer/target/
 /softsmithy-lib-samples/target/
 /softsmithy-lib-docs/target/
 /softsmithy-lib-compiler/target/
+/softsmithy-lib-core/nbproject/
+/softsmithy-devlib/softsmithy-devlib-junit/target/
+/softsmithy-devlib/softsmithy-devlib-persistence/target/
+/softsmithy-devlib/softsmithy-devlib-junit-persistence/target/

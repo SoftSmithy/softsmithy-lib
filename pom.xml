@@ -17,18 +17,18 @@ Contributor(s): .
     <parent>
         <groupId>org.softsmithy.lib</groupId>
         <artifactId>softsmithy-lib-parent</artifactId>
-        <version>0.10-SNAPSHOT</version>
+        <version>3.0.0-SNAPSHOT</version>
         <relativePath>softsmithy-lib-parent/pom.xml</relativePath>
     </parent>
     
-    <artifactId>softsmithy-lib-all</artifactId>
+    <artifactId>softsmithy-lib</artifactId>
     <packaging>pom</packaging>
     
-    <name>SoftSmithy Utility Library - All</name>
+    <name>SoftSmithy Utility Library</name>
     <description>A Java utility library.</description>
     <inceptionYear>2002</inceptionYear>
     <!-- required for Javadoc (apidocs) linking -->
-    <url>http://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
+    <url>https://www.softsmithy.org/softsmithy-lib/lib/${project.version}/docs/site</url>
 
     <scm>
         <connection>${scm.connection}</connection>
@@ -65,20 +65,68 @@ Contributor(s): .
         <module>softsmithy-lib-docs</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-compiler</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-beans</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-awt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-swing</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-swing-customizer</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>softsmithy-lib-time</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.softsmithy.devlib</groupId>
+                <artifactId>softsmithy-devlib</artifactId>
+                <version>${project.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+   
 
     <profiles>
         <profile>
-            <id>sonatype-oss-release</id>
+            <id>release-profile</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -94,6 +142,7 @@ Contributor(s): .
                                     <descriptors>
                                         <descriptor>src/main/assembly/dist.xml</descriptor>
                                     </descriptors>
+                                    <attach>false</attach>
                                 </configuration>
                             </execution>
                         </executions>

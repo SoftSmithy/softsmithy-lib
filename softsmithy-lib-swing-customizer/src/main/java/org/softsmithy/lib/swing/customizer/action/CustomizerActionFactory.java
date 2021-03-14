@@ -18,7 +18,17 @@
  */
 package org.softsmithy.lib.swing.customizer.action;
 
-import java.awt.ComponentOrientation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.softsmithy.lib.beans.BeanIntrospector;
+import org.softsmithy.lib.swing.HorizontalAlignment;
+import org.softsmithy.lib.swing.action.GeneralActionFactory;
+import org.softsmithy.lib.swing.action.StandardActionFactory;
+import org.softsmithy.lib.swing.action.TextActionFactory;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.SelectionManager;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.IntrospectionException;
 import java.lang.reflect.InvocationTargetException;
@@ -28,13 +38,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
-import org.softsmithy.lib.beans.BeanIntrospector;
-import org.softsmithy.lib.swing.HorizontalAlignment;
-import org.softsmithy.lib.swing.action.GeneralActionFactory;
-import org.softsmithy.lib.swing.action.StandardActionFactory;
-import org.softsmithy.lib.swing.action.TextActionFactory;
-import org.softsmithy.lib.swing.customizer.JCustomizer;
-import org.softsmithy.lib.swing.customizer.SelectionManager;
 
 /**
  * The CustomizerActionFactory provides default implementations of some actions which can be usefull when working with
@@ -44,7 +47,9 @@ import org.softsmithy.lib.swing.customizer.SelectionManager;
  */
 public class CustomizerActionFactory {
 
-    private SelectionManager selectionManager;
+    private static final Logger LOG = LoggerFactory.getLogger(CustomizerActionFactory.class);
+
+    private final SelectionManager selectionManager;
 
     /**
      * Creates a new instance of CustomizerActionFactory
@@ -66,7 +71,7 @@ public class CustomizerActionFactory {
             saf.configureXAction(action, locale);
             action.setNeededCustomizableProperties(new HashSet<>(Arrays.asList(neededCustomizableProperties)));
         } catch (NoSuchMethodException ex) {
-            ex.printStackTrace(); // should not happen here // TODO: exception handling
+            LOG.error(ex.getMessage(), ex); // should not happen here // TODO: other exception handling?
         }
         return action;
     }
@@ -180,15 +185,11 @@ public class CustomizerActionFactory {
     public void textAlignLeft(ActionEvent e) {
         //System.out.println("textAlignLeft start");
         JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-        for (int i = 0; i < customizers.length; i++) {
+        for (JCustomizer customizer : customizers) {
             try {
-                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.LEFT, customizers[i], null);
-            } catch (IntrospectionException ex1) {
-                ex1.printStackTrace();
-            } catch (IllegalAccessException ex2) {
-                ex2.printStackTrace();
-            } catch (InvocationTargetException ex3) {
-                ex3.printStackTrace();
+                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.LEFT, customizer, null);
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }
@@ -196,16 +197,11 @@ public class CustomizerActionFactory {
     public void textAlignCenter(ActionEvent e) {
         //System.out.println("textAlignCenter start");
         JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-        for (int i = 0; i < customizers.length; i++) {
+        for (JCustomizer customizer : customizers) {
             try {
-                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.CENTER, customizers[i],
-                        null);
-            } catch (IntrospectionException ex1) {
-                ex1.printStackTrace();
-            } catch (IllegalAccessException ex2) {
-                ex2.printStackTrace();
-            } catch (InvocationTargetException ex3) {
-                ex3.printStackTrace();
+                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.CENTER, customizer, null);
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }
@@ -213,15 +209,11 @@ public class CustomizerActionFactory {
     public void textAlignRight(ActionEvent e) {
         //System.out.println("textAlignRight start");
         JCustomizer[] customizers = selectionManager.getSelectedCustomizers();
-        for (int i = 0; i < customizers.length; i++) {
+        for (JCustomizer customizer : customizers) {
             try {
-                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.RIGHT, customizers[i], null);
-            } catch (IntrospectionException ex1) {
-                ex1.printStackTrace();
-            } catch (IllegalAccessException ex2) {
-                ex2.printStackTrace();
-            } catch (InvocationTargetException ex3) {
-                ex3.printStackTrace();
+                BeanIntrospector.setPropertyValue("horizontalAlignment", HorizontalAlignment.RIGHT, customizer, null);
+            } catch (IntrospectionException | IllegalAccessException | InvocationTargetException ex) {
+                LOG.error(ex.getMessage(), ex);
             }
         }
     }

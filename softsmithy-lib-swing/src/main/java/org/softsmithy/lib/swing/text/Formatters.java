@@ -19,8 +19,9 @@
  */
 package org.softsmithy.lib.swing.text;
 
-import javax.swing.text.InternationalFormatter;
 import org.softsmithy.lib.util.Comparables;
+
+import javax.swing.text.InternationalFormatter;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Formatters {
      * @param value
      * @return
      */
-    public static Comparable valueToRange(InternationalFormatter formatter, Comparable value) {
-        return Comparables.toRange(value, formatter.getMinimum(), formatter.getMaximum());
+    public static <T extends Comparable<? super T>> T valueToRange(InternationalFormatter formatter, T value) {
+        return Comparables.toRange(value, (T) formatter.getMinimum(), (T) formatter.getMaximum());
     }
 }

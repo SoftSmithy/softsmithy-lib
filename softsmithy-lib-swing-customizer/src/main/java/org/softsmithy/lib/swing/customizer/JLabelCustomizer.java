@@ -20,10 +20,10 @@
 
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import javax.swing.*;
 import org.softsmithy.lib.swing.HorizontalAlignment;
-import org.softsmithy.lib.swing.customizer.*;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A customizer to customize the text of a JLabel.
@@ -69,6 +69,7 @@ public class JLabelCustomizer extends AbstractTextCustomizer {
      * Gets the text from the wrapped JLabel.
      * @return the text from the wrapped JLabel
      */
+    @Override
     public String getText() {
         JLabel label = (JLabel) getComponent();
         return label != null ? label.getText() : "";
@@ -78,6 +79,7 @@ public class JLabelCustomizer extends AbstractTextCustomizer {
      * Sets the text of the wrapped JLabel.
      * @param text the text to be set
      */
+    @Override
     public void setText(String text) {
         JLabel label = (JLabel) getComponent();
         if (label != null){
@@ -104,6 +106,7 @@ public class JLabelCustomizer extends AbstractTextCustomizer {
      * fire any events!
      * @param alignment the horizontal alignment of the text
      */
+    @Override
     protected void setHorizontalAlignmentOnly(HorizontalAlignment alignment) {
         JLabel label = (JLabel) getComponent();
         if (label != null){
@@ -115,6 +118,7 @@ public class JLabelCustomizer extends AbstractTextCustomizer {
      * Gets the horizontal alignment of the text.
      * @return the horizontal alignment of the text
      */
+    @Override
     public HorizontalAlignment getHorizontalAlignment() {
         JLabel label = (JLabel) getComponent();
         return label != null ? HorizontalAlignment.getHorizontalAlignment(label.getHorizontalAlignment()) : HorizontalAlignment.getHorizontalAlignment(new JLabel().getHorizontalAlignment());

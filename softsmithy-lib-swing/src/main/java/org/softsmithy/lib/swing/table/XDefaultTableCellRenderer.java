@@ -19,10 +19,11 @@
  */
 package org.softsmithy.lib.swing.table;
 
-import java.awt.*;
+import org.softsmithy.lib.swing.CellRenderer;
+
 import javax.swing.*;
-import javax.swing.table.*;
-import org.softsmithy.lib.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.*;
 
 /**
  * This is an adapter class to use a CellRenderer as a TableCellRenderer.
@@ -36,7 +37,7 @@ public class XDefaultTableCellRenderer extends DefaultTableCellRenderer {
     /**
      * Holds value of property cellRenderer.
      */
-    private CellRenderer cellRenderer;
+    private final CellRenderer cellRenderer;
 
     /**
      * Creates a new instance of XDefaultTableCellRenderer

@@ -20,7 +20,10 @@
 
 package org.softsmithy.lib.util;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Not used anymore: ResourceBundle caches itself (see source). This was missunderstood before.
@@ -31,7 +34,7 @@ import java.util.*;
 class ResourceBundleCache {
   
   private final String baseName;
-  private final Map<Locale, ResourceBundle> resourceBundles = new HashMap<Locale, ResourceBundle>();
+  private final Map<Locale, ResourceBundle> resourceBundles = new HashMap<>();
   
   /** Creates a new instance of ResourceBundleManager */
   public ResourceBundleCache(String baseName) {

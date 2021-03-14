@@ -14,8 +14,13 @@
 
 package org.softsmithy.lib.awt.event;
 
-import java.awt.event.*;
-import java.lang.reflect.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 
 /**
@@ -53,6 +58,8 @@ import java.lang.reflect.*;
 
 public class ReflectiveItemListener implements ItemListener {
     
+    private static final Logger LOG = LoggerFactory.getLogger(ReflectiveItemListener.class);
+
     /**
      * The parameter types of the method.
      */
@@ -90,16 +97,17 @@ public class ReflectiveItemListener implements ItemListener {
      * Springs to the method specified in the constructor.
      * @param e an ItemEvent object
      */
+    @Override
     public void itemStateChanged(ItemEvent e) {
         try {
             fMethod.invoke(fTarget, new Object[]{e});
         } catch (InvocationTargetException ex1) {
             // should I throw an unchecked exception?
-            ex1.printStackTrace();
+            LOG.error(ex1.getMessage(), ex1);
         } catch (IllegalAccessException ex2) {
             // should I throw an unchecked exception?
             // cannot happen here!?
-            ex2.printStackTrace();
+            LOG.error(ex2.getMessage(), ex2);
         }
     }
     

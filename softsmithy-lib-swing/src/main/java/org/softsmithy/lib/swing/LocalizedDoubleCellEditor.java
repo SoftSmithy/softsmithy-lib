@@ -12,22 +12,25 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * LocalizedDoubleCellEditor.java
  *
  * Created on 7. Oktober 2002, 16:21
  */
 package org.softsmithy.lib.swing;
 
-import java.util.*;
+import java.util.Locale;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
 public class LocalizedDoubleCellEditor extends FormattedCellEditor {
 
-    /** Creates a new instance of LocalizedDoubleCellEditor */
+    /**
+     * Creates a new instance of LocalizedDoubleCellEditor
+     * @param locale the locale
+     */
     public LocalizedDoubleCellEditor(Locale locale) {
         super(new JLocalizedDoubleField(locale));
     }
@@ -53,11 +56,11 @@ public class LocalizedDoubleCellEditor extends FormattedCellEditor {
 //  }
     @Override
     protected void setValue(Object value) {
-        getLocalizedDoubleField().setDoubleValue(((Double) value).doubleValue());
+        getLocalizedDoubleField().setDoubleValue(((Double) value));
     }
 
     @Override
     protected Object getValue() {
-        return new Double(getLocalizedDoubleField().getDoubleValue());
+        return getLocalizedDoubleField().getDoubleValue();
     }
 }

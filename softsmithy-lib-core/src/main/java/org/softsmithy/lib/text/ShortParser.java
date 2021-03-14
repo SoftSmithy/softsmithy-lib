@@ -13,12 +13,14 @@
  */
 package org.softsmithy.lib.text;
 
-import java.text.NumberFormat;
-import java.text.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 /**
+ * A {@link Parser} implementation to parse {@link Short}s.
  *
  * @author puce
  */
@@ -26,10 +28,18 @@ public class ShortParser extends AbstractNumberParser<Short> {
 
     private static final Logger LOG = LoggerFactory.getLogger(ShortParser.class);
 
+    /**
+     * Creates a new instance of this class.
+     *
+     * @param numberFormat the {@link NumberFormat} to use for parsing the texts.
+     */
     public ShortParser(NumberFormat numberFormat) {
         super(numberFormat);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Short parseString(String text) throws ParseException {
         try {

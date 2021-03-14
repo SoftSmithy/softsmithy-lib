@@ -19,10 +19,11 @@
  */
 package org.softsmithy.lib.swing.customizer;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
 import org.softsmithy.lib.swing.JXTable;
+
+import javax.swing.*;
+import javax.swing.table.TableModel;
+import java.awt.*;
 
 /**
  *
@@ -57,10 +58,12 @@ public abstract class JTableCustomizerBar extends JPanel implements CustomizerBa
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
     public void clearSelection() {
         table.clearSelection();
     }
 
+    @Override
     public boolean hasSelection() {
         return table.getSelectedRowCount() > 0;
     }

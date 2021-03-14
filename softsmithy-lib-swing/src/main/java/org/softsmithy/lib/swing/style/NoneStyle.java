@@ -19,8 +19,7 @@
  */
 package org.softsmithy.lib.swing.style;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.util.Locale;
 
 /**
@@ -36,6 +35,7 @@ public class NoneStyle implements Style {
 
     /**
      * Creates a new instance of AbstractNoneStyle
+     * @param styleable the styleable
      */
     public NoneStyle(Styleable styleable) {
         this.styleable = styleable;

@@ -20,10 +20,11 @@
 
 package samples.swing.customizer;
 
-import javax.swing.JLabel;
 import org.softsmithy.lib.swing.customizer.JCustomizer;
 import org.softsmithy.lib.swing.customizer.layout.AbsoluteTableConstraints;
 import org.softsmithy.lib.swing.customizer.layout.InfiniteTableLayout;
+
+import javax.swing.*;
 
 /**
  *
@@ -79,10 +80,8 @@ public class CustomizerPropertyTableSample extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomizerPropertyTableSample().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CustomizerPropertyTableSample().setVisible(true);
         });
     }
     

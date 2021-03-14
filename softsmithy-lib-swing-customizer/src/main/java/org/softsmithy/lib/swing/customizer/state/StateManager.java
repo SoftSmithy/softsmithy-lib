@@ -13,10 +13,15 @@
  */
 package org.softsmithy.lib.swing.customizer.state;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Point;
-import java.awt.Rectangle;
+import org.softsmithy.lib.swing.customizer.JCustomizer;
+import org.softsmithy.lib.swing.customizer.JCustomizerPane;
+import org.softsmithy.lib.swing.customizer.border.HandleBorder;
+import org.softsmithy.lib.swing.customizer.border.HandleBorder.Handle;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -25,13 +30,6 @@ import java.awt.event.HierarchyListener;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
-import javax.swing.event.MouseInputListener;
-import org.softsmithy.lib.swing.customizer.JCustomizer;
-import org.softsmithy.lib.swing.customizer.JCustomizerPane;
-import org.softsmithy.lib.swing.customizer.border.HandleBorder;
-import org.softsmithy.lib.swing.customizer.border.HandleBorder.Handle;
 
 /*
  * Is this the right place? Should it be nested or in puce.swing?
@@ -577,8 +575,8 @@ public class StateManager implements FocusListener, MouseInputListener {
     private void resetSelectedBorder() {
         getSelectedState().resetBorder(getCurrentSelectedBorderColor().getColor());
         getMoveState().resetBorder(getCurrentSelectedBorderColor().getColor());
-        for (int i = 0; i < resizeStates.length; i++) {
-            resizeStates[i].setBorder(getMoveState().getBorder());
+        for (ResizeState resizeState : resizeStates) {
+            resizeState.setBorder(getMoveState().getBorder());
         }
     }
 
@@ -1104,8 +1102,8 @@ public class StateManager implements FocusListener, MouseInputListener {
 
     private class DefaultNormalBorderColor extends AbstractDefaultBorderColor {
 
-        private HierarchyListener parentListener = new ParentListener();
-        private PropertyChangeListener defaultNormalCustomizerBorderColorListener = new DefaultNormalCustomizerBorderColorListener();
+        private final HierarchyListener parentListener = new ParentListener();
+        private final PropertyChangeListener defaultNormalCustomizerBorderColorListener = new DefaultNormalCustomizerBorderColorListener();
 
         @Override
         public Color getColor() {
@@ -1176,8 +1174,8 @@ public class StateManager implements FocusListener, MouseInputListener {
 
     private class DefaultSelectedBorderColor extends AbstractDefaultBorderColor {
 
-        private HierarchyListener parentListener = new ParentListener();
-        private PropertyChangeListener defaultSelectedCustomizerBorderColorListener = new DefaultSelectedCustomizerBorderColorListener();
+        private final HierarchyListener parentListener = new ParentListener();
+        private final PropertyChangeListener defaultSelectedCustomizerBorderColorListener = new DefaultSelectedCustomizerBorderColorListener();
 
         @Override
         public Color getColor() {

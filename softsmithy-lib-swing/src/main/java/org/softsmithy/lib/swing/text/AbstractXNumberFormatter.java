@@ -13,9 +13,13 @@
  */
 package org.softsmithy.lib.swing.text;
 
-import java.text.*;
-import javax.swing.text.*;
-import org.softsmithy.lib.util.*;
+import org.softsmithy.lib.util.Comparables;
+
+import javax.swing.text.NumberFormatter;
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
 /**
  * The base class of the number formatters.
@@ -94,20 +98,24 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
     }
 
     /**
-     * Sets the maximum value. 
-     * It must be an instance of Number or null. 
-     * It mustn't be smaller than the minimum value. 
-     * It ensures that the maximum value is in the range of the maximum 
+     * Sets the maximum value.
+     * It must be an instance of Number or null.
+     * It mustn't be smaller than the minimum value.
+     * It ensures that the maximum value is in the range of the maximum
      * maximum value and the minimum minimum value.
      *
      * @param max the maximum number value
      */
     @Override
-    public void setMaximum(Comparable max) {
+    public void setMaximum(Comparable<?> max) {
         if (max != null && !numberType.isInstance(max)) {
             throw new IllegalArgumentException("max must be an instance of number type or null");
         }
-        if (max != null && getMinimum() != null && Comparables.isLess(max, getMinimum())) {
+        setMaximumNumber((Number & Comparable<? super Number>) max);
+    }
+
+    private <T extends Number & Comparable<? super T>> void setMaximumNumber(T max) {
+        if (max != null && getMinimum() != null && Comparables.isLess(max, (T) getMinimum())) {
             throw new IllegalArgumentException("max mustn't be smaller than minimum!");
         }
         //    if (max.compareTo(MAX_MAX_VALUE) > 0){
@@ -117,20 +125,24 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
     }
 
     /**
-     * Sets the minimum value. 
-     * It must be an instance of Number or null. 
-     * It mustn't be bigger than the maximum value. 
-     * It ensures that the minimum value is in the range of the maximum 
+     * Sets the minimum value.
+     * It must be an instance of Number or null.
+     * It mustn't be bigger than the maximum value.
+     * It ensures that the minimum value is in the range of the maximum
      * maximum value and the minimum minimum value.
      *
      * @param minimum the minimum number value
      */
     @Override
-    public void setMinimum(Comparable minimum) {
+    public void setMinimum(Comparable<?> minimum) {
         if (minimum != null && !numberType.isInstance(minimum)) {
             throw new IllegalArgumentException("minimum must be an instance of number type or null");
         }
-        if (minimum != null && getMaximum() != null && Comparables.isGreater(minimum, getMaximum())) {
+        setMinimumNumber((Number & Comparable<? super Number>) minimum);
+    }
+
+    private <T extends Number & Comparable<? super T>> void setMinimumNumber(T minimum) {
+        if (minimum != null && getMaximum() != null && Comparables.isGreater(minimum, (T) getMaximum())) {
             throw new IllegalArgumentException("minimum mustn't be bigger than max!");
         }
         //    if (minimum.compareTo(getMinimumMinimumValue()) < 0){
@@ -139,8 +151,10 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
         super.setMinimum(minimumToRange(numberType.cast(minimum)));
     }
 
+
+
     /**
-     * Returns the <code>Number</code> representation of the 
+     * Returns the <code>Number</code> representation of the
      * <code>String</code> <code>text</code>.
      *
      * @param text <code>String</code> to convert
@@ -164,7 +178,7 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
                 value = valueToRange(stringToNumber(getNumberFormat() != null ? getNumberFormat().parse(text).toString() : text));
                 value = (Number) super.stringToValue(getNumberFormat() != null ? getNumberFormat().format(value.toString()) : value.toString()); // needed?
                 //System.out.println("Second number conversion worked!");
-            } catch (ParseException | RuntimeException nfe) {
+            } catch (ParseException | RuntimeException ex2){
                 //System.out.println("Second number conversion failed!");
                 //nfe.printStackTrace();
                 value = (Number) super.stringToValue(text); // will throw a ParseException
@@ -175,7 +189,7 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
     }
 
     /**
-     * Returns the <code>Number</code> representation of the 
+     * Returns the <code>Number</code> representation of the
      * <code>String</code> <code>text</code>.
      *
      * @param text <code>String</code> to convert
@@ -187,26 +201,26 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
     public T valueToRange(T value) {
         return Comparables.toRange(value, getMinimumNumberValue(), getMaximumNumberValue());
     }
-
-    private T minimumToRange(T min) {
+    
+    private <T extends Number & Comparable<? super T>> T minimumToRange(T min) {
         T inRangeValue = min;
-        if (getMinimumMinimumValue() != null) {
-            if (inRangeValue == null) {
-                inRangeValue = getMinimumMinimumValue();
+        if (getMinimumMinimumValue() != null){
+            if (inRangeValue == null){
+                inRangeValue = (T) getMinimumMinimumValue();
             } else {
-                inRangeValue = Comparables.toRange(inRangeValue, getMinimumMinimumValue(), getMaximumMaximumValue());
+                inRangeValue = Comparables.toRange(inRangeValue, (T) getMinimumMinimumValue(), (T) getMaximumMaximumValue());
             }
         }
         return inRangeValue;
     }
-
-    private T maximumToRange(T max) {
+    
+    private <T extends Number & Comparable<? super T>> T maximumToRange(T max) {
         T inRangeValue = max;
-        if (getMaximumMaximumValue() != null) {
-            if (inRangeValue == null) {
-                inRangeValue = getMaximumMaximumValue();
+        if (getMaximumMaximumValue() != null){
+            if (inRangeValue == null){
+                inRangeValue = (T) getMaximumMaximumValue();
             } else {
-                inRangeValue = Comparables.toRange(inRangeValue, getMinimumMinimumValue(), getMaximumMaximumValue());
+                inRangeValue = Comparables.toRange(inRangeValue, (T) getMinimumMinimumValue(), (T) getMaximumMaximumValue());
             }
         }
         return inRangeValue;
@@ -223,11 +237,11 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
     }
 
     /**
-     * The maximum value for the maximum value. 
-     * It must be an instance of Comparable or null, if there is no maximum 
-     * maximum value. And it mustn't be smaller than the minimum minimum value, 
-     * if both are not null. 
-     * If the maximum or the minimum value are greater than the maximum maximum 
+     * The maximum value for the maximum value.
+     * It must be an instance of Comparable or null, if there is no maximum
+     * maximum value. And it mustn't be smaller than the minimum minimum value,
+     * if both are not null.
+     * If the maximum or the minimum value are greater than the maximum maximum
      * value, they will be set to the maximum maximum value instead.
      *
      * @param maximumMaximumValue the maximum value for the maximum value
@@ -254,6 +268,8 @@ public abstract class AbstractXNumberFormatter<T extends Number & Comparable<T>>
 
     /**
      * The minimum value for the minimum value.
+     *
+     * @param minimumMinimumValue the minimum value for the minimum value
      */
     protected void setMinimumMinimumValue(T minimumMinimumValue) {
         if (minimumMinimumValue != null && getMaximumMaximumValue() != null

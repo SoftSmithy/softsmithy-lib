@@ -13,26 +13,35 @@
  */
 package org.softsmithy.lib.swing;
 
-import java.awt.Component;
-import java.util.*;
 import javax.swing.*;
+import java.awt.*;
+import java.util.Locale;
 
 /**
  *
- * @author  puce
+ * @author puce
  */
+@Deprecated
 public class TypesafeEnumCellEditor extends DefaultCellEditor {
 
-    /** Holds value of property locale. */
+    /**
+     * Holds value of property locale.
+     */
     private Locale locale;
 
-    /** Creates a new instance of HorizontalAlignmentCellEditor */
+    /**
+     * Creates a new instance of HorizontalAlignmentCellEditor
+     *
+     * @param locale the locale
+     */
     public TypesafeEnumCellEditor(Locale locale) {
         super(new JTypesafeEnumComboBox());
         setLocale(locale);
     }
 
-    /** Getter for property locale.
+    /**
+     * Getter for property locale.
+     *
      * @return Value of property locale.
      *
      */
@@ -40,7 +49,9 @@ public class TypesafeEnumCellEditor extends DefaultCellEditor {
         return this.locale;
     }
 
-    /** Setter for property locale.
+    /**
+     * Setter for property locale.
+     *
      * @param locale New value of property locale.
      *
      */
@@ -49,7 +60,9 @@ public class TypesafeEnumCellEditor extends DefaultCellEditor {
         getComponent().setLocale(locale);
     }
 
-    /** Implements the <code>TableCellEditor</code> interface.  */
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
         fillComboBox(getClass(table, row, column));

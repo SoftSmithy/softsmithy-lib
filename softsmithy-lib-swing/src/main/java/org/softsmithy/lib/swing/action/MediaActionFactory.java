@@ -12,31 +12,37 @@
  * Contributor(s): .
  */
 
-/*
+ /*
  * MediaActionFactory.java
  *
  * Created on 22. Juni 2004, 16:40
  */
-
 package org.softsmithy.lib.swing.action;
 
 /**
- * http://java.sun.com/developer/techDocs/hi/repository/TBG_Media.html
- * @author  puce
+ * A factory for the standard media actions.
+ *
+ * <a href="https://www.oracle.com/technetwork/java/tbg-media-137102.html">Media Toolbar Button Graphics: Java look and feel Graphics Repository</a>
+ *
+ * @author puce
  */
-public class MediaActionFactory extends StandardActionFactory{
-  
-  /** Creates a new instance of MediaActionFactory */
-  private MediaActionFactory(String name) {
-    super(name);
-  }
-  public static final MediaActionFactory FAST_FORWARD = new MediaActionFactory("mediaFastForward");
-  public static final MediaActionFactory MOVIE = new MediaActionFactory("mediaMovie");
-  public static final MediaActionFactory PAUSE = new MediaActionFactory("mediaPause");
-  public static final MediaActionFactory PLAY = new MediaActionFactory("mediaPlay");
-  public static final MediaActionFactory REWIND = new MediaActionFactory("mediaRewind");
-  public static final MediaActionFactory STEP_BACK = new MediaActionFactory("mediaStepBack");
-  public static final MediaActionFactory STEP_FORWARD = new MediaActionFactory("mediaStepForward");
-  public static final MediaActionFactory STOP = new MediaActionFactory("mediaStop");
-  public static final MediaActionFactory VOLUME = new MediaActionFactory("mediaVolume");
+public class MediaActionFactory extends StandardActionFactory {
+
+    /**
+     * Creates a new instance of MediaActionFactory.
+     * 
+     * @param name the enum constant name
+     */
+    private MediaActionFactory(String name) {
+        super(name);
+    }
+    public static final MediaActionFactory FAST_FORWARD = new MediaActionFactory("mediaFastForward");
+    public static final MediaActionFactory MOVIE = new MediaActionFactory("mediaMovie");
+    public static final MediaActionFactory PAUSE = new MediaActionFactory("mediaPause");
+    public static final MediaActionFactory PLAY = new MediaActionFactory("mediaPlay");
+    public static final MediaActionFactory REWIND = new MediaActionFactory("mediaRewind");
+    public static final MediaActionFactory STEP_BACK = new MediaActionFactory("mediaStepBack");
+    public static final MediaActionFactory STEP_FORWARD = new MediaActionFactory("mediaStepForward");
+    public static final MediaActionFactory STOP = new MediaActionFactory("mediaStop");
+    public static final MediaActionFactory VOLUME = new MediaActionFactory("mediaVolume");
 }
