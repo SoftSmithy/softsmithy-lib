@@ -13,13 +13,14 @@
  */
 package org.softsmithy.lib.time.format;
 
+import org.softsmithy.lib.text.AbstractParser;
+import org.softsmithy.lib.text.Parser;
+
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalQuery;
-import org.softsmithy.lib.text.AbstractParser;
-import org.softsmithy.lib.text.Parser;
 
 /**
  * A {@link Parser} for {@link TemporalAccessor}.
@@ -52,9 +53,13 @@ public class TemporalAccessorParser<R> extends AbstractParser<R> {
             return dateTimeFormatter.parse(text)
                     .query(query);
         } catch (DateTimeParseException ex) {
-            throw new ParseException(ex.getMessage(), ex.getErrorIndex());
+            ParseException parseException = new ParseException(ex.getMessage(), ex.getErrorIndex());
+            parseException.initCause(ex);
+            throw parseException;
         } catch (RuntimeException ex) {
-            throw new ParseException(ex.getMessage(), 0);
+            ParseException parseException = new ParseException(ex.getMessage(), 0);
+            parseException.initCause(ex);
+            throw parseException;
         }
     }
 }
