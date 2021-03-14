@@ -14,15 +14,20 @@
 package org.softsmithy.lib.text;
 
 /**
+ * An abstract base class for {@link Formatter} implementations.
  *
+ * @param <T> the object type to format
  * @author puce
  */
 public abstract class AbstractFormatter<T> implements Formatter<T> {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String format(T t) throws FormatException {
         StringBuilder sb = new StringBuilder();
-        format(t, sb);
-        return sb.toString();
+        return format(t, sb)
+                .toString();
     }
 }

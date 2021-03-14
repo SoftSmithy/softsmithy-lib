@@ -14,12 +14,29 @@
 package org.softsmithy.lib.text;
 
 /**
+ * A Formatter allows to format objects.
  *
+ * @param <T> the object type to format
  * @author puce
  */
 public interface Formatter<T> {
 
+    /**
+     * Formats the given object to a {@link String}.
+     *
+     * @param t the object to format
+     * @return the formatted String
+     * @throws FormatException if the object could not be formatted
+     */
     String format(T t) throws FormatException;
 
-    void format(T t, Appendable appendable) throws FormatException;
+    /**
+     * Formats the given object and appends it to the given {@link Appendable}.
+     *
+     * @param t          the object to format
+     * @param appendable the Appendable to append the formatted object to
+     * @return the modified Appendable
+     * @throws FormatException if the object could not be formatted
+     */
+    Appendable format(T t, Appendable appendable) throws FormatException;
 }

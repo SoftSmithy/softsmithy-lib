@@ -16,10 +16,19 @@ package org.softsmithy.lib.text;
 import java.text.ParseException;
 
 /**
+ * A Parser allows to parse objects
  *
+ * @param <T> the object type to parse
  * @author puce
  */
 public interface Parser<T> {
 
+    /**
+     * Parses the given text to an object.
+     *
+     * @param text the text to parse
+     * @return the parsed object
+     * @throws ParseException if the text could not be parsed
+     */
     T parse(CharSequence text) throws ParseException;
 }

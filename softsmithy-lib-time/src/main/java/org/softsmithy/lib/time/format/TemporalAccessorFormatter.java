@@ -13,11 +13,12 @@
  */
 package org.softsmithy.lib.time.format;
 
+import org.softsmithy.lib.text.FormatException;
+import org.softsmithy.lib.text.Formatter;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.TemporalAccessor;
-import org.softsmithy.lib.text.FormatException;
-import org.softsmithy.lib.text.Formatter;
 
 /**
  * A {@link Formatter} for {@link TemporalAccessor}.
@@ -30,8 +31,8 @@ public class TemporalAccessorFormatter implements Formatter<TemporalAccessor> {
 
     /**
      * Creates a new instance of this class. Uses
-     * {@link DateTimeFormatter#ofLocalizedDate(java.time.format.FormatStyle)} and
-     * {@link FormatStyle#FULL} by default.
+     * {@link DateTimeFormatter#ofLocalizedDate(java.time.format.FormatStyle)}
+     * and {@link FormatStyle#FULL} by default.
      *
      * @see DateTimeFormatter#ofLocalizedDate(java.time.format.FormatStyle)
      * @see FormatStyle#FULL
@@ -56,8 +57,8 @@ public class TemporalAccessorFormatter implements Formatter<TemporalAccessor> {
     public String format(TemporalAccessor temporalAccessor) throws FormatException {
         try {
             return dateTimeFormatter.format(temporalAccessor);
-        } catch (Exception ex) {
-            throw new FormatException(ex);
+        } catch (RuntimeException ex) {
+            throw new FormatException(ex.getMessage(), ex);
         }
     }
 
@@ -65,11 +66,12 @@ public class TemporalAccessorFormatter implements Formatter<TemporalAccessor> {
      * {@inheritDoc}
      */
     @Override
-    public void format(TemporalAccessor temporalAccessor, Appendable appendable) throws FormatException {
+    public Appendable format(TemporalAccessor temporalAccessor, Appendable appendable) throws FormatException {
         try {
             dateTimeFormatter.formatTo(temporalAccessor, appendable);
-        } catch (Exception ex) {
-            throw new FormatException(ex);
+            return appendable;
+        } catch (RuntimeException ex) {
+            throw new FormatException(ex.getMessage(), ex);
         }
     }
 }
